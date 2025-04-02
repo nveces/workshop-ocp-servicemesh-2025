@@ -1,5 +1,5 @@
-name: template-tutorial
-title: Template Tutorial
+name: workshop-ocp-servicemesh-2025
+title: "WorkShop - Service Mesh on OCP 2025"
 version: master
 nav:
   - modules/ROOT/nav.adoc
