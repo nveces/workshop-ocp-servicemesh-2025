@@ -1,9 +1,7 @@
 = Openshift 4 Introduction - Labs
-:author: David Sancho
-:email: dsanchor@redhat.com
-:imagesdir: ./images
+
 :toc: left
-:toc-title: Openshift 4 Introduction - Labs 
+:toc-title: Openshift 4 Introduction - Labs
 
 
 include::00-intro-and-prereq.adoc[]
@@ -22,3 +20,5 @@ include::06-liveness-readiness.adoc[]
 
 include::07-network-policies.adoc[]
 
+
+// EOF

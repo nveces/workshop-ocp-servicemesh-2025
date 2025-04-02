@@ -41,20 +41,13 @@ Use the `*$OCP_CONSOLE*` url to acces the Openshift Web Console.
 
 A login screen will be shown as follow:
 
-.Default
-image:login.png[login]
-
-.Exmmaple 2
-image:introduction/login.png[login]
-
-.Exmmaple 3
-image:introduction/login.png[link=_images/introduction/login.png,window=_blank]
+image:introduction/login.png[login,link=../_images/introduction/login.png,window=_blank]
 
 Enter your `username` and `password` and click `Log In`.
 
 If you have successfully logged in, you will arrive to the main dashboard with your current projects. As seen below, the list of projects should be empty:
 
-image:empty-projects.png[empty-projects]
+image:introduction/empty-projects.png[empty-projects,link=../_images/introduction/empty-projects.png,window=_blank]
 
 We will soon create our first project, but now, it is time to get the Openshift CLI binaries for your specific OS.
 

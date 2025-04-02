@@ -5,3 +5,11 @@
 * xref:02-deploy.adoc[2. Deploy Service]
 ** xref:02-deploy.adoc#package[Build Service]
 ** xref:02-deploy.adoc#deploy[Deploy Dervice]
+
+* xref:introduction/index.adoc[3. Introduction - Labs]
+** xref:introduction/index.adoc#_lab_0_warming_up[Lab 0 - Warming up]
+** xref:introduction/index.adoc#_lab_1_first_application_deployment[Lab 1 - First application deployment]
+
+
+
+// EOF
