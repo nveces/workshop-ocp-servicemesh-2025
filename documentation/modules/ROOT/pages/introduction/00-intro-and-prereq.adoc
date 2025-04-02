@@ -1,8 +1,7 @@
 = Lab 0 - Warming up
-:author: David Sancho
-:email: dsanchor@redhat.com
-:imagesdir: ./images
-:toc: left
+
+include::./../_attributes.adoc[]
+
 :toc-title: Lab 0 - Warming up
 
 [Abstract]
@@ -11,13 +10,13 @@ WARNING: This is not a recommended practices guide nor intended to serve as a re
 
 
 
-In this preparation lab, we are going to introduce the Openshift web console, get the `oc` cli binary, and finally, validate that all necessary requirements are successfully accomplished before starting the series of labs. 
+In this preparation lab, we are going to introduce the Openshift web console, get the `oc` cli binary, and finally, validate that all necessary requirements are successfully accomplished before starting the series of labs.
 
-Along these labs, you will refer to a list of variables that have been shared with you before starting the labs. If this is not your case, please let us know. 
+Along these labs, you will refer to a list of variables that have been shared with you before starting the labs. If this is not your case, please let us know.
 
 These variables are:
 
-- *$OCP_CONSOLE*: url for accessing to the 
+- *$OCP_CONSOLE*: url for accessing to the
 Openshift web console
 - *$OCP_API*: Openshift API endpoint. We will use this endpoint when accesing the cluster from the `oc` cli.
 - *$USER*: your private user id used for Openshift authentication
@@ -38,11 +37,18 @@ $ git clone https://github.com/dsanchor/ocp-intro-dev.git $LABS_HOME
 :numbered:
 == Access to Openshift Web Console
 
-Use the `*$OCP_CONSOLE*` url to acces the Openshift Web Console. 
+Use the `*$OCP_CONSOLE*` url to acces the Openshift Web Console.
 
 A login screen will be shown as follow:
 
+.Default
 image:login.png[login]
+
+.Exmmaple 2
+image:introduction/login.png[login]
+
+.Exmmaple 3
+image:introduction/login.png[link=_images/introduction/login.png,window=_blank]
 
 Enter your `username` and `password` and click `Log In`.
 
@@ -50,11 +56,11 @@ If you have successfully logged in, you will arrive to the main dashboard with y
 
 image:empty-projects.png[empty-projects]
 
-We will soon create our first project, but now, it is time to get the Openshift CLI binaries for your specific OS. 
+We will soon create our first project, but now, it is time to get the Openshift CLI binaries for your specific OS.
 
 => _Additional reads: https://docs.openshift.com/container-platform/4.6/web_console/web-console.html[Web Console]_
 
-=== Download the CLI 
+=== Download the CLI
 
 On the top-right (?) menu, click on `Command line tools`:
 
@@ -97,13 +103,13 @@ There is not any project yet, so let's create it.
 
 == Create your first project
 
-A project allows a community of users to organize and manage their content in isolation from others. 
+A project allows a community of users to organize and manage their content in isolation from others.
 
-In our labs, you will deploy the demo application and related into your own project. 
+In our labs, you will deploy the demo application and related into your own project.
 
 Also notice that sometimes we talk about   `namespaces`, which is the Kubernetes concept and others about `projects`. A `project` is a Kubernetes namespace with additional annotations.
 
-=> _Additional reads: https://docs.openshift.com/container-platform/4.6/applications/projects/working-with-projects.html[working with projects]_ 
+=> _Additional reads: https://docs.openshift.com/container-platform/4.6/applications/projects/working-with-projects.html[working with projects]_
 
 We are now ready to create our first project by running:
 

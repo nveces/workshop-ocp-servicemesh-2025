@@ -1,2 +1,8 @@
 :experimental:
 :source-highlighter: highlightjs
+
+// :imagesdir: ./images
+:toc: left
+
+
+// EOF
