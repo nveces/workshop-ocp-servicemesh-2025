@@ -21,6 +21,7 @@ jobs:
       - name: "Upload generated site"
         uses: actions/upload-artifact@v4
         with:
+          include-hidden-files: true
           name: site
           path: "${{ github.workspace }}/${{ env.SITE_DIR }}"
   deploy_site:
