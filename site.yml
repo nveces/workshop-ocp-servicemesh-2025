@@ -2,9 +2,9 @@ runtime:
   cache_dir: ./.cache/antora
 
 site:
-  title: Template Tutorial
-  url: https://redhat-scholars.github.io/course-template
-  start_page: template-tutorial::index.adoc
+  title: WorkShop - Service Mesh on OCP 2025
+  url: https://nveces.github.io/workshop-ocp-servicemesh-2025/
+  start_page: workshop-servicemesh::index.adoc
 
 content:
   sources:
