@@ -1,0 +1,213 @@
+= Lab 1 - First application deployment
+:author: David Sancho
+:email: dsanchor@redhat.com
+:imagesdir: ./images
+:toc: left
+:toc-title: First application deployment
+
+[Abstract]
+Once this lab is completed, we will have successfully deployed our first application and we will also have made it externally accesible. 
+
+The main goals of this lab is to understand some core concepts such as:
+
+- https://kubernetes.io/docs/concepts/workloads/controllers/deployment/[Deployments]
+- https://kubernetes.io/docs/concepts/services-networking/service/[Services]
+- https://docs.openshift.com/container-platform/4.6/rest_api/network_apis/route-route-openshift-io-v1.html[Routes]
+
+
+:numbered:
+== Brief application description
+
+The application that we are going to use during these labs is called *Pet clinic*. It has been used in different workshops in Red Hat. 
+
+In our case, we have made some modifications to make it more appropiate to certain use cases we wanted to show during the labs. 
+
+Next diagram describes the 3 layer application architecture:
+
+image:app-arch.png[app-arch]
+
+It basically manage set of Pets, their Owners and Veterinarians appointments. We will play a bit when needed in the labs. 
+
+Source code is available https://github.com/dsanchor/petclinic.git[here].
+
+NOTE: As these labs are not intended to be a development nor Quarkus workshop, I will not give more details about the application itself unless they are related to Openshift integration.
+
+== Deploy application
+
+There are many ways of performing our first deployment (web console, cli options and so on), but I want to start by creating the first deployment using the YAML descriptor. 
+
+Let's have a look at the full YAML file first:
+[source,yaml]
+----
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: quarkus-petclinic
+  labels:
+    app: quarkus-petclinic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quarkus-petclinic
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+  template:
+    metadata:
+      labels:
+        app: quarkus-petclinic
+        deployment: quarkus-petclinic
+    spec:
+      containers:
+        - name: quarkus-petclinic
+          image: 'quay.io/dsanchor/quarkus-petclinic:in-mem'
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources: {}
+          imagePullPolicy: Always
+----
+
+Let's focus on each individual parts:
+
+First part, there is basically the `kind` and `apiVersion` for a `Deployment` API object and then, we just add a name and a set of `labels` under `metadata`:
+
+image:d-name.png[deployment name]
+
+Next, we have the `spec` part of the object. This is where we basically define the desired state of our `Deployment`. 
+
+Grouping some parts of it, we have:
+
+image:d-part1.png[deployment part1]
+
+- Number of desired pods managed by this `Deployment` and its `ReplicaSet`
+- Selector, that will basically tell which pods are managed by the `ReplicaSet`.
+- Deployment strategy, which set how pods are created/destroy during update process. 
+
+And finally the template definition, that describes how a pod will look like: 
+
+image:d-part2.png[deployment part2]
+
+We will see more details about every part of the `pod` itself while going through the labs.
+
+=== Create our first deployment in your project
+
+As said, we will apply the YAML descriptor into our project. To do so, execute:
+
+----
+$ oc apply -f $LABS_HOME/lab1/app-deployment.yaml -n <YOUR_PROJECT>
+
+deployment.apps/quarkus-petclinic created
+----
+
+NOTE: You can move to one project to another with `oc project <PROJECT>` and there is no need to add the extra `-n <PROJECT>` to perform actions over the current `project`, although when having many `projects`, the `-n` option will give you the peace and serenity about being doing stuff where you really want to :-)
+
+Let's also have a look at what has been created already in our project:
+
+----
+$ oc get all -n <YOUR_PROJECT>
+
+NAME                                     READY   STATUS    RESTARTS   AGE
+pod/quarkus-petclinic-7cdcd76595-vrbd2   1/1     Running   0          2m33s
+
+NAME                                READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/quarkus-petclinic   1/1     1            1           2m33s
+
+NAME                                           DESIRED   CURRENT   READY   AGE
+replicaset.apps/quarkus-petclinic-7cdcd76595   1         1         1       2m33s
+
+----
+
+We have not only a `Deployment` but a `ReplicaSet` and a single `Pod`. 
+
+By creating a `Deployment`, a `ReplicaSet` has been created in order to ensure that the specified number of pods are running at a given moment in time. 
+
+Let's move to the console and see what we have. This time, we will use the `Developer` view. Select that perspective on the left top corner:
+
+image:just-deployment.png[just deployment]
+
+If you click on the blue circle (2), you will get all details about the application (3). 
+
+As you can tell, there is not any `Service` nor `Route` created for it yet. That means, this application is just locally accesible if you would know the pod ip (unprobable.. and undesired). 
+
+Click on the `pod` link (4) and get a terminal screen within that `pod`:
+
+image:pod-terminal.png[pod terminal]
+
+To test the application locally, execute the following in the terminal:
+....
+$ curl -v localhost:8080 | grep 200
+....
+
+NOTE: In case you did not get a `HTTP/1.1 200 OK` response, let us know.
+
+=== Add a service to your application
+
+Once we tested the application, lets add a `Service` that will provide us a logical name to access to this application. It will also be used as a load balancer for the possible 'n' pods we may have later for this `Deployment`.
+
+....
+$ oc apply -f $LABS_HOME/lab1/app-service.yaml -n <YOUR_PROJECT>
+
+service/quarkus-petclinic created
+....
+
+Alternatively, you could have ran the next `oc` command:
+....
+oc expose deployment/quarkus-petclinic --port=8080 -n <YOUR_PROJECT>
+....
+
+Feel free to run again a _oc get all_ to see that the service has been successfully created. 
+
+Also, if you move back to the console, you will notice that the service is "assigned" to the application:
+
+image:with-service.png[with service]
+
+Test the application again from the `pod` terminal, but this time use the `service` name instead:
+
+....
+$ curl -v quarkus-petclinic:8080 | grep 200
+....
+
+Hope you got a `HTTP/1.1 200 OK`! If that is the case, let's make our application externally acessible by adding a `route`. 
+
+=== Create a route
+
+Apply the following YAML in your project:
+....
+$ oc apply -f $LABS_HOME/lab1/app-route.yaml -n <YOUR_PROJECT>
+
+route.route.openshift.io/quarkus-petclinic created
+....
+
+As previously mentioned for `services`, you could use the `oc expose` command:
+....
+oc expose svc/quarkus-petclinic -n <YOUR_PROJECT>
+....
+
+It is then time to access to our application using a web browser. To do so, let's first get the `host` where this application is exposed:
+
+....
+$ oc get route -n <YOUR_PROJECT>
+
+NAME                HOST/PORT                                                  PATH   SERVICES            PORT       TERMINATION   WILDCARD
+quarkus-petclinic   quarkus-petclinic-user0.apps.labs.sandbox779.opentlc.com          quarkus-petclinic   8080-tcp                 None
+....
+
+Copy the value under `HOST/PORT` column in your preferred web browser. And then... there we go!
+
+image:petclinic-web.png[petclinic]
+
+Congratulations! You have successfully deployed your first application. 
+
+Just a few  considerations about the application. This application requires access to a DB in order to persist any change. In this lab, we used an in-memory H2 DB within our application.. so in case you add/remove pets, this changes are only persisted to that single pod. 
+
+You would also notice that in case you kill/delete the pod, those pets previously created would have been lost. 
+
+Feel free to perform these very usefull exercises to understand that _pods are ephemeral_.
+
+But no worries, *our pets deserve the best*.. so will deploy a proper DB in the next lab and link the application pods to it.

@@ -1,0 +1,90 @@
+= Lab 2 - Complete application deployment 
+:author: David Sancho
+:email: dsanchor@redhat.com
+:imagesdir: ./images
+:toc: left
+:toc-title: Complete application deployment 
+
+[Abstract]
+In previous lab, we have just deployed a single application without considering its requirements. We just wanted to have it running and play a bit with Openshift.
+
+In this lab, we will deploy a Postgresql Database and we will update the application deployment image to ensure we don't use an in-memory DB so we will link the application to the Postgresql DB instead. 
+
+:numbered:
+== Deploy and ephemeral Postgresql
+
+This time, we will do the full deployment from the `web console`. 
+
+Let's move to the `console` and select the `Developer` view.
+
+As in next screenshot, first, ensure you are on the right project (it is very likely you are.. unless you have created more than one project), click on `Add` and select `Database`:
+
+image:dev-add-db.png[add db]
+
+Then, select `Postgresql ephemeral`:
+
+image:select-postgresql-eph.png[postgresql ephemeral]
+
+Yes.. we are going to deploy an ephemeral Postgresql... so in case the Postgresql `pod` is recreated we will lose the data. We will add a persistent volume later in these labs.
+
+Click on `Instantiate Template`:
+
+image:instantiate-template.png[instantiate template]
+
+And set the following parameter values set in red (ensure you use those):
+
+image:db-parameters.png[db parameters]
+
+As a result, you should see both the application and postgresql pods running:
+
+image:apps-pods.png[application pods]
+
+== Connect application to Database
+
+We have now the Postgresql pod running, but the application pod is not connected to it yet. 
+
+For that, we will deploy a new application image tag that has the proper configuration to connect to the DB (the application configuration is set in this https://github.com/dsanchor/petclinic/blob/mnl-db/quarkus-petclinic/src/main/resources/application.properties[application.properties] file). 
+
+NOTE: This approach of defining the configuration within the application (and then, inside the image) could be seen as not very Cloud Native... even when it is somehow set with profiles. To solve this, we will extract this configuration to a `ConfigMap` later on these labs.
+
+It is time for deploy a new version of our application. To do so, we will only update the image in our existing deployment:
+
+....
+$ oc set image deployment/quarkus-petclinic *=quay.io/dsanchor/quarkus-petclinic:db  -n <YOUR_PROJECT>
+
+deployment.apps/quarkus-petclinic image updated
+....
+
+Once the image has been updated, a new pod has been created, while the old one has been terminated. If you missed that process, here it is a short replay:
+
+image:rolling-update.gif[rolling update]
+
+That list of `pods` could be seen under the `Administrator` view, then `Workloads` and finally `Pods`. 
+
+We can now test the application again. Feel free to add new owners, pets and so on, those new changes are now persisted in the Database. To validate this behavior, delete the existing application `pod` and validate that the data is still there when the new `pod` has been created.
+
+
+== Scale the application pod replicas
+
+So far, we have just a single replica of our "Pet clinic" web site... That is not high available and fault tolerant at all. 
+
+Let's scale it up to 3 replicas by running the next command:
+
+....
+oc scale deployment/quarkus-petclinic --replicas=3 -n <YOUR_PROJECT>
+
+deployment.apps/quarkus-petclinic scaled
+....
+
+You could now continue adding data from the web application, it does not matter from which `pod` you are accesing to the Database, the same data is accessible from all the application pods.
+
+Feel free to scale it down and up again and check that the application works as expected and does not miss any data. 
+
+=== Extra: Rolling vs Recreate deployment strategy
+
+Have a look at the following resources and then, answer a couple of questions that are related to this topic based on our scenario:
+
+- https://docs.openshift.com/container-platform/4.6/applications/deployments/deployment-strategies.html#deployments-rolling-strategy_deployment-strategies[Rolling]
+- https://docs.openshift.com/container-platform/4.6/applications/deployments/deployment-strategies.html#deployments-recreate-strategy_deployment-strategies[Recreate]
+
+So.. could you have a look at what strategies are used in both the application and the Database? Why are they different?

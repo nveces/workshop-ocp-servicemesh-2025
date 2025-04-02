@@ -1,0 +1,96 @@
+= Lab 3 - Adding persistent volumes
+:author: David Sancho
+:email: dsanchor@redhat.com
+:imagesdir: ./images
+:toc: left
+:toc-title: Adding persistent volumes
+
+[Abstract]
+This lab will give you an overview about adding a persistence layer to any application that may require it, for instance, a Database.
+
+In last lab, we have deployed an ephemeral Database, that means, in case the `pod` is recreated, any data previously stored will be lost.
+
+Let's fix this!!
+
+:numbered:
+== Understanding storage
+
+I would like you to spend some time to read the Openshift official documentation about storage and understand the main concepts around it: https://docs.openshift.com/container-platform/4.6/storage/understanding-persistent-storage.html[Understanding persistent storage].
+
+Or in case you just want the basics for the lab, just read the following:
+
+- https://docs.openshift.com/container-platform/4.6/storage/understanding-persistent-storage.html#persistent-volumes_understanding-persistent-storage[PersistentVolume]
+- https://docs.openshift.com/container-platform/4.6/storage/understanding-persistent-storage.html#persistent-volumes_understanding-persistent-storage[PersistentVolumeClaim]
+
+== Setting persistent storage to the Database
+
+Let's now add persistent storage to the Postgresql Database we have deployed so we do not miss data in case our Database `pod` crashes or is recreated.
+
+First, we will scale down to 0. You can use the `web console` or the `oc`. Here is the command:
+
+....
+$ oc scale dc/petclinic-database --replicas=0 -n <YOUR_PROJECT>
+
+
+deploymentconfig.apps.openshift.io/petclinic-database scaled
+....
+
+Now, edit the `petclinic-database` `DeploymentConfig` to remove any `volume` and `volumeMount` reference to avoid conflicts when adding new storage. Before removing, keep save somewhere the path related to the volume mount. You can manually edit the `DeploymentConfig`  from the `web console` or by running:
+....
+ oc edit dc/petclinic-database  -n <YOUR_PROJECT>
+....
+
+Remove `emptyDir` volume:
+
+image:emptydir.png[Empty dir]
+
+Remove volume mount:
+
+image:vol-mount.png[Volume mount]
+
+Let's add storage now. Move to the `Developer` view and click on the Database application and then, `Add storage`:
+
+image:add-storage.png[Add storage]
+
+Chose `Create new claim` and set the values according to next picture:
+
+image:add-storage-detail.png[Add storage]
+
+Scale the Database `DeploymentConfig` back to one replica:
+
+....
+$ oc scale dc/petclinic-database --replicas=1 -n <YOUR_PROJECT>
+
+
+deploymentconfig.apps.openshift.io/petclinic-database scaled
+....
+
+Do some extra checks:
+
+- Have a look at the new `DeploymentConfig` volume and volumeMount section
+- Navigate to the `web console` and `storage` menu and verify that the `pvc` appears as bound
+- And try to get details about the `pv` (No, you won't get those details as your are not cluster administrator)
+
+And also, test the application again. You will notice that we will get errors.. because the tables, relationships and data does not exist any more... 
+
+In order recreate our scheme, let's scale down the application to 0 and then back to 1 (this is because the application will create the tables and relationships again based on its hibernate configuration):
+
+....
+$ oc scale deployment/quarkus-petclinic --replicas=0 -n <YOUR_PROJECT>
+
+deployment.apps/quarkus-petclinic scaled
+.... 
+
+And once there is no `pods` for the application, scale it up again:
+
+....
+$ oc scale deployment/quarkus-petclinic --replicas=1 -n <YOUR_PROJECT>
+
+deployment.apps/quarkus-petclinic scaled
+.... 
+
+And test the application... and list the owners. You should get a list of pre-created veterinarians :-)
+
+image:list-vets.png[List vets]
+
+From now on.. you will not lose your data anymore as it is backed by a `PersistentVolume`.

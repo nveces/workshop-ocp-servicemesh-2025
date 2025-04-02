@@ -1,0 +1,140 @@
+= Lab 4 - Configuration management 
+:author: David Sancho
+:email: dsanchor@redhat.com
+:imagesdir: ./images
+:toc: left
+:toc-title: Configuration management
+
+[Abstract]
+
+In this lab, we will introduce the concepts of `ConfigMap` and `Secrets` and we will give some examples of how they can be used/consumed from any application.
+
+:numbered:
+== Short introduction
+
+Before continue to the labs, I highly encourage you to read the following (brief) documentation about:
+
+- https://kubernetes.io/docs/concepts/configuration/configmap/[ConfigMaps]
+- https://kubernetes.io/docs/concepts/configuration/secret/[Secrets]
+
+
+== ConfigMaps
+
+As a summary of what you have read in the k8s documentation, we will use a `ConfigMap` to separate the configuration from the container image. This approach will give us the possibility of running the same image in different environments and inject completely different configuration values per environment.
+
+In the next example I will use the the `Terms and conditions` tab in our "Pet clinic" web site to externalize the content of this legal text. 
+
+Before we start, let's update the image that is used during this lab:
+
+....
+oc set image deployment/quarkus-petclinic *=quay.io/dsanchor/quarkus-petclinic:config  -n <YOUR_PROJECT>
+
+deployment.apps/quarkus-petclinic image updated
+....
+
+I would also suggest to scale the application down to 1 replicas for debugging simplicity during the lab.
+....
+oc scale deployment/quarkus-petclinic --replicas=1 -n <YOUR_PROJECT>
+
+deployment.apps/quarkus-petclinic scaled
+....
+
+Back to the topic, the main difference with the other application versions is that, this version, will try to read from a _/deployments/tcs.txt_ (as per defined in https://github.com/dsanchor/petclinic/blob/mnl-config/quarkus-petclinic/src/main/resources/application.properties[application configration]) to load the content of the `Terms and conditions` text.
+
+If you click now on the "T&Cs" tab, you will get a message like this one:
+
+image:tcs.png[terms and conditions]
+
+If you also check the `pod` logs, every time you click on "T&CS" tab, there will be a WARN log message:
+
+....
+WARN: no such file. Setting default T&Cs message
+....
+
+NOTE: you can also see the logs of your pod by running: oc get logs -f <POD> -n <YOUR_PROJECT>
+
+Let's create our `ConfigMap` now:
+....
+ oc create cm terms-and-conditions --from-literal=tcs.txt="My new tcs" -n <YOUR_PROJECT>
+
+ configmap/terms-and-conditions created
+....
+
+You can also check the content from the `web console`:
+
+image:configmap-tcs.png[tcs configmap]
+
+And now, let's mount this `ConfigMap` as volume in our `pods` by adding some configuration in the application `Deployment`:
+
+....
+oc set volume deployment/quarkus-petclinic --add --name=tcs -m /deployment -t configmap --configmap-name=terms-and-conditions -n <YOUR_PROJECT>
+
+deployment.apps/quarkus-petclinic volume update
+....
+
+What this command has added in our `Deployment` is:
+
+image:volume-mount-deployment.png[volume mount deployment]
+
+
+If we now click on the "T&CS" tab, the content should be exactly the same of the one set in the `ConfigMap` and the WARN should have dissapeared from the `pod` logs:
+
+image:new-tcs.png[new tcs]
+
+What would happen if you modify the content of the `ConfigMap`? Are the 'T&CS' updated as well?
+
+Feel free to try it your self. You could edit the `ConfigMap` manually from the `web console` or by running:
+....
+ oc edit cm terms-and-conditions -n <YOUR_PROJECT>
+....
+
+Both `Secrets` and `ConfigMaps` could be mounted as volumes within `pods`. 
+
+Other approach that is valid in both cases is to consume the content of either `Secrets` or `ConfigMaps` as environment variables within `pods`.
+
+We will see this last approach next with a `Secret` example.
+
+
+== Secrets
+
+Compare to `ConfigMaps`, `Secrets` are used to store and manage sensitive data. 
+
+In this lab, we will just have a look at how the Postgresql application is using and consuming a given `Secret` that stores sensitive data such as the username, password and database name.
+
+First of all, let's have a look at the `petclinic-database` `Secret` using either the `web console` or the `cli`. I will use the `cli`, focusing only on the interesting part of the 'Secret'
+
+....
+$ oc get secret petclinic-database -o yaml -n <YOUR_PROJECT>
+
+apiVersion: v1
+data:
+  database-name: cGV0Y2xpbmlj
+  database-password: bXlzZWNyZXRwYXNzd29yZA==
+  database-user: cGV0Y2xpbmlj
+kind: Secret
+type: Opaque
+metadata:
+  name: petclinic-database
+....
+
+Notice the main keys within the data part: database-name, database-password and database-user. 
+
+Now, let's move to the postgresql `DeploymentConfig` and see how these keys are then referenced from the environment variables.
+
+If we check it using the `web console`:
+
+image:dcs-env-vars.png[dc env vars]
+
+In the YAML descriptor, we can also clearly see how environments variables are set from the `Secret`:
+
+image:yaml-env-vars.png[yaml env vars]
+
+== Extra: how Quarkus (could) manage configuration
+
+Once we have finished the whole lab, I would like to introduce you a different approach that is used by Quarkus in order to load/access `ConfigMaps` and `Secrets`.
+
+As mentioned previously, some parts of the cofiguration has been profiled so that, we have different values for local development and production.
+
+We would like to go a step further and show you how to make this application a Cloud Native one in terms of configuration.
+
+Let me show it once we all have finished the lab.

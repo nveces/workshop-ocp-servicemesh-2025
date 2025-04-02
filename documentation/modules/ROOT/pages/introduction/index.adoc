@@ -1,0 +1,24 @@
+= Openshift 4 Introduction - Labs
+:author: David Sancho
+:email: dsanchor@redhat.com
+:imagesdir: ./images
+:toc: left
+:toc-title: Openshift 4 Introduction - Labs 
+
+
+include::00-intro-and-prereq.adoc[]
+
+include::01-first-deploy.adoc[]
+
+include::02-complete-application-deployment.adoc[]
+
+include::03-adding-persistent-volumes.adoc[]
+
+include::04-configuration-management.adoc[]
+
+include::05-resources.adoc[]
+
+include::06-liveness-readiness.adoc[]
+
+include::07-network-policies.adoc[]
+

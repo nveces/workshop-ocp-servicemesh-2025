@@ -1,0 +1,80 @@
+= Lab 7 - Network Policies
+:author: David Sancho
+:email: dsanchor@redhat.com
+:imagesdir: ./images
+:toc: left
+:toc-title: Network Policies
+
+[Abstract]
+In this last lab, we will describe how we can restrict traffic to `pods` using `NetworkPolicy` objects. 
+
+This is mainly an administrator task, but I want you to understand certain concepts that are then usefull in combination with `Service Mesh`. 
+
+We will not dive too deep but hopefully enough to understand the main purpose of `NetworkPolicy`.
+
+:numbered:
+== Introduction
+
+By default, all `pods` in a `project` are accessible from other  `pods` and network endpoints. To isolate one or more  `pods` in a `project`, you can create `NetworkPolicy` objects in that project to indicate the allowed incoming.
+
+From the `web console`, navigate to `Networking` menu and then, `Network policies`. You should get and empty list:
+
+image:empty-np.png[Network policies]
+
+== Restrict traffic using NetworkPolicy objects
+
+We will use an extra `project` so we can deploy a  single `pod` to test some scenarios from outside our regular `project`. Create a new project with `-external` suffix (so we all have one xxx-external extra project):
+
+....
+oc new-project <UP_TO_YOU>-external
+....
+
+Once the project is created, create a `pod` that will be used as client for our tests (we will reuse the first application we deployed):
+
+----
+$ oc apply -f $LABS_HOME/lab1/app-deployment.yaml -n <YOUR_PROJECT>-external
+
+deployment.apps/quarkus-petclinic created
+----
+
+Move to that `pod` and open the `terminal`:
+
+image:new-pod.png[new pod]
+
+In that terminal, we will try to access to the `Petclinic` service that it is running in a different `project`. Execute the following, do not forget to use your target `namespace` (notice that we use now the svc FQDN instead => myservice.ns.svc):
+
+....
+$ curl -v quarkus-petclinic.<YOUR REGULAR PROJECT>.svc:8080 | grep 200
+....
+
+So far, there is not any restriction at all, so we could reach our application from any other `project`.
+
+Let's create our first `NetworkPolicy` to isolate all `pods` in the `project` from other `pods` in different projects:
+
+....
+$ oc apply -f $LABS_HOME/lab7/np-same-project.yaml -n <YOUR_PROJECT>
+
+networkpolicy.networking.k8s.io/allow-only-project created
+....
+
+Run the same test from the `pod` that is running in your `xxxx-external` project. The traffic is now restricted and you cannot access that `pod` from outside the regular `project`. And that also means, you cannot access it from the `route` we have been using during the labs (I will explain it later if needed, but basically, there is a router `pod` running in a different `project` that acts as an `IngressController`).
+
+Move to the `web console` and see all details about the `NetworkPolicy` you have just created in your project:
+
+image:np-same-project.png[np same project]
+
+We need to allow access from the router `pods`. Run:
+
+....
+$ oc apply -f $LABS_HOME/lab7/allow-openshift-ingress.yaml -n <YOUR_PROJECT>
+
+networkpolicy.networking.k8s.io/allow-from-openshift-ingress created
+....
+
+Test the application again from your browser... it should be accessible now. 
+
+Also, have a look at the content of the `NetworkPolicy` you just created. The key part of it is the `namespaceSelector` that is based on certain labels which are present on the `openshift-ingress` `project`:
+
+image:np-ingress.png[np ingress]
+
+Just as an additional read, a regular requirement from customers is to move from the default behavior of "there is no traffic restriction between pods" to a concept of "multinenant configuration". In the following link, you could find how to achieve this goal: https://docs.openshift.com/container-platform/4.6/networking/network_policy/multitenant-network-policy.html

@@ -1,0 +1,65 @@
+= Lab 5 - Resources
+:author: David Sancho
+:email: dsanchor@redhat.com
+:imagesdir: ./images
+:toc: left
+:toc-title: Resources
+
+[Abstract]
+
+In next lab, we will introduce how to define resources in `pods` (memory and cpu), so that, the Kubernetes scheduler will use this information to place `pods` in the right nodes and also, to decide which `pods` are more likely to be evicted first based on its QoS (Quality of Service) 
+
+:numbered:
+== Requests and limits
+
+Next paragraphs have been extracted from the official https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits[Kubernetes documentation]. Summary is next.
+
+When you specify the resource request for Containers in a Pod, the scheduler uses this information to decide which node to place the Pod on. When you specify a resource limit for a Container, the kubelet enforces those limits so that the running container is not allowed to use more of that resource than the limit you set. The kubelet also reserves at least the request amount of that system resource specifically for that container to use.
+
+If the node where a Pod is running has enough of a resource available, it's possible (and allowed) for a container to use more resource than its request for that resource specifies. However, a container is not allowed to use more than its resource limit.
+
+For example, if you set a memory request of 256 MiB for a container, and that container is in a Pod scheduled to a Node with 8GiB of memory and no other Pods, then the container can try to use more RAM.
+
+If you set a memory limit of 4GiB for that Container, the kubelet (and container runtime) enforce the limit. The runtime prevents the container from using more than the configured resource limit. For example: when a process in the container tries to consume more than the allowed amount of memory, the system kernel terminates the process that attempted the allocation, with an out of memory (OOM) error.
+
+Limits can be implemented either reactively (the system intervenes once it sees a violation) or by enforcement (the system prevents the container from ever exceeding the limit). Different runtimes can have different ways to implement the same restrictions.
+
+== Quality of Service
+
+Kubernetes provides different levels of Quality of Service to pods depending on what values for `request` and `limits` are set for them.
+
+For each resource, containers specify a `request`, which is the amount of that resource that the system will guarantee to the container, and a `limit` which is the maximum amount that the system will allow the container to use.
+
+Based on what values are in each case, we have the following `QoS`:
+
+image:cncf-qos.png[QoS]
+
+As the table shows (source CNCF), the QoS class of a pod does affect the order in which it is chosen for eviction by the Kubelet. 
+
+Kubelet first evicts BestEffort and Burstable pods using resources above requests. The order of eviction depends on the priority assigned to each pod and the amount of resources being consumed above request.
+
+Guaranteed and Burstable pods not exceeding resource requests are evicted next based on which ones have the lowest priority.
+
+Both Guaranteed and Burstable pods whose resource usage is lower than the requested amount are never evicted because of the resource usage of another pod. They might, however, be evicted if system daemons start using more resources than reserved. In this case, Guaranteed and Burstable pods with the lowest priority are evicted first. 
+
+== Configure resources
+
+Once we have understood the value of the different `QoS` and how resources could be configured, we will set two different kinds of 'QoS' as an example.
+
+For the Postgresql Database, we will set `Guaranteed` resources, while we leave the application as `Burstable`.
+
+Let's start with the DB. We will use the `oc` cli in both cases. We will set 512m and 10 milicores: 
+
+....
+$ oc set resources dc/petclinic-database --limits=cpu=10m,memory=512Mi --requests=cpu=10m,memory=512Mi -n <TOUR PROJECT>
+
+deploymentconfig.apps.openshift.io/petclinic-database resource requirements updated
+....
+
+And then, we will just define cpu and memory `request` in our application, so we let the application consume as much as the node can give to `pods`:
+
+....
+$ oc set resources deployment/quarkus-petclinic --requests=cpu=10m,memory=256Mi -n <TOUR PROJECT>
+
+deployment.apps/quarkus-petclinic resource requirements updated
+....

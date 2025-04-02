@@ -1,0 +1,131 @@
+= Lab 0 - Warming up
+:author: David Sancho
+:email: dsanchor@redhat.com
+:imagesdir: ./images
+:toc: left
+:toc-title: Lab 0 - Warming up
+
+[Abstract]
+
+WARNING: This is not a recommended practices guide nor intended to serve as a reference. These series of labs are oriented in such a way that you will have a first contact to the main concepts and how certain changes affects to the state of an application deployment.
+
+
+
+In this preparation lab, we are going to introduce the Openshift web console, get the `oc` cli binary, and finally, validate that all necessary requirements are successfully accomplished before starting the series of labs. 
+
+Along these labs, you will refer to a list of variables that have been shared with you before starting the labs. If this is not your case, please let us know. 
+
+These variables are:
+
+- *$OCP_CONSOLE*: url for accessing to the 
+Openshift web console
+- *$OCP_API*: Openshift API endpoint. We will use this endpoint when accesing the cluster from the `oc` cli.
+- *$USER*: your private user id used for Openshift authentication
+- *$PASSWORD*:  your secret password used for Openshift authentication
+
+Feel free to export these variables in your environment.
+
+There is also a list of files needed to run the labs. These files can be found in the following github repository:
+
+https://github.com/dsanchor/ocp-intro-dev
+
+Clone the repository to your desired location, that will then be referred as *$LABS_HOME* during the labs:
+
+....
+$ git clone https://github.com/dsanchor/ocp-intro-dev.git $LABS_HOME
+....
+
+:numbered:
+== Access to Openshift Web Console
+
+Use the `*$OCP_CONSOLE*` url to acces the Openshift Web Console. 
+
+A login screen will be shown as follow:
+
+image:login.png[login]
+
+Enter your `username` and `password` and click `Log In`.
+
+If you have successfully logged in, you will arrive to the main dashboard with your current projects. As seen below, the list of projects should be empty:
+
+image:empty-projects.png[empty-projects]
+
+We will soon create our first project, but now, it is time to get the Openshift CLI binaries for your specific OS. 
+
+=> _Additional reads: https://docs.openshift.com/container-platform/4.6/web_console/web-console.html[Web Console]_
+
+=== Download the CLI 
+
+On the top-right (?) menu, click on `Command line tools`:
+
+image:menu-clt.png[command-line-tools]
+
+Then, choose the binaries according to your OS:
+
+image:cli-download-options.png[cli-download-options]
+
+Extract the binaries and try it by executing the following:
+
+....
+$ oc version
+
+Client Version: openshift-clients-4.6.0-202006250705.p0-176-g5797eaeca
+Server Version: 4.6.15
+Kubernetes Version: v1.19.0+1833054
+....
+
+The above is an example of what you should get when running the command.
+
+=== Login to Openshift using oc
+
+Once we have the `oc` cli tool installed, we will first log in into the platform by running:
+
+_Notice that we are using the $VARS we mentioned at the beggining of the labs. If you have not exported them, you will need to manually replace them below._
+
+....
+oc login -u $USER -p $PASSWORD $OCP_API
+
+Login successful.
+
+You don't have any projects. You can try to create a new project, by running
+
+    oc new-project <projectname>
+....
+
+There is not any project yet, so let's create it.
+
+
+== Create your first project
+
+A project allows a community of users to organize and manage their content in isolation from others. 
+
+In our labs, you will deploy the demo application and related into your own project. 
+
+Also notice that sometimes we talk about   `namespaces`, which is the Kubernetes concept and others about `projects`. A `project` is a Kubernetes namespace with additional annotations.
+
+=> _Additional reads: https://docs.openshift.com/container-platform/4.6/applications/projects/working-with-projects.html[working with projects]_ 
+
+We are now ready to create our first project by running:
+
+....
+ $ oc new-project <YOUR_PROJECT>
+
+Now using project "user0" on server "https://api.labs.sandbox779.opentlc.com:6443".
+
+You can add applications to this project with the 'new-app' command. For example, try:
+
+    oc new-app rails-postgresql-example
+
+to build a new example application in Ruby. Or use kubectl to deploy a simple Kubernetes application:
+
+    kubectl create deployment hello-node --image=k8s.gcr.io/serve_hostname
+....
+
+Well done! :-)
+
+If you now move to the `Openshift Console`, under the `Administrator` view, you will notice that you have a new `Project`:
+
+image:projects.png[projects]
+
+
+We can now start deploying applications into our project.

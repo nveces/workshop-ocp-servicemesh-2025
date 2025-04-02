@@ -1,0 +1,152 @@
+= Lab 6 - Liveness and readiness probes 
+:author: David Sancho
+:email: dsanchor@redhat.com
+:imagesdir: ./images
+:toc: left
+:toc-title: Liveness and readiness
+
+[Abstract]
+In this lab, we will introduce the concept of application health checking by configuring both liveness and readiness probes.
+
+A startup probe has been added recently, but we will not consider it in this lab.
+
+:numbered:
+== What and why
+
+To answers these two questions, what are liveness/readiness probes? why are they needed? read the next article (10 minutes) that will give through different examples and scenarios the response to both questions: https://developers.redhat.com/blog/2020/11/10/you-probably-need-liveness-and-readiness-probes/
+
+== Configure liveness and readiness
+
+=== Application endpoints
+
+Our application, which is based on Quarkus, provides a built-in health check endpoints when including `quarkus-smallrye-health` extension (for more detailes, see how it is done in our example application https://github.com/dsanchor/petclinic/blob/mnl-config/quarkus-petclinic/pom.xml#L73[here]).
+
+Before configuring any probe, let's try both health checks (liveness/readiness) endpoints manually to see the actual responses. 
+
+Since the  application is externally exposed, we can easily test them. 
+
+- Liveness endpoint:
+....
+curl -v http://<APP_HOST_PORT>/health/live
+
+..
+..
+{
+    "status": "UP",
+    "checks": [
+    ]
+}
+...
+...
+....
+
+- Readiness endpoint:
+....
+curl -v http://<APP_HOST_PORT>/health/ready
+
+..
+..
+{
+    "status": "UP",
+    "checks": [
+        {
+            "name": "Database connections health check",
+            "status": "UP"
+        }
+    ]
+}
+...
+...
+....
+
+As you could have noticed, there is an additional check added in the readiness probe response. That check comes from the Database connection, so in case there is a problem between the application and the Database, the readiness probe would fail and the pod will not receive traffic.
+
+In our case, this is what we want: different liveness and readiness checks.
+
+=== Modify current deployment
+
+We will add both liveness and readiness probe to the existing deployment. To do so, we will use the `web console` and then examine the YAML descriptor. 
+
+Using the `Developer` view, click on the `quarkus-petclinic` application, and then `Add Health Check`:
+
+image:add-hc.png[add hc]
+
+Then, configure both `liveness` and `readiness` probe. 
+
+Important:
+
+- put the right `path` in the right `probe` :-)
+- add an `initial delay` that covers p99 startup time (check the container log trace "started in X.YYYs. Listening on: http://0.0.0.0:8080" to get a more accurate amount of time)
+
+Save each probe individually and click on `Add`.
+
+This change will force a new rolling update of our `pods`. New `pods` will now have both probes set. 
+
+The changes applied to the existing `Deployment` are highlighted next:
+
+image:yaml-hc.png[yaml hc]
+
+There should not be any issue and both probes should have passed successfully: application is healthy.
+
+Let's now force the `readiness probe` to fail. To do so, we will scale the Database down to zero replicas:
+
+....
+oc scale dc/petclinic-database --replicas=0 -n <YOUR_PROJECT>
+
+deploymentconfig.apps.openshift.io/petclinic-database scaled
+....
+
+Once the Database pod is gone, check both `logs` and `events` in the application pod:
+
+*Logs*
+image:logs-hc.png[logs]
+
+*Events*
+image:events-hc.png[events]
+
+Manually test the readiness probe to see the current response:
+....
+curl -v http://<APP_HOST_PORT>/health/ready
+
+..
+..
+{
+    "status": "DOWN",
+    "checks": [
+        {
+            "name": "Database connections health check",
+            "status": "DOWN",
+            "data": {
+                "default": "Unable to execute the validation check for the default DataSource: This connection has been closed."
+            }
+        }
+
+    ]
+}
+...
+...
+....
+
+Check the readiness of the application `pods` and see there is `0/1` containers ready:
+
+....
+$ oc get pods -n <YOUR_PROJECT>
+NAME                                 READY   STATUS      RESTARTS   AGE
+petclinic-database-1-deploy          0/1     Completed   0          7h34m
+quarkus-petclinic-79d56759f5-q8vwc   0/1     Running     0          18m
+....
+
+And finally.. try to access to the application again... :-(
+
+
+In order to make the application back to `Ready`, scale up the Database to 1:
+
+....
+oc scale dc/petclinic-database --replicas=1 -n <YOUR_PROJECT>
+
+petclinic-database scaled
+....
+
+Wait until the Database is back and try to access to the application again. 
+
+Everything should be back to normal. 
