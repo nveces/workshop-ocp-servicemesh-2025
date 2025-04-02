@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Openshift 4 Introduction - Labs :: WorkShop - Service Mesh on OCP 2025</title>
     <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/introduction/index.html">
+    <link rel="prev" href="../02-deploy.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -93,6 +94,18 @@
   </li>
 </ul>
   </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">3. Introduction - Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#_lab_0_warming_up">Lab 0 - Warming up</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
+  </li>
+</ul>
+  </li>
 </ul>
   </li>
 </ul>
@@ -123,7 +136,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></li>
-    <li><a href="index.html">Openshift 4 Introduction - Labs</a></li>
+    <li><a href="index.html">3. Introduction - Labs</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/nveces/workshop-ocp-servicemesh-2025/edit/master/documentation/modules/ROOT/pages/introduction/index.adoc">Edit this Page</a></div>
@@ -131,83 +144,6 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Openshift 4 Introduction - Labs</h1>
-<div id="toc" class="toc">
-<div id="toctitle">Openshift 4 Introduction - Labs</div>
-<ul class="sectlevel0">
-<li><a href="#_lab_0_warming_up">Lab 0 - Warming up</a>
-<ul class="sectlevel1">
-<li><a href="#_access_to_openshift_web_console">1. Access to Openshift Web Console</a>
-<ul class="sectlevel2">
-<li><a href="#_download_the_cli">1.1. Download the CLI</a></li>
-<li><a href="#_login_to_openshift_using_oc">1.2. Login to Openshift using oc</a></li>
-</ul>
-</li>
-<li><a href="#_create_your_first_project">2. Create your first project</a></li>
-</ul>
-</li>
-<li><a href="#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
-<ul class="sectlevel1">
-<li><a href="#_brief_application_description">1. Brief application description</a></li>
-<li><a href="#_deploy_application">2. Deploy application</a>
-<ul class="sectlevel2">
-<li><a href="#_create_our_first_deployment_in_your_project">2.1. Create our first deployment in your project</a></li>
-<li><a href="#_add_a_service_to_your_application">2.2. Add a service to your application</a></li>
-<li><a href="#_create_a_route">2.3. Create a route</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_lab_2_complete_application_deployment">Lab 2 - Complete application deployment</a>
-<ul class="sectlevel1">
-<li><a href="#_deploy_and_ephemeral_postgresql">1. Deploy and ephemeral Postgresql</a></li>
-<li><a href="#_connect_application_to_database">2. Connect application to Database</a></li>
-<li><a href="#_scale_the_application_pod_replicas">3. Scale the application pod replicas</a>
-<ul class="sectlevel2">
-<li><a href="#_extra_rolling_vs_recreate_deployment_strategy">3.1. Extra: Rolling vs Recreate deployment strategy</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_lab_3_adding_persistent_volumes">Lab 3 - Adding persistent volumes</a>
-<ul class="sectlevel1">
-<li><a href="#_understanding_storage">1. Understanding storage</a></li>
-<li><a href="#_setting_persistent_storage_to_the_database">2. Setting persistent storage to the Database</a></li>
-</ul>
-</li>
-<li><a href="#_lab_4_configuration_management">Lab 4 - Configuration management</a>
-<ul class="sectlevel1">
-<li><a href="#_short_introduction">1. Short introduction</a></li>
-<li><a href="#_configmaps">2. ConfigMaps</a></li>
-<li><a href="#_secrets">3. Secrets</a></li>
-<li><a href="#_extra_how_quarkus_could_manage_configuration">4. Extra: how Quarkus (could) manage configuration</a></li>
-</ul>
-</li>
-<li><a href="#_lab_5_resources">Lab 5 - Resources</a>
-<ul class="sectlevel1">
-<li><a href="#_requests_and_limits">1. Requests and limits</a></li>
-<li><a href="#_quality_of_service">2. Quality of Service</a></li>
-<li><a href="#_configure_resources">3. Configure resources</a></li>
-</ul>
-</li>
-<li><a href="#_lab_6_liveness_and_readiness_probes">Lab 6 - Liveness and readiness probes</a>
-<ul class="sectlevel1">
-<li><a href="#_what_and_why">1. What and why</a></li>
-<li><a href="#_configure_liveness_and_readiness">2. Configure liveness and readiness</a>
-<ul class="sectlevel2">
-<li><a href="#_application_endpoints">2.1. Application endpoints</a></li>
-<li><a href="#_modify_current_deployment">2.2. Modify current deployment</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_lab_7_network_policies">Lab 7 - Network Policies</a>
-<ul class="sectlevel1">
-<li><a href="#_introduction">1. Introduction</a></li>
-<li><a href="#_restrict_traffic_using_networkpolicy_objects">2. Restrict traffic using NetworkPolicy objects</a></li>
-</ul>
-</li>
-</ul>
-</div>
 <h1 id="_lab_0_warming_up" class="sect0"><a class="anchor" href="#_lab_0_warming_up"></a>Lab 0 - Warming up</h1>
 <div class="admonitionblock warning">
 <table>
@@ -274,16 +210,7 @@ Openshift web console</p>
 <p>A login screen will be shown as follow:</p>
 </div>
 <div class="paragraph">
-<div class="title">Default</div>
-<p><span class="image unresolved"><img src="login.png" alt="login"></span></p>
-</div>
-<div class="paragraph">
-<div class="title">Exmmaple 2</div>
-<p><span class="image"><img src="../_images/introduction/login.png" alt="login"></span></p>
-</div>
-<div class="paragraph">
-<div class="title">Exmmaple 3</div>
-<p><span class="image"><a class="image" href="_images/introduction/login.png" target="_blank" rel="noopener"><img src="../_images/introduction/login.png" alt="login"></a></span></p>
+<p><span class="image"><a class="image" href="../_images/introduction/login.png" target="_blank" rel="noopener"><img src="../_images/introduction/login.png" alt="login"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Enter your <code>username</code> and <code>password</code> and click <code>Log In</code>.</p>
@@ -292,7 +219,7 @@ Openshift web console</p>
 <p>If you have successfully logged in, you will arrive to the main dashboard with your current projects. As seen below, the list of projects should be empty:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="empty-projects.png" alt="empty-projects"></span></p>
+<p><span class="image"><a class="image" href="../_images/introduction/empty-projects.png" target="_blank" rel="noopener"><img src="../_images/introduction/empty-projects.png" alt="empty-projects"></a></span></p>
 </div>
 <div class="paragraph">
 <p>We will soon create our first project, but now, it is time to get the Openshift CLI binaries for your specific OS.</p>
@@ -1606,6 +1533,9 @@ networkpolicy.networking.k8s.io/allow-from-openshift-ingress created</pre>
 </div>
 </div>
 </div>
+<nav class="pagination">
+  <span class="prev"><a href="../02-deploy.html">2. Deploy Service</a></span>
+</nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
