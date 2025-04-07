@@ -33,12 +33,12 @@ NOTE: You will use _OC client_, _curl_ and _Kiali_ as the main troubleshooting t
 
 First of all, it is required to modify _Jump App_ Service Mesh objects in order to emulate a real life day 2 operation.
 
-Please, return to the git repository and apply some customizations through the respective Openshift template executing the following command: 
+Please, return to the git repository and apply some customizations through the respective Openshift template executing the following command:
 
 :file: 04-ingress-traffic-troubleshooting/00-jump-app-ingress-customization.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/oc_process_apply.adoc[]
+include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Jump App Customizations Applied I
 image:jump-app-mod-gw-ok.png[]
@@ -46,7 +46,7 @@ image:jump-app-mod-gw-ok.png[]
 :file: 04-ingress-traffic-troubleshooting/01-jump-app-back-golang-svc.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/oc_process_delete.adoc[]
+include::partials/04-troubleshooting/oc_process_delete.adoc[]
 
 .Jump App Customizations Applied II
 image:jump-app-mod-svc-ok.png[]
@@ -60,7 +60,7 @@ Please, execute the following steps in order to review your demo app current sta
 
 :errorimage: jump-app-unavailable-back.png
 
-include::partials/check_jumpapp_mesh_fail.adoc[]
+include::partials/04-troubleshooting/check_jumpapp_mesh_fail.adoc[]
 
 [#04-router]
 == Openshift Router -> Ingress Gateway Connectivity
@@ -92,7 +92,7 @@ image:ocp-routers-pods.png[]
 ----
 oc project openshift-ingress
 POD=$(oc get po -o jsonpath='{.items[0].metadata.name}' -n openshift-ingress)
-oc rsh $POD 
+oc rsh $POD
 ----
 
 * Execute a HTTP request using curl command
@@ -147,7 +147,7 @@ image:ocp-routers-pods.png[]
 ----
 oc project openshift-ingress
 POD=$(oc get po -o jsonpath='{.items[0].metadata.name}' -n openshift-ingress)
-oc rsh $POD  
+oc rsh $POD
 ----
 
 * Execute a HTTP request using curl command
@@ -163,7 +163,7 @@ curl -XGET -v --header "Host: back-golang-<user_namespace>.<openshift_apps_domai
 image:jump-app-trou-04-gw-ok.png[]
 
 NOTE: At this time, you obtain a 503 error because the service is unavailable but this host exists and it is reachable
- 
+
 [#04-gateway]
 == Test Ingress Gateway -> Sidecar Connectivity
 
@@ -194,7 +194,7 @@ image:ocp-istio-controlplane-pods.png[]
 ----
 oc project istio-system
 POD=$(oc get po -l app=istio-ingressgateway -o jsonpath='{.items[0].metadata.name}' -n istio-system)
-oc rsh $POD 
+oc rsh $POD
 ----
 
 * Execute a HTTP request using curl command
@@ -220,13 +220,13 @@ After test the connectivity from the from the _Ingress Gateway_ to the _Envoy Si
 [.console-input]
 [source,input,subs="+macros,+attributes"]
 ----
-oc project $USER_NAMESPACE 
+oc project $USER_NAMESPACE
 ----
 
 :file: 04-ingress-traffic-troubleshooting/01-jump-app-back-golang-svc.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/oc_process_apply.adoc[]
+include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .back-golang k8s Service Created
 image:jump-app-trou-04-svc-created.png[]
@@ -256,7 +256,7 @@ image:ocp-istio-controlplane-pods.png[]
 ----
 oc project istio-system
 POD=$(oc get po -l app=istio-ingressgateway -o jsonpath='{.items[0].metadata.name}' -n istio-system)
-oc rsh $POD  
+oc rsh $POD
 ----
 
 * Execute a HTTP request using curl command
@@ -315,7 +315,7 @@ image:ocp-istio-controlplane-pods.png[]
 ----
 oc project istio-system
 PPOD=$(oc get po -l app=istio-ingressgateway -o jsonpath='{.items[0].metadata.name}' -n istio-system)
-oc rsh $POD 
+oc rsh $POD
 ----
 
 * Execute a HTTP request using curl command
@@ -382,7 +382,7 @@ Once _Jump App_ objects have been modified and fixed in Kiali and Openshift, it 
 :jumps: 1000
 :seconds: 1
 
-include::partials/check_jumpapp_mesh.adoc[]
+include::/04-troubleshooting/check_jumpapp_mesh.adoc[]
 
 
 [#04-kiali]

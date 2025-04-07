@@ -9,22 +9,58 @@
 * xref:01-introduction/index.adoc[3. Introduction - Labs]
 ** xref:01-introduction/index.adoc#_lab_0_warming_up[Lab 0 - Warming up]
 ** xref:01-introduction/index.adoc#_lab_1_first_application_deployment[Lab 1 - First application deployment]
+** xref:01-introduction/index.adoc#_lab_2_complete_application_deployment[Lab 2 - Complete application deployment]
+** xref:01-introduction/index.adoc#_lab_3_adding_persistent_volumes[Lab 3 - Adding persistent volumes]
+** xref:01-introduction/index.adoc#_lab_4_configuration_management[Lab 4 - Configuration management]
+** xref:01-introduction/index.adoc#_lab_5_resources[Lab 5 - Resources]
+** xref:01-introduction/index.adoc#_lab_6_liveness_and_readiness_probes[Lab 6 - Liveness and readiness probes]
 
 
 * xref:02-envoy-istio-control-plane/index.adoc[4. Envoy istio Control plane - Labs]
+** xref:02-envoy-istio-control-plane/index.adoc#_lab_1_setup[Lab 1 - Setup]
+** xref:02-envoy-istio-control-plane/index.adoc#_lab_2_deploy_jump_app[Lab 2 - Deploy Jump App]
+** xref:02-envoy-istio-control-plane/index.adoc#_lab_3_service_mesh_communication_flows[Lab 3 - Service Mesh Communication Flows]
+** xref:02-envoy-istio-control-plane/index.adoc#_lab_4_istio_envoy_objects_relationship[Lab 4 - Istio-Envoy Objects Relationship]
+** xref:02-envoy-istio-control-plane/index.adoc#_lab_5_envoy_proxy[Lab 5 - Envoy Proxy]
+** xref:02-envoy-istio-control-plane/index.adoc#_lab_6_istio_control_plane[Lab 6 - Istio Control Plane]
+** xref:02-envoy-istio-control-plane/index.adoc#_lab_7_istio_global_services[Lab 7 - Istio Global Services]
 
 
 * xref:03-traffic-management/index.adoc[5. Traffic management - Labs]
-
+** xref:03-traffic-management/index.adoc#_rhossm_traffic_management_labs[{rhossm}: Traffic Management Labs]
+** xref:03-traffic-management/index.adoc#_lab_1_ingress_gateways[Lab 1 - Ingress Gateways]
+** xref:03-traffic-management/index.adoc#_lab_2_requests_routing[Lab 2 - Requests Routing]
+** xref:03-traffic-management/index.adoc#_lab_3_traffic_shifting_and_weight_balancing[Lab 3 - Traffic Shifting and Weight Balancing]
+** xref:03-traffic-management/index.adoc#_lab_4_fault_injection[Lab 4 - Fault Injection]
+** xref:03-traffic-management/index.adoc#_lab_5_requests_timeouts[Lab 5 - Requests Timeouts]
+** xref:03-traffic-management/index.adoc#_lab_6_circuit_breaking[Lab 6 - Circuit Breaking]
+** xref:03-traffic-management/index.adoc#_lab_7_mirroring_and_dark_launches[Lab 7 - Mirroring and Dark Launches]
+** xref:03-traffic-management/index.adoc#_lab_0_warming_up[Lab 0 - Warming up]
 
 
 * xref:04-troubleshooting/index.adoc[6. Troubleshooting - Labs]
-
+** xref:04-troubleshooting/index.adoc#_lab_1_setup[Lab 1 - Setup]
+** xref:04-troubleshooting/index.adoc#_lab_2_deploy_jump_app[Lab 2 - Deploy Jump App]
+** xref:04-troubleshooting/index.adoc#_lab_3_service_mesh_communication_flows[Lab 3 - Service Mesh Communication Flows]
+** xref:04-troubleshooting/index.adoc#_lab_4_service_mesh_ingress_traffic_flow[Lab 4 - Service Mesh Ingress Traffic Flow]
+** xref:04-troubleshooting/index.adoc#_lab_5_service_mesh_secure_ingress_traffic_flow[Lab 5 - Service Mesh Secure Ingress Traffic Flow]
+** xref:04-troubleshooting/index.adoc#_lab_6_service_mesh_secure_egress_traffic_flow[Lab 6 - Service Mesh Secure Egress Traffic Flow]
+** xref:04-troubleshooting/index.adoc#_lab_7_troubleshooting_tools[Lab 7 - Troubleshooting Tools]
 
 * xref:05-security/index.adoc[7. Security - Labs]
+** xref:05-security/index.adoc#_lab_0_warming_up[Lab 0 - Warming up]
+** xref:05-security/index.adoc#_lab_1_setup_demo_applications[Lab 1 - Setup demo applications]
+** xref:05-security/index.adoc#_lab_2_peerauthentication[Lab 2 - PeerAuthentication]
+** xref:05-security/index.adoc#_lab_3_authorization_part_1[Lab 3 - Authorization: part 1]
+** xref:05-security/index.adoc#_lab_4_requestauthentication[Lab 4 - RequestAuthentication]
+** xref:05-security/index.adoc#_lab_5_authorization_part_2[Lab 5 - Authorization: part 2]
 
 
 * xref:06-extensibility/index.adoc[8. Extensibility - Labs]
+** xref:06-extensibility/index.adoc#_rhossm_extensibility_labs[{rhossm}: Extensibility Labs]
+** xref:06-extensibility/index.adoc#_lab_1_envoy_filters[Lab 1 - Envoy Filters]
+** xref:06-extensibility/index.adoc#_lab_2_waes[Lab 2 - {waes}]
+
 
 //* xref:04-troubleshooting[3. Introduction - Labs]
 

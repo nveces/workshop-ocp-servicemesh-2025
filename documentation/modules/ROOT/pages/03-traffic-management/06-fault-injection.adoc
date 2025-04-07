@@ -84,7 +84,7 @@ spec:
 
 <1> Notice that this time you are always returning an error 500 in the connection between `reviews` and `ratings`.
 
-include::partials/deploy_bookinfo.adoc[leveloffset=+1]
+include::partials/03-traffic-management/deploy_bookinfo.adoc[leveloffset=+1]
 
 == Inject delay
 
@@ -116,11 +116,11 @@ Now you don't have to be logged in as pepito, enter again to your Product Page a
 .Ratings failure
 image::ratings-failure.png[]
 
-include::partials/kiali_traffic.adoc[leveloffset=+2] 
+include::/03-traffic-management/kiali_traffic.adoc[leveloffset=+2]
 
 You should see a graph similar to this:
 
 .Kiali ratings failure
 image::kiali-ratings-failure.png[]
 
-include::partials/remove_bookinfo.adoc[leveloffset=+1]
+include::partials/03-traffic-management/remove_bookinfo.adoc[leveloffset=+1]

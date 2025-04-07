@@ -15,12 +15,12 @@ First of all, it is required to deploy Jump App application in Openshift in orde
 [#login]
 === Login in Openshift
 
-include::partials/oc_login.adoc[]
+include::partials/04-troubleshooting/oc_login.adoc[]
 
 [#github]
 === Clone GitHub Repository
 
-include::partials/clone_github_repo.adoc[]
+include::partials/04-troubleshooting/clone_github_repo.adoc[]
 
 [#jumpappobjects]
 === Create _Jump App_ Objects in Openshift
@@ -47,7 +47,7 @@ Once the params file is saved, you are able to process with _Jump App_ deploymen
 [source,bash,subs="+macros,+attributes"]
 ----
 oc project $USER_NAMESPACE
-oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.env --ignore-unknown-parameters | oc apply -f - 
+oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.env --ignore-unknown-parameters | oc apply -f -
 ----
 
 .Jump App Deployed
@@ -58,11 +58,11 @@ image:jump_app_created.png[]
 
 Once _Jump App_ objects have been created in Openshift, it is required to follow the next steps in order to ensure your demo app is running properly:
 
-include::partials/check_jumpapp.adoc[]
+include::/04-troubleshooting/check_jumpapp.adoc[]
 
 [#testapp]
 === Access to _Jump App_
 
 Once _Jump App_ is already running in Openshift, it is time to access _Jump App_ public services in order to test the application:
 
-include::partials/check_jumpapp_service.adoc[]
+include::partials/04-troubleshooting/check_jumpapp_service.adoc[]

@@ -7,7 +7,7 @@
 :numbered:
 
 [#secure]
-== Secure Gateways 
+== Secure Gateways
 
 As you might know, Gateway describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections.
 
@@ -41,14 +41,14 @@ image:jump-app-secret-ok.png[]
 
 If you remember, a gateway describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections.
 
-In order to serve this new certificate when you are accessing to _Jump App_ frontend service, it is required to modify the respective Gateway. 
+In order to serve this new certificate when you are accessing to _Jump App_ frontend service, it is required to modify the respective Gateway.
 
 Please, modify existing frontend *gateway* object executing the following command:
 
 :file: 07-istio-sds/00-jump-app-front-gw.yaml
 :namespace: <user_namespace>
 
-include::partials/oc_process_apply.adoc[]
+include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
 
 .Front Gateway Modified
 image:jump-app-gw-ok.png[]

@@ -1,0 +1,10 @@
+= Remove httpbin
+
+Before starting the next lab, remove the application in your namespace. This will not remove the {r} created in the first lab.
+
+[source,bash]
+----
+oc process -f httpbin/httpbin.yaml \
+    -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
+    | oc delete -n ${OCP_NAMESPACE} -f -
+----

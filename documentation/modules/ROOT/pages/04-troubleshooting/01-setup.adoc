@@ -11,7 +11,7 @@
 
 During this tutorial, it will be required to work with different tools for running the exercises included. Please, install the following software:
 
-include::partials/requirements.adoc[]
+include::partials/04-troubleshooting/requirements.adoc[]
 
 [#laboratory]
 == Laboratory
@@ -27,5 +27,4 @@ The previous technologies and resources will allow you to implement a microservi
 
 === Laboratory Parameters
 
-include::partials/access_lab.adoc[]
-
+include::partials/04-troubleshooting/access_lab.adoc[]

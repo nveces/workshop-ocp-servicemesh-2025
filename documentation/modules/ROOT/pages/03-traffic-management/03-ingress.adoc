@@ -127,14 +127,14 @@ curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage"
 .Bookinfo productpage service working
 image::bookinfo_curl.png[]
 
-include::partials/kiali_traffic.adoc[leveloffset=+1]
+include::/03-traffic-management/kiali_traffic.adoc[leveloffset=+1]
 
 Now, this is how the {ig} looks like in Kiali:
 
 .Bookinfo productpage service through an {ig}
 image::ingress_bookinfo.png[]
 
-include::partials/remove_bookinfo.adoc[leveloffset=+2]
+include::partials/03-traffic-management/remove_bookinfo.adoc[leveloffset=+2]
 
 == Deploy httpbin using an {ig}
 
@@ -181,6 +181,4 @@ image::httpbin_curl.png[]
 .httpbin service through an {ig}
 image::ingress_httpbin.png[]
 
-include::partials/remove_httpbin.adoc[leveloffset=+2]
-
-
+include::/03-traffic-management/remove_httpbin.adoc[leveloffset=+2]

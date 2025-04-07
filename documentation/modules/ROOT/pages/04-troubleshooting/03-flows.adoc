@@ -13,12 +13,12 @@ The ServiceMeshMemberRoll lists the projects belonging to the control plane. Onl
 
 In order to add this new project to the Service Mesh and make the traffic between each microservice possible, it is required to create a new _ServiceMeshMember_ object.
 
-Please, create the previous object through the respective Openshift template executing the following command: 
+Please, create the previous object through the respective Openshift template executing the following command:
 
 :file: 03-jump-app-flows/04-jump-app-ns-smr.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/oc_process_apply.adoc[]
+include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 ._ServiceMeshMember_ Created
 image:jump-app-ns-smr.png[]
@@ -48,12 +48,12 @@ In this step, you have to be able to deploy these _Jump App_ Service Mesh object
 
 First of all, it is required to create a Gateway for external access. In the _Jump App_ architecture, you have a couple of services which have to be exposed to external clients in order to present the Frontend and Backend services.
 
-Please, return to git repository and create *gateways* through the respective Openshift template executing the following command: 
+Please, return to git repository and create *gateways* through the respective Openshift template executing the following command:
 
 :file: 03-jump-app-flows/00-jump-app-gws.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/oc_process_apply.adoc[]
+include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Gateways Created
 image:jump-app-gws-ok.png[]
@@ -63,12 +63,12 @@ image:jump-app-gws-ok.png[]
 
 Once gateways are created and the application is reachable, it is time to create the traffic rules inside your namespace in order to route this traffic to the specific endpoint.
 
-Please, create new *virtual services* through the respective Openshift template executing the following command: 
+Please, create new *virtual services* through the respective Openshift template executing the following command:
 
 :file: 03-jump-app-flows/01-jump-app-vss.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/oc_process_apply.adoc[]
+include::/04-troubleshooting/oc_process_apply.adoc[]
 
 .Virtual Services Created
 image:jump-app-vss-ok.png[]
@@ -78,12 +78,12 @@ image:jump-app-vss-ok.png[]
 
 Once previous objects are created, it is required  to define the policies which will be applied to traffic intended for a service after routing has occurred.
 
-Please, create new *destination rules* through the respective Openshift template executing the following command: 
+Please, create new *destination rules* through the respective Openshift template executing the following command:
 
 :file: 03-jump-app-flows/02-jump-app-drs.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/oc_process_apply.adoc[]
+include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Destination Rules Created
 image:jump-app-drs-ok.png[]
@@ -93,12 +93,12 @@ image:jump-app-drs-ok.png[]
 
 Once you have created gateways, virtual services and destination rules, it is time to include a specific annotation in your app deployments in order to allow Service Mesh control and run the respective envoy sidecar automatically.
 
-Please, create new *k8s services* through the respective Openshift template executing the following command: 
+Please, create new *k8s services* through the respective Openshift template executing the following command:
 
 :file: 03-jump-app-flows/03-jump-app-services.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/oc_process_apply.adoc[]
+include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .k8s Services Created
 image:jump-app-svcs-ok.png[]
@@ -107,7 +107,7 @@ image:jump-app-svcs-ok.png[]
 == Final Steps
 
 [#annotation]
-=== Add _Istio Sidecar_ annotation in _Jump App_ deployments  
+=== Add _Istio Sidecar_ annotation in _Jump App_ deployments
 
 Once traffic flow objects are created and your namespace is included as a member in the Service Mesh Control Plane, it is time to include a specific annotation in your app deployments in order to allow Service Mesh control and run the respective envoy sidecar automatically.
 
@@ -151,7 +151,7 @@ image:jump-app-back-go-depl-patch.png[]
 
 Before continuing with the following steps, please test Jump App _pods_ status, in order to be sure that 2 replicas are running for each microservice:
 
-include::partials/check_jumpapp_mesh_pod.adoc[]
+include::partials/04-troubleshooting/check_jumpapp_mesh_pod.adoc[]
 
 [#routes]
 === Configure Routes
@@ -175,12 +175,12 @@ image:jump-app-route-del.png[]
 
 Once "regular" routes are deleted, it is required to create the new ones.
 
-Please, create new *routes* in **istio-system** namespace through the respective Openshift template executing the following command: 
+Please, create new *routes* in **istio-system** namespace through the respective Openshift template executing the following command:
 
 :file: 03-jump-app-flows/05-jump-app-routes.yaml
 :namespace: istio-system
 
-include::partials/oc_process_create.adoc[]
+include::partials/04-troubleshooting/oc_process_create.adoc[]
 
 .Mesh Routes Created
 image:jump-app-routes-mesh-ok.png[]
@@ -190,12 +190,12 @@ image:jump-app-routes-mesh-ok.png[]
 
 Once _Jump App_ objects have been created in Openshift, it is required to follow the next steps in order to ensure your demo app is running properly:
 
-NOTE: Look at the number of containers in each microservice, it must contains 2 container per each pod (*READY 2/2*). 
+NOTE: Look at the number of containers in each microservice, it must contains 2 container per each pod (*READY 2/2*).
 
 :jumps: 10000
 :seconds: 1
 
-include::partials/check_jumpapp_mesh.adoc[]
+include::/04-troubleshooting/check_jumpapp_mesh.adoc[]
 
 
 [#03-kiali]

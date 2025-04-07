@@ -61,7 +61,7 @@ image:01-introduction/menu-clt.png[command-line-tools,link=../_images/01-introdu
 
 Then, choose the binaries according to your OS:
 
-image:01-introduction/cli-download-options.png[cli-download-options,link=../_images/01-introduction/li-download-options.png,window=_blank]
+image:01-introduction/cli-download-options.png[cli-download-options,link=../_images/01-introduction/cli-download-options.png,window=_blank]
 
 Extract the binaries and try it by executing the following:
 

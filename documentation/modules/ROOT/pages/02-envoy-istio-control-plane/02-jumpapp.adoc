@@ -17,12 +17,12 @@ WARNING: Please, replace *<user>*, *<pass>*, *<ocp_cluster_console>* and *<user_
 [#login]
 === Login in Openshift
 
-include::partials/oc_login.adoc[]
+include::partials/02-envoy-istio-control-plane/oc_login.adoc[]
 
 [#github]
 === Clone GitHub Repository
 
-include::partials/clone_github_repo.adoc[]
+include::partials/02-envoy-istio-control-plane/clone_github_repo.adoc[]
 
 [#jumpappobjects]
 === Create _Jump App_ Objects in Openshift
@@ -60,11 +60,11 @@ image:jump_app_created.png[]
 
 Once _Jump App_ objects have been created in Openshift, it is required to follow the next steps in order to ensure your demo app is running properly:
 
-include::partials/check_jumpapp.adoc[]
+include::partials/02-envoy-istio-control-plane/check_jumpapp.adoc[]
 
 [#testapp]
 === Access to _Jump App_
 
 Once _Jump App_ is already running in Openshift, it is time to access _Jump App_ public services in order to test the application:
 
-include::partials/check_jumpapp_service.adoc[]
+include::partials/02-envoy-istio-control-plane/check_jumpapp_service.adoc[]

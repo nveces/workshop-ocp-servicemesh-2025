@@ -1,0 +1,10 @@
+= Remove Bookinfo
+
+Before starting the next lab, remove the application in your namespace. This will not remove the {r} created in <<Lab 1 - Ingress Gateways>> as it will be reused.
+
+[source,bash]
+----
+oc process -f bookinfo/bookinfo.yaml \
+    -p PRODUCTPAGE_ROUTE="${OCP_BOOKINFO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc delete -n ${OCP_NAMESPACE} -f -
+----

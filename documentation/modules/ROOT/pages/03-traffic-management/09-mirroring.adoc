@@ -8,7 +8,7 @@ Mirroring sends a copy of live traffic to a mirrored service. The mirrored traff
 
 In this lab, you will first force all traffic to _reviews:v1_ service. Then, you will apply a rule to mirror a portion of traffic to _reviews:v2_.
 
-include::partials/deploy_bookinfo.adoc[leveloffset=+1]
+include::/03-traffic-management/deploy_bookinfo.adoc[leveloffset=+1]
 
 == Mirroring traffic to v2
 
@@ -49,11 +49,11 @@ Apply the {vs} with this command:
 oc apply -f lab7/vs-reviews-mirroring.yaml -n ${OCP_NAMESPACE}
 ----
 
-include::partials/kiali_traffic_loop.adoc[leveloffset=+2]
+include::partials/03-traffic-management/kiali_traffic_loop.adoc[leveloffset=+2]
 
 Check the results in Kiali:
 
 .Kiali traffic mirroring to reviews:v2 service
 image::kiali-mirroring.png[]
 
-include::partials/remove_bookinfo.adoc[leveloffset=+1]
+include::partials/03-traffic-management/remove_bookinfo.adoc[leveloffset=+1]

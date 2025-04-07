@@ -1,0 +1,27 @@
+= Deploy Bookinfo
+
+Deploy the application in your namespace:
+
+[source,bash]
+----
+oc process -f bookinfo/bookinfo.yaml \
+    -p PRODUCTPAGE_ROUTE="${OCP_BOOKINFO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc apply -n ${OCP_NAMESPACE} -f -
+----
+
+Wait some seconds for all the pods to be ready:
+
+[source,bash]
+----
+watch oc get pods -n ${OCP_NAMESPACE}
+----
+
+Verify that the application is reachable and is running ok:
+
+[source,bash]
+----
+curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage"
+----
+
+.Bookinfo productpage service working
+image:bookinfo_curl.png[Bookinfo productpage service working,width="80%",align="center"]

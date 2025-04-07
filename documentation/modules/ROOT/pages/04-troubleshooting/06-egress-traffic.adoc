@@ -16,7 +16,7 @@ During this step, you will review how to work with a secure HTTPS service throug
 image:jump-app-egress-traffic.png[]
 
 [#06-addcert]
-== Create the _External Service_ 
+== Create the _External Service_
 
 In this part, you will create an _external service_ in Openshift but away from the _Service Mesh_ in order to create a secure service protected by mTLS.
 
@@ -104,7 +104,7 @@ image:jump-app-mesh-external-nginx-conf-ok.png[]
 :file: 06-secure-egress-traffic-troubleshooting/00-nginx-svc-pod.yml
 :namespace: $USER_NAMESPACE-mesh-external
 
-include::partials/oc_process_apply.adoc[]
+include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Nginx deployment and service ok
 image:jump-app-mesh-external-nginx-deployment-ok.png[]
@@ -130,7 +130,7 @@ POD=$(oc get po -l run=my-nginx -o jsonpath='{.items[0].metadata.name}')
 oc rsh $POD curl https://localhost:443 -k -v
 ----
 
-.Nginx service mTLS ERROR 
+.Nginx service mTLS ERROR
 image:jump-app-mesh-external-nginx-svc-ok-404.png[]
 
 NOTE: You have deployed a mTLS service and you are receiving a _400 Bad Request_ error because you are not using certificates to access to this service
@@ -143,7 +143,7 @@ In order to test your Nginx service, it is required to create a microservice-bas
 image:jump-app-test-tool.png[]
 
 [#06-createtestingcerts]
-=== Add a Custom Certificate 
+=== Add a Custom Certificate
 
 First of all, it is required to create the client and CA certificates in order to be able to generate secure connections.
 
@@ -175,7 +175,7 @@ image:jump-app-mesh-external-nginx-access-ca-certs.png[]
 [#06-createtestingdepl]
 === Create Testing Deployment
 
-Once the certificates have been saved in Openshift, it is time to deploy your testing microsevice deployment. Essentially, this microservice is a container image with _curl_ installed. 
+Once the certificates have been saved in Openshift, it is time to deploy your testing microsevice deployment. Essentially, this microservice is a container image with _curl_ installed.
 
 Please, follow the next steps to deploy this new microservice in your main namespace:
 
@@ -184,7 +184,7 @@ Please, follow the next steps to deploy this new microservice in your main names
 :file: 06-secure-egress-traffic-troubleshooting/01-jump-app-sleep-svc-pod.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/oc_process_apply.adoc[]
+include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Testing service created
 image:jump-app-mesh-external-nginx-client-pod.png[]
@@ -226,7 +226,7 @@ POD=$(oc get po -l app=sleep -o jsonpath='{.items[0].metadata.name}')
 oc exec -it $POD -c sleep -- curl -v https://my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local -k
 ----
 
-.Nginx service mTLS ERROR 
+.Nginx service mTLS ERROR
 image:jump-app-mesh-external-nginx-svc-ok-404.png[]
 
 NOTE: You have deployed a nginx mTLS service and you are receiving a _400 Bad Request_ error because of not using certificates to access to this service
@@ -251,7 +251,7 @@ Taking this into account, it is time to create a set of _Istio objects_ in your 
 :file: 06-secure-egress-traffic-troubleshooting/02-jump-app-egress-gw-dr.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/oc_process_apply.adoc[]
+include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 
 .Gateway, Virtual Service and Destination Rules OK
@@ -282,7 +282,7 @@ image:jump-app-mesh-external-nginx-istio-system-certs.png[]
 :file: 06-secure-egress-traffic-troubleshooting/03-istio-system-dr-sds.yml
 :namespace: istio-system
 
-include::partials/oc_process_apply.adoc[]
+include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Nginx service destination rule and service entry
 image:jump-app-mesh-nginx-dr-se.png[]

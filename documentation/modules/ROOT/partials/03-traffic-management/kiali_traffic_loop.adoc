@@ -1,0 +1,6 @@
+Run this command to simulate traffic in Kiali: 
+
+[source,bash]
+----
+while true; do curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage" ; done
+----

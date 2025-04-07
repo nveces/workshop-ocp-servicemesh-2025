@@ -20,7 +20,7 @@ An Envoy Wasm filter is a filter that _translates_ Envoy internal C\++ API to a 
 
 Due to this model, the semantics of an Envoy Wasm filter are very similar to that of a native envoy filter.
 
-An important point to note about this translation and delegation to Wasm is that Wasm is a sandboxed technology. From a security standpoint this is highly desirable but it has implications for the memory model. Any interaction with state between Envoy and the Wasm VM/your Wasm module  (manipulating headers and/or body) will be copied from Envoy memory to Wasm memory and back. 
+An important point to note about this translation and delegation to Wasm is that Wasm is a sandboxed technology. From a security standpoint this is highly desirable but it has implications for the memory model. Any interaction with state between Envoy and the Wasm VM/your Wasm module  (manipulating headers and/or body) will be copied from Envoy memory to Wasm memory and back.
 
 The Abstract Binary Interface (ABI) defines the contract of functions on both sides of the Wasm extension: for those exposed by the host and by those implemented by the Wasm module. The functions exposed by the host are _imported_ into the Wasm module while the functions implemented by the module are _exported_ by the Wasm module. A Wasm module implementing the functions in the ABI can be loaded to the Envoy Wasm filter and used as a _Wasm Envoy filter_.
 
@@ -58,7 +58,7 @@ You can use any language that compiles to {wasm} bytecode to write a {rhossm} ex
 | proxy-wasm team (Istio Community)
 | https://github.com/proxy-wasm/proxy-wasm-rust-sdk[window="_blank"]
 |===
- 
+
 NOTE: In these labs, two {waes} written in Rust will be used.
 
 ==== Container Format
@@ -116,7 +116,7 @@ It is important to take a look at the manifest packed in the container image:
 [source,yaml]
 ----
 schemaVersion: 1 <1>
-  
+
 name: ossm-example-headers-extension <2>
 description: Replaces a custom header <3>
 version: 1.0.0 <4>
@@ -158,7 +158,7 @@ spec:
 <5> If multiple extensions with the same _spec.phase_ are applied to the same workload instance, the _spec.priority_ determines the ordering of execution. Extensions with higher priority will be executed first. This allows for inter-dependent extensions. This field defaults to the value set in the manifest.yaml of the extension, but can be overwritten by the user.
 <6> The _spec.selector_ field has the same semantic as the _spec.selector_ field of the Istio Gateway resource. It will match a workload based on its Pod labels. If no _selector_ is specified, the extension will be applied to all workloads in the namespace.
 
-include::partials/deploy_httpbin.adoc[leveloffset=+2]
+include::partials/06-extensibility/deploy_httpbin.adoc[leveloffset=+2]
 
 === Apply the {wasm} plugin
 
@@ -182,7 +182,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 
 ----
 
-As in the previous lab, you are going to query the httpbin _anything_ endpoint using an additional custom header: 
+As in the previous lab, you are going to query the httpbin _anything_ endpoint using an additional custom header:
 
 [source,bash]
 ----
@@ -194,7 +194,7 @@ As you can see, _httpbin_ app returns a JSON with everything that was passed in 
 .httpbin returns a custom header
 image::httpbin_wasm_header_1.png[]
 
-Now, use the _Custom-Header_ the extension is expecting: 
+Now, use the _Custom-Header_ the extension is expecting:
 
 [source,bash]
 ----
@@ -273,7 +273,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 2023-08-30T11:51:46.862406Z info wasm fetching image acidonpe/ossm-example-body-extension from registry quay.io with tag 1.0.0
 ----
 
-As in the previous lab, you are going to query the httpbin _anything_ endpoint but this time using a custom body: 
+As in the previous lab, you are going to query the httpbin _anything_ endpoint but this time using a custom body:
 
 [source,bash]
 ----
@@ -285,7 +285,7 @@ As you can see, _httpbin_ app returns a JSON with everything that was passed in 
 .httpbin returns a custom body
 image::httpbin_wasm_body_1.png[]
 
-Now, include the word _secret_ in the body, as defined in the {sme} resource: 
+Now, include the word _secret_ in the body, as defined in the {sme} resource:
 
 [source,bash]
 ----
@@ -306,4 +306,4 @@ Remove the {wasm} plugin to finish the lab:
 oc delete -f lab2/ossm-extension-body.yaml -n ${OCP_NAMESPACE}
 ----
 
-include::partials/remove_httpbin.adoc[leveloffset=+2]
+include::/06-extensibility/remove_httpbin.adoc[leveloffset=+2]

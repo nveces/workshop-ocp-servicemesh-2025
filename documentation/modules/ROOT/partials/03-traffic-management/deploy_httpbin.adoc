@@ -1,0 +1,27 @@
+= Deploy httpbin
+
+Deploy the application in your namespace:
+
+[source,bash]
+----
+oc process -f httpbin/httpbin.yaml \
+    -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
+    | oc apply -n ${OCP_NAMESPACE} -f -
+----
+
+Wait some seconds for all the pods to be ready:
+
+[source,bash]
+----
+watch oc get pods -n ${OCP_NAMESPACE}
+----
+
+Verify that the application is reachable and is running ok:
+
+[source,bash]
+----
+curl -s -kI "https://${OCP_HTTPBIN_HOST}"
+----
+
+.httpbin service working
+image:httpbin_curl.png[httpbin service working,width="80%",align="center"]

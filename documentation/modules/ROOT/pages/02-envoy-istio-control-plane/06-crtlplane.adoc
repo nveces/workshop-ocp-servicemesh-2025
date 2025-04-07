@@ -13,7 +13,7 @@ At this moment, you are not able to access to _Jump App_ because of a set of req
 [#review]
 == Review consequences of adding a new project to Istio Control Plane
 
-In Istio, the _ServiceMeshMemberRoll_ lists the projects belonging to the control plane and only projects listed in the ServiceMeshMemberRoll are affected by the control plane. 
+In Istio, the _ServiceMeshMemberRoll_ lists the projects belonging to the control plane and only projects listed in the ServiceMeshMemberRoll are affected by the control plane.
 
 When a service mesh user who doesn’t have privileges would like to add members to the _ServiceMeshMemberRoll_, Istio provides an object names _ServiceMeshMember_ which adds a selected project to the _ServiceMeshMemberRoll_ within the control plane project that it references.
 
@@ -28,12 +28,12 @@ WARNING: Please, replace *<user_namespace>* with the value provided by the Instr
 
 First of all, it is required to create a new _ServiceMeshMember_ object for being able to add a new project to the Service Mesh.
 
-Please, create the previous object through the respective Openshift template executing the following command: 
+Please, create the previous object through the respective Openshift template executing the following command:
 
 :file: 06-istio-ctrlplane/00-jump-app-ns-smr.yaml
 :namespace: <user_namespace>
 
-include::partials/oc_process_apply.adoc[]
+include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
 
 ._ServiceMeshMember_ Created
 image:jump-app-ns-smr.png[]
@@ -52,9 +52,9 @@ image:jump-app-ns-smr-con3.png[]
 
 In a cluster using a Kubernetes Container Network Interface (CNI) plug-in that supports Kubernetes network policy, network isolation is controlled entirely by NetworkPolicy objects.  In OpenShift Container Platform, OpenShift SDN supports using network policy in its default network isolation mode.
 
-By default, all pods in a project are accessible from other pods and network endpoints. However, once a new project is added to the Service Mesh Control Plane, Istio creates a set of _NetworkPolicy_ objects in that project to indicate the allowed incoming connections within the mesh. 
+By default, all pods in a project are accessible from other pods and network endpoints. However, once a new project is added to the Service Mesh Control Plane, Istio creates a set of _NetworkPolicy_ objects in that project to indicate the allowed incoming connections within the mesh.
 
-In order to display the new network policies objects, please execute the following command: 
+In order to display the new network policies objects, please execute the following command:
 
 [.console-input]
 [source,input,subs="+macros,+attributes"]
@@ -97,12 +97,12 @@ image:jump-app-ns-smr-np-2.png[]
 
 Once your project has been added to the Service Mesh Control Plane, it is required to follow the next steps in order to ensure your demo app is running properly:
 
-NOTE: Look at the number of containers in each microservice, it must contains 2 container per each pod (*READY 2/2*). 
+NOTE: Look at the number of containers in each microservice, it must contains 2 container per each pod (*READY 2/2*).
 
 :jumps: 10000
 :seconds: 1
 
-include::partials/check_jumpapp_mesh.adoc[]
+include::partials/02-envoy-istio-control-plane/check_jumpapp_mesh.adoc[]
 
 
 [#06kiali]

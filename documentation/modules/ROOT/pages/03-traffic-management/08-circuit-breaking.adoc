@@ -22,10 +22,10 @@ spec:
       version: v1
   trafficPolicy: <2>
     connectionPool: <3>
-      tcp: 
-        maxConnections: 1 
+      tcp:
+        maxConnections: 1
       http:
-        http1MaxPendingRequests: 1 
+        http1MaxPendingRequests: 1
         maxRequestsPerConnection: 1
     outlierDetection: <4>
       consecutiveErrors: 1
@@ -43,7 +43,7 @@ You can do more things like load balancing, ejecting with consecutive 500 errors
 
 After this, you are going to test the circuit breaking with the `fortio` client.
 
-include::partials/deploy_httpbin.adoc[leveloffset=+1]
+include::partials/03-traffic-management/deploy_httpbin.adoc[leveloffset=+1]
 
 == Deploy fortio
 
@@ -94,7 +94,7 @@ You will get a result similar to this:
 .Fortio with 2 connections
 image::fortio-2-30.png[]
 
-You will notice that your results are not the same as the ones in the lab, but generally all requests arrive. This is because the `istio-proxy` is flexible and does not break all requests. 
+You will notice that your results are not the same as the ones in the lab, but generally all requests arrive. This is because the `istio-proxy` is flexible and does not break all requests.
 
 If you change the connections to 4. You will start seeing that less connections arrive to the `httpbin` service:
 
@@ -118,7 +118,7 @@ You should get something similar to this:
 .Overflow requests
 image::envoy-stats.png[]
 
-Notice that the stats are grouped by the subsets defined in the {dr}. 
+Notice that the stats are grouped by the subsets defined in the {dr}.
 
 == Remove fortio
 
@@ -129,4 +129,4 @@ Execute the following command to remove `fortio` from your namespace:
 oc delete -f fortio/fortio.yaml -n ${OCP_NAMESPACE}
 ----
 
-include::partials/remove_httpbin.adoc[leveloffset=+1]
+include::partials/03-traffic-management/remove_httpbin.adoc[leveloffset=+1]

@@ -80,13 +80,13 @@ spec:
         subset: v2 <3>
 ----
 
-<1> Here we say what are we looking for in the header 
-<2> Here we make "pepito" see the version 3 of the `reviews` server. 
+<1> Here we say what are we looking for in the header
+<2> Here we make "pepito" see the version 3 of the `reviews` server.
 <3> If it does not match the header, the traffic is routed to version 2.
 
 NOTE: This file is located in `lab2/vs-reviews-headers.yaml` so feel free to change "pepito" for another name if you prefer.
 
-include::partials/deploy_bookinfo.adoc[leveloffset=+1]
+include::partials/03-traffic-management/deploy_bookinfo.adoc[leveloffset=+1]
 
 == Route traffic to version 2
 
@@ -102,7 +102,7 @@ Now check that the product page shows the stars of the ratings visiting https://
 .Product Page showing ratings
 image::productpage-v2.png[]
 
-include::partials/kiali_traffic.adoc[leveloffset=+2] 
+include::partials/03-traffic-management/kiali_traffic.adoc[leveloffset=+2]
 
 You should see a graph similar to this:
 
@@ -127,4 +127,4 @@ You should see the red stars now:
 .Product Page with red stars
 image::productpage-red.png[]
 
-include::partials/remove_bookinfo.adoc[leveloffset=+1]
+include::partials/03-traffic-management/remove_bookinfo.adoc[leveloffset=+1]
