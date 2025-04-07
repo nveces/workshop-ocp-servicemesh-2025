@@ -386,11 +386,9 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 </tr>
 </table>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="fortio-check.png" alt="fortio check">
-</div>
-<div class="title">Figure 1. Fortio check result</div>
+<div class="paragraph">
+<div class="title">Fortio check result</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/fortio-check.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/fortio-check.png" alt="fortio check"></a></span></p>
 </div>
 </div>
 </div>
@@ -421,11 +419,9 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 <div class="paragraph">
 <p>You will get a result similar to this:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="fortio-2-30.png" alt="fortio 2 30">
-</div>
-<div class="title">Figure 2. Fortio with 2 connections</div>
+<div class="paragraph">
+<div class="title">Fortio with 2 connections</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/fortio-2-30.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/fortio-2-30.png" alt="fortio 2 30"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You will notice that your results are not the same as the ones in the lab, but generally all requests arrive. This is because the <code>istio-proxy</code> is flexible and does not break all requests.</p>
@@ -438,11 +434,9 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load -c 4 -qps 0 -n 30 -loglevel Warning http://httpbin:9080/get</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="fortio-4-30.png" alt="fortio 4 30">
-</div>
-<div class="title">Figure 3. Fortio with 4 connections</div>
+<div class="paragraph">
+<div class="title">Fortio with 4 connections</div>
+<p>03-traffic-management/fortio-4-30.png[]</p>
 </div>
 <div class="paragraph">
 <p>If you query the <code>istio-proxy</code> stats, you can see how many requests were flagged for circuit breaking:</p>
@@ -455,11 +449,9 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 <div class="paragraph">
 <p>You should get something similar to this:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="envoy-stats.png" alt="envoy stats">
-</div>
-<div class="title">Figure 4. Overflow requests</div>
+<div class="paragraph">
+<div class="title">Overflow requests</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/envoy-stats.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/envoy-stats.png" alt="envoy stats"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Notice that the stats are grouped by the subsets defined in the {dr}.</p>

@@ -286,159 +286,15 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Welcome to Red Hat Service Mesh: Troubleshooting tutorial</h1>
-<div id="toc" class="toc">
-<div id="toctitle">Service Mesh Troubleshooting</div>
-<ul class="sectlevel1">
-<li><a href="#_introduction">Introduction</a></li>
-<li><a href="#_lab_1_setup">Lab 1 - Setup</a>
-<ul class="sectlevel1">
-<li><a href="#prerequisites">1. Prerequisites</a></li>
-<li><a href="#laboratory">2. Laboratory</a>
-<ul class="sectlevel2">
-<li><a href="#_laboratory_parameters">2.1. Laboratory Parameters</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_lab_2_deploy_jump_app">Lab 2 - Deploy Jump App</a>
-<ul class="sectlevel1">
-<li><a href="#_deploy_jump_app_microservices">1. Deploy <em>Jump App</em> Microservices</a>
-<ul class="sectlevel2">
-<li><a href="#login">1.1. Login in Openshift</a></li>
-<li><a href="#github">1.2. Clone GitHub Repository</a></li>
-<li><a href="#jumpappobjects">1.3. Create <em>Jump App</em> Objects in Openshift</a></li>
-<li><a href="#test">1.4. Confirm that <em>Jump App</em> is already running in Openshift</a></li>
-<li><a href="#testapp">1.5. Access to <em>Jump App</em></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_lab_3_service_mesh_communication_flows">Lab 3 - Service Mesh Communication Flows</a>
-<ul class="sectlevel1">
-<li><a href="#memberrol">1. Added a new project to Red Hat Service Mesh Control Plane</a></li>
-<li><a href="#create">2. Create Red Hat Service Mesh Traffic Flow objects</a>
-<ul class="sectlevel2">
-<li><a href="#gw">2.1. Gateways</a></li>
-<li><a href="#vsvc">2.2. Virtual Services</a></li>
-<li><a href="#dr">2.3. Destination Rules</a></li>
-<li><a href="#services">2.4. K8s Services</a></li>
-</ul>
-</li>
-<li><a href="#finalsteps">3. Final Steps</a>
-<ul class="sectlevel2">
-<li><a href="#annotation">3.1. Add <em>Istio Sidecar</em> annotation in <em>Jump App</em> deployments</a></li>
-<li><a href="#routes">3.2. Configure Routes</a></li>
-</ul>
-</li>
-<li><a href="#03-test">4. Confirm <em>Jump App</em> is running again</a></li>
-<li><a href="#03-kiali">5. Visit Kiali</a></li>
-</ul>
-</li>
-<li><a href="#_lab_4_service_mesh_ingress_traffic_flow">Lab 4 - Service Mesh Ingress Traffic Flow</a>
-<ul class="sectlevel1">
-<li><a href="#04-ingress">1. Introduction</a></li>
-<li><a href="#04-troubleshooting">2. Ingress Gateway Traffic Flow Troubleshooting</a></li>
-<li><a href="#04-customize">3. Customize Jump App</a>
-<ul class="sectlevel2">
-<li><a href="#04-cust-state">3.1. Confirm <em>Jump App</em> state</a></li>
-</ul>
-</li>
-<li><a href="#04-router">4. Openshift Router &#8594; Ingress Gateway Connectivity</a>
-<ul class="sectlevel2">
-<li><a href="#04-trou-con">4.1. Test connectivity via command line</a></li>
-<li><a href="#04-trou-fix">4.2. Fix configuration problems</a></li>
-<li><a href="#04-trou-con-again">4.3. Test connectivity again via command line</a></li>
-</ul>
-</li>
-<li><a href="#04-gateway">5. Test Ingress Gateway &#8594; Sidecar Connectivity</a>
-<ul class="sectlevel2">
-<li><a href="#04-gateway-con">5.1. Test connectivity via command line</a></li>
-<li><a href="#04-gateway-fix">5.2. Fix configuration problems</a></li>
-<li><a href="#04-gateway-con-again">5.3. Test connectivity again via command line</a></li>
-<li><a href="#04-gateway-fix2">5.4. Fix configuration problems</a></li>
-<li><a href="#04-gateway-con-again2">5.5. Test connectivity again via command line</a></li>
-</ul>
-</li>
-<li><a href="#04-sidecar">6. Test Sidecar &#8594; App Connectivity</a>
-<ul class="sectlevel2">
-<li><a href="#04-sidecar-test">6.1. Test connectivity via command line</a></li>
-</ul>
-</li>
-<li><a href="#04-test">7. Confirm <em>Jump App</em> is running again</a></li>
-<li><a href="#04-kiali">8. Visit Kiali</a></li>
-</ul>
-</li>
-<li><a href="#_lab_5_service_mesh_secure_ingress_traffic_flow">Lab 5 - Service Mesh Secure Ingress Traffic Flow</a>
-<ul class="sectlevel1">
-<li><a href="#05-sds">1. Secure Gateways with SDS</a>
-<ul class="sectlevel2">
-<li><a href="#05-sds-addcert">1.1. Create in Istio the Custom Certificate using SDS</a></li>
-<li><a href="#05-sds-route">1.2. Modify back-golang Route in istio-system Namespace</a></li>
-<li><a href="#05-sds-gw">1.3. Configure Gateway</a></li>
-</ul>
-</li>
-<li><a href="#05-test-fail">2. Confirm <em>Jump App</em> is running</a></li>
-<li><a href="#05-router">3. Openshift Router &#8594; Ingress Gateway Secure Connectivity</a>
-<ul class="sectlevel2">
-<li><a href="#05-trou-con">3.1. Test connectivity via command line</a></li>
-<li><a href="#05-trou-fix">3.2. Fix configuration problems</a></li>
-</ul>
-</li>
-<li><a href="#05-gateway">4. Ingress Gateway &#8594; Envoy Sidecar Secure Connectivity</a>
-<ul class="sectlevel2">
-<li><a href="#05-trou-gateway-forcessl">4.1. Force mTLS in your namespace</a></li>
-<li><a href="#05-trou-gateway-con">4.2. Test connectivity via command line</a></li>
-<li><a href="#05-trou-gateway-evoy-con">4.3. Emulate regular <em>Ingress Gateway</em> connectivity via command line</a></li>
-</ul>
-</li>
-<li><a href="#05-test">5. Confirm <em>Jump App</em> is running again</a></li>
-<li><a href="#05-kiali">6. Visit Kiali</a></li>
-</ul>
-</li>
-<li><a href="#_lab_6_service_mesh_secure_egress_traffic_flow">Lab 6 - Service Mesh Secure Egress Traffic Flow</a>
-<ul class="sectlevel1">
-<li><a href="#06-sds">1. Secure Egress Traffic with mTLS</a></li>
-<li><a href="#06-addcert">2. Create the <em>External Service</em></a>
-<ul class="sectlevel2">
-<li><a href="#06-addcerts">2.1. Add a Custom Certificate</a></li>
-</ul>
-</li>
-<li><a href="#06-createnginx">3. Create Nginx service</a></li>
-<li><a href="#06-createtesting">4. Create the Testing Microservice</a>
-<ul class="sectlevel2">
-<li><a href="#06-createtestingcerts">4.1. Add a Custom Certificate</a></li>
-<li><a href="#06-createtestingdepl">4.2. Create Testing Deployment</a></li>
-<li><a href="#06-createsevstest">4.3. Test Nginx service through testing tool</a></li>
-</ul>
-</li>
-<li><a href="#06-configureegressaccess">5. Configure mutual TLS origination for egress traffic</a>
-<ul class="sectlevel2">
-<li><a href="#_configure_the_egress_gateway">5.1. Configure the <em>Egress Gateway</em></a></li>
-<li><a href="#06-testexternalservice">5.2. Test the <em>external service</em></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_lab_7_troubleshooting_tools">Lab 7 - Troubleshooting Tools</a>
-<ul class="sectlevel1">
-<li><a href="#07-jaeger">1. See traces in Jaeger</a></li>
-<li><a href="#07-delay">2. See a delay in Kiali</a></li>
-<li><a href="#07-dump">3. Check a config dump</a></li>
-<li><a href="#07-stats">4. Check the stats</a></li>
-<li><a href="#07-logging">5. Envoy logging</a></li>
-</ul>
-</li>
-</ul>
-</div>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image unresolved"><img src="logos.png" alt="Envoy" width="600" height="200"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/logos.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/logos.png" alt="Envoy" width="600" height="200"></a></span></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The general idea of <em>Red Hat Service Mesh: Troubleshooting</em> tutorial is to get a deep understanding of the following points:</p>
@@ -561,7 +417,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </div>
 <div class="paragraph">
 <div class="title">Jump App Deployed</div>
-<p><span class="image unresolved"><img src="jump_app_created.png" alt="jump app created"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/lojump_app_createdgin.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump_app_created.png" alt="jump app created"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -602,18 +458,18 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </div>
 <div class="paragraph">
 <div class="title"><em>ServiceMeshMember</em> Created</div>
-<p><span class="image unresolved"><img src="jump-app-ns-smr.png" alt="jump app ns smr"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ns-smr.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ns-smr.png" alt="jump app ns smr"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Additionally, you are able to check this new object through the Openshift Console:</p>
 </div>
 <div class="paragraph">
 <div class="title"><em>ServiceMeshMember</em> Created Console- 1</div>
-<p><span class="image unresolved"><img src="jump-app-ns-smr-con1.png" alt="jump app ns smr con1"></span>
-.<em>ServiceMeshMember</em> Created Console - 2
-<span class="image unresolved"><img src="jump-app-ns-smr-con2.png" alt="jump app ns smr con2"></span>
-.<em>ServiceMeshMember</em> Created Console - 3
-<span class="image unresolved"><img src="jump-app-ns-smr-con3.png" alt="jump app ns smr con3"></span></p>
+<p><span class="image"><a class="image" href="../<em>images/04-troubleshooting/jump-app-ns-smr-con1.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ns-smr-con1.png" alt="jump app ns smr con1"></a></span>
+._ServiceMeshMember</em> Created Console - 2
+<span class="image"><a class="image" href="../<em>images/04-troubleshooting/jump-app-ns-smr-con2.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ns-smr-con2.png" alt="jump app ns smr con2"></a></span>
+._ServiceMeshMember</em> Created Console - 3
+<span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ns-smr-con3.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ns-smr-con3.png" alt="jump app ns smr con3"></a></span></p>
 </div>
 </div>
 </div>
@@ -652,7 +508,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </div>
 <div class="paragraph">
 <div class="title">Gateways Created</div>
-<p><span class="image unresolved"><img src="jump-app-gws-ok.png" alt="jump app gws ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-gws-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-gws-ok.png" alt="jump app gws ok"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -668,7 +524,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </div>
 <div class="paragraph">
 <div class="title">Virtual Services Created</div>
-<p><span class="image unresolved"><img src="jump-app-vss-ok.png" alt="jump app vss ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-vss-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-vss-ok.png" alt="jump app vss ok"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -684,7 +540,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </div>
 <div class="paragraph">
 <div class="title">Destination Rules Created</div>
-<p><span class="image unresolved"><img src="jump-app-drs-ok.png" alt="jump app drs ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-drs-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-drs-ok.png" alt="jump app drs ok"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -700,7 +556,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </div>
 <div class="paragraph">
 <div class="title">k8s Services Created</div>
-<p><span class="image unresolved"><img src="jump-app-svcs-ok.png" alt="jump app svcs ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-svcs-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-svcs-ok.png" alt="jump app svcs ok"></a></span></p>
 </div>
 </div>
 </div>
@@ -723,7 +579,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </div>
 <div class="paragraph">
 <div class="title">Front Patched</div>
-<p><span class="image unresolved"><img src="jump-app-front-depl-patch.png" alt="jump app front depl patch"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-front-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-depl-patch.png" alt="jump app front depl patch"></a></span></p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -732,7 +588,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </div>
 <div class="paragraph">
 <div class="title">Back Springboot Patched</div>
-<p><span class="image unresolved"><img src="jump-app-back-spb-depl-patch.png" alt="jump app back spb depl patch"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-back-spb-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-spb-depl-patch.png" alt="jump app back spb depl patch"></a></span></p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -741,7 +597,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </div>
 <div class="paragraph">
 <div class="title">Back Python Patched</div>
-<p><span class="image unresolved"><img src="jump-app-back-py-depl-patch.png" alt="jump app back py depl patch"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-back-py-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-py-depl-patch.png" alt="jump app back py depl patch"></a></span></p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -750,7 +606,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </div>
 <div class="paragraph">
 <div class="title">Back Golang Patched</div>
-<p><span class="image unresolved"><img src="jump-app-back-go-depl-patch.png" alt="jump app back go depl patch"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-back-go-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-go-depl-patch.png" alt="jump app back go depl patch"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Before continuing with the following steps, please test Jump App <em>pods</em> status, in order to be sure that 2 replicas are running for each microservice:</p>
@@ -776,7 +632,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </div>
 <div class="paragraph">
 <div class="title">Jump App Routes Deleted</div>
-<p><span class="image unresolved"><img src="jump-app-route-del.png" alt="jump app route del"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-route-del.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-route-del.png" alt="jump app route del"></a></span></p>
 </div>
 </div>
 <div class="sect3">
@@ -792,7 +648,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </div>
 <div class="paragraph">
 <div class="title">Mesh Routes Created</div>
-<p><span class="image unresolved"><img src="jump-app-routes-mesh-ok.png" alt="jump app routes mesh ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-routes-mesh-ok.png" alt="jump app routes mesh ok"></a></span></p>
 </div>
 </div>
 </div>
@@ -829,7 +685,7 @@ Look at the number of containers in each microservice, it must contains 2 contai
 </div>
 <div class="paragraph">
 <div class="title">Kiali Console</div>
-<p><span class="image unresolved"><img src="jump-app-kiali.png" alt="jump app kiali"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali.png" alt="jump app kiali"></a></span></p>
 </div>
 </div>
 </div>
@@ -905,14 +761,14 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 </div>
 <div class="paragraph">
 <div class="title">Jump App Customizations Applied I</div>
-<p><span class="image unresolved"><img src="jump-app-mod-gw-ok.png" alt="jump app mod gw ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mod-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mod-gw-ok.png" alt="jump app mod gw ok"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/04-ingress-traffic.adoc - include::partials/04-troubleshooting/oc_process_delete.adoc[]</p>
 </div>
 <div class="paragraph">
 <div class="title">Jump App Customizations Applied II</div>
-<p><span class="image unresolved"><img src="jump-app-mod-svc-ok.png" alt="jump app mod svc ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mod-svc-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mod-svc-ok.png" alt="jump app mod svc ok"></a></span></p>
 </div>
 <div class="sect2">
 <h3 id="04-cust-state"><a class="anchor" href="#04-cust-state"></a>3.1. Confirm <em>Jump App</em> state</h3>
@@ -932,7 +788,7 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 <h2 id="04-router"><a class="anchor" href="#04-router"></a>4. Openshift Router &#8594; Ingress Gateway Connectivity</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image unresolved"><img src="jump-app-ingress-router-gw.png" alt="jump app ingress router gw"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ingress-router-gw.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ingress-router-gw.png" alt="jump app ingress router gw"></a></span></p>
 </div>
 <div class="sect2">
 <h3 id="04-trou-con"><a class="anchor" href="#04-trou-con"></a>4.1. Test connectivity via command line</h3>
@@ -953,7 +809,7 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 </div>
 <div class="paragraph">
 <div class="title">OCP Router Pods</div>
-<p><span class="image unresolved"><img src="ocp-routers-pods.png" alt="ocp routers pods"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-routers-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-routers-pods.png" alt="ocp routers pods"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -983,7 +839,7 @@ oc rsh $POD</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">HTTP Response Error 404</div>
-<p><span class="image unresolved"><img src="jump-app-trou-04-gw.png" alt="jump app trou 04 gw"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-gw.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-gw.png" alt="jump app trou 04 gw"></a></span></p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1005,11 +861,11 @@ Note that the error is 404 because of the route, or path, is not found
 </div>
 <div class="paragraph">
 <div class="title">Kiali Console</div>
-<p><span class="image unresolved"><img src="jump-app-kiali-trou-04.png" alt="jump app kiali trou 04"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04.png" alt="jump app kiali trou 04"></a></span></p>
 </div>
 <div class="paragraph">
 <div class="title">Kiali Console Gateway Error</div>
-<p><span class="image unresolved"><img src="jump-app-kiali-trou-04-error.png" alt="jump app kiali trou 04 error"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04-error.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04-error.png" alt="jump app kiali trou 04 error"></a></span></p>
 </div>
 <div class="paragraph">
 <p>If you take a look at the host paths closely, you can find a bad definition because of the pattern <strong>"-fail"</strong> included in the path. Please, modify this hostname and click on <strong>[ SAVE ]</strong>.</p>
@@ -1034,7 +890,7 @@ Note that the error is 404 because of the route, or path, is not found
 </div>
 <div class="paragraph">
 <div class="title">OCP Routers Pods</div>
-<p><span class="image unresolved"><img src="ocp-routers-pods.png" alt="ocp routers pods"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-routers-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-routers-pods.png" alt="ocp routers pods"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1064,7 +920,7 @@ oc rsh $POD</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">HTTP Response 503</div>
-<p><span class="image unresolved"><img src="jump-app-trou-04-gw-ok.png" alt="jump app trou 04 gw ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-gw-ok.png" alt="jump app trou 04 gw ok"></a></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1085,7 +941,7 @@ At this time, you obtain a 503 error because the service is unavailable but this
 <h2 id="04-gateway"><a class="anchor" href="#04-gateway"></a>5. Test Ingress Gateway &#8594; Sidecar Connectivity</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image unresolved"><img src="jump-app-ingress-gw-sidecar.png" alt="jump app ingress gw sidecar"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ingress-gw-sidecar.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ingress-gw-sidecar.png" alt="jump app ingress gw sidecar"></a></span></p>
 </div>
 <div class="sect2">
 <h3 id="04-gateway-con"><a class="anchor" href="#04-gateway-con"></a>5.1. Test connectivity via command line</h3>
@@ -1106,7 +962,7 @@ At this time, you obtain a 503 error because the service is unavailable but this
 </div>
 <div class="paragraph">
 <div class="title">Istio ControlPlane Pods</div>
-<p><span class="image unresolved"><img src="ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1136,7 +992,7 @@ oc rsh $POD</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">HTTP Response Error</div>
-<p><span class="image unresolved"><img src="jump-app-trou-04-svc.png" alt="jump app trou 04 svc"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-svc.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-svc.png" alt="jump app trou 04 svc"></a></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1166,7 +1022,7 @@ At this time, you obtain <em>"Could not resolve host: back-golang.user1-namespac
 </div>
 <div class="paragraph">
 <div class="title">back-golang k8s Service Created</div>
-<p><span class="image unresolved"><img src="jump-app-trou-04-svc-created.png" alt="jump app trou 04 svc created"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-svc-created.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-svc-created.png" alt="jump app trou 04 svc created"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -1188,7 +1044,7 @@ At this time, you obtain <em>"Could not resolve host: back-golang.user1-namespac
 </div>
 <div class="paragraph">
 <div class="title">Istio ControlPlane Pods</div>
-<p><span class="image unresolved"><img src="ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></span></p>
+<p>04-troubleshooting/ocp-istio-controlplane-pods.png[]</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1217,7 +1073,7 @@ oc rsh $POD</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="jump-app-unavailable-back.png" alt="jump app unavailable back"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-unavailable-back.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-unavailable-back.png" alt="jump app unavailable back"></a></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1239,18 +1095,18 @@ At this time, you obtain a 200 in this command but <em>external access</em> has 
 </div>
 <div class="paragraph">
 <div class="title">Kiali Console</div>
-<p><span class="image unresolved"><img src="jump-app-kiali-trou-04-vs-dr.png" alt="jump app kiali trou 04 vs dr"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04-vs-dr.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04-vs-dr.png" alt="jump app kiali trou 04 vs dr"></a></span></p>
 </div>
 <div class="paragraph">
 <div class="title">Kiali Console Virtual Service Error</div>
-<p><span class="image unresolved"><img src="jump-app-kiali-trou-04-error-vs.png" alt="jump app kiali trou 04 error vs"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04-error-vs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04-error-vs.png" alt="jump app kiali trou 04 error vs"></a></span></p>
 </div>
 <div class="paragraph">
 <p>If you take a look at the host paths closely you can find a bad definition because of the pattern <strong>"-fail"</strong> included in the path. Please, modify this hostname and click on <strong>[ SAVE ]</strong>.</p>
 </div>
 <div class="paragraph">
 <div class="title">Kiali Console Destination Rule Error</div>
-<p><span class="image unresolved"><img src="jump-app-kiali-trou-04-error-dr.png" alt="jump app kiali trou 04 error dr"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04-error-dr.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04-error-dr.png" alt="jump app kiali trou 04 error dr"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Lastly, if you take a look at the label version you can find a bad definition. Please, replace <strong>fail</strong> with <strong>v1</strong> version and click on <strong>[ SAVE ]</strong>.</p>
@@ -1275,7 +1131,7 @@ At this time, you obtain a 200 in this command but <em>external access</em> has 
 </div>
 <div class="paragraph">
 <div class="title">Istio ControlPlane Pods</div>
-<p><span class="image unresolved"><img src="ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1305,7 +1161,7 @@ oc rsh $POD</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">HTTP Response 200</div>
-<p><span class="image unresolved"><img src="jump-app-trou-04-vsdr-ok.png" alt="jump app trou 04 vsdr ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-vsdr-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-vsdr-ok.png" alt="jump app trou 04 vsdr ok"></a></span></p>
 </div>
 </div>
 </div>
@@ -1314,7 +1170,7 @@ oc rsh $POD</code></pre>
 <h2 id="04-sidecar"><a class="anchor" href="#04-sidecar"></a>6. Test Sidecar &#8594; App Connectivity</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image unresolved"><img src="jump-app-ingress-sidecar-app.png" alt="jump app ingress sidecar app"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ingress-sidecar-app.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ingress-sidecar-app.png" alt="jump app ingress sidecar app"></a></span></p>
 </div>
 <div class="sect2">
 <h3 id="04-sidecar-test"><a class="anchor" href="#04-sidecar-test"></a>6.1. Test connectivity via command line</h3>
@@ -1335,7 +1191,7 @@ oc rsh $POD</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">Jump App Pods</div>
-<p><span class="image unresolved"><img src="jump_app_pods.png" alt="jump app pods"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump_app_pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump_app_pods.png" alt="jump app pods"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1364,7 +1220,7 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">HTTP Response 200</div>
-<p><span class="image unresolved"><img src="jump-app-trou-04-sidecar-ok.png" alt="jump app trou 04 sidecar ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-sidecar-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-sidecar-ok.png" alt="jump app trou 04 sidecar ok"></a></span></p>
 </div>
 </div>
 </div>
@@ -1388,7 +1244,7 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">Kiali Console</div>
-<p><span class="image unresolved"><img src="jump-app-kiali.png" alt="jump app kiali"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali.png" alt="jump app kiali"></a></span></p>
 </div>
 </div>
 </div>
@@ -1417,7 +1273,7 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">Secret Created</div>
-<p><span class="image unresolved"><img src="jump-app-secret-ok.png" alt="jump app secret ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-secret-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-secret-ok.png" alt="jump app secret ok"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -1433,7 +1289,7 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">back-golang Route Modified</div>
-<p><span class="image unresolved"><img src="jump-app-routes-sds-mod.png" alt="jump app routes sds mod"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-routes-sds-mod.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-routes-sds-mod.png" alt="jump app routes sds mod"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -1452,14 +1308,14 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">back-golang Gateway Modified</div>
-<p><span class="image unresolved"><img src="jump-app-gw-ok.png" alt="jump app gw ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-gw-ok.png" alt="jump app gw ok"></a></span></p>
 </div>
 <div class="paragraph">
 <p>In order to ensure the Istio Secret Discovery Service (SDS) has been configured properly, you can review the <em>istio ingress gateway</em> pod as shown the following picture:</p>
 </div>
 <div class="paragraph">
 <div class="title">Secret Added to SDS</div>
-<p><span class="image unresolved"><img src="jump-app-sds-ok.png" alt="jump app sds ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-sds-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-sds-ok.png" alt="jump app sds ok"></a></span></p>
 </div>
 </div>
 </div>
@@ -1482,7 +1338,7 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 <h2 id="05-router"><a class="anchor" href="#05-router"></a>3. Openshift Router &#8594; Ingress Gateway Secure Connectivity</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image unresolved"><img src="jump-app-ingress-router-gw-sec.png" alt="jump app ingress router gw sec"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ingress-router-gw-sec.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ingress-router-gw-sec.png" alt="jump app ingress router gw sec"></a></span></p>
 </div>
 <div class="sect2">
 <h3 id="05-trou-con"><a class="anchor" href="#05-trou-con"></a>3.1. Test connectivity via command line</h3>
@@ -1503,7 +1359,7 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">OCP Router Pods</div>
-<p><span class="image unresolved"><img src="ocp-routers-pods.png" alt="ocp routers pods"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-routers-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-routers-pods.png" alt="ocp routers pods"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1533,7 +1389,7 @@ oc rsh $POD</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">HTTP Response 200</div>
-<p><span class="image unresolved"><img src="jump-app-trou-05-gw.png" alt="jump app trou 05 gw"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-gw.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-gw.png" alt="jump app trou 05 gw"></a></span></p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1555,11 +1411,11 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 </div>
 <div class="paragraph">
 <div class="title">OCP Console</div>
-<p><span class="image unresolved"><img src="jump-app-ocp-trou-05.png" alt="jump app ocp trou 05"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ocp-trou-05.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ocp-trou-05.png" alt="jump app ocp trou 05"></a></span></p>
 </div>
 <div class="paragraph">
 <div class="title">OCP Console Bad Configuration</div>
-<p><span class="image unresolved"><img src="jump-app-ocp-trou-05-error.png" alt="jump app ocp trou 05 error"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ocp-trou-05-error.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ocp-trou-05-error.png" alt="jump app ocp trou 05 error"></a></span></p>
 </div>
 <div class="paragraph">
 <p>If you take a look at the <em>target port</em> closely, you can find <em>http2</em>. In order to support passthrough routes and connect with <em>Ingress Gateway</em> secure ports, it is required define a secured port. Please, <em>edit route</em>, define <em>https</em> as target port and click on <strong>[ SAVE ]</strong>.</p>
@@ -1571,7 +1427,7 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 <h2 id="05-gateway"><a class="anchor" href="#05-gateway"></a>4. Ingress Gateway &#8594; Envoy Sidecar Secure Connectivity</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image unresolved"><img src="jump-app-ingress-envoy-gw-sec.png" alt="jump app ingress envoy gw sec"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ingress-envoy-gw-sec.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ingress-envoy-gw-sec.png" alt="jump app ingress envoy gw sec"></a></span></p>
 </div>
 <div class="sect2">
 <h3 id="05-trou-gateway-forcessl"><a class="anchor" href="#05-trou-gateway-forcessl"></a>4.1. Force mTLS in your namespace</h3>
@@ -1588,7 +1444,7 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 </div>
 <div class="paragraph">
 <div class="title">PeerAuthentication and Destination Rule created</div>
-<p><span class="image unresolved"><img src="jump-app-trou-05-padr.png" alt="jump app trou 05 padr"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-padr.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-padr.png" alt="jump app trou 05 padr"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -1610,7 +1466,7 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 </div>
 <div class="paragraph">
 <div class="title">Istio ControlPlane Pods</div>
-<p><span class="image unresolved"><img src="ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1640,7 +1496,7 @@ oc rsh $POD</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">HTTP Response <em>Connection reset by peer</em></div>
-<p><span class="image unresolved"><img src="jump-app-trou-05-k8ssrv.png" alt="jump app trou 05 k8ssrv"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv.png" alt="jump app trou 05 k8ssrv"></a></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1678,7 +1534,7 @@ oc extract secret/istio-ca-secret --to=. -n istio-system</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">Istio CA Certs</div>
-<p><span class="image unresolved"><img src="ocp-istio-ca-certs.png" alt="ocp istio ca certs"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-istio-ca-certs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-ca-certs.png" alt="ocp istio ca certs"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1723,7 +1579,7 @@ EOF</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">New Certificate Request</div>
-<p><span class="image unresolved"><img src="ocp-istio-gen-cert-req.png" alt="ocp istio gen cert req"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-istio-gen-cert-req.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-gen-cert-req.png" alt="ocp istio gen cert req"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1739,7 +1595,7 @@ EOF</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">New Istio CA signed Certificate</div>
-<p><span class="image unresolved"><img src="ocp-istio-gen-cert.png" alt="ocp istio gen cert"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-istio-gen-cert.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-gen-cert.png" alt="ocp istio gen cert"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1755,7 +1611,7 @@ EOF</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">Istio ControlPlane Pods</div>
-<p><span class="image unresolved"><img src="ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1804,7 +1660,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 </div>
 <div class="paragraph">
 <div class="title">HTTP Response <em>Certificate required</em></div>
-<p><span class="image unresolved"><img src="jump-app-trou-05-k8ssrv-cert.png" alt="jump app trou 05 k8ssrv cert"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert.png" alt="jump app trou 05 k8ssrv cert"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1820,7 +1676,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 </div>
 <div class="paragraph">
 <div class="title">HTTP Response 200</div>
-<p><span class="image unresolved"><img src="jump-app-trou-05-k8ssrv-cert-ok.png" alt="jump app trou 05 k8ssrv cert ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert-ok.png" alt="jump app trou 05 k8ssrv cert ok"></a></span></p>
 </div>
 </div>
 </div>
@@ -1844,7 +1700,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 </div>
 <div class="paragraph">
 <div class="title">Kiali Console</div>
-<p><span class="image unresolved"><img src="jump-app-kiali.png" alt="jump app kiali"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali.png" alt="jump app kiali"></a></span></p>
 </div>
 </div>
 </div>
@@ -1859,7 +1715,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 <p>During this step, you will review how to work with a secure HTTPS service through Egress Gateway and a custom certificate.</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="jump-app-egress-traffic.png" alt="jump app egress traffic"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-egress-traffic.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-egress-traffic.png" alt="jump app egress traffic"></a></span></p>
 </div>
 </div>
 </div>
@@ -1873,7 +1729,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 <p>Just a information, this service is based on Nginx server with a custom certificates generated with openssl.</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="jump-app-egress-service.png" alt="jump app egress service"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-egress-service.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-egress-service.png" alt="jump app egress service"></a></span></p>
 </div>
 <div class="sect2">
 <h3 id="06-addcerts"><a class="anchor" href="#06-addcerts"></a>2.1. Add a Custom Certificate</h3>
@@ -1936,7 +1792,7 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 </div>
 <div class="paragraph">
 <div class="title">Server certificates OK</div>
-<p><span class="image unresolved"><img src="jump-app-mesh-external-svc-cert-ok.png" alt="jump app mesh external svc cert ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-svc-cert-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-svc-cert-ok.png" alt="jump app mesh external svc cert ok"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1952,7 +1808,7 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 </div>
 <div class="paragraph">
 <div class="title">CA certificates OK</div>
-<p><span class="image unresolved"><img src="jump-app-mesh-external-ca-cert-ok.png" alt="jump app mesh external ca cert ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-ca-cert-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-ca-cert-ok.png" alt="jump app mesh external ca cert ok"></a></span></p>
 </div>
 </div>
 </div>
@@ -1980,7 +1836,7 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 </div>
 <div class="paragraph">
 <div class="title">Nginx config file OK</div>
-<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-conf-ok.png" alt="jump app mesh external nginx conf ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-conf-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-conf-ok.png" alt="jump app mesh external nginx conf ok"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1994,7 +1850,7 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 </div>
 <div class="paragraph">
 <div class="title">Nginx deployment and service ok</div>
-<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-deployment-ok.png" alt="jump app mesh external nginx deployment ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-deployment-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-deployment-ok.png" alt="jump app mesh external nginx deployment ok"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -2010,7 +1866,7 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 </div>
 <div class="paragraph">
 <div class="title">Nginx pod ok</div>
-<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-pods-ok.png" alt="jump app mesh external nginx pods ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-pods-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-pods-ok.png" alt="jump app mesh external nginx pods ok"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -2028,7 +1884,7 @@ oc rsh $POD curl <a href="https://localhost:443" class="bare">https://localhost:
 </div>
 <div class="paragraph">
 <div class="title">Nginx service mTLS ERROR</div>
-<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-svc-ok-404.png" alt="jump app mesh external nginx svc ok 404"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png" alt="jump app mesh external nginx svc ok 404"></a></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2051,7 +1907,7 @@ You have deployed a mTLS service and you are receiving a <em>400 Bad Request</em
 <p>In order to test your Nginx service, it is required to create a microservice-based testing tool which allows you to stablish secure connections based on mTLS.</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="jump-app-test-tool.png" alt="jump app test tool"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-test-tool.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-test-tool.png" alt="jump app test tool"></a></span></p>
 </div>
 <div class="sect2">
 <h3 id="06-createtestingcerts"><a class="anchor" href="#06-createtestingcerts"></a>4.1. Add a Custom Certificate</h3>
@@ -2076,7 +1932,7 @@ oc create -n $USER_NAMESPACE secret tls nginx-client-certs --key client.example.
 </div>
 <div class="paragraph">
 <div class="title">Client certificates OK</div>
-<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-access-certs.png" alt="jump app mesh external nginx access certs"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-certs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-certs.png" alt="jump app mesh external nginx access certs"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -2092,7 +1948,7 @@ oc create -n $USER_NAMESPACE secret tls nginx-client-certs --key client.example.
 </div>
 <div class="paragraph">
 <div class="title">CA certificates OK</div>
-<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-access-ca-certs.png" alt="jump app mesh external nginx access ca certs"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-ca-certs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-ca-certs.png" alt="jump app mesh external nginx access ca certs"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -2115,7 +1971,7 @@ oc create -n $USER_NAMESPACE secret tls nginx-client-certs --key client.example.
 </div>
 <div class="paragraph">
 <div class="title">Testing service created</div>
-<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-client-pod.png" alt="jump app mesh external nginx client pod"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-pod.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-pod.png" alt="jump app mesh external nginx client pod"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -2131,7 +1987,7 @@ oc create -n $USER_NAMESPACE secret tls nginx-client-certs --key client.example.
 </div>
 <div class="paragraph">
 <div class="title">Testing service pod OK</div>
-<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-client-pod-ok.png" alt="jump app mesh external nginx client pod ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/lojump-app-mesh-external-nginx-client-pod-okgin.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-pod-ok.png" alt="jump app mesh external nginx client pod ok"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -2152,7 +2008,7 @@ oc exec -it $POD -c sleep -- curl -v --cacert /etc/nginx-ca-certs/example.com.cr
 </div>
 <div class="paragraph">
 <div class="title">Nginx service with mTLS</div>
-<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-client-mtls-ok.png" alt="jump app mesh external nginx client mtls ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-mtls-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-mtls-ok.png" alt="jump app mesh external nginx client mtls ok"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -2170,7 +2026,7 @@ oc exec -it $POD -c sleep -- curl -v <a href="https://my-nginx.$USER_NAMESPACE-m
 </div>
 <div class="paragraph">
 <div class="title">Nginx service mTLS ERROR</div>
-<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-svc-ok-404.png" alt="jump app mesh external nginx svc ok 404"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png" alt="jump app mesh external nginx svc ok 404"></a></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2191,7 +2047,7 @@ You have deployed a nginx mTLS service and you are receiving a <em>400 Bad Reque
 <h2 id="06-configureegressaccess"><a class="anchor" href="#06-configureegressaccess"></a>5. Configure mutual TLS origination for egress traffic</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image unresolved"><img src="jump-app-egress-traffic-graph.png" alt="jump app egress traffic graph"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-egress-traffic-graph.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-egress-traffic-graph.png" alt="jump app egress traffic graph"></a></span></p>
 </div>
 <div class="paragraph">
 <p>When you have the testing tool and the Nginx service up and running, it is time to introduce the <em>Egress Gateway</em>.</p>
@@ -2220,7 +2076,7 @@ You have deployed a nginx mTLS service and you are receiving a <em>400 Bad Reque
 </div>
 <div class="paragraph">
 <div class="title">Gateway, Virtual Service and Destination Rules OK</div>
-<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-access-egress-objects-new.png" alt="jump app mesh external nginx access egress objects new"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-objects-new.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-objects-new.png" alt="jump app mesh external nginx access egress objects new"></a></span></p>
 </div>
 <div class="sect2">
 <h3 id="_configure_the_egress_gateway"><a class="anchor" href="#_configure_the_egress_gateway"></a>5.1. Configure the <em>Egress Gateway</em></h3>
@@ -2247,7 +2103,7 @@ You have deployed a nginx mTLS service and you are receiving a <em>400 Bad Reque
 </div>
 <div class="paragraph">
 <div class="title">Nginx client egress certificate</div>
-<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-istio-system-certs.png" alt="jump app mesh external nginx istio system certs"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-istio-system-certs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-istio-system-certs.png" alt="jump app mesh external nginx istio system certs"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -2261,7 +2117,7 @@ You have deployed a nginx mTLS service and you are receiving a <em>400 Bad Reque
 </div>
 <div class="paragraph">
 <div class="title">Nginx service destination rule and service entry</div>
-<p><span class="image unresolved"><img src="jump-app-mesh-nginx-dr-se.png" alt="jump app mesh nginx dr se"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-nginx-dr-se.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-nginx-dr-se.png" alt="jump app mesh nginx dr se"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -2285,7 +2141,7 @@ oc exec -it $POD -c sleep -- curl -v <a href="http://my-nginx.$USER_NAMESPACE-me
 </div>
 <div class="paragraph">
 <div class="title">nginx.example.com mTLS connection OK</div>
-<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-access-egress-con-ok-mtls.png" alt="jump app mesh external nginx access egress con ok mtls"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-con-ok-mtls.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-con-ok-mtls.png" alt="jump app mesh external nginx access egress con ok mtls"></a></span></p>
 </div>
 </div>
 </div>
@@ -2313,14 +2169,14 @@ oc exec -it $POD -c sleep -- curl -v <a href="http://my-nginx.$USER_NAMESPACE-me
 </div>
 <div class="paragraph">
 <div class="title">Traces in jaeger</div>
-<p><span class="image unresolved"><img src="jump-app-jaeger-traces.png" alt="jump app jaeger traces"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-jaeger-traces.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-jaeger-traces.png" alt="jump app jaeger traces"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Click on any of them and you will see the following page will all the jumps your application did and how long did they take:</p>
 </div>
 <div class="paragraph">
 <div class="title">Spans in jaeger</div>
-<p><span class="image unresolved"><img src="jump-app-jaeger-spans.png" alt="jump app jaeger spans"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-jaeger-spans.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-jaeger-spans.png" alt="jump app jaeger spans"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Those are called spans and they represent a logical unit of work in Jaeger that has an operation name, the start time of the operation, and the duration. Spans may be nested and ordered to model causal relationships. This could help you see where is your application spending more time and find bottlenecks in an easy manner.</p>
@@ -2341,7 +2197,7 @@ oc exec -it $POD -c sleep -- curl -v <a href="http://my-nginx.$USER_NAMESPACE-me
 </div>
 <div class="paragraph">
 <div class="title">See delay in Kiali</div>
-<p><span class="image unresolved"><img src="jump-app-kiali-delay.png" alt="jump app kiali delay"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali-delay.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-delay.png" alt="jump app kiali delay"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You&#8217;ll notice that requests in <code>back-golang</code> are now taking roughly 2 seconds. This capacity of Kiali to see the response time is another way of watching where your application is spending more time. But you can play with other metrics that Kiali gives you like Request Percentage, Requests per Second and even see the traffic animation and security.</p>
@@ -2366,7 +2222,7 @@ oc exec -it $POD -c istio-proxy -- curl localhost:15000/config_dump &gt; dump.js
 </div>
 <div class="paragraph">
 <div class="title">Envoy config dump</div>
-<p><span class="image unresolved"><img src="config_dump.png" alt="config dump"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/config_dump.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/config_dump.png" alt="config dump"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Take some time checking the config dump, since this file has all the configuration parameters of the Envoy proxies inside the Service Mesh.</p>
@@ -2412,7 +2268,7 @@ oc exec -it $POD -c istio-proxy -- curl -X POST localhost:15000/logging</code></
 </div>
 <div class="paragraph">
 <div class="title">Active Loggers</div>
-<p><span class="image unresolved"><img src="envoy-logging.png" alt="envoy logging"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/envoy-logging.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/envoy-logging.png" alt="envoy logging"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Now, you will change the level of one of them:</p>

@@ -380,17 +380,13 @@
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_HTTPBIN_HOST}"</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="httpbin_curl.png" alt="httpbin curl">
+<div class="paragraph">
+<div class="title">httpbin service working</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_curl.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_curl.png" alt="httpbin curl"></a></span></p>
 </div>
-<div class="title">Figure 1. httpbin service working</div>
-</div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="ingress_httpbin.png" alt="ingress httpbin">
-</div>
-<div class="title">Figure 2. httpbin service through an {ig}</div>
+<div class="paragraph">
+<div class="title">httpbin service through an {ig}</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/ingress_httpbin.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/ingress_httpbin.png" alt="ingress httpbin"></a></span></p>
 </div>
 </div>
 </div>
@@ -411,11 +407,9 @@
 <div class="paragraph">
 <p>As you can see, <em>httpbin</em> app returns a JSON with everything that was passed in the request, including your custom header:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="httpbin_header_1.png" alt="httpbin header 1">
-</div>
-<div class="title">Figure 3. httpbin returns a custom header</div>
+<div class="paragraph">
+<div class="title">httpbin returns a custom header</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_header_1.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_header_1.png" alt="httpbin header 1"></a></span></p>
 </div>
 </div>
 </div>
@@ -557,11 +551,9 @@ It may take some seconds for the configuration to propagate through the mesh bef
 <div class="paragraph">
 <p>You should see your custom header and the additional header that was created in the {ef}:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="httpbin_header_2.png" alt="httpbin header 2">
-</div>
-<div class="title">Figure 4. httpbin returns a new header created in the {ef}</div>
+<div class="paragraph">
+<div class="title">httpbin returns a new header created in the {ef}</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_header_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_header_2.png" alt="httpbin header 2"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You can check wether your filter has been inserted in the filter chain by looking at the Envoy config. In order to do this you can use <em>istioctl</em>:</p>
@@ -573,11 +565,9 @@ It may take some seconds for the configuration to propagate through the mesh bef
 istioctl proxy-config listeners -n ${OCP_NAMESPACE} ${HTTPBIN_POD} -o json</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="httpbin_envoy_config.png" alt="httpbin envoy config">
-</div>
-<div class="title">Figure 5. Envoy config including the custom Lua filter</div>
+<div class="paragraph">
+<div class="title">Envoy config including the custom Lua filter</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_envoy_config.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_envoy_config.png" alt="httpbin envoy config"></a></span></p>
 </div>
 <div class="paragraph">
 <p>If you don&#8217;t have <em>istioctl</em> installed you can also run the following commands:</p>
@@ -674,11 +664,9 @@ spec:
 <div class="paragraph">
 <p>You should see your custom header being replaced with the additional header that was created in the first {ef}, your custom header has been removed:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="httpbin_header_3.png" alt="httpbin header 3">
-</div>
-<div class="title">Figure 6. httpbin returns a replaced custom header created in the {ef}</div>
+<div class="paragraph">
+<div class="title">httpbin returns a replaced custom header created in the {ef}</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_header_3.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_header_3.png" alt="httpbin header 3"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You can check the position of your new filter in the filter chain by looking at the Envoy config:</p>
@@ -690,11 +678,9 @@ spec:
 istioctl proxy-config listeners -n ${OCP_NAMESPACE} ${HTTPBIN_POD} -o json</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="httpbin_envoy_config_2.png" alt="httpbin envoy config 2">
-</div>
-<div class="title">Figure 7. Envoy config including the removal Lua filter at the end of the chain</div>
+<div class="paragraph">
+<div class="title">Envoy config including the removal Lua filter at the end of the chain</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_envoy_config_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_envoy_config_2.png" alt="httpbin envoy config 2"></a></span></p>
 </div>
 <div class="paragraph">
 <p>If you don&#8217;t have <em>istioctl</em> installed you can also run the following commands:</p>
@@ -709,11 +695,9 @@ oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST lo
 <div class="paragraph">
 <p>Additionally, it is possible to review all of this information via Kiali.</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="httpbin_envoy_config_kiali.png" alt="httpbin envoy config kiali">
-</div>
-<div class="title">Figure 8. Envoy config including the removal Lua filter at the end of the chain (Kiali)</div>
+<div class="paragraph">
+<div class="title">Envoy config including the removal Lua filter at the end of the chain (Kiali)</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_envoy_config_kiali.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_envoy_config_kiali.png" alt="httpbin envoy config kiali"></a></span></p>
 </div>
 </div>
 </div>
@@ -807,20 +791,16 @@ spec:
 <div class="paragraph">
 <p>You should see your custom header being replaced with the additional header and your custom header removed, but this time with only one {ef}:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="httpbin_header_4.png" alt="httpbin header 4">
-</div>
-<div class="title">Figure 9. httpbin returns a replaced custom header created in the {ef}</div>
+<div class="paragraph">
+<div class="title">httpbin returns a replaced custom header created in the {ef}</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_header_4.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_header_4.png" alt="httpbin header 4"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Additionally, it is possible to review all of this information via Kiali.</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="httpbin_envoy_config_kiali_2.png" alt="httpbin envoy config kiali 2">
-</div>
-<div class="title">Figure 10. Envoy config including the removal Lua filter at the end of the chain (Kiali)</div>
+<div class="paragraph">
+<div class="title">Envoy config including the removal Lua filter at the end of the chain (Kiali)</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_envoy_config_kiali_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_envoy_config_kiali_2.png" alt="httpbin envoy config kiali 2"></a></span></p>
 </div>
 </div>
 </div>

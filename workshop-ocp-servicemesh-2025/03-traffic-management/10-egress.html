@@ -368,11 +368,9 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc exec -it ${UBI_POD} -n ${OCP_NAMESPACE} -c ubi -- curl -I https://github.com</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="egress_without_se.png" alt="egress without se">
-</div>
-<div class="title">Figure 1. Accessing external service without {se}</div>
+<div class="paragraph">
+<div class="title">Accessing external service without {se}</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/egress_without_se.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/egress_without_se.png" alt="egress without se"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Ooops, you can&#8217;t, because {ossm} is configured with a restrictive policy.</p>
@@ -438,20 +436,16 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc exec -it ${UBI_POD} -n ${OCP_NAMESPACE} -c ubi -- curl -I https://github.com</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="egress_with_se.png" alt="egress with se">
-</div>
-<div class="title">Figure 2. Accessing external service with {se}</div>
+<div class="paragraph">
+<div class="title">Accessing external service with {se}</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/egress_with_se.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/egress_with_se.png" alt="egress with se"></a></span></p>
 </div>
 <div class="paragraph">
 <p>So, this is now a controlled way to enable access to external services.</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="kiali_egress_with_se.png" alt="kiali egress with se">
-</div>
-<div class="title">Figure 3. Kiali external service with {se}</div>
+<div class="paragraph">
+<div class="title">Kiali external service with {se}</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali_egress_with_se.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali_egress_with_se.png" alt="kiali egress with se"></a></span></p>
 </div>
 </div>
 </div>
@@ -597,11 +591,9 @@ spec:
 <div class="paragraph">
 <p>In Kiali you can see this time that the traffic is going through the {eg}:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="kiali_egress_with_egress.png" alt="kiali egress with egress">
-</div>
-<div class="title">Figure 4. Kiali external service with {eg}</div>
+<div class="paragraph">
+<div class="title">Kiali external service with {eg}</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali_egress_with_egress.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali_egress_with_egress.png" alt="kiali egress with egress"></a></span></p>
 </div>
 </div>
 </div>

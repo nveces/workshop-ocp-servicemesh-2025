@@ -342,7 +342,7 @@ peerauthentication.security.istio.io/peer-auth-policy created</pre>
 </td>
 <td class="content">
 When setting PeerAuthentication to STRICT namespace wide, we will get an error in <code>Kiali</code> telling that "Destination Rule enabling namespace-wide mTLS is missing". In our case, we don&#8217;t really care, as in this lab, we will enable mTLS service by service in the namespace.
-<span class="image unresolved"><img src="error-paut.png" alt="Error PeerAthentication"></span>
+<span class="image"><a class="image" href="../_images/05-security/error-paut.png" target="_blank" rel="noopener"><img src="../_images/05-security/error-paut.png" alt="Error PeerAthentication"></a></span>
 <strong>Ignore it for the rest of the lab.</strong>
 </td>
 </tr>
@@ -462,7 +462,7 @@ destinationrule.networking.istio.io/ratings patched</pre>
 <p>Finally, move to <code>Kiali</code> and select the <code>Security</code> check box in the graph <code>Display options</code>. We should get a lock icon between each service call:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="security-check.gif" alt="Mtls in ns1"></span></p>
+<p><span class="image unresolved"><a class="image" href="../_images/05-security/security-check.gif" target="_blank" rel="noopener"><img src="05-security/security-check.gif" alt="Mtls in ns1"></a></span></p>
 </div>
 </div>
 </div>

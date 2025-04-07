@@ -415,11 +415,9 @@ spec:
 <div class="paragraph">
 <p>To check the delay, visit your Bookinfo application (<a href="https://&lt;user&gt;.bookinfo.&lt;openshift_apps_domain&gt;/productpage" class="bare">https://&lt;user&gt;.bookinfo.&lt;openshift_apps_domain&gt;/productpage</a>) and log in as pepito (or the name you chose). You will notice that it will take 7 seconds to load and you will see the following error in the <code>reviews</code> part: "<strong>Sorry, product reviews are currently unavailable for this book.</strong>"". Like this:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="reviews-failure.png" alt="reviews failure">
-</div>
-<div class="title">Figure 1. Reviews failure</div>
+<div class="paragraph">
+<div class="title">Reviews failure</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/reviews-failure.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/reviews-failure.png" alt="reviews failure"></a></span></p>
 </div>
 <div class="paragraph">
 <p>This happens because there is a hard-coded timeout between <code>productpage</code> service and <code>reviews</code> service of 3 seconds and 1 retry, so a total of 6 seconds. Then, you can&#8217;t see the <code>reviews</code> because of this timeout.</p>
@@ -440,11 +438,9 @@ spec:
 <div class="paragraph">
 <p>Now you don&#8217;t have to be logged in as pepito, enter again to your Product Page and now you will see the reviews, but the ratings will give you the following error: "<strong>Ratings service is currently unavailable</strong>". This is because this time the <code>ratings</code> service is returning an error 500. You should see this:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="ratings-failure.png" alt="ratings failure">
-</div>
-<div class="title">Figure 2. Ratings failure</div>
+<div class="paragraph">
+<div class="title">Ratings failure</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/ratings-failure.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/ratings-failure.png" alt="ratings failure"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/06-fault-injection.adoc - include::/03-traffic-management/kiali_traffic.adoc[]</p>
@@ -452,11 +448,9 @@ spec:
 <div class="paragraph">
 <p>You should see a graph similar to this:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="kiali-ratings-failure.png" alt="kiali ratings failure">
-</div>
-<div class="title">Figure 3. Kiali ratings failure</div>
+<div class="paragraph">
+<div class="title">Kiali ratings failure</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali-ratings-failure.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-ratings-failure.png" alt="kiali ratings failure"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/06-fault-injection.adoc - include::partials/03-traffic-management/remove_bookinfo.adoc[]</p>

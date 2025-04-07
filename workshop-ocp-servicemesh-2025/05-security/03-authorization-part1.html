@@ -400,7 +400,7 @@ authorizationpolicy.security.istio.io/deny-all-in-ns created</pre>
 <p>Test the application again and see that we get an <code>RBAC: denied access error</code>. If you left some test running in the background, you would have a similar graph to the one shown below in <code>Kiali</code>:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="kiali-rbac-error.gif" alt="Kiali RBAC error"></span></p>
+<p><span class="image unresolved"><a class="image" href="../_images/05-security/kiali-rbac-error.gif" target="_blank" rel="noopener"><img src="05-security/kiali-rbac-error.gif" alt="Kiali RBAC error"></a></span></p>
 </div>
 <div class="paragraph">
 <p>We will start now given access gradually to services.</p>
@@ -556,13 +556,13 @@ authorizationpolicy.security.istio.io/allow-ingress-productpage created</pre>
 <p>Test the application again and you should be able to reach it, although you still won&#8217;t have access to the <code>details</code> and <code>ratings</code> services:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="rbac-productpage.png" alt="Productpage RBAC"></span></p>
+<p><span class="image"><a class="image" href="../_images/05-security/rbac-productpage.png" target="_blank" rel="noopener"><img src="../_images/05-security/rbac-productpage.png" alt="Productpage RBAC"></a></span></p>
 </div>
 <div class="paragraph">
 <p>And the following graph can be seen in <code>Kiali</code>:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="kiali-rbac-error-2.gif" alt="Kiali RBAC error"></span></p>
+<p><span class="image unresolved"><a class="image" href="../_images/05-security/kiali-rbac-error-2.gif" target="_blank" rel="noopener"><img src="05-security/kiali-rbac-error-2.gif" alt="Kiali RBAC error"></a></span></p>
 </div>
 <div class="paragraph">
 <p>We are now restricted all services behind the <code>productpage</code> service. Let&#8217;s start activating accesses <code>workload</code>  by <code>workload</code>.</p>
@@ -634,13 +634,13 @@ authorizationpolicy.security.istio.io/allow-ratings created</pre>
 <p>If you test the application again, everything should work fine:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="productpage-rbac-ok.png" alt="Productpage RBAC"></span></p>
+<p><span class="image"><a class="image" href="../_images/05-security/productpage-rbac-ok.png" target="_blank" rel="noopener"><img src="../_images/05-security/productpage-rbac-ok.png" alt="Productpage RBAC"></a></span></p>
 </div>
 <div class="paragraph">
 <p>And this the <code>Kiali</code> graph again where will see all interactions between servies working as expected:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="kiali-rbac-ok.gif" alt="Kiali RBAC ok"></span></p>
+<p><span class="image unresolved"><a class="image" href="../_images/05-security/kiali-rbac-ok.gif" target="_blank" rel="noopener"><img src="05-security/kiali-rbac-ok.gif" alt="Kiali RBAC ok"></a></span></p>
 </div>
 </div>
 </div>
@@ -726,7 +726,7 @@ deployment.apps/productpage-v1 updated</pre>
 <p>Test that the <code>productpage</code> service cannot reach the <code>reviews</code> service in $APPS_NS2 after the config change:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="productpage-accesing-ns2.png" alt="RBAC error ns2"></span></p>
+<p>05-security/productpage-accesing-ns2.png[RBAC error ns2]</p>
 </div>
 <div class="paragraph">
 <p>And now, process the following <code>AuthorizationPolicy</code> template to check what we will be creating:</p>
@@ -763,7 +763,7 @@ authorizationpolicy.security.istio.io/allow-ratings created</pre>
 <p>Verify that the application works and that you see calls between services from different <code>namespaces</code> as shown below:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="rbac-cross-ns.png" alt="RBAC cross namespaces"></span></p>
+<p><span class="image"><a class="image" href="../_images/05-security/rbac-cross-ns.png" target="_blank" rel="noopener"><img src="../_images/05-security/rbac-cross-ns.png" alt="RBAC cross namespaces"></a></span></p>
 </div>
 </div>
 </div>

@@ -468,11 +468,9 @@ spec:
 <div class="paragraph">
 <p>This is the code where the actual header replacing takes place:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="wasm_headers_code.png" alt="wasm headers code">
-</div>
-<div class="title">Figure 1. Headers filter source code</div>
+<div class="paragraph">
+<div class="title">Headers filter source code</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/wasm_headers_code.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/wasm_headers_code.png" alt="wasm headers code"></a></span></p>
 </div>
 <div class="paragraph">
 <p>It is important to take a look at the manifest packed in the container image:</p>
@@ -608,11 +606,9 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="paragraph">
 <p>As you can see, <em>httpbin</em> app returns a JSON with everything that was passed in the request, including your custom header but nothing has been changed:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="httpbin_wasm_header_1.png" alt="httpbin wasm header 1">
-</div>
-<div class="title">Figure 2. httpbin returns a custom header</div>
+<div class="paragraph">
+<div class="title">httpbin returns a custom header</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_wasm_header_1.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_header_1.png" alt="httpbin wasm header 1"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Now, use the <em>Custom-Header</em> the extension is expecting:</p>
@@ -625,11 +621,9 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="paragraph">
 <p>As you can see now, <em>Custom-Header</em> has been replaced with <em>Custom-Wasm-Header</em> and <em>Custom-Wasm-Config-Header</em>. Notice that the value of <em>Custom-Wasm-Header</em> is the original value of <em>Custom-Header</em> and the value of <em>Custom-Wasm-Config-Header</em> is taken from the {sme} deployment manifest:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="httpbin_wasm_header_2.png" alt="httpbin wasm header 2">
-</div>
-<div class="title">Figure 3. {wasm} plugin replaces the custom header</div>
+<div class="paragraph">
+<div class="title">{wasm} plugin replaces the custom header</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_wasm_header_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_header_2.png" alt="httpbin wasm header 2"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -666,11 +660,9 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="paragraph">
 <p>This is the code where the actual body replacing takes place:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="wasm_body_code.png" alt="wasm body code">
-</div>
-<div class="title">Figure 4. Body filter source code</div>
+<div class="paragraph">
+<div class="title">Body filter source code</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/wasm_body_code.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/wasm_body_code.png" alt="wasm body code"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Take a look at the deployment {sme} resource:</p>
@@ -735,11 +727,9 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="paragraph">
 <p>As you can see, <em>httpbin</em> app returns a JSON with everything that was passed in the request, including your custom body but nothing special happened:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="httpbin_wasm_body_1.png" alt="httpbin wasm body 1">
-</div>
-<div class="title">Figure 5. httpbin returns a custom body</div>
+<div class="paragraph">
+<div class="title">httpbin returns a custom body</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_wasm_body_1.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_body_1.png" alt="httpbin wasm body 1"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Now, include the word <em>secret</em> in the body, as defined in the {sme} resource:</p>
@@ -752,11 +742,9 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="paragraph">
 <p>As you can see now, the extension has detected the word in the body and has replaced all the body with a predefined message:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="httpbin_wasm_body_2.png" alt="httpbin wasm body 2">
-</div>
-<div class="title">Figure 6. {wasm} plugin replaces body</div>
+<div class="paragraph">
+<div class="title">{wasm} plugin replaces body</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_wasm_body_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_body_2.png" alt="httpbin wasm body 2"></a></span></p>
 </div>
 </div>
 <div class="sect2">

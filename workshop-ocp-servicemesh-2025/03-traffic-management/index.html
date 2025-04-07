@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: WorkShop - Service Mesh on OCP 2025</title>
+    <title>{rhossm}: Traffic Management Labs :: WorkShop - Service Mesh on OCP 2025</title>
     <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/03-traffic-management/index.html">
     <link rel="prev" href="../02-envoy-istio-control-plane/index.html">
     <link rel="next" href="../04-troubleshooting/index.html">
@@ -285,14 +285,9 @@
   </div>
   <div class="content">
 <article class="doc">
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/index.adoc - include::vars/render-vars.adoc[]
-Unresolved include directive in modules/ROOT/pages/03-traffic-management/index.adoc - include::vars/document-vars.adoc[]
-Unresolved include directive in modules/ROOT/pages/03-traffic-management/index.adoc - include::vars/redhat-vars.adoc[]</p>
-</div>
-<h1 id="_rhossm_traffic_management_labs" class="sect0"><a class="anchor" href="#_rhossm_traffic_management_labs"></a>{rhossm}: Traffic Management Labs</h1>
+<h1 class="page">{rhossm}: Traffic Management Labs</h1>
 <div class="sect1">
-<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The objective of these labs is to get a deep understanding of the following topics:</p>
@@ -319,10 +314,10 @@ Unresolved include directive in modules/ROOT/pages/03-traffic-management/index.a
 </div>
 </div>
 <div class="sect1">
-<h2 id="_setup"><a class="anchor" href="#_setup"></a>Setup</h2>
+<h2 id="_setup"><a class="anchor" href="#_setup"></a>2. Setup</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h3>
+<h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>2.1. Prerequisites</h3>
 <div class="paragraph">
 <p>During this tutorial, it will be required to work with different tools for running the exercises included. Please, install the following software:</p>
 </div>
@@ -374,27 +369,27 @@ You must have an up-to-date version of the <em>oc</em> command.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_laboratory"><a class="anchor" href="#_laboratory"></a>Laboratory</h3>
+<h3 id="_laboratory"><a class="anchor" href="#_laboratory"></a>2.2. Laboratory</h3>
 <div class="paragraph">
 <p>This laboratory is based on the following technologies:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>{rhocp}</p>
+<p>Red Hat OpenShift Container Platform</p>
 </li>
 <li>
-<p>{rhossm} based on <em>Istio</em></p>
+<p>Red Hat OpenShift Service Mesh based on <em>Istio</em></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The previous technologies and resources will allow you to implement a microservice-based application in {ocp} which will be included in Service Mesh. The main objective of deploying this application in {ocp} is to understand how to setup routing scenarios in {ossm}.</p>
+<p>The previous technologies and resources will allow you to implement a microservice-based application in OpenShift Container Platform which will be included in Service Mesh. The main objective of deploying this application in OpenShift Container Platform is to understand how to setup routing scenarios in OpenShift Service Mesh.</p>
 </div>
 <div class="sect3">
-<h4 id="_laboratory_parameters"><a class="anchor" href="#_laboratory_parameters"></a>Laboratory Parameters</h4>
+<h4 id="_laboratory_parameters"><a class="anchor" href="#_laboratory_parameters"></a>2.2.1. Laboratory Parameters</h4>
 <div class="paragraph">
-<p>The Instructor will provide users with the {ocp} credentials and other important parameters at the beginning of this lab.</p>
+<p>The Instructor will provide users with the OpenShift Container Platform credentials and other important parameters at the beginning of this lab.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -501,9 +496,9 @@ From now on, all labs will assume these exports are defined in your shell enviro
 </div>
 </div>
 <div class="sect3">
-<h4 id="_openshift_cli"><a class="anchor" href="#_openshift_cli"></a>OpenShift CLI</h4>
+<h4 id="_openshift_cli"><a class="anchor" href="#_openshift_cli"></a>2.2.2. OpenShift CLI</h4>
 <div class="paragraph">
-<p>The {ocp} CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system.</p>
+<p>The OpenShift Container Platform CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system.</p>
 </div>
 <div class="paragraph">
 <p>Make sure you can connect to the cluster executing the next command in your terminal:</p>
@@ -513,11 +508,11 @@ From now on, all labs will assume these exports are defined in your shell enviro
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u ${OCP_USER} -p ${OCP_PASSWORD} ${OCP_API}</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="oc_login_output.png" alt="oc login output">
+<a class="image" href="../_images/03-traffic-management/oc_login_output.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/oc_login_output.png" alt="oc login output"></a>
 </div>
-<div class="title">Figure 1. {rhocp} CLI login</div>
+<div class="title">Figure 1. Red Hat OpenShift Container Platform CLI login</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -541,9 +536,9 @@ Please, pay special attention to the <em>oc</em> tool as you will need to use it
 </div>
 </div>
 <div class="sect3">
-<h4 id="_web_console"><a class="anchor" href="#_web_console"></a>Web Console</h4>
+<h4 id="_web_console"><a class="anchor" href="#_web_console"></a>2.2.3. Web Console</h4>
 <div class="paragraph">
-<p>In addition, you can access the {ocp} Web Console using via web browser, use your credentials to login:</p>
+<p>In addition, you can access the OpenShift Container Platform Web Console using via web browser, use your credentials to login:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -552,16 +547,16 @@ Please, pay special attention to the <em>oc</em> tool as you will need to use it
 </li>
 </ul>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="ocp_console.png" alt="ocp console">
+<a class="image" href="../_images/03-traffic-management/ocp_console.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/ocp_console.png" alt="ocp console"></a>
 </div>
-<div class="title">Figure 2. {rhocp} Web Console login</div>
+<div class="title">Figure 2. Red Hat OpenShift Container Platform Web Console login</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_gihub_repository"><a class="anchor" href="#_gihub_repository"></a>GiHub Repository</h3>
+<h3 id="_gihub_repository"><a class="anchor" href="#_gihub_repository"></a>2.3. GiHub Repository</h3>
 <div class="paragraph">
 <p>All files used in the labs are located in a GitHub repository for your convenience.</p>
 </div>
@@ -573,11 +568,11 @@ Please, pay special attention to the <em>oc</em> tool as you will need to use it
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/drhelius/ossm-traffic-management.git" class="bare">https://github.com/drhelius/ossm-traffic-management.git</a></code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="git_clone_output.png" alt="git clone output">
+<a class="image" href="../_images/03-traffic-management/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/git_clone_output.png" alt="git clone output"></a>
 </div>
-<div class="title">Figure 3. {rhocp} Git clone output</div>
+<div class="title">Figure 3. Red Hat OpenShift Container Platform Git clone output</div>
 </div>
 <div class="paragraph">
 <p>Navigate to the new directory created in your system:</p>
@@ -603,10 +598,10 @@ From now on, all labs will assume you are located in this directory.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_sample_applications"><a class="anchor" href="#_sample_applications"></a>Sample Applications</h2>
+<h2 id="_sample_applications"><a class="anchor" href="#_sample_applications"></a>3. Sample Applications</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_bookinfo"><a class="anchor" href="#_bookinfo"></a>Bookinfo</h3>
+<h3 id="_bookinfo"><a class="anchor" href="#_bookinfo"></a>3.1. Bookinfo</h3>
 <div class="paragraph">
 <p>Bookinfo is a sample application composed of four separate microservices used to demonstrate various Istio features.</p>
 </div>
@@ -651,15 +646,15 @@ From now on, all labs will assume you are located in this directory.
 <div class="paragraph">
 <p>The end-to-end architecture of the application is shown below:</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="bookinfo.png" alt="bookinfo">
+<a class="image" href="../_images/03-traffic-management/bookinfo.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/bookinfo.png" alt="bookinfo"></a>
 </div>
-<div class="title">Figure 4. {rhocp} Bookinfo application architecture</div>
+<div class="title">Figure 4. Red Hat OpenShift Container Platform Bookinfo application architecture</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_httpbin"><a class="anchor" href="#_httpbin"></a>httpbin</h3>
+<h3 id="_httpbin"><a class="anchor" href="#_httpbin"></a>3.2. httpbin</h3>
 <div class="paragraph">
 <p>Some labs will use <em>httpbin</em> as an HTTP request and response service. It offers many tools to proof test HTTP.</p>
 </div>
@@ -670,20 +665,20 @@ From now on, all labs will assume you are located in this directory.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_1_ingress_gateways"><a class="anchor" href="#_lab_1_ingress_gateways"></a>Lab 1 - Ingress Gateways</h2>
+<h2 id="_lab_1_ingress_gateways"><a class="anchor" href="#_lab_1_ingress_gateways"></a>4. Lab 1 - Ingress Gateways</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_2"><a class="anchor" href="#_introduction_2"></a>Introduction</h3>
+<h3 id="_introduction_2"><a class="anchor" href="#_introduction_2"></a>4.1. Introduction</h3>
 <div class="paragraph">
-<p>An {ig} describes a load balancer operating at the edge of the mesh that receives incoming HTTP/TCP connections. It configures exposed ports, protocols, etc. but, unlike Kubernetes Ingress Resources, does not include any traffic routing configuration. Traffic routing for ingress traffic is instead configured using Istio routing rules, exactly in the same way as for internal service requests.</p>
+<p>An Ingress Gateway describes a load balancer operating at the edge of the mesh that receives incoming HTTP/TCP connections. It configures exposed ports, protocols, etc. but, unlike Kubernetes Ingress Resources, does not include any traffic routing configuration. Traffic routing for ingress traffic is instead configured using Istio routing rules, exactly in the same way as for internal service requests.</p>
 </div>
 <div class="sect3">
-<h4 id="_gateway"><a class="anchor" href="#_gateway"></a>Gateway</h4>
+<h4 id="_gateway"><a class="anchor" href="#_gateway"></a>4.1.1. Gateway</h4>
 <div class="paragraph">
-<p>The first step to enable a new host in the {ig} is creating a {gw} object.</p>
+<p>The first step to enable a new host in the Ingress Gateway is creating a <em>Gateway</em> object.</p>
 </div>
 <div class="paragraph">
-<p>The {gw} in this lab looks like this:</p>
+<p>The <em>Gateway</em> in this lab looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -707,22 +702,22 @@ spec:
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Note the <em>selector</em> matching the {ig} deployment.</td>
+<td>Note the <em>selector</em> matching the Ingress Gateway deployment.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Also note that we are creating a listener in port 80 using the desired host for our {ocp} {r}.</td>
+<td>Also note that we are creating a listener in port 80 using the desired host for our OpenShift Container Platform <em>Route</em>.</td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_virtual_service"><a class="anchor" href="#_virtual_service"></a>Virtual Service</h4>
+<h4 id="_virtual_service"><a class="anchor" href="#_virtual_service"></a>4.1.2. Virtual Service</h4>
 <div class="paragraph">
-<p>Next, we need to route traffic from the {ig} to the desired service. In Bookinfo we want users to reach the <em>productpage</em> service.</p>
+<p>Next, we need to route traffic from the Ingress Gateway to the desired service. In Bookinfo we want users to reach the <em>productpage</em> service.</p>
 </div>
 <div class="paragraph">
-<p>With this {vs} we are routing traffic from the {ig} to <em>productpage</em> service in port 9080, where the service is listening.</p>
+<p>With this <em>VirtualService</em> we are routing traffic from the Ingress Gateway to <em>productpage</em> service in port 9080, where the service is listening.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -747,19 +742,19 @@ spec:
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Note that the <em>gateways</em> field matches the name of the {gw} created before.</td>
+<td>Note that the <em>gateways</em> field matches the name of the <em>Gateway</em> created before.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>We want to route from the {ig} to the <em>productpage</em> service at port 9080</td>
+<td>We want to route from the Ingress Gateway to the <em>productpage</em> service at port 9080</td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_route"><a class="anchor" href="#_route"></a>Route</h4>
+<h4 id="_route"><a class="anchor" href="#_route"></a>4.1.3. Route</h4>
 <div class="paragraph">
-<p>The last step is exposing the {ig} using an {ocp} {r}:</p>
+<p>The last step is exposing the Ingress Gateway using an OpenShift Container Platform <em>Route</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -780,20 +775,20 @@ spec:
 </div>
 </div>
 <div class="paragraph">
-<p>This {r} will "listen" in the desired host and redirect traffic to the {ig}.</p>
+<p>This <em>Route</em> will "listen" in the desired host and redirect traffic to the Ingress Gateway.</p>
 </div>
 <div class="paragraph">
-<p>It is important to remember that this {r} must be created in the {ossm} Control Plane namespace. In this lab this namespace is <code>istio-system</code>.</p>
+<p>It is important to remember that this <em>Route</em> must be created in the OpenShift Service Mesh Control Plane namespace. In this lab this namespace is <code>istio-system</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deploy_bookinfo_using_an_ig"><a class="anchor" href="#_deploy_bookinfo_using_an_ig"></a>Deploy Bookinfo using an {ig}</h3>
+<h3 id="_deploy_bookinfo_using_an_ingress_gateway"><a class="anchor" href="#_deploy_bookinfo_using_an_ingress_gateway"></a>4.2. Deploy Bookinfo using an Ingress Gateway</h3>
 <div class="paragraph">
-<p>The following steps will deploy all necessary objects to run Bookinfo in {ossm}.</p>
+<p>The following steps will deploy all necessary objects to run Bookinfo in OpenShift Service Mesh.</p>
 </div>
 <div class="paragraph">
-<p>The {gw}, {vs} and {r} described before will also be created. Take a look at the <code>bookinfo/bookinfo.yaml</code> and <code>bookinfo/bookinfo-route.yaml</code> files to understand what objects are being created.</p>
+<p>The <em>Gateway</em>, <em>VirtualService</em> and <em>Route</em> described before will also be created. Take a look at the <code>bookinfo/bookinfo.yaml</code> and <code>bookinfo/bookinfo-route.yaml</code> files to understand what objects are being created.</p>
 </div>
 <div class="paragraph">
 <p>Deploy the application in your namespace:</p>
@@ -832,9 +827,9 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage"</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="bookinfo_curl.png" alt="bookinfo curl">
+<a class="image" href="../_images/03-traffic-management/bookinfo_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/bookinfo_curl.png" alt="bookinfo curl"></a>
 </div>
 <div class="title">Figure 5. Bookinfo productpage service working</div>
 </div>
@@ -842,25 +837,25 @@ spec:
 <p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/03-ingress.adoc - include::/03-traffic-management/kiali_traffic.adoc[]</p>
 </div>
 <div class="paragraph">
-<p>Now, this is how the {ig} looks like in Kiali:</p>
+<p>Now, this is how the Ingress Gateway looks like in Kiali:</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="ingress_bookinfo.png" alt="ingress bookinfo">
+<a class="image" href="../_images/03-traffic-management/ingress_bookinfo.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/ingress_bookinfo.png" alt="ingress bookinfo"></a>
 </div>
-<div class="title">Figure 6. Bookinfo productpage service through an {ig}</div>
+<div class="title">Figure 6. Bookinfo productpage service through an Ingress Gateway</div>
 </div>
 <div class="paragraph">
 <p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/03-ingress.adoc - include::partials/03-traffic-management/remove_bookinfo.adoc[]</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deploy_httpbin_using_an_ig"><a class="anchor" href="#_deploy_httpbin_using_an_ig"></a>Deploy httpbin using an {ig}</h3>
+<h3 id="_deploy_httpbin_using_an_ingress_gateway"><a class="anchor" href="#_deploy_httpbin_using_an_ingress_gateway"></a>4.3. Deploy httpbin using an Ingress Gateway</h3>
 <div class="paragraph">
-<p>In the same way as with the Bookinfo <em>productpage</em> service, the following steps will deploy all necessary objects to run <em>httpbin</em> in {ossm}.</p>
+<p>In the same way as with the Bookinfo <em>productpage</em> service, the following steps will deploy all necessary objects to run <em>httpbin</em> in OpenShift Service Mesh.</p>
 </div>
 <div class="paragraph">
-<p>A {gw}, {vs} and {r} for the {ig} will also be created. Take a look at the <code>httpbin/httpbin.yaml</code> and <code>httpbin/httpbin-route.yaml</code> files to understand what objects are being created.</p>
+<p>A <em>Gateway</em>, <em>VirtualService</em> and <em>Route</em> for the Ingress Gateway will also be created. Take a look at the <code>httpbin/httpbin.yaml</code> and <code>httpbin/httpbin-route.yaml</code> files to understand what objects are being created.</p>
 </div>
 <div class="paragraph">
 <p>Deploy the application in your namespace:</p>
@@ -899,17 +894,13 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_HTTPBIN_HOST}"</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="httpbin_curl.png" alt="httpbin curl">
+<div class="paragraph">
+<div class="title">httpbin service working</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/httpbin_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/httpbin_curl.png" alt="httpbin curl"></a></span></p>
 </div>
-<div class="title">Figure 7. httpbin service working</div>
-</div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="ingress_httpbin.png" alt="ingress httpbin">
-</div>
-<div class="title">Figure 8. httpbin service through an {ig}</div>
+<div class="paragraph">
+<div class="title">httpbin service through an Ingress Gateway</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/ingress_httpbin.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/ingress_httpbin.png" alt="ingress httpbin"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/03-ingress.adoc - include::/03-traffic-management/remove_httpbin.adoc[]</p>
@@ -918,17 +909,17 @@ spec:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_2_requests_routing"><a class="anchor" href="#_lab_2_requests_routing"></a>Lab 2 - Requests Routing</h2>
+<h2 id="_lab_2_requests_routing"><a class="anchor" href="#_lab_2_requests_routing"></a>5. Lab 2 - Requests Routing</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_3"><a class="anchor" href="#_introduction_3"></a>Introduction</h3>
+<h3 id="_introduction_3"><a class="anchor" href="#_introduction_3"></a>5.1. Introduction</h3>
 <div class="paragraph">
-<p>Now that you have Bookinfo all set up. Is time to do some requests routing. {ossm} by default routes requests in a round robin manner. But in this case, all requests are going only to version 1 of <code>reviews</code> since the {vss} are set that way.</p>
+<p>Now that you have Bookinfo all set up. Is time to do some requests routing. OpenShift Service Mesh by default routes requests in a round robin manner. But in this case, all requests are going only to version 1 of <code>reviews</code> since the <em>VirtualServices</em> are set that way.</p>
 </div>
 <div class="sect3">
-<h4 id="_route_traffic_to_a_specific_version"><a class="anchor" href="#_route_traffic_to_a_specific_version"></a>Route traffic to a specific version</h4>
+<h4 id="_route_traffic_to_a_specific_version"><a class="anchor" href="#_route_traffic_to_a_specific_version"></a>5.1.1. Route traffic to a specific version</h4>
 <div class="paragraph">
-<p>In this lab we will apply the rules to make all requests go to version 2 of <code>reviews</code> so we can see the stars ratings. For that we are going to use the following {vs}:</p>
+<p>In this lab we will apply the rules to make all requests go to version 2 of <code>reviews</code> so we can see the stars ratings. For that we are going to use the following <em>VirtualService</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -950,12 +941,12 @@ spec:
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Note that the only version in the {vs} is the version 2 of the <code>reviews</code> service.</td>
+<td>Note that the only version in the <em>VirtualService</em> is the version 2 of the <code>reviews</code> service.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>You can see that it refers to something called a <code>subset</code>. This is the way Istio has to call the different versions of a <code>service</code>. You can see the different subsets in the {drs}, like the following one for the <code>reviews</code> service:</p>
+<p>You can see that it refers to something called a <code>subset</code>. This is the way Istio has to call the different versions of a <code>service</code>. You can see the different subsets in the <em>DestinationRules</em>, like the following one for the <code>reviews</code> service:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -983,15 +974,15 @@ spec:
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>As you can see, there are three different subsets that you can reference from a {vs}.</td>
+<td>As you can see, there are three different subsets that you can reference from a <em>VirtualService</em>.</td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_route_traffic_based_on_headers"><a class="anchor" href="#_route_traffic_based_on_headers"></a>Route traffic based on headers</h4>
+<h4 id="_route_traffic_based_on_headers"><a class="anchor" href="#_route_traffic_based_on_headers"></a>5.1.2. Route traffic based on headers</h4>
 <div class="paragraph">
-<p>Now let&#8217;s think that we have a new version for the application and you want to deploy it first to a set of premium users. We are going to see how to do that in this lab where we are going to route the requests from one user in particular to version 3 of the <code>reviews</code> service. For that we are going to use the following {vs}:</p>
+<p>Now let&#8217;s think that we have a new version for the application and you want to deploy it first to a set of premium users. We are going to see how to do that in this lab where we are going to route the requests from one user in particular to version 3 of the <code>reviews</code> service. For that we are going to use the following <em>VirtualService</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1051,7 +1042,7 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 </div>
 </div>
 <div class="sect2">
-<h3 id="_route_traffic_to_version_2"><a class="anchor" href="#_route_traffic_to_version_2"></a>Route traffic to version 2</h3>
+<h3 id="_route_traffic_to_version_2"><a class="anchor" href="#_route_traffic_to_version_2"></a>5.2. Route traffic to version 2</h3>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -1063,11 +1054,9 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 <div class="paragraph">
 <p>Now check that the product page shows the stars of the ratings visiting <a href="https://&lt;user&gt;.bookinfo.&lt;openshift_apps_domain&gt;/productpage" class="bare">https://&lt;user&gt;.bookinfo.&lt;openshift_apps_domain&gt;/productpage</a> with your browser:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="productpage-v2.png" alt="productpage v2">
-</div>
-<div class="title">Figure 9. Product Page showing ratings</div>
+<div class="paragraph">
+<div class="title">Product Page showing ratings</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/productpage-v2.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/productpage-v2.png" alt="productpage v2"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/04-requests-routing.adoc - include::partials/03-traffic-management/kiali_traffic.adoc[]</p>
@@ -1075,18 +1064,16 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 <div class="paragraph">
 <p>You should see a graph similar to this:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="kiali-traffic-v2.png" alt="kiali traffic v2">
-</div>
-<div class="title">Figure 10. Kiali traffic version 2</div>
+<div class="paragraph">
+<div class="title">Kiali traffic version 2</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali-traffic-v2.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-traffic-v2.png" alt="kiali traffic v2"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You see there that all traffic goes to version 2 of the <code>reviews</code> service that calls the <code>ratings</code> service to get the stars.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_route_traffic_based_on_headers_2"><a class="anchor" href="#_route_traffic_based_on_headers_2"></a>Route traffic based on headers</h3>
+<h3 id="_route_traffic_based_on_headers_2"><a class="anchor" href="#_route_traffic_based_on_headers_2"></a>5.3. Route traffic based on headers</h3>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -1101,11 +1088,11 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 <div class="paragraph">
 <p>You should see the red stars now:</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="productpage-red.png" alt="productpage red">
+<a class="image" href="../_images/03-traffic-management/productpage-red.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/productpage-red.png" alt="productpage red"></a>
 </div>
-<div class="title">Figure 11. Product Page with red stars</div>
+<div class="title">Figure 7. Product Page with red stars</div>
 </div>
 <div class="paragraph">
 <p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/04-requests-routing.adoc - include::partials/03-traffic-management/remove_bookinfo.adoc[]</p>
@@ -1114,10 +1101,10 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_3_traffic_shifting_and_weight_balancing"><a class="anchor" href="#_lab_3_traffic_shifting_and_weight_balancing"></a>Lab 3 - Traffic Shifting and Weight Balancing</h2>
+<h2 id="_lab_3_traffic_shifting_and_weight_balancing"><a class="anchor" href="#_lab_3_traffic_shifting_and_weight_balancing"></a>6. Lab 3 - Traffic Shifting and Weight Balancing</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_4"><a class="anchor" href="#_introduction_4"></a>Introduction</h3>
+<h3 id="_introduction_4"><a class="anchor" href="#_introduction_4"></a>6.1. Introduction</h3>
 <div class="paragraph">
 <p>In this lab you will learn how to gradually migrate traffic from one version of a service to another.</p>
 </div>
@@ -1135,9 +1122,9 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 </div>
 </div>
 <div class="sect2">
-<h3 id="_route_10_of_the_traffic_to_a_new_service"><a class="anchor" href="#_route_10_of_the_traffic_to_a_new_service"></a>Route 10% of the traffic to a new service</h3>
+<h3 id="_route_10_of_the_traffic_to_a_new_service"><a class="anchor" href="#_route_10_of_the_traffic_to_a_new_service"></a>6.2. Route 10% of the traffic to a new service</h3>
 <div class="paragraph">
-<p>The first modification to the <em>reviews</em> {vs} to add a 90/10 routing rule looks like this:</p>
+<p>The first modification to the <em>reviews</em> <em>VirtualService</em> to add a 90/10 routing rule looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1189,26 +1176,22 @@ spec:
 <div class="paragraph">
 <p>Make sure you select <em>Request Percentage</em> in the <em>Show Edge Labels</em> display options in Kiali:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="kiali_percentage.png" alt="kiali percentage">
-</div>
-<div class="title">Figure 12. Kiali Request Percentage</div>
+<div class="paragraph">
+<div class="title">Kiali Request Percentage</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali_percentage.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali_percentage.png" alt="kiali percentage"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Check the results:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="kiali-shifting-90-10.png" alt="kiali shifting 90 10">
-</div>
-<div class="title">Figure 13. Kiali traffic shifting 90/10</div>
+<div class="paragraph">
+<div class="title">Kiali traffic shifting 90/10</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali-shifting-90-10.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-shifting-90-10.png" alt="kiali shifting 90 10"></a></span></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_route_half_the_traffic_to_each_service"><a class="anchor" href="#_route_half_the_traffic_to_each_service"></a>Route half the traffic to each service</h3>
+<h3 id="_route_half_the_traffic_to_each_service"><a class="anchor" href="#_route_half_the_traffic_to_each_service"></a>6.3. Route half the traffic to each service</h3>
 <div class="paragraph">
-<p>The <em>reviews</em> {vs} to add a 50/50 routing rule will look like this:</p>
+<p>The <em>reviews</em> <em>VirtualService</em> to add a 50/50 routing rule will look like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1254,17 +1237,15 @@ spec:
 <div class="paragraph">
 <p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/05-traffic-shifting.adoc - include::partials/03-traffic-management/kiali_traffic_loop.adoc[]</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="kiali-shifting-50-50.png" alt="kiali shifting 50 50">
-</div>
-<div class="title">Figure 14. Kiali traffic shifting 50/50</div>
+<div class="paragraph">
+<div class="title">Kiali traffic shifting 50/50</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali-shifting-50-50.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-shifting-50-50.png" alt="kiali shifting 50 50"></a></span></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_route_all_the_traffic_to_the_new_service"><a class="anchor" href="#_route_all_the_traffic_to_the_new_service"></a>Route all the traffic to the new service</h3>
+<h3 id="_route_all_the_traffic_to_the_new_service"><a class="anchor" href="#_route_all_the_traffic_to_the_new_service"></a>6.4. Route all the traffic to the new service</h3>
 <div class="paragraph">
-<p>The <em>reviews</em> {vs} to add a 100% routing rule to the new service will look like this:</p>
+<p>The <em>reviews</em> <em>VirtualService</em> to add a 100% routing rule to the new service will look like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1313,11 +1294,9 @@ spec:
 <div class="paragraph">
 <p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/05-traffic-shifting.adoc - include::partials/03-traffic-management/kiali_traffic_loop.adoc[]</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="kiali-shifting-0-100.png" alt="kiali shifting 0 100">
-</div>
-<div class="title">Figure 15. Kiali traffic shifting 0/100</div>
+<div class="paragraph">
+<div class="title">Kiali traffic shifting 0/100</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali-shifting-0-100.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-shifting-0-100.png" alt="kiali shifting 0 100"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/05-traffic-shifting.adoc - include::partials/03-traffic-management/remove_bookinfo.adoc[]</p>
@@ -1326,20 +1305,20 @@ spec:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_4_fault_injection"><a class="anchor" href="#_lab_4_fault_injection"></a>Lab 4 - Fault Injection</h2>
+<h2 id="_lab_4_fault_injection"><a class="anchor" href="#_lab_4_fault_injection"></a>7. Lab 4 - Fault Injection</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_5"><a class="anchor" href="#_introduction_5"></a>Introduction</h3>
+<h3 id="_introduction_5"><a class="anchor" href="#_introduction_5"></a>7.1. Introduction</h3>
 <div class="paragraph">
-<p>{ossm} has mechanisms to inject faults in your application to test how it will behave when a real fault happens. This is very useful to check if your application&#8217;s recovery policies aren&#8217;t too restrictive.</p>
+<p>OpenShift Service Mesh has mechanisms to inject faults in your application to test how it will behave when a real fault happens. This is very useful to check if your application&#8217;s recovery policies aren&#8217;t too restrictive.</p>
 </div>
 <div class="paragraph">
 <p>In this lab you will inject two different faults in your application. A delay and an abort. Delays are timing failures and aborts are crash failures. You are going to use a similar method than in <a href="#_lab_2_requests_routing">Lab 2 - Requests Routing</a> when you routed requests using http headers, but this time you are going to inject faults for user "pepito".</p>
 </div>
 <div class="sect3">
-<h4 id="_delay"><a class="anchor" href="#_delay"></a>Delay</h4>
+<h4 id="_delay"><a class="anchor" href="#_delay"></a>7.1.1. Delay</h4>
 <div class="paragraph">
-<p>For the delay you are going to add 7 seconds of delay between the <code>reviews</code> and <code>ratings</code> services, using this {vs}:</p>
+<p>For the delay you are going to add 7 seconds of delay between the <code>reviews</code> and <code>ratings</code> services, using this <em>VirtualService</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1387,7 +1366,7 @@ spec:
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>In this {vs} you are setting all traffic to v2 of <code>reviews</code> service, since v1 does not have a connection with the <code>ratings</code> service.</td>
+<td>In this <em>VirtualService</em> you are setting all traffic to v2 of <code>reviews</code> service, since v1 does not have a connection with the <code>ratings</code> service.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -1405,9 +1384,9 @@ spec:
 </div>
 </div>
 <div class="sect3">
-<h4 id="_abort"><a class="anchor" href="#_abort"></a>Abort</h4>
+<h4 id="_abort"><a class="anchor" href="#_abort"></a>7.1.2. Abort</h4>
 <div class="paragraph">
-<p>Now, for the abort, you will use the following {vs}:</p>
+<p>Now, for the abort, you will use the following <em>VirtualService</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1444,7 +1423,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_inject_delay"><a class="anchor" href="#_inject_delay"></a>Inject delay</h3>
+<h3 id="_inject_delay"><a class="anchor" href="#_inject_delay"></a>7.2. Inject delay</h3>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -1456,18 +1435,16 @@ spec:
 <div class="paragraph">
 <p>To check the delay, visit your Bookinfo application (<a href="https://&lt;user&gt;.bookinfo.&lt;openshift_apps_domain&gt;/productpage" class="bare">https://&lt;user&gt;.bookinfo.&lt;openshift_apps_domain&gt;/productpage</a>) and log in as pepito (or the name you chose). You will notice that it will take 7 seconds to load and you will see the following error in the <code>reviews</code> part: "<strong>Sorry, product reviews are currently unavailable for this book.</strong>"". Like this:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="reviews-failure.png" alt="reviews failure">
-</div>
-<div class="title">Figure 16. Reviews failure</div>
+<div class="paragraph">
+<div class="title">Reviews failure</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/reviews-failure.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/reviews-failure.png" alt="reviews failure"></a></span></p>
 </div>
 <div class="paragraph">
 <p>This happens because there is a hard-coded timeout between <code>productpage</code> service and <code>reviews</code> service of 3 seconds and 1 retry, so a total of 6 seconds. Then, you can&#8217;t see the <code>reviews</code> because of this timeout.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_inject_abort"><a class="anchor" href="#_inject_abort"></a>Inject abort</h3>
+<h3 id="_inject_abort"><a class="anchor" href="#_inject_abort"></a>7.3. Inject abort</h3>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -1479,11 +1456,9 @@ spec:
 <div class="paragraph">
 <p>Now you don&#8217;t have to be logged in as pepito, enter again to your Product Page and now you will see the reviews, but the ratings will give you the following error: "<strong>Ratings service is currently unavailable</strong>". This is because this time the <code>ratings</code> service is returning an error 500. You should see this:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="ratings-failure.png" alt="ratings failure">
-</div>
-<div class="title">Figure 17. Ratings failure</div>
+<div class="paragraph">
+<div class="title">Ratings failure</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/ratings-failure.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/ratings-failure.png" alt="ratings failure"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/06-fault-injection.adoc - include::/03-traffic-management/kiali_traffic.adoc[]</p>
@@ -1491,11 +1466,9 @@ spec:
 <div class="paragraph">
 <p>You should see a graph similar to this:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="kiali-ratings-failure.png" alt="kiali ratings failure">
-</div>
-<div class="title">Figure 18. Kiali ratings failure</div>
+<div class="paragraph">
+<div class="title">Kiali ratings failure</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali-ratings-failure.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-ratings-failure.png" alt="kiali ratings failure"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/06-fault-injection.adoc - include::partials/03-traffic-management/remove_bookinfo.adoc[]</p>
@@ -1504,12 +1477,12 @@ spec:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_5_requests_timeouts"><a class="anchor" href="#_lab_5_requests_timeouts"></a>Lab 5 - Requests Timeouts</h2>
+<h2 id="_lab_5_requests_timeouts"><a class="anchor" href="#_lab_5_requests_timeouts"></a>8. Lab 5 - Requests Timeouts</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_6"><a class="anchor" href="#_introduction_6"></a>Introduction</h3>
+<h3 id="_introduction_6"><a class="anchor" href="#_introduction_6"></a>8.1. Introduction</h3>
 <div class="paragraph">
-<p>A timeout for HTTP requests can be specified using the timeout field in the {vs}. By default, the timeout is 15 seconds, but in this task you override the <em>reviews</em> service timeout to 1 second.</p>
+<p>A timeout for HTTP requests can be specified using the timeout field in the <em>VirtualService</em>. By default, the timeout is 15 seconds, but in this task you override the <em>reviews</em> service timeout to 1 second.</p>
 </div>
 <div class="paragraph">
 <p>To see its effect, however, you also introduce an artificial 2 second delay in calls to the <em>ratings</em> service.</p>
@@ -1519,7 +1492,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_adding_a_delay_to_ratings_service"><a class="anchor" href="#_adding_a_delay_to_ratings_service"></a>Adding a delay to ratings service</h3>
+<h3 id="_adding_a_delay_to_ratings_service"><a class="anchor" href="#_adding_a_delay_to_ratings_service"></a>8.2. Adding a delay to ratings service</h3>
 <div class="paragraph">
 <p>First, route requests to <em>reviews:v2</em> service (a version that calls the ratings service).</p>
 </div>
@@ -1584,20 +1557,16 @@ spec:
 <div class="paragraph">
 <p>Make sure you select <em>Response Time</em> in the <em>Show Edge Labels</em> display options in Kiali:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="kiali_response.png" alt="kiali response">
-</div>
-<div class="title">Figure 19. Kiali Response Time</div>
+<div class="paragraph">
+<div class="title">Kiali Response Time</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali_response.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali_response.png" alt="kiali response"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Check the results in Kiali. You may notice a 2 second delay in the ratings call:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="kiali-timeouts-ratings-delay.png" alt="kiali timeouts ratings delay">
-</div>
-<div class="title">Figure 20. Kiali Ratings service with 2s delay</div>
+<div class="paragraph">
+<div class="title">Kiali Ratings service with 2s delay</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali-timeouts-ratings-delay.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-timeouts-ratings-delay.png" alt="kiali timeouts ratings delay"></a></span></p>
 </div>
 <div class="paragraph">
 <p>If you visit the Bookinfo app with your browser you should see the Bookinfo application working normally (with ratings stars displayed), but there is a 2 second delay whenever you refresh the page:</p>
@@ -1607,7 +1576,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_adding_a_timeout_to_reviews_service"><a class="anchor" href="#_adding_a_timeout_to_reviews_service"></a>Adding a timeout to reviews service</h3>
+<h3 id="_adding_a_timeout_to_reviews_service"><a class="anchor" href="#_adding_a_timeout_to_reviews_service"></a>8.3. Adding a timeout to reviews service</h3>
 <div class="paragraph">
 <p>Now add a half second request timeout for calls to the <em>reviews</em> service:</p>
 </div>
@@ -1657,15 +1626,13 @@ spec:
 <div class="paragraph">
 <p>Check the results in Kiali:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="kiali-timeouts-reviews.png" alt="kiali timeouts reviews">
-</div>
-<div class="title">Figure 21. Kiali Reviews service with timeout</div>
+<div class="paragraph">
+<div class="title">Kiali Reviews service with timeout</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali-timeouts-reviews.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-timeouts-reviews.png" alt="kiali timeouts reviews"></a></span></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_hardcoded_timeout_in_productpage_service"><a class="anchor" href="#_hardcoded_timeout_in_productpage_service"></a>Hardcoded timeout in productpage service</h3>
+<h3 id="_hardcoded_timeout_in_productpage_service"><a class="anchor" href="#_hardcoded_timeout_in_productpage_service"></a>8.4. Hardcoded timeout in productpage service</h3>
 <div class="paragraph">
 <p>If you examine the <a href="#_lab_4_fault_injection">Lab 4 - Fault Injection</a>, you’ll find out that the productpage microservice also has its own application-level timeout (3 seconds) for calls to the <em>reviews</em> microservice.</p>
 </div>
@@ -1679,10 +1646,10 @@ spec:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_6_circuit_breaking"><a class="anchor" href="#_lab_6_circuit_breaking"></a>Lab 6 - Circuit Breaking</h2>
+<h2 id="_lab_6_circuit_breaking"><a class="anchor" href="#_lab_6_circuit_breaking"></a>9. Lab 6 - Circuit Breaking</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_7"><a class="anchor" href="#_introduction_7"></a>Introduction</h3>
+<h3 id="_introduction_7"><a class="anchor" href="#_introduction_7"></a>9.1. Introduction</h3>
 <div class="paragraph">
 <p>In this lab you are going to configure circuit breaking for connections. This is very important for building resilient microservices, since it helps to limit the impact of failures and latency spikes.</p>
 </div>
@@ -1690,7 +1657,7 @@ spec:
 <p>You are going to deploy <code>httpbin</code> and <code>fortio</code> applications for this lab. <code>httpbin</code> is an http requests and response service and <code>fortio</code> is an application developed by the Istio team to load test microservices. You are going to use it as the client to trigger the circuit breaking configurations.</p>
 </div>
 <div class="paragraph">
-<p>For the circuit breaking, you are going to use this {dr}:</p>
+<p>For the circuit breaking, you are going to use this <em>DestinationRule</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1722,7 +1689,7 @@ spec:
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The {dr} is for <code>httpbin</code> service, version 1.</td>
+<td>The <em>DestinationRule</em> is for <code>httpbin</code> service, version 1.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -1749,7 +1716,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deploy_fortio"><a class="anchor" href="#_deploy_fortio"></a>Deploy fortio</h3>
+<h3 id="_deploy_fortio"><a class="anchor" href="#_deploy_fortio"></a>9.2. Deploy fortio</h3>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -1780,17 +1747,15 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 </tr>
 </table>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="fortio-check.png" alt="fortio check">
-</div>
-<div class="title">Figure 22. Fortio check result</div>
+<div class="paragraph">
+<div class="title">Fortio check result</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/fortio-check.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/fortio-check.png" alt="fortio check"></a></span></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_test_the_circuit_breaking"><a class="anchor" href="#_test_the_circuit_breaking"></a>Test the circuit breaking</h3>
+<h3 id="_test_the_circuit_breaking"><a class="anchor" href="#_test_the_circuit_breaking"></a>9.3. Test the circuit breaking</h3>
 <div class="sect3">
-<h4 id="_apply_the_dr"><a class="anchor" href="#_apply_the_dr"></a>Apply the {dr}</h4>
+<h4 id="_apply_the_destinationrule"><a class="anchor" href="#_apply_the_destinationrule"></a>9.3.1. Apply the <em>DestinationRule</em></h4>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -1801,7 +1766,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_trigger_the_circuit_breaker"><a class="anchor" href="#_trigger_the_circuit_breaker"></a>Trigger the circuit breaker</h4>
+<h4 id="_trigger_the_circuit_breaker"><a class="anchor" href="#_trigger_the_circuit_breaker"></a>9.3.2. Trigger the circuit breaker</h4>
 <div class="paragraph">
 <p>Now lets execute the following command that opens 2 simultaneous connections (<code>-c 2</code>) and send 30 requests (<code>-n 30</code>).</p>
 </div>
@@ -1813,11 +1778,9 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 <div class="paragraph">
 <p>You will get a result similar to this:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="fortio-2-30.png" alt="fortio 2 30">
-</div>
-<div class="title">Figure 23. Fortio with 2 connections</div>
+<div class="paragraph">
+<div class="title">Fortio with 2 connections</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/fortio-2-30.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/fortio-2-30.png" alt="fortio 2 30"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You will notice that your results are not the same as the ones in the lab, but generally all requests arrive. This is because the <code>istio-proxy</code> is flexible and does not break all requests.</p>
@@ -1830,11 +1793,9 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load -c 4 -qps 0 -n 30 -loglevel Warning http://httpbin:9080/get</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="fortio-4-30.png" alt="fortio 4 30">
-</div>
-<div class="title">Figure 24. Fortio with 4 connections</div>
+<div class="paragraph">
+<div class="title">Fortio with 4 connections</div>
+<p>03-traffic-management/fortio-4-30.png[]</p>
 </div>
 <div class="paragraph">
 <p>If you query the <code>istio-proxy</code> stats, you can see how many requests were flagged for circuit breaking:</p>
@@ -1847,19 +1808,17 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 <div class="paragraph">
 <p>You should get something similar to this:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="envoy-stats.png" alt="envoy stats">
-</div>
-<div class="title">Figure 25. Overflow requests</div>
+<div class="paragraph">
+<div class="title">Overflow requests</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/envoy-stats.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/envoy-stats.png" alt="envoy stats"></a></span></p>
 </div>
 <div class="paragraph">
-<p>Notice that the stats are grouped by the subsets defined in the {dr}.</p>
+<p>Notice that the stats are grouped by the subsets defined in the <em>DestinationRule</em>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remove_fortio"><a class="anchor" href="#_remove_fortio"></a>Remove fortio</h3>
+<h3 id="_remove_fortio"><a class="anchor" href="#_remove_fortio"></a>9.4. Remove fortio</h3>
 <div class="paragraph">
 <p>Execute the following command to remove <code>fortio</code> from your namespace:</p>
 </div>
@@ -1875,10 +1834,10 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_7_mirroring_and_dark_launches"><a class="anchor" href="#_lab_7_mirroring_and_dark_launches"></a>Lab 7 - Mirroring and Dark Launches</h2>
+<h2 id="_lab_7_mirroring_and_dark_launches"><a class="anchor" href="#_lab_7_mirroring_and_dark_launches"></a>10. Lab 7 - Mirroring and Dark Launches</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_8"><a class="anchor" href="#_introduction_8"></a>Introduction</h3>
+<h3 id="_introduction_8"><a class="anchor" href="#_introduction_8"></a>10.1. Introduction</h3>
 <div class="paragraph">
 <p>Traffic mirroring, also called shadowing, is a powerful concept that allows feature teams to bring changes to production with as little risk as possible.</p>
 </div>
@@ -1893,9 +1852,9 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_mirroring_traffic_to_v2"><a class="anchor" href="#_mirroring_traffic_to_v2"></a>Mirroring traffic to v2</h3>
+<h3 id="_mirroring_traffic_to_v2"><a class="anchor" href="#_mirroring_traffic_to_v2"></a>10.2. Mirroring traffic to v2</h3>
 <div class="paragraph">
-<p>The following {vs} sends 100% of the traffic to <em>reviews:v1</em>. The last stanza specifies that you want to mirror to the <em>reviews:v2</em> service:</p>
+<p>The following <em>VirtualService</em> sends 100% of the traffic to <em>reviews:v1</em>. The last stanza specifies that you want to mirror to the <em>reviews:v2</em> service:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1934,7 +1893,7 @@ spec:
 <p>Also, it is important to note that these requests are mirrored as "<em>fire and forget</em>", which means that the responses are discarded.</p>
 </div>
 <div class="paragraph">
-<p>Apply the {vs} with this command:</p>
+<p>Apply the <em>VirtualService</em> with this command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1947,11 +1906,9 @@ spec:
 <div class="paragraph">
 <p>Check the results in Kiali:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="kiali-mirroring.png" alt="kiali mirroring">
-</div>
-<div class="title">Figure 26. Kiali traffic mirroring to reviews:v2 service</div>
+<div class="paragraph">
+<div class="title">Kiali traffic mirroring to reviews:v2 service</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali-mirroring.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-mirroring.png" alt="kiali mirroring"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/09-mirroring.adoc - include::partials/03-traffic-management/remove_bookinfo.adoc[]</p>
@@ -1960,12 +1917,12 @@ spec:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_8_egress_gateways"><a class="anchor" href="#_lab_8_egress_gateways"></a>Lab 8 - Egress Gateways</h2>
+<h2 id="_lab_8_egress_gateways"><a class="anchor" href="#_lab_8_egress_gateways"></a>11. Lab 8 - Egress Gateways</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_9"><a class="anchor" href="#_introduction_9"></a>Introduction</h3>
+<h3 id="_introduction_9"><a class="anchor" href="#_introduction_9"></a>11.1. Introduction</h3>
 <div class="paragraph">
-<p>In this lab you are going to learn how to configure {ossm} to access external services from inside the applications.</p>
+<p>In this lab you are going to learn how to configure OpenShift Service Mesh to access external services from inside the applications.</p>
 </div>
 <div class="paragraph">
 <p>Because all outbound traffic from an Istio-enabled pod is redirected to its sidecar proxy by default, accessibility of services outside of the cluster depends on the configuration of the proxy.</p>
@@ -1974,22 +1931,22 @@ spec:
 <p>By default, Istio configures the Envoy proxy to pass through requests for unknown services.</p>
 </div>
 <div class="paragraph">
-<p>{rhossm} can be configured with a special policy for handling external services, that is, those services that are not defined in Istio’s internal service registry.</p>
+<p>Red Hat OpenShift Service Mesh can be configured with a special policy for handling external services, that is, those services that are not defined in Istio’s internal service registry.</p>
 </div>
 <div class="paragraph">
-<p>If the policy is in permissive state (by default), the Istio proxy lets calls to unknown services pass through. If the policy is set to a restrictive state, then the Istio proxy blocks any host without a {se} defined within the mesh.</p>
+<p>If the policy is in permissive state (by default), the Istio proxy lets calls to unknown services pass through. If the policy is set to a restrictive state, then the Istio proxy blocks any host without a <em>ServiceEntry</em> defined within the mesh.</p>
 </div>
 <div class="paragraph">
 <p>In this lab we have modified the Istio control plane to set the policy to a restrictive state.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_accessing_an_external_service"><a class="anchor" href="#_accessing_an_external_service"></a>Accessing an external service</h3>
+<h3 id="_accessing_an_external_service"><a class="anchor" href="#_accessing_an_external_service"></a>11.2. Accessing an external service</h3>
 <div class="paragraph">
 <p>At this point you can test wether you can query a service outside the mesh.</p>
 </div>
 <div class="paragraph">
-<p>For this lab, you are going to use a simple pod based in <code>ubi:latest</code> ({rh} Universal Base Image). This pod will be added to the mesh because it will have the Istio sidecar injected. It will be kept running by using a simple <em>sleep</em> command:</p>
+<p>For this lab, you are going to use a simple pod based in <code>ubi:latest</code> (Red Hat Universal Base Image). This pod will be added to the mesh because it will have the Istio sidecar injected. It will be kept running by using a simple <em>sleep</em> command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2043,23 +2000,21 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc exec -it ${UBI_POD} -n ${OCP_NAMESPACE} -c ubi -- curl -I https://github.com</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="egress_without_se.png" alt="egress without se">
-</div>
-<div class="title">Figure 27. Accessing external service without {se}</div>
+<div class="paragraph">
+<div class="title">Accessing external service without <em>ServiceEntry</em></div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/egress_without_se.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/egress_without_se.png" alt="egress without se"></a></span></p>
 </div>
 <div class="paragraph">
-<p>Ooops, you can&#8217;t, because {ossm} is configured with a restrictive policy.</p>
+<p>Ooops, you can&#8217;t, because OpenShift Service Mesh is configured with a restrictive policy.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_service_entry"><a class="anchor" href="#_service_entry"></a>Service Entry</h3>
+<h3 id="_service_entry"><a class="anchor" href="#_service_entry"></a>11.3. Service Entry</h3>
 <div class="paragraph">
 <p>As stated before, in a restrictive state we need to add any external service to Istio&#8217;s internal registry.</p>
 </div>
 <div class="paragraph">
-<p>You need to create a {se} for this:</p>
+<p>You need to create a <em>ServiceEntry</em> for this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2091,12 +2046,12 @@ spec:
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Limit the {se} to this namesapce and <em>istio-system</em></td>
+<td>Limit the <em>ServiceEntry</em> to this namesapce and <em>istio-system</em></td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Execute the following command to create the {se}:</p>
+<p>Execute the following command to create the <em>ServiceEntry</em>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2111,38 +2066,34 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc exec -it ${UBI_POD} -n ${OCP_NAMESPACE} -c ubi -- curl -I https://github.com</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="egress_with_se.png" alt="egress with se">
-</div>
-<div class="title">Figure 28. Accessing external service with {se}</div>
+<div class="paragraph">
+<div class="title">Accessing external service with <em>ServiceEntry</em></div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/egress_with_se.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/egress_with_se.png" alt="egress with se"></a></span></p>
 </div>
 <div class="paragraph">
 <p>So, this is now a controlled way to enable access to external services.</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="kiali_egress_with_se.png" alt="kiali egress with se">
-</div>
-<div class="title">Figure 29. Kiali external service with {se}</div>
+<div class="paragraph">
+<div class="title">Kiali external service with <em>ServiceEntry</em></div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali_egress_with_se.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali_egress_with_se.png" alt="kiali egress with se"></a></span></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_egress_gateway"><a class="anchor" href="#_egress_gateway"></a>Egress Gateway</h3>
+<h3 id="_egress_gateway"><a class="anchor" href="#_egress_gateway"></a>11.4. Egress Gateway</h3>
 <div class="paragraph">
 <p>In the previous example the external services are called directly from the client sidecar.</p>
 </div>
 <div class="paragraph">
-<p>This example shows how to configure Istio to call external services, although this time indirectly via a dedicated {eg} service.</p>
+<p>This example shows how to configure Istio to call external services, although this time indirectly via a dedicated Egress Gateway service.</p>
 </div>
 <div class="paragraph">
-<p>Istio uses Ingress and Egress Gateways to configure load balancers executing at the edge of a service mesh. An {ig} allows you to define entry points into the mesh that all incoming traffic flows through. An {eg} is a symmetrical concept; it defines exit points from the mesh.</p>
+<p>Istio uses Ingress and Egress Gateways to configure load balancers executing at the edge of a service mesh. An Ingress Gateway allows you to define entry points into the mesh that all incoming traffic flows through. An Egress Gateway is a symmetrical concept; it defines exit points from the mesh.</p>
 </div>
 <div class="paragraph">
-<p>{eg}s allow you to apply Istio features, for example, monitoring and route rules, to traffic exiting the mesh.</p>
+<p>Egress Gateways allow you to apply Istio features, for example, monitoring and route rules, to traffic exiting the mesh.</p>
 </div>
 <div class="paragraph">
-<p>The first thing you need to configure an {eg} is a {gw} object:</p>
+<p>The first thing you need to configure an Egress Gateway is a <em>Gateway</em> object:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2168,7 +2119,7 @@ spec:
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>This will match a label in the {eg} <em>Deployment</em> inside the <em>istio-system</em> control plane.</td>
+<td>This will match a label in the Egress Gateway <em>Deployment</em> inside the <em>istio-system</em> control plane.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -2176,7 +2127,7 @@ spec:
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>This is the port to use in the {eg}, not to be confused with the target port of the external service.</td>
+<td>This is the port to use in the Egress Gateway, not to be confused with the target port of the external service.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
@@ -2193,7 +2144,7 @@ spec:
 </div>
 </div>
 <div class="paragraph">
-<p>Then, you will have to create a {vs} to direct traffic from the sidecars to the {eg} and from the {eg} to the external service:</p>
+<p>Then, you will have to create a <em>VirtualService</em> to direct traffic from the sidecars to the Egress Gateway and from the Egress Gateway to the external service:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2233,19 +2184,19 @@ spec:
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>This {vs} will be applied to this host.</td>
+<td>This <em>VirtualService</em> will be applied to this host.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><em>mesh</em> is a reserved word for sidecars. <em>github-egress</em> match the name of the {gw}.</td>
+<td><em>mesh</em> is a reserved word for sidecars. <em>github-egress</em> match the name of the <em>Gateway</em>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The first match will route traffic from sidecars to the {eg}.</td>
+<td>The first match will route traffic from sidecars to the Egress Gateway.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>The second match is to finally route traffic from the {eg} to the external service.</td>
+<td>The second match is to finally route traffic from the Egress Gateway to the external service.</td>
 </tr>
 </table>
 </div>
@@ -2266,17 +2217,15 @@ spec:
 </div>
 </div>
 <div class="paragraph">
-<p>In Kiali you can see this time that the traffic is going through the {eg}:</p>
+<p>In Kiali you can see this time that the traffic is going through the Egress Gateway:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="kiali_egress_with_egress.png" alt="kiali egress with egress">
-</div>
-<div class="title">Figure 30. Kiali external service with {eg}</div>
+<div class="paragraph">
+<div class="title">Kiali external service with Egress Gateway</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali_egress_with_egress.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali_egress_with_egress.png" alt="kiali egress with egress"></a></span></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remove_everything"><a class="anchor" href="#_remove_everything"></a>Remove everything</h3>
+<h3 id="_remove_everything"><a class="anchor" href="#_remove_everything"></a>11.5. Remove everything</h3>
 <div class="paragraph">
 <p>Before starting the next lab, remove everything you have created in your namespace:</p>
 </div>
@@ -2292,10 +2241,10 @@ oc delete -f lab8/github-egress-virtualservice.yaml -n ${OCP_NAMESPACE}</code></
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_9_grpc_routing"><a class="anchor" href="#_lab_9_grpc_routing"></a>Lab 9 - gRPC Routing</h2>
+<h2 id="_lab_9_grpc_routing"><a class="anchor" href="#_lab_9_grpc_routing"></a>12. Lab 9 - gRPC Routing</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_10"><a class="anchor" href="#_introduction_10"></a>Introduction</h3>
+<h3 id="_introduction_10"><a class="anchor" href="#_introduction_10"></a>12.1. Introduction</h3>
 <div class="paragraph">
 <p>Many new gRPC users are surprised to find that Kubernetes&#8217;s default load balancing often doesn&#8217;t work out of the box with gRPC.</p>
 </div>
@@ -2316,7 +2265,7 @@ oc delete -f lab8/github-egress-virtualservice.yaml -n ${OCP_NAMESPACE}</code></
 </div>
 </div>
 <div class="sect2">
-<h3 id="_grpc_demo_without_istio"><a class="anchor" href="#_grpc_demo_without_istio"></a>gRPC demo without Istio</h3>
+<h3 id="_grpc_demo_without_istio"><a class="anchor" href="#_grpc_demo_without_istio"></a>12.2. gRPC demo without Istio</h3>
 <div class="paragraph">
 <p>In this lab you are going to deploy a gRPC demo scenario composed in four micro-services.</p>
 </div>
@@ -2332,11 +2281,9 @@ You are going to use a template to deploy the gRPC demo scenario so you are not 
 </tr>
 </table>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_kiali.png" alt="grpc kiali">
-</div>
-<div class="title">Figure 31. gRPC demo in Kiali</div>
+<div class="paragraph">
+<div class="title">gRPC demo in Kiali</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_kiali.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_kiali.png" alt="grpc kiali"></a></span></p>
 </div>
 <div class="paragraph">
 <p>First, deploy the gRPC services without Istio to understand the problem.</p>
@@ -2358,11 +2305,9 @@ oc process -f lab9/grpc-demo.yaml \
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pods -n ${OCP_NAMESPACE}</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_ready.png" alt="grpc ready">
-</div>
-<div class="title">Figure 32. gRPC demo services ready</div>
+<div class="paragraph">
+<div class="title">gRPC demo services ready</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_ready.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_ready.png" alt="grpc ready"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Scale <em>user</em> service to 2 replicas:</p>
@@ -2380,11 +2325,9 @@ oc process -f lab9/grpc-demo.yaml \
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pods -n ${OCP_NAMESPACE}</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_ready_replicas.png" alt="grpc ready replicas">
-</div>
-<div class="title">Figure 33. user service with two replicas</div>
+<div class="paragraph">
+<div class="title">user service with two replicas</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_ready_replicas.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_ready_replicas.png" alt="grpc ready replicas"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Now, simulate some traffic with this command:</p>
@@ -2395,19 +2338,15 @@ oc process -f lab9/grpc-demo.yaml \
 </div>
 </div>
 <div class="paragraph">
-<p>Using the {ocp} web console, check the logs in both <em>user</em> pods. You can see that only one replica is receiving traffic.</p>
+<p>Using the OpenShift Container Platform web console, check the logs in both <em>user</em> pods. You can see that only one replica is receiving traffic.</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_log1.png" alt="grpc log1">
+<div class="paragraph">
+<div class="title">user service logs (replica 1)</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_log1.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_log1.png" alt="grpc log1"></a></span></p>
 </div>
-<div class="title">Figure 34. user service logs (replica 1)</div>
-</div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_log2.png" alt="grpc log2">
-</div>
-<div class="title">Figure 35. user service logs (replica 2)</div>
+<div class="paragraph">
+<div class="title">user service logs (replica 2)</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_log2.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_log2.png" alt="grpc log2"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Now that you have checked there is no actual load balancing between <em>user</em> replicas, remove everything:</p>
@@ -2421,7 +2360,7 @@ oc process -f lab9/grpc-demo.yaml \
 </div>
 </div>
 <div class="sect2">
-<h3 id="_grpc_demo_with_istio"><a class="anchor" href="#_grpc_demo_with_istio"></a>gRPC demo with Istio</h3>
+<h3 id="_grpc_demo_with_istio"><a class="anchor" href="#_grpc_demo_with_istio"></a>12.3. gRPC demo with Istio</h3>
 <div class="paragraph">
 <p>You are going to test the same scenario but now using Istio. First, deploy the gRPC services and the ingress <em>Route</em>:</p>
 </div>
@@ -2448,11 +2387,9 @@ oc process -f lab9/grpc-demo.yaml \
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pods -n ${OCP_NAMESPACE}</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_ready_istio.png" alt="grpc ready istio">
-</div>
-<div class="title">Figure 36. gRPC demo services ready</div>
+<div class="paragraph">
+<div class="title">gRPC demo services ready</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/logrpc_ready_istiogin.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_ready_istio.png" alt="grpc ready istio"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Scale <em>user</em> service to 2 replicas:</p>
@@ -2470,11 +2407,9 @@ oc process -f lab9/grpc-demo.yaml \
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pods -n ${OCP_NAMESPACE}</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_ready_replicas_istio.png" alt="grpc ready replicas istio">
-</div>
-<div class="title">Figure 37. user service with two replicas</div>
+<div class="paragraph">
+<div class="title">user service with two replicas</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_ready_replicas_istio.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_ready_replicas_istio.png" alt="grpc ready replicas istio"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Now, simulate some traffic with this command:</p>
@@ -2485,32 +2420,26 @@ oc process -f lab9/grpc-demo.yaml \
 </div>
 </div>
 <div class="paragraph">
-<p>Using the {ocp} web console, check the logs in both <em>user</em> pods. Now you can see both replicas receiving traffic.</p>
+<p>Using the OpenShift Container Platform web console, check the logs in both <em>user</em> pods. Now you can see both replicas receiving traffic.</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_log1_istio.png" alt="grpc log1 istio">
+<div class="paragraph">
+<div class="title">user service logs (replica 1)</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_log1_istio.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_log1_istio.png" alt="grpc log1 istio"></a></span></p>
 </div>
-<div class="title">Figure 38. user service logs (replica 1)</div>
-</div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_log2_istio.png" alt="grpc log2 istio">
-</div>
-<div class="title">Figure 39. user service logs (replica 2)</div>
+<div class="paragraph">
+<div class="title">user service logs (replica 2)</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_log2_istio.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_log2_istio.png" alt="grpc log2 istio"></a></span></p>
 </div>
 <div class="paragraph">
 <p>In Kiali you can check all the information about the replicas for this service:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_kiali_replicas.png" alt="grpc kiali replicas">
-</div>
-<div class="title">Figure 40. user service in Kiali</div>
+<div class="paragraph">
+<div class="title">user service in Kiali</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_kiali_replicas.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_kiali_replicas.png" alt="grpc kiali replicas"></a></span></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remove_everything_2"><a class="anchor" href="#_remove_everything_2"></a>Remove everything</h3>
+<h3 id="_remove_everything_2"><a class="anchor" href="#_remove_everything_2"></a>12.4. Remove everything</h3>
 <div class="paragraph">
 <p>After you have completed the lab you can remove everything:</p>
 </div>

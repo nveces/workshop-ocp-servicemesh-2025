@@ -325,11 +325,9 @@ You are going to use a template to deploy the gRPC demo scenario so you are not 
 </tr>
 </table>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_kiali.png" alt="grpc kiali">
-</div>
-<div class="title">Figure 1. gRPC demo in Kiali</div>
+<div class="paragraph">
+<div class="title">gRPC demo in Kiali</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_kiali.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_kiali.png" alt="grpc kiali"></a></span></p>
 </div>
 <div class="paragraph">
 <p>First, deploy the gRPC services without Istio to understand the problem.</p>
@@ -351,11 +349,9 @@ oc process -f lab9/grpc-demo.yaml \
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pods -n ${OCP_NAMESPACE}</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_ready.png" alt="grpc ready">
-</div>
-<div class="title">Figure 2. gRPC demo services ready</div>
+<div class="paragraph">
+<div class="title">gRPC demo services ready</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_ready.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_ready.png" alt="grpc ready"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Scale <em>user</em> service to 2 replicas:</p>
@@ -373,11 +369,9 @@ oc process -f lab9/grpc-demo.yaml \
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pods -n ${OCP_NAMESPACE}</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_ready_replicas.png" alt="grpc ready replicas">
-</div>
-<div class="title">Figure 3. user service with two replicas</div>
+<div class="paragraph">
+<div class="title">user service with two replicas</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_ready_replicas.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_ready_replicas.png" alt="grpc ready replicas"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Now, simulate some traffic with this command:</p>
@@ -390,17 +384,13 @@ oc process -f lab9/grpc-demo.yaml \
 <div class="paragraph">
 <p>Using the {ocp} web console, check the logs in both <em>user</em> pods. You can see that only one replica is receiving traffic.</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_log1.png" alt="grpc log1">
+<div class="paragraph">
+<div class="title">user service logs (replica 1)</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_log1.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_log1.png" alt="grpc log1"></a></span></p>
 </div>
-<div class="title">Figure 4. user service logs (replica 1)</div>
-</div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_log2.png" alt="grpc log2">
-</div>
-<div class="title">Figure 5. user service logs (replica 2)</div>
+<div class="paragraph">
+<div class="title">user service logs (replica 2)</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_log2.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_log2.png" alt="grpc log2"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Now that you have checked there is no actual load balancing between <em>user</em> replicas, remove everything:</p>
@@ -443,11 +433,9 @@ oc process -f lab9/grpc-demo.yaml \
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pods -n ${OCP_NAMESPACE}</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_ready_istio.png" alt="grpc ready istio">
-</div>
-<div class="title">Figure 6. gRPC demo services ready</div>
+<div class="paragraph">
+<div class="title">gRPC demo services ready</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/logrpc_ready_istiogin.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_ready_istio.png" alt="grpc ready istio"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Scale <em>user</em> service to 2 replicas:</p>
@@ -465,11 +453,9 @@ oc process -f lab9/grpc-demo.yaml \
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pods -n ${OCP_NAMESPACE}</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_ready_replicas_istio.png" alt="grpc ready replicas istio">
-</div>
-<div class="title">Figure 7. user service with two replicas</div>
+<div class="paragraph">
+<div class="title">user service with two replicas</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_ready_replicas_istio.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_ready_replicas_istio.png" alt="grpc ready replicas istio"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Now, simulate some traffic with this command:</p>
@@ -482,26 +468,20 @@ oc process -f lab9/grpc-demo.yaml \
 <div class="paragraph">
 <p>Using the {ocp} web console, check the logs in both <em>user</em> pods. Now you can see both replicas receiving traffic.</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_log1_istio.png" alt="grpc log1 istio">
+<div class="paragraph">
+<div class="title">user service logs (replica 1)</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_log1_istio.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_log1_istio.png" alt="grpc log1 istio"></a></span></p>
 </div>
-<div class="title">Figure 8. user service logs (replica 1)</div>
-</div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_log2_istio.png" alt="grpc log2 istio">
-</div>
-<div class="title">Figure 9. user service logs (replica 2)</div>
+<div class="paragraph">
+<div class="title">user service logs (replica 2)</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_log2_istio.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_log2_istio.png" alt="grpc log2 istio"></a></span></p>
 </div>
 <div class="paragraph">
 <p>In Kiali you can check all the information about the replicas for this service:</p>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="grpc_kiali_replicas.png" alt="grpc kiali replicas">
-</div>
-<div class="title">Figure 10. user service in Kiali</div>
+<div class="paragraph">
+<div class="title">user service in Kiali</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/grpc_kiali_replicas.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_kiali_replicas.png" alt="grpc kiali replicas"></a></span></p>
 </div>
 </div>
 </div>

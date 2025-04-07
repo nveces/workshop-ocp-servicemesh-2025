@@ -336,7 +336,7 @@
 </div>
 <div class="paragraph">
 <div class="title">Secret Created</div>
-<p><span class="image unresolved"><img src="jump-app-secret-ok.png" alt="jump app secret ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-secret-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-secret-ok.png" alt="jump app secret ok"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -352,7 +352,7 @@
 </div>
 <div class="paragraph">
 <div class="title">back-golang Route Modified</div>
-<p><span class="image unresolved"><img src="jump-app-routes-sds-mod.png" alt="jump app routes sds mod"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-routes-sds-mod.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-routes-sds-mod.png" alt="jump app routes sds mod"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -371,14 +371,14 @@
 </div>
 <div class="paragraph">
 <div class="title">back-golang Gateway Modified</div>
-<p><span class="image unresolved"><img src="jump-app-gw-ok.png" alt="jump app gw ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-gw-ok.png" alt="jump app gw ok"></a></span></p>
 </div>
 <div class="paragraph">
 <p>In order to ensure the Istio Secret Discovery Service (SDS) has been configured properly, you can review the <em>istio ingress gateway</em> pod as shown the following picture:</p>
 </div>
 <div class="paragraph">
 <div class="title">Secret Added to SDS</div>
-<p><span class="image unresolved"><img src="jump-app-sds-ok.png" alt="jump app sds ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-sds-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-sds-ok.png" alt="jump app sds ok"></a></span></p>
 </div>
 </div>
 </div>
@@ -401,7 +401,7 @@
 <h2 id="05-router"><a class="anchor" href="#05-router"></a>3. Openshift Router &#8594; Ingress Gateway Secure Connectivity</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image unresolved"><img src="jump-app-ingress-router-gw-sec.png" alt="jump app ingress router gw sec"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ingress-router-gw-sec.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ingress-router-gw-sec.png" alt="jump app ingress router gw sec"></a></span></p>
 </div>
 <div class="sect2">
 <h3 id="05-trou-con"><a class="anchor" href="#05-trou-con"></a>3.1. Test connectivity via command line</h3>
@@ -422,7 +422,7 @@
 </div>
 <div class="paragraph">
 <div class="title">OCP Router Pods</div>
-<p><span class="image unresolved"><img src="ocp-routers-pods.png" alt="ocp routers pods"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-routers-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-routers-pods.png" alt="ocp routers pods"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -452,7 +452,7 @@ oc rsh $POD</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">HTTP Response 200</div>
-<p><span class="image unresolved"><img src="jump-app-trou-05-gw.png" alt="jump app trou 05 gw"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-gw.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-gw.png" alt="jump app trou 05 gw"></a></span></p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -474,11 +474,11 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 </div>
 <div class="paragraph">
 <div class="title">OCP Console</div>
-<p><span class="image unresolved"><img src="jump-app-ocp-trou-05.png" alt="jump app ocp trou 05"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ocp-trou-05.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ocp-trou-05.png" alt="jump app ocp trou 05"></a></span></p>
 </div>
 <div class="paragraph">
 <div class="title">OCP Console Bad Configuration</div>
-<p><span class="image unresolved"><img src="jump-app-ocp-trou-05-error.png" alt="jump app ocp trou 05 error"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ocp-trou-05-error.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ocp-trou-05-error.png" alt="jump app ocp trou 05 error"></a></span></p>
 </div>
 <div class="paragraph">
 <p>If you take a look at the <em>target port</em> closely, you can find <em>http2</em>. In order to support passthrough routes and connect with <em>Ingress Gateway</em> secure ports, it is required define a secured port. Please, <em>edit route</em>, define <em>https</em> as target port and click on <strong>[ SAVE ]</strong>.</p>
@@ -490,7 +490,7 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 <h2 id="05-gateway"><a class="anchor" href="#05-gateway"></a>4. Ingress Gateway &#8594; Envoy Sidecar Secure Connectivity</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image unresolved"><img src="jump-app-ingress-envoy-gw-sec.png" alt="jump app ingress envoy gw sec"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ingress-envoy-gw-sec.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ingress-envoy-gw-sec.png" alt="jump app ingress envoy gw sec"></a></span></p>
 </div>
 <div class="sect2">
 <h3 id="05-trou-gateway-forcessl"><a class="anchor" href="#05-trou-gateway-forcessl"></a>4.1. Force mTLS in your namespace</h3>
@@ -507,7 +507,7 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 </div>
 <div class="paragraph">
 <div class="title">PeerAuthentication and Destination Rule created</div>
-<p><span class="image unresolved"><img src="jump-app-trou-05-padr.png" alt="jump app trou 05 padr"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-padr.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-padr.png" alt="jump app trou 05 padr"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -529,7 +529,7 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 </div>
 <div class="paragraph">
 <div class="title">Istio ControlPlane Pods</div>
-<p><span class="image unresolved"><img src="ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -559,7 +559,7 @@ oc rsh $POD</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">HTTP Response <em>Connection reset by peer</em></div>
-<p><span class="image unresolved"><img src="jump-app-trou-05-k8ssrv.png" alt="jump app trou 05 k8ssrv"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv.png" alt="jump app trou 05 k8ssrv"></a></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -597,7 +597,7 @@ oc extract secret/istio-ca-secret --to=. -n istio-system</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">Istio CA Certs</div>
-<p><span class="image unresolved"><img src="ocp-istio-ca-certs.png" alt="ocp istio ca certs"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-istio-ca-certs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-ca-certs.png" alt="ocp istio ca certs"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -642,7 +642,7 @@ EOF</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">New Certificate Request</div>
-<p><span class="image unresolved"><img src="ocp-istio-gen-cert-req.png" alt="ocp istio gen cert req"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-istio-gen-cert-req.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-gen-cert-req.png" alt="ocp istio gen cert req"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -658,7 +658,7 @@ EOF</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">New Istio CA signed Certificate</div>
-<p><span class="image unresolved"><img src="ocp-istio-gen-cert.png" alt="ocp istio gen cert"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-istio-gen-cert.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-gen-cert.png" alt="ocp istio gen cert"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -674,7 +674,7 @@ EOF</code></pre>
 </div>
 <div class="paragraph">
 <div class="title">Istio ControlPlane Pods</div>
-<p><span class="image unresolved"><img src="ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -723,7 +723,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 </div>
 <div class="paragraph">
 <div class="title">HTTP Response <em>Certificate required</em></div>
-<p><span class="image unresolved"><img src="jump-app-trou-05-k8ssrv-cert.png" alt="jump app trou 05 k8ssrv cert"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert.png" alt="jump app trou 05 k8ssrv cert"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -739,7 +739,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 </div>
 <div class="paragraph">
 <div class="title">HTTP Response 200</div>
-<p><span class="image unresolved"><img src="jump-app-trou-05-k8ssrv-cert-ok.png" alt="jump app trou 05 k8ssrv cert ok"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert-ok.png" alt="jump app trou 05 k8ssrv cert ok"></a></span></p>
 </div>
 </div>
 </div>
@@ -763,7 +763,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 </div>
 <div class="paragraph">
 <div class="title">Kiali Console</div>
-<p><span class="image unresolved"><img src="jump-app-kiali.png" alt="jump app kiali"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali.png" alt="jump app kiali"></a></span></p>
 </div>
 </div>
 </div>

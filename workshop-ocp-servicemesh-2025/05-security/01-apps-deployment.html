@@ -303,7 +303,7 @@
 <p>The final set of application deployments will look like follows:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="namespaces-deployments.png" alt="Apps in ns"></span></p>
+<p><span class="image"><a class="image" href="../_images/05-security/namespaces-deployments.png" target="_blank" rel="noopener"><img src="../_images/05-security/namespaces-deployments.png" alt="Apps in ns"></a></span></p>
 </div>
 </div>
 </div>
@@ -490,19 +490,19 @@ http://productpage-dsanchor-1.apps.labs.sandbox671.opentlc.com</pre>
 <p>Test the application in your <code>Web browser</code>. You will be redirected to an <code>https</code> url and warned about the self-signed certificate we have configured:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="self-signed-cert.png" alt="Self signed cert"></span></p>
+<p><span class="image"><a class="image" href="../_images/05-security/self-signed-cert.png" target="_blank" rel="noopener"><img src="../_images/05-security/self-signed-cert.png" alt="Self signed cert"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Accept the risk ;-) and you will land in the following page:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="landing-page.png" alt="Landing page"></span></p>
+<p><span class="image"><a class="image" href="../_images/05-security/landing-page.png" target="_blank" rel="noopener"><img src="../_images/05-security/landing-page.png" alt="Landing page"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Click on <code>Access to productpage</code> link (bottom left of the page) and voila:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="productpage.png" alt="Productpage"></span></p>
+<p><span class="image"><a class="image" href="../_images/05-security/productpage.png" target="_blank" rel="noopener"><img src="../_images/05-security/productpage.png" alt="Productpage"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Keep a test running on the background to generate telemetry (don&#8217;t forget to use your domain in the url):</p>
@@ -516,7 +516,7 @@ http://productpage-dsanchor-1.apps.labs.sandbox671.opentlc.com</pre>
 <p>If you check then the graph in <code>Kiali</code>, you should get a similar flow:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="first-graph.gif" alt="First graph"></span></p>
+<p><span class="image unresolved"><a class="image" href="../_images/05-security/first-graph.gif" target="_blank" rel="noopener"><img src="05-security/first-graph.gif" alt="First graph"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Notice the starting node in the graph&#8230;&#8203; it should be your dedicated ingress gateway.</p>
@@ -582,13 +582,13 @@ destinationrule.networking.istio.io/ratings created</pre>
 <p>So far, we just deployed and configured some services in $APPS_NS2, but these are not yet accesible. The current request flow looks like:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="apps-ns1-workflow.png" alt="Apps ns1 workflow"></span></p>
+<p><span class="image"><a class="image" href="../_images/05-security/apps-ns1-workflow.png" target="_blank" rel="noopener"><img src="../_images/05-security/apps-ns1-workflow.png" alt="Apps ns1 workflow"></a></span></p>
 </div>
 <div class="paragraph">
 <p>But in some scenarios during these labs, we want to make use of the services we have deployed on $APPS_NS2 as in next diagram:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="apps-ns2-workflow.png" alt="Apps ns2 workflow"></span></p>
+<p><span class="image"><a class="image" href="../_images/05-security/apps-ns2-workflow.png" target="_blank" rel="noopener"><img src="../_images/05-security/apps-ns2-workflow.png" alt="Apps ns2 workflow"></a></span></p>
 </div>
 <div class="paragraph">
 <p>In order to achieve this, we will have to set certain <code>env variable</code> in <code>productpage</code> to target to a different <code>reviews</code> service than the default one (same namespace). Execute the following to configure the <code>reviews</code> service in $APPS_NS2 as target service:</p>
@@ -604,13 +604,13 @@ deployment.apps/productpage-v1 updated</pre>
 <p>A rollout of <code>productpage`is triggered and then, test the service again. You should get the `ratings</code> with red stars:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="ratings-ns2.png" alt="Ratings from ns2"></span></p>
+<p><span class="image"><a class="image" href="../_images/05-security/ratings-ns2.png" target="_blank" rel="noopener"><img src="../_images/05-security/ratings-ns2.png" alt="Ratings from ns2"></a></span></p>
 </div>
 <div class="paragraph">
 <p>And if you keep sending requests.. you would get the following graph (notice that we jump from <code>productpage</code> in your $APPS_NS1 to <code>reviews</code> in your $APPS_NS2):</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="graph-with-ns2.gif" alt="Graph with ns2"></span></p>
+<p><span class="image unresolved"><a class="image" href="../_images/05-security/graph-with-ns2.gif" target="_blank" rel="noopener"><img src="05-security/graph-with-ns2.gif" alt="Graph with ns2"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Once tested, we will move back to default, as we will start from the first scenario, where all services run in $APPS_NS1.</p>

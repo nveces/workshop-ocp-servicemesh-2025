@@ -447,9 +447,9 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage"</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="bookinfo_curl.png" alt="bookinfo curl">
+<a class="image" href="../_images/03-traffic-management/bookinfo_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/bookinfo_curl.png" alt="bookinfo curl"></a>
 </div>
 <div class="title">Figure 1. Bookinfo productpage service working</div>
 </div>
@@ -459,9 +459,9 @@ spec:
 <div class="paragraph">
 <p>Now, this is how the {ig} looks like in Kiali:</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="ingress_bookinfo.png" alt="ingress bookinfo">
+<a class="image" href="../_images/03-traffic-management/ingress_bookinfo.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/ingress_bookinfo.png" alt="ingress bookinfo"></a>
 </div>
 <div class="title">Figure 2. Bookinfo productpage service through an {ig}</div>
 </div>
@@ -516,17 +516,13 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_HTTPBIN_HOST}"</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="httpbin_curl.png" alt="httpbin curl">
+<div class="paragraph">
+<div class="title">httpbin service working</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/httpbin_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/httpbin_curl.png" alt="httpbin curl"></a></span></p>
 </div>
-<div class="title">Figure 3. httpbin service working</div>
-</div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="ingress_httpbin.png" alt="ingress httpbin">
-</div>
-<div class="title">Figure 4. httpbin service through an {ig}</div>
+<div class="paragraph">
+<div class="title">httpbin service through an {ig}</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/ingress_httpbin.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/ingress_httpbin.png" alt="ingress httpbin"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/03-ingress.adoc - include::/03-traffic-management/remove_httpbin.adoc[]</p>

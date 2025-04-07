@@ -314,14 +314,14 @@
 </div>
 <div class="paragraph">
 <div class="title">Traces in jaeger</div>
-<p><span class="image unresolved"><img src="jump-app-jaeger-traces.png" alt="jump app jaeger traces"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-jaeger-traces.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-jaeger-traces.png" alt="jump app jaeger traces"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Click on any of them and you will see the following page will all the jumps your application did and how long did they take:</p>
 </div>
 <div class="paragraph">
 <div class="title">Spans in jaeger</div>
-<p><span class="image unresolved"><img src="jump-app-jaeger-spans.png" alt="jump app jaeger spans"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-jaeger-spans.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-jaeger-spans.png" alt="jump app jaeger spans"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Those are called spans and they represent a logical unit of work in Jaeger that has an operation name, the start time of the operation, and the duration. Spans may be nested and ordered to model causal relationships. This could help you see where is your application spending more time and find bottlenecks in an easy manner.</p>
@@ -342,7 +342,7 @@
 </div>
 <div class="paragraph">
 <div class="title">See delay in Kiali</div>
-<p><span class="image unresolved"><img src="jump-app-kiali-delay.png" alt="jump app kiali delay"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali-delay.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-delay.png" alt="jump app kiali delay"></a></span></p>
 </div>
 <div class="paragraph">
 <p>You&#8217;ll notice that requests in <code>back-golang</code> are now taking roughly 2 seconds. This capacity of Kiali to see the response time is another way of watching where your application is spending more time. But you can play with other metrics that Kiali gives you like Request Percentage, Requests per Second and even see the traffic animation and security.</p>
@@ -367,7 +367,7 @@ oc exec -it $POD -c istio-proxy -- curl localhost:15000/config_dump &gt; dump.js
 </div>
 <div class="paragraph">
 <div class="title">Envoy config dump</div>
-<p><span class="image unresolved"><img src="config_dump.png" alt="config dump"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/config_dump.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/config_dump.png" alt="config dump"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Take some time checking the config dump, since this file has all the configuration parameters of the Envoy proxies inside the Service Mesh.</p>
@@ -413,7 +413,7 @@ oc exec -it $POD -c istio-proxy -- curl -X POST localhost:15000/logging</code></
 </div>
 <div class="paragraph">
 <div class="title">Active Loggers</div>
-<p><span class="image unresolved"><img src="envoy-logging.png" alt="envoy logging"></span></p>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/envoy-logging.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/envoy-logging.png" alt="envoy logging"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Now, you will change the level of one of them:</p>
