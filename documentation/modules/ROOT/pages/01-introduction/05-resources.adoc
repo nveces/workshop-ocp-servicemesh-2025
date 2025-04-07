@@ -30,7 +30,7 @@ For each resource, containers specify a `request`, which is the amount of that r
 
 Based on what values are in each case, we have the following `QoS`:
 
-image:cncf-qos.png[QoS]
+image:01-introduction/cncf-qos.png[QoS,link=../_images/01-introduction/cncf-qos.png,window=_blank]
 
 As the table shows (source CNCF), the QoS class of a pod does affect the order in which it is chosen for eviction by the Kubelet.
 

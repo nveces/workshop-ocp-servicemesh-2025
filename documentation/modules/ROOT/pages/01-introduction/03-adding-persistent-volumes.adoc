@@ -40,19 +40,19 @@ Now, edit the `petclinic-database` `DeploymentConfig` to remove any `volume` and
 
 Remove `emptyDir` volume:
 
-image:emptydir.png[Empty dir]
+image:01-introduction/emptydir.png[Empty dir,link=../_images/01-introduction/emptydir.png,window=_blank]
 
 Remove volume mount:
 
-image:vol-mount.png[Volume mount]
+image:01-introduction/vol-mount.png[Volume mount,link=../_images/01-introduction/vol-mount.png,window=_blank]
 
 Let's add storage now. Move to the `Developer` view and click on the Database application and then, `Add storage`:
 
-image:add-storage.png[Add storage]
+image:01-introduction/add-storage.png[Add storage,link=../_images/01-introduction/add-storage.png,window=_blank]
 
 Chose `Create new claim` and set the values according to next picture:
 
-image:add-storage-detail.png[Add storage]
+image:01-introduction/add-storage-detail.png[Add storage,link=../_images/01-introduction/add-storage-detail.png,window=_blank]
 
 Scale the Database `DeploymentConfig` back to one replica:
 
@@ -89,6 +89,6 @@ deployment.apps/quarkus-petclinic scaled
 
 And test the application... and list the owners. You should get a list of pre-created veterinarians :-)
 
-image:list-vets.png[List vets]
+image:01-introduction/list-vets.png[List vets,link=../_images/01-introduction/list-vets.png,window=_blank]
 
 From now on.. you will not lose your data anymore as it is backed by a `PersistentVolume`.

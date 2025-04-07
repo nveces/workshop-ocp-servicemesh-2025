@@ -17,7 +17,7 @@ By default, all `pods` in a `project` are accessible from other  `pods` and netw
 
 From the `web console`, navigate to `Networking` menu and then, `Network policies`. You should get and empty list:
 
-image:empty-np.png[Network policies]
+image:01-introduction/empty-np.png[Network policies,link=../_images/01-introduction/empty-np.png,window=_blank]
 
 == Restrict traffic using NetworkPolicy objects
 
@@ -37,7 +37,7 @@ deployment.apps/quarkus-petclinic created
 
 Move to that `pod` and open the `terminal`:
 
-image:new-pod.png[new pod]
+image:01-introduction/new-pod.png[new pod,link=../_images/01-introduction/new-pod.png,window=_blank]
 
 In that terminal, we will try to access to the `Petclinic` service that it is running in a different `project`. Execute the following, do not forget to use your target `namespace` (notice that we use now the svc FQDN instead => myservice.ns.svc):
 
@@ -59,7 +59,7 @@ Run the same test from the `pod` that is running in your `xxxx-external` project
 
 Move to the `web console` and see all details about the `NetworkPolicy` you have just created in your project:
 
-image:np-same-project.png[np same project]
+image:01-introduction/np-same-project.png[np same project,link=../_images/01-introduction/np-same-project.png,window=_blank]
 
 We need to allow access from the router `pods`. Run:
 
@@ -73,6 +73,6 @@ Test the application again from your browser... it should be accessible now.
 
 Also, have a look at the content of the `NetworkPolicy` you just created. The key part of it is the `namespaceSelector` that is based on certain labels which are present on the `openshift-ingress` `project`:
 
-image:np-ingress.png[np ingress]
+image:01-introduction/np-ingress.png[np ingress,link=../_images/01-introduction/np-ingress.png,window=_blank]
 
 Just as an additional read, a regular requirement from customers is to move from the default behavior of "there is no traffic restriction between pods" to a concept of "multinenant configuration". In the following link, you could find how to achieve this goal: https://docs.openshift.com/container-platform/4.6/networking/network_policy/multitenant-network-policy.html

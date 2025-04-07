@@ -41,7 +41,7 @@ Back to the topic, the main difference with the other application versions is th
 
 If you click now on the "T&Cs" tab, you will get a message like this one:
 
-image:tcs.png[terms and conditions]
+image:01-introduction/tcs.png[terms and conditions,link=../_images/01-introduction/tcs.png,window=_blank]
 
 If you also check the `pod` logs, every time you click on "T&CS" tab, there will be a WARN log message:
 
@@ -60,7 +60,7 @@ Let's create our `ConfigMap` now:
 
 You can also check the content from the `web console`:
 
-image:configmap-tcs.png[tcs configmap]
+image:01-introduction/configmap-tcs.png[tcs configmap,link=../_images/01-introduction/configmap-tcs.png,window=_blank]
 
 And now, let's mount this `ConfigMap` as volume in our `pods` by adding some configuration in the application `Deployment`:
 
@@ -72,12 +72,12 @@ deployment.apps/quarkus-petclinic volume update
 
 What this command has added in our `Deployment` is:
 
-image:volume-mount-deployment.png[volume mount deployment]
+image:01-introduction/volume-mount-deployment.png[volume mount deployment,link=../_images/01-introduction/volume-mount-deployment.png,window=_blank]
 
 
 If we now click on the "T&CS" tab, the content should be exactly the same of the one set in the `ConfigMap` and the WARN should have dissapeared from the `pod` logs:
 
-image:new-tcs.png[new tcs]
+image:01-introduction/new-tcs.png[new tcs,link=../_images/01-introduction/new-tcs.png,window=_blank]
 
 What would happen if you modify the content of the `ConfigMap`? Are the 'T&CS' updated as well?
 
@@ -121,11 +121,11 @@ Now, let's move to the postgresql `DeploymentConfig` and see how these keys are 
 
 If we check it using the `web console`:
 
-image:dcs-env-vars.png[dc env vars]
+image:01-introduction/dcs-env-vars.png[dc env vars,link=../_images/01-introduction/dcs-env-vars.png,window=_blank]
 
 In the YAML descriptor, we can also clearly see how environments variables are set from the `Secret`:
 
-image:yaml-env-vars.png[yaml env vars]
+image:01-introduction/yaml-env-vars.png[yaml env vars,link=../_images/01-introduction/yaml-env-vars.png,window=_blank]
 
 == Extra: how Quarkus (could) manage configuration
 

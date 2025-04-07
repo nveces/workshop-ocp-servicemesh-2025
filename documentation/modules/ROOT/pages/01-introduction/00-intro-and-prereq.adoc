@@ -41,13 +41,13 @@ Use the `*$OCP_CONSOLE*` url to acces the Openshift Web Console.
 
 A login screen will be shown as follow:
 
-image:introduction/login.png[login,link=../_images/introduction/login.png,window=_blank]
+image:01-introduction/login.png[login,link=../_images/01-introduction/login.png,window=_blank]
 
 Enter your `username` and `password` and click `Log In`.
 
 If you have successfully logged in, you will arrive to the main dashboard with your current projects. As seen below, the list of projects should be empty:
 
-image:introduction/empty-projects.png[empty-projects,link=../_images/introduction/empty-projects.png,window=_blank]
+image:01-introduction/empty-projects.png[empty-projects,link=../_images/01-introduction/empty-projects.png,window=_blank]
 
 We will soon create our first project, but now, it is time to get the Openshift CLI binaries for your specific OS.
 
@@ -57,11 +57,11 @@ We will soon create our first project, but now, it is time to get the Openshift 
 
 On the top-right (?) menu, click on `Command line tools`:
 
-image:menu-clt.png[command-line-tools]
+image:01-introduction/menu-clt.png[command-line-tools,link=../_images/01-introduction/menu-clt.png,window=_blank]
 
 Then, choose the binaries according to your OS:
 
-image:cli-download-options.png[cli-download-options]
+image:01-introduction/cli-download-options.png[cli-download-options,link=../_images/01-introduction/li-download-options.png,window=_blank]
 
 Extract the binaries and try it by executing the following:
 
@@ -124,7 +124,7 @@ Well done! :-)
 
 If you now move to the `Openshift Console`, under the `Administrator` view, you will notice that you have a new `Project`:
 
-image:projects.png[projects]
+image:01-introduction/projects.png[projects,link=../_images/01-introduction/projects.png,window=_blank]
 
 
 We can now start deploying applications into our project.

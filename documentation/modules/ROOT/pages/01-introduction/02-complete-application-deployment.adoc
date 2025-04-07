@@ -17,25 +17,25 @@ Let's move to the `console` and select the `Developer` view.
 
 As in next screenshot, first, ensure you are on the right project (it is very likely you are.. unless you have created more than one project), click on `Add` and select `Database`:
 
-image:dev-add-db.png[add db]
+image:01-introduction/dev-add-db.png[add db,link=../_images/01-introduction/dev-add-db.png,window=_blank]
 
 Then, select `Postgresql ephemeral`:
 
-image:select-postgresql-eph.png[postgresql ephemeral]
+image:01-introduction/select-postgresql-eph.png[postgresql ephemeral,link=../_images/01-introduction/select-postgresql-eph.png,window=_blank]
 
 Yes.. we are going to deploy an ephemeral Postgresql... so in case the Postgresql `pod` is recreated we will lose the data. We will add a persistent volume later in these labs.
 
 Click on `Instantiate Template`:
 
-image:instantiate-template.png[instantiate template]
+image:01-introduction/instantiate-template.png[instantiate template,link=../_images/01-introduction/instantiate-template.png,window=_blank]
 
 And set the following parameter values set in red (ensure you use those):
 
-image:db-parameters.png[db parameters]
+image:01-introduction/db-parameters.png[db parameters,link=../_images/01-introduction/db-parameters.png,window=_blank]
 
 As a result, you should see both the application and postgresql pods running:
 
-image:apps-pods.png[application pods]
+image:01-introduction/apps-pods.png[application pods,link=../_images/01-introduction/apps-pods.png,window=_blank]
 
 == Connect application to Database
 
@@ -55,7 +55,7 @@ deployment.apps/quarkus-petclinic image updated
 
 Once the image has been updated, a new pod has been created, while the old one has been terminated. If you missed that process, here it is a short replay:
 
-image:rolling-update.gif[rolling update]
+image:01-introduction/rolling-update.gif[rolling update,link=../_images/01-introduction/rolling-update.png,window=_blank]
 
 That list of `pods` could be seen under the `Administrator` view, then `Workloads` and finally `Pods`.
 

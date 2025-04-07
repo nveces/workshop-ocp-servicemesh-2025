@@ -67,7 +67,7 @@ We will add both liveness and readiness probe to the existing deployment. To do 
 
 Using the `Developer` view, click on the `quarkus-petclinic` application, and then `Add Health Check`:
 
-image:add-hc.png[add hc]
+01-introduction/add-hc.png[add hc]
 
 Then, configure both `liveness` and `readiness` probe.
 
@@ -82,7 +82,7 @@ This change will force a new rolling update of our `pods`. New `pods` will now h
 
 The changes applied to the existing `Deployment` are highlighted next:
 
-image:yaml-hc.png[yaml hc]
+image:01-introduction/yaml-hc.png[yaml hc,link=../_images/01-introduction/yaml-hc.png,window=_blank]
 
 There should not be any issue and both probes should have passed successfully: application is healthy.
 
@@ -97,10 +97,10 @@ deploymentconfig.apps.openshift.io/petclinic-database scaled
 Once the Database pod is gone, check both `logs` and `events` in the application pod:
 
 *Logs*
-image:logs-hc.png[logs]
+image:01-introduction/logs-hc.png[logs,link=../_images/01-introduction/logs-hc.png,window=_blank]
 
 *Events*
-image:events-hc.png[events]
+image:01-introduction/events-hc.png[events,link=../_images/01-introduction/events-hc.png,window=_blank]
 
 Manually test the readiness probe to see the current response:
 ....

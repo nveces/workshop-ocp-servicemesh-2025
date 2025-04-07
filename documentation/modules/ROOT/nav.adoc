@@ -6,10 +6,26 @@
 ** xref:02-deploy.adoc#package[Build Service]
 ** xref:02-deploy.adoc#deploy[Deploy Dervice]
 
-* xref:introduction/index.adoc[3. Introduction - Labs]
-** xref:introduction/index.adoc#_lab_0_warming_up[Lab 0 - Warming up]
-** xref:introduction/index.adoc#_lab_1_first_application_deployment[Lab 1 - First application deployment]
+* xref:01-introduction/index.adoc[3. Introduction - Labs]
+** xref:01-introduction/index.adoc#_lab_0_warming_up[Lab 0 - Warming up]
+** xref:01-introduction/index.adoc#_lab_1_first_application_deployment[Lab 1 - First application deployment]
 
 
+* xref:02-envoy-istio-control-plane/index.adoc[4. Envoy istio Control plane - Labs]
+
+
+* xref:03-traffic-management/index.adoc[5. Traffic management - Labs]
+
+
+
+* xref:04-troubleshooting/index.adoc[6. Troubleshooting - Labs]
+
+
+* xref:05-security/index.adoc[7. Security - Labs]
+
+
+* xref:06-extensibility/index.adoc[8. Extensibility - Labs]
+
+//* xref:04-troubleshooting[3. Introduction - Labs]
 
 // EOF
