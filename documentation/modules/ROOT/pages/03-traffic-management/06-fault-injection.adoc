@@ -1,0 +1,126 @@
+= Lab 4 - Fault Injection
+
+== Introduction
+
+{ossm} has mechanisms to inject faults in your application to test how it will behave when a real fault happens. This is very useful to check if your application's recovery policies aren't too restrictive.
+
+In this lab you will inject two different faults in your application. A delay and an abort. Delays are timing failures and aborts are crash failures. You are going to use a similar method than in <<Lab 2 - Requests Routing>> when you routed requests using http headers, but this time you are going to inject faults for user "pepito".
+
+=== Delay
+
+For the delay you are going to add 7 seconds of delay between the `reviews` and `ratings` services, using this {vs}:
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService <1>
+metadata:
+  name: reviews
+spec:
+  hosts:
+  - reviews
+  http:
+  - route:
+    - destination:
+        host: reviews
+        subset: v2
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: ratings
+spec:
+  hosts:
+  - ratings
+  http:
+  - match:
+    - headers:
+        end-user:
+          exact: pepito
+    fault:
+      delay:
+        percentage:
+          value: 100.0 <2>
+        fixedDelay: 7s <3>
+    route:
+    - destination:
+        host: ratings
+        subset: v1 <4>
+  - route:
+    - destination:
+        host: ratings
+        subset: v1 <4>
+----
+
+<1> In this {vs} you are setting all traffic to v2 of `reviews` service, since v1 does not have a connection with the `ratings` service.
+<2> This is the percentage in which the fault will be injected. In this case is a 100%.
+<3> This is the delay applied to user "pepito".
+<4> Notice here that you are going to the same destination, but the delay is only for "pepito".
+
+=== Abort
+
+Now, for the abort, you will use the following {vs}:
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: ratings
+spec:
+  hosts:
+  - ratings
+  http:
+  - fault:
+      abort:
+        percentage:
+          value: 100.0
+        httpStatus: 500 <1>
+    route:
+    - destination:
+        host: ratings
+        subset: v1
+----
+
+<1> Notice that this time you are always returning an error 500 in the connection between `reviews` and `ratings`.
+
+include::partials/deploy_bookinfo.adoc[leveloffset=+1]
+
+== Inject delay
+
+Execute the following command:
+
+[source,bash]
+----
+oc apply -f lab4/vs-delay.yaml -n ${OCP_NAMESPACE}
+----
+
+To check the delay, visit your Bookinfo application (https://<user>.bookinfo.<openshift_apps_domain>/productpage) and log in as pepito (or the name you chose). You will notice that it will take 7 seconds to load and you will see the following error in the `reviews` part: "*Sorry, product reviews are currently unavailable for this book.*"". Like this:
+
+.Reviews failure
+image::reviews-failure.png[]
+
+This happens because there is a hard-coded timeout between `productpage` service and `reviews` service of 3 seconds and 1 retry, so a total of 6 seconds. Then, you can't see the `reviews` because of this timeout.
+
+== Inject abort
+
+Execute the following command:
+
+[source,bash]
+----
+oc apply -f lab4/vs-abort.yaml -n ${OCP_NAMESPACE}
+----
+
+Now you don't have to be logged in as pepito, enter again to your Product Page and now you will see the reviews, but the ratings will give you the following error: "*Ratings service is currently unavailable*". This is because this time the `ratings` service is returning an error 500. You should see this:
+
+.Ratings failure
+image::ratings-failure.png[]
+
+include::partials/kiali_traffic.adoc[leveloffset=+2] 
+
+You should see a graph similar to this:
+
+.Kiali ratings failure
+image::kiali-ratings-failure.png[]
+
+include::partials/remove_bookinfo.adoc[leveloffset=+1]

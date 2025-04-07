@@ -1,0 +1,134 @@
+= Lab 5 - Requests Timeouts
+
+== Introduction
+
+A timeout for HTTP requests can be specified using the timeout field in the {vs}. By default, the timeout is 15 seconds, but in this task you override the _reviews_ service timeout to 1 second. 
+
+To see its effect, however, you also introduce an artificial 2 second delay in calls to the _ratings_ service.
+
+include::partials/deploy_bookinfo.adoc[leveloffset=+1]
+
+== Adding a delay to ratings service
+
+First, route requests to _reviews:v2_ service (a version that calls the ratings service).
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: reviews
+spec:
+  hosts:
+  - reviews
+  http:
+  - route:
+    - destination:
+        host: reviews
+        subset: v2
+----
+
+Apply this change with this command:
+
+[source, bash]
+----
+oc apply -f lab5/vs-reviews-v2.yaml -n ${OCP_NAMESPACE}
+----
+
+Add a 2 second delay to calls to the ratings service:
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: ratings
+spec:
+  hosts:
+  - ratings
+  http:
+  - fault:
+      delay:
+        percent: 100
+        fixedDelay: 2s
+    route:
+    - destination:
+        host: ratings
+        subset: v1
+----
+
+You can apply this change with this command:
+
+[source, bash]
+----
+oc apply -f lab5/vs-ratings-delay.yaml -n ${OCP_NAMESPACE}
+----
+
+include::partials/kiali_traffic_loop.adoc[leveloffset=+2]
+
+Make sure you select _Response Time_ in the _Show Edge Labels_ display options in Kiali:
+
+.Kiali Response Time
+image::kiali_response.png[]
+
+Check the results in Kiali. You may notice a 2 second delay in the ratings call:
+
+.Kiali Ratings service with 2s delay
+image::kiali-timeouts-ratings-delay.png[]
+
+If you visit the Bookinfo app with your browser you should see the Bookinfo application working normally (with ratings stars displayed), but there is a 2 second delay whenever you refresh the page:
+
+https://<user>.bookinfo.<openshift_apps_domain>/productpage
+
+== Adding a timeout to reviews service
+
+Now add a half second request timeout for calls to the _reviews_ service:
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: reviews
+spec:
+  hosts:
+  - reviews
+  http:
+  - route:
+    - destination:
+        host: reviews
+        subset: v2
+    timeout: 0.5s
+----
+
+You can apply this change with this command:
+
+[source, bash]
+----
+oc apply -f lab5/vs-reviews-timeout.yaml -n ${OCP_NAMESPACE}
+----
+
+By default the request timeout is disabled. Since the _reviews_ service subsequently calls the _ratings_ service when handling requests, you can use Istio to inject a 2 second delay in calls to _ratings_ to cause the _reviews_ service to take longer than half a second to complete and consequently you could see the timeout in action.
+
+Refresh the Bookinfo web page in your browser:
+
+https://<user>.bookinfo.<openshift_apps_domain>/productpage
+
+You can observe that instead of displaying reviews, the Bookinfo product page (which calls the reviews service to populate the page) display the message: _Sorry, product reviews are currently unavailable for this book_. This was the result of it receiving the timeout error from the _reviews_ service.
+
+You may have noticed that it returns in about 1 second, instead of 2, and the reviews are unavailable. The reason that the response takes 1 second, even though the timeout is configured at half a second, is because there is a hard-coded retry in the _productpage_ service, so it calls the timing out reviews service twice before returning.
+
+include::partials/kiali_traffic_loop.adoc[leveloffset=+2]
+
+Check the results in Kiali:
+
+.Kiali Reviews service with timeout
+image::kiali-timeouts-reviews.png[]
+
+== Hardcoded timeout in productpage service
+
+If you examine the <<Lab 4 - Fault Injection>>, you’ll find out that the productpage microservice also has its own application-level timeout (3 seconds) for calls to the _reviews_ microservice.
+
+Notice that in this lab you used an Istio route rule to set the timeout to half a second. Had you instead set the timeout to something greater than 3 seconds (such as 4 seconds) the timeout would have had no effect since the more restrictive of the two takes precedence.
+
+include::partials/remove_bookinfo.adoc[leveloffset=+1]

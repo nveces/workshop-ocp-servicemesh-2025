@@ -1,0 +1,205 @@
+= Lab 4 - RequestAuthentication
+:author: David Sancho
+:email: dsanchor@redhat.com
+:imagesdir: ./images
+:toc: left
+:toc-title: RequestAuthentication
+
+[Abstract]
+In this next lab, we will introduce the concept of `end-user-authentication` by configuring a `RequestAuthentication` in our service mesh.
+
+This time,  Istio enables request-level authentication with JSON Web Token (JWT) validation. 
+
+Before starting, I truly recommend to spend some minutes reading an https://jwt.io/introduction[introduction about JWT].
+
+This fourth lab, will be very brief as the authentication part with JWT is very simple and all the value comes together with the authorization part. In lab 5, we will deeply dive into all these concepts together.
+
+
+:numbered:
+== Clean up resources from previous lab
+
+Firstly, we will remove all the `AuthorizationPolicies` we created in last lab. We will keep the `PeerAuthentication` as we still want to enforce `STRICT` mTLS between services calls. 
+
+Ingress policy:
+....
+$ oc delete authorizationpolicy.security.istio.io/allow-ingress-productpage -n $APPS_NS1
+
+authorizationpolicy.security.istio.io "allow-ingress-productpage" deleted
+....
+
+From `productpage` to `details`:
+....
+$ oc delete authorizationpolicy.security.istio.io/allow-details -n $APPS_NS1
+
+authorizationpolicy.security.istio.io "allow-details" deleted
+....
+
+From `productpage` to `reviews`:
+....
+$ oc delete authorizationpolicy.security.istio.io/allow-reviews  -n $APPS_NS1
+
+authorizationpolicy.security.istio.io "allow-reviews" deleted
+....
+
+From `reviews` to `ratings`:
+....
+$ oc delete authorizationpolicy.security.istio.io/allow-ratings  -n $APPS_NS1
+
+authorizationpolicy.security.istio.io "allow-ratings" deleted
+....
+
+From $APPS_NS1 to `reviews` in $APPS_NS2:
+....
+$ oc delete authorizationpolicy.security.istio.io/allow-reviews-from-ns1 -n $APPS_NS2
+
+authorizationpolicy.security.istio.io "allow-reviews-from-ns1" deleted
+....
+
+Remove `deny-all`:
+....
+$ oc delete authorizationpolicy.security.istio.io/deny-all-in-ns -n $APPS_NS1
+
+authorizationpolicy.security.istio.io "deny-all-in-ns" deleted
+....
+
+
+And also, just to be back to first scenario, we will use only services from $APPS_NS1. This means, we have to configure `productpage` service accordingly:
+
+....
+$ oc set env deployment/productpage-v1 -e REVIEWS_HOSTNAME=reviews -n $APPS_NS1
+
+deployment.apps/productpage-v1 updated
+....
+
+Test the application again.. everything should work without any RBAC or authentication error.
+
+== Enforce JWT authentication 
+
+The first step we do now is to enable JWT authentication by creating a simple `RequestAuthentication` object. 
+We will use  Google's OAuth 2.0 authentication system for user login, so we will have to first discover some important configuration data from the OIDC discovery configuration url.
+
+Google's OIDC configuration is accesible here: https://accounts.google.com/.well-known/openid-configuration. 
+
+If you access to that endpoint, you will get a similar output to this:
+....
+{
+ "issuer": "https://accounts.google.com",
+ "authorization_endpoint": "https://accounts.google.com/o/oauth2/v2/auth",
+ "device_authorization_endpoint": "https://oauth2.googleapis.com/device/code",
+ "token_endpoint": "https://oauth2.googleapis.com/token",
+ "userinfo_endpoint": "https://openidconnect.googleapis.com/v1/userinfo",
+ "revocation_endpoint": "https://oauth2.googleapis.com/revoke",
+ "jwks_uri": "https://www.googleapis.com/oauth2/v3/certs",
+ "response_types_supported": [
+  "code",
+  "token",
+  "id_token",
+  "code token",
+  "code id_token",
+  "token id_token",
+  "code token id_token",
+  "none"
+ ],
+ "subject_types_supported": [
+  "public"
+ ],
+ "id_token_signing_alg_values_supported": [
+  "RS256"
+ ],
+ "scopes_supported": [
+  "openid",
+  "email",
+  "profile"
+ ],
+ "token_endpoint_auth_methods_supported": [
+  "client_secret_post",
+  "client_secret_basic"
+ ],
+ "claims_supported": [
+  "aud",
+  "email",
+  "email_verified",
+  "exp",
+  "family_name",
+  "given_name",
+  "iat",
+  "iss",
+  "locale",
+  "name",
+  "picture",
+  "sub"
+ ],
+ "code_challenge_methods_supported": [
+  "plain",
+  "S256"
+ ],
+ "grant_types_supported": [
+  "authorization_code",
+  "refresh_token",
+  "urn:ietf:params:oauth:grant-type:device_code",
+  "urn:ietf:params:oauth:grant-type:jwt-bearer"
+ ]
+}
+....
+
+In order to configure the `RequestAuthentication` for this lab, we will just use the following attributes from above:
+
+- issuer: https://accounts.google.com. This will be the only valid issuing authority inside a token. 
+- jwks_uri: https://www.googleapis.com/oauth2/v3/certs, which basically tells from where to obtain the `public key` to verify the signature of a token.
+
+Once we have this information, let me show you the `RequestAuthentication` YAML file we will use as template:
+....
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: ${INGRESS_GW}
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      app: ${INGRESS_GW}
+  jwtRules:
+  - forwardOriginalToken: true
+    issuer: ${OIDC_ISSUER_URL}
+    jwksUri: ${OIDC_JWKS_URI}
+....
+
+The above YAML basically means: 
+
+_"A `RequestAuthentication` will be applied on those pods running in `istio-system` which match the label `app: $INGRESS_GW` (that is, your dedicated ingress Gateway). The JWT issuer is $OIDC_ISSUER_URL and the certs to verify the signature of the token will be obtained from $OIDC_JWKS_URI. Also, the JWT token will be forwarded to upstream service."_
+
+Run the following command to create the `RequestAuthentication`:
+....
+$ oc process -f $LABS_HOME/lab4/request-authentication.yaml -p INGRESS_GW=$INGRESS_GW OIDC_ISSUER_URL=https://accounts.google.com OIDC_JWKS_URI=https://www.googleapis.com/oauth2/v3/certs -n istio-system | oc apply -f - -n istio-system
+
+requestauthentication.security.istio.io/dsanchor-ingress-request-authentication created
+....
+
+If you test the application again it should still work, even though we have not provide any token. And that is because when requests carry no token, they are accepted by default. To reject requests without tokens, provide authorization rules that specify the restrictions for specific operations, for example paths or actions. And that's what will do next.
+
+Create a simple `AuthorizationPolicy` that forces the request to contain a valid `requestPrincipal` (just to avoid confusions with previous labs, it is important to mention that we used `principals` when using workload-to-workload authentication and for this next lab, we will use `requestPrincipals`. More details can be found https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#Source[here]).
+
+Execute:
+
+....
+$ oc process -f $LABS_HOME/lab4/simple-auth-policy.yaml -p INGRESS_GW=$INGRESS_GW -n istio-system | oc apply -f - -n istio-system
+
+authorizationpolicy.security.istio.io/dsanchor-ingress-policy created
+....
+
+If you now test the application again, you will get an `RBAC: access denied` error.
+
+We have to provide a valid JWT token... and the process of getting a token from the OAuth server is out of the scope of Istio. Istio will just verify incoming tokens and will extract the data from the token body, so it can later be used during the authorization phase.
+
+In next lab, we will deploy some utilities on Openshift that will be configured to automatically manage the OAuth flow of getting a valid token against Google's OAuth server, but now, we would like to test what we just did. 
+
+To do so, I will provide a temporal token that can be used for this test. *Please ask if you haven't be given one and export it as $JWT_TOKEN*
+
+Then, test the application using next curl:
+....
+ curl -v -k -H "Authorization: Bearer $JWT_TOKEN" https://${PRODUCTPAGE_HOST}/productpage
+....
+
+Did it work?  Hope so. That means, the token you have provided is valid. 
+
+If you try againg using your web browser (that is, no token is provided), it would fail.

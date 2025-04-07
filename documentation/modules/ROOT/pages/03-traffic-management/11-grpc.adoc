@@ -1,0 +1,171 @@
+= Lab 9 - gRPC Routing
+
+== Introduction
+
+Many new gRPC users are surprised to find that Kubernetes's default load balancing often doesn't work out of the box with gRPC.
+
+gRPC is an increasingly common choice for application developers. Compared to alternative protocols such as JSON-over-HTTP, gRPC can provide some significant benefits, including dramatically lower (de)serialization costs, automatic type checking, formalized APIs, and less TCP management overhead.
+
+However, gRPC also breaks the standard connection-level load balancing, including what's provided by Kubernetes. This is because gRPC is built on HTTP/2, and HTTP/2 is designed to have a single long-lived TCP connection, across which all requests are multiplexed—meaning multiple requests can be active on the same connection at any point in time.
+
+Once the connection is established, there's no more balancing to be done. All requests will get pinned to a single destination pod.
+
+The reason why this problem doesn't occur in HTTP/1.1, which also has the concept of long-lived connections, is because HTTP/1.1 has several features that naturally result in cycling of TCP connections.
+
+Since you can't balance at the connection level, in order to do gRPC load balancing, we need to shift from connection balancing to request balancing. In other words, we need to open an HTTP/2 connection to each destination, and balance requests across these connections. Envoy, included in Istio, knows exactly how to achieve this.
+
+== gRPC demo without Istio
+
+In this lab you are going to deploy a gRPC demo scenario composed in four micro-services.
+
+NOTE: You are going to use a template to deploy the gRPC demo scenario so you are not required to understand the inner workings of the micro-services. If you are still interested, you have more information about this scenario in link:https://github.com/drhelius/grpc-demo[this repo]. 
+
+.gRPC demo in Kiali
+image::grpc_kiali.png[]
+
+First, deploy the gRPC services without Istio to understand the problem.
+
+[source,bash]
+----
+export OCP_GRPCDEMO_HOST="${OCP_USER}.grpc.${OCP_DOMAIN}"
+
+oc process -f lab9/grpc-demo.yaml \
+    -p ACCOUNT_ROUTE="${OCP_GRPCDEMO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc apply -n ${OCP_NAMESPACE} -f -
+----
+
+Wait a few seconds and make sure all services are ready:
+
+[source,bash]
+----
+oc get pods -n ${OCP_NAMESPACE}
+----
+
+.gRPC demo services ready
+image::grpc_ready.png[]
+
+Scale _user_ service to 2 replicas:
+
+[source,bash]
+----
+oc scale --replicas=2 deployment/user-v1.0.0 -n ${OCP_NAMESPACE}
+----
+
+Wait until all replicas are ready:
+
+[source,bash]
+----
+oc get pods -n ${OCP_NAMESPACE}
+----
+
+.user service with two replicas
+image::grpc_ready_replicas.png[]
+
+Now, simulate some traffic with this command:
+
+[source,bash]
+----
+while true; do curl -ksv -o /dev/null "https://${OCP_GRPCDEMO_HOST}/v1/account/01234" ; done
+----
+
+Using the {ocp} web console, check the logs in both _user_ pods. You can see that only one replica is receiving traffic.
+
+.user service logs (replica 1)
+image::grpc_log1.png[]
+
+.user service logs (replica 2)
+image::grpc_log2.png[]
+
+Now that you have checked there is no actual load balancing between _user_ replicas, remove everything:
+
+[source,bash]
+----
+oc process -f lab9/grpc-demo.yaml \
+    -p ACCOUNT_ROUTE="${OCP_GRPCDEMO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc delete -n ${OCP_NAMESPACE} -f -
+----
+
+== gRPC demo with Istio
+
+You are going to test the same scenario but now using Istio. First, deploy the gRPC services and the ingress _Route_:
+
+[source,bash]
+----
+oc process -f lab9/grpc-demo-istio.yaml \
+    -p ACCOUNT_ROUTE="${OCP_GRPCDEMO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc apply -n ${OCP_NAMESPACE} -f -
+----
+
+[source,bash]
+----
+oc process -f lab9/grpc-demo-route-istio.yaml \
+    -p GRPC_ROUTE_NAME="${OCP_USER}-grpc" -p GRPC_ROUTE="${OCP_GRPCDEMO_HOST}" \
+    -n ${OCP_NAMESPACE} \
+    | oc apply -n istio-system -f -
+----
+
+Wait a few seconds and make sure all services are ready:
+
+[source,bash]
+----
+oc get pods -n ${OCP_NAMESPACE}
+----
+
+.gRPC demo services ready
+image::grpc_ready_istio.png[]
+
+Scale _user_ service to 2 replicas:
+
+[source,bash]
+----
+oc scale --replicas=2 deployment/user-v1.0.0 -n ${OCP_NAMESPACE}
+----
+
+Wait until all replicas are ready:
+
+[source,bash]
+----
+oc get pods -n ${OCP_NAMESPACE}
+----
+
+.user service with two replicas
+image::grpc_ready_replicas_istio.png[]
+
+Now, simulate some traffic with this command:
+
+[source,bash]
+----
+while true; do curl -ksv -o /dev/null "https://${OCP_GRPCDEMO_HOST}/v1/account/01234" ; done
+----
+
+Using the {ocp} web console, check the logs in both _user_ pods. Now you can see both replicas receiving traffic.
+
+.user service logs (replica 1)
+image::grpc_log1_istio.png[]
+
+.user service logs (replica 2)
+image::grpc_log2_istio.png[]
+
+In Kiali you can check all the information about the replicas for this service:
+
+.user service in Kiali
+image::grpc_kiali_replicas.png[]
+
+== Remove everything
+
+After you have completed the lab you can remove everything:
+
+[source,bash]
+----
+oc process -f lab9/grpc-demo-istio.yaml \
+    -p ACCOUNT_ROUTE="${OCP_GRPCDEMO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc delete -n ${OCP_NAMESPACE} -f -
+----
+
+[source,bash]
+----
+oc process -f lab9/grpc-demo-route-istio.yaml \
+    -p GRPC_ROUTE_NAME="${OCP_USER}-grpc" -p GRPC_ROUTE="${OCP_GRPCDEMO_HOST}" \
+    -n ${OCP_NAMESPACE} \
+    | oc delete -n istio-system -f -
+----

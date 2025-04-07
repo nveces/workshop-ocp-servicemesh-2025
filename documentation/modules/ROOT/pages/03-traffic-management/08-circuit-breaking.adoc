@@ -1,0 +1,132 @@
+= Lab 6 - Circuit Breaking
+
+== Introduction
+
+In this lab you are going to configure circuit breaking for connections. This is very important for building resilient microservices, since it helps to limit the impact of failures and latency spikes.
+
+You are going to deploy `httpbin` and `fortio` applications for this lab. `httpbin` is an http requests and response service and `fortio` is an application developed by the Istio team to load test microservices. You are going to use it as the client to trigger the circuit breaking configurations.
+
+For the circuit breaking, you are going to use this {dr}:
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: httpbin
+spec:
+  host: httpbin <1>
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  trafficPolicy: <2>
+    connectionPool: <3>
+      tcp: 
+        maxConnections: 1 
+      http:
+        http1MaxPendingRequests: 1 
+        maxRequestsPerConnection: 1
+    outlierDetection: <4>
+      consecutiveErrors: 1
+      interval: 1s
+      baseEjectionTime: 3m
+      maxEjectionPercent: 100
+----
+
+<1> The {dr} is for `httpbin` service, version 1.
+<2> This property lets you create a Traffic Policy for this service.
+<3> You only want a number of connections of 1 TCP connection and 1 HTTP request per connection.
+<4> Here you are checking every second that any host with one error should be ejected from the pool for 3 minutes.
+
+You can do more things like load balancing, ejecting with consecutive 500 errors, and more. If you want to learn more, check the link:https://istio.io/v1.6/docs/reference/config/networking/destination-rule[Destination Rule] page at Istio.
+
+After this, you are going to test the circuit breaking with the `fortio` client.
+
+include::partials/deploy_httpbin.adoc[leveloffset=+1]
+
+== Deploy fortio
+
+Execute the following command:
+
+[source,bash]
+----
+oc apply -f fortio/fortio.yaml -n ${OCP_NAMESPACE}
+----
+
+Verify that you can get to `httpbin` from `fortio`:
+
+[source,bash]
+----
+export FORTIO_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep fortio) <1>
+
+oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load -curl http://httpbin:9080/get <2>
+----
+
+<1> You are creating an environment variable called "FORTIO_POD" to make the tests easier.
+<2> You are doing a single `GET` request inside the `fortio` pod to `httpbin`.
+
+.Fortio check result
+image::fortio-check.png[]
+
+== Test the circuit breaking
+
+=== Apply the {dr}
+
+Execute the following command:
+
+[source,bash]
+----
+oc apply -f lab6/httpbin-dr.yaml -n ${OCP_NAMESPACE}
+----
+
+=== Trigger the circuit breaker
+
+Now lets execute the following command that opens 2 simultaneous connections (`-c 2`) and send 30 requests (`-n 30`).
+
+[source,bash]
+----
+oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load -c 2 -qps 0 -n 30 -loglevel Warning http://httpbin:9080/get
+----
+
+You will get a result similar to this:
+
+.Fortio with 2 connections
+image::fortio-2-30.png[]
+
+You will notice that your results are not the same as the ones in the lab, but generally all requests arrive. This is because the `istio-proxy` is flexible and does not break all requests. 
+
+If you change the connections to 4. You will start seeing that less connections arrive to the `httpbin` service:
+
+[source,bash]
+----
+oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load -c 4 -qps 0 -n 30 -loglevel Warning http://httpbin:9080/get
+----
+
+.Fortio with 4 connections
+image::fortio-4-30.png[]
+
+If you query the `istio-proxy` stats, you can see how many requests were flagged for circuit breaking:
+
+[source,bash]
+----
+oc exec -n ${OCP_NAMESPACE} ${FORTIO_POD} -c istio-proxy -- pilot-agent request GET stats | grep httpbin | grep upstream_rq_pending_overflow
+----
+
+You should get something similar to this:
+
+.Overflow requests
+image::envoy-stats.png[]
+
+Notice that the stats are grouped by the subsets defined in the {dr}. 
+
+== Remove fortio
+
+Execute the following command to remove `fortio` from your namespace:
+
+[source, bash]
+----
+oc delete -f fortio/fortio.yaml -n ${OCP_NAMESPACE}
+----
+
+include::partials/remove_httpbin.adoc[leveloffset=+1]

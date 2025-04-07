@@ -1,0 +1,7 @@
+= Sample Applications
+
+== httpbin
+
+These labs will use _httpbin_ as an HTTP request and response service. It offers many tools to proof test HTTP.
+
+This service is a local version of https://httpbin.org/[window="_blank"]

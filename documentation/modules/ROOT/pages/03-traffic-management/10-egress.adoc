@@ -1,0 +1,237 @@
+= Lab 8 - Egress Gateways
+
+== Introduction
+
+In this lab you are going to learn how to configure {ossm} to access external services from inside the applications.
+
+Because all outbound traffic from an Istio-enabled pod is redirected to its sidecar proxy by default, accessibility of services outside of the cluster depends on the configuration of the proxy.
+
+By default, Istio configures the Envoy proxy to pass through requests for unknown services.
+
+{rhossm} can be configured with a special policy for handling external services, that is, those services that are not defined in Istio’s internal service registry. 
+
+If the policy is in permissive state (by default), the Istio proxy lets calls to unknown services pass through. If the policy is set to a restrictive state, then the Istio proxy blocks any host without a {se} defined within the mesh.
+
+In this lab we have modified the Istio control plane to set the policy to a restrictive state.
+
+== Accessing an external service
+
+At this point you can test wether you can query a service outside the mesh.
+
+For this lab, you are going to use a simple pod based in `ubi:latest` ({rh} Universal Base Image). This pod will be added to the mesh because it will have the Istio sidecar injected. It will be kept running by using a simple _sleep_ command:
+
+[source,yaml]
+----
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubi
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
+      labels:
+        app: ubi
+    spec:
+      containers:
+      - name: ubi
+        image: registry.redhat.io/ubi8/ubi:latest
+        command: ["sleep", "infinity"]
+        imagePullPolicy: IfNotPresent
+----
+
+Then you will use this running pod to run commands inside it, like `curl`, and test wether you can reach outside services or not.
+
+First, deploy this container by executing:
+
+[source,bash]
+----
+oc apply -f ubi/ubi.yaml -n ${OCP_NAMESPACE}
+----
+
+Get the name of the pod:
+
+[source,bash]
+----
+export UBI_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep ubi)
+----
+
+Check if you can query an external service from the _ubi_ pod:
+
+[source,bash]
+----
+oc exec -it ${UBI_POD} -n ${OCP_NAMESPACE} -c ubi -- curl -I https://github.com
+----
+
+.Accessing external service without {se}
+image::egress_without_se.png[]
+
+Ooops, you can't, because {ossm} is configured with a restrictive policy.
+
+== Service Entry
+
+As stated before, in a restrictive state we need to add any external service to Istio's internal registry.
+
+You need to create a {se} for this:
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: github
+spec:
+  hosts:
+  - github.com <1>
+  ports:
+  - number: 443 <2>
+    name: https
+    protocol: HTTPS
+  resolution: DNS
+  location: MESH_EXTERNAL
+  exportTo: [ ".", "istio-system" ] <3>
+----
+<1> The external service
+<2> All necessary ports must be declared
+<3> Limit the {se} to this namesapce and _istio-system_
+
+Execute the following command to create the {se}:
+
+[source,bash]
+----
+oc apply -f lab8/github-serviceentry.yaml -n ${OCP_NAMESPACE}
+----
+
+Now, check again if you can query an external service from the _ubi_ pod:
+
+[source,bash]
+----
+oc exec -it ${UBI_POD} -n ${OCP_NAMESPACE} -c ubi -- curl -I https://github.com
+----
+
+.Accessing external service with {se}
+image::egress_with_se.png[]
+
+So, this is now a controlled way to enable access to external services.
+
+.Kiali external service with {se}
+image::kiali_egress_with_se.png[]
+
+== Egress Gateway
+
+In the previous example the external services are called directly from the client sidecar.
+
+This example shows how to configure Istio to call external services, although this time indirectly via a dedicated {eg} service.
+
+Istio uses Ingress and Egress Gateways to configure load balancers executing at the edge of a service mesh. An {ig} allows you to define entry points into the mesh that all incoming traffic flows through. An {eg} is a symmetrical concept; it defines exit points from the mesh.
+
+{eg}s allow you to apply Istio features, for example, monitoring and route rules, to traffic exiting the mesh.
+
+The first thing you need to configure an {eg} is a {gw} object:
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: github-egress
+spec:
+  selector:
+    istio: egressgateway <1>
+  servers:
+  - hosts:
+      - github.com <2>
+    port:
+      number: 443 <3>
+      name: https
+      protocol: HTTPS
+    tls:
+      mode: PASSTHROUGH <4>
+----
+<1> This will match a label in the {eg} _Deployment_ inside the _istio-system_ control plane.
+<2> The host you want to expose.
+<3> This is the port to use in the {eg}, not to be confused with the target port of the external service.
+<4> In this example you will _pass through_ TLS communications.
+
+Create it with this command:
+
+[source,bash]
+----
+oc apply -f lab8/github-egress-gateway.yaml -n ${OCP_NAMESPACE}
+----
+
+Then, you will have to create a {vs} to direct traffic from the sidecars to the {eg} and from the {eg} to the external service:
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: github-egress
+spec:
+  hosts:
+  - github.com <1>
+  gateways: <2>
+  - github-egress
+  - mesh
+  tls:
+  - match: <3>
+    - gateways:
+      - mesh
+      sniHosts:
+      - github.com
+    route:
+    - destination:
+        host: istio-egressgateway.istio-system.svc.cluster.local
+      weight: 100
+  - match: <4>
+    - gateways:
+      - github-egress
+      sniHosts:
+      - github.com
+    route:
+    - destination:
+        host: github.com
+      weight: 100
+  exportTo: [ ".", "istio-system" ]
+----
+<1> This {vs} will be applied to this host.
+<2> _mesh_ is a reserved word for sidecars. _github-egress_ match the name of the {gw}.
+<3> The first match will route traffic from sidecars to the {eg}.
+<4> The second match is to finally route traffic from the {eg} to the external service.
+
+Create it with this command:
+
+[source,bash]
+----
+oc apply -f lab8/github-egress-virtualservice.yaml -n ${OCP_NAMESPACE}
+----
+
+Now, check again and simulate some traffic with this command:
+
+[source,bash]
+----
+while true; do oc exec -it ${UBI_POD} -n ${OCP_NAMESPACE} -c ubi -- curl -I https://github.com ; done
+----
+
+In Kiali you can see this time that the traffic is going through the {eg}:
+
+.Kiali external service with {eg}
+image::kiali_egress_with_egress.png[]
+
+== Remove everything
+
+Before starting the next lab, remove everything you have created in your namespace:
+
+[source,bash]
+----
+oc delete -f ubi/ubi.yaml -n ${OCP_NAMESPACE}
+oc delete -f lab8/github-serviceentry.yaml -n ${OCP_NAMESPACE}
+oc delete -f lab8/github-egress-gateway.yaml -n ${OCP_NAMESPACE}
+oc delete -f lab8/github-egress-virtualservice.yaml -n ${OCP_NAMESPACE}
+----

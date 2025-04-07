@@ -1,0 +1,9 @@
+= Introduction
+
+The objective of these labs is to get a deep understanding of the following topics:
+
+- Smart traffic routing, shifting and mirroring.
+- Ingress and Egress
+- Fault Injection
+- Fault Tolerance and Circuit Breaking
+- gRPC routing

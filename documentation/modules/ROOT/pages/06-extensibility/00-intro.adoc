@@ -1,0 +1,6 @@
+= Introduction
+
+The objective of these labs is to get a basic understanding of the following topics:
+
+- {efs}
+- {waes}

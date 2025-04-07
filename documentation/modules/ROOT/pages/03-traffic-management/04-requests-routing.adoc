@@ -1,0 +1,130 @@
+= Lab 2 - Requests Routing
+
+== Introduction
+
+Now that you have Bookinfo all set up. Is time to do some requests routing. {ossm} by default routes requests in a round robin manner. But in this case, all requests are going only to version 1 of `reviews` since the {vss} are set that way.
+
+=== Route traffic to a specific version
+
+In this lab we will apply the rules to make all requests go to version 2 of `reviews` so we can see the stars ratings. For that we are going to use the following {vs}:
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: reviews
+spec:
+  hosts:
+  - reviews
+  http:
+  - route:
+    - destination:
+        host: reviews
+        subset: v2 <1>
+----
+
+<1> Note that the only version in the {vs} is the version 2 of the `reviews` service.
+
+You can see that it refers to something called a `subset`. This is the way Istio has to call the different versions of a `service`. You can see the different subsets in the {drs}, like the following one for the `reviews` service:
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  labels:
+    template: bookinfo-template
+  name: reviews
+spec:
+  host: reviews
+  subsets: <1>
+  - labels:
+      version: v1
+    name: v1
+  - labels:
+      version: v2
+    name: v2
+  - labels:
+      version: v3
+    name: v3
+----
+
+<1> As you can see, there are three different subsets that you can reference from a {vs}.
+
+=== Route traffic based on headers
+
+Now let's think that we have a new version for the application and you want to deploy it first to a set of premium users. We are going to see how to do that in this lab where we are going to route the requests from one user in particular to version 3 of the `reviews` service. For that we are going to use the following {vs}:
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: reviews
+spec:
+  hosts:
+  - reviews
+  http:
+  - match:
+    - headers:
+        end-user:
+          exact: pepito <1>
+    route:
+    - destination:
+        host: reviews
+        subset: v3 <2>
+  - route:
+    - destination:
+        host: reviews
+        subset: v2 <3>
+----
+
+<1> Here we say what are we looking for in the header 
+<2> Here we make "pepito" see the version 3 of the `reviews` server. 
+<3> If it does not match the header, the traffic is routed to version 2.
+
+NOTE: This file is located in `lab2/vs-reviews-headers.yaml` so feel free to change "pepito" for another name if you prefer.
+
+include::partials/deploy_bookinfo.adoc[leveloffset=+1]
+
+== Route traffic to version 2
+
+Execute the following command:
+
+[source, terminal]
+----
+oc apply -f lab2/vs-reviews-v2.yaml -n ${OCP_NAMESPACE}
+----
+
+Now check that the product page shows the stars of the ratings visiting https://<user>.bookinfo.<openshift_apps_domain>/productpage with your browser:
+
+.Product Page showing ratings
+image::productpage-v2.png[]
+
+include::partials/kiali_traffic.adoc[leveloffset=+2] 
+
+You should see a graph similar to this:
+
+.Kiali traffic version 2
+image::kiali-traffic-v2.png[]
+
+You see there that all traffic goes to version 2 of the `reviews` service that calls the `ratings` service to get the stars.
+
+== Route traffic based on headers
+
+Execute the following command:
+
+[source, terminal]
+----
+oc apply -f lab2/vs-reviews-headers.yaml -n ${OCP_NAMESPACE}
+----
+
+To test it, click on the _Sign in_ button at the top right of the Product Page and login as "pepito", or the user you editted in the yaml if you decided to do that. You have to write it exactly like in the yaml. And you can type whatever you want in the _Password_ field.
+
+You should see the red stars now:
+
+.Product Page with red stars
+image::productpage-red.png[]
+
+include::partials/remove_bookinfo.adoc[leveloffset=+1]

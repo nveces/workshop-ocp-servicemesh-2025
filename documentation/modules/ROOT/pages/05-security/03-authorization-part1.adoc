@@ -1,0 +1,303 @@
+= Lab 3 - Authorization: part 1
+:author: David Sancho
+:email: dsanchor@redhat.com
+:imagesdir: ./images
+:toc: left
+:toc-title: Authorization: part 1
+
+[Abstract]
+In this workshop, we will have two different authorization related labs. One after we have introduced the `PeerAuthentication` security part that we just did (Lab 2), and then, the second part after seeing the `RequestAuthentication` (Lab 4). 
+
+First part will be about `workload-to-workload` authorization, while the second part will be about `end-user-to-workload`.
+
+In this first part, we will introduce the concept of peer identities (thanks to the mTLS authentication we configured in previous labs) and also, we will set a more wide policy that will enable certain services from $APPS_NS1 to access others in $APPS_NS2.
+
+:numbered:
+== Brief reminder about AuthorizationPolicy
+
+The `AuthorizationPolicy` custom resource is mainly divided in three parts: a selector, an action and a list of rules. 
+
+- The https://istio.io/v1.6/docs/reference/config/networking/sidecar/#WorkloadSelector[selector] field specifies the target of the policy.
+- The https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#AuthorizationPolicy-Action[action] field specifies whether to allow or deny the request.
+- The https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#Rule[rules] specify when to trigger the action
+
+    ** The *from* field in the rules specifies the sources of the request
+    ** The *to* field in the rules specifies the operations of the request
+    ** The *when* field specifies the conditions needed to apply the rule
+
+We will be creating this kind of manifest during the following labs, so in case you have any doubt, please feel free to ask. I also recommend to have a look at the https://istio.io/v1.6/docs/reference/config/security/authorization-policy/[official documentation].
+
+== Deny all policy
+
+Before starting to create 'AuthorizationPolicies' covering different rules and conditions, we will create a 'deny all' policy in both $APPS_NS1  and $APPS_NS2. 
+
+Then content of the `AuthorizationPolicy` is:
+....
+kind: AuthorizationPolicy
+apiVersion: security.istio.io/v1beta1
+metadata:
+  name: deny-all-in-ns
+spec: {}
+....
+
+As per https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#AuthorizationPolicy[doc], the above means:
+
+- if no `selector`, the authorization policy will be applied to all workloads in the same namespace as the authorization policy.  
+- if no `rules`, the match will never occur. This is equivalent to setting a default of deny for the target workloads.
+
+Apply this policy in both namespaces. First, in $APPS_NS1:
+....
+$ oc apply -f $LABS_HOME/lab3/deny-all.yaml -n $APPS_NS1
+
+authorizationpolicy.security.istio.io/deny-all-in-ns created
+....
+
+And then, in $APPS_NS2:
+....
+$ oc apply -f $LABS_HOME/lab3/deny-all.yaml -n $APPS_NS2
+
+authorizationpolicy.security.istio.io/deny-all-in-ns created
+....
+
+Test the application again and see that we get an `RBAC: denied access error`. If you left some test running in the background, you would have a similar graph to the one shown below in `Kiali`:
+
+image:kiali-rbac-error.gif[Kiali RBAC error]
+
+
+We will start now given access gradually to services. 
+
+
+== Allow access from dedicated Ingress Gateway to Productpage service
+
+The first allow policy we will define will be to allow access from your dedicated ingress `Gateway` to your `productpage` services that lives in $APPS_NS1.
+
+We will do so by enabling access only from the identity of your dedicated ingress `Gateway` as a valid `principal`. But... where is that identity coming from? How do I know it? 
+
+The answer is that in the Kubernetes world, https://istio.io/v1.6/docs/concepts/security/#istio-identity[Istio uses an identity] associated to each `ServiceAccount`. Remember that we must have mTLS enabled, so for each caller service, there will be a client certificate present. 
+
+To better understand it, we will set the `rbac` log level to debug in our `productpage` pod and determine what is the value coming in the `source.principal` attribute (which is the attribute that is used to be checked as principal, according to the https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#Source[docs])
+
+Run the following command to set the proper rbac log level:
+....
+$ oc exec -n $APPS_NS1 $(oc get pods -n $APPS_NS1  -o name  | grep productpage) -c istio-proxy -- curl -X POST localhost:15000/logging?rbac=debug
+.... 
+
+NOTE: In last command, we just run `curl -X POST localhost:15000/logging?rbac=debug` on the istio-proxy container within the running `productpage` pod. Envoy exposes an API on port 15000 to manage different admin capabilities. In our case, we use `/logging` to manage logging levels.
+
+And now, open the `istio-proxy` logs of your `productpage` service by running:
+....
+$ oc logs -f -n $APPS_NS1 $(oc get pods -n $APPS_NS1  -o name  | grep productpage) -c istio-proxy
+....
+
+Try to access to the '/productpage' url again to generate some requests to the service and have a look at the log. The output should be similar to:
+....
+2021-04-02T20:44:54.106985Z     debug   envoy rbac      [external/envoy/source/extensions/filters/http/rbac/rbac_filter.cc:74] checking request: requestedServerName: outbound_.9080_.v1_.productpage.dsanchor-1.svc.cluster.local, sourceIP: 10.131.0.26:54774, directRemoteIP: 10.131.0.26:54774, remoteIP: 10.131.0.10:0,localAddress: 10.128.2.24:9080, ssl: uriSanPeerCertificate: spiffe://cluster.local/ns/istio-system/sa/dsanchor-ingress-service-account, dnsSanPeerCertificate: , subjectPeerCertificate: , headers: ':authority', 'productpage-dsanchor-1.apps.labs.sandbox671.opentlc.com'
+':path', '/productpage'
+':method', 'GET'
+'upgrade-insecure-requests', '1'
+'user-agent', 'Mozilla/5.0 (X11; Fedora; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36'
+'accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+'sec-fetch-site', 'none'
+'sec-fetch-mode', 'navigate'
+'sec-fetch-user', '?1'
+'sec-fetch-dest', 'document'
+'accept-encoding', 'gzip, deflate, br'
+'accept-language', 'en-US,en;q=0.9'
+'x-forwarded-for', '10.131.0.10'
+'x-forwarded-proto', 'https'
+'x-request-id', '37de7be8-472b-9ffb-a74b-e01b8254d40e'
+'x-b3-traceid', '76436a774c694719fb36cde29bdfd2ba'
+'x-b3-spanid', 'fb36cde29bdfd2ba'
+'x-b3-sampled', '1'
+'content-length', '0'
+'x-envoy-internal', 'true'
+'x-forwarded-client-cert', 'By=spiffe://cluster.local/ns/dsanchor-1/sa/bookinfo-productpage;Hash=4bb17407ad4127a1e3c08700d081c0fd3700207320be7ee1ddb460c2a273fd70;Subject="";URI=spiffe://cluster.local/ns/istio-system/sa/dsanchor-ingress-service-account'
+, dynamicMetadata: filter_metadata {
+  key: "istio_authn"
+  value {
+    fields {
+      key: "request.auth.principal"
+      value {
+        string_value: "cluster.local/ns/istio-system/sa/dsanchor-ingress-service-account"
+      }
+    }
+    fields {
+      key: "source.namespace"
+      value {
+        string_value: "istio-system"
+      }
+    }
+    fields {
+      key: "source.principal"
+      value {
+        string_value: "cluster.local/ns/istio-system/sa/dsanchor-ingress-service-account"
+      }
+    }
+    fields {
+      key: "source.user"
+      value {
+        string_value: "cluster.local/ns/istio-system/sa/dsanchor-ingress-service-account"
+      }
+    }
+  }
+}
+....
+
+In my example, we see `cluster.local/ns/istio-system/sa/dsanchor-ingress-service-account` in many places (in your case, it will be very similar, you should see your user name instead of dsanchor). One of this places is the `source.principal` attribute. *We got it*.  
+
+As you can tell, the value that will be set as principal when mTLS is enabled will always take the following form:
+
+  cluster.local/ns/<CALLER_NS>/sa/<CALLER_SERVICE_ACCOUNT>
+
+Let's finally configure the `AuthorizationPolicy`. We will first validate what we will be creating for this very first time:
+
+....
+$ oc process -f $LABS_HOME/lab3/allow-ingress-productpage.yaml -p INGRESS_GW=$INGRESS_GW -o yaml -n $APPS_NS1
+....
+
+Review that: 
+
+- You have a proper selector matching the `productpage` service
+- Action is set to `ALLOW`
+- Within `rules`, the `from` must have a valid principal (as we have previously identified) and we allow all paths in `to`.
+
+Finally, apply the resulting `AuthorizationPolicy`:
+....
+$ oc process -f $LABS_HOME/lab3/allow-ingress-productpage.yaml -p INGRESS_GW=$INGRESS_GW -o yaml -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
+
+authorizationpolicy.security.istio.io/allow-ingress-productpage created
+....
+
+Test the application again and you should be able to reach it, although you still won't have access to the `details` and `ratings` services:
+
+image:rbac-productpage.png[Productpage RBAC]
+
+And the following graph can be seen in `Kiali`:
+
+image:kiali-rbac-error-2.gif[Kiali RBAC error]
+
+We are now restricted all services behind the `productpage` service. Let's start activating accesses `workload`  by `workload`.
+
+== Allow access between services using principals
+
+We have now to allow the following service calls:
+
+- `productpage` must be able to access both `details` and `reviews` services.
+- `reviews` service must reach `ratings`.
+
+Let's configure then the required `AuthorizationPolicies`. Feel free to just process the template before applying the changes to understand what we are creating (as we did in previous labs). You can also check the application after applying new policies so you will be able to notice that we are enabling access step by step. 
+
+- To enable access from `productpage` to `details` service.
+
+....
+$ oc process -f $LABS_HOME/lab3/allow-details.yaml -p APPS_NS=$APPS_NS1 -o yaml -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
+
+authorizationpolicy.security.istio.io/allow-details created
+....
+
+- To enable access from `productpage` to `reviews` service.
+
+....
+$ oc process -f $LABS_HOME/lab3/allow-reviews.yaml -p APPS_NS=$APPS_NS1 -o yaml -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
+
+authorizationpolicy.security.istio.io/allow-reviews created
+....
+
+- To enable access from `reviews` to `ratings` service.
+
+....
+$ oc process -f $LABS_HOME/lab3/allow-ratings.yaml -p APPS_NS=$APPS_NS1 -o yaml -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
+
+authorizationpolicy.security.istio.io/allow-ratings created
+....
+
+If you test the application again, everything should work fine:
+
+image:productpage-rbac-ok.png[Productpage RBAC]
+
+And this the `Kiali` graph again where will see all interactions between servies working as expected:
+
+image:kiali-rbac-ok.gif[Kiali RBAC ok]
+
+
+== Extra check: access from independant pod
+
+To ensure and understand that our `AuthorizationPolicies` are working fine, that is, only certain services can call the others, we will deploy an independant pod and try to reach the existing services. 
+
+Deploy a simple `ubi` pod:
+....
+$ oc apply -f $LABS_HOME/lab3/ubi.yaml -n $APPS_NS1
+
+deployment.apps/ubi created
+....
+
+Wait until the `pod` is runnig and ssh into the pod to run certain tests: 
+....
+$ oc rsh -n $APPS_NS1  $(oc get pods -n $APPS_NS1 -o name | grep ubi) 
+
+Defaulting container name to ubi.
+Use 'oc describe pod/ubi-78d69f44c6-ffcdh -n dsanchor-1' to see all of the containers in this pod.
+sh-4.4$ 
+....
+
+Once inside the pod, run the following tests:
+
+- curl -v http://ratings:9080/ratings/0
+- curl -v http://details:9080/details/0
+- curl -v http://reviews:9080/reviews/0
+
+What did you get? All request should have been rejected with a similar response to this:
+....
+< HTTP/1.1 403 Forbidden
+< content-length: 19
+< content-type: text/plain
+< date: Fri, 02 Apr 2021 21:55:16 GMT
+< server: envoy
+< x-envoy-upstream-service-time: 3
+< 
+* Connection #0 to host details left intact
+RBAC: access denied
+....
+
+== Allow access between services from different namespaces
+
+In this lab, we will create a wider policy that will allow any service running in $APPS_NS1 to access service in $APPS_NS2.
+
+Before creating this policy, we will first modify the `productpage` service configuration running in $APPS_NS1 to target the `reviews` service in $APPS_NS2. As we did in `lab 1`, run:
+
+....
+$ oc set env deployment/productpage-v1 -e REVIEWS_HOSTNAME=reviews.$APPS_NS2.svc.cluster.local -n $APPS_NS1
+
+deployment.apps/productpage-v1 updated
+....
+
+Test that the `productpage` service cannot reach the `reviews` service in $APPS_NS2 after the config change:
+
+image:productpage-accesing-ns2.png[RBAC error ns2]
+
+And now, process the following `AuthorizationPolicy` template to check what we will be creating:
+
+....
+$ oc process -f $LABS_HOME/lab3/allow-reviews-from-ns1.yaml -p APPS_NS1=$APPS_NS1 -o yaml -n $APPS_NS2
+....
+
+Have a look at the `.spec.rules.from.source.namespaces` and check if the value is exactly your $APPS_NS1. Also, as we did before, verify that the `selector` is the one expected. This time, we will just allow the `GET` operation in all paths.
+
+If everything looks as expected, apply the changes. Notice that we are creating this manifest in the $APPS_NS2 as it is where our selected workload runs:
+....
+$ oc process -f $LABS_HOME/lab3/allow-reviews-from-ns1.yaml -p APPS_NS1=$APPS_NS1 -n $APPS_NS2 | oc apply -f - -n $APPS_NS2
+
+authorizationpolicy.security.istio.io/allow-reviews-from-ns1 created
+....
+
+And you have to also enable access from `reviews` to `ratings` service within $APPS_NS2 (as we did in $APPS_NS1):
+
+....
+$ oc process -f $LABS_HOME/lab3/allow-ratings.yaml -p APPS_NS=$APPS_NS2 -o yaml -n $APPS_NS2 | oc apply -f - -n $APPS_NS2
+
+authorizationpolicy.security.istio.io/allow-ratings created
+....
+
+Verify that the application works and that you see calls between services from different `namespaces` as shown below:
+
+image:rbac-cross-ns.png[RBAC cross namespaces]

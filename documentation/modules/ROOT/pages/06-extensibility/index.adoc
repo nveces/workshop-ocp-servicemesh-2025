@@ -1,0 +1,15 @@
+include::vars/render-vars.adoc[]
+include::vars/document-vars.adoc[]
+include::vars/redhat-vars.adoc[]
+
+= {rhossm}: Extensibility Labs
+
+include::00-intro.adoc[leveloffset=+1]
+
+include::01-setup.adoc[leveloffset=+1]
+
+include::02-httpbin.adoc[leveloffset=+1]
+
+include::03-envoy-filters.adoc[leveloffset=+1]
+
+include::04-wasm-extensions.adoc[leveloffset=+1]

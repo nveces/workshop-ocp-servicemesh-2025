@@ -1,0 +1,186 @@
+= Lab 1 - Ingress Gateways
+
+== Introduction
+
+An {ig} describes a load balancer operating at the edge of the mesh that receives incoming HTTP/TCP connections. It configures exposed ports, protocols, etc. but, unlike Kubernetes Ingress Resources, does not include any traffic routing configuration. Traffic routing for ingress traffic is instead configured using Istio routing rules, exactly in the same way as for internal service requests.
+
+=== Gateway
+
+The first step to enable a new host in the {ig} is creating a {gw} object.
+
+The {gw} in this lab looks like this:
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: bookinfo-gateway
+spec:
+  selector:
+    istio: ingressgateway <1>
+  servers:
+  - port: <2>
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - ${PRODUCTPAGE_ROUTE}
+----
+
+<1> Note the _selector_ matching the {ig} deployment.
+<2> Also note that we are creating a listener in port 80 using the desired host for our {ocp} {r}.
+
+=== Virtual Service
+
+Next, we need to route traffic from the {ig} to the desired service. In Bookinfo we want users to reach the _productpage_ service.
+
+With this {vs} we are routing traffic from the {ig} to _productpage_ service in port 9080, where the service is listening.
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: bookinfo
+spec:
+  hosts:
+  - ${PRODUCTPAGE_ROUTE}
+  gateways:
+  - bookinfo-gateway <1>
+  http:
+  - route:
+    - destination: <2>
+        host: productpage
+        port:
+          number: 9080
+----
+
+<1> Note that the _gateways_ field matches the name of the {gw} created before.
+<2> We want to route from the {ig} to the _productpage_ service at port 9080
+
+=== Route
+
+The last step is exposing the {ig} using an {ocp} {r}:
+
+[source,yaml]
+----
+- kind: Route
+  apiVersion: route.openshift.io/v1
+  metadata:
+    name: ${PRODUCTPAGE_ROUTE_NAME}
+  spec:
+    host: ${PRODUCTPAGE_ROUTE}
+    to:
+      kind: Service
+      name: istio-ingressgateway
+      weight: 100
+    port:
+      targetPort: http2
+    tls:
+      termination: edge
+----
+
+This {r} will "listen" in the desired host and redirect traffic to the {ig}.
+
+It is important to remember that this {r} must be created in the {ossm} Control Plane namespace. In this lab this namespace is `istio-system`.
+
+== Deploy Bookinfo using an {ig}
+
+The following steps will deploy all necessary objects to run Bookinfo in {ossm}.
+
+The {gw}, {vs} and {r} described before will also be created. Take a look at the `bookinfo/bookinfo.yaml` and `bookinfo/bookinfo-route.yaml` files to understand what objects are being created.
+
+Deploy the application in your namespace:
+
+[source,bash]
+----
+oc process -f bookinfo/bookinfo.yaml \
+    -p PRODUCTPAGE_ROUTE="${OCP_BOOKINFO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc apply -n ${OCP_NAMESPACE} -f -
+----
+
+As described before, we will create a route in the `istio-system` namespace to expose the _productpage_ service through an Ingress Gateway:
+
+[source,bash]
+----
+oc process -f bookinfo/bookinfo-route.yaml \
+    -p PRODUCTPAGE_ROUTE_NAME="${OCP_USER}-productpage" -p PRODUCTPAGE_ROUTE="${OCP_BOOKINFO_HOST}" \
+    -n ${OCP_NAMESPACE} \
+    | oc apply -n istio-system -f -
+----
+
+Wait some seconds for all the pods to be ready:
+
+[source,bash]
+----
+watch oc get pods -n ${OCP_NAMESPACE}
+----
+
+Verify that the application is reachable and is running ok:
+
+[source,bash]
+----
+curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage"
+----
+
+.Bookinfo productpage service working
+image::bookinfo_curl.png[]
+
+include::partials/kiali_traffic.adoc[leveloffset=+1]
+
+Now, this is how the {ig} looks like in Kiali:
+
+.Bookinfo productpage service through an {ig}
+image::ingress_bookinfo.png[]
+
+include::partials/remove_bookinfo.adoc[leveloffset=+2]
+
+== Deploy httpbin using an {ig}
+
+In the same way as with the Bookinfo _productpage_ service, the following steps will deploy all necessary objects to run _httpbin_ in {ossm}.
+
+A {gw}, {vs} and {r} for the {ig} will also be created. Take a look at the `httpbin/httpbin.yaml` and `httpbin/httpbin-route.yaml` files to understand what objects are being created.
+
+Deploy the application in your namespace:
+
+[source,bash]
+----
+oc process -f httpbin/httpbin.yaml \
+    -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
+    | oc apply -n ${OCP_NAMESPACE} -f -
+----
+
+As described in Bookinfo, we will create a route in the `istio-system` namespace to expose the _httpbin_ service through an Ingress Gateway:
+
+[source,bash]
+----
+oc process -f httpbin/httpbin-route.yaml \
+    -p HTTPBIN_ROUTE_NAME="${OCP_USER}-httpbin" -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" \
+    -n ${OCP_NAMESPACE} \
+    | oc apply -n istio-system -f -
+----
+
+Wait some seconds for all the pods to be ready:
+
+[source,bash]
+----
+watch oc get pods -n ${OCP_NAMESPACE}
+----
+
+Verify that the application is reachable and is running ok:
+
+[source,bash]
+----
+curl -s -kI "https://${OCP_HTTPBIN_HOST}"
+----
+
+.httpbin service working
+image::httpbin_curl.png[]
+
+.httpbin service through an {ig}
+image::ingress_httpbin.png[]
+
+include::partials/remove_httpbin.adoc[leveloffset=+2]
+
+

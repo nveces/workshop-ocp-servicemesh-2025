@@ -1,0 +1,34 @@
+= Welcome to Red Hat Service Mesh: Troubleshooting tutorial
+:page-layout: home
+:author: Ernesto Gonzalez / Asier Cidon
+:email: ergonzal@redhat.com / acidonpe@redhat.com
+:imagesdir: ./images
+:toc: left
+:toc-title: Service Mesh Troubleshooting 
+
+image:logos.png[Envoy,600,200]
+
+== Introduction
+
+The general idea of _Red Hat Service Mesh: Troubleshooting_ tutorial is to get a deep understanding of the following points:
+
+- Service Mesh Communication Flows
+- Ingress Traffic Troubleshooting
+- Secure Ingress Traffic Troubleshooting
+- Egress Traffic Troubleshooting
+- Secure Egress Traffic Troubleshooting
+- Troubleshooting Tools
+
+include::01-setup.adoc[]
+
+include::02-jumpapp.adoc[]
+
+include::03-flows.adoc[]
+
+include::04-ingress-traffic.adoc[]
+
+include::05-secure-ingress-traffic.adoc[]
+
+include::06-egress-traffic.adoc[]
+
+include::07-tools.adoc[]

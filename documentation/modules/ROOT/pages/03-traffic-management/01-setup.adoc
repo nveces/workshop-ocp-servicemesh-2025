@@ -1,0 +1,154 @@
+= Setup
+
+== Prerequisites
+
+During this tutorial, it will be required to work with different tools for running the exercises included. Please, install the following software:
+
+[cols="5*^,5*.",options="header,+attributes"]
+|===
+|**Tool**|**Fedora**|**macOS**|**windows**|**Official Documentation**
+| oc
+| https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz[Download]
+| https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-mac.tar.gz[Download]
+| https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-windows.zip[Download]
+| https://docs.openshift.com/container-platform/4.7/cli_reference/openshift_cli/getting-started-cli.html[OpenShift CLI - Docs]
+| git
+| https://git-scm.com/download/linux[Download]
+| https://git-scm.com/download/mac[Download]
+| https://git-scm.com/download/win[Download]
+| https://git-scm.com[Git - Docs]
+|===
+
+IMPORTANT: You must have an up-to-date version of the _oc_ command.
+
+== Laboratory
+
+This laboratory is based on the following technologies:
+
+- {rhocp}
+- {rhossm} based on _Istio_
+
+The previous technologies and resources will allow you to implement a microservice-based application in {ocp} which will be included in Service Mesh. The main objective of deploying this application in {ocp} is to understand how to setup routing scenarios in {ossm}.
+
+=== Laboratory Parameters
+
+The Instructor will provide users with the {ocp} credentials and other important parameters at the beginning of this lab. 
+
+[cols="3*^,3*.",options="header,+attributes"]
+|===
+|**Name**|**Reference**|**Example**
+| OpenShift API (used with _oc_ CLI)
+| <ocp_cluster_api>
+| _https://api.labs.sandbox1293.opentlc.com:6443_
+| OpenShift Web Console
+| <ocp_cluster_console>
+| _https://console-openshift-console.apps.labs.sandbox1293.opentlc.com_
+| Username
+| <user>
+| _user1_
+| Password
+| <pass>
+| _P4ssw0rd_
+| Namespace
+| <user_namespace>
+| _user1-namespace_
+| OpenShift Apps Domain
+| <openshift_apps_domain>
+| _apps.labs.sandbox1293.opentlc.com_
+| Kiali Url
+| <kiali_url>
+| _https://kiali-istio-system.apps.labs.sandbox1293.opentlc.com_
+|===
+
+IMPORTANT: The labs will reference these parameters. You will need to replace the referenced parameters with the correct values.
+
+For simplicity, the commands in these labs will use environment variables. Make sure you export the environment variables in your shell before running any command, replacing the placeholders with the values provided to you:
+
+[source,bash]
+----
+export OCP_USER="<user>"
+export OCP_PASSWORD="<pass>"
+export OCP_NAMESPACE="${OCP_USER}-namespace"
+export OCP_API="<ocp_cluster_api>"
+export OCP_DOMAIN="<openshift_apps_domain>"
+export OCP_BOOKINFO_HOST="${OCP_USER}.bookinfo.${OCP_DOMAIN}"
+export OCP_HTTPBIN_HOST="${OCP_USER}.httpbin.${OCP_DOMAIN}"
+----
+
+For example:
+
+[source,bash]
+----
+export OCP_USER="user1"
+export OCP_PASSWORD="P4ssw0rd"
+export OCP_NAMESPACE="${OCP_USER}-namespace"
+export OCP_API="https://api.labs.sandbox1293.opentlc.com:6443"
+export OCP_DOMAIN="apps.labs.sandbox1293.opentlc.com"
+export OCP_BOOKINFO_HOST="${OCP_USER}.bookinfo.${OCP_DOMAIN}"
+export OCP_HTTPBIN_HOST="${OCP_USER}.httpbin.${OCP_DOMAIN}"
+----
+
+IMPORTANT: From now on, all labs will assume these exports are defined in your shell environment.
+
+=== OpenShift CLI
+
+The {ocp} CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system. 
+
+Make sure you can connect to the cluster executing the next command in your terminal:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc login -u ${OCP_USER} -p ${OCP_PASSWORD} ${OCP_API}
+----
+
+.{rhocp} CLI login
+image::oc_login_output.png[]
+
+TIP: Please, pay special attention to the _oc_ tool as you will need to use it several times during these labs.
+
+Make sure you are working in your namespace:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc project ${OCP_NAMESPACE}
+----
+
+=== Web Console
+
+In addition, you can access the {ocp} Web Console using via web browser, use your credentials to login:
+
+- <ocp_cluster_console> (_E.g. https://console-openshift-console.apps.labs.sandbox1420.opentlc.com_)
+
+.{rhocp} Web Console login
+image::ocp_console.png[]
+
+== GiHub Repository
+
+All files used in the labs are located in a GitHub repository for your convenience.
+
+Follow the next steps in order to clone the repository:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+git clone https://github.com/drhelius/ossm-traffic-management.git
+----
+
+.{rhocp} Git clone output
+image::git_clone_output.png[]
+
+Navigate to the new directory created in your system:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+cd ossm-traffic-management
+----
+
+IMPORTANT: From now on, all labs will assume you are located in this directory.

@@ -1,0 +1,120 @@
+= Lab 0 - Warming up
+:author: David Sancho
+:email: dsanchor@redhat.com
+:imagesdir: ./images
+:toc: left
+:toc-title: Lab 0 - Warming up
+
+[Abstract]
+
+WARNING: This is not a recommended practices guide nor intended to serve as a reference. These series of labs are oriented in such a way that you will have a first contact to the main concepts of Openshift Service Mesh and Istio *security topics*.
+
+
+In this preparation lab, we are going to get the `oc` cli binary and validate that all necessary requirements are successfully accomplished before starting the series of labs. 
+
+Along these labs, you will refer to a list of variables that have been shared with you before starting the labs. If this is not your case, please let us know. 
+
+These variables are:
+
+- *$OCP_CONSOLE*: url for accessing to the Openshift web console
+- *$OCP_API*: Openshift API endpoint. We will use this endpoint when accesing the cluster from the `oc` cli.
+- *$USER*: your private user id used for Openshift authentication
+- *$PASSWORD*:  your secret password used for Openshift authentication
+- *$APPS_NS1* and *$APPS_NS2* : namespaces where you will deploy your apps during the whole series of labs. Ex: `dsanchor-1` and `dsanchor-2`
+- *$SERVICE_MESH_NS*: namespace of the Istio Control Plane you will be using. This time, there will be only a single control plane shared by all: `istio-system`.
+- *$KIALI_CONSOLE*: each Service Mesh will have their own console. Use this url to access to the `Kiali console`.
+- *$INGRESS_GW*: every user will have a dedicated Ingress Gateway to manage his/her ingress traffic. Ex: `dsanchor-ingress`
+- *$PRODUCTPAGE_HOST*: external domain for the productpage service. Ex: `productpage-dsanchor-1.apps.labs.sandbox671.opentlc.com`
+
+
+Feel free to export these variables in your environment.
+
+There is also a list of files needed to run the labs. These files can be found in the following github repository:
+
+https://github.com/dsanchor/service-mesh-security
+
+Clone the repository to your desired location, that will then be referred as *$LABS_HOME* during the labs:
+
+....
+$ git clone https://github.com/dsanchor/service-mesh-security.git $LABS_HOME
+....
+
+:numbered:
+== Access to Openshift Web Console
+
+Use the `*$OCP_CONSOLE*` url to acces the Openshift Web Console. 
+
+A login screen will be shown as follow:
+
+image:login.png[login]
+
+Enter your `username` and `password` and click `Log In`.
+
+If you have successfully logged in, you will arrive to the main dashboard with your current projects. As seen below, you should have access to 3 namespaces, `istio-system`, `yournamespace-1` and `yournamespace-2`:
+
+image:projects.png[Projects] 
+
+It is time to get the Openshift CLI binaries for your specific OS. 
+
+=== Download the CLI 
+
+On the top-right (?) menu, click on `Command line tools`:
+
+image:menu-clt.png[command-line-tools]
+
+Then, choose the binaries according to your OS:
+
+image:cli-download-options.png[cli-download-options]
+
+Extract the binaries and try it by executing the following:
+
+....
+$ oc version
+
+Client Version: 4.7.5
+Server Version: 4.7.5
+Kubernetes Version: v1.20.0+bafe72f
+
+....
+
+The above is an example of what you should get when running the command.
+
+=== Access to Openshift using `oc`
+
+Once we have the `oc` cli tool installed, we will first log in into the platform by running:
+
+_Notice that we are using the $VARS we mentioned at the beggining of the labs. If you have not exported them, you will need to manually replace them below._
+
+....
+$ oc login -u $USER -p $PASSWORD $OCP_API
+
+Login successful.
+
+You have access to the following projects and can switch between them with ' project <projectname>':
+
+  * istio-system
+    dsanchor-1
+    dsanchor-2
+
+Using project "istio-system".
+....
+
+
+== Access to Service Mesh Console: Kiali
+
+Use the `*$KIALI_CONSOLE*` url to acces the Service Mesh Web Console. 
+
+A login screen will be shown as follow:
+
+image:kiali-login.png[Kiali login]
+
+Enter your `username` and `password` and click `Log In`.
+
+If you have successfully logged in, you will arrive to the main dashboard where you will see the main `Service Mesh Control Plane` namespace and your two `Apps namespaces`:
+
+
+image:kiali-projects.png[Kiali mesh and namespaces]
+
+Notice that this time, your two `Apps namespaces` are already part of the mesh, that is, we simply added the `ServiceMeshMember` for you, as you have done this task many times in previous labs.
+
+We can now start deploying applications into our project so we are then ready to start securing them. 

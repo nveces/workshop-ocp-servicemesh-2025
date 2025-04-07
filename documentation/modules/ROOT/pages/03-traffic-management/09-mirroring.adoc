@@ -1,0 +1,59 @@
+= Lab 7 - Mirroring and Dark Launches
+
+== Introduction
+
+Traffic mirroring, also called shadowing, is a powerful concept that allows feature teams to bring changes to production with as little risk as possible.
+
+Mirroring sends a copy of live traffic to a mirrored service. The mirrored traffic happens out of band of the critical request path for the primary service.
+
+In this lab, you will first force all traffic to _reviews:v1_ service. Then, you will apply a rule to mirror a portion of traffic to _reviews:v2_.
+
+include::partials/deploy_bookinfo.adoc[leveloffset=+1]
+
+== Mirroring traffic to v2
+
+The following {vs} sends 100% of the traffic to _reviews:v1_. The last stanza specifies that you want to mirror to the _reviews:v2_ service:
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: reviews
+spec:
+  hosts:
+  - reviews
+  http:
+  - route:
+    - destination:
+        host: reviews
+        subset: v1
+      weight: 100
+    mirror:
+      host: reviews
+      subset: v2
+    mirrorPercentage:
+      value: 10.0 <1>
+----
+
+<1> You can use the _mirrorPercentage_ field to mirror a fraction of the traffic, instead of mirroring all requests. If this field is absent, for compatibility with older versions, all traffic will be mirrored. In this example, only the 10% of the traffic will be sent to the mirror service.
+
+When traffic gets mirrored, the requests are sent to the mirrored service with their Host/Authority headers appended with _-shadow_. For example, _cluster-1_ becomes _cluster-1-shadow_.
+
+Also, it is important to note that these requests are mirrored as "_fire and forget_", which means that the responses are discarded.
+
+Apply the {vs} with this command:
+
+[source, bash]
+----
+oc apply -f lab7/vs-reviews-mirroring.yaml -n ${OCP_NAMESPACE}
+----
+
+include::partials/kiali_traffic_loop.adoc[leveloffset=+2]
+
+Check the results in Kiali:
+
+.Kiali traffic mirroring to reviews:v2 service
+image::kiali-mirroring.png[]
+
+include::partials/remove_bookinfo.adoc[leveloffset=+1]

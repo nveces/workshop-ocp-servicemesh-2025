@@ -1,0 +1,146 @@
+= Lab 3 - Traffic Shifting and Weight Balancing
+
+== Introduction
+
+In this lab you will learn how to gradually migrate traffic from one version of a service to another. 
+
+For example, you might migrate traffic from an older version to a new version. In this example you will use _reviews:v1_ service as the old version and _reviews:v2_ service as the new version.
+
+First you will deploy Bookinfo and then you will configure a sequence of rules that send 90% of traffic to _reviews:v1_ and 10% to _reviews:v2_. Then, you will continue the migration by sending 50% of traffic to each service and, finally, complete the migration sending 100% of the traffic to _reviews:v2_.
+
+In this lab you will use 2 versions of the same service but you could create more complex routing rules weigth-balancing between many different versions of the same service or even different services.
+
+include::partials/deploy_bookinfo.adoc[leveloffset=+1]
+
+== Route 10% of the traffic to a new service
+
+The first modification to the _reviews_ {vs} to add a 90/10 routing rule looks like this:
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: reviews
+spec:
+  hosts:
+  - reviews
+  http:
+  - route:
+    - destination:
+        host: reviews
+        subset: v1
+      weight: 90 <1>
+    - destination:
+        host: reviews
+        subset: v2
+      weight: 10 <2>
+----
+
+<1> 90% traffic to _reviews:v1_
+<2> 10% traffic to _reviews:v2_
+
+Note that the sum of weights across destinations should be == 100. If there is only one destination in a rule, the weight value is assumed to be 100.
+
+You can apply it with the following command:
+
+[source, bash]
+----
+oc apply -f lab3/vs-reviews-shifting-90-10.yaml -n ${OCP_NAMESPACE}
+----
+
+include::partials/kiali_traffic_loop.adoc[leveloffset=+2]
+
+Make sure you select _Request Percentage_ in the _Show Edge Labels_ display options in Kiali:
+
+.Kiali Request Percentage
+image::kiali_percentage.png[]
+
+Check the results:
+
+.Kiali traffic shifting 90/10
+image::kiali-shifting-90-10.png[]
+
+== Route half the traffic to each service
+
+The _reviews_ {vs} to add a 50/50 routing rule will look like this:
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: reviews
+spec:
+  hosts:
+  - reviews
+  http:
+  - route:
+    - destination:
+        host: reviews
+        subset: v1
+      weight: 50 <1>
+    - destination:
+        host: reviews
+        subset: v2
+      weight: 50 <2>
+----
+
+<1> 50% traffic to _reviews:v1_
+<2> 50% traffic to _reviews:v2_
+
+You can apply it with the following command:
+
+[source, bash]
+----
+oc apply -f lab3/vs-reviews-shifting-50-50.yaml -n ${OCP_NAMESPACE}
+----
+
+include::partials/kiali_traffic_loop.adoc[leveloffset=+2]
+
+.Kiali traffic shifting 50/50
+image::kiali-shifting-50-50.png[]
+
+== Route all the traffic to the new service
+
+The _reviews_ {vs} to add a 100% routing rule to the new service will look like this:
+
+[source,yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: reviews
+spec:
+  hosts:
+  - reviews
+  http:
+  - route:
+    - destination:
+        host: reviews
+        subset: v1
+      weight: 0 <1>
+    - destination:
+        host: reviews
+        subset: v2
+      weight: 100 <2>
+----
+
+<1> 0% traffic to _reviews:v1_
+<2> 100% traffic to _reviews:v2_
+
+Note that we could have omitted the _reviews:v1_ _destination_ altogether as it is not receiving any traffic at all.
+
+You can apply it with the following command:
+
+[source, bash]
+----
+oc apply -f lab3/vs-reviews-shifting-0-100.yaml -n ${OCP_NAMESPACE}
+----
+
+include::partials/kiali_traffic_loop.adoc[leveloffset=+2]
+
+.Kiali traffic shifting 0/100
+image::kiali-shifting-0-100.png[]
+
+include::partials/remove_bookinfo.adoc[leveloffset=+1]
