@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lab 3 - Service Mesh Communication Flows :: WorkShop - Service Mesh on OCP 2025</title>
+    <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/04-troubleshooting/03-flows.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
+          src="../../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://nveces.github.io/workshop-ocp-servicemesh-2025">WorkShop - Service Mesh on OCP 2025</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Books</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">CheatSheets</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">CheatSheet A</a>
+            <a class="navbar-item" href="#">CheatSheet B</a>
+            <a class="navbar-item" href="#">CheatSheet C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Upcoming Events</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Event A</a>
+            <a class="navbar-item" href="#">Event B</a>
+            <a class="navbar-item" href="#">Event C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Tutorial A</a>
+            <a class="navbar-item" href="#">Tutorial B</a>
+            <a class="navbar-item" href="#">Tutorial C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="workshop-ocp-servicemesh-2025" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../01-setup.html">1. Setup</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#prerequisite">Prerequisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#minikube">Setup Minikube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../02-deploy.html">2. Deploy Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-deploy.html#package">Build Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-deploy.html#deploy">Deploy Dervice</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#introduction/index.adoc">3. Introduction - Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction/index.adoc#_lab_0_warming_up">Lab 0 - Warming up</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction/index.adoc#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">WorkShop - Service Mesh on OCP 2025</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">WorkShop - Service Mesh on OCP 2025</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></li>
+    <li><a href="03-flows.html">Lab 3 - Service Mesh Communication Flows</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/nveces/workshop-ocp-servicemesh-2025/edit/master/documentation/modules/ROOT/pages/04-troubleshooting/03-flows.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Lab 3 - Service Mesh Communication Flows</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Service Mesh Communication Flows</div>
+<ul class="sectlevel1">
+<li><a href="#memberrol">1. Added a new project to Red Hat Service Mesh Control Plane</a></li>
+<li><a href="#create">2. Create Red Hat Service Mesh Traffic Flow objects</a>
+<ul class="sectlevel2">
+<li><a href="#gw">2.1. Gateways</a></li>
+<li><a href="#vsvc">2.2. Virtual Services</a></li>
+<li><a href="#dr">2.3. Destination Rules</a></li>
+<li><a href="#services">2.4. K8s Services</a></li>
+</ul>
+</li>
+<li><a href="#finalsteps">3. Final Steps</a>
+<ul class="sectlevel2">
+<li><a href="#annotation">3.1. Add <em>Istio Sidecar</em> annotation in <em>Jump App</em> deployments</a></li>
+<li><a href="#routes">3.2. Configure Routes</a></li>
+</ul>
+</li>
+<li><a href="#03-test">4. Confirm <em>Jump App</em> is running again</a></li>
+<li><a href="#03-kiali">5. Visit Kiali</a></li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="memberrol"><a class="anchor" href="#memberrol"></a>1. Added a new project to Red Hat Service Mesh Control Plane</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The ServiceMeshMemberRoll lists the projects belonging to the control plane. Only projects listed in the ServiceMeshMemberRoll are affected by the control plane.</p>
+</div>
+<div class="paragraph">
+<p>In order to add this new project to the Service Mesh and make the traffic between each microservice possible, it is required to create a new <em>ServiceMeshMember</em> object.</p>
+</div>
+<div class="paragraph">
+<p>Please, create the previous object through the respective Openshift template executing the following command:</p>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/oc_process_apply.adoc[]</p>
+</div>
+<div class="paragraph">
+<div class="title"><em>ServiceMeshMember</em> Created</div>
+<p><span class="image unresolved"><img src="jump-app-ns-smr.png" alt="jump app ns smr"></span></p>
+</div>
+<div class="paragraph">
+<p>Additionally, you are able to check this new object through the Openshift Console:</p>
+</div>
+<div class="paragraph">
+<div class="title"><em>ServiceMeshMember</em> Created Console- 1</div>
+<p><span class="image unresolved"><img src="jump-app-ns-smr-con1.png" alt="jump app ns smr con1"></span>
+.<em>ServiceMeshMember</em> Created Console - 2
+<span class="image unresolved"><img src="jump-app-ns-smr-con2.png" alt="jump app ns smr con2"></span>
+.<em>ServiceMeshMember</em> Created Console - 3
+<span class="image unresolved"><img src="jump-app-ns-smr-con3.png" alt="jump app ns smr con3"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="create"><a class="anchor" href="#create"></a>2. Create Red Hat Service Mesh Traffic Flow objects</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to make an application available through Service Mesh, it is required to create a set of Service Mesh objects related to the traffic flow:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Gateways - Describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections (Please, visit this link <a href="https://istio.io/v1.16/docs/concepts/traffic-management/#gateways">Gateways</a> for more information about <em>gateways</em>)</p>
+</li>
+<li>
+<p>Virtual Services - Defines a set of traffic routing rules to apply when a host is addressed (Please, visit this link <a href="https://istio.io/v1.16/docs/concepts/traffic-management/#virtual-services">Virtual Services</a> for more information about <em>virtual services</em>)</p>
+</li>
+<li>
+<p>Destination Rules - Defines policies that apply to traffic intended for a service after routing has occurred (Please, visit this link <a href="https://istio.io/v1.16/docs/concepts/traffic-management/#destination-rules">Destination Rules</a> for more information about <em>destination rules</em>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In this step, you have to be able to deploy these <em>Jump App</em> Service Mesh objects in order to introduce this application in the Service Mesh and publish it to external clients.</p>
+</div>
+<div class="sect2">
+<h3 id="gw"><a class="anchor" href="#gw"></a>2.1. Gateways</h3>
+<div class="paragraph">
+<p>First of all, it is required to create a Gateway for external access. In the <em>Jump App</em> architecture, you have a couple of services which have to be exposed to external clients in order to present the Frontend and Backend services.</p>
+</div>
+<div class="paragraph">
+<p>Please, return to git repository and create <strong>gateways</strong> through the respective Openshift template executing the following command:</p>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/oc_process_apply.adoc[]</p>
+</div>
+<div class="paragraph">
+<div class="title">Gateways Created</div>
+<p><span class="image unresolved"><img src="jump-app-gws-ok.png" alt="jump app gws ok"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="vsvc"><a class="anchor" href="#vsvc"></a>2.2. Virtual Services</h3>
+<div class="paragraph">
+<p>Once gateways are created and the application is reachable, it is time to create the traffic rules inside your namespace in order to route this traffic to the specific endpoint.</p>
+</div>
+<div class="paragraph">
+<p>Please, create new <strong>virtual services</strong> through the respective Openshift template executing the following command:</p>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/oc_process_apply.adoc[]</p>
+</div>
+<div class="paragraph">
+<div class="title">Virtual Services Created</div>
+<p><span class="image unresolved"><img src="jump-app-vss-ok.png" alt="jump app vss ok"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dr"><a class="anchor" href="#dr"></a>2.3. Destination Rules</h3>
+<div class="paragraph">
+<p>Once previous objects are created, it is required  to define the policies which will be applied to traffic intended for a service after routing has occurred.</p>
+</div>
+<div class="paragraph">
+<p>Please, create new <strong>destination rules</strong> through the respective Openshift template executing the following command:</p>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/oc_process_apply.adoc[]</p>
+</div>
+<div class="paragraph">
+<div class="title">Destination Rules Created</div>
+<p><span class="image unresolved"><img src="jump-app-drs-ok.png" alt="jump app drs ok"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="services"><a class="anchor" href="#services"></a>2.4. K8s Services</h3>
+<div class="paragraph">
+<p>Once you have created gateways, virtual services and destination rules, it is time to include a specific annotation in your app deployments in order to allow Service Mesh control and run the respective envoy sidecar automatically.</p>
+</div>
+<div class="paragraph">
+<p>Please, create new <strong>k8s services</strong> through the respective Openshift template executing the following command:</p>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/oc_process_apply.adoc[]</p>
+</div>
+<div class="paragraph">
+<div class="title">k8s Services Created</div>
+<p><span class="image unresolved"><img src="jump-app-svcs-ok.png" alt="jump app svcs ok"></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="finalsteps"><a class="anchor" href="#finalsteps"></a>3. Final Steps</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="annotation"><a class="anchor" href="#annotation"></a>3.1. Add <em>Istio Sidecar</em> annotation in <em>Jump App</em> deployments</h3>
+<div class="paragraph">
+<p>Once traffic flow objects are created and your namespace is included as a member in the Service Mesh Control Plane, it is time to include a specific annotation in your app deployments in order to allow Service Mesh control and run the respective envoy sidecar automatically.</p>
+</div>
+<div class="paragraph">
+<p>Please, edit each <em>Jump App Microservice</em> deployment executing the commands added below:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc patch deployment front-javascript-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n $USER_NAMESPACE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Front Patched</div>
+<p><span class="image unresolved"><img src="jump-app-front-depl-patch.png" alt="jump app front depl patch"></span></p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc patch deployment back-springboot-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n $USER_NAMESPACE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Back Springboot Patched</div>
+<p><span class="image unresolved"><img src="jump-app-back-spb-depl-patch.png" alt="jump app back spb depl patch"></span></p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc patch deployment back-python-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n $USER_NAMESPACE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Back Python Patched</div>
+<p><span class="image unresolved"><img src="jump-app-back-py-depl-patch.png" alt="jump app back py depl patch"></span></p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc patch deployment back-golang-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n $USER_NAMESPACE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Back Golang Patched</div>
+<p><span class="image unresolved"><img src="jump-app-back-go-depl-patch.png" alt="jump app back go depl patch"></span></p>
+</div>
+<div class="paragraph">
+<p>Before continuing with the following steps, please test Jump App <em>pods</em> status, in order to be sure that 2 replicas are running for each microservice:</p>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/check_jumpapp_mesh_pod.adoc[]</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="routes"><a class="anchor" href="#routes"></a>3.2. Configure Routes</h3>
+<div class="paragraph">
+<p>An OpenShift Container Platform <strong>route</strong> exposes a service at a host name, such as www.example.com, so that external clients can reach it by name. When you manage routes outside Service Mesh, it is required to create these objects in each namespace.</p>
+</div>
+<div class="paragraph">
+<p>Once you have a project integrated in Service Mesh, routes should be created in istio-system, or wherever the control plane is installed, to make this external service available through the Istio Ingress Gateway. For this reason, it is required to follow the next steps:</p>
+</div>
+<div class="sect3">
+<h4 id="_delete_all_current_routes_in_user_namespace"><a class="anchor" href="#_delete_all_current_routes_in_user_namespace"></a>3.2.1. Delete all current routes in &lt;user_namespace&gt;</h4>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n $USER_NAMESPACE | grep -v NAME | awk '{print "oc delete route " $1 " -n $USER_NAMESPACE"}' | sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Routes Deleted</div>
+<p><span class="image unresolved"><img src="jump-app-route-del.png" alt="jump app route del"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_create_a_new_routes_in_istio_system"><a class="anchor" href="#_create_a_new_routes_in_istio_system"></a>3.2.2. Create a new routes in istio-system</h4>
+<div class="paragraph">
+<p>Once "regular" routes are deleted, it is required to create the new ones.</p>
+</div>
+<div class="paragraph">
+<p>Please, create new <strong>routes</strong> in <strong>istio-system</strong> namespace through the respective Openshift template executing the following command:</p>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/oc_process_create.adoc[]</p>
+</div>
+<div class="paragraph">
+<div class="title">Mesh Routes Created</div>
+<p><span class="image unresolved"><img src="jump-app-routes-mesh-ok.png" alt="jump app routes mesh ok"></span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="03-test"><a class="anchor" href="#03-test"></a>4. Confirm <em>Jump App</em> is running again</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once <em>Jump App</em> objects have been created in Openshift, it is required to follow the next steps in order to ensure your demo app is running properly:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Look at the number of containers in each microservice, it must contains 2 container per each pod (<strong>READY 2/2</strong>).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/check_jumpapp_mesh.adoc[]</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="03-kiali"><a class="anchor" href="#03-kiali"></a>5. Visit Kiali</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Jump App is generating traffic flow thanks to the frontend where it was given an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit the Kiali console <strong>&lt;kiali_url&gt;</strong> (<em>E.g. <a href="https://kiali-istio-system.apps.labs.sandbox1562.opentlc.com" class="bare">https://kiali-istio-system.apps.labs.sandbox1562.opentlc.com</a></em>):</p>
+</div>
+<div class="paragraph">
+<div class="title">Kiali Console</div>
+<p><span class="image unresolved"><img src="jump-app-kiali.png" alt="jump app kiali"></span></p>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

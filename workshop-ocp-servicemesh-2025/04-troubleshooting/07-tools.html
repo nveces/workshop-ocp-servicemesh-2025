@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lab 7 - Troubleshooting Tools :: WorkShop - Service Mesh on OCP 2025</title>
+    <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/04-troubleshooting/07-tools.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
+          src="../../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://nveces.github.io/workshop-ocp-servicemesh-2025">WorkShop - Service Mesh on OCP 2025</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Books</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">CheatSheets</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">CheatSheet A</a>
+            <a class="navbar-item" href="#">CheatSheet B</a>
+            <a class="navbar-item" href="#">CheatSheet C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Upcoming Events</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Event A</a>
+            <a class="navbar-item" href="#">Event B</a>
+            <a class="navbar-item" href="#">Event C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Tutorial A</a>
+            <a class="navbar-item" href="#">Tutorial B</a>
+            <a class="navbar-item" href="#">Tutorial C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="workshop-ocp-servicemesh-2025" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../01-setup.html">1. Setup</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#prerequisite">Prerequisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#minikube">Setup Minikube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../02-deploy.html">2. Deploy Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-deploy.html#package">Build Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-deploy.html#deploy">Deploy Dervice</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#introduction/index.adoc">3. Introduction - Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction/index.adoc#_lab_0_warming_up">Lab 0 - Warming up</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction/index.adoc#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">WorkShop - Service Mesh on OCP 2025</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">WorkShop - Service Mesh on OCP 2025</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></li>
+    <li><a href="07-tools.html">Lab 7 - Troubleshooting Tools</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/nveces/workshop-ocp-servicemesh-2025/edit/master/documentation/modules/ROOT/pages/04-troubleshooting/07-tools.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Lab 7 - Troubleshooting Tools</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Troubleshooting Tools</div>
+<ul class="sectlevel1">
+<li><a href="#07-delay">1. See a delay in Kiali</a></li>
+<li><a href="#07-dump">2. Check a config dump</a></li>
+<li><a href="#07-stats">3. Check the stats</a></li>
+<li><a href="#07-logging">4. Envoy logging</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Distributed tracing is a technique that is used to tie the information about different units of work together—usually executed in different processes or hosts—in order to understand a whole chain of events in a distributed transaction. Distributed tracing lets developers visualize call flows in large service oriented architectures. It can be invaluable in understanding serialization, parallelism, and sources of latency.</p>
+</div>
+<div class="paragraph">
+<p>OpenShift Service Mesh comes with Jaeger and you can use it to monitor distributed transactions, optimize performance and latency and to perform root cause analysis.</p>
+</div>
+<div class="paragraph">
+<p>Before opening Jaeger to see the traces of the <em>Jump App</em> application, you need to create traffic, so go to the <strong>front</strong> and make several requests. After that open Jaeger, you can find the route like this:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n istio-system | grep jaeger</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once in Jaeger, select <code>back-golang.&lt;user-namespace&gt;</code> as the Service in the left menu and then click at the bottom on "Find Traces". You will see that several traces appear on the right:</p>
+</div>
+<div class="paragraph">
+<div class="title">Traces in jaeger</div>
+<p><span class="image unresolved"><img src="jump-app-jaeger-traces.png" alt="jump app jaeger traces"></span></p>
+</div>
+<div class="paragraph">
+<p>Click on any of them and you will see the following page will all the jumps your application did and how long did they take:</p>
+</div>
+<div class="paragraph">
+<div class="title">Spans in jaeger</div>
+<p><span class="image unresolved"><img src="jump-app-jaeger-spans.png" alt="jump app jaeger spans"></span></p>
+</div>
+<div class="paragraph">
+<p>Those are called spans and they represent a logical unit of work in Jaeger that has an operation name, the start time of the operation, and the duration. Spans may be nested and ordered to model causal relationships. This could help you see where is your application spending more time and find bottlenecks in an easy manner.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="07-delay"><a class="anchor" href="#07-delay"></a>1. See a delay in Kiali</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As you know from the last course, you can add delay to your applications in the mesh to do some testing. In this lab we are going to add a delay in the <code>back-golang</code> service to see how it shows in Jaeger and Kiali when a service is adding some latency to your workflow.</p>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/07-tools.adoc - include::./partials/oc_process_apply.adoc[]</p>
+</div>
+<div class="paragraph">
+<p>You are adding 2 seconds of delay and since there are 2 jumps, the <strong>front</strong> is going to receive the response 4 seconds late. Go to the <strong>front</strong>, set several retries (maybe 10) and the <em>Calls Interval</em> put it in 4 to send requests every 4 seconds. Now go to <em>Kiali</em> and check the delay by toggling the <em>Response Time</em> in the Display menu. You should see something similar to this:</p>
+</div>
+<div class="paragraph">
+<div class="title">See delay in Kiali</div>
+<p><span class="image unresolved"><img src="jump-app-kiali-delay.png" alt="jump app kiali delay"></span></p>
+</div>
+<div class="paragraph">
+<p>You&#8217;ll notice that requests in <code>back-golang</code> are now taking roughly 2 seconds. This capacity of Kiali to see the response time is another way of watching where your application is spending more time. But you can play with other metrics that Kiali gives you like Request Percentage, Requests per Second and even see the traffic animation and security.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="07-dump"><a class="anchor" href="#07-dump"></a>2. Check a config dump</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Another tool you have for troubleshooting is the config dump of the Envoy proxies of the mesh. The config dump has all the information, in JSON format, about how are the Envoy proxies configured in the mesh. To do this, you just need to execute a request to the <code>/config_dump</code> endpoint inside any sidecar in your mesh.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc project $USER_NAMESPACE
+POD=$(oc get po -l app=back-golang -o jsonpath='{.items[0].metadata.name}')
+oc exec -it $POD -c istio-proxy -- curl localhost:15000/config_dump &gt; dump.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You will get a very long file that looks like this:</p>
+</div>
+<div class="paragraph">
+<div class="title">Envoy config dump</div>
+<p><span class="image unresolved"><img src="config_dump.png" alt="config dump"></span></p>
+</div>
+<div class="paragraph">
+<p>Take some time checking the config dump, since this file has all the configuration parameters of the Envoy proxies inside the Service Mesh.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="07-stats"><a class="anchor" href="#07-stats"></a>3. Check the stats</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Envoy also has stats of their proxies that you can see by doing a request to the <code>/stats</code> endpoint inside the proxy.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc project $USER_NAMESPACE
+POD=$(oc get po -l app=back-golang -o jsonpath='{.items[0].metadata.name}')
+oc exec -it $POD -c istio-proxy -- curl localhost:15000/stats &gt; stats.txt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this file you have different metrics that Envoy collects that you can use to see the current status of the mesh. For example, in the previous lab about Traffic Management you used these stats to see the pending requests in the Circuit Breaking section. You can also see the number of http responses, how many times a specific code came in the response, total requests sent, total bytes sent, etc.</p>
+</div>
+<div class="paragraph">
+<p>To know more about all the statistics, you could check the <a href="https://www.envoyproxy.io/docs/envoy/latest/configuration/upstream/cluster_manager/cluster_stats#statistics">Envoy docs</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="07-logging"><a class="anchor" href="#07-logging"></a>4. Envoy logging</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Envoy even let you change the logging level inside a sidecar by doing some http requests too. If you want to see all the logging possibilities and levels, execute the following command:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc project $USER_NAMESPACE
+POD=$(oc get po -l app=back-golang -o jsonpath='{.items[0].metadata.name}')
+oc exec -it $POD -c istio-proxy -- curl -X POST localhost:15000/logging</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You&#8217;ll get something similar to this, which is the list of loggers you can edit to see more information:</p>
+</div>
+<div class="paragraph">
+<div class="title">Active Loggers</div>
+<p><span class="image unresolved"><img src="envoy-logging.png" alt="envoy logging"></span></p>
+</div>
+<div class="paragraph">
+<p>Now, you will change the level of one of them:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc project $USER_NAMESPACE
+POD=$(oc get po -l app=back-golang -o jsonpath='{.items[0].metadata.name}')
+oc exec -it $POD -c istio-proxy -- curl -X POST localhost:15000/logging\?http=debug</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To check it, run the following command:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc project $USER_NAMESPACE
+POD=$(oc get po -l app=back-golang -o jsonpath='{.items[0].metadata.name}')
+oc logs -f $POD -c istio-proxy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should start seeing http debug logs for that sidecar.</p>
+</div>
+<div class="paragraph">
+<p>Configuration extends to all proxy sidecars, so if you do a <code>config_dump</code> in any sidecar you should get very similar results, but logging is specific for each sidecar, so test watching the logs of another sidecar in your namespace to check that you will not see the http debug logs as in the one you recently modified.</p>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

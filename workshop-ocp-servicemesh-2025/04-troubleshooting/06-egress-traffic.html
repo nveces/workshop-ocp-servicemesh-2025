@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lab 6 - Service Mesh Secure Egress Traffic Flow :: WorkShop - Service Mesh on OCP 2025</title>
+    <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/04-troubleshooting/06-egress-traffic.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
+          src="../../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://nveces.github.io/workshop-ocp-servicemesh-2025">WorkShop - Service Mesh on OCP 2025</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Books</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">CheatSheets</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">CheatSheet A</a>
+            <a class="navbar-item" href="#">CheatSheet B</a>
+            <a class="navbar-item" href="#">CheatSheet C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Upcoming Events</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Event A</a>
+            <a class="navbar-item" href="#">Event B</a>
+            <a class="navbar-item" href="#">Event C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Tutorial A</a>
+            <a class="navbar-item" href="#">Tutorial B</a>
+            <a class="navbar-item" href="#">Tutorial C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="workshop-ocp-servicemesh-2025" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../01-setup.html">1. Setup</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#prerequisite">Prerequisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#minikube">Setup Minikube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../02-deploy.html">2. Deploy Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-deploy.html#package">Build Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-deploy.html#deploy">Deploy Dervice</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#introduction/index.adoc">3. Introduction - Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction/index.adoc#_lab_0_warming_up">Lab 0 - Warming up</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction/index.adoc#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">WorkShop - Service Mesh on OCP 2025</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">WorkShop - Service Mesh on OCP 2025</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></li>
+    <li><a href="06-egress-traffic.html">Lab 6 - Service Mesh Secure Egress Traffic Flow</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/nveces/workshop-ocp-servicemesh-2025/edit/master/documentation/modules/ROOT/pages/04-troubleshooting/06-egress-traffic.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Lab 6 - Service Mesh Secure Egress Traffic Flow</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Secure Egress Traffic with mTLS</div>
+<ul class="sectlevel1">
+<li><a href="#06-sds">1. Secure Egress Traffic with mTLS</a></li>
+<li><a href="#06-addcert">2. Create the <em>External Service</em></a>
+<ul class="sectlevel2">
+<li><a href="#06-addcerts">2.1. Add a Custom Certificate</a></li>
+</ul>
+</li>
+<li><a href="#06-createnginx">3. Create Nginx service</a></li>
+<li><a href="#06-createtesting">4. Create the Testing Microservice</a>
+<ul class="sectlevel2">
+<li><a href="#06-createtestingcerts">4.1. Add a Custom Certificate</a></li>
+<li><a href="#06-createtestingdepl">4.2. Create Testing Deployment</a></li>
+<li><a href="#06-createsevstest">4.3. Test Nginx service through testing tool</a></li>
+</ul>
+</li>
+<li><a href="#06-configureegressaccess">5. Configure mutual TLS origination for egress traffic</a>
+<ul class="sectlevel2">
+<li><a href="#_configure_the_egress_gateway">5.1. Configure the <em>Egress Gateway</em></a></li>
+<li><a href="#06-testexternalservice">5.2. Test the <em>external service</em></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="06-sds"><a class="anchor" href="#06-sds"></a>1. Secure Egress Traffic with mTLS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As you know, Gateway describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections.</p>
+</div>
+<div class="paragraph">
+<p>During this step, you will review how to work with a secure HTTPS service through Egress Gateway and a custom certificate.</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="jump-app-egress-traffic.png" alt="jump app egress traffic"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="06-addcert"><a class="anchor" href="#06-addcert"></a>2. Create the <em>External Service</em></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this part, you will create an <em>external service</em> in Openshift but away from the <em>Service Mesh</em> in order to create a secure service protected by mTLS.</p>
+</div>
+<div class="paragraph">
+<p>Just a information, this service is based on Nginx server with a custom certificates generated with openssl.</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="jump-app-egress-service.png" alt="jump app egress service"></span></p>
+</div>
+<div class="sect2">
+<h3 id="06-addcerts"><a class="anchor" href="#06-addcerts"></a>2.1. Add a Custom Certificate</h3>
+<div class="paragraph">
+<p>First of all, it is required to create the certificates which will be used by the Nginx server in order to authorize client access.</p>
+</div>
+<div class="paragraph">
+<p>Please, follow the next steps in order to create these certificates in Kubernetes secrets:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a root certificate and private key to sign the certificate for your services</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -subj '/O=example Inc./CN=example.com' -keyout example.com.key -out example.com.crt</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a certificate and a private key for your custom service <strong>my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local</strong></p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">openssl req -out my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local.csr -newkey rsa:2048 -nodes -keyout my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local.key -subj "/CN=my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local/O=some organization"
+openssl x509 -req -days 365 -CA example.com.crt -CAkey example.com.key -set_serial 0 -in my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local.csr -out my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local.crt</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Generate client certificate and private key:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">openssl req -out client.example.com.csr -newkey rsa:2048 -nodes -keyout client.example.com.key -subj "/CN=client.example.com/O=client organization"
+openssl x509 -req -days 365 -CA example.com.crt -CAkey example.com.key -set_serial 1 -in client.example.com.csr -out client.example.com.crt</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create Kubernetes Secrets to hold the server’s and CA certificates</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc project $USER_NAMESPACE-mesh-external
+oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local.key --cert my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local.crt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Server certificates OK</div>
+<p><span class="image unresolved"><img src="jump-app-mesh-external-svc-cert-ok.png" alt="jump app mesh external svc cert ok"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create secret to hold the CA certificates</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc create -n $USER_NAMESPACE-mesh-external secret generic nginx-ca-certs --from-file=example.com.crt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">CA certificates OK</div>
+<p><span class="image unresolved"><img src="jump-app-mesh-external-ca-cert-ok.png" alt="jump app mesh external ca cert ok"></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="06-createnginx"><a class="anchor" href="#06-createnginx"></a>3. Create Nginx service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once the certificates have been created, you should create a configuration file which contains the security settings and then deploy the Nginx server.</p>
+</div>
+<div class="paragraph">
+<p>Please, perform the following steps in order to meet the previous requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create <em>nginx.conf</em> file in a configmap</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc create configmap nginx-configmap -n $USER_NAMESPACE-mesh-external --from-file=nginx.conf=./06-secure-egress-traffic-troubleshooting/nginx.conf</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Nginx config file OK</div>
+<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-conf-ok.png" alt="jump app mesh external nginx conf ok"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Deploy the Nginx server</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/06-egress-traffic.adoc - include::partials/oc_process_apply.adoc[]</p>
+</div>
+<div class="paragraph">
+<div class="title">Nginx deployment and service ok</div>
+<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-deployment-ok.png" alt="jump app mesh external nginx deployment ok"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Check if the nginx pod is ready</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods -n $USER_NAMESPACE-mesh-external</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Nginx pod ok</div>
+<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-pods-ok.png" alt="jump app mesh external nginx pods ok"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Check if the nginx service is ready</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc project $USER_NAMESPACE-mesh-external
+POD=$(oc get po -l run=my-nginx -o jsonpath='{.items[0].metadata.name}')
+oc rsh $POD curl <a href="https://localhost:443" class="bare">https://localhost:443</a> -k -v</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Nginx service mTLS ERROR</div>
+<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-svc-ok-404.png" alt="jump app mesh external nginx svc ok 404"></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You have deployed a mTLS service and you are receiving a <em>400 Bad Request</em> error because you are not using certificates to access to this service
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="06-createtesting"><a class="anchor" href="#06-createtesting"></a>4. Create the Testing Microservice</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to test your Nginx service, it is required to create a microservice-based testing tool which allows you to stablish secure connections based on mTLS.</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="jump-app-test-tool.png" alt="jump app test tool"></span></p>
+</div>
+<div class="sect2">
+<h3 id="06-createtestingcerts"><a class="anchor" href="#06-createtestingcerts"></a>4.1. Add a Custom Certificate</h3>
+<div class="paragraph">
+<p>First of all, it is required to create the client and CA certificates in order to be able to generate secure connections.</p>
+</div>
+<div class="paragraph">
+<p>Please, follow the next steps to allocate these certificates in Kubernetes secret objects:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create Kubernetes Secrets to hold the client’s certificates</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc project $USER_NAMESPACE
+oc create -n $USER_NAMESPACE secret tls nginx-client-certs --key client.example.com.key --cert client.example.com.crt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Client certificates OK</div>
+<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-access-certs.png" alt="jump app mesh external nginx access certs"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create Kubernetes Secrets to hold the CA certificates</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc create -n $USER_NAMESPACE secret generic nginx-ca-certs --from-file=example.com.crt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">CA certificates OK</div>
+<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-access-ca-certs.png" alt="jump app mesh external nginx access ca certs"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="06-createtestingdepl"><a class="anchor" href="#06-createtestingdepl"></a>4.2. Create Testing Deployment</h3>
+<div class="paragraph">
+<p>Once the certificates have been saved in Openshift, it is time to deploy your testing microsevice deployment. Essentially, this microservice is a container image with <em>curl</em> installed.</p>
+</div>
+<div class="paragraph">
+<p>Please, follow the next steps to deploy this new microservice in your main namespace:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create testing <em>Service</em> and <em>Deployment</em></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/06-egress-traffic.adoc - include::partials/oc_process_apply.adoc[]</p>
+</div>
+<div class="paragraph">
+<div class="title">Testing service created</div>
+<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-client-pod.png" alt="jump app mesh external nginx client pod"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Test service pod is runnign</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods -n $USER_NAMESPACE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Testing service pod OK</div>
+<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-client-pod-ok.png" alt="jump app mesh external nginx client pod ok"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="06-createsevstest"><a class="anchor" href="#06-createsevstest"></a>4.3. Test Nginx service through testing tool</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Test nginx service via testing microservice</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc project $USER_NAMESPACE
+POD=$(oc get po -l app=sleep -o jsonpath='{.items[0].metadata.name}')
+oc exec -it $POD -c sleep -- curl -v --cacert /etc/nginx-ca-certs/example.com.crt --cert /etc/nginx-client-certs/tls.crt --key /etc/nginx-client-certs/tls.key <a href="https://my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local" class="bare">https://my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local</a> -k</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Nginx service with mTLS</div>
+<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-client-mtls-ok.png" alt="jump app mesh external nginx client mtls ok"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Verify that the server requires the client’s certificate</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc project $USER_NAMESPACE
+POD=$(oc get po -l app=sleep -o jsonpath='{.items[0].metadata.name}')
+oc exec -it $POD -c sleep -- curl -v <a href="https://my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local" class="bare">https://my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local</a> -k</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Nginx service mTLS ERROR</div>
+<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-svc-ok-404.png" alt="jump app mesh external nginx svc ok 404"></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You have deployed a nginx mTLS service and you are receiving a <em>400 Bad Request</em> error because of not using certificates to access to this service
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="06-configureegressaccess"><a class="anchor" href="#06-configureegressaccess"></a>5. Configure mutual TLS origination for egress traffic</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="image unresolved"><img src="jump-app-egress-traffic-graph.png" alt="jump app egress traffic graph"></span></p>
+</div>
+<div class="paragraph">
+<p>When you have the testing tool and the Nginx service up and running, it is time to introduce the <em>Egress Gateway</em>.</p>
+</div>
+<div class="paragraph">
+<p>As you know, an <em>Egress Gateway</em> defines exit points from the mesh. Egress gateways allow you to apply Istio features, for example, monitoring and route rules, to traffic exiting the mesh.</p>
+</div>
+<div class="paragraph">
+<p>They are extensively used in organizations that have a strict security requirement that all traffic leaving the service mesh must flow through a set of dedicated nodes. These nodes will run on dedicated machines, separated from the rest of the nodes running applications in the cluster. These special nodes will serve for policy enforcement on the egress traffic and will be monitored more thoroughly than other nodes.</p>
+</div>
+<div class="paragraph">
+<p>Another use case is a cluster where the application nodes don’t have public IPs, so the in-mesh services that run on them cannot access the Internet. Defining an egress gateway, directing all the egress traffic through it, and allocating public IPs to the egress gateway nodes allows the application nodes to access external services in a controlled way.</p>
+</div>
+<div class="paragraph">
+<p>Taking this into account, it is time to create a set of <em>Istio objects</em> in your namespace in order to make able this connectivity through the <em>Egress Gateway</em>. Please, follow the next steps to implement this scenario:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a <em>Gateway</em> for nginx.example.com, port 443, a <em>destination rule</em> and a <em>virtual service</em> to direct the traffic through the egress gateway</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/06-egress-traffic.adoc - include::partials/oc_process_apply.adoc[]</p>
+</div>
+<div class="paragraph">
+<div class="title">Gateway, Virtual Service and Destination Rules OK</div>
+<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-access-egress-objects-new.png" alt="jump app mesh external nginx access egress objects new"></span></p>
+</div>
+<div class="sect2">
+<h3 id="_configure_the_egress_gateway"><a class="anchor" href="#_configure_the_egress_gateway"></a>5.1. Configure the <em>Egress Gateway</em></h3>
+<div class="paragraph">
+<p>Finally, it is required to configure the <em>Egress Gateway</em> to map the client certificates in order to be able to connect to <em>external service</em> with mTLS security.</p>
+</div>
+<div class="paragraph">
+<p>On the other hand, it is required create a set of Istio objects in <em>istio-system</em> namespace in order to configure the <em>Egress Gateway</em> envoy proxy.</p>
+</div>
+<div class="paragraph">
+<p>Please, follow the next steps to perform the previous tasks:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create the TLS certificate in a Kubernetes secret</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc create secret -n istio-system generic $USER_NAMESPACE-mesh-external-egress-nginx-client-certs  --from-file=tls.key=client.example.com.key  --from-file=tls.crt=client.example.com.crt  --from-file=ca.crt=example.com.crt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Nginx client egress certificate</div>
+<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-istio-system-certs.png" alt="jump app mesh external nginx istio system certs"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a <em>destination rule</em> and a <em>service entry</em> to direct the traffic from the egress gateway to the external service</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/06-egress-traffic.adoc - include::partials/oc_process_apply.adoc[]</p>
+</div>
+<div class="paragraph">
+<div class="title">Nginx service destination rule and service entry</div>
+<p><span class="image unresolved"><img src="jump-app-mesh-nginx-dr-se.png" alt="jump app mesh nginx dr se"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="06-testexternalservice"><a class="anchor" href="#06-testexternalservice"></a>5.2. Test the <em>external service</em></h3>
+<div class="paragraph">
+<p>Once you have the <em>external service</em>, the <em>test tool microservice</em> and the <em>Egress Gateway</em> configuration deployed, it is time to test the access from the application pod to the <em>external service</em> via <em>Egress Gateway</em>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Test nginx service through testing pod via egress gateway</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc project $USER_NAMESPACE
+POD=$(oc get po -l app=sleep -o jsonpath='{.items[0].metadata.name}')
+oc exec -it $POD -c sleep -- curl -v <a href="http://my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local" class="bare">http://my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local</a> -k</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">nginx.example.com mTLS connection OK</div>
+<p><span class="image unresolved"><img src="jump-app-mesh-external-nginx-access-egress-con-ok-mtls.png" alt="jump app mesh external nginx access egress con ok mtls"></span></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

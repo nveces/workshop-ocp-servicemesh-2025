@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: WorkShop - Service Mesh on OCP 2025</title>
+    <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/06-extensibility/index.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
+          src="../../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://nveces.github.io/workshop-ocp-servicemesh-2025">WorkShop - Service Mesh on OCP 2025</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Books</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">CheatSheets</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">CheatSheet A</a>
+            <a class="navbar-item" href="#">CheatSheet B</a>
+            <a class="navbar-item" href="#">CheatSheet C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Upcoming Events</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Event A</a>
+            <a class="navbar-item" href="#">Event B</a>
+            <a class="navbar-item" href="#">Event C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Tutorial A</a>
+            <a class="navbar-item" href="#">Tutorial B</a>
+            <a class="navbar-item" href="#">Tutorial C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="workshop-ocp-servicemesh-2025" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../01-setup.html">1. Setup</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#prerequisite">Prerequisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#minikube">Setup Minikube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../02-deploy.html">2. Deploy Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-deploy.html#package">Build Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-deploy.html#deploy">Deploy Dervice</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#introduction/index.adoc">3. Introduction - Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction/index.adoc#_lab_0_warming_up">Lab 0 - Warming up</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction/index.adoc#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">WorkShop - Service Mesh on OCP 2025</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">WorkShop - Service Mesh on OCP 2025</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/nveces/workshop-ocp-servicemesh-2025/edit/master/documentation/modules/ROOT/pages/06-extensibility/index.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/06-extensibility/index.adoc - include::vars/render-vars.adoc[]
+Unresolved include directive in modules/ROOT/pages/06-extensibility/index.adoc - include::vars/document-vars.adoc[]
+Unresolved include directive in modules/ROOT/pages/06-extensibility/index.adoc - include::vars/redhat-vars.adoc[]</p>
+</div>
+<h1 id="_rhossm_extensibility_labs" class="sect0"><a class="anchor" href="#_rhossm_extensibility_labs"></a>{rhossm}: Extensibility Labs</h1>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The objective of these labs is to get a basic understanding of the following topics:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>{efs}</p>
+</li>
+<li>
+<p>{waes}</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setup"><a class="anchor" href="#_setup"></a>Setup</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h3>
+<div class="paragraph">
+<p>During this tutorial, it will be required to work with different tools for running the exercises included. Please, install the following software:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><strong>Tool</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Fedora</strong></th>
+<th class="tableblock halign-center valign-top"><strong>macOS</strong></th>
+<th class="tableblock halign-center valign-top"><strong>windows</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Official Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">oc (4.13.3)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz" target="_blank" rel="noopener">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-mac.tar.gz" target="_blank" rel="noopener">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-windows.zip" target="_blank" rel="noopener">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://docs.openshift.com/container-platform/4.9/cli_reference/openshift_cli/getting-started-cli.html" target="_blank" rel="noopener">OpenShift CLI - Docs</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">git</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com/download/linux" target="_blank" rel="noopener">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com/download/mac" target="_blank" rel="noopener">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com/download/win" target="_blank" rel="noopener">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com" target="_blank" rel="noopener">Git - Docs</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">istioctl (1.12.2) [optional]</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/istio/istio/releases/download/1.12.2/istioctl-1.12.2-linux-amd64.tar.gz" target="_blank" rel="noopener">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/istio/istio/releases/download/1.12.2/istioctl-1.12.2-osx.tar.gz" target="_blank" rel="noopener">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/istio/istio/releases/download/1.12.2/istioctl-1.12.2-win.zip" target="_blank" rel="noopener">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://istio.io/v1.9/docs/reference/commands/istioctl/" target="_blank" rel="noopener">istioctl - Docs</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You must have an up-to-date version of the <em>oc</em> command.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_laboratory"><a class="anchor" href="#_laboratory"></a>Laboratory</h3>
+<div class="paragraph">
+<p>This laboratory is based on the following technologies:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>{rhocp}</p>
+</li>
+<li>
+<p>{rhossm} based on <em>Istio</em></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The previous technologies and resources will allow you to implement a microservice-based application in {ocp} which will be included in the Service Mesh.</p>
+</div>
+<div class="paragraph">
+<p>The main objective of deploying this application in {ocp} is to understand how to extend the <em>Istio</em> functionality by using {efs} and {waes} in {ossm}.</p>
+</div>
+<div class="sect3">
+<h4 id="_laboratory_parameters"><a class="anchor" href="#_laboratory_parameters"></a>Laboratory Parameters</h4>
+<div class="paragraph">
+<p>The Instructor will provide {ocp} users, credentials and other important parameters at the beginning of this lab.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><strong>Name</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Reference</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">OpenShift API (used with <em>oc</em> CLI)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;ocp_cluster_api&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://api.labs.sandbox1212.opentlc.com:6443" class="bare">https://api.labs.sandbox1212.opentlc.com:6443</a></em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">OpenShift Web Console</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;ocp_cluster_console&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://console-openshift-console.apps.labs.sandbox1212.opentlc.com" class="bare">https://console-openshift-console.apps.labs.sandbox1212.opentlc.com</a></em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Username</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;user&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>user1</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Password</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;pass&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>P4ssw0rd</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Namespace</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;user_namespace&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>user1-namespace</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">OpenShift Apps Domain</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;openshift_apps_domain&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>apps.labs.sandbox1212.opentlc.com</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Kiali Url</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;kiali_url&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://kiali-istio-system.apps.labs.sandbox1212.opentlc.com" class="bare">https://kiali-istio-system.apps.labs.sandbox1212.opentlc.com</a></em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The labs will reference these parameters. You will need to replace the referenced parameters with the correct values.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For simplicity, the commands in these labs will use environment variables. Make sure you export the environment variables in your shell before running any command, replacing the placeholders with the values provided to you:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export OCP_USER="&lt;user&gt;"
+export OCP_PASSWORD="&lt;pass&gt;"
+export OCP_NAMESPACE="${OCP_USER}-namespace"
+export OCP_API="&lt;ocp_cluster_api&gt;"
+export OCP_DOMAIN="&lt;openshift_apps_domain&gt;"
+export OCP_HTTPBIN_HOST="${OCP_USER}.httpbin.${OCP_DOMAIN}"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export OCP_USER="user1"
+export OCP_PASSWORD="P4ssw0rd"
+export OCP_NAMESPACE="${OCP_USER}-namespace"
+export OCP_API="https://api.labs.sandbox1212.opentlc.com:6443"
+export OCP_DOMAIN="apps.labs.sandbox1212.opentlc.com"
+export OCP_HTTPBIN_HOST="${OCP_USER}.httpbin.${OCP_DOMAIN}"</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+From now on, all labs will assume these exports are defined in your shell environment before running any other command.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_openshift_cli"><a class="anchor" href="#_openshift_cli"></a>OpenShift CLI</h4>
+<div class="paragraph">
+<p>The {ocp} CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system.</p>
+</div>
+<div class="paragraph">
+<p>Make sure you can connect to the cluster executing the following command in your terminal:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u ${OCP_USER} -p ${OCP_PASSWORD} ${OCP_API}</code></pre>
+</div>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="oc_login_output.png" alt="oc login output">
+</div>
+<div class="title">Figure 1. {rhocp} CLI login</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Please, pay special attention to the <em>oc</em> tool as you will use it many times during these labs.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Before continuing, please make sure you are working in your own namespace:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_web_console"><a class="anchor" href="#_web_console"></a>Web Console</h4>
+<div class="paragraph">
+<p>In addition, you can access the {ocp} Web Console using your web browser. Use your credentials to login:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>&lt;ocp_cluster_console&gt; (<em>E.g. <a href="https://console-openshift-console.apps.labs.sandbox1212.opentlc.com" class="bare">https://console-openshift-console.apps.labs.sandbox1212.opentlc.com</a></em>)</p>
+</li>
+</ul>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="ocp_console.png" alt="ocp console">
+</div>
+<div class="title">Figure 2. {rhocp} Web Console login</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_github_repository"><a class="anchor" href="#_github_repository"></a>GitHub Repository</h3>
+<div class="paragraph">
+<p>All files used in the labs are located in a GitHub repository for your convenience.</p>
+</div>
+<div class="paragraph">
+<p>Follow the next steps in order to clone the repository:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/acidonper/ossm-extensibility.git" class="bare">https://github.com/acidonper/ossm-extensibility.git</a></code></pre>
+</div>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="git_clone_output.png" alt="git clone output">
+</div>
+<div class="title">Figure 3. Git clone output</div>
+</div>
+<div class="paragraph">
+<p>Navigate to the new directory created in your system:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ossm-extensibility</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+From now on, all labs will assume you are located in this directory.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sample_applications"><a class="anchor" href="#_sample_applications"></a>Sample Applications</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_httpbin"><a class="anchor" href="#_httpbin"></a>httpbin</h3>
+<div class="paragraph">
+<p>These labs will use <em>httpbin</em> as an HTTP request and response service. It offers many tools to proof test HTTP.</p>
+</div>
+<div class="paragraph">
+<p>This service is a local version of <a href="https://httpbin.org/" class="bare" target="_blank" rel="noopener">https://httpbin.org/</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lab_1_envoy_filters"><a class="anchor" href="#_lab_1_envoy_filters"></a>Lab 1 - Envoy Filters</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_introduction_2"><a class="anchor" href="#_introduction_2"></a>Introduction</h3>
+<div class="paragraph">
+<p>Envoy exposes a set of APIs that let users and control planes statically and dynamically configure the proxy. By configuring a Listener, users can enable the flow of traffic through the proxy, and then enhance the data flow using several Filters.</p>
+</div>
+<div class="paragraph">
+<p>As the name suggests, a Listener allows Envoy to listen to network traffic at a configured address. Each Listener then defines a set of filters that sit in the data path, collectively forming a filter chain. By composing and arranging a set of filters, users can configure Envoy to translate protocol messages, generate statistics, perform RBAC, etc.</p>
+</div>
+<div class="paragraph">
+<p>Envoy provides numerous built-in filters, and it also provides APIs to let you create your own.</p>
+</div>
+<div class="sect3">
+<h4 id="_ef_object"><a class="anchor" href="#_ef_object"></a>{ef} Object</h4>
+<div class="paragraph">
+<p>Istio {ef} objects provide a mechanism to customize the Envoy configuration generated by Istio Pilot.</p>
+</div>
+<div class="paragraph">
+<p>You can use an {ef} object to modify values for certain fields, add specific filters, or even add entirely new listeners, clusters, etc. This feature must be used with care, as incorrect configurations could potentially destabilize the entire mesh.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+{efs} are not officially supported in {ossm}. {efs} can be created in {ocp} by referring to the Istio documentation <a href="https://istio.io/v1.6/docs/reference/config/networking/envoy-filter/" target="_blank" rel="noopener">here</a> but any configuration issues are not officially supported: <a href="https://access.redhat.com/solutions/5672521" class="bare" target="_blank" rel="noopener">https://access.redhat.com/solutions/5672521</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Unlike other Istio networking objects, {efs} are additively applied. Any number of {efs} can exist for a given workload in a specific namespace. The order of application of these {efs} is as follows: all {efs} in the control plane namespace, followed by all matching {efs} in the workload’s namespace.</p>
+</div>
+<div class="paragraph">
+<p>Some aspects of this API is deeply tied to the internal implementation in {ossm} networking subsystem as well as Envoy’s XDS API. While the {ef} API by itself will maintain backward compatibility, any Envoy configuration provided through this mechanism should be carefully monitored across {ossm} version upgrades, to ensure that deprecated fields are removed and replaced appropriately.</p>
+</div>
+<div class="paragraph">
+<p>When multiple {efs} are bound to the same workload in a given namespace, all patches will be processed sequentially in order of creation time. The behavior is undefined if multiple {ef} configurations conflict with each other.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_lab"><a class="anchor" href="#_lab"></a>Lab</h4>
+<div class="paragraph">
+<p>In the following lab you will deploy <a href="https://httpbin.org" target="_blank" rel="noopener">httpbin.org</a> in {ossm} and then modify its behavior by adding some {efs} to manipulate headers.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deploy_httpbin_using_an_ig"><a class="anchor" href="#_deploy_httpbin_using_an_ig"></a>Deploy httpbin using an {ig}</h3>
+<div class="paragraph">
+<p>The following steps will deploy all necessary objects to run <em>httpbin</em> in {ossm}.</p>
+</div>
+<div class="paragraph">
+<p>A {gw}, {vs} and {r} for the {ig} will also be created. Take a look at the <code>httpbin/httpbin.yaml</code> and <code>httpbin/httpbin-route.yaml</code> files to understand what objects are being created.</p>
+</div>
+<div class="paragraph">
+<p>Deploy the application in your namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin.yaml \
+    -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
+    | oc apply -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You will create a route in the <code>istio-system</code> namespace to expose the <em>httpbin</em> service through an Ingress Gateway:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin-route.yaml \
+    -p HTTPBIN_ROUTE_NAME="${OCP_USER}-httpbin" -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" \
+    -n ${OCP_NAMESPACE} \
+    | oc apply -n istio-system -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait some seconds for all the pods to be ready:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get pods -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify that the application is reachable and is running ok:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_HTTPBIN_HOST}"</code></pre>
+</div>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="httpbin_curl.png" alt="httpbin curl">
+</div>
+<div class="title">Figure 4. httpbin service working</div>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="ingress_httpbin.png" alt="ingress httpbin">
+</div>
+<div class="title">Figure 5. httpbin service through an {ig}</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_test_httpbin_with_a_custom_header"><a class="anchor" href="#_test_httpbin_with_a_custom_header"></a>Test httpbin with a custom header</h3>
+<div class="paragraph">
+<p>The <em>httpbin</em> app offers and endpoint that returns anything passed in requests data.</p>
+</div>
+<div class="paragraph">
+<p>In this example, you are going to query this endpoint using an additional custom header. Now that you have the app deployed you can try this by running the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see, <em>httpbin</em> app returns a JSON with everything that was passed in the request, including your custom header:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="httpbin_header_1.png" alt="httpbin header 1">
+</div>
+<div class="title">Figure 6. httpbin returns a custom header</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_add_an_ef_to_create_a_new_header"><a class="anchor" href="#_add_an_ef_to_create_a_new_header"></a>Add an {ef} to create a new header</h3>
+<div class="paragraph">
+<p>Let&#8217;s suppose that you need to manipulate this custom header in {ossm} before the request reaches the actual <em>httpbin</em> service. This is something that cannot be performed with regular Istio objects but can be performed with an {ef}.</p>
+</div>
+<div class="paragraph">
+<p>You have two options: develop your own Envoy Filter in C++ like in <a href="https://github.com/envoyproxy/envoy-filter-example" target="_blank" rel="noopener">this example</a>, or use the existing Envoy Lua filter to programmatically create the desired behavior by using a Lua script.</p>
+</div>
+<div class="paragraph">
+<p>For simplicity reasons, in this lab you will use the second approach.</p>
+</div>
+<div class="paragraph">
+<p>This {ef} will check if the custom header exists in the requests and then it will create an additional custom header with the same value of our original header.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: httpbin-add-custom-header
+spec:
+  configPatches:
+  - applyTo: HTTP_FILTER <i class="conum" data-value="1"></i><b>(1)</b>
+    match:
+      context: SIDECAR_INBOUND <i class="conum" data-value="2"></i><b>(2)</b>
+      listener:
+        filterChain:
+          filter:
+            name: envoy.filters.network.http_connection_manager <i class="conum" data-value="3"></i><b>(3)</b>
+    patch:
+      operation: INSERT_BEFORE <i class="conum" data-value="4"></i><b>(4)</b>
+      value:
+        name: lab.httpbin_add_header <i class="conum" data-value="5"></i><b>(5)</b>
+        typed_config:
+          '@type': type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua <i class="conum" data-value="6"></i><b>(6)</b>
+          inlineCode: |
+            function envoy_on_request(request_handle) <i class="conum" data-value="7"></i><b>(7)</b>
+              request_handle:logDebug("Running Lua filter: lab.httpbin_add_header")
+
+              header = request_handle:headers():get("My-Header")
+
+              if (header)
+              then
+                request_handle:logDebug("Adding header My-New-Header: " .. header)
+                request_handle:headers():add("My-New-Header", header)
+              end
+            end
+  workloadSelector: <i class="conum" data-value="8"></i><b>(8)</b>
+    labels:
+      app: httpbin</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Specifies where in the Envoy configuration, the patch should be applied.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Selects a class of configurations based on the traffic flow direction and workload type.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Match a specific filter chain in a listener.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Operation denotes how the patch should be applied to the selected configuration. In this case it will insert this filter before the selected filter or sub filter.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The name of this filter.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>The implementation type of the filter. It should be one of those provided by Envoy or any other developed and added by the user.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Lua code.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Criteria used to select the specific set of pods on which this patch configuration should be applied. If omitted, the set of patches in this configuration will be applied to all workload instances in the same namespace.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To apply an {ef} resource to all workloads (sidecars and gateways) in the system, define the resource in the control plane namespace, without a <em>workloadSelector</em>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The previous Lua code will check if the header <em>My-Header</em> already exists in the request and then will add a new header <em>My-New-Header</em> with the same value of <em>My-Header</em>.</p>
+</div>
+<div class="paragraph">
+<p>Note that there are some logging commands in the Lua script. This log traces will appear in the "lua" logger of the Envoy proxy.</p>
+</div>
+<div class="paragraph">
+<p>To test it, create this {ef} in your namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f lab1/envoyfilter-add-header.yaml -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now run the same query with your custom header again:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It may take some seconds for the configuration to propagate through the mesh before you see it working.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You should see your custom header and the additional header that was created in the {ef}:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="httpbin_header_2.png" alt="httpbin header 2">
+</div>
+<div class="title">Figure 7. httpbin returns a new header created in the {ef}</div>
+</div>
+<div class="paragraph">
+<p>You can check wether your filter has been inserted in the filter chain by looking at the Envoy config. In order to do this you can use <em>istioctl</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
+
+istioctl proxy-config listeners -n ${OCP_NAMESPACE} ${HTTPBIN_POD} -o json</code></pre>
+</div>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="httpbin_envoy_config.png" alt="httpbin envoy config">
+</div>
+<div class="title">Figure 8. Envoy config including the custom Lua filter</div>
+</div>
+<div class="paragraph">
+<p>If you don&#8217;t have <em>istioctl</em> installed you can also run the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
+
+oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST localhost:15000/config_dump</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_add_an_ef_to_remove_the_old_header"><a class="anchor" href="#_add_an_ef_to_remove_the_old_header"></a>Add an {ef} to remove the old header</h3>
+<div class="paragraph">
+<p>Now that you have created a new header inside an {ef} based on the value of another one, let&#8217;s suppose that you need to remove the old header before reaching the actual <em>httpbin</em> service.</p>
+</div>
+<div class="paragraph">
+<p>You can create a new filter to remove this header but it is important to notice now that these two filters are order dependent. The filter that remove the header will need to run always after the previous filter or the previous filter will never find the custom header because it have been already removed.</p>
+</div>
+<div class="paragraph">
+<p>To make sure the removal filter is executed last, you will insert it at the end of chain.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: httpbin-remove-custom-header
+spec:
+  configPatches:
+  - applyTo: HTTP_FILTER
+    match:
+      context: SIDECAR_INBOUND
+      listener:
+        filterChain:
+          filter:
+            name: envoy.filters.network.http_connection_manager
+            subFilter:
+              name: envoy.filters.http.router <i class="conum" data-value="1"></i><b>(1)</b>
+    patch:
+      operation: INSERT_BEFORE
+      value:
+        name: lab.httpbin_remove_header
+        typed_config:
+          '@type': type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
+          inlineCode: |
+            function envoy_on_request(request_handle)
+              request_handle:logDebug("Running Lua filter: lab.httpbin_remove_header")
+
+              header = request_handle:headers():get("My-Header")
+
+              if (header)
+              then
+                request_handle:logDebug("Removing header My-Header: " .. header)
+                request_handle:headers():remove("My-Header") <i class="conum" data-value="2"></i><b>(2)</b>
+              end
+            end
+  workloadSelector:
+    labels:
+      app: httpbin</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The filter will be inserted before the envoy.filters.http.router_ filter. <em>envoy.filters.http.router</em> filter should always be the latest filter in the chain or Envoy will stop working.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Lua code to remove the custom header.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To test it, create this {ef} in your namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f lab1/envoyfilter-remove-header.yaml -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now run the same query with your custom header again:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see your custom header being replaced with the additional header that was created in the first {ef}, your custom header has been removed:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="httpbin_header_3.png" alt="httpbin header 3">
+</div>
+<div class="title">Figure 9. httpbin returns a replaced custom header created in the {ef}</div>
+</div>
+<div class="paragraph">
+<p>You can check the position of your new filter in the filter chain by looking at the Envoy config:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
+
+istioctl proxy-config listeners -n ${OCP_NAMESPACE} ${HTTPBIN_POD} -o json</code></pre>
+</div>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="httpbin_envoy_config_2.png" alt="httpbin envoy config 2">
+</div>
+<div class="title">Figure 10. Envoy config including the removal Lua filter at the end of the chain</div>
+</div>
+<div class="paragraph">
+<p>If you don&#8217;t have <em>istioctl</em> installed you can also run the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
+
+oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST localhost:15000/config_dump</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Additionally, it is possible to review all of this information via Kiali.</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="httpbin_envoy_config_kiali.png" alt="httpbin envoy config kiali">
+</div>
+<div class="title">Figure 11. Envoy config including the removal Lua filter at the end of the chain (Kiali)</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_a_single_ef_to_replace_the_header"><a class="anchor" href="#_create_a_single_ef_to_replace_the_header"></a>Create a single {ef} to replace the header</h3>
+<div class="paragraph">
+<p>The previous examples show how to create two different {efs} to create and remove headers.</p>
+</div>
+<div class="paragraph">
+<p>It is possible to combine the same functionality in a single {ef}. The main purpose of separating the creation and removal of the headers was to notice the importance of the order of creation and insertion of {efs}.</p>
+</div>
+<div class="paragraph">
+<p>In this example you are going to create an {ef} that will combine both actions.</p>
+</div>
+<div class="paragraph">
+<p>First, remove the previous filters from your namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc delete -f lab1/envoyfilter-add-header.yaml -n ${OCP_NAMESPACE}
+oc delete -f lab1/envoyfilter-remove-header.yaml -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is the {ef} with the functionality combined:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: httpbin-replace-custom-header
+spec:
+  configPatches:
+  - applyTo: HTTP_FILTER
+    match:
+      context: SIDECAR_INBOUND
+      listener:
+        filterChain:
+          filter:
+            name: envoy.filters.network.http_connection_manager <i class="conum" data-value="1"></i><b>(1)</b>
+    patch:
+      operation: INSERT_BEFORE
+      value:
+        name: lab.httpbin_replace_header
+        typed_config:
+          '@type': type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
+          inlineCode: |
+            function envoy_on_request(request_handle)
+              request_handle:logDebug("Running Lua filter: lab.httpbin_replace_header")
+
+              header = request_handle:headers():get("My-Header")
+
+              if (header)
+              then
+                request_handle:logDebug("Replacing header My-Header with My-New-Header: " .. header)
+                request_handle:headers():add("My-New-Header", header)
+                request_handle:headers():remove("My-Header")
+              end
+            end
+  workloadSelector:
+    labels:
+      app: httpbin</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This will be the only custom filter so you can insert this filter in any order as long as it is inserted in the correct filter chain (inbound HTTP).</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To test it, create this {ef} in your namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f lab1/envoyfilter-replace-header.yaml -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now run the same query with your custom header again:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see your custom header being replaced with the additional header and your custom header removed, but this time with only one {ef}:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="httpbin_header_4.png" alt="httpbin header 4">
+</div>
+<div class="title">Figure 12. httpbin returns a replaced custom header created in the {ef}</div>
+</div>
+<div class="paragraph">
+<p>Additionally, it is possible to review all of this information via Kiali.</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="httpbin_envoy_config_kiali_2.png" alt="httpbin envoy config kiali 2">
+</div>
+<div class="title">Figure 13. Envoy config including the removal Lua filter at the end of the chain (Kiali)</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_remove_filters"><a class="anchor" href="#_remove_filters"></a>Remove Filters</h3>
+<div class="paragraph">
+<p>Make sure you remove any {ef} you created before moving to the next lab:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc delete -f lab1/envoyfilter-add-header.yaml -n ${OCP_NAMESPACE}
+oc delete -f lab1/envoyfilter-remove-header.yaml -n ${OCP_NAMESPACE}
+oc delete -f lab1/envoyfilter-replace-header.yaml -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/06-extensibility/03-envoy-filters.adoc - include::partials/remove_httpbin.adoc[]</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lab_2_waes"><a class="anchor" href="#_lab_2_waes"></a>Lab 2 - {waes}</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_introduction_3"><a class="anchor" href="#_introduction_3"></a>Introduction</h3>
+<div class="sect3">
+<h4 id="_wasm"><a class="anchor" href="#_wasm"></a>{wasm}</h4>
+<div class="paragraph">
+<p>{wasm} (abbreviated Wasm) is a binary instruction format for a stack-based virtual machine.</p>
+</div>
+<div class="paragraph">
+<p>Wasm is designed as a portable compilation target for programming languages, enabling deployment on the web for client and server applications.</p>
+</div>
+<div class="paragraph">
+<p>The Wasm stack machine is designed to be encoded in a size and load-time efficient binary format.</p>
+</div>
+<div class="paragraph">
+<p>{wasm} aims to execute at native speed by taking advantage of common hardware capabilities available on a wide range of platforms.</p>
+</div>
+<div class="paragraph">
+<p>{wasm} describes a memory-safe, sandboxed execution environment.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_envoy_wasm_filter"><a class="anchor" href="#_envoy_wasm_filter"></a>Envoy Wasm filter</h4>
+<div class="paragraph">
+<p>An Envoy Wasm filter is a filter that <em>translates</em> Envoy internal C++ API to a Wasm engine via the Wasm ABI. Envoy supports Wasm filters for both the network pipeline as well as the HTTP pipeline (HTTP filters). It’s basically a thin plugin that delegates to a Wasm VM and Wasm module which means you can then write logic for the filter with Wasm (theoretically any language, not just C++).</p>
+</div>
+<div class="paragraph">
+<p>Due to this model, the semantics of an Envoy Wasm filter are very similar to that of a native envoy filter.</p>
+</div>
+<div class="paragraph">
+<p>An important point to note about this translation and delegation to Wasm is that Wasm is a sandboxed technology. From a security standpoint this is highly desirable but it has implications for the memory model. Any interaction with state between Envoy and the Wasm VM/your Wasm module  (manipulating headers and/or body) will be copied from Envoy memory to Wasm memory and back.</p>
+</div>
+<div class="paragraph">
+<p>The Abstract Binary Interface (ABI) defines the contract of functions on both sides of the Wasm extension: for those exposed by the host and by those implemented by the Wasm module. The functions exposed by the host are <em>imported</em> into the Wasm module while the functions implemented by the module are <em>exported</em> by the Wasm module. A Wasm module implementing the functions in the ABI can be loaded to the Envoy Wasm filter and used as a <em>Wasm Envoy filter</em>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ossm_extensions"><a class="anchor" href="#_ossm_extensions"></a>{ossm} Extensions</h4>
+<div class="paragraph">
+<p>You can use {wasm} plugins to add new features directly into the {rhossm} proxies, allowing you to move even more common functionality out of your applications, and implement them in a single language that compiles to {wasm} bytecode.</p>
+</div>
+<div class="paragraph">
+<p>WebAssembly modules can be run on many platforms, including proxies, and has broad language support, fast execution and a sandboxed-by-default security model.</p>
+</div>
+<div class="paragraph">
+<p>{ossm} extensions are Envoy HTTP Filters, giving them a wide range of capabilities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Manipulating the body and headers of requests and responses</p>
+</li>
+<li>
+<p>Out-of-band HTTP requests to services not in the request path, such as authentication or policy checking</p>
+</li>
+<li>
+<p>Side-channel data storage and queues for filters to communicate with each other</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There are two parts to writing a {ossm} extension: you’ll have to write your extension using an SDK that exposes the proxy-wasm API and compile it to a {wasm} module, and then package it into a container.</p>
+</div>
+<div class="sect4">
+<h5 id="_supported_languages"><a class="anchor" href="#_supported_languages"></a>Supported languages</h5>
+<div class="paragraph">
+<p>You can use any language that compiles to {wasm} bytecode to write a {rhossm} extension, but the following languages have existing SDKs that expose the proxy-wasm API so that it can be consumed directly.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><strong>Language</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Maintainer</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Repository</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">AssemblyScript</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">solo.io</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/solo-io/proxy-runtime" class="bare" target="_blank" rel="noopener">https://github.com/solo-io/proxy-runtime</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">C++</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">proxy-wasm team (Istio Community)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/proxy-wasm/proxy-wasm-cpp-sdk" class="bare" target="_blank" rel="noopener">https://github.com/proxy-wasm/proxy-wasm-cpp-sdk</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Go</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">tetrate.io</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/tetratelabs/proxy-wasm-go-sdk" class="bare" target="_blank" rel="noopener">https://github.com/tetratelabs/proxy-wasm-go-sdk</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Rust</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">proxy-wasm team (Istio Community)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/proxy-wasm/proxy-wasm-rust-sdk" class="bare" target="_blank" rel="noopener">https://github.com/proxy-wasm/proxy-wasm-rust-sdk</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In these labs, two {waes} written in Rust will be used.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_container_format"><a class="anchor" href="#_container_format"></a>Container Format</h5>
+<div class="paragraph">
+<p>You must have a .wasm file containing the bytecode of your {wasm} module, and a manifest.yaml file in the root of the container filesystem to make your container image a valid extension image.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_deploying_extensions"><a class="anchor" href="#_deploying_extensions"></a>Deploying extensions</h5>
+<div class="paragraph">
+<p>{ossm} extensions can be enabled using the {sme} resource. The following snippet is an example resource:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: extensions.istio.io/v1alpha1
+kind: WasmPlugin
+metadata:
+  name: header-append
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      app: httpbin
+  url: oci://quay.io/maistra-dev/header-append-filter:2.1
+  phase: STATS
+  priority: 100
+  pluginConfig:
+    first-header: some-value
+    another-header: another-value</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_support"><a class="anchor" href="#_support"></a>Support</h5>
+<div class="paragraph">
+<p>Red Hat OpenShift Service Mesh 2.0 introduces support for WebAssembly extensions to Envoy Proxy. For this version WebAssembly extensions are introduced as a Tech Preview feature.</p>
+</div>
+<div class="paragraph">
+<p>In OpenShift Service Mesh 2.1, the <em>ServiceMeshExtensions</em> Custom Resource Definition (CRD), first introduced in 2.0 as Technology Preview, is now generally available. You can use CRD to build your own plugins, but Red Hat does not provide support for the plugins you create.</p>
+</div>
+<div class="paragraph">
+<p>When creating new WebAssembly extensions, use the WasmPlugin API. The ServiceMeshExtension API was deprecated in Red Hat OpenShift Service Mesh version 2.2 and was removed in Red Hat OpenShift Service Mesh version 2.3.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modify_the_headers_with_a_wasm_filter"><a class="anchor" href="#_modify_the_headers_with_a_wasm_filter"></a>Modify the headers with a {wasm} filter</h3>
+<div class="paragraph">
+<p>In this lab you will apply a previously developed {wasm} filter to your httpbin application.</p>
+</div>
+<div class="paragraph">
+<p>Please, take a look at this repository for the source code of this filter:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/acidonper/ossm-example-headers-extension" class="bare" target="_blank" rel="noopener">https://github.com/acidonper/ossm-example-headers-extension</a></p>
+</div>
+<div class="paragraph">
+<p>This Wasm filter will try to find a <em>Custom-Header</em> header in the request message and, if found, replace it with two new headers: <em>Custom-Wasm-Header</em> and <em>Custom-Wasm-Config-Header</em>. The value of the first one will be the same value of the original <em>Custom-Header</em>. The value of the second one will be picked up from the configuration of the {sme}.</p>
+</div>
+<div class="paragraph">
+<p>This filter is already compiled so you don&#8217;t have to setup a local Rust development environment but you can do so if you wish. The binary container image is already available here: <a href="https://quay.io/repository/acidonpe/ossm-example-headers-extension" class="bare" target="_blank" rel="noopener">https://quay.io/repository/acidonpe/ossm-example-headers-extension</a></p>
+</div>
+<div class="paragraph">
+<p>This is the code where the actual header replacing takes place:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="wasm_headers_code.png" alt="wasm headers code">
+</div>
+<div class="title">Figure 14. Headers filter source code</div>
+</div>
+<div class="paragraph">
+<p>It is important to take a look at the manifest packed in the container image:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 1 <i class="conum" data-value="1"></i><b>(1)</b>
+
+name: ossm-example-headers-extension <i class="conum" data-value="2"></i><b>(2)</b>
+description: Replaces a custom header <i class="conum" data-value="3"></i><b>(3)</b>
+version: 1.0.0 <i class="conum" data-value="4"></i><b>(4)</b>
+phase: STATS <i class="conum" data-value="5"></i><b>(5)</b>
+priority: 100 <i class="conum" data-value="6"></i><b>(6)</b>
+module: extension.wasm <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Used for versioning of the manifest schema. Currently the only possible value is 1.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The name of your extension. This field is just metadata and currently unused.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The description of your extension. This field is just metadata and currently unused.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The version of your extension. This field is just metadata and currently unused.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The default execution phase of your extension.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>The default priority of your extension. This is a required field.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>The relative path from the container filesystem’s root to your WebAssembly module. This is a required field.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Take a look also at the deployment manifest too:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: extensions.istio.io/v1alpha1
+kind: WasmPlugin
+metadata:
+  name: ossm-example-headers-extension
+  namespace: test1-namespace <i class="conum" data-value="1"></i><b>(1)</b>
+spec:
+  pluginConfig:
+    my-key: my-wasm-value <i class="conum" data-value="2"></i><b>(2)</b>
+  url: oci://quay.io/acidonpe/ossm-example-headers-extension:1.0.0 <i class="conum" data-value="3"></i><b>(3)</b>
+  phase: STATS <i class="conum" data-value="4"></i><b>(4)</b>
+  priority: 100 <i class="conum" data-value="5"></i><b>(5)</b>
+  selector: <i class="conum" data-value="6"></i><b>(6)</b>
+    matchLabels:
+      app: httpbin</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <em>metadata.namespace</em> of a <em>WasmPlugin</em> source has a special semantic: if it equals the Control Plane Namespace, the extension will be applied to all workloads in the Service Mesh that match its <em>workloadSelector</em>. When deployed to any other Mesh Namespace, it will only be applied to workloads in that same Namespace.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>This is a pass-through field that will be handed over to the extension, so syntax and semantics are dependant on the extension you are deploying.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>A container image URI pointing to the image that holds the extension.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The phase determines where in the filter chain the extension is injected, in relation to existing Istio functionality like Authentication, Authorization and metrics generation. Valid values are: "UNSPECIFIED_PHASE", "AUTHN", "AUTHZ" or "STATS".</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>If multiple extensions with the same <em>spec.phase</em> are applied to the same workload instance, the <em>spec.priority</em> determines the ordering of execution. Extensions with higher priority will be executed first. This allows for inter-dependent extensions. This field defaults to the value set in the manifest.yaml of the extension, but can be overwritten by the user.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>The <em>spec.selector</em> field has the same semantic as the <em>spec.selector</em> field of the Istio Gateway resource. It will match a workload based on its Pod labels. If no <em>selector</em> is specified, the extension will be applied to all workloads in the namespace.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/06-extensibility/04-wasm-extensions.adoc - include::partials/deploy_httpbin.adoc[]</p>
+</div>
+<div class="sect3">
+<h4 id="_apply_the_wasm_plugin"><a class="anchor" href="#_apply_the_wasm_plugin"></a>Apply the {wasm} plugin</h4>
+<div class="paragraph">
+<p>Now that you have httpbin running you can apply a {wasm} filter.</p>
+</div>
+<div class="paragraph">
+<p>Execute the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">oc apply -f lab2/ossm-extension-headers.yaml -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If everything works properly, it is possible to find the following log in the istio-proxy sidecar container executing the next procedure:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
+oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
+...
+2023-08-30T11:26:44.785184Z info wasm fetching image acidonpe/ossm-example-headers-extension from registry quay.io with tag 1.0.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As in the previous lab, you are going to query the httpbin <em>anything</em> endpoint using an additional custom header:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see, <em>httpbin</em> app returns a JSON with everything that was passed in the request, including your custom header but nothing has been changed:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="httpbin_wasm_header_1.png" alt="httpbin wasm header 1">
+</div>
+<div class="title">Figure 15. httpbin returns a custom header</div>
+</div>
+<div class="paragraph">
+<p>Now, use the <em>Custom-Header</em> the extension is expecting:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "Custom-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see now, <em>Custom-Header</em> has been replaced with <em>Custom-Wasm-Header</em> and <em>Custom-Wasm-Config-Header</em>. Notice that the value of <em>Custom-Wasm-Header</em> is the original value of <em>Custom-Header</em> and the value of <em>Custom-Wasm-Config-Header</em> is taken from the {sme} deployment manifest:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="httpbin_wasm_header_2.png" alt="httpbin wasm header 2">
+</div>
+<div class="title">Figure 16. {wasm} plugin replaces the custom header</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_remove_the_extension"><a class="anchor" href="#_remove_the_extension"></a>Remove the extension</h4>
+<div class="paragraph">
+<p>Remove the {wasm} plugin before starting the next example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">oc delete -f lab2/ossm-extension-headers.yaml -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modify_the_body_with_a_wasm_filter"><a class="anchor" href="#_modify_the_body_with_a_wasm_filter"></a>Modify the body with a {wasm} filter</h3>
+<div class="paragraph">
+<p>As with the previous example, in this lab you will apply a previously developed {wasm} filter to your httpbin application. In this case, the extension will modify the body of the response message.</p>
+</div>
+<div class="paragraph">
+<p>Please, take a look at this repository for the source code of this filter:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/acidonper/ossm-example-body-extension" class="bare" target="_blank" rel="noopener">https://github.com/acidonper/ossm-example-body-extension</a></p>
+</div>
+<div class="paragraph">
+<p>This Wasm filter will try to find a specif text in the response body. This text will be provided using the <em>config</em> field in the {sme} resource. If the extension finds this exact text within the response body it will omit the body and will replace it with an alternative text.</p>
+</div>
+<div class="paragraph">
+<p>This filter is already compiled so you don&#8217;t have to setup a local Rust development environment but you can do so if you wish. The binary container image is already available here: <a href="https://quay.io/repository/acidonpe/ossm-example-body-extension" class="bare" target="_blank" rel="noopener">https://quay.io/repository/acidonpe/ossm-example-body-extension</a></p>
+</div>
+<div class="paragraph">
+<p>This is the code where the actual body replacing takes place:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="wasm_body_code.png" alt="wasm body code">
+</div>
+<div class="title">Figure 17. Body filter source code</div>
+</div>
+<div class="paragraph">
+<p>Take a look at the deployment {sme} resource:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: extensions.istio.io/v1alpha1
+kind: WasmPlugin
+metadata:
+  name: ossm-example-body-extension
+spec:
+  pluginConfig:
+    secret-word: secret <i class="conum" data-value="1"></i><b>(1)</b>
+  url: oci://quay.io/acidonpe/ossm-example-body-extension:1.0.0
+  priority: 100
+  phase: STATS
+  selector:
+    matchLabels:
+      app: httpbin</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This is the specific text the extension will try to find</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_apply_the_wasm_plugin_2"><a class="anchor" href="#_apply_the_wasm_plugin_2"></a>Apply the {wasm} plugin</h4>
+<div class="paragraph">
+<p>Now you can apply the {wasm} plugin.</p>
+</div>
+<div class="paragraph">
+<p>Execute the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">oc apply -f lab2/ossm-extension-body.yaml -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If everything works properly, it is possible to find the following log in the istio-proxy sidecar container executing the next procedure:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
+oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
+...
+2023-08-30T11:51:46.862406Z info wasm fetching image acidonpe/ossm-example-body-extension from registry quay.io with tag 1.0.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As in the previous lab, you are going to query the httpbin <em>anything</em> endpoint but this time using a custom body:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -d "My message" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see, <em>httpbin</em> app returns a JSON with everything that was passed in the request, including your custom body but nothing special happened:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="httpbin_wasm_body_1.png" alt="httpbin wasm body 1">
+</div>
+<div class="title">Figure 18. httpbin returns a custom body</div>
+</div>
+<div class="paragraph">
+<p>Now, include the word <em>secret</em> in the body, as defined in the {sme} resource:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -d "My secret message" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see now, the extension has detected the word in the body and has replaced all the body with a predefined message:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="httpbin_wasm_body_2.png" alt="httpbin wasm body 2">
+</div>
+<div class="title">Figure 19. {wasm} plugin replaces body</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_remove_the_extension_2"><a class="anchor" href="#_remove_the_extension_2"></a>Remove the extension</h4>
+<div class="paragraph">
+<p>Remove the {wasm} plugin to finish the lab:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">oc delete -f lab2/ossm-extension-body.yaml -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/06-extensibility/04-wasm-extensions.adoc - include::partials/remove_httpbin.adoc[]</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

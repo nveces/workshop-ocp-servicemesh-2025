@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lab 1 - First application deployment :: WorkShop - Service Mesh on OCP 2025</title>
+    <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/01-introduction/01-first-deploy.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
+          src="../../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://nveces.github.io/workshop-ocp-servicemesh-2025">WorkShop - Service Mesh on OCP 2025</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Books</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">CheatSheets</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">CheatSheet A</a>
+            <a class="navbar-item" href="#">CheatSheet B</a>
+            <a class="navbar-item" href="#">CheatSheet C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Upcoming Events</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Event A</a>
+            <a class="navbar-item" href="#">Event B</a>
+            <a class="navbar-item" href="#">Event C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Tutorial A</a>
+            <a class="navbar-item" href="#">Tutorial B</a>
+            <a class="navbar-item" href="#">Tutorial C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="workshop-ocp-servicemesh-2025" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../01-setup.html">1. Setup</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#prerequisite">Prerequisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#minikube">Setup Minikube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../02-deploy.html">2. Deploy Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-deploy.html#package">Build Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-deploy.html#deploy">Deploy Dervice</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#introduction/index.adoc">3. Introduction - Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction/index.adoc#_lab_0_warming_up">Lab 0 - Warming up</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction/index.adoc#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">WorkShop - Service Mesh on OCP 2025</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">WorkShop - Service Mesh on OCP 2025</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></li>
+    <li><a href="01-first-deploy.html">Lab 1 - First application deployment</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/nveces/workshop-ocp-servicemesh-2025/edit/master/documentation/modules/ROOT/pages/01-introduction/01-first-deploy.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Lab 1 - First application deployment</h1>
+<div id="toc" class="toc">
+<div id="toctitle">First application deployment</div>
+<ul class="sectlevel1">
+<li><a href="#_brief_application_description">1. Brief application description</a></li>
+<li><a href="#_deploy_application">2. Deploy application</a>
+<ul class="sectlevel2">
+<li><a href="#_create_our_first_deployment_in_your_project">2.1. Create our first deployment in your project</a></li>
+<li><a href="#_add_a_service_to_your_application">2.2. Add a service to your application</a></li>
+<li><a href="#_create_a_route">2.3. Create a route</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once this lab is completed, we will have successfully deployed our first application and we will also have made it externally accesible.</p>
+</div>
+<div class="paragraph">
+<p>The main goals of this lab is to understand some core concepts such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Deployments</a></p>
+</li>
+<li>
+<p><a href="https://kubernetes.io/docs/concepts/services-networking/service/">Services</a></p>
+</li>
+<li>
+<p><a href="https://docs.openshift.com/container-platform/4.6/rest_api/network_apis/route-route-openshift-io-v1.html">Routes</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_brief_application_description"><a class="anchor" href="#_brief_application_description"></a>1. Brief application description</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The application that we are going to use during these labs is called <strong>Pet clinic</strong>. It has been used in different workshops in Red Hat.</p>
+</div>
+<div class="paragraph">
+<p>In our case, we have made some modifications to make it more appropiate to certain use cases we wanted to show during the labs.</p>
+</div>
+<div class="paragraph">
+<p>Next diagram describes the 3 layer application architecture:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="app-arch.png" alt="app-arch"></span></p>
+</div>
+<div class="paragraph">
+<p>It basically manage set of Pets, their Owners and Veterinarians appointments. We will play a bit when needed in the labs.</p>
+</div>
+<div class="paragraph">
+<p>Source code is available <a href="https://github.com/dsanchor/petclinic.git">here</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+As these labs are not intended to be a development nor Quarkus workshop, I will not give more details about the application itself unless they are related to Openshift integration.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_application"><a class="anchor" href="#_deploy_application"></a>2. Deploy application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are many ways of performing our first deployment (web console, cli options and so on), but I want to start by creating the first deployment using the YAML descriptor.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s have a look at the full YAML file first:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: quarkus-petclinic
+  labels:
+    app: quarkus-petclinic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quarkus-petclinic
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+  template:
+    metadata:
+      labels:
+        app: quarkus-petclinic
+        deployment: quarkus-petclinic
+    spec:
+      containers:
+        - name: quarkus-petclinic
+          image: 'quay.io/dsanchor/quarkus-petclinic:in-mem'
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources: {}
+          imagePullPolicy: Always</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s focus on each individual parts:</p>
+</div>
+<div class="paragraph">
+<p>First part, there is basically the <code>kind</code> and <code>apiVersion</code> for a <code>Deployment</code> API object and then, we just add a name and a set of <code>labels</code> under <code>metadata</code>:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="d-name.png" alt="deployment name"></span></p>
+</div>
+<div class="paragraph">
+<p>Next, we have the <code>spec</code> part of the object. This is where we basically define the desired state of our <code>Deployment</code>.</p>
+</div>
+<div class="paragraph">
+<p>Grouping some parts of it, we have:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="d-part1.png" alt="deployment part1"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Number of desired pods managed by this <code>Deployment</code> and its <code>ReplicaSet</code></p>
+</li>
+<li>
+<p>Selector, that will basically tell which pods are managed by the <code>ReplicaSet</code>.</p>
+</li>
+<li>
+<p>Deployment strategy, which set how pods are created/destroy during update process.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>And finally the template definition, that describes how a pod will look like:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="d-part2.png" alt="deployment part2"></span></p>
+</div>
+<div class="paragraph">
+<p>We will see more details about every part of the <code>pod</code> itself while going through the labs.</p>
+</div>
+<div class="sect2">
+<h3 id="_create_our_first_deployment_in_your_project"><a class="anchor" href="#_create_our_first_deployment_in_your_project"></a>2.1. Create our first deployment in your project</h3>
+<div class="paragraph">
+<p>As said, we will apply the YAML descriptor into our project. To do so, execute:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab1/app-deployment.yaml -n &lt;YOUR_PROJECT&gt;
+
+deployment.apps/quarkus-petclinic created</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can move to one project to another with <code>oc project &lt;PROJECT&gt;</code> and there is no need to add the extra <code>-n &lt;PROJECT&gt;</code> to perform actions over the current <code>project</code>, although when having many <code>projects</code>, the <code>-n</code> option will give you the peace and serenity about being doing stuff where you really want to :-)
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s also have a look at what has been created already in our project:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ oc get all -n &lt;YOUR_PROJECT&gt;
+
+NAME                                     READY   STATUS    RESTARTS   AGE
+pod/quarkus-petclinic-7cdcd76595-vrbd2   1/1     Running   0          2m33s
+
+NAME                                READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/quarkus-petclinic   1/1     1            1           2m33s
+
+NAME                                           DESIRED   CURRENT   READY   AGE
+replicaset.apps/quarkus-petclinic-7cdcd76595   1         1         1       2m33s</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We have not only a <code>Deployment</code> but a <code>ReplicaSet</code> and a single <code>Pod</code>.</p>
+</div>
+<div class="paragraph">
+<p>By creating a <code>Deployment</code>, a <code>ReplicaSet</code> has been created in order to ensure that the specified number of pods are running at a given moment in time.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s move to the console and see what we have. This time, we will use the <code>Developer</code> view. Select that perspective on the left top corner:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="just-deployment.png" alt="just deployment"></span></p>
+</div>
+<div class="paragraph">
+<p>If you click on the blue circle (2), you will get all details about the application (3).</p>
+</div>
+<div class="paragraph">
+<p>As you can tell, there is not any <code>Service</code> nor <code>Route</code> created for it yet. That means, this application is just locally accesible if you would know the pod ip (unprobable.. and undesired).</p>
+</div>
+<div class="paragraph">
+<p>Click on the <code>pod</code> link (4) and get a terminal screen within that <code>pod</code>:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="pod-terminal.png" alt="pod terminal"></span></p>
+</div>
+<div class="paragraph">
+<p>To test the application locally, execute the following in the terminal:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ curl -v localhost:8080 | grep 200</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In case you did not get a <code>HTTP/1.1 200 OK</code> response, let us know.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_add_a_service_to_your_application"><a class="anchor" href="#_add_a_service_to_your_application"></a>2.2. Add a service to your application</h3>
+<div class="paragraph">
+<p>Once we tested the application, lets add a <code>Service</code> that will provide us a logical name to access to this application. It will also be used as a load balancer for the possible 'n' pods we may have later for this <code>Deployment</code>.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab1/app-service.yaml -n &lt;YOUR_PROJECT&gt;
+
+service/quarkus-petclinic created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, you could have ran the next <code>oc</code> command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>oc expose deployment/quarkus-petclinic --port=8080 -n &lt;YOUR_PROJECT&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Feel free to run again a <em>oc get all</em> to see that the service has been successfully created.</p>
+</div>
+<div class="paragraph">
+<p>Also, if you move back to the console, you will notice that the service is "assigned" to the application:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="with-service.png" alt="with service"></span></p>
+</div>
+<div class="paragraph">
+<p>Test the application again from the <code>pod</code> terminal, but this time use the <code>service</code> name instead:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ curl -v quarkus-petclinic:8080 | grep 200</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hope you got a <code>HTTP/1.1 200 OK</code>! If that is the case, let&#8217;s make our application externally acessible by adding a <code>route</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_a_route"><a class="anchor" href="#_create_a_route"></a>2.3. Create a route</h3>
+<div class="paragraph">
+<p>Apply the following YAML in your project:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab1/app-route.yaml -n &lt;YOUR_PROJECT&gt;
+
+route.route.openshift.io/quarkus-petclinic created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As previously mentioned for <code>services</code>, you could use the <code>oc expose</code> command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>oc expose svc/quarkus-petclinic -n &lt;YOUR_PROJECT&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is then time to access to our application using a web browser. To do so, let&#8217;s first get the <code>host</code> where this application is exposed:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc get route -n &lt;YOUR_PROJECT&gt;
+
+NAME                HOST/PORT                                                  PATH   SERVICES            PORT       TERMINATION   WILDCARD
+quarkus-petclinic   quarkus-petclinic-user0.apps.labs.sandbox779.opentlc.com          quarkus-petclinic   8080-tcp                 None</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Copy the value under <code>HOST/PORT</code> column in your preferred web browser. And then&#8230;&#8203; there we go!</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="petclinic-web.png" alt="petclinic"></span></p>
+</div>
+<div class="paragraph">
+<p>Congratulations! You have successfully deployed your first application.</p>
+</div>
+<div class="paragraph">
+<p>Just a few  considerations about the application. This application requires access to a DB in order to persist any change. In this lab, we used an in-memory H2 DB within our application.. so in case you add/remove pets, this changes are only persisted to that single pod.</p>
+</div>
+<div class="paragraph">
+<p>You would also notice that in case you kill/delete the pod, those pets previously created would have been lost.</p>
+</div>
+<div class="paragraph">
+<p>Feel free to perform these very usefull exercises to understand that <em>pods are ephemeral</em>.</p>
+</div>
+<div class="paragraph">
+<p>But no worries, <strong>our pets deserve the best</strong>.. so will deploy a proper DB in the next lab and link the application pods to it.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

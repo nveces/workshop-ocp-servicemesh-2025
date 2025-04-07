@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lab 2 - Requests Routing :: WorkShop - Service Mesh on OCP 2025</title>
+    <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/03-traffic-management/04-requests-routing.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
+          src="../../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://nveces.github.io/workshop-ocp-servicemesh-2025">WorkShop - Service Mesh on OCP 2025</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Books</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">CheatSheets</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">CheatSheet A</a>
+            <a class="navbar-item" href="#">CheatSheet B</a>
+            <a class="navbar-item" href="#">CheatSheet C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Upcoming Events</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Event A</a>
+            <a class="navbar-item" href="#">Event B</a>
+            <a class="navbar-item" href="#">Event C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Tutorial A</a>
+            <a class="navbar-item" href="#">Tutorial B</a>
+            <a class="navbar-item" href="#">Tutorial C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="workshop-ocp-servicemesh-2025" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../01-setup.html">1. Setup</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#prerequisite">Prerequisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#minikube">Setup Minikube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../02-deploy.html">2. Deploy Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-deploy.html#package">Build Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-deploy.html#deploy">Deploy Dervice</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#introduction/index.adoc">3. Introduction - Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction/index.adoc#_lab_0_warming_up">Lab 0 - Warming up</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction/index.adoc#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">WorkShop - Service Mesh on OCP 2025</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">WorkShop - Service Mesh on OCP 2025</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></li>
+    <li><a href="04-requests-routing.html">Lab 2 - Requests Routing</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/nveces/workshop-ocp-servicemesh-2025/edit/master/documentation/modules/ROOT/pages/03-traffic-management/04-requests-routing.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Lab 2 - Requests Routing</h1>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that you have Bookinfo all set up. Is time to do some requests routing. {ossm} by default routes requests in a round robin manner. But in this case, all requests are going only to version 1 of <code>reviews</code> since the {vss} are set that way.</p>
+</div>
+<div class="sect2">
+<h3 id="_route_traffic_to_a_specific_version"><a class="anchor" href="#_route_traffic_to_a_specific_version"></a>Route traffic to a specific version</h3>
+<div class="paragraph">
+<p>In this lab we will apply the rules to make all requests go to version 2 of <code>reviews</code> so we can see the stars ratings. For that we are going to use the following {vs}:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: reviews
+spec:
+  hosts:
+  - reviews
+  http:
+  - route:
+    - destination:
+        host: reviews
+        subset: v2 <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Note that the only version in the {vs} is the version 2 of the <code>reviews</code> service.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can see that it refers to something called a <code>subset</code>. This is the way Istio has to call the different versions of a <code>service</code>. You can see the different subsets in the {drs}, like the following one for the <code>reviews</code> service:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  labels:
+    template: bookinfo-template
+  name: reviews
+spec:
+  host: reviews
+  subsets: <i class="conum" data-value="1"></i><b>(1)</b>
+  - labels:
+      version: v1
+    name: v1
+  - labels:
+      version: v2
+    name: v2
+  - labels:
+      version: v3
+    name: v3</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>As you can see, there are three different subsets that you can reference from a {vs}.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_route_traffic_based_on_headers"><a class="anchor" href="#_route_traffic_based_on_headers"></a>Route traffic based on headers</h3>
+<div class="paragraph">
+<p>Now let&#8217;s think that we have a new version for the application and you want to deploy it first to a set of premium users. We are going to see how to do that in this lab where we are going to route the requests from one user in particular to version 3 of the <code>reviews</code> service. For that we are going to use the following {vs}:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: reviews
+spec:
+  hosts:
+  - reviews
+  http:
+  - match:
+    - headers:
+        end-user:
+          exact: pepito <i class="conum" data-value="1"></i><b>(1)</b>
+    route:
+    - destination:
+        host: reviews
+        subset: v3 <i class="conum" data-value="2"></i><b>(2)</b>
+  - route:
+    - destination:
+        host: reviews
+        subset: v2 <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Here we say what are we looking for in the header</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Here we make "pepito" see the version 3 of the <code>reviews</code> server.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>If it does not match the header, the traffic is routed to version 2.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free to change "pepito" for another name if you prefer.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/04-requests-routing.adoc - include::partials/deploy_bookinfo.adoc[]</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_route_traffic_to_version_2"><a class="anchor" href="#_route_traffic_to_version_2"></a>Route traffic to version 2</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Execute the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">oc apply -f lab2/vs-reviews-v2.yaml -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now check that the product page shows the stars of the ratings visiting <a href="https://&lt;user&gt;.bookinfo.&lt;openshift_apps_domain&gt;/productpage" class="bare">https://&lt;user&gt;.bookinfo.&lt;openshift_apps_domain&gt;/productpage</a> with your browser:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="productpage-v2.png" alt="productpage v2">
+</div>
+<div class="title">Figure 1. Product Page showing ratings</div>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/04-requests-routing.adoc - include::partials/kiali_traffic.adoc[]</p>
+</div>
+<div class="paragraph">
+<p>You should see a graph similar to this:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="kiali-traffic-v2.png" alt="kiali traffic v2">
+</div>
+<div class="title">Figure 2. Kiali traffic version 2</div>
+</div>
+<div class="paragraph">
+<p>You see there that all traffic goes to version 2 of the <code>reviews</code> service that calls the <code>ratings</code> service to get the stars.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_route_traffic_based_on_headers_2"><a class="anchor" href="#_route_traffic_based_on_headers_2"></a>Route traffic based on headers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Execute the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">oc apply -f lab2/vs-reviews-headers.yaml -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To test it, click on the <em>Sign in</em> button at the top right of the Product Page and login as "pepito", or the user you editted in the yaml if you decided to do that. You have to write it exactly like in the yaml. And you can type whatever you want in the <em>Password</em> field.</p>
+</div>
+<div class="paragraph">
+<p>You should see the red stars now:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="productpage-red.png" alt="productpage red">
+</div>
+<div class="title">Figure 3. Product Page with red stars</div>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/04-requests-routing.adoc - include::partials/remove_bookinfo.adoc[]</p>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

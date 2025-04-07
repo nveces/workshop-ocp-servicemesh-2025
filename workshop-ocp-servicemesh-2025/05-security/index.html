@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Service Mesh Security - Labs :: WorkShop - Service Mesh on OCP 2025</title>
+    <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/05-security/index.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
+          src="../../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://nveces.github.io/workshop-ocp-servicemesh-2025">WorkShop - Service Mesh on OCP 2025</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Books</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">CheatSheets</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">CheatSheet A</a>
+            <a class="navbar-item" href="#">CheatSheet B</a>
+            <a class="navbar-item" href="#">CheatSheet C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Upcoming Events</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Event A</a>
+            <a class="navbar-item" href="#">Event B</a>
+            <a class="navbar-item" href="#">Event C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Tutorial A</a>
+            <a class="navbar-item" href="#">Tutorial B</a>
+            <a class="navbar-item" href="#">Tutorial C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="workshop-ocp-servicemesh-2025" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../01-setup.html">1. Setup</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#prerequisite">Prerequisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#minikube">Setup Minikube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../02-deploy.html">2. Deploy Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-deploy.html#package">Build Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-deploy.html#deploy">Deploy Dervice</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#introduction/index.adoc">3. Introduction - Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction/index.adoc#_lab_0_warming_up">Lab 0 - Warming up</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction/index.adoc#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">WorkShop - Service Mesh on OCP 2025</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">WorkShop - Service Mesh on OCP 2025</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></li>
+    <li><a href="index.html">Service Mesh Security - Labs</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/nveces/workshop-ocp-servicemesh-2025/edit/master/documentation/modules/ROOT/pages/05-security/index.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Service Mesh Security - Labs</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Service Mesh Security - Labs</div>
+<ul class="sectlevel0">
+<li><a href="#_lab_0_warming_up">Lab 0 - Warming up</a>
+<ul class="sectlevel1">
+<li><a href="#_access_to_openshift_web_console">1. Access to Openshift Web Console</a>
+<ul class="sectlevel2">
+<li><a href="#_download_the_cli">1.1. Download the CLI</a></li>
+<li><a href="#_access_to_openshift_using_oc">1.2. Access to Openshift using <code>oc</code></a></li>
+</ul>
+</li>
+<li><a href="#_access_to_service_mesh_console_kiali">2. Access to Service Mesh Console: Kiali</a></li>
+</ul>
+</li>
+<li><a href="#_lab_1_setup_demo_applications">Lab 1 - Setup demo applications</a>
+<ul class="sectlevel1">
+<li><a href="#_deploy_services_in_apps_ns1">1. Deploy services in $APPS_NS1</a></li>
+<li><a href="#_deploy_services_in_apps_ns2">2. Deploy services in $APPS_NS2</a></li>
+</ul>
+</li>
+<li><a href="#_lab_2_peerauthentication">Lab 2 - PeerAuthentication</a>
+<ul class="sectlevel1">
+<li><a href="#_enforce_mtls_in_our_namespace_apps_ns1">1. Enforce mTLS in our namespace $APPS_NS1</a></li>
+<li><a href="#_configure_mtls_in_our_services_under_apps_ns1">2. Configure mTLS in our services under $APPS_NS1</a></li>
+<li><a href="#_enforce_mtls_and_configure_services_in_apps_ns2">3. Enforce mTLS and configure services in $APPS_NS2</a></li>
+<li><a href="#_optional_add_namespace_wide_destinationrule_for_mtls">4. Optional: add namespace-wide DestinationRule for mTLS</a></li>
+</ul>
+</li>
+<li><a href="#_lab_3_authorization_part_1">Lab 3 - Authorization: part 1</a>
+<ul class="sectlevel1">
+<li><a href="#_brief_reminder_about_authorizationpolicy">1. Brief reminder about AuthorizationPolicy</a></li>
+<li><a href="#_deny_all_policy">2. Deny all policy</a></li>
+<li><a href="#_allow_access_from_dedicated_ingress_gateway_to_productpage_service">3. Allow access from dedicated Ingress Gateway to Productpage service</a></li>
+<li><a href="#_allow_access_between_services_using_principals">4. Allow access between services using principals</a></li>
+<li><a href="#_extra_check_access_from_independant_pod">5. Extra check: access from independant pod</a></li>
+<li><a href="#_allow_access_between_services_from_different_namespaces">6. Allow access between services from different namespaces</a></li>
+</ul>
+</li>
+<li><a href="#_lab_4_requestauthentication">Lab 4 - RequestAuthentication</a>
+<ul class="sectlevel1">
+<li><a href="#_clean_up_resources_from_previous_lab">1. Clean up resources from previous lab</a></li>
+<li><a href="#_enforce_jwt_authentication">2. Enforce JWT authentication</a></li>
+</ul>
+</li>
+<li><a href="#_lab_5_authorization_part_2">Lab 5 - Authorization: part 2</a>
+<ul class="sectlevel1">
+<li><a href="#_extra_oauth_flow_implementation">1. Extra: OAuth flow implementation</a>
+<ul class="sectlevel2">
+<li><a href="#_deploy_an_oauth2_proxy_helper">1.1. Deploy an OAuth2 proxy (helper)</a></li>
+</ul>
+</li>
+<li><a href="#_configure_requestauthentication_in_apps_ns1">2. Configure RequestAuthentication in $APPS_NS1</a></li>
+<li><a href="#_limit_access_based_on_hosted_domain_claim">3. Limit access based on hosted domain claim</a></li>
+<li><a href="#_limit_access_to_your_user_only">4. Limit access to your user only</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="_lab_0_warming_up" class="sect0"><a class="anchor" href="#_lab_0_warming_up"></a>Lab 0 - Warming up</h1>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This is not a recommended practices guide nor intended to serve as a reference. These series of labs are oriented in such a way that you will have a first contact to the main concepts of Openshift Service Mesh and Istio <strong>security topics</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In this preparation lab, we are going to get the <code>oc</code> cli binary and validate that all necessary requirements are successfully accomplished before starting the series of labs.</p>
+</div>
+<div class="paragraph">
+<p>Along these labs, you will refer to a list of variables that have been shared with you before starting the labs. If this is not your case, please let us know.</p>
+</div>
+<div class="paragraph">
+<p>These variables are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>$OCP_CONSOLE</strong>: url for accessing to the Openshift web console</p>
+</li>
+<li>
+<p><strong>$OCP_API</strong>: Openshift API endpoint. We will use this endpoint when accesing the cluster from the <code>oc</code> cli.</p>
+</li>
+<li>
+<p><strong>$USER</strong>: your private user id used for Openshift authentication</p>
+</li>
+<li>
+<p><strong>$PASSWORD</strong>:  your secret password used for Openshift authentication</p>
+</li>
+<li>
+<p><strong>$APPS_NS1</strong> and <strong>$APPS_NS2</strong> : namespaces where you will deploy your apps during the whole series of labs. Ex: <code>dsanchor-1</code> and <code>dsanchor-2</code></p>
+</li>
+<li>
+<p><strong>$SERVICE_MESH_NS</strong>: namespace of the Istio Control Plane you will be using. This time, there will be only a single control plane shared by all: <code>istio-system</code>.</p>
+</li>
+<li>
+<p><strong>$KIALI_CONSOLE</strong>: each Service Mesh will have their own console. Use this url to access to the <code>Kiali console</code>.</p>
+</li>
+<li>
+<p><strong>$INGRESS_GW</strong>: every user will have a dedicated Ingress Gateway to manage his/her ingress traffic. Ex: <code>dsanchor-ingress</code></p>
+</li>
+<li>
+<p><strong>$PRODUCTPAGE_HOST</strong>: external domain for the productpage service. Ex: <code>productpage-dsanchor-1.apps.labs.sandbox671.opentlc.com</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Feel free to export these variables in your environment.</p>
+</div>
+<div class="paragraph">
+<p>There is also a list of files needed to run the labs. These files can be found in the following github repository:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/dsanchor/service-mesh-security" class="bare">https://github.com/dsanchor/service-mesh-security</a></p>
+</div>
+<div class="paragraph">
+<p>Clone the repository to your desired location, that will then be referred as <strong>$LABS_HOME</strong> during the labs:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ git clone https://github.com/dsanchor/service-mesh-security.git $LABS_HOME</pre>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_access_to_openshift_web_console"><a class="anchor" href="#_access_to_openshift_web_console"></a>1. Access to Openshift Web Console</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use the <code><strong>$OCP_CONSOLE</strong></code> url to acces the Openshift Web Console.</p>
+</div>
+<div class="paragraph">
+<p>A login screen will be shown as follow:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="login.png" alt="login"></span></p>
+</div>
+<div class="paragraph">
+<p>Enter your <code>username</code> and <code>password</code> and click <code>Log In</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you have successfully logged in, you will arrive to the main dashboard with your current projects. As seen below, you should have access to 3 namespaces, <code>istio-system</code>, <code>yournamespace-1</code> and <code>yournamespace-2</code>:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="projects.png" alt="Projects"></span></p>
+</div>
+<div class="paragraph">
+<p>It is time to get the Openshift CLI binaries for your specific OS.</p>
+</div>
+<div class="sect2">
+<h3 id="_download_the_cli"><a class="anchor" href="#_download_the_cli"></a>1.1. Download the CLI</h3>
+<div class="paragraph">
+<p>On the top-right (?) menu, click on <code>Command line tools</code>:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="menu-clt.png" alt="command-line-tools"></span></p>
+</div>
+<div class="paragraph">
+<p>Then, choose the binaries according to your OS:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="cli-download-options.png" alt="cli-download-options"></span></p>
+</div>
+<div class="paragraph">
+<p>Extract the binaries and try it by executing the following:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc version
+
+Client Version: 4.7.5
+Server Version: 4.7.5
+Kubernetes Version: v1.20.0+bafe72f</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above is an example of what you should get when running the command.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_access_to_openshift_using_oc"><a class="anchor" href="#_access_to_openshift_using_oc"></a>1.2. Access to Openshift using <code>oc</code></h3>
+<div class="paragraph">
+<p>Once we have the <code>oc</code> cli tool installed, we will first log in into the platform by running:</p>
+</div>
+<div class="paragraph">
+<p><em>Notice that we are using the $VARS we mentioned at the beggining of the labs. If you have not exported them, you will need to manually replace them below.</em></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc login -u $USER -p $PASSWORD $OCP_API
+
+Login successful.
+
+You have access to the following projects and can switch between them with ' project &lt;projectname&gt;':
+
+  * istio-system
+    dsanchor-1
+    dsanchor-2
+
+Using project "istio-system".</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_access_to_service_mesh_console_kiali"><a class="anchor" href="#_access_to_service_mesh_console_kiali"></a>2. Access to Service Mesh Console: Kiali</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use the <code><strong>$KIALI_CONSOLE</strong></code> url to acces the Service Mesh Web Console.</p>
+</div>
+<div class="paragraph">
+<p>A login screen will be shown as follow:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="kiali-login.png" alt="Kiali login"></span></p>
+</div>
+<div class="paragraph">
+<p>Enter your <code>username</code> and <code>password</code> and click <code>Log In</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you have successfully logged in, you will arrive to the main dashboard where you will see the main <code>Service Mesh Control Plane</code> namespace and your two <code>Apps namespaces</code>:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="kiali-projects.png" alt="Kiali mesh and namespaces"></span></p>
+</div>
+<div class="paragraph">
+<p>Notice that this time, your two <code>Apps namespaces</code> are already part of the mesh, that is, we simply added the <code>ServiceMeshMember</code> for you, as you have done this task many times in previous labs.</p>
+</div>
+<div class="paragraph">
+<p>We can now start deploying applications into our project so we are then ready to start securing them.</p>
+</div>
+</div>
+</div>
+<h1 id="_lab_1_setup_demo_applications" class="sect0"><a class="anchor" href="#_lab_1_setup_demo_applications"></a>Lab 1 - Setup demo applications</h1>
+<div class="paragraph">
+<p>The main goal of this lab is to quickly deploy a set of applications that will be used in the next labs. Notice that in this case, all <code>Deployments</code> are properly annotated, so the <code>istio-proxy</code> is autoinjected magically.</p>
+</div>
+<div class="paragraph">
+<p>We will deploy the <code>bookinfo</code> app we are already familiar with, but we will do it in 2 different <code>namespaces</code> so we can then have some different scenarios to test.</p>
+</div>
+<div class="paragraph">
+<p>The final set of application deployments will look like follows:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="namespaces-deployments.png" alt="Apps in ns"></span></p>
+</div>
+<div class="sect1">
+<h2 id="_deploy_services_in_apps_ns1"><a class="anchor" href="#_deploy_services_in_apps_ns1"></a>1. Deploy services in $APPS_NS1</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s have all services up and running in $APPS_NS1.</p>
+</div>
+<div class="paragraph">
+<p>We will start with <code>produtcpage</code> service. Run:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab1/apps/productpage-v1.yaml -n $APPS_NS1
+
+service/productpage created
+deployment.apps/productpage-v1 created
+serviceaccount/bookinfo-productpage created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One thing that is important during these labs, mainly for the <code>authorization</code> part, is the <code>ServiceAccount</code>. In the above command output, notice:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>serviceaccount/bookinfo-productpage created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This <code>serviceaccount/bookinfo-productpage</code> will be used to run the <code>productpage pods</code>,  so every application will run using different <code>ServiceAccounts</code> and that would mean different identities, as will see later.</p>
+</div>
+<div class="paragraph">
+<p>To verify the above, check that within the <code>deployment.apps/productpage-v1</code> we have set the <code>serviceAccount</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc get deployment.apps/productpage-v1 -n $APPS_NS1 -o yaml | grep "serviceAccount: bookinfo-productpage"
+
+      serviceAccount: bookinfo-productpage</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In regular deployments, if serviceAccount field is not set, pods will run with the <code>default</code> ServiceAccount, which is pre-created for us when creating new projects/namespaces.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s continue with <code>details</code> service:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab1/apps/details-v1.yaml -n $APPS_NS1
+
+service/details created
+deployment.apps/details-v1 created
+serviceaccount/bookinfo-details created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, <code>reviews</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab1/apps/reviews-v2.yaml -n $APPS_NS1
+
+service/reviews created
+deployment.apps/reviews-v2 created
+serviceaccount/bookinfo-reviews created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally <code>ratings</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab1/apps/ratings-v1.yaml -n $APPS_NS1
+
+service/ratings created
+deployment.apps/ratings-v1 created
+serviceaccount/bookinfo-ratings created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We are almost done in <code>$APPS_NS1</code>, but before creating the <code>VirtualServices</code> and <code>DestinationRules</code> for every service, let&#8217;s check that we get all pods running with '2/2' containers:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc get pods  -n $APPS_NS1
+
+NAME                              READY   STATUS    RESTARTS   AGE
+details-v1-797b75485d-7ml49       2/2     Running   0          5m25s
+productpage-v1-5f6774b864-5p4ms   2/2     Running   0          10h
+ratings-v1-7d48bbb9fd-znfdd       2/2     Running   0          2m32s
+reviews-v2-cf45c87c7-74jbh        2/2     Running   0          3m5s</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Execute the following commands to create the <code>VirtualServices</code> and <code>DestinationRules</code> for every service. We leave the <code>productpage</code> configuration for the end, as it is a bit special. The other services will have a simple <code>VirtualService`that reference a single subset defined in the `DestinationRule</code>. Run the following for <code>details</code> service:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab1/istio/details-v1.yaml -n $APPS_NS1
+
+virtualservice.networking.istio.io/details created
+destinationrule.networking.istio.io/details created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Feel free to check the content of both <code>VirtualService</code> and <code>DestinationRule</code> we just created.
+Then, do the same for <code>reviews</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab1/istio/reviews-v2.yaml -n $APPS_NS1
+
+virtualservice.networking.istio.io/reviews created
+destinationrule.networking.istio.io/reviews created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally <code>ratings</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab1/istio/ratings-v1.yaml -n $APPS_NS1
+
+virtualservice.networking.istio.io/ratings created
+destinationrule.networking.istio.io/ratings created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the case of the <code>productpage</code> service, two more objects are created:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a <code>Route</code>, so the service can be externally accesible. Notice that it will be a secure route (simple <code>tls</code>) with passthrough termination. This means that the <code>tls</code> termination is not performed at the router side but the ingress gateway instead.</p>
+</li>
+<li>
+<p>an ingress <code>Gateway</code>, that will use an specific <code>selector</code> so the configuration will be applied on your $INGRESS_GW (in previous labs/workshops, we all shared the same gateway pods, but in these labs, we will have an specific gateway deployment per user). There is also some <code>tls</code> config set to include a pre-created set of certificates for this labs (under <code>apps-credential Secret</code>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To double check and understand what we just described above, run the following command and inspect the output YAML (try to see all details from the <code>Route</code> and <code>Gateway</code>):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab1/istio/productpage-v1.yaml -p PRODUCTPAGE_HOST=$PRODUCTPAGE_HOST -p INGRESS_GW=$INGRESS_GW -p APPS_NS=$APPS_NS1 -p MESH_NS=$SERVICE_MESH_NS -o yaml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once reviewed, apply the manifests:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab1/istio/productpage-v1.yaml -p PRODUCTPAGE_HOST=$PRODUCTPAGE_HOST -p INGRESS_GW=$INGRESS_GW -p APPS_NS=$APPS_NS1 -p MESH_NS=$SERVICE_MESH_NS -o yaml | oc apply -f -
+
+route.route.openshift.io/dsanchor-ingress-productpage created
+gateway.networking.istio.io/dsanchor-ingress-productpage created
+virtualservice.networking.istio.io/productpage created
+destinationrule.networking.istio.io/productpage created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Get the accesible endpoint of the application:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc get route/${INGRESS_GW}-productpage -o template='http://{{.spec.host}}' -n istio-system
+
+http://productpage-dsanchor-1.apps.labs.sandbox671.opentlc.com</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test the application in your <code>Web browser</code>. You will be redirected to an <code>https</code> url and warned about the self-signed certificate we have configured:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="self-signed-cert.png" alt="Self signed cert"></span></p>
+</div>
+<div class="paragraph">
+<p>Accept the risk ;-) and you will land in the following page:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="landing-page.png" alt="Landing page"></span></p>
+</div>
+<div class="paragraph">
+<p>Click on <code>Access to productpage</code> link (bottom left of the page) and voila:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="productpage.png" alt="Productpage"></span></p>
+</div>
+<div class="paragraph">
+<p>Keep a test running on the background to generate telemetry (don&#8217;t forget to use your domain in the url):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>watch -n1 curl -k https://${PRODUCTPAGE_HOST}/productpage</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you check then the graph in <code>Kiali</code>, you should get a similar flow:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="first-graph.gif" alt="First graph"></span></p>
+</div>
+<div class="paragraph">
+<p>Notice the starting node in the graph&#8230;&#8203; it should be your dedicated ingress gateway.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_services_in_apps_ns2"><a class="anchor" href="#_deploy_services_in_apps_ns2"></a>2. Deploy services in $APPS_NS2</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For a different scenario that will be later introduced, we will deploy just the <code>reviews</code> and <code>ratings</code> service in $APPS_NS2.</p>
+</div>
+<div class="paragraph">
+<p>Deploy <code>reviews-v3</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab1/apps/reviews-v3.yaml -n $APPS_NS2
+
+service/reviews created
+deployment.apps/reviews-v3 created
+serviceaccount/bookinfo-reviews created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And then <code>ratings-v1</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab1/apps/ratings-v1.yaml -n $APPS_NS2
+
+service/ratings created
+deployment.apps/ratings-v1 created
+serviceaccount/bookinfo-ratings created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the specific set of <code>VirtualServices</code> and <code>DestinationRules</code>:</p>
+</div>
+<div class="paragraph">
+<p>For <code>reviews</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab1/istio/reviews-v3.yaml -n $APPS_NS2
+
+virtualservice.networking.istio.io/reviews created
+destinationrule.networking.istio.io/reviews created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For <code>ratings</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab1/istio/ratings-v1.yaml -n $APPS_NS2
+
+virtualservice.networking.istio.io/ratings created
+destinationrule.networking.istio.io/ratings created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So far, we just deployed and configured some services in $APPS_NS2, but these are not yet accesible. The current request flow looks like:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="apps-ns1-workflow.png" alt="Apps ns1 workflow"></span></p>
+</div>
+<div class="paragraph">
+<p>But in some scenarios during these labs, we want to make use of the services we have deployed on $APPS_NS2 as in next diagram:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="apps-ns2-workflow.png" alt="Apps ns2 workflow"></span></p>
+</div>
+<div class="paragraph">
+<p>In order to achieve this, we will have to set certain <code>env variable</code> in <code>productpage</code> to target to a different <code>reviews</code> service than the default one (same namespace). Execute the following to configure the <code>reviews</code> service in $APPS_NS2 as target service:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc set env deployment/productpage-v1 -e REVIEWS_HOSTNAME=reviews.$APPS_NS2.svc.cluster.local -n $APPS_NS1
+
+deployment.apps/productpage-v1 updated</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A rollout of <code>productpage`is triggered and then, test the service again. You should get the `ratings</code> with red stars:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="ratings-ns2.png" alt="Ratings from ns2"></span></p>
+</div>
+<div class="paragraph">
+<p>And if you keep sending requests.. you would get the following graph (notice that we jump from <code>productpage</code> in your $APPS_NS1 to <code>reviews</code> in your $APPS_NS2):</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="graph-with-ns2.gif" alt="Graph with ns2"></span></p>
+</div>
+<div class="paragraph">
+<p>Once tested, we will move back to default, as we will start from the first scenario, where all services run in $APPS_NS1.</p>
+</div>
+<div class="paragraph">
+<p>Execute the following to move back to default <code>reviews</code> service, which runs in same <code>namespace</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc set env deployment/productpage-v1 -e REVIEWS_HOSTNAME=reviews -n $APPS_NS1
+
+deployment.apps/productpage-v1 updated</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is time to start securing our services calls as in this lab, we have just deployed all services and securely exposed externally (simple tls) but we did nothing about this within the mesh (so internal calls still are not secured with tls/mtls).</p>
+</div>
+</div>
+</div>
+<h1 id="_lab_2_peerauthentication" class="sect0"><a class="anchor" href="#_lab_2_peerauthentication"></a>Lab 2 - PeerAuthentication</h1>
+<div class="paragraph">
+<p>In this lab, we are going to configure mTLS for all comunications between our existing services.</p>
+</div>
+<div class="paragraph">
+<p>One of the possibilities would be to <code>auto enable</code> mTLS globally in the <code>mesh</code> during the <code>ServiceMeshControlPlane</code> installation process.</p>
+</div>
+<div class="paragraph">
+<p>In our case, we chose not to do it that way, so we can reach this lab and enable mTLS in each service to service communication as an exercise to practice with this kind of scenarios.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This lab about mTLS is very similar to the one we did in <strong>Service Mesh - Introduction</strong>, but it is required to move to next labs and also, good to remember what we did and how we did it.  This time, we will apply the configuration in a few steps only.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect1">
+<h2 id="_enforce_mtls_in_our_namespace_apps_ns1"><a class="anchor" href="#_enforce_mtls_in_our_namespace_apps_ns1"></a>1. Enforce mTLS in our namespace $APPS_NS1</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First, we are going to enforce that any service to service communication in our <code>namespace</code> is covered by mTLS.</p>
+</div>
+<div class="paragraph">
+<p>To do so, we will create a <a href="https://istio.io/v1.6/docs/reference/config/security/peer_authentication/">PeerAuthentication</a> object that set the mTLS mode to <code>strict</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab2/peer-authentication-strict.yaml -n $APPS_NS1
+
+peerauthentication.security.istio.io/peer-auth-policy created</pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+When setting PeerAuthentication to STRICT namespace wide, we will get an error in <code>Kiali</code> telling that "Destination Rule enabling namespace-wide mTLS is missing". In our case, we don&#8217;t really care, as in this lab, we will enable mTLS service by service in the namespace.
+<span class="image unresolved"><img src="error-paut.png" alt="Error PeerAthentication"></span>
+<strong>Ignore it for the rest of the lab.</strong>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Test your application again. It does not work anymore. You should get an error like this one:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>upstream connect error or disconnect/reset before headers. reset reason: connection termination</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And that is because we are enforcing mTLS and our services have not been configured to support it yet.</p>
+</div>
+<div class="paragraph">
+<p>To do so, we will take advantage of an interesting <code>Istio</code> feature wich is the <code>ISTIO_MUTUAL</code> traffic policy: we let the proxy serves an <code>Istio</code> managed certificate associated per <code>ServiceAccount</code> to have mTLS without any change in our application.</p>
+</div>
+<div class="paragraph">
+<p>This <code>ServiceAccount</code> per service will let us identify the caller independently as each <code>ServiceAccount</code> will have a certificate associated to it. We will debug a bit to understand what happens under the covers.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configure_mtls_in_our_services_under_apps_ns1"><a class="anchor" href="#_configure_mtls_in_our_services_under_apps_ns1"></a>2. Configure mTLS in our services under $APPS_NS1</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>What will do next is to start setting <code>ISTIO_MUTUAL</code> in our services. We will achieve it by adding a <code>trafficPolicy</code> section of the <code>DestinationRule</code> where will describe the <code>tls mode</code>. In this case, it will be set to <code>ISTIO_MUTUAL</code>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s first understand the changes that we are going to apply in every <code>DestinationRule</code>. For that, we will get one before applying any change:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$  oc get destinationrule/productpage -o yaml -n $APPS_NS1
+...
+ (let's focus on the spec part of it)
+...
+ spec:
+  host: productpage
+  subsets:
+  - labels:
+      version: v1
+    name: v1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Apply the changes:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc patch destinationrule/productpage --type=merge -p '{"spec":{"trafficPolicy":{"tls":{"mode":"ISTIO_MUTUAL"}}}}' -n $APPS_NS1
+
+destinationrule.networking.istio.io/productpage patched</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And get again the same <code>DestinatioRule</code> to see the <code>trafficPolicy</code> section that has been added:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$  oc get destinationrule/productpage -o yaml -n $APPS_NS1
+...
+ (let's focus on the spec part of it)
+...
+spec:
+  host: productpage
+  subsets:
+  - labels:
+      version: v1
+    name: v1
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We do the same for every service. Patch the one for <code>details</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc patch destinationrule/details --type=merge -p '{"spec":{"trafficPolicy":{"tls":{"mode":"ISTIO_MUTUAL"}}}}' -n $APPS_NS1
+
+destinationrule.networking.istio.io/details patched</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then <code>reviews</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc patch destinationrule/reviews --type=merge -p '{"spec":{"trafficPolicy":{"tls":{"mode":"ISTIO_MUTUAL"}}}}' -n $APPS_NS1
+
+destinationrule.networking.istio.io/reviews patched</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And last from $APPS_NS1 is <code>ratings</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc patch destinationrule/ratings --type=merge -p '{"spec":{"trafficPolicy":{"tls":{"mode":"ISTIO_MUTUAL"}}}}' -n $APPS_NS1
+
+destinationrule.networking.istio.io/ratings patched</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test the application again and check that is working fine. You can also leave some tests running (don&#8217;t forget to change to your domain:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>watch -n1 curl -k https://${PRODUCTPAGE_HOST}/productpage</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, move to <code>Kiali</code> and select the <code>Security</code> check box in the graph <code>Display options</code>. We should get a lock icon between each service call:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="security-check.gif" alt="Mtls in ns1"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_enforce_mtls_and_configure_services_in_apps_ns2"><a class="anchor" href="#_enforce_mtls_and_configure_services_in_apps_ns2"></a>3. Enforce mTLS and configure services in $APPS_NS2</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We will apply the same changes in $APPS_NS2:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a <code>PeerAuthentication</code> with STRICT mode</p>
+</li>
+</ul>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab2/peer-authentication-strict.yaml -n $APPS_NS2
+
+peerauthentication.security.istio.io/peer-auth-policy created</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set <code>ISTIO_MUTUAL</code> in every service.</p>
+</li>
+</ul>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc patch destinationrule/reviews --type=merge -p '{"spec":{"trafficPolicy":{"tls":{"mode":"ISTIO_MUTUAL"}}}}' -n $APPS_NS2
+
+destinationrule.networking.istio.io/reviews patched</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc patch destinationrule/ratings --type=merge -p '{"spec":{"trafficPolicy":{"tls":{"mode":"ISTIO_MUTUAL"}}}}' -n $APPS_NS2
+
+destinationrule.networking.istio.io/ratings patched</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We have now finished setting mTLS between all our services calls. We can move now to the first part of the <code>authorization</code> labs.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_optional_add_namespace_wide_destinationrule_for_mtls"><a class="anchor" href="#_optional_add_namespace_wide_destinationrule_for_mtls"></a>4. Optional: add namespace-wide DestinationRule for mTLS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In case you want to get rid of the <code>PeerAuthentication</code> <strong>validation error</strong>, you could create a <code>DestinationRule</code> that would cover all your services in the <code>namespace</code> with mTLS (As you could have checked already, all our services are fully working and have mTLS. We have set it individually instead, but if the validation error really annoys you, feel free to remove it).</p>
+</div>
+<div class="paragraph">
+<p>This is the  YAML file you could use as template, replace $APPS_NS with your <code>namespace</code> before applying (you must do it with both $APPS_NS1 and $APPS_NS2):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: enable-mtls-ns-wide
+  namespace: ${APPS_NS}
+spec:
+  host: "*.${APPS_NS}.svc.cluster.local"
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL</pre>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_lab_3_authorization_part_1" class="sect0"><a class="anchor" href="#_lab_3_authorization_part_1"></a>Lab 3 - Authorization: part 1</h1>
+<div class="paragraph">
+<p>In this workshop, we will have two different authorization related labs. One after we have introduced the <code>PeerAuthentication</code> security part that we just did (Lab 2), and then, the second part after seeing the <code>RequestAuthentication</code> (Lab 4).</p>
+</div>
+<div class="paragraph">
+<p>First part will be about <code>workload-to-workload</code> authorization, while the second part will be about <code>end-user-to-workload</code>.</p>
+</div>
+<div class="paragraph">
+<p>In this first part, we will introduce the concept of peer identities (thanks to the mTLS authentication we configured in previous labs) and also, we will set a more wide policy that will enable certain services from $APPS_NS1 to access others in $APPS_NS2.</p>
+</div>
+<div class="sect1">
+<h2 id="_brief_reminder_about_authorizationpolicy"><a class="anchor" href="#_brief_reminder_about_authorizationpolicy"></a>1. Brief reminder about AuthorizationPolicy</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>AuthorizationPolicy</code> custom resource is mainly divided in three parts: a selector, an action and a list of rules.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <a href="https://istio.io/v1.6/docs/reference/config/networking/sidecar/#WorkloadSelector">selector</a> field specifies the target of the policy.</p>
+</li>
+<li>
+<p>The <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#AuthorizationPolicy-Action">action</a> field specifies whether to allow or deny the request.</p>
+</li>
+<li>
+<p>The <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#Rule">rules</a> specify when to trigger the action</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The <strong>from</strong> field in the rules specifies the sources of the request</p>
+</li>
+<li>
+<p>The <strong>to</strong> field in the rules specifies the operations of the request</p>
+</li>
+<li>
+<p>The <strong>when</strong> field specifies the conditions needed to apply the rule</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We will be creating this kind of manifest during the following labs, so in case you have any doubt, please feel free to ask. I also recommend to have a look at the <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/">official documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deny_all_policy"><a class="anchor" href="#_deny_all_policy"></a>2. Deny all policy</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before starting to create 'AuthorizationPolicies' covering different rules and conditions, we will create a 'deny all' policy in both $APPS_NS1  and $APPS_NS2.</p>
+</div>
+<div class="paragraph">
+<p>Then content of the <code>AuthorizationPolicy</code> is:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>kind: AuthorizationPolicy
+apiVersion: security.istio.io/v1beta1
+metadata:
+  name: deny-all-in-ns
+spec: {}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As per <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#AuthorizationPolicy">doc</a>, the above means:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>if no <code>selector</code>, the authorization policy will be applied to all workloads in the same namespace as the authorization policy.</p>
+</li>
+<li>
+<p>if no <code>rules</code>, the match will never occur. This is equivalent to setting a default of deny for the target workloads.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Apply this policy in both namespaces. First, in $APPS_NS1:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab3/deny-all.yaml -n $APPS_NS1
+
+authorizationpolicy.security.istio.io/deny-all-in-ns created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And then, in $APPS_NS2:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab3/deny-all.yaml -n $APPS_NS2
+
+authorizationpolicy.security.istio.io/deny-all-in-ns created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test the application again and see that we get an <code>RBAC: denied access error</code>. If you left some test running in the background, you would have a similar graph to the one shown below in <code>Kiali</code>:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="kiali-rbac-error.gif" alt="Kiali RBAC error"></span></p>
+</div>
+<div class="paragraph">
+<p>We will start now given access gradually to services.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_allow_access_from_dedicated_ingress_gateway_to_productpage_service"><a class="anchor" href="#_allow_access_from_dedicated_ingress_gateway_to_productpage_service"></a>3. Allow access from dedicated Ingress Gateway to Productpage service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The first allow policy we will define will be to allow access from your dedicated ingress <code>Gateway</code> to your <code>productpage</code> services that lives in $APPS_NS1.</p>
+</div>
+<div class="paragraph">
+<p>We will do so by enabling access only from the identity of your dedicated ingress <code>Gateway</code> as a valid <code>principal</code>. But&#8230;&#8203; where is that identity coming from? How do I know it?</p>
+</div>
+<div class="paragraph">
+<p>The answer is that in the Kubernetes world, <a href="https://istio.io/v1.6/docs/concepts/security/#istio-identity">Istio uses an identity</a> associated to each <code>ServiceAccount</code>. Remember that we must have mTLS enabled, so for each caller service, there will be a client certificate present.</p>
+</div>
+<div class="paragraph">
+<p>To better understand it, we will set the <code>rbac</code> log level to debug in our <code>productpage</code> pod and determine what is the value coming in the <code>source.principal</code> attribute (which is the attribute that is used to be checked as principal, according to the <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#Source">docs</a>)</p>
+</div>
+<div class="paragraph">
+<p>Run the following command to set the proper rbac log level:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc exec -n $APPS_NS1 $(oc get pods -n $APPS_NS1  -o name  | grep productpage) -c istio-proxy -- curl -X POST localhost:15000/logging?rbac=debug</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In last command, we just run <code>curl -X POST localhost:15000/logging?rbac=debug</code> on the istio-proxy container within the running <code>productpage</code> pod. Envoy exposes an API on port 15000 to manage different admin capabilities. In our case, we use <code>/logging</code> to manage logging levels.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>And now, open the <code>istio-proxy</code> logs of your <code>productpage</code> service by running:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc logs -f -n $APPS_NS1 $(oc get pods -n $APPS_NS1  -o name  | grep productpage) -c istio-proxy</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Try to access to the '/productpage' url again to generate some requests to the service and have a look at the log. The output should be similar to:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>2021-04-02T20:44:54.106985Z     debug   envoy rbac      [external/envoy/source/extensions/filters/http/rbac/rbac_filter.cc:74] checking request: requestedServerName: outbound_.9080_.v1_.productpage.dsanchor-1.svc.cluster.local, sourceIP: 10.131.0.26:54774, directRemoteIP: 10.131.0.26:54774, remoteIP: 10.131.0.10:0,localAddress: 10.128.2.24:9080, ssl: uriSanPeerCertificate: spiffe://cluster.local/ns/istio-system/sa/dsanchor-ingress-service-account, dnsSanPeerCertificate: , subjectPeerCertificate: , headers: ':authority', 'productpage-dsanchor-1.apps.labs.sandbox671.opentlc.com'
+':path', '/productpage'
+':method', 'GET'
+'upgrade-insecure-requests', '1'
+'user-agent', 'Mozilla/5.0 (X11; Fedora; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36'
+'accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+'sec-fetch-site', 'none'
+'sec-fetch-mode', 'navigate'
+'sec-fetch-user', '?1'
+'sec-fetch-dest', 'document'
+'accept-encoding', 'gzip, deflate, br'
+'accept-language', 'en-US,en;q=0.9'
+'x-forwarded-for', '10.131.0.10'
+'x-forwarded-proto', 'https'
+'x-request-id', '37de7be8-472b-9ffb-a74b-e01b8254d40e'
+'x-b3-traceid', '76436a774c694719fb36cde29bdfd2ba'
+'x-b3-spanid', 'fb36cde29bdfd2ba'
+'x-b3-sampled', '1'
+'content-length', '0'
+'x-envoy-internal', 'true'
+'x-forwarded-client-cert', 'By=spiffe://cluster.local/ns/dsanchor-1/sa/bookinfo-productpage;Hash=4bb17407ad4127a1e3c08700d081c0fd3700207320be7ee1ddb460c2a273fd70;Subject="";URI=spiffe://cluster.local/ns/istio-system/sa/dsanchor-ingress-service-account'
+, dynamicMetadata: filter_metadata {
+  key: "istio_authn"
+  value {
+    fields {
+      key: "request.auth.principal"
+      value {
+        string_value: "cluster.local/ns/istio-system/sa/dsanchor-ingress-service-account"
+      }
+    }
+    fields {
+      key: "source.namespace"
+      value {
+        string_value: "istio-system"
+      }
+    }
+    fields {
+      key: "source.principal"
+      value {
+        string_value: "cluster.local/ns/istio-system/sa/dsanchor-ingress-service-account"
+      }
+    }
+    fields {
+      key: "source.user"
+      value {
+        string_value: "cluster.local/ns/istio-system/sa/dsanchor-ingress-service-account"
+      }
+    }
+  }
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In my example, we see <code>cluster.local/ns/istio-system/sa/dsanchor-ingress-service-account</code> in many places (in your case, it will be very similar, you should see your user name instead of dsanchor). One of this places is the <code>source.principal</code> attribute. <strong>We got it</strong>.</p>
+</div>
+<div class="paragraph">
+<p>As you can tell, the value that will be set as principal when mTLS is enabled will always take the following form:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cluster.local/ns/&lt;CALLER_NS&gt;/sa/&lt;CALLER_SERVICE_ACCOUNT&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s finally configure the <code>AuthorizationPolicy</code>. We will first validate what we will be creating for this very first time:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab3/allow-ingress-productpage.yaml -p INGRESS_GW=$INGRESS_GW -o yaml -n $APPS_NS1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Review that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You have a proper selector matching the <code>productpage</code> service</p>
+</li>
+<li>
+<p>Action is set to <code>ALLOW</code></p>
+</li>
+<li>
+<p>Within <code>rules</code>, the <code>from</code> must have a valid principal (as we have previously identified) and we allow all paths in <code>to</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Finally, apply the resulting <code>AuthorizationPolicy</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab3/allow-ingress-productpage.yaml -p INGRESS_GW=$INGRESS_GW -o yaml -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
+
+authorizationpolicy.security.istio.io/allow-ingress-productpage created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test the application again and you should be able to reach it, although you still won&#8217;t have access to the <code>details</code> and <code>ratings</code> services:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="rbac-productpage.png" alt="Productpage RBAC"></span></p>
+</div>
+<div class="paragraph">
+<p>And the following graph can be seen in <code>Kiali</code>:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="kiali-rbac-error-2.gif" alt="Kiali RBAC error"></span></p>
+</div>
+<div class="paragraph">
+<p>We are now restricted all services behind the <code>productpage</code> service. Let&#8217;s start activating accesses <code>workload</code>  by <code>workload</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_allow_access_between_services_using_principals"><a class="anchor" href="#_allow_access_between_services_using_principals"></a>4. Allow access between services using principals</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We have now to allow the following service calls:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>productpage</code> must be able to access both <code>details</code> and <code>reviews</code> services.</p>
+</li>
+<li>
+<p><code>reviews</code> service must reach <code>ratings</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s configure then the required <code>AuthorizationPolicies</code>. Feel free to just process the template before applying the changes to understand what we are creating (as we did in previous labs). You can also check the application after applying new policies so you will be able to notice that we are enabling access step by step.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To enable access from <code>productpage</code> to <code>details</code> service.</p>
+</li>
+</ul>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab3/allow-details.yaml -p APPS_NS=$APPS_NS1 -o yaml -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
+
+authorizationpolicy.security.istio.io/allow-details created</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To enable access from <code>productpage</code> to <code>reviews</code> service.</p>
+</li>
+</ul>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab3/allow-reviews.yaml -p APPS_NS=$APPS_NS1 -o yaml -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
+
+authorizationpolicy.security.istio.io/allow-reviews created</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To enable access from <code>reviews</code> to <code>ratings</code> service.</p>
+</li>
+</ul>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab3/allow-ratings.yaml -p APPS_NS=$APPS_NS1 -o yaml -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
+
+authorizationpolicy.security.istio.io/allow-ratings created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you test the application again, everything should work fine:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="productpage-rbac-ok.png" alt="Productpage RBAC"></span></p>
+</div>
+<div class="paragraph">
+<p>And this the <code>Kiali</code> graph again where will see all interactions between servies working as expected:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="kiali-rbac-ok.gif" alt="Kiali RBAC ok"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_extra_check_access_from_independant_pod"><a class="anchor" href="#_extra_check_access_from_independant_pod"></a>5. Extra check: access from independant pod</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To ensure and understand that our <code>AuthorizationPolicies</code> are working fine, that is, only certain services can call the others, we will deploy an independant pod and try to reach the existing services.</p>
+</div>
+<div class="paragraph">
+<p>Deploy a simple <code>ubi</code> pod:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc apply -f $LABS_HOME/lab3/ubi.yaml -n $APPS_NS1
+
+deployment.apps/ubi created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait until the <code>pod</code> is runnig and ssh into the pod to run certain tests:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc rsh -n $APPS_NS1  $(oc get pods -n $APPS_NS1 -o name | grep ubi)
+
+Defaulting container name to ubi.
+Use 'oc describe pod/ubi-78d69f44c6-ffcdh -n dsanchor-1' to see all of the containers in this pod.
+sh-4.4$</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once inside the pod, run the following tests:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>curl -v <a href="http://ratings:9080/ratings/0" class="bare">http://ratings:9080/ratings/0</a></p>
+</li>
+<li>
+<p>curl -v <a href="http://details:9080/details/0" class="bare">http://details:9080/details/0</a></p>
+</li>
+<li>
+<p>curl -v <a href="http://reviews:9080/reviews/0" class="bare">http://reviews:9080/reviews/0</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>What did you get? All request should have been rejected with a similar response to this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt; HTTP/1.1 403 Forbidden
+&lt; content-length: 19
+&lt; content-type: text/plain
+&lt; date: Fri, 02 Apr 2021 21:55:16 GMT
+&lt; server: envoy
+&lt; x-envoy-upstream-service-time: 3
+&lt;
+* Connection #0 to host details left intact
+RBAC: access denied</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_allow_access_between_services_from_different_namespaces"><a class="anchor" href="#_allow_access_between_services_from_different_namespaces"></a>6. Allow access between services from different namespaces</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, we will create a wider policy that will allow any service running in $APPS_NS1 to access service in $APPS_NS2.</p>
+</div>
+<div class="paragraph">
+<p>Before creating this policy, we will first modify the <code>productpage</code> service configuration running in $APPS_NS1 to target the <code>reviews</code> service in $APPS_NS2. As we did in <code>lab 1</code>, run:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc set env deployment/productpage-v1 -e REVIEWS_HOSTNAME=reviews.$APPS_NS2.svc.cluster.local -n $APPS_NS1
+
+deployment.apps/productpage-v1 updated</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test that the <code>productpage</code> service cannot reach the <code>reviews</code> service in $APPS_NS2 after the config change:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="productpage-accesing-ns2.png" alt="RBAC error ns2"></span></p>
+</div>
+<div class="paragraph">
+<p>And now, process the following <code>AuthorizationPolicy</code> template to check what we will be creating:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab3/allow-reviews-from-ns1.yaml -p APPS_NS1=$APPS_NS1 -o yaml -n $APPS_NS2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Have a look at the <code>.spec.rules.from.source.namespaces</code> and check if the value is exactly your $APPS_NS1. Also, as we did before, verify that the <code>selector</code> is the one expected. This time, we will just allow the <code>GET</code> operation in all paths.</p>
+</div>
+<div class="paragraph">
+<p>If everything looks as expected, apply the changes. Notice that we are creating this manifest in the $APPS_NS2 as it is where our selected workload runs:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab3/allow-reviews-from-ns1.yaml -p APPS_NS1=$APPS_NS1 -n $APPS_NS2 | oc apply -f - -n $APPS_NS2
+
+authorizationpolicy.security.istio.io/allow-reviews-from-ns1 created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And you have to also enable access from <code>reviews</code> to <code>ratings</code> service within $APPS_NS2 (as we did in $APPS_NS1):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab3/allow-ratings.yaml -p APPS_NS=$APPS_NS2 -o yaml -n $APPS_NS2 | oc apply -f - -n $APPS_NS2
+
+authorizationpolicy.security.istio.io/allow-ratings created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify that the application works and that you see calls between services from different <code>namespaces</code> as shown below:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="rbac-cross-ns.png" alt="RBAC cross namespaces"></span></p>
+</div>
+</div>
+</div>
+<h1 id="_lab_4_requestauthentication" class="sect0"><a class="anchor" href="#_lab_4_requestauthentication"></a>Lab 4 - RequestAuthentication</h1>
+<div class="paragraph">
+<p>In this next lab, we will introduce the concept of <code>end-user-authentication</code> by configuring a <code>RequestAuthentication</code> in our service mesh.</p>
+</div>
+<div class="paragraph">
+<p>This time,  Istio enables request-level authentication with JSON Web Token (JWT) validation.</p>
+</div>
+<div class="paragraph">
+<p>Before starting, I truly recommend to spend some minutes reading an <a href="https://jwt.io/introduction">introduction about JWT</a>.</p>
+</div>
+<div class="paragraph">
+<p>This fourth lab, will be very brief as the authentication part with JWT is very simple and all the value comes together with the authorization part. In lab 5, we will deeply dive into all these concepts together.</p>
+</div>
+<div class="sect1">
+<h2 id="_clean_up_resources_from_previous_lab"><a class="anchor" href="#_clean_up_resources_from_previous_lab"></a>1. Clean up resources from previous lab</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Firstly, we will remove all the <code>AuthorizationPolicies</code> we created in last lab. We will keep the <code>PeerAuthentication</code> as we still want to enforce <code>STRICT</code> mTLS between services calls.</p>
+</div>
+<div class="paragraph">
+<p>Ingress policy:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc delete authorizationpolicy.security.istio.io/allow-ingress-productpage -n $APPS_NS1
+
+authorizationpolicy.security.istio.io "allow-ingress-productpage" deleted</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>From <code>productpage</code> to <code>details</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc delete authorizationpolicy.security.istio.io/allow-details -n $APPS_NS1
+
+authorizationpolicy.security.istio.io "allow-details" deleted</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>From <code>productpage</code> to <code>reviews</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc delete authorizationpolicy.security.istio.io/allow-reviews  -n $APPS_NS1
+
+authorizationpolicy.security.istio.io "allow-reviews" deleted</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>From <code>reviews</code> to <code>ratings</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc delete authorizationpolicy.security.istio.io/allow-ratings  -n $APPS_NS1
+
+authorizationpolicy.security.istio.io "allow-ratings" deleted</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>From $APPS_NS1 to <code>reviews</code> in $APPS_NS2:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc delete authorizationpolicy.security.istio.io/allow-reviews-from-ns1 -n $APPS_NS2
+
+authorizationpolicy.security.istio.io "allow-reviews-from-ns1" deleted</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Remove <code>deny-all</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc delete authorizationpolicy.security.istio.io/deny-all-in-ns -n $APPS_NS1
+
+authorizationpolicy.security.istio.io "deny-all-in-ns" deleted</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And also, just to be back to first scenario, we will use only services from $APPS_NS1. This means, we have to configure <code>productpage</code> service accordingly:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc set env deployment/productpage-v1 -e REVIEWS_HOSTNAME=reviews -n $APPS_NS1
+
+deployment.apps/productpage-v1 updated</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test the application again.. everything should work without any RBAC or authentication error.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_enforce_jwt_authentication"><a class="anchor" href="#_enforce_jwt_authentication"></a>2. Enforce JWT authentication</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The first step we do now is to enable JWT authentication by creating a simple <code>RequestAuthentication</code> object.
+We will use  Google&#8217;s OAuth 2.0 authentication system for user login, so we will have to first discover some important configuration data from the OIDC discovery configuration url.</p>
+</div>
+<div class="paragraph">
+<p>Google&#8217;s OIDC configuration is accesible here: <a href="https://accounts.google.com/.well-known/openid-configuration" class="bare">https://accounts.google.com/.well-known/openid-configuration</a>.</p>
+</div>
+<div class="paragraph">
+<p>If you access to that endpoint, you will get a similar output to this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{
+ "issuer": "https://accounts.google.com",
+ "authorization_endpoint": "https://accounts.google.com/o/oauth2/v2/auth",
+ "device_authorization_endpoint": "https://oauth2.googleapis.com/device/code",
+ "token_endpoint": "https://oauth2.googleapis.com/token",
+ "userinfo_endpoint": "https://openidconnect.googleapis.com/v1/userinfo",
+ "revocation_endpoint": "https://oauth2.googleapis.com/revoke",
+ "jwks_uri": "https://www.googleapis.com/oauth2/v3/certs",
+ "response_types_supported": [
+  "code",
+  "token",
+  "id_token",
+  "code token",
+  "code id_token",
+  "token id_token",
+  "code token id_token",
+  "none"
+ ],
+ "subject_types_supported": [
+  "public"
+ ],
+ "id_token_signing_alg_values_supported": [
+  "RS256"
+ ],
+ "scopes_supported": [
+  "openid",
+  "email",
+  "profile"
+ ],
+ "token_endpoint_auth_methods_supported": [
+  "client_secret_post",
+  "client_secret_basic"
+ ],
+ "claims_supported": [
+  "aud",
+  "email",
+  "email_verified",
+  "exp",
+  "family_name",
+  "given_name",
+  "iat",
+  "iss",
+  "locale",
+  "name",
+  "picture",
+  "sub"
+ ],
+ "code_challenge_methods_supported": [
+  "plain",
+  "S256"
+ ],
+ "grant_types_supported": [
+  "authorization_code",
+  "refresh_token",
+  "urn:ietf:params:oauth:grant-type:device_code",
+  "urn:ietf:params:oauth:grant-type:jwt-bearer"
+ ]
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In order to configure the <code>RequestAuthentication</code> for this lab, we will just use the following attributes from above:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>issuer: <a href="https://accounts.google.com" class="bare">https://accounts.google.com</a>. This will be the only valid issuing authority inside a token.</p>
+</li>
+<li>
+<p>jwks_uri: <a href="https://www.googleapis.com/oauth2/v3/certs" class="bare">https://www.googleapis.com/oauth2/v3/certs</a>, which basically tells from where to obtain the <code>public key</code> to verify the signature of a token.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Once we have this information, let me show you the <code>RequestAuthentication</code> YAML file we will use as template:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: ${INGRESS_GW}
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      app: ${INGRESS_GW}
+  jwtRules:
+  - forwardOriginalToken: true
+    issuer: ${OIDC_ISSUER_URL}
+    jwksUri: ${OIDC_JWKS_URI}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above YAML basically means:</p>
+</div>
+<div class="paragraph">
+<p><em>"A <code>RequestAuthentication</code> will be applied on those pods running in <code>istio-system</code> which match the label <code>app: $INGRESS_GW</code> (that is, your dedicated ingress Gateway). The JWT issuer is $OIDC_ISSUER_URL and the certs to verify the signature of the token will be obtained from $OIDC_JWKS_URI. Also, the JWT token will be forwarded to upstream service."</em></p>
+</div>
+<div class="paragraph">
+<p>Run the following command to create the <code>RequestAuthentication</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab4/request-authentication.yaml -p INGRESS_GW=$INGRESS_GW OIDC_ISSUER_URL=https://accounts.google.com OIDC_JWKS_URI=https://www.googleapis.com/oauth2/v3/certs -n istio-system | oc apply -f - -n istio-system
+
+requestauthentication.security.istio.io/dsanchor-ingress-request-authentication created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you test the application again it should still work, even though we have not provide any token. And that is because when requests carry no token, they are accepted by default. To reject requests without tokens, provide authorization rules that specify the restrictions for specific operations, for example paths or actions. And that&#8217;s what will do next.</p>
+</div>
+<div class="paragraph">
+<p>Create a simple <code>AuthorizationPolicy</code> that forces the request to contain a valid <code>requestPrincipal</code> (just to avoid confusions with previous labs, it is important to mention that we used <code>principals</code> when using workload-to-workload authentication and for this next lab, we will use <code>requestPrincipals</code>. More details can be found <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#Source">here</a>).</p>
+</div>
+<div class="paragraph">
+<p>Execute:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab4/simple-auth-policy.yaml -p INGRESS_GW=$INGRESS_GW -n istio-system | oc apply -f - -n istio-system
+
+authorizationpolicy.security.istio.io/dsanchor-ingress-policy created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you now test the application again, you will get an <code>RBAC: access denied</code> error.</p>
+</div>
+<div class="paragraph">
+<p>We have to provide a valid JWT token&#8230;&#8203; and the process of getting a token from the OAuth server is out of the scope of Istio. Istio will just verify incoming tokens and will extract the data from the token body, so it can later be used during the authorization phase.</p>
+</div>
+<div class="paragraph">
+<p>In next lab, we will deploy some utilities on Openshift that will be configured to automatically manage the OAuth flow of getting a valid token against Google&#8217;s OAuth server, but now, we would like to test what we just did.</p>
+</div>
+<div class="paragraph">
+<p>To do so, I will provide a temporal token that can be used for this test. <strong>Please ask if you haven&#8217;t be given one and export it as $JWT_TOKEN</strong></p>
+</div>
+<div class="paragraph">
+<p>Then, test the application using next curl:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> curl -v -k -H "Authorization: Bearer $JWT_TOKEN" https://${PRODUCTPAGE_HOST}/productpage</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Did it work?  Hope so. That means, the token you have provided is valid.</p>
+</div>
+<div class="paragraph">
+<p>If you try againg using your web browser (that is, no token is provided), it would fail.</p>
+</div>
+</div>
+</div>
+<h1 id="_lab_5_authorization_part_2" class="sect0"><a class="anchor" href="#_lab_5_authorization_part_2"></a>Lab 5 - Authorization: part 2</h1>
+<div class="paragraph">
+<p>In this last lab, we will first introduce one way of managing the JWT and the OAuth2 integration flow with Google&#8217;s OAuth server, so we don&#8217;t have to manually get a token.</p>
+</div>
+<div class="paragraph">
+<p>Then, we will create a new authorization scenario that will use the <code>end-user</code> identity and different claims from the JWT.</p>
+</div>
+<div class="sect1">
+<h2 id="_extra_oauth_flow_implementation"><a class="anchor" href="#_extra_oauth_flow_implementation"></a>1. Extra: OAuth flow implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As mentioned in lab 4, Istio provides just an authentication and authorization mechanism for JWT, but it does not provide anything to help obtaning the JWT token.</p>
+</div>
+<div class="paragraph">
+<p>This implementation shown in this section is <strong>just an example</strong>. In a few words, we will use an <code>ext_auth</code> type <code>EnvoyFilter</code> that will intercept every call at ingress level and forward it to an <code>oauth2-proxy</code>. that will manage the integration with Google OAuth server. It is based on <a href="https://github.com/oauth2-proxy/oauth2-proxy">oauth2-proxy</a> project, although in our case, it won&#8217;t act as a proxy, but a <strong>simple oauth helper beside our service mesh</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Next diagram shows all the interactions between all pieces involved (I have skipped the Openshift Router, so I only focus on elements once entering in the Service Mesh).</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="oauth2-flow.png" alt="Oauth flow"></span></p>
+</div>
+<div class="paragraph">
+<p>Another possiblity would be to implement this mechanism with a WebAssembly module (WASM). This <a href="https://github.com/dgn/oidc-filter">project</a> could be used as a good starting point.</p>
+</div>
+<div class="sect2">
+<h3 id="_deploy_an_oauth2_proxy_helper"><a class="anchor" href="#_deploy_an_oauth2_proxy_helper"></a>1.1. Deploy an OAuth2 proxy (helper)</h3>
+<div class="paragraph">
+<p>Let&#8217;s now put all we have described above in practice. First, we need to deploy an <code>oauth2-proxy</code> that will be used to manage the OAuth2 workflow.</p>
+</div>
+<div class="paragraph">
+<p>We will deploy it under our $APPS_NS1:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab5/oauth2-proxy.yaml -p INGRESS_GW=$INGRESS_GW -p APP_DOMAIN=$PRODUCTPAGE_HOST -p CLIENT_ID="805248467061-9nkgmsfmdu3me5d4ngiemvb1en3s550b.apps.googleusercontent.com" -p CLIENT_SECRET="-RPI_Pgs_IKn0sIkYiB_7DAn" -p COOKIE_SECRET=$(openssl rand -hex 16) -p OIDC_ISSUER_URL=https://accounts.google.com OAUTH_NS=$APPS_NS1 -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
+
+secret/oauth2-proxy created
+service/oauth2-proxy created
+deployment.apps/oauth2-proxy created
+virtualservice.networking.istio.io/oauth2-proxy created
+destinationrule.networking.istio.io/oauth2-proxy created
+serviceentry.networking.istio.io/accounts-google created
+serviceentry.networking.istio.io/oauth2-googleapis created</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+There were some basic objects created that you are familiar to as in any regular OCP+Mesh application deployment: <code>Service</code>, <code>Deployment</code>, <code>VirtualService</code> and <code>DestinationRule</code>. Then, there are two <code>ServiceEntries</code> that have been created in order to allow access to external resources which are Google&#8217;s related. This is because we have restricted the access to any external resource from within the <code>Service Mesh</code> (as we are in the Security Workshop, we would like to have certain control to which external resources are consumed). To achieve this goal, we configured our <code>ServiceMeshControlPlane</code> with a <code>REGISTRY_ONLY</code> <code>outboutTrafficPolicy</code> <a href="https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/">mode</a>. Feel free to have a look at the configuration and the <code>ServiceEntries</code> as well.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If may take some restarts to have the application running since the <code>oauth2-proxy</code> container tries to load the OIDC configuration from an external resource and the <code>istio-proxy</code> may not have started yet. Finally, you should see a similar output on the <code>oauth2-proxy</code> contatiner within the pod:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[2021/04/03 20:49:58] [proxy.go:59] mapping path "/" =&gt; static response 200
+[2021/04/03 20:49:58] [oauthproxy.go:137] OAuthProxy configured for OpenID Connect Client ID: 805248467061-9nkgmsfmdu3me5d4ngiemvb1en3s550b.apps.googleusercontent.com
+[2021/04/03 20:49:58] [oauthproxy.go:143] Cookie settings: name:_oauth2_proxy_dsanchor-ingress secure(https):true httponly:true expiry:4h0m0s domains: path:/ samesite:lax refresh:after 30m0s
+[2021/04/03 20:49:58] [http.go:57] HTTP: listening on 0.0.0.0:4180</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, we will configure an <code>EnvoyFilter</code> on our dedicated ingress <code>Gateway</code> that will intercept every call entering the mesh. We will use an <code>ext_authz</code> filter. Run the following:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab5/oauth2-envoy-filter.yaml -p INGRESS_GW=$INGRESS_GW -p OAUTH_NS=$APPS_NS1 -n istio-system | oc apply -f - -n istio-system
+
+envoyfilter.networking.istio.io/dsanchor-ingress created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test the application now.</p>
+</div>
+<div class="paragraph">
+<p>You will first be redirected to select your gmail account:</p>
+</div>
+<div class="paragraph">
+<p><span class="image unresolved"><img src="google-account-selection.png" alt="Google account selection"></span></p>
+</div>
+<div class="paragraph">
+<p>And once you have selected your preferred account, you will land into the bookinfo application.</p>
+</div>
+<div class="paragraph">
+<p>Just to mention, any google account would be valid for this test&#8230;&#8203; you can try if you have different ones (Ex: @gmail or your corporate account).</p>
+</div>
+<div class="paragraph">
+<p>We will add some more specific <code>AuthorizationPolicies</code> now.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configure_requestauthentication_in_apps_ns1"><a class="anchor" href="#_configure_requestauthentication_in_apps_ns1"></a>2. Configure RequestAuthentication in $APPS_NS1</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First step before creating any <code>AuthorizationPolicy</code> that uses any related data/attribute from the JWT token is to set a <code>RequestAuthentication</code> that would cover the scope of the workload (For instance, we already did it for the dedicated ingress <code>Gateway</code>).</p>
+</div>
+<div class="paragraph">
+<p>We will now create a namespace-wide <code>RequestAuthentication</code> for $APPS_NS1 namespace. Run the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab5/apps-ns-request-authentication.yaml -p APPS_NS=$APPS_NS1 OIDC_ISSUER_URL=https://accounts.google.com OIDC_JWKS_URI=https://www.googleapis.com/oauth2/v3/certs -n $APPS_NS1  | oc apply -f - -n $APPS_NS1
+
+requestauthentication.security.istio.io/dsanchor-1-request-authentication created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As any other resource we create on the cluster, I encourage you to have a look at what you have exactly created. For instance, this time you could run:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc get requestauthentication.security.istio.io/$APPS_NS1-request-authentication -o yaml -n $APPS_NS1
+
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: dsanchor-1-request-authentication
+  namespace: dsanchor-1
+spec:
+  jwtRules:
+  - forwardOriginalToken: true
+    issuer: https://accounts.google.com
+    jwksUri: https://www.googleapis.com/oauth2/v3/certs</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_limit_access_based_on_hosted_domain_claim"><a class="anchor" href="#_limit_access_based_on_hosted_domain_claim"></a>3. Limit access based on hosted domain claim</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of the claims that could be used to limit access to certain resources could be the <code>hosted domain</code> or <code>hd</code>.</p>
+</div>
+<div class="paragraph">
+<p>To understand what a <code>hosted domain</code> is, please, feel free to read about it <a href="https://developers.google.com/identity/protocols/oauth2/openid-connect#hd-param">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>Also, let&#8217;s put the <code>rbac</code> log level to <code>debug</code> on your dedicated ingress <code>Gateway</code>, so we will be able to see all the info we get from the JWT (and all the claims that can be used as a <code>rule condition</code>, such as the <code>hd</code>):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc exec -n istio-system $(oc get pods -n istio-system  -o name  | grep $INGRESS_GW) -c istio-proxy -- curl -X POST localhost:15000/logging?rbac=debug</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And now, run some tests again your application and check the logs from your dedicated ingress <code>Gateway</code>. What claims do you see for your user? What&#8217;s the hd you see from your user?</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Try to find the <code>request.auth.claims</code> attribute in logs. And there, you should find an <code>hd</code> attribute. An example of an <code>hd</code> would be <code>redhat.com</code> for email addresses like <a href="mailto:dsanchor@redhat.com">dsanchor@redhat.com</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>hd</code> is hihgly dependant on the user account you have choosen. For instance, if you chose an <code>@gmail</code> you won&#8217;t see any <code>hd</code>. Instead, use your corporate account to get a valid <code>hd</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you already logged in with an @gmail.com account or you want to log with a different account, use the <a href="https://${PRODUCTPAGE_HOST}/oauth2/start" class="bare">https://${PRODUCTPAGE_HOST}/oauth2/start</a> to trigger a new login process.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can see the logs by executing the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc logs -f -n istio-system $(oc get pods -n istio-system  -o name  | grep $INGRESS_GW)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We will use the <code>hd</code> we have just discovered to create a new <code>AuthorizationPolicy</code> (<strong>now on, we will use $HD to refer it, export it</strong>):</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab5/hd-policy.yaml -p HD=$HD -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
+
+authorizationpolicy.security.istio.io/productpage-hd created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test first with a user/account that belongs to that <code>hosted domain</code>.</p>
+</div>
+<div class="paragraph">
+<p>Once you have verified that it works, try using a different account that does not belong to that <code>hosted domain</code> (for instance, a @gmail.com account). It should not have access to the bookinfo application.</p>
+</div>
+<div class="paragraph">
+<p>Also, feel free to share your $PRODUCTPAGE_HOST with a colleague and let him test the application with his own account (which belongs to your same <code>hosted domain</code>). It should also work.</p>
+</div>
+<div class="paragraph">
+<p>Finally, remove the policy we just created to avoid conflicts in next lab:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc delete authorizationpolicy.security.istio.io/productpage-hd -n $APPS_NS1
+
+authorizationpolicy.security.istio.io "productpage-hd" deleted</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As summary of this lab, we just learnt how to limit access to our services for a given corporation or hosted domain users.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_limit_access_to_your_user_only"><a class="anchor" href="#_limit_access_to_your_user_only"></a>4. Limit access to your user only</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this last lab, we will limit access to the application to only your user account.</p>
+</div>
+<div class="paragraph">
+<p>First, let&#8217;s get your user account, so we can set it as a valid <code>requestPrincipal</code>. To obtain it, check your dedicated ingress <code>Gateway</code> logs and try to find the <code>request.auth.principal</code> attribute. Just one tip, it will be similar to this example: <a href="https://accounts.google.com/104396212601495701298" class="bare">https://accounts.google.com/104396212601495701298</a>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Assign the value of  <code>request.auth.principal</code> to the $USER_ACCOUNT variable</strong> that will be used next.</p>
+</div>
+<div class="paragraph">
+<p>See how your new policy will look like:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab5/request-principal-policy.yaml -p USER_ACCOUNT=$USER_ACCOUNT -o yaml -n $APPS_NS1
+...
+...
+(just focus on the spec part of the object)
+  spec:
+    rules:
+    - from:
+      - source:
+          requestPrincipals:
+          - https://accounts.google.com/104396212601495701298
+    selector:
+      matchLabels:
+        app: productpage</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the policy then:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ oc process -f $LABS_HOME/lab5/request-principal-policy.yaml -p USER_ACCOUNT=$USER_ACCOUNT -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
+
+authorizationpolicy.security.istio.io/productpage-request-principal created</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test the application again using the account you have choosen as $USER_ACCOUNT.</p>
+</div>
+<div class="paragraph">
+<p>Then, ask your colleague again to test your application under your $PRODUCTPAGE_HOST. This time, he won&#8217;t be able to access it.</p>
+</div>
+<div class="paragraph">
+<p>We just have given access to a certain user. Feel free to add more users to the list of requestPrincipals (for instance, the one from your colleague and let him test your application).</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">And this is all for the <code>Service Mesh Security</code> workshop.</p>
+<p class="tableblock">Hope you have enjoyed it!</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

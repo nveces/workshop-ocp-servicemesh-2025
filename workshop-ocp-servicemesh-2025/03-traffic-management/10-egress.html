@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lab 8 - Egress Gateways :: WorkShop - Service Mesh on OCP 2025</title>
+    <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/03-traffic-management/10-egress.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
+          src="../../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://nveces.github.io/workshop-ocp-servicemesh-2025">WorkShop - Service Mesh on OCP 2025</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Books</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">CheatSheets</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">CheatSheet A</a>
+            <a class="navbar-item" href="#">CheatSheet B</a>
+            <a class="navbar-item" href="#">CheatSheet C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Upcoming Events</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Event A</a>
+            <a class="navbar-item" href="#">Event B</a>
+            <a class="navbar-item" href="#">Event C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Tutorial A</a>
+            <a class="navbar-item" href="#">Tutorial B</a>
+            <a class="navbar-item" href="#">Tutorial C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="workshop-ocp-servicemesh-2025" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../01-setup.html">1. Setup</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#prerequisite">Prerequisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#minikube">Setup Minikube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../02-deploy.html">2. Deploy Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-deploy.html#package">Build Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-deploy.html#deploy">Deploy Dervice</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#introduction/index.adoc">3. Introduction - Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction/index.adoc#_lab_0_warming_up">Lab 0 - Warming up</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#introduction/index.adoc#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">WorkShop - Service Mesh on OCP 2025</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">WorkShop - Service Mesh on OCP 2025</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></li>
+    <li><a href="10-egress.html">Lab 8 - Egress Gateways</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/nveces/workshop-ocp-servicemesh-2025/edit/master/documentation/modules/ROOT/pages/03-traffic-management/10-egress.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Lab 8 - Egress Gateways</h1>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab you are going to learn how to configure {ossm} to access external services from inside the applications.</p>
+</div>
+<div class="paragraph">
+<p>Because all outbound traffic from an Istio-enabled pod is redirected to its sidecar proxy by default, accessibility of services outside of the cluster depends on the configuration of the proxy.</p>
+</div>
+<div class="paragraph">
+<p>By default, Istio configures the Envoy proxy to pass through requests for unknown services.</p>
+</div>
+<div class="paragraph">
+<p>{rhossm} can be configured with a special policy for handling external services, that is, those services that are not defined in Istio’s internal service registry.</p>
+</div>
+<div class="paragraph">
+<p>If the policy is in permissive state (by default), the Istio proxy lets calls to unknown services pass through. If the policy is set to a restrictive state, then the Istio proxy blocks any host without a {se} defined within the mesh.</p>
+</div>
+<div class="paragraph">
+<p>In this lab we have modified the Istio control plane to set the policy to a restrictive state.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_accessing_an_external_service"><a class="anchor" href="#_accessing_an_external_service"></a>Accessing an external service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>At this point you can test wether you can query a service outside the mesh.</p>
+</div>
+<div class="paragraph">
+<p>For this lab, you are going to use a simple pod based in <code>ubi:latest</code> ({rh} Universal Base Image). This pod will be added to the mesh because it will have the Istio sidecar injected. It will be kept running by using a simple <em>sleep</em> command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubi
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
+      labels:
+        app: ubi
+    spec:
+      containers:
+      - name: ubi
+        image: registry.redhat.io/ubi8/ubi:latest
+        command: ["sleep", "infinity"]
+        imagePullPolicy: IfNotPresent</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then you will use this running pod to run commands inside it, like <code>curl</code>, and test wether you can reach outside services or not.</p>
+</div>
+<div class="paragraph">
+<p>First, deploy this container by executing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f ubi/ubi.yaml -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Get the name of the pod:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export UBI_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep ubi)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check if you can query an external service from the <em>ubi</em> pod:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc exec -it ${UBI_POD} -n ${OCP_NAMESPACE} -c ubi -- curl -I https://github.com</code></pre>
+</div>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="egress_without_se.png" alt="egress without se">
+</div>
+<div class="title">Figure 1. Accessing external service without {se}</div>
+</div>
+<div class="paragraph">
+<p>Ooops, you can&#8217;t, because {ossm} is configured with a restrictive policy.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_service_entry"><a class="anchor" href="#_service_entry"></a>Service Entry</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As stated before, in a restrictive state we need to add any external service to Istio&#8217;s internal registry.</p>
+</div>
+<div class="paragraph">
+<p>You need to create a {se} for this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: github
+spec:
+  hosts:
+  - github.com <i class="conum" data-value="1"></i><b>(1)</b>
+  ports:
+  - number: 443 <i class="conum" data-value="2"></i><b>(2)</b>
+    name: https
+    protocol: HTTPS
+  resolution: DNS
+  location: MESH_EXTERNAL
+  exportTo: [ ".", "istio-system" ] <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The external service</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>All necessary ports must be declared</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Limit the {se} to this namesapce and <em>istio-system</em></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Execute the following command to create the {se}:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f lab8/github-serviceentry.yaml -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, check again if you can query an external service from the <em>ubi</em> pod:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc exec -it ${UBI_POD} -n ${OCP_NAMESPACE} -c ubi -- curl -I https://github.com</code></pre>
+</div>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="egress_with_se.png" alt="egress with se">
+</div>
+<div class="title">Figure 2. Accessing external service with {se}</div>
+</div>
+<div class="paragraph">
+<p>So, this is now a controlled way to enable access to external services.</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="kiali_egress_with_se.png" alt="kiali egress with se">
+</div>
+<div class="title">Figure 3. Kiali external service with {se}</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_egress_gateway"><a class="anchor" href="#_egress_gateway"></a>Egress Gateway</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the previous example the external services are called directly from the client sidecar.</p>
+</div>
+<div class="paragraph">
+<p>This example shows how to configure Istio to call external services, although this time indirectly via a dedicated {eg} service.</p>
+</div>
+<div class="paragraph">
+<p>Istio uses Ingress and Egress Gateways to configure load balancers executing at the edge of a service mesh. An {ig} allows you to define entry points into the mesh that all incoming traffic flows through. An {eg} is a symmetrical concept; it defines exit points from the mesh.</p>
+</div>
+<div class="paragraph">
+<p>{eg}s allow you to apply Istio features, for example, monitoring and route rules, to traffic exiting the mesh.</p>
+</div>
+<div class="paragraph">
+<p>The first thing you need to configure an {eg} is a {gw} object:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: github-egress
+spec:
+  selector:
+    istio: egressgateway <i class="conum" data-value="1"></i><b>(1)</b>
+  servers:
+  - hosts:
+      - github.com <i class="conum" data-value="2"></i><b>(2)</b>
+    port:
+      number: 443 <i class="conum" data-value="3"></i><b>(3)</b>
+      name: https
+      protocol: HTTPS
+    tls:
+      mode: PASSTHROUGH <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This will match a label in the {eg} <em>Deployment</em> inside the <em>istio-system</em> control plane.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The host you want to expose.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>This is the port to use in the {eg}, not to be confused with the target port of the external service.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>In this example you will <em>pass through</em> TLS communications.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Create it with this command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f lab8/github-egress-gateway.yaml -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, you will have to create a {vs} to direct traffic from the sidecars to the {eg} and from the {eg} to the external service:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: github-egress
+spec:
+  hosts:
+  - github.com <i class="conum" data-value="1"></i><b>(1)</b>
+  gateways: <i class="conum" data-value="2"></i><b>(2)</b>
+  - github-egress
+  - mesh
+  tls:
+  - match: <i class="conum" data-value="3"></i><b>(3)</b>
+    - gateways:
+      - mesh
+      sniHosts:
+      - github.com
+    route:
+    - destination:
+        host: istio-egressgateway.istio-system.svc.cluster.local
+      weight: 100
+  - match: <i class="conum" data-value="4"></i><b>(4)</b>
+    - gateways:
+      - github-egress
+      sniHosts:
+      - github.com
+    route:
+    - destination:
+        host: github.com
+      weight: 100
+  exportTo: [ ".", "istio-system" ]</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This {vs} will be applied to this host.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><em>mesh</em> is a reserved word for sidecars. <em>github-egress</em> match the name of the {gw}.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The first match will route traffic from sidecars to the {eg}.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The second match is to finally route traffic from the {eg} to the external service.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Create it with this command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f lab8/github-egress-virtualservice.yaml -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, check again and simulate some traffic with this command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">while true; do oc exec -it ${UBI_POD} -n ${OCP_NAMESPACE} -c ubi -- curl -I https://github.com ; done</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In Kiali you can see this time that the traffic is going through the {eg}:</p>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="kiali_egress_with_egress.png" alt="kiali egress with egress">
+</div>
+<div class="title">Figure 4. Kiali external service with {eg}</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_remove_everything"><a class="anchor" href="#_remove_everything"></a>Remove everything</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before starting the next lab, remove everything you have created in your namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc delete -f ubi/ubi.yaml -n ${OCP_NAMESPACE}
+oc delete -f lab8/github-serviceentry.yaml -n ${OCP_NAMESPACE}
+oc delete -f lab8/github-egress-gateway.yaml -n ${OCP_NAMESPACE}
+oc delete -f lab8/github-egress-virtualservice.yaml -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
