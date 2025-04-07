@@ -1,5 +1,5 @@
 
-The Instructor provides users the Openshift credentials and other important parameters at the beginning of this tutorial in order to access the laboratory. 
+The Instructor provides users the Openshift credentials and other important parameters at the beginning of this tutorial in order to access the laboratory.
 
 The following table includes the parameters that the Instructor should provide you at the beginning:
 
@@ -31,7 +31,7 @@ The following table includes the parameters that the Instructor should provide y
 
 === Access Laboratory - OC Client
 
-The OpenShift Container Platform CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system. 
+The OpenShift Container Platform CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system.
 
 Please, review the previous settings with your Instructor and connect to the cluster executing next command from your terminal:
 
@@ -46,4 +46,4 @@ In addition, access Openshift Console using your credentials via browser in orde
 - <ocp_cluster_console> (_E.g. https://console-openshift-console.apps.labs.sandbox1420.opentlc.com_)
 
 .Openshift Console
-image:ocp_console.png[]
+image:02-envoy-istio-control-plane/ocp_console.png[link=../_images/02-envoy-istio-control-plane/ocp_console.png,window=_blank]

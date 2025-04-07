@@ -6,19 +6,19 @@
 :toc-title: Setup demo applications
 
 [Abstract]
-The main goal of this lab is to quickly deploy a set of applications that will be used in the next labs. Notice that in this case, all `Deployments` are properly annotated, so the `istio-proxy` is autoinjected magically. 
+The main goal of this lab is to quickly deploy a set of applications that will be used in the next labs. Notice that in this case, all `Deployments` are properly annotated, so the `istio-proxy` is autoinjected magically.
 
 
 We will deploy the `bookinfo` app we are already familiar with, but we will do it in 2 different `namespaces` so we can then have some different scenarios to test.
 
 The final set of application deployments will look like follows:
 
-image:namespaces-deployments.png[Apps in ns]
+image:05-security/namespaces-deployments.png[Apps in ns,link=../_images/05-security/namespaces-deployments.png,window=_blank]
 
 :numbered:
 == Deploy services in $APPS_NS1
 
-Let's have all services up and running in $APPS_NS1. 
+Let's have all services up and running in $APPS_NS1.
 
 We will start with `produtcpage` service. Run:
 
@@ -36,7 +36,7 @@ One thing that is important during these labs, mainly for the `authorization` pa
 serviceaccount/bookinfo-productpage created
 ....
 
-This `serviceaccount/bookinfo-productpage` will be used to run the `productpage pods`,  so every application will run using different `ServiceAccounts` and that would mean different identities, as will see later. 
+This `serviceaccount/bookinfo-productpage` will be used to run the `productpage pods`,  so every application will run using different `ServiceAccounts` and that would mean different identities, as will see later.
 
 To verify the above, check that within the `deployment.apps/productpage-v1` we have set the `serviceAccount`:
 
@@ -46,7 +46,7 @@ $ oc get deployment.apps/productpage-v1 -n $APPS_NS1 -o yaml | grep "serviceAcco
       serviceAccount: bookinfo-productpage
 ....
 
-NOTE: In regular deployments, if serviceAccount field is not set, pods will run with the `default` ServiceAccount, which is pre-created for us when creating new projects/namespaces. 
+NOTE: In regular deployments, if serviceAccount field is not set, pods will run with the `default` ServiceAccount, which is pre-created for us when creating new projects/namespaces.
 
 Let's continue with `details` service:
 
@@ -99,7 +99,7 @@ virtualservice.networking.istio.io/details created
 destinationrule.networking.istio.io/details created
 ....
 
-Feel free to check the content of both `VirtualService` and `DestinationRule` we just created. 
+Feel free to check the content of both `VirtualService` and `DestinationRule` we just created.
 Then, do the same for `reviews`:
 
 ....
@@ -132,7 +132,7 @@ $ oc process -f $LABS_HOME/lab1/istio/productpage-v1.yaml -p PRODUCTPAGE_HOST=$P
 Once reviewed, apply the manifests:
 
 ....
-$ oc process -f $LABS_HOME/lab1/istio/productpage-v1.yaml -p PRODUCTPAGE_HOST=$PRODUCTPAGE_HOST -p INGRESS_GW=$INGRESS_GW -p APPS_NS=$APPS_NS1 -p MESH_NS=$SERVICE_MESH_NS -o yaml | oc apply -f - 
+$ oc process -f $LABS_HOME/lab1/istio/productpage-v1.yaml -p PRODUCTPAGE_HOST=$PRODUCTPAGE_HOST -p INGRESS_GW=$INGRESS_GW -p APPS_NS=$APPS_NS1 -p MESH_NS=$SERVICE_MESH_NS -o yaml | oc apply -f -
 
 route.route.openshift.io/dsanchor-ingress-productpage created
 gateway.networking.istio.io/dsanchor-ingress-productpage created
@@ -151,15 +151,15 @@ http://productpage-dsanchor-1.apps.labs.sandbox671.opentlc.com
 
 Test the application in your `Web browser`. You will be redirected to an `https` url and warned about the self-signed certificate we have configured:
 
-image:self-signed-cert.png[Self signed cert]
+image:05-security/self-signed-cert.png[Self signed cert,link=../_images/05-security/self-signed-cert.png,window=_blank]
 
 Accept the risk ;-) and you will land in the following page:
 
-image:landing-page.png[Landing page]
+image:05-security/landing-page.png[Landing page,link=../_images/05-security/landing-page.png,window=_blank]
 
 Click on `Access to productpage` link (bottom left of the page) and voila:
 
-image:productpage.png[Productpage]
+image:05-security/productpage.png[Productpage,link=../_images/05-security/productpage.png,window=_blank]
 
 Keep a test running on the background to generate telemetry (don't forget to use your domain in the url):
 
@@ -169,14 +169,14 @@ watch -n1 curl -k https://${PRODUCTPAGE_HOST}/productpage
 
 If you check then the graph in `Kiali`, you should get a similar flow:
 
-image:first-graph.gif[First graph]
+image:05-security/first-graph.gif[First graph,link=../_images/05-security/first-graph.gif,window=_blank]
 
 Notice the starting node in the graph... it should be your dedicated ingress gateway.
 
 
 == Deploy services in $APPS_NS2
 
-For a different scenario that will be later introduced, we will deploy just the `reviews` and `ratings` service in $APPS_NS2. 
+For a different scenario that will be later introduced, we will deploy just the `reviews` and `ratings` service in $APPS_NS2.
 
 Deploy `reviews-v3`:
 ....
@@ -216,11 +216,11 @@ destinationrule.networking.istio.io/ratings created
 
 So far, we just deployed and configured some services in $APPS_NS2, but these are not yet accesible. The current request flow looks like:
 
-image:apps-ns1-workflow.png[Apps ns1 workflow]
+image:05-security/apps-ns1-workflow.png[Apps ns1 workflow,link=../_images/05-security/apps-ns1-workflow.png,window=_blank]
 
 But in some scenarios during these labs, we want to make use of the services we have deployed on $APPS_NS2 as in next diagram:
 
-image:apps-ns2-workflow.png[Apps ns2 workflow]
+image:05-security/apps-ns2-workflow.png[Apps ns2 workflow,link=../_images/05-security/apps-ns2-workflow.png,window=_blank]
 
 In order to achieve this, we will have to set certain `env variable` in `productpage` to target to a different `reviews` service than the default one (same namespace). Execute the following to configure the `reviews` service in $APPS_NS2 as target service:
 
@@ -232,11 +232,11 @@ deployment.apps/productpage-v1 updated
 
 A rollout of `productpage`is triggered and then, test the service again. You should get the `ratings` with red stars:
 
-image:ratings-ns2.png[Ratings from ns2] 
+image:05-security/ratings-ns2.png[Ratings from ns2,link=../_images/05-security/ratings-ns2.png,window=_blank]
 
 And if you keep sending requests.. you would get the following graph (notice that we jump from `productpage` in your $APPS_NS1 to `reviews` in your $APPS_NS2):
 
-image:graph-with-ns2.gif[Graph with ns2]
+image:05-security/graph-with-ns2.gif[Graph with ns2,link=../_images/05-security/graph-with-ns2.gif,window=_blank]
 
 Once tested, we will move back to default, as we will start from the first scenario, where all services run in $APPS_NS1.
 

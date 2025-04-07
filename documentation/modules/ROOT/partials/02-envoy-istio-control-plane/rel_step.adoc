@@ -7,7 +7,7 @@ oc exec <back-golang-pod_id> -c istio-proxy -n <user_namespace> curl localhost:1
 ----
 
 .Envoy Configuration
-image:{image_config_init}[]
+image:02-envoy-istio-control-plane/{image_config_init}[link=../_images/02-envoy-istio-control-plane/{image_config_init},window=_blank]
 
 It is time to modify a _{name}_ in order to see how it is implemented in Envoy proxy configuration through the respective configuration blocks:
 
@@ -16,7 +16,7 @@ It is time to modify a _{name}_ in order to see how it is implemented in Envoy p
 include::oc_process_apply.adoc[]
 
 .Modifed _{name}_ Configuration
-image:{image}[]
+image:02-envoy-istio-control-plane/{image}[link=../_images/02-envoy-istio-control-plane/{image},window=_blank]
 
 Once this new _{name}_ has been modified, save the custom Envoy proxy configuration following next steps:
 
@@ -28,4 +28,4 @@ oc exec <back-golang-pod_id> -c istio-proxy -n <user_namespace> curl localhost:1
 
 Finally, compare both files differences and draw a definitive conclusion:
 
-image:{image_config_compare}[]
+image:02-envoy-istio-control-plane/{image_config_compare}[link=../_images/02-envoy-istio-control-plane/{image_config_compare},window=_blank]

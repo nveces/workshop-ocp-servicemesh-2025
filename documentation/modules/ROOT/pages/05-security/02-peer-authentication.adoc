@@ -8,7 +8,7 @@
 [Abstract]
 In this lab, we are going to configure mTLS for all comunications between our existing services.
 
-One of the possibilities would be to `auto enable` mTLS globally in the `mesh` during the `ServiceMeshControlPlane` installation process. 
+One of the possibilities would be to `auto enable` mTLS globally in the `mesh` during the `ServiceMeshControlPlane` installation process.
 
 In our case, we chose not to do it that way, so we can reach this lab and enable mTLS in each service to service communication as an exercise to practice with this kind of scenarios.
 
@@ -28,8 +28,8 @@ $ oc apply -f $LABS_HOME/lab2/peer-authentication-strict.yaml -n $APPS_NS1
 peerauthentication.security.istio.io/peer-auth-policy created
 ....
 
-WARNING: When setting PeerAuthentication to STRICT namespace wide, we will get an error in `Kiali` telling that "Destination Rule enabling namespace-wide mTLS is missing". In our case, we don't really care, as in this lab, we will enable mTLS service by service in the namespace.  
-image:error-paut.png[Error PeerAthentication] 
+WARNING: When setting PeerAuthentication to STRICT namespace wide, we will get an error in `Kiali` telling that "Destination Rule enabling namespace-wide mTLS is missing". In our case, we don't really care, as in this lab, we will enable mTLS service by service in the namespace.
+image:05-security/error-paut.png[Error PeerAthentication,link=../_images/05-security/error-paut.png,window=_blank]
 *Ignore it for the rest of the lab.*
 
 
@@ -41,7 +41,7 @@ upstream connect error or disconnect/reset before headers. reset reason: connect
 
 And that is because we are enforcing mTLS and our services have not been configured to support it yet.
 
-To do so, we will take advantage of an interesting `Istio` feature wich is the `ISTIO_MUTUAL` traffic policy: we let the proxy serves an `Istio` managed certificate associated per `ServiceAccount` to have mTLS without any change in our application. 
+To do so, we will take advantage of an interesting `Istio` feature wich is the `ISTIO_MUTUAL` traffic policy: we let the proxy serves an `Istio` managed certificate associated per `ServiceAccount` to have mTLS without any change in our application.
 
 This `ServiceAccount` per service will let us identify the caller independently as each `ServiceAccount` will have a certificate associated to it. We will debug a bit to understand what happens under the covers.
 
@@ -55,7 +55,7 @@ Let's first understand the changes that we are going to apply in every `Destinat
 $  oc get destinationrule/productpage -o yaml -n $APPS_NS1
 ...
  (let's focus on the spec part of it)
-... 
+...
  spec:
   host: productpage
   subsets:
@@ -64,7 +64,7 @@ $  oc get destinationrule/productpage -o yaml -n $APPS_NS1
     name: v1
 ....
 
-Apply the changes: 
+Apply the changes:
 ....
 $ oc patch destinationrule/productpage --type=merge -p '{"spec":{"trafficPolicy":{"tls":{"mode":"ISTIO_MUTUAL"}}}}' -n $APPS_NS1
 
@@ -77,7 +77,7 @@ And get again the same `DestinatioRule` to see the `trafficPolicy` section that 
 $  oc get destinationrule/productpage -o yaml -n $APPS_NS1
 ...
  (let's focus on the spec part of it)
-... 
+...
 spec:
   host: productpage
   subsets:
@@ -113,7 +113,7 @@ $ oc patch destinationrule/ratings --type=merge -p '{"spec":{"trafficPolicy":{"t
 destinationrule.networking.istio.io/ratings patched
 ....
 
-Test the application again and check that is working fine. You can also leave some tests running (don't forget to change to your domain: 
+Test the application again and check that is working fine. You can also leave some tests running (don't forget to change to your domain:
 
 ....
 watch -n1 curl -k https://${PRODUCTPAGE_HOST}/productpage
@@ -121,7 +121,7 @@ watch -n1 curl -k https://${PRODUCTPAGE_HOST}/productpage
 
 Finally, move to `Kiali` and select the `Security` check box in the graph `Display options`. We should get a lock icon between each service call:
 
-image:security-check.gif[Mtls in ns1]
+image:05-security/security-check.gif[Mtls in ns1,link=../_images/05-security/security-check.gif,window=_blank]
 
 == Enforce mTLS and configure services in $APPS_NS2
 
@@ -153,7 +153,7 @@ We have now finished setting mTLS between all our services calls. We can move no
 
 == Optional: add namespace-wide DestinationRule for mTLS
 
-In case you want to get rid of the `PeerAuthentication` *validation error*, you could create a `DestinationRule` that would cover all your services in the `namespace` with mTLS (As you could have checked already, all our services are fully working and have mTLS. We have set it individually instead, but if the validation error really annoys you, feel free to remove it). 
+In case you want to get rid of the `PeerAuthentication` *validation error*, you could create a `DestinationRule` that would cover all your services in the `namespace` with mTLS (As you could have checked already, all our services are fully working and have mTLS. We have set it individually instead, but if the validation error really annoys you, feel free to remove it).
 
 This is the  YAML file you could use as template, replace $APPS_NS with your `namespace` before applying (you must do it with both $APPS_NS1 and $APPS_NS2):
 ....
@@ -168,4 +168,3 @@ spec:
     tls:
       mode: ISTIO_MUTUAL
 ....
-

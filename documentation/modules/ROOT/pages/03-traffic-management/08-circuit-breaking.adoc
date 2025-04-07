@@ -67,7 +67,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 <2> You are doing a single `GET` request inside the `fortio` pod to `httpbin`.
 
 .Fortio check result
-image::fortio-check.png[]
+image:03-traffic-management/fortio-check.png[link=../_images/03-traffic-management/fortio-check.png,window=_blank]
 
 == Test the circuit breaking
 
@@ -92,7 +92,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 You will get a result similar to this:
 
 .Fortio with 2 connections
-image::fortio-2-30.png[]
+image:03-traffic-management/fortio-2-30.png[link=../_images/03-traffic-management/fortio-2-30.png,window=_blank]
 
 You will notice that your results are not the same as the ones in the lab, but generally all requests arrive. This is because the `istio-proxy` is flexible and does not break all requests.
 
@@ -104,7 +104,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 ----
 
 .Fortio with 4 connections
-image::fortio-4-30.png[]
+03-traffic-management/fortio-4-30.png[]
 
 If you query the `istio-proxy` stats, you can see how many requests were flagged for circuit breaking:
 
@@ -116,7 +116,7 @@ oc exec -n ${OCP_NAMESPACE} ${FORTIO_POD} -c istio-proxy -- pilot-agent request 
 You should get something similar to this:
 
 .Overflow requests
-image::envoy-stats.png[]
+image:03-traffic-management/envoy-stats.png[link=../_images/03-traffic-management/envoy-stats.png,window=_blank]
 
 Notice that the stats are grouped by the subsets defined in the {dr}.
 

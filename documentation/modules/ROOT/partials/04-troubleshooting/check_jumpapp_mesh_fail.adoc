@@ -13,17 +13,16 @@ oc get routes -n istio-system | grep $USER_NAMESPACE
 ----
 
 .Jump App Routes
-image:jump-app-get-routes-mesh-ok.png[]
+image:04-troubleshooting/jump-app-get-routes-mesh-ok.png[link=../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png,window=_blank]
 
 - Visit the *back*, _back-golang-<user_namespace>.<openshift_apps_domain>_, route via your web browser
 
 .Jump App Back Unavailable
-image:{errorimage}[]
+image:04-troubleshooting/{errorimage}[link=../_images/04-troubleshooting/{errorimage},window=_blank]
 
 - Visit the *front*, _front-javascript-<user_namespace>.<openshift_apps_domain>_, route via your web browser.In addition, configure *[ 1 ]* retries with *[ 1 ]* interval and press *[ JUMP ]* and ensure the following message is displaying in your screen
 
 .Jump App Front with Errors
-image:jump-app-unavailable-front.png[]
+image:04-troubleshooting/jump-app-unavailable-front.png[link=../_images/04-troubleshooting/jump-app-unavailable-front.png,window=_blank]
 
 NOTE: An error message appears when the frontend tries to call backend services
-

@@ -18,10 +18,10 @@ Since you can't balance at the connection level, in order to do gRPC load balanc
 
 In this lab you are going to deploy a gRPC demo scenario composed in four micro-services.
 
-NOTE: You are going to use a template to deploy the gRPC demo scenario so you are not required to understand the inner workings of the micro-services. If you are still interested, you have more information about this scenario in link:https://github.com/drhelius/grpc-demo[this repo]. 
+NOTE: You are going to use a template to deploy the gRPC demo scenario so you are not required to understand the inner workings of the micro-services. If you are still interested, you have more information about this scenario in link:https://github.com/drhelius/grpc-demo[this repo].
 
 .gRPC demo in Kiali
-image::grpc_kiali.png[]
+image:03-traffic-management/grpc_kiali.png[link=../_images/03-traffic-management/grpc_kiali.png,window=_blank]
 
 First, deploy the gRPC services without Istio to understand the problem.
 
@@ -42,7 +42,7 @@ oc get pods -n ${OCP_NAMESPACE}
 ----
 
 .gRPC demo services ready
-image::grpc_ready.png[]
+image:03-traffic-management/grpc_ready.png[link=../_images/03-traffic-management/grpc_ready.png,window=_blank]
 
 Scale _user_ service to 2 replicas:
 
@@ -59,7 +59,7 @@ oc get pods -n ${OCP_NAMESPACE}
 ----
 
 .user service with two replicas
-image::grpc_ready_replicas.png[]
+image:03-traffic-management/grpc_ready_replicas.png[link=../_images/03-traffic-management/grpc_ready_replicas.png,window=_blank]
 
 Now, simulate some traffic with this command:
 
@@ -71,10 +71,10 @@ while true; do curl -ksv -o /dev/null "https://${OCP_GRPCDEMO_HOST}/v1/account/0
 Using the {ocp} web console, check the logs in both _user_ pods. You can see that only one replica is receiving traffic.
 
 .user service logs (replica 1)
-image::grpc_log1.png[]
+image:03-traffic-management/grpc_log1.png[link=../_images/03-traffic-management/grpc_log1.png,window=_blank]
 
 .user service logs (replica 2)
-image::grpc_log2.png[]
+image:03-traffic-management/grpc_log2.png[link=../_images/03-traffic-management/grpc_log2.png,window=_blank]
 
 Now that you have checked there is no actual load balancing between _user_ replicas, remove everything:
 
@@ -112,7 +112,7 @@ oc get pods -n ${OCP_NAMESPACE}
 ----
 
 .gRPC demo services ready
-image::grpc_ready_istio.png[]
+image:03-traffic-management/grpc_ready_istio.png[link=../_images/03-traffic-management/logrpc_ready_istiogin.png,window=_blank]
 
 Scale _user_ service to 2 replicas:
 
@@ -129,7 +129,7 @@ oc get pods -n ${OCP_NAMESPACE}
 ----
 
 .user service with two replicas
-image::grpc_ready_replicas_istio.png[]
+image:03-traffic-management/grpc_ready_replicas_istio.png[link=../_images/03-traffic-management/grpc_ready_replicas_istio.png,window=_blank]
 
 Now, simulate some traffic with this command:
 
@@ -141,15 +141,15 @@ while true; do curl -ksv -o /dev/null "https://${OCP_GRPCDEMO_HOST}/v1/account/0
 Using the {ocp} web console, check the logs in both _user_ pods. Now you can see both replicas receiving traffic.
 
 .user service logs (replica 1)
-image::grpc_log1_istio.png[]
+image:03-traffic-management/grpc_log1_istio.png[link=../_images/03-traffic-management/grpc_log1_istio.png,window=_blank]
 
 .user service logs (replica 2)
-image::grpc_log2_istio.png[]
+image:03-traffic-management/grpc_log2_istio.png[link=../_images/03-traffic-management/grpc_log2_istio.png,window=_blank]
 
 In Kiali you can check all the information about the replicas for this service:
 
 .user service in Kiali
-image::grpc_kiali_replicas.png[]
+image:03-traffic-management/grpc_kiali_replicas.png[link=../_images/03-traffic-management/grpc_kiali_replicas.png,window=_blank]
 
 == Remove everything
 

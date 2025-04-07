@@ -32,7 +32,7 @@ Please, return to git repository and create *gateways* through the respective Op
 include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
 
 .Gateways Created
-image:jump-app-gws-ok.png[]
+image:02-envoy-istio-control-plane/jump-app-gws-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-gws-ok.png,window=_blank]
 
 [#vsvc]
 === Virtual Services
@@ -47,7 +47,7 @@ Please, create new *virtual services* through the respective Openshift template 
 include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
 
 .Virtual Services Created
-image:jump-app-vss-ok.png[]
+image:02-envoy-istio-control-plane/jump-app-vss-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-vss-ok.png,window=_blank]
 
 [#dr]
 === Destination Rules
@@ -62,7 +62,7 @@ Please, create new *destination rules* through the respective Openshift template
 include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
 
 .Destination Rules Created
-image:jump-app-drs-ok.png[]
+image:02-envoy-istio-control-plane/jump-app-drs-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-drs-ok.png,window=_blank]
 
 [#services]
 === K8s Services
@@ -77,7 +77,7 @@ Please, create new *k8s services* through the respective Openshift template exec
 include::/02-envoy-istio-control-plane/oc_process_apply.adoc[]
 
 .k8s Services Created
-image:jump-app-svcs-ok.png[]
+image:02-envoy-istio-control-plane/jump-app-svcs-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-svcs-ok.png,window=_blank]
 
 [#memberrol]
 == Adding a new project to Red Hat Service Mesh Control Plane
@@ -91,7 +91,7 @@ IMPORTANT: Let the Instructor know that you are at this point
 At this moment, you are not able to access to _Jump App_ because of a set of required tasks which you have to perform next.
 
 .Frontend KO
-image:jump-app-front-ko.png[]
+image:02-envoy-istio-control-plane/jump-app-front-ko.png[link=../_images/02-envoy-istio-control-plane/jump-app-front-ko.png,window=_blank]
 
 TIP: If you are an advanced user and can not wait for the instructor, please visit xref:06-crtlplane.adoc#smr[6.1.1 Create _ServiceMeshMember_ Object] and follow the instructions included there and go back again.
 
@@ -112,7 +112,7 @@ oc patch deployment front-javascript-v1 -p '{"spec":{"template":{"metadata":{"an
 ----
 
 .Front Patched
-image:jump-app-front-depl-patch.png[]
+image:02-envoy-istio-control-plane/jump-app-front-depl-patch.png[link=../_images/02-envoy-istio-control-plane/jump-app-front-depl-patch.png,window=_blank]
 
 [.console-input]
 [source,input,subs="+macros,+attributes"]
@@ -121,7 +121,7 @@ oc patch deployment back-springboot-v1 -p '{"spec":{"template":{"metadata":{"ann
 ----
 
 .Back Springboot Patched
-image:jump-app-back-spb-depl-patch.png[]
+image:02-envoy-istio-control-plane/jump-app-back-spb-depl-patch.png[link=../_images/02-envoy-istio-control-plane/jump-app-back-spb-depl-patch.png,window=_blank]
 
 [.console-input]
 [source,input,subs="+macros,+attributes"]
@@ -130,7 +130,7 @@ oc patch deployment back-python-v1 -p '{"spec":{"template":{"metadata":{"annotat
 ----
 
 .Back Python Patched
-image:jump-app-back-py-depl-patch.png[]
+image:02-envoy-istio-control-plane/jump-app-back-py-depl-patch.png[link=../_images/02-envoy-istio-control-plane/jump-app-back-py-depl-patch.png,window=_blank]
 
 [.console-input]
 [source,input,subs="+macros,+attributes"]
@@ -139,7 +139,7 @@ oc patch deployment back-golang-v1 -p '{"spec":{"template":{"metadata":{"annotat
 ----
 
 .Back Golang Patched
-image:jump-app-back-go-depl-patch.png[]
+02-envoy-istio-control-plane/jump-app-back-go-depl-patch.png[]
 
 [.console-input]
 [source,input,subs="+macros,+attributes"]
@@ -148,7 +148,7 @@ oc patch deployment mongo -p '{"spec":{"template":{"metadata":{"annotations":{"s
 ----
 
 .MongoDB Patched
-image:jump-app-back-mg-depl-patch.png[]
+image:02-envoy-istio-control-plane/jump-app-back-mg-depl-patch.png[link=../_images/02-envoy-istio-control-plane/jump-app-back-mg-depl-patch.png,window=_blank]
 
 Before continuing with the following steps, please test Jump App _pods_ status, in order to be sure that 2 replicas are running for each microservice:
 
@@ -170,7 +170,7 @@ oc get routes -n <user_namespace> | grep -v NAME | awk '{print "oc delete route 
 ----
 
 .Jump App Routes Deleted
-image:jump-app-route-del.png[]
+image:02-envoy-istio-control-plane/jump-app-route-del.png[link=../_images/02-envoy-istio-control-plane/jump-app-route-del.png,window=_blank]
 
 ==== *Create a new routes in istio-system*
 
@@ -185,7 +185,7 @@ oc process -f 03-jump-app-flows/04-jump-app-routes.yaml --param-file=params.env 
 ----
 
 .Mesh Routes Created
-image:jump-app-routes-mesh-ok.png[]
+image:02-envoy-istio-control-plane/jump-app-routes-mesh-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-routes-mesh-ok.png,window=_blank]
 
 [#03test]
 === Confirm _Jump App_ is running again
@@ -206,4 +206,4 @@ include::partials/02-envoy-istio-control-plane/check_jumpapp_mesh.adoc[]
 Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console *<kiali_url>* (_E.g. https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com_):
 
 .Kiali Console
-image:jump-app-kiali.png[]
+image:02-envoy-istio-control-plane/jump-app-kiali.png[link=../_images/02-envoy-istio-control-plane/jump-app-kiali.png,window=_blank]

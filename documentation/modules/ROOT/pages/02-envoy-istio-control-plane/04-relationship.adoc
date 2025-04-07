@@ -19,7 +19,7 @@ Please, create the previous object through the respective Openshift template exe
 include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
 
 .New Micro Version Created
-image:jump-app-new-micro-version-ok.png[]
+image:02-envoy-istio-control-plane/jump-app-new-micro-version-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-new-micro-version-ok.png,window=_blank]
 
 [.console-input]
 [source,input,subs="+macros,+attributes"]
@@ -28,7 +28,7 @@ oc patch deployment back-golang-v2 -p '{"spec":{"template":{"metadata":{"annotat
 ----
 
 .Front Patched
-image:jump-app-back-golang-v2-depl-patch.png[]
+image:02-envoy-istio-control-plane/jump-app-back-golang-v2-depl-patch.png[link=../_images/02-envoy-istio-control-plane/jump-app-back-golang-v2-depl-patch.png,window=_blank]
 
 [#reviewing]
 == Review Red Hat Service Mesh objects
@@ -45,7 +45,7 @@ oc get pods
 ----
 
 .Jump App Pods Mesh
-image:jump-app-pods-2-v2.png[]
+image:02-envoy-istio-control-plane/jump-app-pods-2-v2.png[link=../_images/02-envoy-istio-control-plane/jump-app-pods-2-v2.png,window=_blank]
 
 WARNING: Please, replace *<user_namespace>* and *<back-golang-pod_id>* with the values provided by the Instructor at the beginning of this tutorial or values obtained from openshift cluster.
 
@@ -99,21 +99,21 @@ Once the previous objects are applied, it is time to test our services again wit
 Once the Virtual Service rules are applied, visit the *back*, _back-golang-<user_namespace>.<openshift_apps_domain>/redirection-test_, route via your web browser
 
 .Jump App Back Redirection
-image:jump-app-back-golang-redirect-ok.png[]
+image:02-envoy-istio-control-plane/jump-app-back-golang-redirect-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-back-golang-redirect-ok.png.png,window=_blank]
 
 Visit the *front*, _front-javascript-<user_namespace>.<openshift_apps_domain>_, route via your web browser. In addition, configure *[ 1000 ]* retries with *[ 1 ]* interval and press *[ JUMP ]* and ensure the following message is displaying in your screen
 
  ...{"code":200,"message":"/jump - Greetings from Python!"}
 
 .Jump App Front Web UI Multi Jumps
-image:jump-app-front-jumps-ok.png[]
+image:02-envoy-istio-control-plane/jump-app-front-jumps-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png,window=_blank]
 
 *KIALI*
 
 Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console *<kiali_url>* (_E.g. https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com_):
 
 .Kiali Console
-image:jump-app-kiali-v2.png[]
+image:02-envoy-istio-control-plane/jump-app-kiali-v2.png[link=../_images/02-envoy-istio-control-plane/jump-app-kiali-v2.png,window=_blank]
 
 [#se]
 === Service Entry

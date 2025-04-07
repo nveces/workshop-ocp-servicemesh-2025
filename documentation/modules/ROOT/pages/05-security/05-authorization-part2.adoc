@@ -13,20 +13,20 @@ Then, we will create a new authorization scenario that will use the `end-user` i
 :numbered:
 == Extra: OAuth flow implementation
 
-As mentioned in lab 4, Istio provides just an authentication and authorization mechanism for JWT, but it does not provide anything to help obtaning the JWT token. 
+As mentioned in lab 4, Istio provides just an authentication and authorization mechanism for JWT, but it does not provide anything to help obtaning the JWT token.
 
-This implementation shown in this section is *just an example*. In a few words, we will use an `ext_auth` type `EnvoyFilter` that will intercept every call at ingress level and forward it to an `oauth2-proxy`. that will manage the integration with Google OAuth server. It is based on https://github.com/oauth2-proxy/oauth2-proxy[oauth2-proxy] project, although in our case, it won't act as a proxy, but a *simple oauth helper beside our service mesh*. 
+This implementation shown in this section is *just an example*. In a few words, we will use an `ext_auth` type `EnvoyFilter` that will intercept every call at ingress level and forward it to an `oauth2-proxy`. that will manage the integration with Google OAuth server. It is based on https://github.com/oauth2-proxy/oauth2-proxy[oauth2-proxy] project, although in our case, it won't act as a proxy, but a *simple oauth helper beside our service mesh*.
 
 Next diagram shows all the interactions between all pieces involved (I have skipped the Openshift Router, so I only focus on elements once entering in the Service Mesh).
 
 
-image:oauth2-flow.png[Oauth flow]
+image:05-security/oauth2-flow.png[Oauth flow,link=../_images/05-security/oauth2-flow.png,window=_blank]
 
 Another possiblity would be to implement this mechanism with a WebAssembly module (WASM). This https://github.com/dgn/oidc-filter[project] could be used as a good starting point.
 
 === Deploy an OAuth2 proxy (helper)
 
-Let's now put all we have described above in practice. First, we need to deploy an `oauth2-proxy` that will be used to manage the OAuth2 workflow. 
+Let's now put all we have described above in practice. First, we need to deploy an `oauth2-proxy` that will be used to manage the OAuth2 workflow.
 
 We will deploy it under our $APPS_NS1:
 ....
@@ -59,11 +59,11 @@ $ oc process -f $LABS_HOME/lab5/oauth2-envoy-filter.yaml -p INGRESS_GW=$INGRESS_
 envoyfilter.networking.istio.io/dsanchor-ingress created
 ....
 
-Test the application now. 
+Test the application now.
 
 You will first be redirected to select your gmail account:
 
-image:google-account-selection.png[Google account selection]
+image:05-security/google-account-selection.png[Google account selection,link=../_images/05-security/google-account-selection.png,window=_blank]
 
 And once you have selected your preferred account, you will land into the bookinfo application.
 
@@ -73,18 +73,18 @@ We will add some more specific `AuthorizationPolicies` now.
 
 == Configure RequestAuthentication in $APPS_NS1
 
-First step before creating any `AuthorizationPolicy` that uses any related data/attribute from the JWT token is to set a `RequestAuthentication` that would cover the scope of the workload (For instance, we already did it for the dedicated ingress `Gateway`). 
+First step before creating any `AuthorizationPolicy` that uses any related data/attribute from the JWT token is to set a `RequestAuthentication` that would cover the scope of the workload (For instance, we already did it for the dedicated ingress `Gateway`).
 
 We will now create a namespace-wide `RequestAuthentication` for $APPS_NS1 namespace. Run the following command:
 ....
-$ oc process -f $LABS_HOME/lab5/apps-ns-request-authentication.yaml -p APPS_NS=$APPS_NS1 OIDC_ISSUER_URL=https://accounts.google.com OIDC_JWKS_URI=https://www.googleapis.com/oauth2/v3/certs -n $APPS_NS1  | oc apply -f - -n $APPS_NS1 
+$ oc process -f $LABS_HOME/lab5/apps-ns-request-authentication.yaml -p APPS_NS=$APPS_NS1 OIDC_ISSUER_URL=https://accounts.google.com OIDC_JWKS_URI=https://www.googleapis.com/oauth2/v3/certs -n $APPS_NS1  | oc apply -f - -n $APPS_NS1
 
 requestauthentication.security.istio.io/dsanchor-1-request-authentication created
 ....
 
 As any other resource we create on the cluster, I encourage you to have a look at what you have exactly created. For instance, this time you could run:
 ....
-$ oc get requestauthentication.security.istio.io/$APPS_NS1-request-authentication -o yaml -n $APPS_NS1 
+$ oc get requestauthentication.security.istio.io/$APPS_NS1-request-authentication -o yaml -n $APPS_NS1
 
 apiVersion: security.istio.io/v1beta1
 kind: RequestAuthentication
@@ -100,9 +100,9 @@ spec:
 
 == Limit access based on hosted domain claim
 
-One of the claims that could be used to limit access to certain resources could be the `hosted domain` or `hd`. 
+One of the claims that could be used to limit access to certain resources could be the `hosted domain` or `hd`.
 
-To understand what a `hosted domain` is, please, feel free to read about it https://developers.google.com/identity/protocols/oauth2/openid-connect#hd-param[here]. 
+To understand what a `hosted domain` is, please, feel free to read about it https://developers.google.com/identity/protocols/oauth2/openid-connect#hd-param[here].
 
 Also, let's put the `rbac` log level to `debug` on your dedicated ingress `Gateway`, so we will be able to see all the info we get from the JWT (and all the claims that can be used as a `rule condition`, such as the `hd`):
 ....
@@ -115,7 +115,7 @@ TIP: Try to find the `request.auth.claims` attribute in logs. And there, you sho
 
 The `hd` is hihgly dependant on the user account you have choosen. For instance, if you chose an `@gmail` you won't see any `hd`. Instead, use your corporate account to get a valid `hd`.
 
-TIP: If you already logged in with an @gmail.com account or you want to log with a different account, use the https://${PRODUCTPAGE_HOST}/oauth2/start to trigger a new login process. 
+TIP: If you already logged in with an @gmail.com account or you want to log with a different account, use the https://${PRODUCTPAGE_HOST}/oauth2/start to trigger a new login process.
 
 You can see the logs by executing the following command:
 ....
@@ -131,7 +131,7 @@ authorizationpolicy.security.istio.io/productpage-hd created
 
 Test first with a user/account that belongs to that `hosted domain`.
 
-Once you have verified that it works, try using a different account that does not belong to that `hosted domain` (for instance, a @gmail.com account). It should not have access to the bookinfo application. 
+Once you have verified that it works, try using a different account that does not belong to that `hosted domain` (for instance, a @gmail.com account). It should not have access to the bookinfo application.
 
 Also, feel free to share your $PRODUCTPAGE_HOST with a colleague and let him test the application with his own account (which belongs to your same `hosted domain`). It should also work.
 
@@ -146,11 +146,11 @@ As summary of this lab, we just learnt how to limit access to our services for a
 
 == Limit access to your user only
 
-In this last lab, we will limit access to the application to only your user account. 
+In this last lab, we will limit access to the application to only your user account.
 
-First, let's get your user account, so we can set it as a valid `requestPrincipal`. To obtain it, check your dedicated ingress `Gateway` logs and try to find the `request.auth.principal` attribute. Just one tip, it will be similar to this example: https://accounts.google.com/104396212601495701298. 
+First, let's get your user account, so we can set it as a valid `requestPrincipal`. To obtain it, check your dedicated ingress `Gateway` logs and try to find the `request.auth.principal` attribute. Just one tip, it will be similar to this example: https://accounts.google.com/104396212601495701298.
 
-*Assign the value of  `request.auth.principal` to the $USER_ACCOUNT variable* that will be used next. 
+*Assign the value of  `request.auth.principal` to the $USER_ACCOUNT variable* that will be used next.
 
 See how your new policy will look like:
 ....
@@ -176,8 +176,8 @@ $ oc process -f $LABS_HOME/lab5/request-principal-policy.yaml -p USER_ACCOUNT=$U
 authorizationpolicy.security.istio.io/productpage-request-principal created
 ....
 
-Test the application again using the account you have choosen as $USER_ACCOUNT. 
+Test the application again using the account you have choosen as $USER_ACCOUNT.
 
 Then, ask your colleague again to test your application under your $PRODUCTPAGE_HOST. This time, he won't be able to access it.
 
-We just have given access to a certain user. Feel free to add more users to the list of requestPrincipals (for instance, the one from your colleague and let him test your application). 
+We just have given access to a certain user. Feel free to add more users to the list of requestPrincipals (for instance, the one from your colleague and let him test your application).

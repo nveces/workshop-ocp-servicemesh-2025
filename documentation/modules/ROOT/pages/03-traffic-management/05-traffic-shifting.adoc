@@ -54,12 +54,12 @@ include::partials/03-traffic-management/kiali_traffic_loop.adoc[leveloffset=+2]
 Make sure you select _Request Percentage_ in the _Show Edge Labels_ display options in Kiali:
 
 .Kiali Request Percentage
-image::kiali_percentage.png[]
+image:03-traffic-management/kiali_percentage.png[link=../_images/03-traffic-management/kiali_percentage.png,window=_blank]
 
 Check the results:
 
 .Kiali traffic shifting 90/10
-image::kiali-shifting-90-10.png[]
+image:03-traffic-management/kiali-shifting-90-10.png[link=../_images/03-traffic-management/kiali-shifting-90-10.png,window=_blank]
 
 == Route half the traffic to each service
 
@@ -99,7 +99,7 @@ oc apply -f lab3/vs-reviews-shifting-50-50.yaml -n ${OCP_NAMESPACE}
 include::partials/03-traffic-management/kiali_traffic_loop.adoc[leveloffset=+2]
 
 .Kiali traffic shifting 50/50
-image::kiali-shifting-50-50.png[]
+image:03-traffic-management/kiali-shifting-50-50.png[link=../_images/03-traffic-management/kiali-shifting-50-50.png,window=_blank]
 
 == Route all the traffic to the new service
 
@@ -141,6 +141,6 @@ oc apply -f lab3/vs-reviews-shifting-0-100.yaml -n ${OCP_NAMESPACE}
 include::partials/03-traffic-management/kiali_traffic_loop.adoc[leveloffset=+2]
 
 .Kiali traffic shifting 0/100
-image::kiali-shifting-0-100.png[]
+image:03-traffic-management/kiali-shifting-0-100.png[link=../_images/03-traffic-management/kiali-shifting-0-100.png,window=_blank]
 
 include::partials/03-traffic-management/remove_bookinfo.adoc[leveloffset=+1]

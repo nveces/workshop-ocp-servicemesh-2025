@@ -109,7 +109,7 @@ This filter is already compiled so you don't have to setup a local Rust developm
 This is the code where the actual header replacing takes place:
 
 .Headers filter source code
-image::wasm_headers_code.png[]
+image:06-extensibility/wasm_headers_code.png[link=../_images/06-extensibility/wasm_headers_code.png,window=_blank]
 
 It is important to take a look at the manifest packed in the container image:
 
@@ -192,7 +192,7 @@ curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"
 As you can see, _httpbin_ app returns a JSON with everything that was passed in the request, including your custom header but nothing has been changed:
 
 .httpbin returns a custom header
-image::httpbin_wasm_header_1.png[]
+image:06-extensibility/httpbin_wasm_header_1.png[link=../_images/06-extensibility/httpbin_wasm_header_1.png,window=_blank]
 
 Now, use the _Custom-Header_ the extension is expecting:
 
@@ -204,7 +204,7 @@ curl -k -H "Custom-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"
 As you can see now, _Custom-Header_ has been replaced with _Custom-Wasm-Header_ and _Custom-Wasm-Config-Header_. Notice that the value of _Custom-Wasm-Header_ is the original value of _Custom-Header_ and the value of _Custom-Wasm-Config-Header_ is taken from the {sme} deployment manifest:
 
 .{wasm} plugin replaces the custom header
-image::httpbin_wasm_header_2.png[]
+image:06-extensibility/httpbin_wasm_header_2.png[link=../_images/06-extensibility/httpbin_wasm_header_2.png,window=_blank]
 
 === Remove the extension
 
@@ -230,7 +230,7 @@ This filter is already compiled so you don't have to setup a local Rust developm
 This is the code where the actual body replacing takes place:
 
 .Body filter source code
-image::wasm_body_code.png[]
+image:06-extensibility/wasm_body_code.png[link=../_images/06-extensibility/wasm_body_code.png,window=_blank]
 
 Take a look at the deployment {sme} resource:
 
@@ -283,7 +283,7 @@ curl -k -d "My message" "https://${OCP_HTTPBIN_HOST}/anything"
 As you can see, _httpbin_ app returns a JSON with everything that was passed in the request, including your custom body but nothing special happened:
 
 .httpbin returns a custom body
-image::httpbin_wasm_body_1.png[]
+image:06-extensibility/httpbin_wasm_body_1.png[link=../_images/06-extensibility/httpbin_wasm_body_1.png,window=_blank]
 
 Now, include the word _secret_ in the body, as defined in the {sme} resource:
 
@@ -295,7 +295,7 @@ curl -k -d "My secret message" "https://${OCP_HTTPBIN_HOST}/anything"
 As you can see now, the extension has detected the word in the body and has replaced all the body with a predefined message:
 
 .{wasm} plugin replaces body
-image::httpbin_wasm_body_2.png[]
+image:06-extensibility/httpbin_wasm_body_2.png[link=../_images/06-extensibility/httpbin_wasm_body_2.png,window=_blank]
 
 === Remove the extension
 

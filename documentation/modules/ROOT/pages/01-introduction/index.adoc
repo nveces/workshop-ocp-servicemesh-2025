@@ -1,5 +1,7 @@
 = Openshift 4 Introduction - Labs
 
+include::./../_attributes.adoc[]
+
 :toc: left
 :toc-title: Openshift 4 Introduction - Labs
 

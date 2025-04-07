@@ -32,7 +32,7 @@ The previous technologies and resources will allow you to implement a microservi
 
 === Laboratory Parameters
 
-The Instructor will provide users with the {ocp} credentials and other important parameters at the beginning of this lab. 
+The Instructor will provide users with the {ocp} credentials and other important parameters at the beginning of this lab.
 
 [cols="3*^,3*.",options="header,+attributes"]
 |===
@@ -92,7 +92,7 @@ IMPORTANT: From now on, all labs will assume these exports are defined in your s
 
 === OpenShift CLI
 
-The {ocp} CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system. 
+The {ocp} CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system.
 
 Make sure you can connect to the cluster executing the next command in your terminal:
 
@@ -104,7 +104,7 @@ oc login -u ${OCP_USER} -p ${OCP_PASSWORD} ${OCP_API}
 ----
 
 .{rhocp} CLI login
-image::oc_login_output.png[]
+image::03-traffic-management/oc_login_output.png[link=../_images/03-traffic-management/oc_login_output.png,window=_blank]
 
 TIP: Please, pay special attention to the _oc_ tool as you will need to use it several times during these labs.
 
@@ -124,7 +124,7 @@ In addition, you can access the {ocp} Web Console using via web browser, use you
 - <ocp_cluster_console> (_E.g. https://console-openshift-console.apps.labs.sandbox1420.opentlc.com_)
 
 .{rhocp} Web Console login
-image::ocp_console.png[]
+image::03-traffic-management/ocp_console.png[link=../_images/03-traffic-management/ocp_console.png,window=_blank]
 
 == GiHub Repository
 
@@ -140,7 +140,7 @@ git clone https://github.com/drhelius/ossm-traffic-management.git
 ----
 
 .{rhocp} Git clone output
-image::git_clone_output.png[]
+image::03-traffic-management/git_clone_output.png[link=../_images/03-traffic-management/git_clone_output.png,window=_blank]
 
 Navigate to the new directory created in your system:
 

@@ -24,4 +24,4 @@ curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage"
 ----
 
 .Bookinfo productpage service working
-image:bookinfo_curl.png[Bookinfo productpage service working,width="80%",align="center"]
+image:03-traffic-management/bookinfo_curl.png[Bookinfo productpage service working,width="80%",align="center",link=../_images/03-traffic-management/bookinfo_curl.png,window=_blank]

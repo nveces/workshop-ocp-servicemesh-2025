@@ -1,13 +1,10 @@
-= Red Hat Service Mesh: Envoy & Istio Control Plane Tutorial
-:page-layout: home
-:author: Asier Cidon
-:email: acidonpe@redhat.com
-:imagesdir: ./images
+= Service Mesh: Envoy & Istio Control Plane Tutorial
+
 :toc: left
 :toc-title: Envoy & Istio Control Plane Tutorial
 
 
-image::logos.png[]
+image:02-envoy-istio-control-plane/logos.png[link=../_images/02-envoy-istio-control-plane/logos.png,window=_blank]
 
 == Introduction
 

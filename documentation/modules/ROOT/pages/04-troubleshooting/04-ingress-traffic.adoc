@@ -41,7 +41,7 @@ Please, return to the git repository and apply some customizations through the r
 include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Jump App Customizations Applied I
-image:jump-app-mod-gw-ok.png[]
+image:04-troubleshooting/jump-app-mod-gw-ok.png[link=../_images/04-troubleshooting/jump-app-mod-gw-ok.png,window=_blank]
 
 :file: 04-ingress-traffic-troubleshooting/01-jump-app-back-golang-svc.yaml
 :namespace: $USER_NAMESPACE
@@ -49,7 +49,7 @@ image:jump-app-mod-gw-ok.png[]
 include::partials/04-troubleshooting/oc_process_delete.adoc[]
 
 .Jump App Customizations Applied II
-image:jump-app-mod-svc-ok.png[]
+image:04-troubleshooting/jump-app-mod-svc-ok.png[link=../_images/04-troubleshooting/jump-app-mod-svc-ok.png,window=_blank]
 
 [#04-cust-state]
 === Confirm _Jump App_ state
@@ -58,14 +58,14 @@ Once _Jump App_ customizations have been applied, it is time to review your demo
 
 Please, execute the following steps in order to review your demo app current state after the customization:
 
-:errorimage: jump-app-unavailable-back.png
+:errorimage: 04-troubleshooting/jump-app-unavailable-back.png
 
 include::partials/04-troubleshooting/check_jumpapp_mesh_fail.adoc[]
 
 [#04-router]
 == Openshift Router -> Ingress Gateway Connectivity
 
-image:jump-app-ingress-router-gw.png[]
+image:04-troubleshooting/jump-app-ingress-router-gw.png[link=../_images/04-troubleshooting/jump-app-ingress-router-gw.png,window=_blank]
 
 [#04-trou-con]
 === Test connectivity via command line
@@ -82,7 +82,7 @@ oc get pods -n openshift-ingress
 ----
 
 .OCP Router Pods
-image:ocp-routers-pods.png[]
+image:04-troubleshooting/ocp-routers-pods.png[link=../_images/04-troubleshooting/ocp-routers-pods.png,window=_blank]
 
 * Connect to the router pod
 
@@ -105,7 +105,7 @@ curl -XGET -v --header "Host: back-golang-<user_namespace>.<openshift_apps_domai
 ----
 
 .HTTP Response Error 404
-image:jump-app-trou-04-gw.png[]
+image:04-troubleshooting/jump-app-trou-04-gw.png[link=../_images/04-troubleshooting/jump-app-trou-04-gw.png,window=_blank]
 
 IMPORTANT: Note that the error is 404 because of the route, or path, is not found
 
@@ -115,10 +115,10 @@ IMPORTANT: Note that the error is 404 because of the route, or path, is not foun
 After test the connectivity from the _OCP routers_ to the _ingress gateway_, you should review the _Gateway_ object configuration in order to verify its definition. Please, visit the Kiali console *<kiali_url>* and review the _Gateway_ object current state:
 
 .Kiali Console
-image:jump-app-kiali-trou-04.png[]
+image:04-troubleshooting/jump-app-kiali-trou-04.png[link=../_images/04-troubleshooting/jump-app-kiali-trou-04.png,window=_blank]
 
 .Kiali Console Gateway Error
-image:jump-app-kiali-trou-04-error.png[]
+image:04-troubleshooting/jump-app-kiali-trou-04-error.png[link=../_images/04-troubleshooting/jump-app-kiali-trou-04-error.png,window=_blank]
 
 If you take a look at the host paths closely, you can find a bad definition because of the pattern *"-fail"* included in the path. Please, modify this hostname and click on *[ SAVE ]*.
 
@@ -137,7 +137,7 @@ oc get pods -n openshift-ingress
 ----
 
 .OCP Routers Pods
-image:ocp-routers-pods.png[]
+image:04-troubleshooting/ocp-routers-pods.png[link=../_images/04-troubleshooting/ocp-routers-pods.png,window=_blank]
 
 * Connect to the router pod
 
@@ -160,14 +160,14 @@ curl -XGET -v --header "Host: back-golang-<user_namespace>.<openshift_apps_domai
 ----
 
 .HTTP Response 503
-image:jump-app-trou-04-gw-ok.png[]
+image:04-troubleshooting/jump-app-trou-04-gw-ok.png[link=../_images/04-troubleshooting/jump-app-trou-04-gw-ok.png,window=_blank]
 
 NOTE: At this time, you obtain a 503 error because the service is unavailable but this host exists and it is reachable
 
 [#04-gateway]
 == Test Ingress Gateway -> Sidecar Connectivity
 
-image:jump-app-ingress-gw-sidecar.png[]
+image:04-troubleshooting/jump-app-ingress-gw-sidecar.png[link=../_images/04-troubleshooting/jump-app-ingress-gw-sidecar.png,window=_blank]
 
 [#04-gateway-con]
 === Test connectivity via command line
@@ -184,7 +184,7 @@ oc get pods -n istio-system
 ----
 
 .Istio ControlPlane Pods
-image:ocp-istio-controlplane-pods.png[]
+image:04-troubleshooting/ocp-istio-controlplane-pods.png[link=../_images/04-troubleshooting/ocp-istio-controlplane-pods.png,window=_blank]
 
 * Connect to the _Ingress Gateway_ pod
 
@@ -207,7 +207,7 @@ curl -XGET -v --header "Host: back-golang-<user_namespace>.<openshift_apps_domai
 ----
 
 .HTTP Response Error
-image:jump-app-trou-04-svc.png[]
+image:04-troubleshooting/jump-app-trou-04-svc.png[link=../_images/04-troubleshooting/jump-app-trou-04-svc.png,window=_blank]
 
 NOTE: At this time, you obtain _"Could not resolve host: back-golang.user1-namespace.svc.cluster.local"_ because _back-golang.svc.cluster.local_ k8s service is not found
 
@@ -229,7 +229,7 @@ oc project $USER_NAMESPACE
 include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .back-golang k8s Service Created
-image:jump-app-trou-04-svc-created.png[]
+image:04-troubleshooting/jump-app-trou-04-svc-created.png[link=../_images/04-troubleshooting/jump-app-trou-04-svc-created.png,window=_blank]
 
 [#04-gateway-con-again]
 === Test connectivity again via command line
@@ -246,7 +246,7 @@ oc get pods -n istio-system
 ----
 
 .Istio ControlPlane Pods
-image:ocp-istio-controlplane-pods.png[]
+04-troubleshooting/ocp-istio-controlplane-pods.png[]
 
 * Connect to the _ingress gateway_ pod
 
@@ -268,7 +268,7 @@ oc rsh $POD
 curl -XGET -v --header "Host: back-golang-<user_namespace>.<openshift_apps_domain>" http://istio-ingressgateway.istio-system.svc.cluster.local:80 -v
 ----
 
-image:jump-app-unavailable-back.png[]
+image:04-troubleshooting/jump-app-unavailable-back.png[link=../_images/04-troubleshooting/jump-app-unavailable-back.png,window=_blank]
 
 NOTE: At this time, you obtain a 200 in this command but _external access_ has an error because the service is unavailable but the k8s service is OK
 
@@ -278,15 +278,15 @@ NOTE: At this time, you obtain a 200 in this command but _external access_ has a
 After test the connectivity from the from the _Ingress Gateway_ to the _Envoy Sidecar_, via _k8s service_, you should review the _Virtual Service_ and _Destination Rule_ objects configuration in order to verify their definition. Please, visit the Kiali console *<kiali_url>* and review the objects general state:
 
 .Kiali Console
-image:jump-app-kiali-trou-04-vs-dr.png[]
+image:04-troubleshooting/jump-app-kiali-trou-04-vs-dr.png[link=../_images/04-troubleshooting/jump-app-kiali-trou-04-vs-dr.png,window=_blank]
 
 .Kiali Console Virtual Service Error
-image:jump-app-kiali-trou-04-error-vs.png[]
+image:04-troubleshooting/jump-app-kiali-trou-04-error-vs.png[link=../_images/04-troubleshooting/jump-app-kiali-trou-04-error-vs.png,window=_blank]
 
 If you take a look at the host paths closely you can find a bad definition because of the pattern *"-fail"* included in the path. Please, modify this hostname and click on *[ SAVE ]*.
 
 .Kiali Console Destination Rule Error
-image:jump-app-kiali-trou-04-error-dr.png[]
+image:04-troubleshooting/jump-app-kiali-trou-04-error-dr.png[link=../_images/04-troubleshooting/jump-app-kiali-trou-04-error-dr.png,window=_blank]
 
 Lastly, if you take a look at the label version you can find a bad definition. Please, replace *fail* with *v1* version and click on *[ SAVE ]*.
 
@@ -305,7 +305,7 @@ oc get pods -n istio-system
 ----
 
 .Istio ControlPlane Pods
-image:ocp-istio-controlplane-pods.png[]
+image:04-troubleshooting/ocp-istio-controlplane-pods.png[link=../_images/04-troubleshooting/ocp-istio-controlplane-pods.png,window=_blank]
 
 * Connect to the _Ingress Gateway_ pod
 
@@ -328,12 +328,12 @@ curl -XGET -v --header "Host: back-golang-<user_namespace>.<openshift_apps_domai
 ----
 
 .HTTP Response 200
-image:jump-app-trou-04-vsdr-ok.png[]
+image:04-troubleshooting/jump-app-trou-04-vsdr-ok.png[link=../_images/04-troubleshooting/jump-app-trou-04-vsdr-ok.png,window=_blank]
 
 [#04-sidecar]
 == Test Sidecar -> App Connectivity
 
-image:jump-app-ingress-sidecar-app.png[]
+image:04-troubleshooting/jump-app-ingress-sidecar-app.png[link=../_images/04-troubleshooting/jump-app-ingress-sidecar-app.png,window=_blank]
 
 [#04-sidecar-test]
 === Test connectivity via command line
@@ -350,7 +350,7 @@ oc get pods -n $USER_NAMESPACE
 ----
 
 .Jump App Pods
-image:jump_app_pods.png[]
+image:04-troubleshooting/jump_app_pods.png[link=../_images/04-troubleshooting/jump_app_pods.png,window=_blank]
 
 * Connect to the _back-golang_ pod
 
@@ -372,7 +372,7 @@ curl -XGET -v --header "Host: back-golang-<user_namespace>.<openshift_apps_domai
 ----
 
 .HTTP Response 200
-image:jump-app-trou-04-sidecar-ok.png[]
+image:04-troubleshooting/jump-app-trou-04-sidecar-ok.png[link=../_images/04-troubleshooting/jump-app-trou-04-sidecar-ok.png,window=_blank]
 
 [#04-test]
 == Confirm _Jump App_ is running again
@@ -391,4 +391,4 @@ include::/04-troubleshooting/check_jumpapp_mesh.adoc[]
 At this time, _Jump App_ is generating traffic flow thanks to the frontend where it was given an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit the Kiali console *<kiali_url>*:
 
 .Kiali Console
-image:jump-app-kiali.png[]
+image:04-troubleshooting/jump-app-kiali.png[link=../_images/04-troubleshooting/jump-app-kiali.png,window=_blank]

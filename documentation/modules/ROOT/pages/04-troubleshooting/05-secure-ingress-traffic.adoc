@@ -27,7 +27,7 @@ oc create -n istio-system secret tls $USER_NAMESPACE-credential --key=./05-secur
 ----
 
 .Secret Created
-image:jump-app-secret-ok.png[]
+image:04-troubleshooting/jump-app-secret-ok.png[link=../_images/04-troubleshooting/jump-app-secret-ok.png,window=_blank]
 
 [#05-sds-route]
 === Modify back-golang Route in istio-system Namespace
@@ -42,7 +42,7 @@ Please, modify back-golang OCP route in **istio-system** namespace through the r
 include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .back-golang Route Modified
-image:jump-app-routes-sds-mod.png[]
+image:04-troubleshooting/jump-app-routes-sds-mod.png[link=../_images/04-troubleshooting/jump-app-routes-sds-mod.png,window=_blank]
 
 [#05-sds-gw]
 === Configure Gateway
@@ -59,12 +59,12 @@ Please, modify existing frontend *gateway* object executing the following comman
 include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .back-golang Gateway Modified
-image:jump-app-gw-ok.png[]
+image:04-troubleshooting/jump-app-gw-ok.png[link=../_images/04-troubleshooting/jump-app-gw-ok.png,window=_blank]
 
 In order to ensure the Istio Secret Discovery Service (SDS) has been configured properly, you can review the _istio ingress gateway_ pod as shown the following picture:
 
 .Secret Added to SDS
-image:jump-app-sds-ok.png[]
+image:04-troubleshooting/jump-app-sds-ok.png[link=../_images/04-troubleshooting/jump-app-sds-ok.png,window=_blank]
 
 [#05-test-fail]
 == Confirm _Jump App_ is running
@@ -73,14 +73,14 @@ Once _Jump App_ SDS has been modified, it is required to follow the next steps i
 
 Please, execute the following steps in order to review your demo app current state after the customization:
 
-:errorimage: jump-app-unavailable-back-route.png
+:errorimage: 04-troubleshooting/jump-app-unavailable-back-route.png
 
 include::partials/04-troubleshooting/check_jumpapp_mesh_fail.adoc[]
 
 [#05-router]
 == Openshift Router -> Ingress Gateway Secure Connectivity
 
-image:jump-app-ingress-router-gw-sec.png[]
+image:04-troubleshooting/jump-app-ingress-router-gw-sec.png[link=../_images/04-troubleshooting/jump-app-ingress-router-gw-sec.png,window=_blank]
 
 [#05-trou-con]
 === Test connectivity via command line
@@ -97,7 +97,7 @@ oc get pods -n openshift-ingress
 ----
 
 .OCP Router Pods
-image:ocp-routers-pods.png[]
+image:04-troubleshooting/ocp-routers-pods.png[link=../_images/04-troubleshooting/ocp-routers-pods.png,window=_blank]
 
 * Connect to the router pod
 
@@ -120,7 +120,7 @@ curl --connect-to back-golang-<user_namespace>.<openshift_apps_domain>:443:istio
 ----
 
 .HTTP Response 200
-image:jump-app-trou-05-gw.png[]
+image:04-troubleshooting/jump-app-trou-05-gw.png[link=../_images/04-troubleshooting/jump-app-trou-05-gw.png,window=_blank]
 
 IMPORTANT: Note that the _Ingress Gateway_ is exposing back-golang service properly. For this reason, you can conclude the problem is located at the OCP route level
 
@@ -130,17 +130,17 @@ IMPORTANT: Note that the _Ingress Gateway_ is exposing back-golang service prope
 After test the connectivity from the _OCP routers_ to the _ingress gateway_, you should review the _Route_ object configuration in order to verify its definition. Please, visit the OCP console *<ocp_cluster_console>* and review this object current state:
 
 .OCP Console
-image:jump-app-ocp-trou-05.png[]
+image:04-troubleshooting/jump-app-ocp-trou-05.png[link=../_images/04-troubleshooting/jump-app-ocp-trou-05.png,window=_blank]
 
 .OCP Console Bad Configuration
-image:jump-app-ocp-trou-05-error.png[]
+image:04-troubleshooting/jump-app-ocp-trou-05-error.png[link=../_images/04-troubleshooting/jump-app-ocp-trou-05-error.png,window=_blank]
 
 If you take a look at the _target port_ closely, you can find _http2_. In order to support passthrough routes and connect with _Ingress Gateway_ secure ports, it is required define a secured port. Please, _edit route_, define _https_ as target port and click on *[ SAVE ]*.
 
 [#05-gateway]
 == Ingress Gateway -> Envoy Sidecar Secure Connectivity
 
-image:jump-app-ingress-envoy-gw-sec.png[]
+image:04-troubleshooting/jump-app-ingress-envoy-gw-sec.png[link=../_images/04-troubleshooting/jump-app-ingress-envoy-gw-sec.png,window=_blank]
 
 [#05-trou-gateway-forcessl]
 === Force mTLS in your namespace
@@ -160,7 +160,7 @@ oc project $USER_NAMESPACE
 include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .PeerAuthentication and Destination Rule created
-image:jump-app-trou-05-padr.png[]
+image:04-troubleshooting/jump-app-trou-05-padr.png[link=../_images/04-troubleshooting/jump-app-trou-05-padr.png,window=_blank]
 
 [#05-trou-gateway-con]
 === Test connectivity via command line
@@ -177,7 +177,7 @@ oc get pods -n istio-system
 ----
 
 .Istio ControlPlane Pods
-image:ocp-istio-controlplane-pods.png[]
+image:04-troubleshooting/ocp-istio-controlplane-pods.png[link=../_images/04-troubleshooting/ocp-istio-controlplane-pods.png,window=_blank]
 
 * Connect to the _Ingress Gateway_ pod
 
@@ -200,7 +200,7 @@ curl --header "Host: back-golang-<user_namespace>.<openshift_apps_domain>" back-
 ----
 
 .HTTP Response _Connection reset by peer_
-image:jump-app-trou-05-k8ssrv.png[]
+image:04-troubleshooting/jump-app-trou-05-k8ssrv.png[link=../_images/04-troubleshooting/jump-app-trou-05-k8ssrv.png,window=_blank]
 
 NOTE: You are receiving *curl: (56) Recv failure: Connection reset by peer* because _PeerAuthentication STRICT_ mode is enabled
 
@@ -222,7 +222,7 @@ oc extract secret/istio-ca-secret --to=. -n istio-system
 ----
 
 .Istio CA Certs
-image:ocp-istio-ca-certs.png[]
+image:04-troubleshooting/ocp-istio-ca-certs.png[link=../_images/04-troubleshooting/ocp-istio-ca-certs.png,window=_blank]
 
 * Generate a openssl configuration file in order to be able to generate a x509v3 certificate
 
@@ -260,7 +260,7 @@ openssl req -out istio.test.csr -newkey rsa:2048 -nodes -keyout istio.test.key -
 ----
 
 .New Certificate Request
-image:ocp-istio-gen-cert-req.png[]
+image:04-troubleshooting/ocp-istio-gen-cert-req.png[link=../_images/04-troubleshooting/ocp-istio-gen-cert-req.png,window=_blank]
 
 * Generate a certificate using these CA certificates
 
@@ -272,7 +272,7 @@ openssl x509 -req -days 365 -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial -i
 ----
 
 .New Istio CA signed Certificate
-image:ocp-istio-gen-cert.png[]
+image:04-troubleshooting/ocp-istio-gen-cert.png[link=../_images/04-troubleshooting/ocp-istio-gen-cert.png,window=_blank]
 
 * Get pods in _istio-system_ namespace
 
@@ -284,7 +284,7 @@ oc get pods -n istio-system
 ----
 
 .Istio ControlPlane Pods
-image:ocp-istio-controlplane-pods.png[]
+image:04-troubleshooting/ocp-istio-controlplane-pods.png[link=../_images/04-troubleshooting/ocp-istio-controlplane-pods.png,window=_blank]
 
 * Copy certificates to the _Ingress Gateway_ pod
 
@@ -323,7 +323,7 @@ curl --connect-to back-golang-<user_namespace>.<openshift_apps_domain>:443:back-
 ----
 
 .HTTP Response _Certificate required_
-image:jump-app-trou-05-k8ssrv-cert.png[]
+image:04-troubleshooting/jump-app-trou-05-k8ssrv-cert.png[link=../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert.png,window=_blank]
 
 * Once again, perform a HTTP request to the k8s service _back-golang_ using previous certificates in this time
 
@@ -335,7 +335,7 @@ curl --connect-to back-golang-<user_namespace>.<openshift_apps_domain>:443:back-
 ----
 
 .HTTP Response 200
-image:jump-app-trou-05-k8ssrv-cert-ok.png[]
+image:04-troubleshooting/jump-app-trou-05-k8ssrv-cert-ok.png[link=../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert-ok.png,window=_blank]
 
 [#05-test]
 == Confirm _Jump App_ is running again
@@ -353,4 +353,4 @@ include::partials/04-troubleshooting/check_jumpapp_mesh.adoc[]
 At this time, _Jump App_ is generating traffic flow thanks to the frontend where it was given an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit the Kiali console *<kiali_url>*:
 
 .Kiali Console
-image:jump-app-kiali.png[]
+image:04-troubleshooting/jump-app-kiali.png[link=../_images/04-troubleshooting/jump-app-kiali.png,window=_blank]

@@ -1,8 +1,9 @@
-include::vars/render-vars.adoc[]
-include::vars/document-vars.adoc[]
-include::vars/redhat-vars.adoc[]
-
 = {rhossm}: Traffic Management Labs
+
+include::./../_attributes.adoc[]
+
+:toc: left
+:toc-title: {rhossm}: Traffic Management Labs
 
 include::00-intro.adoc[leveloffset=+1]
 
@@ -27,3 +28,6 @@ include::09-mirroring.adoc[leveloffset=+1]
 include::10-egress.adoc[leveloffset=+1]
 
 include::11-grpc.adoc[leveloffset=+1]
+
+
+// EOF

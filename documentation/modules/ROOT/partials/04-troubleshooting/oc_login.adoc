@@ -6,4 +6,4 @@ oc login -u $USER -p $PASS $OCP_API
 ----
 
 .OC CLI Login Output
-image:oc_login_output.png[]
+04-troubleshooting/oc_login_output.png[]

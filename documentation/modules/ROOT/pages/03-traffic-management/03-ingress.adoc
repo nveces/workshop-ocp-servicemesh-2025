@@ -125,14 +125,14 @@ curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage"
 ----
 
 .Bookinfo productpage service working
-image::bookinfo_curl.png[]
+image::03-traffic-management/bookinfo_curl.png[link=../_images/03-traffic-management/bookinfo_curl.png,window=_blank]
 
 include::/03-traffic-management/kiali_traffic.adoc[leveloffset=+1]
 
 Now, this is how the {ig} looks like in Kiali:
 
 .Bookinfo productpage service through an {ig}
-image::ingress_bookinfo.png[]
+image::03-traffic-management/ingress_bookinfo.png[link=../_images/03-traffic-management/ingress_bookinfo.png,window=_blank]
 
 include::partials/03-traffic-management/remove_bookinfo.adoc[leveloffset=+2]
 
@@ -176,9 +176,9 @@ curl -s -kI "https://${OCP_HTTPBIN_HOST}"
 ----
 
 .httpbin service working
-image::httpbin_curl.png[]
+image:03-traffic-management/httpbin_curl.png[link=../_images/03-traffic-management/httpbin_curl.png,window=_blank]
 
 .httpbin service through an {ig}
-image::ingress_httpbin.png[]
+image:03-traffic-management/ingress_httpbin.png[link=../_images/03-traffic-management/ingress_httpbin.png,window=_blank]
 
 include::/03-traffic-management/remove_httpbin.adoc[leveloffset=+2]

@@ -98,7 +98,7 @@ oc apply -f lab4/vs-delay.yaml -n ${OCP_NAMESPACE}
 To check the delay, visit your Bookinfo application (https://<user>.bookinfo.<openshift_apps_domain>/productpage) and log in as pepito (or the name you chose). You will notice that it will take 7 seconds to load and you will see the following error in the `reviews` part: "*Sorry, product reviews are currently unavailable for this book.*"". Like this:
 
 .Reviews failure
-image::reviews-failure.png[]
+image:03-traffic-management/reviews-failure.png[link=../_images/03-traffic-management/reviews-failure.png,window=_blank]
 
 This happens because there is a hard-coded timeout between `productpage` service and `reviews` service of 3 seconds and 1 retry, so a total of 6 seconds. Then, you can't see the `reviews` because of this timeout.
 
@@ -114,13 +114,13 @@ oc apply -f lab4/vs-abort.yaml -n ${OCP_NAMESPACE}
 Now you don't have to be logged in as pepito, enter again to your Product Page and now you will see the reviews, but the ratings will give you the following error: "*Ratings service is currently unavailable*". This is because this time the `ratings` service is returning an error 500. You should see this:
 
 .Ratings failure
-image::ratings-failure.png[]
+image:03-traffic-management/ratings-failure.png[link=../_images/03-traffic-management/ratings-failure.png,window=_blank]
 
 include::/03-traffic-management/kiali_traffic.adoc[leveloffset=+2]
 
 You should see a graph similar to this:
 
 .Kiali ratings failure
-image::kiali-ratings-failure.png[]
+image:03-traffic-management/kiali-ratings-failure.png[link=../_images/03-traffic-management/kiali-ratings-failure.png,window=_blank]
 
 include::partials/03-traffic-management/remove_bookinfo.adoc[leveloffset=+1]

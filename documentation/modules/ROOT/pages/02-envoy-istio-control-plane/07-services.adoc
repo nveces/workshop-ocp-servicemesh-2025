@@ -34,7 +34,7 @@ oc create -n istio-system secret tls <user_namespace>-credential --key=./07-isti
 ----
 
 .Secret Created
-image:jump-app-secret-ok.png[]
+image:02-envoy-istio-control-plane/jump-app-secret-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-secret-ok.png,window=_blank]
 
 [#07gw]
 === Configure Gateway
@@ -51,12 +51,12 @@ Please, modify existing frontend *gateway* object executing the following comman
 include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
 
 .Front Gateway Modified
-image:jump-app-gw-ok.png[]
+image:02-envoy-istio-control-plane/jump-app-gw-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-gw-ok.png,window=_blank]
 
 In order to sure our Istio Secret Discovery Service (SDS) has been configured properly, you can review the _istio ingress gateway_ pod as shown the following picture:
 
 .Secret Added to SDS
-image:jump-app-sds-ok.png[]
+image:02-envoy-istio-control-plane/jump-app-sds-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-sds-ok.png,window=_blank]
 
 [#route]
 === Modify Route
@@ -73,7 +73,7 @@ oc process -f 07-istio-sds/01-jump-app-front-route.yaml --param-file=params.env 
 ----
 
 .Front Route Modified
-image:jump-app-istio-route-mod-ok.png[]
+image:02-envoy-istio-control-plane/jump-app-istio-route-mod-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-istio-route-mod-ok.png,window=_blank]
 
 [#07test]
 === Test HTTPS connections
@@ -88,24 +88,24 @@ oc get routes -n istio-system | grep <user_namespace>
 ----
 
 .Jump App Routes
-image:jump-app-get-routes-mesh-ok.png[]
+image:02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png,window=_blank]
 
 - Accept _Jump App_ *self-signed certificate* located in the GitHub repository.
 
 .Jump App Self-signed Certificates Warning
-image:jump-app-front-cert-warning.png[]
+image:02-envoy-istio-control-plane/jump-app-front-cert-warning.png[link=../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning.png,window=_blank]
 
 - Review _Jump App_ *self-signed certificate*
 
 .Jump App Self-signed Certificates Warning
-image:jump-app-front-cert-warning-int-1.png[]
+image:02-envoy-istio-control-plane/jump-app-front-cert-warning-int-1.png[link=../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-1.png,window=_blank]
 
 .Jump App Self-signed Certificates Warning
-image:jump-app-front-cert-warning-int-2.png[]
+image:02-envoy-istio-control-plane/jump-app-front-cert-warning-int-2.png[link=../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-2.png,window=_blank]
 
 - Visit the *front*, _front-javascript-<user_namespace>.<openshift_apps_domain>_, route via your web browser. In addition, configure *[ 1 ]* retries with *[ 1 ]* interval and press *[ JUMP ]* and ensure the following message is displaying in your screen
 
  ...{"code":200,"message":"/jump - Greetings from Python!"}
 
 .Jump App Front Web UI Multi Jumps
-image:jump-app-front-jumps-ok.png[]
+image:02-envoy-istio-control-plane/jump-app-front-jumps-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png,window=_blank]

@@ -36,16 +36,16 @@ Please, create the previous object through the respective Openshift template exe
 include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
 
 ._ServiceMeshMember_ Created
-image:jump-app-ns-smr.png[]
+image:02-envoy-istio-control-plane/jump-app-ns-smr.png[link=../_images/02-envoy-istio-control-plane/jump-app-ns-smr.png,window=_blank]
 
 Additionally, you are able to check this new object through the Openshift Console:
 
 ._ServiceMeshMember_ Created Console- 1
-image:jump-app-ns-smr-con1.png[]
+image:02-envoy-istio-control-plane/jump-app-ns-smr-con1.png[link=../_images/02-envoy-istio-control-plane/jump-app-ns-smr-con1.png,window=_blank]
 ._ServiceMeshMember_ Created Console - 2
-image:jump-app-ns-smr-con2.png[]
+image:02-envoy-istio-control-plane/jump-app-ns-smr-con2.png[link=../_images/02-envoy-istio-control-plane/jump-app-ns-smr-con2.png,window=_blank]
 ._ServiceMeshMember_ Created Console - 3
-image:jump-app-ns-smr-con3.png[]
+image:02-envoy-istio-control-plane/jump-app-ns-smr-con3.png[link=../_images/02-envoy-istio-control-plane/jump-app-ns-smr-con3.png,window=_blank]
 
 [#np]
 === Review Network Policies Created
@@ -63,7 +63,7 @@ oc get networkpolicies -n <user_namespace>
 ----
 
 ._NetworkPolicies_ Created Project
-image:jump-app-ns-smr-np.png[]
+image:02-envoy-istio-control-plane/jump-app-ns-smr-np.png[link=../_images/02-envoy-istio-control-plane/jump-app-ns-smr-np.png,window=_blank]
 
 Then, you should review the first network policy in order to understand why external traffic flow is allowed through Istio Gateway to Jump App pods which are exposed by a _Gateway_ Object:
 
@@ -74,7 +74,7 @@ oc get networkpolicy istio-expose-route-basic -o yaml -n <user_namespace>
 ----
 
 ._NetworkPolicies_ Created Project
-image:jump-app-ns-smr-np-1.png[]
+image:02-envoy-istio-control-plane/jump-app-ns-smr-np-1.png[link=../_images/02-envoy-istio-control-plane/jump-app-ns-smr-np-1.png,window=_blank]
 
 
 Finally, the second network policy allows internal Service Mesh traffic through any pod included in a project inside the Service Mesh Control Plane installed in _istio-system_ namespace:
@@ -86,7 +86,7 @@ oc get networkpolicy istio-mesh-basic -o yaml -n <user_namespace>
 ----
 
 ._NetworkPolicies_ Created Project
-image:jump-app-ns-smr-np-2.png[]
+image:02-envoy-istio-control-plane/jump-app-ns-smr-np-2.png[link=../_images/02-envoy-istio-control-plane/jump-app-ns-smr-np-2.png,window=_blank]
 
 
 [#06test]
@@ -111,4 +111,4 @@ include::partials/02-envoy-istio-control-plane/check_jumpapp_mesh.adoc[]
 Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console *<kiali_url>* (_E.g. https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com_):
 
 .Kiali Console
-image:jump-app-kiali-v2.png[]
+image:02-envoy-istio-control-plane/jump-app-kiali-v2.png[link=../_images/02-envoy-istio-control-plane/jump-app-kiali-v2.png,window=_blank]

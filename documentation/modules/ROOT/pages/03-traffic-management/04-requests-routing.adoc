@@ -100,14 +100,14 @@ oc apply -f lab2/vs-reviews-v2.yaml -n ${OCP_NAMESPACE}
 Now check that the product page shows the stars of the ratings visiting https://<user>.bookinfo.<openshift_apps_domain>/productpage with your browser:
 
 .Product Page showing ratings
-image::productpage-v2.png[]
+image:03-traffic-management/productpage-v2.png[link=../_images/03-traffic-management/productpage-v2.png,window=_blank]
 
 include::partials/03-traffic-management/kiali_traffic.adoc[leveloffset=+2]
 
 You should see a graph similar to this:
 
 .Kiali traffic version 2
-image::kiali-traffic-v2.png[]
+image:03-traffic-management/kiali-traffic-v2.png[link=../_images/03-traffic-management/kiali-traffic-v2.png,window=_blank]
 
 You see there that all traffic goes to version 2 of the `reviews` service that calls the `ratings` service to get the stars.
 
@@ -125,6 +125,6 @@ To test it, click on the _Sign in_ button at the top right of the Product Page a
 You should see the red stars now:
 
 .Product Page with red stars
-image::productpage-red.png[]
+image::03-traffic-management/productpage-red.png[link=../_images/03-traffic-management/productpage-red.png,window=_blank]
 
 include::partials/03-traffic-management/remove_bookinfo.adoc[leveloffset=+1]

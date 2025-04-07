@@ -19,7 +19,7 @@ include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-c
 
 And then you are ready for start using Kubernetes:
 
-image::kubelogo.png[]
+image:kubelogo.png[]
 
 [#downloadtutorial]
 == Get tutorial sources

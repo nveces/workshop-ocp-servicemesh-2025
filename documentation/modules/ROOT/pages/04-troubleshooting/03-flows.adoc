@@ -21,16 +21,16 @@ Please, create the previous object through the respective Openshift template exe
 include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 ._ServiceMeshMember_ Created
-image:jump-app-ns-smr.png[]
+image:04-troubleshooting/jump-app-ns-smr.png[link=../_images/04-troubleshooting/jump-app-ns-smr.png,window=_blank]
 
 Additionally, you are able to check this new object through the Openshift Console:
 
 ._ServiceMeshMember_ Created Console- 1
-image:jump-app-ns-smr-con1.png[]
+image:04-troubleshooting/jump-app-ns-smr-con1.png[link=../_images/04-troubleshooting/jump-app-ns-smr-con1.png,window=_blank]
 ._ServiceMeshMember_ Created Console - 2
-image:jump-app-ns-smr-con2.png[]
+image:04-troubleshooting/jump-app-ns-smr-con2.png[link=../_images/04-troubleshooting/jump-app-ns-smr-con2.png,window=_blank]
 ._ServiceMeshMember_ Created Console - 3
-image:jump-app-ns-smr-con3.png[]
+image:04-troubleshooting/jump-app-ns-smr-con3.png[link=../_images/04-troubleshooting/jump-app-ns-smr-con3.png,window=_blank]
 
 [#create]
 == Create Red Hat Service Mesh Traffic Flow objects
@@ -56,7 +56,7 @@ Please, return to git repository and create *gateways* through the respective Op
 include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Gateways Created
-image:jump-app-gws-ok.png[]
+image:04-troubleshooting/jump-app-gws-ok.png[link=../_images/04-troubleshooting/jump-app-gws-ok.png,window=_blank]
 
 [#vsvc]
 === Virtual Services
@@ -71,7 +71,7 @@ Please, create new *virtual services* through the respective Openshift template 
 include::/04-troubleshooting/oc_process_apply.adoc[]
 
 .Virtual Services Created
-image:jump-app-vss-ok.png[]
+image:04-troubleshooting/jump-app-vss-ok.png[link=../_images/04-troubleshooting/jump-app-vss-ok.png,window=_blank]
 
 [#dr]
 === Destination Rules
@@ -86,7 +86,7 @@ Please, create new *destination rules* through the respective Openshift template
 include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Destination Rules Created
-image:jump-app-drs-ok.png[]
+image:04-troubleshooting/jump-app-drs-ok.png[link=../_images/04-troubleshooting/jump-app-drs-ok.png,window=_blank]
 
 [#services]
 === K8s Services
@@ -101,7 +101,7 @@ Please, create new *k8s services* through the respective Openshift template exec
 include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .k8s Services Created
-image:jump-app-svcs-ok.png[]
+image:04-troubleshooting/jump-app-svcs-ok.png[link=../_images/04-troubleshooting/jump-app-svcs-ok.png,window=_blank]
 
 [#finalsteps]
 == Final Steps
@@ -120,7 +120,7 @@ oc patch deployment front-javascript-v1 -p '{"spec":{"template":{"metadata":{"an
 ----
 
 .Front Patched
-image:jump-app-front-depl-patch.png[]
+image:04-troubleshooting/jump-app-front-depl-patch.png[link=../_images/04-troubleshooting/jump-app-front-depl-patch.png,window=_blank]
 
 [.console-input]
 [source,input,subs="+macros,+attributes"]
@@ -129,7 +129,7 @@ oc patch deployment back-springboot-v1 -p '{"spec":{"template":{"metadata":{"ann
 ----
 
 .Back Springboot Patched
-image:jump-app-back-spb-depl-patch.png[]
+image:04-troubleshooting/jump-app-back-spb-depl-patch.png[link=../_images/04-troubleshooting/jump-app-back-spb-depl-patch.png,window=_blank]
 
 [.console-input]
 [source,input,subs="+macros,+attributes"]
@@ -138,7 +138,7 @@ oc patch deployment back-python-v1 -p '{"spec":{"template":{"metadata":{"annotat
 ----
 
 .Back Python Patched
-image:jump-app-back-py-depl-patch.png[]
+image:04-troubleshooting/jump-app-back-py-depl-patch.png[link=../_images/04-troubleshooting/jump-app-back-py-depl-patch.png,window=_blank]
 
 [.console-input]
 [source,input,subs="+macros,+attributes"]
@@ -147,7 +147,7 @@ oc patch deployment back-golang-v1 -p '{"spec":{"template":{"metadata":{"annotat
 ----
 
 .Back Golang Patched
-image:jump-app-back-go-depl-patch.png[]
+image:04-troubleshooting/jump-app-back-go-depl-patch.png[link=../_images/04-troubleshooting/jump-app-back-go-depl-patch.png,window=_blank]
 
 Before continuing with the following steps, please test Jump App _pods_ status, in order to be sure that 2 replicas are running for each microservice:
 
@@ -169,7 +169,7 @@ oc get routes -n $USER_NAMESPACE | grep -v NAME | awk '{print "oc delete route "
 ----
 
 .Jump App Routes Deleted
-image:jump-app-route-del.png[]
+image:04-troubleshooting/jump-app-route-del.png[link=../_images/04-troubleshooting/jump-app-route-del.png,window=_blank]
 
 ==== Create a new routes in istio-system
 
@@ -183,7 +183,7 @@ Please, create new *routes* in **istio-system** namespace through the respective
 include::partials/04-troubleshooting/oc_process_create.adoc[]
 
 .Mesh Routes Created
-image:jump-app-routes-mesh-ok.png[]
+image:04-troubleshooting/jump-app-routes-mesh-ok.png[link=../_images/04-troubleshooting/jump-app-routes-mesh-ok.png,window=_blank]
 
 [#03-test]
 == Confirm _Jump App_ is running again
@@ -204,4 +204,4 @@ include::/04-troubleshooting/check_jumpapp_mesh.adoc[]
 Jump App is generating traffic flow thanks to the frontend where it was given an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit the Kiali console *<kiali_url>* (_E.g. https://kiali-istio-system.apps.labs.sandbox1562.opentlc.com_):
 
 .Kiali Console
-image:jump-app-kiali.png[]
+image:04-troubleshooting/jump-app-kiali.png[link=../_images/04-troubleshooting/jump-app-kiali.png,window=_blank]

@@ -66,10 +66,10 @@ curl -s -kI "https://${OCP_HTTPBIN_HOST}"
 ----
 
 .httpbin service working
-image::httpbin_curl.png[]
+image:06-extensibility/httpbin_curl.png[link=../_images/06-extensibility/httpbin_curl.png,window=_blank]
 
 .httpbin service through an {ig}
-image::ingress_httpbin.png[]
+image:06-extensibility/ingress_httpbin.png[link=../_images/06-extensibility/ingress_httpbin.png,window=_blank]
 
 == Test httpbin with a custom header
 
@@ -85,7 +85,7 @@ curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"
 As you can see, _httpbin_ app returns a JSON with everything that was passed in the request, including your custom header:
 
 .httpbin returns a custom header
-image::httpbin_header_1.png[]
+image:06-extensibility/httpbin_header_1.png[link=../_images/06-extensibility/httpbin_header_1.png,window=_blank]
 
 == Add an {ef} to create a new header
 
@@ -169,7 +169,7 @@ NOTE: It may take some seconds for the configuration to propagate through the me
 You should see your custom header and the additional header that was created in the {ef}:
 
 .httpbin returns a new header created in the {ef}
-image::httpbin_header_2.png[]
+image:06-extensibility/httpbin_header_2.png[link=../_images/06-extensibility/httpbin_header_2.png,window=_blank]
 
 You can check wether your filter has been inserted in the filter chain by looking at the Envoy config. In order to do this you can use _istioctl_:
 
@@ -181,7 +181,7 @@ istioctl proxy-config listeners -n ${OCP_NAMESPACE} ${HTTPBIN_POD} -o json
 ----
 
 .Envoy config including the custom Lua filter
-image::httpbin_envoy_config.png[]
+image:06-extensibility/httpbin_envoy_config.png[link=../_images/06-extensibility/httpbin_envoy_config.png,window=_blank]
 
 If you don't have _istioctl_ installed you can also run the following commands:
 
@@ -259,7 +259,7 @@ curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"
 You should see your custom header being replaced with the additional header that was created in the first {ef}, your custom header has been removed:
 
 .httpbin returns a replaced custom header created in the {ef}
-image::httpbin_header_3.png[]
+image:06-extensibility/httpbin_header_3.png[link=../_images/06-extensibility/httpbin_header_3.png,window=_blank]
 
 You can check the position of your new filter in the filter chain by looking at the Envoy config:
 
@@ -271,7 +271,7 @@ istioctl proxy-config listeners -n ${OCP_NAMESPACE} ${HTTPBIN_POD} -o json
 ----
 
 .Envoy config including the removal Lua filter at the end of the chain
-image::httpbin_envoy_config_2.png[]
+image:06-extensibility/httpbin_envoy_config_2.png[link=../_images/06-extensibility/httpbin_envoy_config_2.png,window=_blank]
 
 If you don't have _istioctl_ installed you can also run the following commands:
 
@@ -285,7 +285,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST lo
 Additionally, it is possible to review all of this information via Kiali.
 
 .Envoy config including the removal Lua filter at the end of the chain (Kiali)
-image::httpbin_envoy_config_kiali.png[]
+image:06-extensibility/httpbin_envoy_config_kiali.png[link=../_images/06-extensibility/httpbin_envoy_config_kiali.png,window=_blank]
 
 == Create a single {ef} to replace the header
 
@@ -362,12 +362,12 @@ curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"
 You should see your custom header being replaced with the additional header and your custom header removed, but this time with only one {ef}:
 
 .httpbin returns a replaced custom header created in the {ef}
-image::httpbin_header_4.png[]
+image:06-extensibility/httpbin_header_4.png[link=../_images/06-extensibility/httpbin_header_4.png,window=_blank]
 
 Additionally, it is possible to review all of this information via Kiali.
 
 .Envoy config including the removal Lua filter at the end of the chain (Kiali)
-image::httpbin_envoy_config_kiali_2.png[]
+image:06-extensibility/httpbin_envoy_config_kiali_2.png[link=../_images/06-extensibility/httpbin_envoy_config_kiali_2.png,window=_blank]
 
 == Remove Filters
 

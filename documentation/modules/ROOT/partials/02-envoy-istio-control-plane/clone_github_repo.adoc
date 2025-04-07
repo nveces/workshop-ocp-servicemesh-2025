@@ -11,7 +11,7 @@ git clone https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resour
 ----
 
 .git clone output
-image:git_clone_output.png[]
+image:02-envoy-istio-control-plane/git_clone_output.png[link=../_images/02-envoy-istio-control-plane/git_clone_output.png,window=_blank]
 
 Finally, navigate to the new folder created in your system after repository download for completing all tasks included in this tutorial:
 
@@ -21,4 +21,3 @@ Finally, navigate to the new folder created in your system after repository down
 ----
 cd rh-service-mesh-v2-istio-crtlplane-resources
 ----
-

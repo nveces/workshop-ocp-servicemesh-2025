@@ -9,4 +9,4 @@ oc get pods -n $USER_NAMESPACE
 ----
 
 .Jump App Pods
-image:jump_app_pods.png[]
+image:04-troubleshooting/jump_app_pods.png[link=../_images/04-troubleshooting/jump_app_pods.png,window=_blank]

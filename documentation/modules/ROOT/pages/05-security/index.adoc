@@ -1,9 +1,9 @@
 = Service Mesh Security - Labs
-:author: David Sancho
-:email: dsanchor@redhat.com
-:imagesdir: ./images
+
+include::./../_attributes.adoc[]
+
 :toc: left
-:toc-title: Service Mesh Security - Labs 
+:toc-title: Service Mesh Security - Labs
 
 
 include::00-intro-and-prereq.adoc[]
@@ -20,6 +20,9 @@ include::05-authorization-part2.adoc[]
 
 [%header*]
 |===
-And this is all for the `Service Mesh Security` workshop. 
+And this is all for the `Service Mesh Security` workshop.
 
 Hope you have enjoyed it!
+
+
+// EOF

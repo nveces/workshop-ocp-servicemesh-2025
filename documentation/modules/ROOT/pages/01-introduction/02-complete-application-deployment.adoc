@@ -55,7 +55,7 @@ deployment.apps/quarkus-petclinic image updated
 
 Once the image has been updated, a new pod has been created, while the old one has been terminated. If you missed that process, here it is a short replay:
 
-image:01-introduction/rolling-update.gif[rolling update,link=../_images/01-introduction/rolling-update.png,window=_blank]
+image:01-introduction/rolling-update.gif[rolling update,link=../_images/01-introduction/rolling-update.gif,window=_blank]
 
 That list of `pods` could be seen under the `Administrator` view, then `Workloads` and finally `Pods`.
 

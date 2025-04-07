@@ -22,7 +22,7 @@ There are 3 versions of the `reviews` microservice:
 The end-to-end architecture of the application is shown below:
 
 .{rhocp} Bookinfo application architecture
-image::bookinfo.png[]
+image::03-traffic-management/bookinfo.png[link=../_images/03-traffic-management/bookinfo.png,window=_blank]
 
 == httpbin
 

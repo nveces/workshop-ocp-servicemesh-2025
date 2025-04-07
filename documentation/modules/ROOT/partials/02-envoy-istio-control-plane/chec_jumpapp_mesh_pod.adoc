@@ -6,4 +6,4 @@ oc get pods
 ----
 
 .Jump App Pods Mesh
-image:jump-app-pods-2-ok.png[]
+image:02-envoy-istio-control-plane/jump-app-pods-2-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png,window=_blank]

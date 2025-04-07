@@ -8,7 +8,7 @@ Because all outbound traffic from an Istio-enabled pod is redirected to its side
 
 By default, Istio configures the Envoy proxy to pass through requests for unknown services.
 
-{rhossm} can be configured with a special policy for handling external services, that is, those services that are not defined in Istio’s internal service registry. 
+{rhossm} can be configured with a special policy for handling external services, that is, those services that are not defined in Istio’s internal service registry.
 
 If the policy is in permissive state (by default), the Istio proxy lets calls to unknown services pass through. If the policy is set to a restrictive state, then the Istio proxy blocks any host without a {se} defined within the mesh.
 
@@ -69,7 +69,7 @@ oc exec -it ${UBI_POD} -n ${OCP_NAMESPACE} -c ubi -- curl -I https://github.com
 ----
 
 .Accessing external service without {se}
-image::egress_without_se.png[]
+image:03-traffic-management/egress_without_se.png[link=../_images/03-traffic-management/egress_without_se.png,window=_blank]
 
 Ooops, you can't, because {ossm} is configured with a restrictive policy.
 
@@ -115,12 +115,12 @@ oc exec -it ${UBI_POD} -n ${OCP_NAMESPACE} -c ubi -- curl -I https://github.com
 ----
 
 .Accessing external service with {se}
-image::egress_with_se.png[]
+image:03-traffic-management/egress_with_se.png[link=../_images/03-traffic-management/egress_with_se.png,window=_blank]
 
 So, this is now a controlled way to enable access to external services.
 
 .Kiali external service with {se}
-image::kiali_egress_with_se.png[]
+image:03-traffic-management/kiali_egress_with_se.png[link=../_images/03-traffic-management/kiali_egress_with_se.png,window=_blank]
 
 == Egress Gateway
 
@@ -222,7 +222,7 @@ while true; do oc exec -it ${UBI_POD} -n ${OCP_NAMESPACE} -c ubi -- curl -I http
 In Kiali you can see this time that the traffic is going through the {eg}:
 
 .Kiali external service with {eg}
-image::kiali_egress_with_egress.png[]
+image:03-traffic-management/kiali_egress_with_egress.png[link=../_images/03-traffic-management/kiali_egress_with_egress.png,window=_blank]
 
 == Remove everything
 

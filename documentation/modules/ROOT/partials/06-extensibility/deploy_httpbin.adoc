@@ -24,4 +24,4 @@ curl -s -kI "https://${OCP_HTTPBIN_HOST}"
 ----
 
 .httpbin service working
-image:httpbin_curl.png[httpbin service working,width="80%",align="center"]
+image:06-extensibility/httpbin_curl.png[httpbin service working,width="80%",align="center",link=../_images/06-extensibility/httpbin_curl.png,window=_blank]

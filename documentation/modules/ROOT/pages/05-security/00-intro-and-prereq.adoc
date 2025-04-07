@@ -10,9 +10,9 @@
 WARNING: This is not a recommended practices guide nor intended to serve as a reference. These series of labs are oriented in such a way that you will have a first contact to the main concepts of Openshift Service Mesh and Istio *security topics*.
 
 
-In this preparation lab, we are going to get the `oc` cli binary and validate that all necessary requirements are successfully accomplished before starting the series of labs. 
+In this preparation lab, we are going to get the `oc` cli binary and validate that all necessary requirements are successfully accomplished before starting the series of labs.
 
-Along these labs, you will refer to a list of variables that have been shared with you before starting the labs. If this is not your case, please let us know. 
+Along these labs, you will refer to a list of variables that have been shared with you before starting the labs. If this is not your case, please let us know.
 
 These variables are:
 
@@ -42,29 +42,29 @@ $ git clone https://github.com/dsanchor/service-mesh-security.git $LABS_HOME
 :numbered:
 == Access to Openshift Web Console
 
-Use the `*$OCP_CONSOLE*` url to acces the Openshift Web Console. 
+Use the `*$OCP_CONSOLE*` url to acces the Openshift Web Console.
 
 A login screen will be shown as follow:
 
-image:login.png[login]
+image:05-security/login.png[login,link=../_images/05-security/login.png,window=_blank]
 
 Enter your `username` and `password` and click `Log In`.
 
 If you have successfully logged in, you will arrive to the main dashboard with your current projects. As seen below, you should have access to 3 namespaces, `istio-system`, `yournamespace-1` and `yournamespace-2`:
 
-image:projects.png[Projects] 
+image:05-security/projects.png[Projects,link=../_images/05-security/projects.png,window=_blank]
 
-It is time to get the Openshift CLI binaries for your specific OS. 
+It is time to get the Openshift CLI binaries for your specific OS.
 
-=== Download the CLI 
+=== Download the CLI
 
 On the top-right (?) menu, click on `Command line tools`:
 
-image:menu-clt.png[command-line-tools]
+image:05-security/menu-clt.png[command-line-tools,link=../_images/05-security/menu-clt.png,window=_blank]
 
 Then, choose the binaries according to your OS:
 
-image:cli-download-options.png[cli-download-options]
+image:05-security/cli-download-options.png[cli-download-options,link=../_images/05-security/cli-download-options.png,window=_blank]
 
 Extract the binaries and try it by executing the following:
 
@@ -102,19 +102,19 @@ Using project "istio-system".
 
 == Access to Service Mesh Console: Kiali
 
-Use the `*$KIALI_CONSOLE*` url to acces the Service Mesh Web Console. 
+Use the `*$KIALI_CONSOLE*` url to acces the Service Mesh Web Console.
 
 A login screen will be shown as follow:
 
-image:kiali-login.png[Kiali login]
+image:05-security/kiali-login.png[Kiali login,link=../_images/05-security/kiali-login.png,window=_blank]
 
 Enter your `username` and `password` and click `Log In`.
 
 If you have successfully logged in, you will arrive to the main dashboard where you will see the main `Service Mesh Control Plane` namespace and your two `Apps namespaces`:
 
 
-image:kiali-projects.png[Kiali mesh and namespaces]
+05-security/kiali-projects.png[Kiali mesh and namespaces]
 
 Notice that this time, your two `Apps namespaces` are already part of the mesh, that is, we simply added the `ServiceMeshMember` for you, as you have done this task many times in previous labs.
 
-We can now start deploying applications into our project so we are then ready to start securing them. 
+We can now start deploying applications into our project so we are then ready to start securing them.

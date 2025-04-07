@@ -6,4 +6,4 @@ oc login -u <user> -p <pass> <ocp_cluster_api>
 ----
 
 .OC CLI Login Output
-image:oc_login_output.png[]
+image:02-envoy-istio-control-plane/oc_login_output.png[link=../_images/02-envoy-istio-control-plane/oc_login_output.png,window=_blank]

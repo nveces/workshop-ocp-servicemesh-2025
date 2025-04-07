@@ -69,12 +69,12 @@ include::partials/03-traffic-management/kiali_traffic_loop.adoc[leveloffset=+2]
 Make sure you select _Response Time_ in the _Show Edge Labels_ display options in Kiali:
 
 .Kiali Response Time
-image::kiali_response.png[]
+image:03-traffic-management/kiali_response.png[link=../_images/03-traffic-management/kiali_response.png,window=_blank]
 
 Check the results in Kiali. You may notice a 2 second delay in the ratings call:
 
 .Kiali Ratings service with 2s delay
-image::kiali-timeouts-ratings-delay.png[]
+image:03-traffic-management/kiali-timeouts-ratings-delay.png[link=../_images/03-traffic-management/kiali-timeouts-ratings-delay.png,window=_blank]
 
 If you visit the Bookinfo app with your browser you should see the Bookinfo application working normally (with ratings stars displayed), but there is a 2 second delay whenever you refresh the page:
 
@@ -123,7 +123,7 @@ include::partials/03-traffic-management/kiali_traffic_loop.adoc[leveloffset=+2]
 Check the results in Kiali:
 
 .Kiali Reviews service with timeout
-image::kiali-timeouts-reviews.png[]
+image:03-traffic-management/kiali-timeouts-reviews.png[link=../_images/03-traffic-management/kiali-timeouts-reviews.png,window=_blank]
 
 == Hardcoded timeout in productpage service
 

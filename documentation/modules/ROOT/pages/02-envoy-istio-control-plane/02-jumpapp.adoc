@@ -53,7 +53,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 ----
 
 .Jump App Deployed
-image:jump_app_created.png[]
+image:02-envoy-istio-control-plane/jump_app_created.png[link=../_images/02-envoy-istio-control-plane/jump_app_created.png,window=_blank]
 
 [#test]
 === Confirm _Jump App_ is already running in Openshift

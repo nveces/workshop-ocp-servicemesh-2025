@@ -13,7 +13,7 @@ As you know, Gateway describes a load balancer operating at the edge of the mesh
 
 During this step, you will review how to work with a secure HTTPS service through Egress Gateway and a custom certificate.
 
-image:jump-app-egress-traffic.png[]
+image:04-troubleshooting/jump-app-egress-traffic.png[link=../_images/04-troubleshooting/jump-app-egress-traffic.png,window=_blank]
 
 [#06-addcert]
 == Create the _External Service_
@@ -22,7 +22,7 @@ In this part, you will create an _external service_ in Openshift but away from t
 
 Just a information, this service is based on Nginx server with a custom certificates generated with openssl.
 
-image:jump-app-egress-service.png[]
+image:04-troubleshooting/jump-app-egress-service.png[link=../_images/04-troubleshooting/jump-app-egress-service.png,window=_blank]
 
 [#06-addcerts]
 === Add a Custom Certificate
@@ -68,7 +68,7 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 ----
 
 .Server certificates OK
-image:jump-app-mesh-external-svc-cert-ok.png[]
+image:04-troubleshooting/jump-app-mesh-external-svc-cert-ok.png[link=../_images/04-troubleshooting/jump-app-mesh-external-svc-cert-ok.png,window=_blank]
 
 * Create secret to hold the CA certificates
 
@@ -79,7 +79,7 @@ oc create -n $USER_NAMESPACE-mesh-external secret generic nginx-ca-certs --from-
 ----
 
 .CA certificates OK
-image:jump-app-mesh-external-ca-cert-ok.png[]
+image:04-troubleshooting/jump-app-mesh-external-ca-cert-ok.png[link=../_images/04-troubleshooting/jump-app-mesh-external-ca-cert-ok.png,window=_blank]
 
 [#06-createnginx]
 == Create Nginx service
@@ -97,7 +97,7 @@ oc create configmap nginx-configmap -n $USER_NAMESPACE-mesh-external --from-file
 ----
 
 .Nginx config file OK
-image:jump-app-mesh-external-nginx-conf-ok.png[]
+image:04-troubleshooting/jump-app-mesh-external-nginx-conf-ok.png[link=../_images/04-troubleshooting/jump-app-mesh-external-nginx-conf-ok.png,window=_blank]
 
 * Deploy the Nginx server
 
@@ -107,7 +107,7 @@ image:jump-app-mesh-external-nginx-conf-ok.png[]
 include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Nginx deployment and service ok
-image:jump-app-mesh-external-nginx-deployment-ok.png[]
+image:04-troubleshooting/jump-app-mesh-external-nginx-deployment-ok.png[link=../_images/04-troubleshooting/jump-app-mesh-external-nginx-deployment-ok.png,window=_blank]
 
 * Check if the nginx pod is ready
 
@@ -118,7 +118,7 @@ oc get pods -n $USER_NAMESPACE-mesh-external
 ----
 
 .Nginx pod ok
-image:jump-app-mesh-external-nginx-pods-ok.png[]
+image:04-troubleshooting/jump-app-mesh-external-nginx-pods-ok.png[link=../_images/04-troubleshooting/jump-app-mesh-external-nginx-pods-ok.png,window=_blank]
 
 * Check if the nginx service is ready
 
@@ -131,7 +131,7 @@ oc rsh $POD curl https://localhost:443 -k -v
 ----
 
 .Nginx service mTLS ERROR
-image:jump-app-mesh-external-nginx-svc-ok-404.png[]
+image:04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png[link=../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png,window=_blank]
 
 NOTE: You have deployed a mTLS service and you are receiving a _400 Bad Request_ error because you are not using certificates to access to this service
 
@@ -140,7 +140,7 @@ NOTE: You have deployed a mTLS service and you are receiving a _400 Bad Request_
 
 In order to test your Nginx service, it is required to create a microservice-based testing tool which allows you to stablish secure connections based on mTLS.
 
-image:jump-app-test-tool.png[]
+image:04-troubleshooting/jump-app-test-tool.png[link=../_images/04-troubleshooting/jump-app-test-tool.png,window=_blank]
 
 [#06-createtestingcerts]
 === Add a Custom Certificate
@@ -159,7 +159,7 @@ oc create -n $USER_NAMESPACE secret tls nginx-client-certs --key client.example.
 ----
 
 .Client certificates OK
-image:jump-app-mesh-external-nginx-access-certs.png[]
+image:04-troubleshooting/jump-app-mesh-external-nginx-access-certs.png[link=../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-certs.png,window=_blank]
 
 * Create Kubernetes Secrets to hold the CA certificates
 
@@ -170,7 +170,7 @@ oc create -n $USER_NAMESPACE secret generic nginx-ca-certs --from-file=example.c
 ----
 
 .CA certificates OK
-image:jump-app-mesh-external-nginx-access-ca-certs.png[]
+image:04-troubleshooting/jump-app-mesh-external-nginx-access-ca-certs.png[link=../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-ca-certs.png,window=_blank]
 
 [#06-createtestingdepl]
 === Create Testing Deployment
@@ -187,7 +187,7 @@ Please, follow the next steps to deploy this new microservice in your main names
 include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Testing service created
-image:jump-app-mesh-external-nginx-client-pod.png[]
+image:04-troubleshooting/jump-app-mesh-external-nginx-client-pod.png[link=../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-pod.png,window=_blank]
 
 * Test service pod is runnign
 
@@ -198,7 +198,7 @@ oc get pods -n $USER_NAMESPACE
 ----
 
 .Testing service pod OK
-image:jump-app-mesh-external-nginx-client-pod-ok.png[]
+image:04-troubleshooting/jump-app-mesh-external-nginx-client-pod-ok.png[link=../_images/04-troubleshooting/lojump-app-mesh-external-nginx-client-pod-okgin.png,window=_blank]
 
 [#06-createsevstest]
 === Test Nginx service through testing tool
@@ -214,7 +214,7 @@ oc exec -it $POD -c sleep -- curl -v --cacert /etc/nginx-ca-certs/example.com.cr
 ----
 
 .Nginx service with mTLS
-image:jump-app-mesh-external-nginx-client-mtls-ok.png[]
+image:04-troubleshooting/jump-app-mesh-external-nginx-client-mtls-ok.png[link=../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-mtls-ok.png,window=_blank]
 
 * Verify that the server requires the client’s certificate
 
@@ -227,14 +227,14 @@ oc exec -it $POD -c sleep -- curl -v https://my-nginx.$USER_NAMESPACE-mesh-exter
 ----
 
 .Nginx service mTLS ERROR
-image:jump-app-mesh-external-nginx-svc-ok-404.png[]
+image:04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png[link=../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png,window=_blank]
 
 NOTE: You have deployed a nginx mTLS service and you are receiving a _400 Bad Request_ error because of not using certificates to access to this service
 
 [#06-configureegressaccess]
 == Configure mutual TLS origination for egress traffic
 
-image:jump-app-egress-traffic-graph.png[]
+image:04-troubleshooting/jump-app-egress-traffic-graph.png[link=../_images/04-troubleshooting/jump-app-egress-traffic-graph.png,window=_blank]
 
 When you have the testing tool and the Nginx service up and running, it is time to introduce the _Egress Gateway_.
 
@@ -255,7 +255,7 @@ include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 
 .Gateway, Virtual Service and Destination Rules OK
-image:jump-app-mesh-external-nginx-access-egress-objects-new.png[]
+image:04-troubleshooting/jump-app-mesh-external-nginx-access-egress-objects-new.png[link=../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-objects-new.png,window=_blank]
 
 
 === Configure the _Egress Gateway_
@@ -275,7 +275,7 @@ oc create secret -n istio-system generic $USER_NAMESPACE-mesh-external-egress-ng
 ----
 
 .Nginx client egress certificate
-image:jump-app-mesh-external-nginx-istio-system-certs.png[]
+image:04-troubleshooting/jump-app-mesh-external-nginx-istio-system-certs.png[link=../_images/04-troubleshooting/jump-app-mesh-external-nginx-istio-system-certs.png,window=_blank]
 
 * Create a _destination rule_ and a _service entry_ to direct the traffic from the egress gateway to the external service
 
@@ -285,7 +285,7 @@ image:jump-app-mesh-external-nginx-istio-system-certs.png[]
 include::partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Nginx service destination rule and service entry
-image:jump-app-mesh-nginx-dr-se.png[]
+image:04-troubleshooting/jump-app-mesh-nginx-dr-se.png[link=../_images/04-troubleshooting/jump-app-mesh-nginx-dr-se.png,window=_blank]
 
 [#06-testexternalservice]
 === Test the _external service_
@@ -303,4 +303,4 @@ oc exec -it $POD -c sleep -- curl -v http://my-nginx.$USER_NAMESPACE-mesh-extern
 ----
 
 .nginx.example.com mTLS connection OK
-image:jump-app-mesh-external-nginx-access-egress-con-ok-mtls.png[]
+image:04-troubleshooting/jump-app-mesh-external-nginx-access-egress-con-ok-mtls.png[link=../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-con-ok-mtls.png,window=_blank]

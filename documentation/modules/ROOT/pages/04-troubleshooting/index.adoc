@@ -1,12 +1,11 @@
 = Welcome to Red Hat Service Mesh: Troubleshooting tutorial
-:page-layout: home
-:author: Ernesto Gonzalez / Asier Cidon
-:email: ergonzal@redhat.com / acidonpe@redhat.com
-:imagesdir: ./images
-:toc: left
-:toc-title: Service Mesh Troubleshooting 
 
-image:logos.png[Envoy,600,200]
+include::./../_attributes.adoc[]
+
+:toc: left
+:toc-title: Service Mesh Troubleshooting
+
+image:04-troubleshooting/logos.png[Envoy,600,200,link=../_images/04-troubleshooting/logos.png,window=_blank]
 
 == Introduction
 
