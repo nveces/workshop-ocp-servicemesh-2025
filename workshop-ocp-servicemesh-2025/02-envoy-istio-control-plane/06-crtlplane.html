@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Lab 6 - Istio Control Plane :: WorkShop - Service Mesh on OCP 2025</title>
-    <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/02-envoy_istio_control_plane/06-crtlplane.html">
+    <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/02-envoy-istio-control-plane/06-crtlplane.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -95,15 +95,30 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#introduction/index.adoc">3. Introduction - Labs</a>
+    <a class="nav-link" href="../01-introduction/index.html">3. Introduction - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#introduction/index.adoc#_lab_0_warming_up">Lab 0 - Warming up</a>
+    <a class="nav-link" href="../01-introduction/index.html#_lab_0_warming_up">Lab 0 - Warming up</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#introduction/index.adoc#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
+    <a class="nav-link" href="../01-introduction/index.html#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">4. Envoy istio Control plane - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../03-traffic-management/index.html">5. Traffic management - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../04-troubleshooting/index.html">6. Troubleshooting - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../05-security/index.html">7. Security - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../06-extensibility/index.html">8. Extensibility - Labs</a>
   </li>
 </ul>
   </li>
@@ -138,7 +153,7 @@
     <li><a href="06-crtlplane.html">Lab 6 - Istio Control Plane</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/nveces/workshop-ocp-servicemesh-2025/edit/master/documentation/modules/ROOT/pages/02-envoy_istio_control_plane/06-crtlplane.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/nveces/workshop-ocp-servicemesh-2025/edit/master/documentation/modules/ROOT/pages/02-envoy-istio-control-plane/06-crtlplane.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -215,7 +230,7 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 <p>Please, create the previous object through the respective Openshift template executing the following command:</p>
 </div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy_istio_control_plane/06-crtlplane.adoc - include::partials/oc_process_apply.adoc[]</p>
+<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/06-crtlplane.adoc - include::partials/oc_process_apply.adoc[]</p>
 </div>
 <div class="paragraph">
 <div class="title"><em>ServiceMeshMember</em> Created</div>
@@ -301,7 +316,7 @@ Look at the number of containers in each microservice, it must contains 2 contai
 </table>
 </div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy_istio_control_plane/06-crtlplane.adoc - include::partials/check_jumpapp_mesh.adoc[]</p>
+<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/06-crtlplane.adoc - include::partials/check_jumpapp_mesh.adoc[]</p>
 </div>
 </div>
 <div class="sect2">

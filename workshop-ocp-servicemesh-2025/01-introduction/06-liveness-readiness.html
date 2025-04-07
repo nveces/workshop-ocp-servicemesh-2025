@@ -95,15 +95,30 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#introduction/index.adoc">3. Introduction - Labs</a>
+    <a class="nav-link" href="index.html">3. Introduction - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#introduction/index.adoc#_lab_0_warming_up">Lab 0 - Warming up</a>
+    <a class="nav-link" href="index.html#_lab_0_warming_up">Lab 0 - Warming up</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#introduction/index.adoc#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
+    <a class="nav-link" href="index.html#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../02-envoy-istio-control-plane/index.html">4. Envoy istio Control plane - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../03-traffic-management/index.html">5. Traffic management - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../04-troubleshooting/index.html">6. Troubleshooting - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../05-security/index.html">7. Security - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../06-extensibility/index.html">8. Extensibility - Labs</a>
   </li>
 </ul>
   </li>
@@ -251,7 +266,7 @@
 <p>Using the <code>Developer</code> view, click on the <code>quarkus-petclinic</code> application, and then <code>Add Health Check</code>:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="add-hc.png" alt="add hc"></span></p>
+<p>01-introduction/add-hc.png[add hc]</p>
 </div>
 <div class="paragraph">
 <p>Then, configure both <code>liveness</code> and <code>readiness</code> probe.</p>
@@ -279,7 +294,7 @@
 <p>The changes applied to the existing <code>Deployment</code> are highlighted next:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="yaml-hc.png" alt="yaml hc"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/yaml-hc.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/yaml-hc.png" alt="yaml hc"></a></span></p>
 </div>
 <div class="paragraph">
 <p>There should not be any issue and both probes should have passed successfully: application is healthy.</p>
@@ -299,11 +314,11 @@ deploymentconfig.apps.openshift.io/petclinic-database scaled</pre>
 </div>
 <div class="paragraph">
 <p><strong>Logs</strong>
-<span class="image unresolved"><img src="logs-hc.png" alt="logs"></span></p>
+<span class="image"><a class="image" href="../_images/01-introduction/logs-hc.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/logs-hc.png" alt="logs"></a></span></p>
 </div>
 <div class="paragraph">
 <p><strong>Events</strong>
-<span class="image unresolved"><img src="events-hc.png" alt="events"></span></p>
+<span class="image"><a class="image" href="../_images/01-introduction/events-hc.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/events-hc.png" alt="events"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Manually test the readiness probe to see the current response:</p>

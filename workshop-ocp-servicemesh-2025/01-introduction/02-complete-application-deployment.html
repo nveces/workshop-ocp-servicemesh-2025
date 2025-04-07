@@ -95,15 +95,30 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#introduction/index.adoc">3. Introduction - Labs</a>
+    <a class="nav-link" href="index.html">3. Introduction - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#introduction/index.adoc#_lab_0_warming_up">Lab 0 - Warming up</a>
+    <a class="nav-link" href="index.html#_lab_0_warming_up">Lab 0 - Warming up</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#introduction/index.adoc#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
+    <a class="nav-link" href="index.html#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../02-envoy-istio-control-plane/index.html">4. Envoy istio Control plane - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../03-traffic-management/index.html">5. Traffic management - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../04-troubleshooting/index.html">6. Troubleshooting - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../05-security/index.html">7. Security - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../06-extensibility/index.html">8. Extensibility - Labs</a>
   </li>
 </ul>
   </li>
@@ -178,13 +193,13 @@
 <p>As in next screenshot, first, ensure you are on the right project (it is very likely you are.. unless you have created more than one project), click on <code>Add</code> and select <code>Database</code>:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="dev-add-db.png" alt="add db"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/dev-add-db.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/dev-add-db.png" alt="add db"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Then, select <code>Postgresql ephemeral</code>:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="select-postgresql-eph.png" alt="postgresql ephemeral"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/select-postgresql-eph.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/select-postgresql-eph.png" alt="postgresql ephemeral"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Yes.. we are going to deploy an ephemeral Postgresql&#8230;&#8203; so in case the Postgresql <code>pod</code> is recreated we will lose the data. We will add a persistent volume later in these labs.</p>
@@ -193,19 +208,19 @@
 <p>Click on <code>Instantiate Template</code>:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="instantiate-template.png" alt="instantiate template"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/instantiate-template.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/instantiate-template.png" alt="instantiate template"></a></span></p>
 </div>
 <div class="paragraph">
 <p>And set the following parameter values set in red (ensure you use those):</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="db-parameters.png" alt="db parameters"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/db-parameters.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/db-parameters.png" alt="db parameters"></a></span></p>
 </div>
 <div class="paragraph">
 <p>As a result, you should see both the application and postgresql pods running:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="apps-pods.png" alt="application pods"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/apps-pods.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/apps-pods.png" alt="application pods"></a></span></p>
 </div>
 </div>
 </div>
@@ -244,7 +259,7 @@ deployment.apps/quarkus-petclinic image updated</pre>
 <p>Once the image has been updated, a new pod has been created, while the old one has been terminated. If you missed that process, here it is a short replay:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="rolling-update.gif" alt="rolling update"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/rolling-update.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/rolling-update.gif" alt="rolling update"></a></span></p>
 </div>
 <div class="paragraph">
 <p>That list of <code>pods</code> could be seen under the <code>Administrator</code> view, then <code>Workloads</code> and finally <code>Pods</code>.</p>

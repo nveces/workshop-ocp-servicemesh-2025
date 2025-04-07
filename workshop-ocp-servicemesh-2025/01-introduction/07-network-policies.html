@@ -95,15 +95,30 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#introduction/index.adoc">3. Introduction - Labs</a>
+    <a class="nav-link" href="index.html">3. Introduction - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#introduction/index.adoc#_lab_0_warming_up">Lab 0 - Warming up</a>
+    <a class="nav-link" href="index.html#_lab_0_warming_up">Lab 0 - Warming up</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#introduction/index.adoc#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
+    <a class="nav-link" href="index.html#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../02-envoy-istio-control-plane/index.html">4. Envoy istio Control plane - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../03-traffic-management/index.html">5. Traffic management - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../04-troubleshooting/index.html">6. Troubleshooting - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../05-security/index.html">7. Security - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../06-extensibility/index.html">8. Extensibility - Labs</a>
   </li>
 </ul>
   </li>
@@ -173,7 +188,7 @@
 <p>From the <code>web console</code>, navigate to <code>Networking</code> menu and then, <code>Network policies</code>. You should get and empty list:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="empty-np.png" alt="Network policies"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/empty-np.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/empty-np.png" alt="Network policies"></a></span></p>
 </div>
 </div>
 </div>
@@ -202,7 +217,7 @@ deployment.apps/quarkus-petclinic created</pre>
 <p>Move to that <code>pod</code> and open the <code>terminal</code>:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="new-pod.png" alt="new pod"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/new-pod.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/new-pod.png" alt="new pod"></a></span></p>
 </div>
 <div class="paragraph">
 <p>In that terminal, we will try to access to the <code>Petclinic</code> service that it is running in a different <code>project</code>. Execute the following, do not forget to use your target <code>namespace</code> (notice that we use now the svc FQDN instead &#8658; myservice.ns.svc):</p>
@@ -232,7 +247,7 @@ networkpolicy.networking.k8s.io/allow-only-project created</pre>
 <p>Move to the <code>web console</code> and see all details about the <code>NetworkPolicy</code> you have just created in your project:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="np-same-project.png" alt="np same project"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/np-same-project.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/np-same-project.png" alt="np same project"></a></span></p>
 </div>
 <div class="paragraph">
 <p>We need to allow access from the router <code>pods</code>. Run:</p>
@@ -251,7 +266,7 @@ networkpolicy.networking.k8s.io/allow-from-openshift-ingress created</pre>
 <p>Also, have a look at the content of the <code>NetworkPolicy</code> you just created. The key part of it is the <code>namespaceSelector</code> that is based on certain labels which are present on the <code>openshift-ingress</code> <code>project</code>:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="np-ingress.png" alt="np ingress"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/np-ingress.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/np-ingress.png" alt="np ingress"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Just as an additional read, a regular requirement from customers is to move from the default behavior of "there is no traffic restriction between pods" to a concept of "multinenant configuration". In the following link, you could find how to achieve this goal: <a href="https://docs.openshift.com/container-platform/4.6/networking/network_policy/multitenant-network-policy.html" class="bare">https://docs.openshift.com/container-platform/4.6/networking/network_policy/multitenant-network-policy.html</a></p>

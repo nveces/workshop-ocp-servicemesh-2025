@@ -95,15 +95,30 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#introduction/index.adoc">3. Introduction - Labs</a>
+    <a class="nav-link" href="index.html">3. Introduction - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#introduction/index.adoc#_lab_0_warming_up">Lab 0 - Warming up</a>
+    <a class="nav-link" href="index.html#_lab_0_warming_up">Lab 0 - Warming up</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#introduction/index.adoc#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
+    <a class="nav-link" href="index.html#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../02-envoy-istio-control-plane/index.html">4. Envoy istio Control plane - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../03-traffic-management/index.html">5. Traffic management - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../04-troubleshooting/index.html">6. Troubleshooting - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../05-security/index.html">7. Security - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../06-extensibility/index.html">8. Extensibility - Labs</a>
   </li>
 </ul>
   </li>
@@ -213,7 +228,7 @@ deployment.apps/quarkus-petclinic scaled</pre>
 <p>If you click now on the "T&amp;Cs" tab, you will get a message like this one:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="tcs.png" alt="terms and conditions"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/tcs.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/tcs.png" alt="terms and conditions"></a></span></p>
 </div>
 <div class="paragraph">
 <p>If you also check the <code>pod</code> logs, every time you click on "T&amp;CS" tab, there will be a WARN log message:</p>
@@ -249,7 +264,7 @@ you can also see the logs of your pod by running: oc get logs -f &lt;POD&gt; -n 
 <p>You can also check the content from the <code>web console</code>:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="configmap-tcs.png" alt="tcs configmap"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/configmap-tcs.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/configmap-tcs.png" alt="tcs configmap"></a></span></p>
 </div>
 <div class="paragraph">
 <p>And now, let&#8217;s mount this <code>ConfigMap</code> as volume in our <code>pods</code> by adding some configuration in the application <code>Deployment</code>:</p>
@@ -265,13 +280,13 @@ deployment.apps/quarkus-petclinic volume update</pre>
 <p>What this command has added in our <code>Deployment</code> is:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="volume-mount-deployment.png" alt="volume mount deployment"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/volume-mount-deployment.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/volume-mount-deployment.png" alt="volume mount deployment"></a></span></p>
 </div>
 <div class="paragraph">
 <p>If we now click on the "T&amp;CS" tab, the content should be exactly the same of the one set in the <code>ConfigMap</code> and the WARN should have dissapeared from the <code>pod</code> logs:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="new-tcs.png" alt="new tcs"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/new-tcs.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/new-tcs.png" alt="new tcs"></a></span></p>
 </div>
 <div class="paragraph">
 <p>What would happen if you modify the content of the <code>ConfigMap</code>? Are the 'T&amp;CS' updated as well?</p>
@@ -332,13 +347,13 @@ metadata:
 <p>If we check it using the <code>web console</code>:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="dcs-env-vars.png" alt="dc env vars"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/dcs-env-vars.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/dcs-env-vars.png" alt="dc env vars"></a></span></p>
 </div>
 <div class="paragraph">
 <p>In the YAML descriptor, we can also clearly see how environments variables are set from the <code>Secret</code>:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="yaml-env-vars.png" alt="yaml env vars"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/yaml-env-vars.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/yaml-env-vars.png" alt="yaml env vars"></a></span></p>
 </div>
 </div>
 </div>

@@ -95,15 +95,30 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#introduction/index.adoc">3. Introduction - Labs</a>
+    <a class="nav-link" href="index.html">3. Introduction - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#introduction/index.adoc#_lab_0_warming_up">Lab 0 - Warming up</a>
+    <a class="nav-link" href="index.html#_lab_0_warming_up">Lab 0 - Warming up</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#introduction/index.adoc#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
+    <a class="nav-link" href="index.html#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../02-envoy-istio-control-plane/index.html">4. Envoy istio Control plane - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../03-traffic-management/index.html">5. Traffic management - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../04-troubleshooting/index.html">6. Troubleshooting - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../05-security/index.html">7. Security - Labs</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../06-extensibility/index.html">8. Extensibility - Labs</a>
   </li>
 </ul>
   </li>
@@ -213,25 +228,25 @@ deploymentconfig.apps.openshift.io/petclinic-database scaled</pre>
 <p>Remove <code>emptyDir</code> volume:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="emptydir.png" alt="Empty dir"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/emptydir.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/emptydir.png" alt="Empty dir"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Remove volume mount:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="vol-mount.png" alt="Volume mount"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/vol-mount.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/vol-mount.png" alt="Volume mount"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s add storage now. Move to the <code>Developer</code> view and click on the Database application and then, <code>Add storage</code>:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="add-storage.png" alt="Add storage"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/add-storage.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/add-storage.png" alt="Add storage"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Chose <code>Create new claim</code> and set the values according to next picture:</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="add-storage-detail.png" alt="Add storage"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/add-storage-detail.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/add-storage-detail.png" alt="Add storage"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Scale the Database <code>DeploymentConfig</code> back to one replica:</p>
@@ -287,7 +302,7 @@ deployment.apps/quarkus-petclinic scaled</pre>
 <p>And test the application&#8230;&#8203; and list the owners. You should get a list of pre-created veterinarians :-)</p>
 </div>
 <div class="paragraph">
-<p><span class="image unresolved"><img src="list-vets.png" alt="List vets"></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/list-vets.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/list-vets.png" alt="List vets"></a></span></p>
 </div>
 <div class="paragraph">
 <p>From now on.. you will not lose your data anymore as it is backed by a <code>PersistentVolume</code>.</p>
