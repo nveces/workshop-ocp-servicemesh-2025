@@ -1,19 +1,17 @@
-= Lab 2 - Complete application deployment 
-:author: David Sancho
-:email: dsanchor@redhat.com
+= Lab 2 - Complete application deployment
 :imagesdir: ./images
 :toc: left
-:toc-title: Complete application deployment 
+:toc-title: Complete application deployment
 
 [Abstract]
 In previous lab, we have just deployed a single application without considering its requirements. We just wanted to have it running and play a bit with Openshift.
 
-In this lab, we will deploy a Postgresql Database and we will update the application deployment image to ensure we don't use an in-memory DB so we will link the application to the Postgresql DB instead. 
+In this lab, we will deploy a Postgresql Database and we will update the application deployment image to ensure we don't use an in-memory DB so we will link the application to the Postgresql DB instead.
 
 :numbered:
 == Deploy and ephemeral Postgresql
 
-This time, we will do the full deployment from the `web console`. 
+This time, we will do the full deployment from the `web console`.
 
 Let's move to the `console` and select the `Developer` view.
 
@@ -41,9 +39,9 @@ image:apps-pods.png[application pods]
 
 == Connect application to Database
 
-We have now the Postgresql pod running, but the application pod is not connected to it yet. 
+We have now the Postgresql pod running, but the application pod is not connected to it yet.
 
-For that, we will deploy a new application image tag that has the proper configuration to connect to the DB (the application configuration is set in this https://github.com/dsanchor/petclinic/blob/mnl-db/quarkus-petclinic/src/main/resources/application.properties[application.properties] file). 
+For that, we will deploy a new application image tag that has the proper configuration to connect to the DB (the application configuration is set in this https://github.com/dsanchor/petclinic/blob/mnl-db/quarkus-petclinic/src/main/resources/application.properties[application.properties] file).
 
 NOTE: This approach of defining the configuration within the application (and then, inside the image) could be seen as not very Cloud Native... even when it is somehow set with profiles. To solve this, we will extract this configuration to a `ConfigMap` later on these labs.
 
@@ -59,14 +57,14 @@ Once the image has been updated, a new pod has been created, while the old one h
 
 image:rolling-update.gif[rolling update]
 
-That list of `pods` could be seen under the `Administrator` view, then `Workloads` and finally `Pods`. 
+That list of `pods` could be seen under the `Administrator` view, then `Workloads` and finally `Pods`.
 
 We can now test the application again. Feel free to add new owners, pets and so on, those new changes are now persisted in the Database. To validate this behavior, delete the existing application `pod` and validate that the data is still there when the new `pod` has been created.
 
 
 == Scale the application pod replicas
 
-So far, we have just a single replica of our "Pet clinic" web site... That is not high available and fault tolerant at all. 
+So far, we have just a single replica of our "Pet clinic" web site... That is not high available and fault tolerant at all.
 
 Let's scale it up to 3 replicas by running the next command:
 
@@ -78,7 +76,7 @@ deployment.apps/quarkus-petclinic scaled
 
 You could now continue adding data from the web application, it does not matter from which `pod` you are accesing to the Database, the same data is accessible from all the application pods.
 
-Feel free to scale it down and up again and check that the application works as expected and does not miss any data. 
+Feel free to scale it down and up again and check that the application works as expected and does not miss any data.
 
 === Extra: Rolling vs Recreate deployment strategy
 

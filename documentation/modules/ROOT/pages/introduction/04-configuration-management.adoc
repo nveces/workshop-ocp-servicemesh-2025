@@ -1,6 +1,4 @@
-= Lab 4 - Configuration management 
-:author: David Sancho
-:email: dsanchor@redhat.com
+= Lab 4 - Configuration management
 :imagesdir: ./images
 :toc: left
 :toc-title: Configuration management
@@ -22,7 +20,7 @@ Before continue to the labs, I highly encourage you to read the following (brief
 
 As a summary of what you have read in the k8s documentation, we will use a `ConfigMap` to separate the configuration from the container image. This approach will give us the possibility of running the same image in different environments and inject completely different configuration values per environment.
 
-In the next example I will use the the `Terms and conditions` tab in our "Pet clinic" web site to externalize the content of this legal text. 
+In the next example I will use the the `Terms and conditions` tab in our "Pet clinic" web site to externalize the content of this legal text.
 
 Before we start, let's update the image that is used during this lab:
 
@@ -88,7 +86,7 @@ Feel free to try it your self. You could edit the `ConfigMap` manually from the 
  oc edit cm terms-and-conditions -n <YOUR_PROJECT>
 ....
 
-Both `Secrets` and `ConfigMaps` could be mounted as volumes within `pods`. 
+Both `Secrets` and `ConfigMaps` could be mounted as volumes within `pods`.
 
 Other approach that is valid in both cases is to consume the content of either `Secrets` or `ConfigMaps` as environment variables within `pods`.
 
@@ -97,7 +95,7 @@ We will see this last approach next with a `Secret` example.
 
 == Secrets
 
-Compare to `ConfigMaps`, `Secrets` are used to store and manage sensitive data. 
+Compare to `ConfigMaps`, `Secrets` are used to store and manage sensitive data.
 
 In this lab, we will just have a look at how the Postgresql application is using and consuming a given `Secret` that stores sensitive data such as the username, password and database name.
 
@@ -117,7 +115,7 @@ metadata:
   name: petclinic-database
 ....
 
-Notice the main keys within the data part: database-name, database-password and database-user. 
+Notice the main keys within the data part: database-name, database-password and database-user.
 
 Now, let's move to the postgresql `DeploymentConfig` and see how these keys are then referenced from the environment variables.
 

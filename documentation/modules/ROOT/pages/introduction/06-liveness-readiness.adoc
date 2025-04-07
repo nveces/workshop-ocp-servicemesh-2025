@@ -1,6 +1,4 @@
-= Lab 6 - Liveness and readiness probes 
-:author: David Sancho
-:email: dsanchor@redhat.com
+= Lab 6 - Liveness and readiness probes
 :imagesdir: ./images
 :toc: left
 :toc-title: Liveness and readiness
@@ -21,9 +19,9 @@ To answers these two questions, what are liveness/readiness probes? why are they
 
 Our application, which is based on Quarkus, provides a built-in health check endpoints when including `quarkus-smallrye-health` extension (for more detailes, see how it is done in our example application https://github.com/dsanchor/petclinic/blob/mnl-config/quarkus-petclinic/pom.xml#L73[here]).
 
-Before configuring any probe, let's try both health checks (liveness/readiness) endpoints manually to see the actual responses. 
+Before configuring any probe, let's try both health checks (liveness/readiness) endpoints manually to see the actual responses.
 
-Since the  application is externally exposed, we can easily test them. 
+Since the  application is externally exposed, we can easily test them.
 
 - Liveness endpoint:
 ....
@@ -65,13 +63,13 @@ In our case, this is what we want: different liveness and readiness checks.
 
 === Modify current deployment
 
-We will add both liveness and readiness probe to the existing deployment. To do so, we will use the `web console` and then examine the YAML descriptor. 
+We will add both liveness and readiness probe to the existing deployment. To do so, we will use the `web console` and then examine the YAML descriptor.
 
 Using the `Developer` view, click on the `quarkus-petclinic` application, and then `Add Health Check`:
 
 image:add-hc.png[add hc]
 
-Then, configure both `liveness` and `readiness` probe. 
+Then, configure both `liveness` and `readiness` probe.
 
 Important:
 
@@ -80,7 +78,7 @@ Important:
 
 Save each probe individually and click on `Add`.
 
-This change will force a new rolling update of our `pods`. New `pods` will now have both probes set. 
+This change will force a new rolling update of our `pods`. New `pods` will now have both probes set.
 
 The changes applied to the existing `Deployment` are highlighted next:
 
@@ -147,6 +145,6 @@ oc scale dc/petclinic-database --replicas=1 -n <YOUR_PROJECT>
 petclinic-database scaled
 ....
 
-Wait until the Database is back and try to access to the application again. 
+Wait until the Database is back and try to access to the application again.
 
-Everything should be back to normal. 
+Everything should be back to normal.

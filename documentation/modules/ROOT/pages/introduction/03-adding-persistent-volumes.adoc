@@ -1,6 +1,4 @@
 = Lab 3 - Adding persistent volumes
-:author: David Sancho
-:email: dsanchor@redhat.com
 :imagesdir: ./images
 :toc: left
 :toc-title: Adding persistent volumes
@@ -71,7 +69,7 @@ Do some extra checks:
 - Navigate to the `web console` and `storage` menu and verify that the `pvc` appears as bound
 - And try to get details about the `pv` (No, you won't get those details as your are not cluster administrator)
 
-And also, test the application again. You will notice that we will get errors.. because the tables, relationships and data does not exist any more... 
+And also, test the application again. You will notice that we will get errors.. because the tables, relationships and data does not exist any more...
 
 In order recreate our scheme, let's scale down the application to 0 and then back to 1 (this is because the application will create the tables and relationships again based on its hibernate configuration):
 
@@ -79,7 +77,7 @@ In order recreate our scheme, let's scale down the application to 0 and then bac
 $ oc scale deployment/quarkus-petclinic --replicas=0 -n <YOUR_PROJECT>
 
 deployment.apps/quarkus-petclinic scaled
-.... 
+....
 
 And once there is no `pods` for the application, scale it up again:
 
@@ -87,7 +85,7 @@ And once there is no `pods` for the application, scale it up again:
 $ oc scale deployment/quarkus-petclinic --replicas=1 -n <YOUR_PROJECT>
 
 deployment.apps/quarkus-petclinic scaled
-.... 
+....
 
 And test the application... and list the owners. You should get a list of pre-created veterinarians :-)
 

@@ -1,12 +1,10 @@
 = Lab 1 - First application deployment
-:author: David Sancho
-:email: dsanchor@redhat.com
 :imagesdir: ./images
 :toc: left
 :toc-title: First application deployment
 
 [Abstract]
-Once this lab is completed, we will have successfully deployed our first application and we will also have made it externally accesible. 
+Once this lab is completed, we will have successfully deployed our first application and we will also have made it externally accesible.
 
 The main goals of this lab is to understand some core concepts such as:
 
@@ -18,15 +16,15 @@ The main goals of this lab is to understand some core concepts such as:
 :numbered:
 == Brief application description
 
-The application that we are going to use during these labs is called *Pet clinic*. It has been used in different workshops in Red Hat. 
+The application that we are going to use during these labs is called *Pet clinic*. It has been used in different workshops in Red Hat.
 
-In our case, we have made some modifications to make it more appropiate to certain use cases we wanted to show during the labs. 
+In our case, we have made some modifications to make it more appropiate to certain use cases we wanted to show during the labs.
 
 Next diagram describes the 3 layer application architecture:
 
 image:app-arch.png[app-arch]
 
-It basically manage set of Pets, their Owners and Veterinarians appointments. We will play a bit when needed in the labs. 
+It basically manage set of Pets, their Owners and Veterinarians appointments. We will play a bit when needed in the labs.
 
 Source code is available https://github.com/dsanchor/petclinic.git[here].
 
@@ -34,7 +32,7 @@ NOTE: As these labs are not intended to be a development nor Quarkus workshop, I
 
 == Deploy application
 
-There are many ways of performing our first deployment (web console, cli options and so on), but I want to start by creating the first deployment using the YAML descriptor. 
+There are many ways of performing our first deployment (web console, cli options and so on), but I want to start by creating the first deployment using the YAML descriptor.
 
 Let's have a look at the full YAML file first:
 [source,yaml]
@@ -79,7 +77,7 @@ First part, there is basically the `kind` and `apiVersion` for a `Deployment` AP
 
 image:d-name.png[deployment name]
 
-Next, we have the `spec` part of the object. This is where we basically define the desired state of our `Deployment`. 
+Next, we have the `spec` part of the object. This is where we basically define the desired state of our `Deployment`.
 
 Grouping some parts of it, we have:
 
@@ -87,9 +85,9 @@ image:d-part1.png[deployment part1]
 
 - Number of desired pods managed by this `Deployment` and its `ReplicaSet`
 - Selector, that will basically tell which pods are managed by the `ReplicaSet`.
-- Deployment strategy, which set how pods are created/destroy during update process. 
+- Deployment strategy, which set how pods are created/destroy during update process.
 
-And finally the template definition, that describes how a pod will look like: 
+And finally the template definition, that describes how a pod will look like:
 
 image:d-part2.png[deployment part2]
 
@@ -123,17 +121,17 @@ replicaset.apps/quarkus-petclinic-7cdcd76595   1         1         1       2m33s
 
 ----
 
-We have not only a `Deployment` but a `ReplicaSet` and a single `Pod`. 
+We have not only a `Deployment` but a `ReplicaSet` and a single `Pod`.
 
-By creating a `Deployment`, a `ReplicaSet` has been created in order to ensure that the specified number of pods are running at a given moment in time. 
+By creating a `Deployment`, a `ReplicaSet` has been created in order to ensure that the specified number of pods are running at a given moment in time.
 
 Let's move to the console and see what we have. This time, we will use the `Developer` view. Select that perspective on the left top corner:
 
 image:just-deployment.png[just deployment]
 
-If you click on the blue circle (2), you will get all details about the application (3). 
+If you click on the blue circle (2), you will get all details about the application (3).
 
-As you can tell, there is not any `Service` nor `Route` created for it yet. That means, this application is just locally accesible if you would know the pod ip (unprobable.. and undesired). 
+As you can tell, there is not any `Service` nor `Route` created for it yet. That means, this application is just locally accesible if you would know the pod ip (unprobable.. and undesired).
 
 Click on the `pod` link (4) and get a terminal screen within that `pod`:
 
@@ -161,7 +159,7 @@ Alternatively, you could have ran the next `oc` command:
 oc expose deployment/quarkus-petclinic --port=8080 -n <YOUR_PROJECT>
 ....
 
-Feel free to run again a _oc get all_ to see that the service has been successfully created. 
+Feel free to run again a _oc get all_ to see that the service has been successfully created.
 
 Also, if you move back to the console, you will notice that the service is "assigned" to the application:
 
@@ -173,7 +171,7 @@ Test the application again from the `pod` terminal, but this time use the `servi
 $ curl -v quarkus-petclinic:8080 | grep 200
 ....
 
-Hope you got a `HTTP/1.1 200 OK`! If that is the case, let's make our application externally acessible by adding a `route`. 
+Hope you got a `HTTP/1.1 200 OK`! If that is the case, let's make our application externally acessible by adding a `route`.
 
 === Create a route
 
@@ -202,11 +200,11 @@ Copy the value under `HOST/PORT` column in your preferred web browser. And then.
 
 image:petclinic-web.png[petclinic]
 
-Congratulations! You have successfully deployed your first application. 
+Congratulations! You have successfully deployed your first application.
 
-Just a few  considerations about the application. This application requires access to a DB in order to persist any change. In this lab, we used an in-memory H2 DB within our application.. so in case you add/remove pets, this changes are only persisted to that single pod. 
+Just a few  considerations about the application. This application requires access to a DB in order to persist any change. In this lab, we used an in-memory H2 DB within our application.. so in case you add/remove pets, this changes are only persisted to that single pod.
 
-You would also notice that in case you kill/delete the pod, those pets previously created would have been lost. 
+You would also notice that in case you kill/delete the pod, those pets previously created would have been lost.
 
 Feel free to perform these very usefull exercises to understand that _pods are ephemeral_.
 

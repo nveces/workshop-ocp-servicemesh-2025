@@ -1,13 +1,11 @@
 = Lab 5 - Resources
-:author: David Sancho
-:email: dsanchor@redhat.com
 :imagesdir: ./images
 :toc: left
 :toc-title: Resources
 
 [Abstract]
 
-In next lab, we will introduce how to define resources in `pods` (memory and cpu), so that, the Kubernetes scheduler will use this information to place `pods` in the right nodes and also, to decide which `pods` are more likely to be evicted first based on its QoS (Quality of Service) 
+In next lab, we will introduce how to define resources in `pods` (memory and cpu), so that, the Kubernetes scheduler will use this information to place `pods` in the right nodes and also, to decide which `pods` are more likely to be evicted first based on its QoS (Quality of Service)
 
 :numbered:
 == Requests and limits
@@ -34,13 +32,13 @@ Based on what values are in each case, we have the following `QoS`:
 
 image:cncf-qos.png[QoS]
 
-As the table shows (source CNCF), the QoS class of a pod does affect the order in which it is chosen for eviction by the Kubelet. 
+As the table shows (source CNCF), the QoS class of a pod does affect the order in which it is chosen for eviction by the Kubelet.
 
 Kubelet first evicts BestEffort and Burstable pods using resources above requests. The order of eviction depends on the priority assigned to each pod and the amount of resources being consumed above request.
 
 Guaranteed and Burstable pods not exceeding resource requests are evicted next based on which ones have the lowest priority.
 
-Both Guaranteed and Burstable pods whose resource usage is lower than the requested amount are never evicted because of the resource usage of another pod. They might, however, be evicted if system daemons start using more resources than reserved. In this case, Guaranteed and Burstable pods with the lowest priority are evicted first. 
+Both Guaranteed and Burstable pods whose resource usage is lower than the requested amount are never evicted because of the resource usage of another pod. They might, however, be evicted if system daemons start using more resources than reserved. In this case, Guaranteed and Burstable pods with the lowest priority are evicted first.
 
 == Configure resources
 
@@ -48,7 +46,7 @@ Once we have understood the value of the different `QoS` and how resources could
 
 For the Postgresql Database, we will set `Guaranteed` resources, while we leave the application as `Burstable`.
 
-Let's start with the DB. We will use the `oc` cli in both cases. We will set 512m and 10 milicores: 
+Let's start with the DB. We will use the `oc` cli in both cases. We will set 512m and 10 milicores:
 
 ....
 $ oc set resources dc/petclinic-database --limits=cpu=10m,memory=512Mi --requests=cpu=10m,memory=512Mi -n <TOUR PROJECT>
