@@ -74,7 +74,7 @@ Please, create new *k8s services* through the respective Openshift template exec
 :file: 03-jump-app-flows/03-jump-app-services.yaml
 :namespace: <user_namespace>
 
-include::/02-envoy-istio-control-plane/oc_process_apply.adoc[]
+include::./../../partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
 
 .k8s Services Created
 image:02-envoy-istio-control-plane/jump-app-svcs-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-svcs-ok.png,window=_blank]
@@ -152,7 +152,7 @@ image:02-envoy-istio-control-plane/jump-app-back-mg-depl-patch.png[link=../_imag
 
 Before continuing with the following steps, please test Jump App _pods_ status, in order to be sure that 2 replicas are running for each microservice:
 
-include::/02-envoy-istio-control-plane/chec_jumpapp_mesh_pod.adoc[]
+include::./../../partials/02-envoy-istio-control-plane/chec_jumpapp_mesh_pod.adoc[]
 
 [#routes]
 === Configure Routes

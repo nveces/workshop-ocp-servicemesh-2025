@@ -1,5 +1,7 @@
 = Service Mesh: Envoy & Istio Control Plane Tutorial
 
+include::./../_attributes.adoc[]
+
 :toc: left
 :toc-title: Envoy & Istio Control Plane Tutorial
 

@@ -382,7 +382,7 @@ Once _Jump App_ objects have been modified and fixed in Kiali and Openshift, it 
 :jumps: 1000
 :seconds: 1
 
-include::/04-troubleshooting/check_jumpapp_mesh.adoc[]
+include::./../../partials/04-troubleshooting/check_jumpapp_mesh.adoc[]
 
 
 [#04-kiali]

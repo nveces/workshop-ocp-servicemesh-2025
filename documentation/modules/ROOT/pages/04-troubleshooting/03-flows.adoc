@@ -68,7 +68,7 @@ Please, create new *virtual services* through the respective Openshift template 
 :file: 03-jump-app-flows/01-jump-app-vss.yaml
 :namespace: $USER_NAMESPACE
 
-include::/04-troubleshooting/oc_process_apply.adoc[]
+include::./../../partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Virtual Services Created
 image:04-troubleshooting/jump-app-vss-ok.png[link=../_images/04-troubleshooting/jump-app-vss-ok.png,window=_blank]
@@ -195,7 +195,7 @@ NOTE: Look at the number of containers in each microservice, it must contains 2 
 :jumps: 10000
 :seconds: 1
 
-include::/04-troubleshooting/check_jumpapp_mesh.adoc[]
+include::./../..//04-troubleshooting/check_jumpapp_mesh.adoc[]
 
 
 [#03-kiali]

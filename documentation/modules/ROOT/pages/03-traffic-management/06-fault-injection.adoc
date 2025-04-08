@@ -116,7 +116,7 @@ Now you don't have to be logged in as pepito, enter again to your Product Page a
 .Ratings failure
 image:03-traffic-management/ratings-failure.png[link=../_images/03-traffic-management/ratings-failure.png,window=_blank]
 
-include::/03-traffic-management/kiali_traffic.adoc[leveloffset=+2]
+include::./../../partials/03-traffic-management/kiali_traffic.adoc[leveloffset=+2]
 
 You should see a graph similar to this:
 

@@ -58,7 +58,7 @@ image:04-troubleshooting/jump_app_created.png[link=../_images/04-troubleshooting
 
 Once _Jump App_ objects have been created in Openshift, it is required to follow the next steps in order to ensure your demo app is running properly:
 
-include::/04-troubleshooting/check_jumpapp.adoc[]
+include::./../../partials/04-troubleshooting/check_jumpapp.adoc[]
 
 [#testapp]
 === Access to _Jump App_
