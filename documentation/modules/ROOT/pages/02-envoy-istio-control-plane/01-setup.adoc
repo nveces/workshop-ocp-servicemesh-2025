@@ -27,4 +27,4 @@ The previous technologies and resources will allow you to implement a microservi
 
 === Laboratory Parameters
 
-include::./../partials/02-envoy-istio-control-plane/access_lab.adoc[]
+include::./../../partials/02-envoy-istio-control-plane/access_lab.adoc[]
