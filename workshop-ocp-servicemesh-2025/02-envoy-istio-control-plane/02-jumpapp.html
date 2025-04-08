@@ -279,14 +279,40 @@ Please, replace <strong>&lt;user&gt;</strong>, <strong>&lt;pass&gt;</strong>, <s
 </div>
 <div class="sect2">
 <h3 id="login"><a class="anchor" href="#login"></a>1.1. Login in Openshift</h3>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u &lt;user&gt; -p &lt;pass&gt; &lt;ocp_cluster_api&gt;</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/02-jumpapp.adoc - include::partials/02-envoy-istio-control-plane/oc_login.adoc[]</p>
+<div class="title">OC CLI Login Output</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/oc_login_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/oc_login_output.png" alt="oc login output"></a></span></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="github"><a class="anchor" href="#github"></a>1.2. Clone GitHub Repository</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/02-jumpapp.adoc - include::partials/02-envoy-istio-control-plane/clone_github_repo.adoc[]</p>
+<p><em>Jump App Gitops</em> is one of a set of repositories developed to generate a microservice based application, named Jump App. This repository includes an automated way of deploy Jump App&#8217;s microservices and all stuff around this application (Deployments, Services, Build Configs, Pipelines, etc), including optionally CI/CD or Service Mesh objects as well.</p>
+</div>
+<div class="paragraph">
+<p>Please, follow the next steps in order to download the GitHub repository code:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git" class="bare">https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git</a></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">git clone output</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/git_clone_output.png" alt="git clone output"></a></span></p>
+</div>
+<div class="paragraph">
+<p>Finally, navigate to the new folder created in your system after repository download for completing all tasks included in this tutorial:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd rh-service-mesh-v2-istio-crtlplane-resources</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -327,8 +353,21 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="paragraph">
 <p>Once <em>Jump App</em> objects have been created in Openshift, it is required to follow the next steps in order to ensure your demo app is running properly:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get pods</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods -n &lt;user_namespace&gt;</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/02-jumpapp.adoc - include::partials/02-envoy-istio-control-plane/check_jumpapp.adoc[]</p>
+<div class="title">Jump App Pods</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump_app_pods.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump_app_pods.png" alt="jump app pods"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -336,8 +375,64 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="paragraph">
 <p>Once <em>Jump App</em> is already running in Openshift, it is time to access <em>Jump App</em> public services in order to test the application:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Obtain external services URLs</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n &lt;user_namespace&gt;</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/02-jumpapp.adoc - include::partials/02-envoy-istio-control-plane/check_jumpapp_service.adoc[]</p>
+<div class="title">Jump App Routes</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-routes.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-routes.png" alt="jump app routes"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>back</strong>, <em>back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Back</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" alt="jump app back ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>front</strong>, <em>front-javascript-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser, push <strong>- JUMP-</strong> button and ensure the following message is displaying in your screen:</p>
+<div class="literalblock">
+<div class="content">
+<pre>...{"code":200,"message":"/jump - Greetings from Python!"}</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Frontend Web UI</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-ok.png" alt="jump app front ok"></a></span></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+It is required to accept <strong>self-signed certificates</strong> provided by Openshift
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Openshift Self-signed Certificates Warning</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/certs_warning.png" alt="certs warning" width="50%"></a></span></p>
 </div>
 </div>
 </div>

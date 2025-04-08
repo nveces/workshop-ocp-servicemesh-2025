@@ -310,7 +310,12 @@ spec:
 </div>
 </div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/09-mirroring.adoc - include::partials/03-traffic-management/kiali_traffic_loop.adoc[]</p>
+<p>Run this command to simulate traffic in Kiali:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">while true; do curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage" ; done</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Check the results in Kiali:</p>
@@ -319,8 +324,20 @@ spec:
 <div class="title">Kiali traffic mirroring to reviews:v2 service</div>
 <p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali-mirroring.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-mirroring.png" alt="kiali mirroring"></a></span></p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_remove_bookinfo"><a class="anchor" href="#_remove_bookinfo"></a>Remove Bookinfo</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/09-mirroring.adoc - include::partials/03-traffic-management/remove_bookinfo.adoc[]</p>
+<p>Before starting the next lab, remove the application in your namespace. This will not remove the {r} created in <a href="#Lab 1 - Ingress Gateways">[Lab 1 - Ingress Gateways]</a> as it will be reused.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f bookinfo/bookinfo.yaml \
+    -p PRODUCTPAGE_ROUTE="${OCP_BOOKINFO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc delete -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
 </div>
 </div>
 </div>

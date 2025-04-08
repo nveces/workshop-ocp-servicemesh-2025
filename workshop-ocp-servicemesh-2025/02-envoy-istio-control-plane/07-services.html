@@ -312,8 +312,11 @@ Follow <a href="https://istio.io/v1.6/docs/tasks/traffic-management/ingress/secu
 <div class="paragraph">
 <p>Please, modify existing frontend <strong>gateway</strong> object executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/07-services.adoc - include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project &lt;user_namespace&gt;
+oc process -f 07-istio-sds/00-jump-app-front-gw.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Front Gateway Modified</div>

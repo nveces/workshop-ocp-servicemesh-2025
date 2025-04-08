@@ -264,8 +264,11 @@
 <div class="paragraph">
 <p>Please, create the previous object through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/04-relationship.adoc - include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project &lt;user_namespace&gt;
+oc process -f 04-istio-envoy-relationship/00-istio-envoy-rel-micro-version.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">New Micro Version Created</div>
@@ -315,13 +318,85 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> and <strong>&lt;back-gol
 <div class="sect2">
 <h3 id="04dr"><a class="anchor" href="#04dr"></a>2.1. Destination Rules</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/04-relationship.adoc - include::partials/02-envoy-istio-control-plane/rel_step.adoc[]</p>
+<p>Before applying changes, please save the original Envoy proxy configuration following next steps:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; destination-rule-config-init.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Envoy Configuration</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-dr-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-dr-golang.png" alt="jump app dr golang"></a></span></p>
+</div>
+<div class="paragraph">
+<p>It is time to modify a <em>Destination Rule</em> in order to see how it is implemented in Envoy proxy configuration through the respective configuration blocks:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project &lt;user_namespace&gt;
+oc process -f 04-istio-envoy-relationship/00-istio-envoy-rel-drs.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Modifed <em>Destination Rule</em> Configuration</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-dr-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-dr-new.png" alt="jump app dr new"></a></span></p>
+</div>
+<div class="paragraph">
+<p>Once this new <em>Destination Rule</em> has been modified, save the custom Envoy proxy configuration following next steps:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; destination-rule-config-custom.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, compare both files differences and draw a definitive conclusion:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-dr-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-dr-compare.png" alt="jump app dr compare"></a></span></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="04vsvc"><a class="anchor" href="#04vsvc"></a>2.2. Virtual Services</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/04-relationship.adoc - include::partials/02-envoy-istio-control-plane/rel_step.adoc[]</p>
+<p>Before applying changes, please save the original Envoy proxy configuration following next steps:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; virtual-service-config-init.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Envoy Configuration</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-vs-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-vs-golang.png" alt="jump app vs golang"></a></span></p>
+</div>
+<div class="paragraph">
+<p>It is time to modify a <em>Virtual Services</em> in order to see how it is implemented in Envoy proxy configuration through the respective configuration blocks:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project &lt;user_namespace&gt;
+oc process -f 04-istio-envoy-relationship/01-istio-envoy-rel-vss.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Modifed <em>Virtual Services</em> Configuration</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-vs-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-vs-new.png" alt="jump app vs new"></a></span></p>
+</div>
+<div class="paragraph">
+<p>Once this new <em>Virtual Services</em> has been modified, save the custom Envoy proxy configuration following next steps:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; virtual-service-config-custom.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, compare both files differences and draw a definitive conclusion:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-vs-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-vs-compare.png" alt="jump app vs compare"></a></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -387,7 +462,43 @@ Additionally, perform a GET request using <em>curl</em> in order to test out hea
 <div class="sect2">
 <h3 id="se"><a class="anchor" href="#se"></a>2.3. Service Entry</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/04-relationship.adoc - include::partials/02-envoy-istio-control-plane/rel_step.adoc[]</p>
+<p>Before applying changes, please save the original Envoy proxy configuration following next steps:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; service-entry-config-init.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Envoy Configuration</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-se-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-se-golang.png" alt="jump app se golang"></a></span></p>
+</div>
+<div class="paragraph">
+<p>It is time to modify a <em>Service Entry</em> in order to see how it is implemented in Envoy proxy configuration through the respective configuration blocks:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project &lt;user_namespace&gt;
+oc process -f 04-istio-envoy-relationship/02-istio-envoy-rel-ses.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Modifed <em>Service Entry</em> Configuration</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-se-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-se-new.png" alt="jump app se new"></a></span></p>
+</div>
+<div class="paragraph">
+<p>Once this new <em>Service Entry</em> has been modified, save the custom Envoy proxy configuration following next steps:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; service-entry-config-custom.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, compare both files differences and draw a definitive conclusion:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-se-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-se-compare.png" alt="jump app se compare"></a></span></p>
 </div>
 <div class="listingblock console-input">
 <div class="content">

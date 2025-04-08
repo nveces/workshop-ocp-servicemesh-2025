@@ -288,9 +288,47 @@
 <div class="paragraph">
 <p>During this tutorial, it will be required to work with different tools for running the exercises included. Please, install the following software:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/01-setup.adoc - include::partials/04-troubleshooting/requirements.adoc[]</p>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><strong>Tool</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Fedora</strong></th>
+<th class="tableblock halign-center valign-top"><strong>macOS</strong></th>
+<th class="tableblock halign-center valign-top"><strong>windows</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Official Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">oc</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-mac.tar.gz">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-windows.zip">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html">OpenShift CLI - Docs</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">git</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com/download/linux">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com/download/mac">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com/download/win">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com">Git - Docs</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Visual Studio Code</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://code.visualstudio.com/sha/download?build=stable&amp;os=linux-rpm-x64">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://code.visualstudio.com/sha/download?build=stable&amp;os=darwin">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://code.visualstudio.com/sha/download?build=stable&amp;os=win32-user">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://code.visualstudio.com/">Visual Studio Code - Docs</a></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
@@ -318,7 +356,124 @@
 <div class="sect2">
 <h3 id="_laboratory_parameters"><a class="anchor" href="#_laboratory_parameters"></a>2.1. Laboratory Parameters</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/01-setup.adoc - include::partials/04-troubleshooting/access_lab.adoc[]</p>
+<p>The Instructor provides users the Openshift credentials and other important parameters at the beginning of this tutorial in order to access the laboratory.</p>
+</div>
+<div class="paragraph">
+<p>The following table includes the parameters that the Instructor should provide you at the beginning:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><strong>Name</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Reference</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Openshift Cluster API (Access CLI)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;ocp_cluster_url&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://api.tutorialrhmesh.sandbox507.opentlc.com" class="bare">https://api.tutorialrhmesh.sandbox507.opentlc.com</a></em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Openshift Cluster Console</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;ocp_cluster_console&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://console-openshift-console.apps.labs.sandbox1562.opentlc.com" class="bare">https://console-openshift-console.apps.labs.sandbox1562.opentlc.com</a></em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Username</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;user&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">user1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Password</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;pass&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4ssw0rd</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Namespace</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;user_namespace&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">user1-namespace</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Openshift Apps Domain</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;openshift_apps_domain&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>apps.labs.sandbox1562.opentlc.com</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Kiali Url</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;kiali_url&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://kiali-istio-system.apps.labs.sandbox1562.opentlc.com" class="bare">https://kiali-istio-system.apps.labs.sandbox1562.opentlc.com</a></em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Then export them:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export USER=&lt;user&gt;
+export PASS=&lt;pass&gt;
+export USER_NAMESPACE=&lt;user_namespace&gt;
+export OCP_API=&lt;ocp_cluster_url&gt;
+export OCP_APPS_DOMAIN=&lt;openshift_apps_domain&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_access_laboratory_oc_client"><a class="anchor" href="#_access_laboratory_oc_client"></a>2.2. Access Laboratory - OC Client</h3>
+<div class="paragraph">
+<p>The OpenShift Container Platform CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system.</p>
+</div>
+<div class="paragraph">
+<p>Please, review the previous settings with your Instructor and connect to the cluster executing next command from your terminal:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u $USER -p $PASS $OCP_API</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">OC CLI Login Output</div>
+<p>04-troubleshooting/oc_login_output.png[]</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Please, pay special attention to <em>oc CLI</em>  because you will need to use this tool several times during this tutorial.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_access_laboratory_console"><a class="anchor" href="#_access_laboratory_console"></a>2.3. Access Laboratory - Console</h3>
+<div class="paragraph">
+<p>In addition, access Openshift Console using your credentials via browser in order to check connectivity and accessibility to the console:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>&lt;ocp_cluster_console&gt; (<em>E.g. <a href="https://console-openshift-console.apps.labs.sandbox1562.opentlc.com" class="bare">https://console-openshift-console.apps.labs.sandbox1562.opentlc.com</a></em>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Openshift Console Oauth</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp_console_oauth.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp_console_oauth.png" alt="ocp console oauth"></a></span></p>
+</div>
+<div class="paragraph">
+<div class="title">Openshift Console</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp_console.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp_console.png" alt="ocp console"></a></span></p>
 </div>
 </div>
 </div>
@@ -335,14 +490,40 @@
 </div>
 <div class="sect2">
 <h3 id="login"><a class="anchor" href="#login"></a>1.1. Login in Openshift</h3>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u $USER -p $PASS $OCP_API</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/02-jumpapp.adoc - include::partials/04-troubleshooting/oc_login.adoc[]</p>
+<div class="title">OC CLI Login Output</div>
+<p>04-troubleshooting/oc_login_output.png[]</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="github"><a class="anchor" href="#github"></a>1.2. Clone GitHub Repository</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/02-jumpapp.adoc - include::partials/04-troubleshooting/clone_github_repo.adoc[]</p>
+<p><em>Jump App GitOps</em> is one of a set of repositories developed to generate a microservice based application, named Jump App. This repository includes an automated way of deploying Jump App&#8217;s microservices and all stuff around this application (Deployments, Services, Build Configs, Pipelines, etc), including optionally CI/CD or Service Mesh objects as well.</p>
+</div>
+<div class="paragraph">
+<p>Please, follow the next steps in order to download the GitHub repository code:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/acidonper/rh-service-mesh-v2-troubleshooting-resources.git" class="bare">https://github.com/acidonper/rh-service-mesh-v2-troubleshooting-resources.git</a></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">git clone output</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/git_clone_output.png" alt="git clone output"></a></span></p>
+</div>
+<div class="paragraph">
+<p>Finally, navigate to the new folder created in your system after repository download for completing all tasks included in this tutorial:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd rh-service-mesh-v2-troubleshooting-resources</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -392,8 +573,64 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="paragraph">
 <p>Once <em>Jump App</em> is already running in Openshift, it is time to access <em>Jump App</em> public services in order to test the application:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Obtain external services URLs</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n $USER_NAMESPACE</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/02-jumpapp.adoc - include::partials/04-troubleshooting/check_jumpapp_service.adoc[]</p>
+<div class="title">Jump App Routes</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-routes.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-routes.png" alt="jump app routes"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>back</strong>, <em>back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Back</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-ok.png" alt="jump app back ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>front</strong>, <em>front-javascript-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser, push <strong>- JUMP-</strong> button and ensure the following message is displaying in your screen:</p>
+<div class="literalblock">
+<div class="content">
+<pre>...{"code":200,"message":"/jump - Greetings from Python!"}</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Frontend Web UI</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-front-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-ok.png" alt="jump app front ok"></a></span></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+It is required to accept <strong>self-signed certificates</strong> provided by Openshift
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Openshift Self-signed Certificates Warning</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/certs_warning.png" alt="certs warning" width="50%"></a></span></p>
 </div>
 </div>
 </div>
@@ -411,8 +648,10 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="paragraph">
 <p>Please, create the previous object through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/04-jump-app-ns-smr.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title"><em>ServiceMeshMember</em> Created</div>
@@ -461,8 +700,10 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="paragraph">
 <p>Please, return to git repository and create <strong>gateways</strong> through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/00-jump-app-gws.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Gateways Created</div>
@@ -493,8 +734,10 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="paragraph">
 <p>Please, create new <strong>destination rules</strong> through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/02-jump-app-drs.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Destination Rules Created</div>
@@ -509,8 +752,10 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="paragraph">
 <p>Please, create new <strong>k8s services</strong> through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/03-jump-app-services.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">k8s Services Created</div>
@@ -569,8 +814,14 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="paragraph">
 <p>Before continuing with the following steps, please test Jump App <em>pods</em> status, in order to be sure that 2 replicas are running for each microservice:</p>
 </div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/04-troubleshooting/check_jumpapp_mesh_pod.adoc[]</p>
+<div class="title">Jump App Pods Mesh</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -601,8 +852,10 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="paragraph">
 <p>Please, create new <strong>routes</strong> in <strong>istio-system</strong> namespace through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/04-troubleshooting/oc_process_create.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/05-jump-app-routes.yaml --param-file=params.env --ignore-unknown-parameters | oc create -f - -n istio-system</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Mesh Routes Created</div>
@@ -714,15 +967,19 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 <div class="paragraph">
 <p>Please, return to the git repository and apply some customizations through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/04-ingress-traffic.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 04-ingress-traffic-troubleshooting/00-jump-app-ingress-customization.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Jump App Customizations Applied I</div>
 <p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mod-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mod-gw-ok.png" alt="jump app mod gw ok"></a></span></p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/04-ingress-traffic.adoc - include::partials/04-troubleshooting/oc_process_delete.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 04-ingress-traffic-troubleshooting/01-jump-app-back-golang-svc.yaml --param-file=params.env --ignore-unknown-parameters | oc delete -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Jump App Customizations Applied II</div>
@@ -736,8 +993,71 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 <div class="paragraph">
 <p>Please, execute the following steps in order to review your demo app current state after the customization:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get pods</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/04-ingress-traffic.adoc - include::partials/04-troubleshooting/check_jumpapp_mesh_fail.adoc[]</p>
+<div class="title">Jump App Pods Mesh</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Obtain external services URLs</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n istio-system | grep $USER_NAMESPACE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Routes</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>back</strong>, <em>back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Back Unavailable</div>
+<p><span class="image unresolved"><a class="image" href="../_images/04-troubleshooting/04-troubleshooting/jump-app-unavailable-back.png" target="_blank" rel="noopener"><img src="04-troubleshooting/04-troubleshooting/jump-app-unavailable-back.png" alt="jump app unavailable back"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>front</strong>, <em>front-javascript-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser.In addition, configure <strong>[ 1 ]</strong> retries with <strong>[ 1 ]</strong> interval and press <strong>[ JUMP ]</strong> and ensure the following message is displaying in your screen</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Front with Errors</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-unavailable-front.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-unavailable-front.png" alt="jump app unavailable front"></a></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+An error message appears when the frontend tries to call backend services
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -975,8 +1295,10 @@ At this time, you obtain <em>"Could not resolve host: back-golang.user1-namespac
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc project $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/04-ingress-traffic.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 04-ingress-traffic-troubleshooting/01-jump-app-back-golang-svc.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">back-golang k8s Service Created</div>
@@ -1242,8 +1564,10 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 <div class="paragraph">
 <p>Please, modify back-golang OCP route in <strong>istio-system</strong> namespace through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/05-secure-ingress-traffic.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 05-secure-ingress-traffic-troubleshooting/00-jump-app-golang-route.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n istio-system</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">back-golang Route Modified</div>
@@ -1261,8 +1585,10 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 <div class="paragraph">
 <p>Please, modify existing frontend <strong>gateway</strong> object executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/05-secure-ingress-traffic.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 05-secure-ingress-traffic-troubleshooting/01-jump-app-golang-gw.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">back-golang Gateway Modified</div>
@@ -1287,8 +1613,71 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 <div class="paragraph">
 <p>Please, execute the following steps in order to review your demo app current state after the customization:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get pods</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/05-secure-ingress-traffic.adoc - include::partials/04-troubleshooting/check_jumpapp_mesh_fail.adoc[]</p>
+<div class="title">Jump App Pods Mesh</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Obtain external services URLs</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n istio-system | grep $USER_NAMESPACE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Routes</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>back</strong>, <em>back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Back Unavailable</div>
+<p><span class="image unresolved"><a class="image" href="../_images/04-troubleshooting/04-troubleshooting/jump-app-unavailable-back-route.png" target="_blank" rel="noopener"><img src="04-troubleshooting/04-troubleshooting/jump-app-unavailable-back-route.png" alt="jump app unavailable back route"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>front</strong>, <em>front-javascript-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser.In addition, configure <strong>[ 1 ]</strong> retries with <strong>[ 1 ]</strong> interval and press <strong>[ JUMP ]</strong> and ensure the following message is displaying in your screen</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Front with Errors</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-unavailable-front.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-unavailable-front.png" alt="jump app unavailable front"></a></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+An error message appears when the frontend tries to call backend services
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1397,8 +1786,10 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc project $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/05-secure-ingress-traffic.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 05-secure-ingress-traffic-troubleshooting/02-jump-app-sec-services.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">PeerAuthentication and Destination Rule created</div>
@@ -1645,8 +2036,80 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 <div class="paragraph">
 <p>Once <em>Jump App</em> objects have been modified and fixed in Kiali and Openshift, it is required to follow the next steps in order to ensure your demo app is running properly:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get pods</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/05-secure-ingress-traffic.adoc - include::partials/04-troubleshooting/check_jumpapp_mesh.adoc[]</p>
+<div class="title">Jump App Pods Mesh</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Obtain external services URLs</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n istio-system | grep $USER_NAMESPACE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Routes</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>back</strong>, <em>back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Back</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-ok.png" alt="jump app back ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>front</strong>, <em>front-javascript-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser. In addition, configure <strong>[ 1000 ]</strong> retries with <strong>[ 1 ]</strong> interval and press <strong>[ JUMP ]</strong> and ensure the following message is displaying in your screen</p>
+<div class="literalblock">
+<div class="content">
+<pre>...{"code":200,"message":"/jump - Greetings from Python!"}</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Front Web UI Multi Jumps</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a></span></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+It is required to accept <strong>self-signed certificates</strong> provided by Openshift
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Openshift Self-signed Certificates Warning</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/certs_warning.png" alt="certs warning" width="50%"></a></span></p>
 </div>
 </div>
 </div>
@@ -1803,8 +2266,10 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/06-egress-traffic.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 06-secure-egress-traffic-troubleshooting/00-nginx-svc-pod.yml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE-mesh-external</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Nginx deployment and service ok</div>
@@ -1924,8 +2389,10 @@ oc create -n $USER_NAMESPACE secret tls nginx-client-certs --key client.example.
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/06-egress-traffic.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 06-secure-egress-traffic-troubleshooting/01-jump-app-sleep-svc-pod.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Testing service created</div>
@@ -2029,8 +2496,10 @@ You have deployed a nginx mTLS service and you are receiving a <em>400 Bad Reque
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/06-egress-traffic.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 06-secure-egress-traffic-troubleshooting/02-jump-app-egress-gw-dr.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Gateway, Virtual Service and Destination Rules OK</div>
@@ -2070,8 +2539,10 @@ You have deployed a nginx mTLS service and you are receiving a <em>400 Bad Reque
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/06-egress-traffic.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 06-secure-egress-traffic-troubleshooting/03-istio-system-dr-sds.yml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n istio-system</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Nginx service destination rule and service entry</div>
@@ -2147,8 +2618,10 @@ oc exec -it $POD -c sleep -- curl -v <a href="http://my-nginx.$USER_NAMESPACE-me
 <div class="paragraph">
 <p>As you know from the last course, you can add delay to your applications in the mesh to do some testing. In this lab we are going to add a delay in the <code>back-golang</code> service to see how it shows in Jaeger and Kiali when a service is adding some latency to your workflow.</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/07-tools.adoc - include::./partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 07-troubleshooting-tools/00-jump-app-delay.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>You are adding 2 seconds of delay and since there are 2 jumps, the <strong>front</strong> is going to receive the response 4 seconds late. Go to the <strong>front</strong>, set several retries (maybe 10) and the <em>Calls Interval</em> put it in 4 to send requests every 4 seconds. Now go to <em>Kiali</em> and check the delay by toggling the <em>Response Time</em> in the Display menu. You should see something similar to this:</p>

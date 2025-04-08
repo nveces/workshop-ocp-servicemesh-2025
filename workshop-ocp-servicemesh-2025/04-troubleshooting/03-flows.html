@@ -276,8 +276,10 @@
 <div class="paragraph">
 <p>Please, create the previous object through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/04-jump-app-ns-smr.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title"><em>ServiceMeshMember</em> Created</div>
@@ -326,8 +328,10 @@
 <div class="paragraph">
 <p>Please, return to git repository and create <strong>gateways</strong> through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/00-jump-app-gws.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Gateways Created</div>
@@ -358,8 +362,10 @@
 <div class="paragraph">
 <p>Please, create new <strong>destination rules</strong> through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/02-jump-app-drs.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Destination Rules Created</div>
@@ -374,8 +380,10 @@
 <div class="paragraph">
 <p>Please, create new <strong>k8s services</strong> through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/03-jump-app-services.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">k8s Services Created</div>
@@ -434,8 +442,14 @@
 <div class="paragraph">
 <p>Before continuing with the following steps, please test Jump App <em>pods</em> status, in order to be sure that 2 replicas are running for each microservice:</p>
 </div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/04-troubleshooting/check_jumpapp_mesh_pod.adoc[]</p>
+<div class="title">Jump App Pods Mesh</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -466,8 +480,10 @@
 <div class="paragraph">
 <p>Please, create new <strong>routes</strong> in <strong>istio-system</strong> namespace through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::partials/04-troubleshooting/oc_process_create.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/05-jump-app-routes.yaml --param-file=params.env --ignore-unknown-parameters | oc create -f - -n istio-system</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Mesh Routes Created</div>

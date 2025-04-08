@@ -306,8 +306,40 @@ spec:
 <div class="paragraph">
 <p>After this, you are going to test the circuit breaking with the <code>fortio</code> client.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_httpbin"><a class="anchor" href="#_deploy_httpbin"></a>Deploy httpbin</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/08-circuit-breaking.adoc - include::partials/03-traffic-management/deploy_httpbin.adoc[]</p>
+<p>Deploy the application in your namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin.yaml \
+    -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
+    | oc apply -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait some seconds for all the pods to be ready:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get pods -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify that the application is reachable and is running ok:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_HTTPBIN_HOST}"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">httpbin service working</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/login.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/httpbin_curl.png" alt="httpbin service working" width="80%"></a></span></p>
 </div>
 </div>
 </div>
@@ -428,8 +460,20 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc delete -f fortio/fortio.yaml -n ${OCP_NAMESPACE}</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_remove_httpbin"><a class="anchor" href="#_remove_httpbin"></a>Remove httpbin</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/08-circuit-breaking.adoc - include::partials/03-traffic-management/remove_httpbin.adoc[]</p>
+<p>Before starting the next lab, remove the application in your namespace. This will not remove the {r} created in <a href="#Lab 1 - Ingress Gateways">[Lab 1 - Ingress Gateways]</a> as it will be reused.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin.yaml \
+    -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
+    | oc delete -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
 </div>
 </div>
 </div>

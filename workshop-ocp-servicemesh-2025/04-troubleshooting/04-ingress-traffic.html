@@ -343,15 +343,19 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 <div class="paragraph">
 <p>Please, return to the git repository and apply some customizations through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/04-ingress-traffic.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 04-ingress-traffic-troubleshooting/00-jump-app-ingress-customization.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Jump App Customizations Applied I</div>
 <p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mod-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mod-gw-ok.png" alt="jump app mod gw ok"></a></span></p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/04-ingress-traffic.adoc - include::partials/04-troubleshooting/oc_process_delete.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 04-ingress-traffic-troubleshooting/01-jump-app-back-golang-svc.yaml --param-file=params.env --ignore-unknown-parameters | oc delete -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Jump App Customizations Applied II</div>
@@ -365,8 +369,71 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 <div class="paragraph">
 <p>Please, execute the following steps in order to review your demo app current state after the customization:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get pods</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/04-ingress-traffic.adoc - include::partials/04-troubleshooting/check_jumpapp_mesh_fail.adoc[]</p>
+<div class="title">Jump App Pods Mesh</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Obtain external services URLs</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n istio-system | grep $USER_NAMESPACE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Routes</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>back</strong>, <em>back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Back Unavailable</div>
+<p><span class="image unresolved"><a class="image" href="../_images/04-troubleshooting/04-troubleshooting/jump-app-unavailable-back.png" target="_blank" rel="noopener"><img src="04-troubleshooting/04-troubleshooting/jump-app-unavailable-back.png" alt="jump app unavailable back"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>front</strong>, <em>front-javascript-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser.In addition, configure <strong>[ 1 ]</strong> retries with <strong>[ 1 ]</strong> interval and press <strong>[ JUMP ]</strong> and ensure the following message is displaying in your screen</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Front with Errors</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-unavailable-front.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-unavailable-front.png" alt="jump app unavailable front"></a></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+An error message appears when the frontend tries to call backend services
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -604,8 +671,10 @@ At this time, you obtain <em>"Could not resolve host: back-golang.user1-namespac
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc project $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/04-ingress-traffic.adoc - include::partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 04-ingress-traffic-troubleshooting/01-jump-app-back-golang-svc.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">back-golang k8s Service Created</div>

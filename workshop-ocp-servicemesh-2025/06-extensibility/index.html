@@ -1090,13 +1090,18 @@ oc delete -f lab1/envoyfilter-remove-header.yaml -n ${OCP_NAMESPACE}
 oc delete -f lab1/envoyfilter-replace-header.yaml -n ${OCP_NAMESPACE}</code></pre>
 </div>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Unresolved include directive in modules/ROOT/pages/06-extensibility/03-envoy-filters.adoc - include</dt>
-<dd>
-<p>./../partials/06-extensibility/remove_httpbin.adoc[]</p>
-</dd>
-</dl>
+</div>
+<div class="sect2">
+<h3 id="_remove_httpbin"><a class="anchor" href="#_remove_httpbin"></a>4.8. Remove httpbin</h3>
+<div class="paragraph">
+<p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in the first lab.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin.yaml \
+    -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
+    | oc delete -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1381,20 +1386,45 @@ spec:
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>The <em>spec.selector</em> field has the same semantic as the <em>spec.selector</em> field of the Istio Gateway resource. It will match a workload based on its Pod labels. If no <em>selector</em> is specified, the extension will be applied to all workloads in the namespace.
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Unresolved include directive in modules/ROOT/pages/06-extensibility/04-wasm-extensions.adoc - include</dt>
-<dd>
-<p>./../partials/06-extensibility/deploy_httpbin.adoc[]</p>
-</dd>
-</dl>
-</div></td>
+<td>The <em>spec.selector</em> field has the same semantic as the <em>spec.selector</em> field of the Istio Gateway resource. It will match a workload based on its Pod labels. If no <em>selector</em> is specified, the extension will be applied to all workloads in the namespace.</td>
 </tr>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_apply_the_webassembly_plugin"><a class="anchor" href="#_apply_the_webassembly_plugin"></a>5.2.1. Apply the WebAssembly plugin</h4>
+<h4 id="_deploy_httpbin"><a class="anchor" href="#_deploy_httpbin"></a>5.2.1. Deploy httpbin</h4>
+<div class="paragraph">
+<p>Deploy the application in your namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin.yaml \
+    -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
+    | oc apply -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait some seconds for all the pods to be ready:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get pods -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify that the application is reachable and is running ok:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_HTTPBIN_HOST}"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">httpbin service working</div>
+<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_curl.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_curl.png" alt="httpbin service working" width="80%"></a></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_apply_the_webassembly_plugin"><a class="anchor" href="#_apply_the_webassembly_plugin"></a>5.2.2. Apply the WebAssembly plugin</h4>
 <div class="paragraph">
 <p>Now that you have httpbin running you can apply a WebAssembly filter.</p>
 </div>
@@ -1449,7 +1479,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_remove_the_extension"><a class="anchor" href="#_remove_the_extension"></a>5.2.2. Remove the extension</h4>
+<h4 id="_remove_the_extension"><a class="anchor" href="#_remove_the_extension"></a>5.2.3. Remove the extension</h4>
 <div class="paragraph">
 <p>Remove the WebAssembly plugin before starting the next example:</p>
 </div>
@@ -1577,13 +1607,18 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">oc delete -f lab2/ossm-extension-body.yaml -n ${OCP_NAMESPACE}</code></pre>
 </div>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Unresolved include directive in modules/ROOT/pages/06-extensibility/04-wasm-extensions.adoc - include</dt>
-<dd>
-<p>./../partials/06-extensibility/remove_httpbin.adoc[]</p>
-</dd>
-</dl>
+</div>
+<div class="sect3">
+<h4 id="_remove_httpbin_2"><a class="anchor" href="#_remove_httpbin_2"></a>5.3.3. Remove httpbin</h4>
+<div class="paragraph">
+<p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in the first lab.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin.yaml \
+    -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
+    | oc delete -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
 </div>
 </div>
 </div>

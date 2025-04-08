@@ -803,8 +803,18 @@ spec:
 </div>
 <div class="title">Figure 6. Bookinfo productpage service through an Ingress Gateway</div>
 </div>
+<div class="sect3">
+<h4 id="_remove_bookinfo"><a class="anchor" href="#_remove_bookinfo"></a>4.2.1. Remove Bookinfo</h4>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/03-ingress.adoc - include::partials/03-traffic-management/remove_bookinfo.adoc[]</p>
+<p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in <a href="#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a> as it will be reused.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f bookinfo/bookinfo.yaml \
+    -p PRODUCTPAGE_ROUTE="${OCP_BOOKINFO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc delete -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -994,13 +1004,43 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/04-requests-routing.adoc - include::partials/03-traffic-management/deploy_bookinfo.adoc[]</p>
-</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_route_traffic_to_version_2"><a class="anchor" href="#_route_traffic_to_version_2"></a>5.2. Route traffic to version 2</h3>
+<h3 id="_deploy_bookinfo"><a class="anchor" href="#_deploy_bookinfo"></a>5.2. Deploy Bookinfo</h3>
+<div class="paragraph">
+<p>Deploy the application in your namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f bookinfo/bookinfo.yaml \
+    -p PRODUCTPAGE_ROUTE="${OCP_BOOKINFO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc apply -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait some seconds for all the pods to be ready:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get pods -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify that the application is reachable and is running ok:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Bookinfo productpage service working</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/bookinfo_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/bookinfo_curl.png" alt="Bookinfo productpage service working" width="80%"></a></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_route_traffic_to_version_2"><a class="anchor" href="#_route_traffic_to_version_2"></a>5.3. Route traffic to version 2</h3>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -1017,7 +1057,12 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 <p><span class="image"><a class="image" href="../_images/03-traffic-management/productpage-v2.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/productpage-v2.png" alt="productpage v2"></a></span></p>
 </div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/04-requests-routing.adoc - include::partials/03-traffic-management/kiali_traffic.adoc[]</p>
+<p>Run this command to simulate traffic in Kiali:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch -n 1 curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage"</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>You should see a graph similar to this:</p>
@@ -1031,7 +1076,7 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 </div>
 </div>
 <div class="sect2">
-<h3 id="_route_traffic_based_on_headers_2"><a class="anchor" href="#_route_traffic_based_on_headers_2"></a>5.3. Route traffic based on headers</h3>
+<h3 id="_route_traffic_based_on_headers_2"><a class="anchor" href="#_route_traffic_based_on_headers_2"></a>5.4. Route traffic based on headers</h3>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -1052,8 +1097,18 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 </div>
 <div class="title">Figure 7. Product Page with red stars</div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_remove_bookinfo_2"><a class="anchor" href="#_remove_bookinfo_2"></a>5.5. Remove Bookinfo</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/04-requests-routing.adoc - include::partials/03-traffic-management/remove_bookinfo.adoc[]</p>
+<p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in <a href="#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a> as it will be reused.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f bookinfo/bookinfo.yaml \
+    -p PRODUCTPAGE_ROUTE="${OCP_BOOKINFO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc delete -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1075,12 +1130,42 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 <div class="paragraph">
 <p>In this lab you will use 2 versions of the same service but you could create more complex routing rules weigth-balancing between many different versions of the same service or even different services.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_deploy_bookinfo_2"><a class="anchor" href="#_deploy_bookinfo_2"></a>6.2. Deploy Bookinfo</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/05-traffic-shifting.adoc - include::partials/03-traffic-management/deploy_bookinfo.adoc[]</p>
+<p>Deploy the application in your namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f bookinfo/bookinfo.yaml \
+    -p PRODUCTPAGE_ROUTE="${OCP_BOOKINFO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc apply -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait some seconds for all the pods to be ready:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get pods -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify that the application is reachable and is running ok:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Bookinfo productpage service working</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/bookinfo_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/bookinfo_curl.png" alt="Bookinfo productpage service working" width="80%"></a></span></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_route_10_of_the_traffic_to_a_new_service"><a class="anchor" href="#_route_10_of_the_traffic_to_a_new_service"></a>6.2. Route 10% of the traffic to a new service</h3>
+<h3 id="_route_10_of_the_traffic_to_a_new_service"><a class="anchor" href="#_route_10_of_the_traffic_to_a_new_service"></a>6.3. Route 10% of the traffic to a new service</h3>
 <div class="paragraph">
 <p>The first modification to the <em>reviews</em> <em>VirtualService</em> to add a 90/10 routing rule looks like this:</p>
 </div>
@@ -1129,7 +1214,12 @@ spec:
 </div>
 </div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/05-traffic-shifting.adoc - include::partials/03-traffic-management/kiali_traffic_loop.adoc[]</p>
+<p>Run this command to simulate traffic in Kiali:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">while true; do curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage" ; done</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Make sure you select <em>Request Percentage</em> in the <em>Show Edge Labels</em> display options in Kiali:</p>
@@ -1147,7 +1237,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_route_half_the_traffic_to_each_service"><a class="anchor" href="#_route_half_the_traffic_to_each_service"></a>6.3. Route half the traffic to each service</h3>
+<h3 id="_route_half_the_traffic_to_each_service"><a class="anchor" href="#_route_half_the_traffic_to_each_service"></a>6.4. Route half the traffic to each service</h3>
 <div class="paragraph">
 <p>The <em>reviews</em> <em>VirtualService</em> to add a 50/50 routing rule will look like this:</p>
 </div>
@@ -1193,7 +1283,12 @@ spec:
 </div>
 </div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/05-traffic-shifting.adoc - include::partials/03-traffic-management/kiali_traffic_loop.adoc[]</p>
+<p>Run this command to simulate traffic in Kiali:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">while true; do curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage" ; done</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Kiali traffic shifting 50/50</div>
@@ -1201,7 +1296,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_route_all_the_traffic_to_the_new_service"><a class="anchor" href="#_route_all_the_traffic_to_the_new_service"></a>6.4. Route all the traffic to the new service</h3>
+<h3 id="_route_all_the_traffic_to_the_new_service"><a class="anchor" href="#_route_all_the_traffic_to_the_new_service"></a>6.5. Route all the traffic to the new service</h3>
 <div class="paragraph">
 <p>The <em>reviews</em> <em>VirtualService</em> to add a 100% routing rule to the new service will look like this:</p>
 </div>
@@ -1250,14 +1345,29 @@ spec:
 </div>
 </div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/05-traffic-shifting.adoc - include::partials/03-traffic-management/kiali_traffic_loop.adoc[]</p>
+<p>Run this command to simulate traffic in Kiali:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">while true; do curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage" ; done</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Kiali traffic shifting 0/100</div>
 <p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali-shifting-0-100.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-shifting-0-100.png" alt="kiali shifting 0 100"></a></span></p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_remove_bookinfo_3"><a class="anchor" href="#_remove_bookinfo_3"></a>6.6. Remove Bookinfo</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/05-traffic-shifting.adoc - include::partials/03-traffic-management/remove_bookinfo.adoc[]</p>
+<p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in <a href="#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a> as it will be reused.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f bookinfo/bookinfo.yaml \
+    -p PRODUCTPAGE_ROUTE="${OCP_BOOKINFO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc delete -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1375,13 +1485,43 @@ spec:
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/06-fault-injection.adoc - include::partials/03-traffic-management/deploy_bookinfo.adoc[]</p>
-</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_inject_delay"><a class="anchor" href="#_inject_delay"></a>7.2. Inject delay</h3>
+<h3 id="_deploy_bookinfo_3"><a class="anchor" href="#_deploy_bookinfo_3"></a>7.2. Deploy Bookinfo</h3>
+<div class="paragraph">
+<p>Deploy the application in your namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f bookinfo/bookinfo.yaml \
+    -p PRODUCTPAGE_ROUTE="${OCP_BOOKINFO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc apply -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait some seconds for all the pods to be ready:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get pods -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify that the application is reachable and is running ok:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Bookinfo productpage service working</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/bookinfo_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/bookinfo_curl.png" alt="Bookinfo productpage service working" width="80%"></a></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_inject_delay"><a class="anchor" href="#_inject_delay"></a>7.3. Inject delay</h3>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -1402,7 +1542,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_inject_abort"><a class="anchor" href="#_inject_abort"></a>7.3. Inject abort</h3>
+<h3 id="_inject_abort"><a class="anchor" href="#_inject_abort"></a>7.4. Inject abort</h3>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -1428,8 +1568,18 @@ spec:
 <div class="title">Kiali ratings failure</div>
 <p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali-ratings-failure.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-ratings-failure.png" alt="kiali ratings failure"></a></span></p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_remove_bookinfo_4"><a class="anchor" href="#_remove_bookinfo_4"></a>7.5. Remove Bookinfo</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/06-fault-injection.adoc - include::partials/03-traffic-management/remove_bookinfo.adoc[]</p>
+<p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in <a href="#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a> as it will be reused.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f bookinfo/bookinfo.yaml \
+    -p PRODUCTPAGE_ROUTE="${OCP_BOOKINFO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc delete -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1445,12 +1595,42 @@ spec:
 <div class="paragraph">
 <p>To see its effect, however, you also introduce an artificial 2 second delay in calls to the <em>ratings</em> service.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_deploy_bookinfo_4"><a class="anchor" href="#_deploy_bookinfo_4"></a>8.2. Deploy Bookinfo</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/07-requests-timeouts.adoc - include::partials/03-traffic-management/deploy_bookinfo.adoc[]</p>
+<p>Deploy the application in your namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f bookinfo/bookinfo.yaml \
+    -p PRODUCTPAGE_ROUTE="${OCP_BOOKINFO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc apply -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait some seconds for all the pods to be ready:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get pods -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify that the application is reachable and is running ok:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Bookinfo productpage service working</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/bookinfo_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/bookinfo_curl.png" alt="Bookinfo productpage service working" width="80%"></a></span></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_adding_a_delay_to_ratings_service"><a class="anchor" href="#_adding_a_delay_to_ratings_service"></a>8.2. Adding a delay to ratings service</h3>
+<h3 id="_adding_a_delay_to_ratings_service"><a class="anchor" href="#_adding_a_delay_to_ratings_service"></a>8.3. Adding a delay to ratings service</h3>
 <div class="paragraph">
 <p>First, route requests to <em>reviews:v2</em> service (a version that calls the ratings service).</p>
 </div>
@@ -1510,7 +1690,12 @@ spec:
 </div>
 </div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/07-requests-timeouts.adoc - include::partials/03-traffic-management/kiali_traffic_loop.adoc[]</p>
+<p>Run this command to simulate traffic in Kiali:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">while true; do curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage" ; done</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Make sure you select <em>Response Time</em> in the <em>Show Edge Labels</em> display options in Kiali:</p>
@@ -1534,7 +1719,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_adding_a_timeout_to_reviews_service"><a class="anchor" href="#_adding_a_timeout_to_reviews_service"></a>8.3. Adding a timeout to reviews service</h3>
+<h3 id="_adding_a_timeout_to_reviews_service"><a class="anchor" href="#_adding_a_timeout_to_reviews_service"></a>8.4. Adding a timeout to reviews service</h3>
 <div class="paragraph">
 <p>Now add a half second request timeout for calls to the <em>reviews</em> service:</p>
 </div>
@@ -1579,7 +1764,12 @@ spec:
 <p>You may have noticed that it returns in about 1 second, instead of 2, and the reviews are unavailable. The reason that the response takes 1 second, even though the timeout is configured at half a second, is because there is a hard-coded retry in the <em>productpage</em> service, so it calls the timing out reviews service twice before returning.</p>
 </div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/07-requests-timeouts.adoc - include::partials/03-traffic-management/kiali_traffic_loop.adoc[]</p>
+<p>Run this command to simulate traffic in Kiali:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">while true; do curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage" ; done</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Check the results in Kiali:</p>
@@ -1590,15 +1780,25 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_hardcoded_timeout_in_productpage_service"><a class="anchor" href="#_hardcoded_timeout_in_productpage_service"></a>8.4. Hardcoded timeout in productpage service</h3>
+<h3 id="_hardcoded_timeout_in_productpage_service"><a class="anchor" href="#_hardcoded_timeout_in_productpage_service"></a>8.5. Hardcoded timeout in productpage service</h3>
 <div class="paragraph">
 <p>If you examine the <a href="#_lab_4_fault_injection">Lab 4 - Fault Injection</a>, you’ll find out that the productpage microservice also has its own application-level timeout (3 seconds) for calls to the <em>reviews</em> microservice.</p>
 </div>
 <div class="paragraph">
 <p>Notice that in this lab you used an Istio route rule to set the timeout to half a second. Had you instead set the timeout to something greater than 3 seconds (such as 4 seconds) the timeout would have had no effect since the more restrictive of the two takes precedence.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_remove_bookinfo_5"><a class="anchor" href="#_remove_bookinfo_5"></a>8.6. Remove Bookinfo</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/07-requests-timeouts.adoc - include::partials/03-traffic-management/remove_bookinfo.adoc[]</p>
+<p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in <a href="#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a> as it will be reused.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f bookinfo/bookinfo.yaml \
+    -p PRODUCTPAGE_ROUTE="${OCP_BOOKINFO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc delete -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1669,12 +1869,42 @@ spec:
 <div class="paragraph">
 <p>After this, you are going to test the circuit breaking with the <code>fortio</code> client.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_deploy_httpbin"><a class="anchor" href="#_deploy_httpbin"></a>9.2. Deploy httpbin</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/08-circuit-breaking.adoc - include::partials/03-traffic-management/deploy_httpbin.adoc[]</p>
+<p>Deploy the application in your namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin.yaml \
+    -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
+    | oc apply -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait some seconds for all the pods to be ready:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get pods -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Verify that the application is reachable and is running ok:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_HTTPBIN_HOST}"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">httpbin service working</div>
+<p><span class="image"><a class="image" href="../_images/03-traffic-management/login.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/httpbin_curl.png" alt="httpbin service working" width="80%"></a></span></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deploy_fortio"><a class="anchor" href="#_deploy_fortio"></a>9.2. Deploy fortio</h3>
+<h3 id="_deploy_fortio"><a class="anchor" href="#_deploy_fortio"></a>9.3. Deploy fortio</h3>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -1711,9 +1941,9 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_test_the_circuit_breaking"><a class="anchor" href="#_test_the_circuit_breaking"></a>9.3. Test the circuit breaking</h3>
+<h3 id="_test_the_circuit_breaking"><a class="anchor" href="#_test_the_circuit_breaking"></a>9.4. Test the circuit breaking</h3>
 <div class="sect3">
-<h4 id="_apply_the_destinationrule"><a class="anchor" href="#_apply_the_destinationrule"></a>9.3.1. Apply the <em>DestinationRule</em></h4>
+<h4 id="_apply_the_destinationrule"><a class="anchor" href="#_apply_the_destinationrule"></a>9.4.1. Apply the <em>DestinationRule</em></h4>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -1724,7 +1954,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_trigger_the_circuit_breaker"><a class="anchor" href="#_trigger_the_circuit_breaker"></a>9.3.2. Trigger the circuit breaker</h4>
+<h4 id="_trigger_the_circuit_breaker"><a class="anchor" href="#_trigger_the_circuit_breaker"></a>9.4.2. Trigger the circuit breaker</h4>
 <div class="paragraph">
 <p>Now lets execute the following command that opens 2 simultaneous connections (<code>-c 2</code>) and send 30 requests (<code>-n 30</code>).</p>
 </div>
@@ -1776,7 +2006,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remove_fortio"><a class="anchor" href="#_remove_fortio"></a>9.4. Remove fortio</h3>
+<h3 id="_remove_fortio"><a class="anchor" href="#_remove_fortio"></a>9.5. Remove fortio</h3>
 <div class="paragraph">
 <p>Execute the following command to remove <code>fortio</code> from your namespace:</p>
 </div>
@@ -1785,8 +2015,18 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc delete -f fortio/fortio.yaml -n ${OCP_NAMESPACE}</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_remove_httpbin"><a class="anchor" href="#_remove_httpbin"></a>9.6. Remove httpbin</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/08-circuit-breaking.adoc - include::partials/03-traffic-management/remove_httpbin.adoc[]</p>
+<p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in <a href="#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a> as it will be reused.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin.yaml \
+    -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
+    | oc delete -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -1859,7 +2099,12 @@ spec:
 </div>
 </div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/09-mirroring.adoc - include::partials/03-traffic-management/kiali_traffic_loop.adoc[]</p>
+<p>Run this command to simulate traffic in Kiali:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">while true; do curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage" ; done</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Check the results in Kiali:</p>
@@ -1868,8 +2113,18 @@ spec:
 <div class="title">Kiali traffic mirroring to reviews:v2 service</div>
 <p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali-mirroring.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-mirroring.png" alt="kiali mirroring"></a></span></p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_remove_bookinfo_6"><a class="anchor" href="#_remove_bookinfo_6"></a>10.3. Remove Bookinfo</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/09-mirroring.adoc - include::partials/03-traffic-management/remove_bookinfo.adoc[]</p>
+<p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in <a href="#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a> as it will be reused.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f bookinfo/bookinfo.yaml \
+    -p PRODUCTPAGE_ROUTE="${OCP_BOOKINFO_HOST}" -n ${OCP_NAMESPACE} \
+    | oc delete -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
 </div>
 </div>
 </div>

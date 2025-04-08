@@ -292,8 +292,10 @@
 <div class="paragraph">
 <p>As you know from the last course, you can add delay to your applications in the mesh to do some testing. In this lab we are going to add a delay in the <code>back-golang</code> service to see how it shows in Jaeger and Kiali when a service is adding some latency to your workflow.</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/07-tools.adoc - include::./partials/04-troubleshooting/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 07-troubleshooting-tools/00-jump-app-delay.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>You are adding 2 seconds of delay and since there are 2 jumps, the <strong>front</strong> is going to receive the response 4 seconds late. Go to the <strong>front</strong>, set several retries (maybe 10) and the <em>Calls Interval</em> put it in 4 to send requests every 4 seconds. Now go to <em>Kiali</em> and check the delay by toggling the <em>Response Time</em> in the Display menu. You should see something similar to this:</p>

@@ -285,9 +285,47 @@
 <div class="paragraph">
 <p>During this tutorial, it will be required to work with different tools for running the exercises included. Please, install the following software:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/01-setup.adoc - include::partials/02-envoy-istio-control-plane/requirements.adoc[]</p>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><strong>Tool</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Fedora</strong></th>
+<th class="tableblock halign-center valign-top"><strong>macOS</strong></th>
+<th class="tableblock halign-center valign-top"><strong>windows</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Official Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">oc</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-mac.tar.gz">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-windows.zip">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html">OpenShift CLI - Docs</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">git</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com/download/linux">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com/download/mac">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com/download/win">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com">Git - Docs</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Visual Studio Code</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://code.visualstudio.com/sha/download?build=stable&amp;os=linux-rpm-x64">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://code.visualstudio.com/sha/download?build=stable&amp;os=darwin">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://code.visualstudio.com/sha/download?build=stable&amp;os=win32-user">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://code.visualstudio.com/">Visual Studio Code - Docs</a></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
@@ -445,14 +483,40 @@ Please, replace <strong>&lt;user&gt;</strong>, <strong>&lt;pass&gt;</strong>, <s
 </div>
 <div class="sect2">
 <h3 id="login"><a class="anchor" href="#login"></a>1.1. Login in Openshift</h3>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u &lt;user&gt; -p &lt;pass&gt; &lt;ocp_cluster_api&gt;</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/02-jumpapp.adoc - include::partials/02-envoy-istio-control-plane/oc_login.adoc[]</p>
+<div class="title">OC CLI Login Output</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/oc_login_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/oc_login_output.png" alt="oc login output"></a></span></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="github"><a class="anchor" href="#github"></a>1.2. Clone GitHub Repository</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/02-jumpapp.adoc - include::partials/02-envoy-istio-control-plane/clone_github_repo.adoc[]</p>
+<p><em>Jump App Gitops</em> is one of a set of repositories developed to generate a microservice based application, named Jump App. This repository includes an automated way of deploy Jump App&#8217;s microservices and all stuff around this application (Deployments, Services, Build Configs, Pipelines, etc), including optionally CI/CD or Service Mesh objects as well.</p>
+</div>
+<div class="paragraph">
+<p>Please, follow the next steps in order to download the GitHub repository code:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git" class="bare">https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git</a></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">git clone output</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/git_clone_output.png" alt="git clone output"></a></span></p>
+</div>
+<div class="paragraph">
+<p>Finally, navigate to the new folder created in your system after repository download for completing all tasks included in this tutorial:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd rh-service-mesh-v2-istio-crtlplane-resources</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -493,8 +557,21 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="paragraph">
 <p>Once <em>Jump App</em> objects have been created in Openshift, it is required to follow the next steps in order to ensure your demo app is running properly:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get pods</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods -n &lt;user_namespace&gt;</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/02-jumpapp.adoc - include::partials/02-envoy-istio-control-plane/check_jumpapp.adoc[]</p>
+<div class="title">Jump App Pods</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump_app_pods.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump_app_pods.png" alt="jump app pods"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -502,8 +579,64 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="paragraph">
 <p>Once <em>Jump App</em> is already running in Openshift, it is time to access <em>Jump App</em> public services in order to test the application:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Obtain external services URLs</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n &lt;user_namespace&gt;</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/02-jumpapp.adoc - include::partials/02-envoy-istio-control-plane/check_jumpapp_service.adoc[]</p>
+<div class="title">Jump App Routes</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-routes.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-routes.png" alt="jump app routes"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>back</strong>, <em>back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Back</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" alt="jump app back ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>front</strong>, <em>front-javascript-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser, push <strong>- JUMP-</strong> button and ensure the following message is displaying in your screen:</p>
+<div class="literalblock">
+<div class="content">
+<pre>...{"code":200,"message":"/jump - Greetings from Python!"}</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Frontend Web UI</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-ok.png" alt="jump app front ok"></a></span></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+It is required to accept <strong>self-signed certificates</strong> provided by Openshift
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Openshift Self-signed Certificates Warning</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/certs_warning.png" alt="certs warning" width="50%"></a></span></p>
 </div>
 </div>
 </div>
@@ -551,8 +684,11 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 <div class="paragraph">
 <p>Please, return to git repository and create <strong>gateways</strong> through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/03-flows.adoc - include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project &lt;user_namespace&gt;
+oc process -f 03-jump-app-flows/00-jump-app-gws.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Gateways Created</div>
@@ -567,8 +703,11 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 <div class="paragraph">
 <p>Please, create new <strong>virtual services</strong> through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/03-flows.adoc - include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project &lt;user_namespace&gt;
+oc process -f 03-jump-app-flows/01-jump-app-vss.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Virtual Services Created</div>
@@ -583,8 +722,11 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 <div class="paragraph">
 <p>Please, create new <strong>destination rules</strong> through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/03-flows.adoc - include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project &lt;user_namespace&gt;
+oc process -f 03-jump-app-flows/02-jump-app-drs.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Destination Rules Created</div>
@@ -770,8 +912,80 @@ Look at the number of containers in each microservice, it must contains 2 contai
 </tr>
 </table>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get pods</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/03-flows.adoc - include::partials/02-envoy-istio-control-plane/check_jumpapp_mesh.adoc[]</p>
+<div class="title">Jump App Pods Mesh</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Obtain external services URLs</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n istio-system | grep &lt;user_namespace&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Routes</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>back</strong>, <em>back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Back</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" alt="jump app back ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>front</strong>, <em>front-javascript-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser. In addition, configure <strong>[ 10000 ]</strong> retries with <strong>[ 1 ]</strong> interval and press <strong>[ JUMP ]</strong> and ensure the following message is displaying in your screen</p>
+<div class="literalblock">
+<div class="content">
+<pre>...{"code":200,"message":"/jump - Greetings from Python!"}</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Front Web UI Multi Jumps</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a></span></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+It is required to accept <strong>self-signed certificates</strong> provided by Openshift
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Openshift Self-signed Certificates Warning</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/certs_warning.png" alt="certs warning" width="50%"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -796,8 +1010,11 @@ Look at the number of containers in each microservice, it must contains 2 contai
 <div class="paragraph">
 <p>Please, create the previous object through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/04-relationship.adoc - include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project &lt;user_namespace&gt;
+oc process -f 04-istio-envoy-relationship/00-istio-envoy-rel-micro-version.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">New Micro Version Created</div>
@@ -847,13 +1064,85 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> and <strong>&lt;back-gol
 <div class="sect2">
 <h3 id="04dr"><a class="anchor" href="#04dr"></a>2.1. Destination Rules</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/04-relationship.adoc - include::partials/02-envoy-istio-control-plane/rel_step.adoc[]</p>
+<p>Before applying changes, please save the original Envoy proxy configuration following next steps:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; destination-rule-config-init.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Envoy Configuration</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-dr-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-dr-golang.png" alt="jump app dr golang"></a></span></p>
+</div>
+<div class="paragraph">
+<p>It is time to modify a <em>Destination Rule</em> in order to see how it is implemented in Envoy proxy configuration through the respective configuration blocks:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project &lt;user_namespace&gt;
+oc process -f 04-istio-envoy-relationship/00-istio-envoy-rel-drs.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Modifed <em>Destination Rule</em> Configuration</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-dr-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-dr-new.png" alt="jump app dr new"></a></span></p>
+</div>
+<div class="paragraph">
+<p>Once this new <em>Destination Rule</em> has been modified, save the custom Envoy proxy configuration following next steps:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; destination-rule-config-custom.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, compare both files differences and draw a definitive conclusion:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-dr-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-dr-compare.png" alt="jump app dr compare"></a></span></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="04vsvc"><a class="anchor" href="#04vsvc"></a>2.2. Virtual Services</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/04-relationship.adoc - include::partials/02-envoy-istio-control-plane/rel_step.adoc[]</p>
+<p>Before applying changes, please save the original Envoy proxy configuration following next steps:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; virtual-service-config-init.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Envoy Configuration</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-vs-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-vs-golang.png" alt="jump app vs golang"></a></span></p>
+</div>
+<div class="paragraph">
+<p>It is time to modify a <em>Virtual Services</em> in order to see how it is implemented in Envoy proxy configuration through the respective configuration blocks:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project &lt;user_namespace&gt;
+oc process -f 04-istio-envoy-relationship/01-istio-envoy-rel-vss.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Modifed <em>Virtual Services</em> Configuration</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-vs-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-vs-new.png" alt="jump app vs new"></a></span></p>
+</div>
+<div class="paragraph">
+<p>Once this new <em>Virtual Services</em> has been modified, save the custom Envoy proxy configuration following next steps:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; virtual-service-config-custom.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, compare both files differences and draw a definitive conclusion:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-vs-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-vs-compare.png" alt="jump app vs compare"></a></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -919,7 +1208,43 @@ Additionally, perform a GET request using <em>curl</em> in order to test out hea
 <div class="sect2">
 <h3 id="se"><a class="anchor" href="#se"></a>2.3. Service Entry</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/04-relationship.adoc - include::partials/02-envoy-istio-control-plane/rel_step.adoc[]</p>
+<p>Before applying changes, please save the original Envoy proxy configuration following next steps:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; service-entry-config-init.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Envoy Configuration</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-se-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-se-golang.png" alt="jump app se golang"></a></span></p>
+</div>
+<div class="paragraph">
+<p>It is time to modify a <em>Service Entry</em> in order to see how it is implemented in Envoy proxy configuration through the respective configuration blocks:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project &lt;user_namespace&gt;
+oc process -f 04-istio-envoy-relationship/02-istio-envoy-rel-ses.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Modifed <em>Service Entry</em> Configuration</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-se-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-se-new.png" alt="jump app se new"></a></span></p>
+</div>
+<div class="paragraph">
+<p>Once this new <em>Service Entry</em> has been modified, save the custom Envoy proxy configuration following next steps:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; service-entry-config-custom.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, compare both files differences and draw a definitive conclusion:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-se-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-se-compare.png" alt="jump app se compare"></a></span></p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -1005,7 +1330,43 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 <div class="sect2">
 <h3 id="ef"><a class="anchor" href="#ef"></a>1.1. Envoy Filter</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/05-envoy.adoc - include::partials/02-envoy-istio-control-plane/rel_step.adoc[]</p>
+<p>Before applying changes, please save the original Envoy proxy configuration following next steps:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; envoy-filter-config-init.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Envoy Configuration</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ef-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ef-golang.png" alt="jump app ef golang"></a></span></p>
+</div>
+<div class="paragraph">
+<p>It is time to modify a <em>Envoy Filter</em> in order to see how it is implemented in Envoy proxy configuration through the respective configuration blocks:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project &lt;user_namespace&gt;
+oc process -f 05-envoy-proxy/00-istio-envoy-rel-ef.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Modifed <em>Envoy Filter</em> Configuration</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ef-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ef-new.png" alt="jump app ef new"></a></span></p>
+</div>
+<div class="paragraph">
+<p>Once this new <em>Envoy Filter</em> has been modified, save the custom Envoy proxy configuration following next steps:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; envoy-filter-config-custom.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, compare both files differences and draw a definitive conclusion:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ef-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ef-compare.png" alt="jump app ef compare"></a></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1086,8 +1447,11 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 <div class="paragraph">
 <p>Please, create the previous object through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/06-crtlplane.adoc - include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project &lt;user_namespace&gt;
+oc process -f 06-istio-ctrlplane/00-jump-app-ns-smr.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title"><em>ServiceMeshMember</em> Created</div>
@@ -1172,8 +1536,80 @@ Look at the number of containers in each microservice, it must contains 2 contai
 </tr>
 </table>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get pods</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/06-crtlplane.adoc - include::partials/02-envoy-istio-control-plane/check_jumpapp_mesh.adoc[]</p>
+<div class="title">Jump App Pods Mesh</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Obtain external services URLs</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n istio-system | grep &lt;user_namespace&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Routes</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>back</strong>, <em>back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Back</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" alt="jump app back ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>front</strong>, <em>front-javascript-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser. In addition, configure <strong>[ 10000 ]</strong> retries with <strong>[ 1 ]</strong> interval and press <strong>[ JUMP ]</strong> and ensure the following message is displaying in your screen</p>
+<div class="literalblock">
+<div class="content">
+<pre>...{"code":200,"message":"/jump - Greetings from Python!"}</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Front Web UI Multi Jumps</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a></span></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+It is required to accept <strong>self-signed certificates</strong> provided by Openshift
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Openshift Self-signed Certificates Warning</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/certs_warning.png" alt="certs warning" width="50%"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -1245,8 +1681,11 @@ Follow <a href="https://istio.io/v1.6/docs/tasks/traffic-management/ingress/secu
 <div class="paragraph">
 <p>Please, modify existing frontend <strong>gateway</strong> object executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/07-services.adoc - include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project &lt;user_namespace&gt;
+oc process -f 07-istio-sds/00-jump-app-front-gw.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">Front Gateway Modified</div>
