@@ -126,7 +126,7 @@
     <a class="nav-link" href="index.html">4. Traffic management - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_rhossm_traffic_management_labs">{rhossm}: Traffic Management Labs</a>
+    <a class="nav-link" href="index.html#_rhossm_traffic_management_labs">Red Hat OpenShift Service Mesh: Traffic Management Labs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a>
@@ -210,13 +210,13 @@
     <a class="nav-link" href="../06-extensibility/index.html">7. Extensibility - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../06-extensibility/index.html#_rhossm_extensibility_labs">{rhossm}: Extensibility Labs</a>
+    <a class="nav-link" href="../06-extensibility/index.html#_rhossm_extensibility_labs">Red Hat OpenShift Service Mesh: Extensibility Labs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../06-extensibility/index.html#_lab_1_envoy_filters">Lab 1 - Envoy Filters</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../06-extensibility/index.html#_lab_2_waes">Lab 2 - {waes}</a>
+    <a class="nav-link" href="../06-extensibility/index.html#_lab_2_waes">Lab 2 - WebAssembly Extensions</a>
   </li>
 </ul>
   </li>
@@ -497,8 +497,18 @@ spec:
 <div class="title">httpbin service through an {ig}</div>
 <p><span class="image"><a class="image" href="../_images/03-traffic-management/ingress_httpbin.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/ingress_httpbin.png" alt="ingress httpbin"></a></span></p>
 </div>
+<div class="sect2">
+<h3 id="_remove_httpbin"><a class="anchor" href="#_remove_httpbin"></a>Remove httpbin</h3>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/03-ingress.adoc - include::./../..//03-traffic-management/remove_httpbin.adoc[]</p>
+<p>Before starting the next lab, remove the application in your namespace. This will not remove the {r} created in <a href="#Lab 1 - Ingress Gateways">[Lab 1 - Ingress Gateways]</a> as it will be reused.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin.yaml \
+    -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
+    | oc delete -n ${OCP_NAMESPACE} -f -</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>

@@ -126,7 +126,7 @@
     <a class="nav-link" href="../03-traffic-management/index.html">4. Traffic management - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../03-traffic-management/index.html#_rhossm_traffic_management_labs">{rhossm}: Traffic Management Labs</a>
+    <a class="nav-link" href="../03-traffic-management/index.html#_rhossm_traffic_management_labs">Red Hat OpenShift Service Mesh: Traffic Management Labs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../03-traffic-management/index.html#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a>
@@ -210,13 +210,13 @@
     <a class="nav-link" href="../06-extensibility/index.html">7. Extensibility - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../06-extensibility/index.html#_rhossm_extensibility_labs">{rhossm}: Extensibility Labs</a>
+    <a class="nav-link" href="../06-extensibility/index.html#_rhossm_extensibility_labs">Red Hat OpenShift Service Mesh: Extensibility Labs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../06-extensibility/index.html#_lab_1_envoy_filters">Lab 1 - Envoy Filters</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../06-extensibility/index.html#_lab_2_waes">Lab 2 - {waes}</a>
+    <a class="nav-link" href="../06-extensibility/index.html#_lab_2_waes">Lab 2 - WebAssembly Extensions</a>
   </li>
 </ul>
   </li>
@@ -513,8 +513,80 @@ Look at the number of containers in each microservice, it must contains 2 contai
 </tr>
 </table>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get pods</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/03-flows.adoc - include::./../..//04-troubleshooting/check_jumpapp_mesh.adoc[]</p>
+<div class="title">Jump App Pods Mesh</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Obtain external services URLs</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n istio-system | grep $USER_NAMESPACE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Routes</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>back</strong>, <em>back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Back</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-ok.png" alt="jump app back ok"></a></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>front</strong>, <em>front-javascript-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser. In addition, configure <strong>[ 10000 ]</strong> retries with <strong>[ 1 ]</strong> interval and press <strong>[ JUMP ]</strong> and ensure the following message is displaying in your screen</p>
+<div class="literalblock">
+<div class="content">
+<pre>...{"code":200,"message":"/jump - Greetings from Python!"}</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Jump App Front Web UI Multi Jumps</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a></span></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+It is required to accept <strong>self-signed certificates</strong> provided by Openshift
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Openshift Self-signed Certificates Warning</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/certs_warning.png" alt="certs warning" width="50%"></a></span></p>
 </div>
 </div>
 </div>
