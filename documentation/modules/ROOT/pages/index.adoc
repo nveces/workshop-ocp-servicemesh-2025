@@ -1,20 +1,30 @@
-= Welcome to Template Tutorial
+include::_attributes.adoc[]
+
+= Welcome to Workshop - {ossm_l}
+
 :page-layout: home
 :!sectids:
 
 [.text-center.strong]
-== Publish Services to Kubernetes
+== Introduction
 
-A Kubernetes tutorial to show how you can deploy a Java service to a Kubernetes cluster as it was a child game.
+*{ossm}* is based on the open source https://www.redhat.com/en/topics/microservices/what-is-istio[Istio,window=_blank], Envoy, and Kiali projects. It supports the `Istioctl` command line utility for diagnostics and management of the control plane and data plane, along with the Kiali and https://www.redhat.com/en/technologies/cloud-computing/openshift/what-is-openshift-service-mesh[{ossm},window=_blank] Console dashboards.
 
-[.tiles.browse]
-== Browse modules
 
-[.tile]
-.xref:01-setup.adoc[Get Started]
-* xref:01-setup.adoc#minikube[Minikube]
+https://www.redhat.com/en/topics/microservices/what-is-a-service-mesh[window=_blank].
 
-[.tile]
-.xref:02-deploy.adoc[Deploying]
-* xref:02-deploy.adoc#package[Package the Application]
-* xref:02-deploy.adoc#deploy[Deploy the Application]
+IMPORTANT: This is not an official guide or workshop provided by https://www.redhat.com/[Red Hat,window=_blank]. +
+For more information on training or guidelines related to this topic or product, please reach out to your designated https://www.redhat.com/[Red Hat,window=_blank] representative.
+
+
+This workshop is the culmination of the efforts of several redhatters, and we would like to thank them for their contributions. +
+The collective effort and dedication of this team are truly inspiring. Your commitment to achieving excellence and the consistently high caliber of your work are deeply appreciated and command my utmost respect. It's a privilege to witness such talent and dedication in action:
+
+* Asier Cidon acidonpe@redhat.com
+* David Sancho dsanchor@redhat.com
+* Ernesto Gonzalez ergonzal@redhat.com
+* Francisco Rodriguez Rocha fran@redhat.com
+* Ignacio Sanchez Gines isanchez@redhat.com
+
+
+// EOF

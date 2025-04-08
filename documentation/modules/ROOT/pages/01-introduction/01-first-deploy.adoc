@@ -8,9 +8,10 @@ Once this lab is completed, we will have successfully deployed our first applica
 
 The main goals of this lab is to understand some core concepts such as:
 
-- https://kubernetes.io/docs/concepts/workloads/controllers/deployment/[Deployments]
-- https://kubernetes.io/docs/concepts/services-networking/service/[Services]
-- https://docs.openshift.com/container-platform/4.6/rest_api/network_apis/route-route-openshift-io-v1.html[Routes]
+- https://kubernetes.io/docs/concepts/workloads/controllers/deployment/[Deployments,window=_blank]
+- https://kubernetes.io/docs/concepts/services-networking/service/[Services,window=_blank]
+- https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/network_apis/route-route-openshift-io-v1[Routes,window=_blank]
+
 
 
 :numbered:
@@ -26,7 +27,7 @@ image:01-introduction/app-arch.png[app-arch,link=../_images/01-introduction/app-
 
 It basically manage set of Pets, their Owners and Veterinarians appointments. We will play a bit when needed in the labs.
 
-Source code is available https://github.com/dsanchor/petclinic.git[here].
+Source code is available https://github.com/dsanchor/petclinic.git[here,window=_blank].
 
 NOTE: As these labs are not intended to be a development nor Quarkus workshop, I will not give more details about the application itself unless they are related to Openshift integration.
 

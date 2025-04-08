@@ -158,7 +158,7 @@ spec:
 <5> If multiple extensions with the same _spec.phase_ are applied to the same workload instance, the _spec.priority_ determines the ordering of execution. Extensions with higher priority will be executed first. This allows for inter-dependent extensions. This field defaults to the value set in the manifest.yaml of the extension, but can be overwritten by the user.
 <6> The _spec.selector_ field has the same semantic as the _spec.selector_ field of the Istio Gateway resource. It will match a workload based on its Pod labels. If no _selector_ is specified, the extension will be applied to all workloads in the namespace.
 
-include::partials/06-extensibility/deploy_httpbin.adoc[leveloffset=+2]
+include:: ./../partials/06-extensibility/deploy_httpbin.adoc[leveloffset=+2]
 
 === Apply the {wasm} plugin
 
@@ -306,4 +306,4 @@ Remove the {wasm} plugin to finish the lab:
 oc delete -f lab2/ossm-extension-body.yaml -n ${OCP_NAMESPACE}
 ----
 
-include::/06-extensibility/remove_httpbin.adoc[leveloffset=+2]
+include:: ./../partials/06-extensibility/remove_httpbin.adoc[leveloffset=+2]

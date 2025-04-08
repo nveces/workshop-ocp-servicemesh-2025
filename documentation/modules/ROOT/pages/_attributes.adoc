@@ -47,5 +47,7 @@
 :rhossm: {rh} {ossm}
 :ossm-version: 2.1
 
+:ossm_l: {ossm} {ossm-version}
+
 
 // EOF

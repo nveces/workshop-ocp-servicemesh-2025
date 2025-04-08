@@ -380,4 +380,4 @@ oc delete -f lab1/envoyfilter-remove-header.yaml -n ${OCP_NAMESPACE}
 oc delete -f lab1/envoyfilter-replace-header.yaml -n ${OCP_NAMESPACE}
 ----
 
-include::partials/06-extensibility/remove_httpbin.adoc[leveloffset=+1]
+include:: ./../partials/06-extensibility/remove_httpbin.adoc[leveloffset=+1]

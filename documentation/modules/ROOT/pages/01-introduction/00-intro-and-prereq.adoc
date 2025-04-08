@@ -16,8 +16,7 @@ Along these labs, you will refer to a list of variables that have been shared wi
 
 These variables are:
 
-- *$OCP_CONSOLE*: url for accessing to the
-Openshift web console
+- *$OCP_CONSOLE*: url for accessing to the Openshift web console
 - *$OCP_API*: Openshift API endpoint. We will use this endpoint when accesing the cluster from the `oc` cli.
 - *$USER*: your private user id used for Openshift authentication
 - *$PASSWORD*:  your secret password used for Openshift authentication
@@ -26,12 +25,13 @@ Feel free to export these variables in your environment.
 
 There is also a list of files needed to run the labs. These files can be found in the following github repository:
 
-https://github.com/dsanchor/ocp-intro-dev
+https://github.com/nveces/ocp-intro-dev[window=_blank]
+
 
 Clone the repository to your desired location, that will then be referred as *$LABS_HOME* during the labs:
 
 ....
-$ git clone https://github.com/dsanchor/ocp-intro-dev.git $LABS_HOME
+$ git clone https://github.com/nveces/ocp-intro-dev.git $LABS_HOME
 ....
 
 :numbered:
@@ -51,7 +51,7 @@ image:01-introduction/empty-projects.png[empty-projects,link=../_images/01-intro
 
 We will soon create our first project, but now, it is time to get the Openshift CLI binaries for your specific OS.
 
-=> _Additional reads: https://docs.openshift.com/container-platform/4.6/web_console/web-console.html[Web Console]_
+=> _Additional reads: https://docs.openshift.com/container-platform/4.18/web_console/web-console.html[Web Console,window=_blank]_
 
 === Download the CLI
 
@@ -102,7 +102,8 @@ In our labs, you will deploy the demo application and related into your own proj
 
 Also notice that sometimes we talk about   `namespaces`, which is the Kubernetes concept and others about `projects`. A `project` is a Kubernetes namespace with additional annotations.
 
-=> _Additional reads: https://docs.openshift.com/container-platform/4.6/applications/projects/working-with-projects.html[working with projects]_
+=> _Additional reads: https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/building_applications/projects#working-with-projects[working with projects,window=_blank]_
+
 
 We are now ready to create our first project by running:
 
