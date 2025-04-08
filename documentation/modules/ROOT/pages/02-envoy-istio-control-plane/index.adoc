@@ -1,6 +1,6 @@
-include::./../_attributes.adoc[]
-
 = Service Mesh: Envoy & Istio Control Plane Tutorial
+
+include::./../_document-vars.adoc[]
 
 //:toc: left
 :toc-title: Envoy & Istio Control Plane Tutorial

@@ -1,5 +1,5 @@
 
-include::./pages/_attributes.adoc[]
+include::./pages/_document-vars.adoc[]
 
 * xref:01-setup.adoc[1. Environment Setup]
 ** xref:01-setup.adoc#prerequisite[Prerequisites]

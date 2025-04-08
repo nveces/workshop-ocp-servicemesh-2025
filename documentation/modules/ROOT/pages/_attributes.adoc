@@ -10,44 +10,6 @@
 :pdf-page-size: A4
 
 
-// 06-extensibility
-:vs: pass:quotes[_VirtualService_]
-:gw: pass:quotes[_Gateway_]
-:dr: pass:quotes[_DestinationRule_]
-:se: pass:quotes[_ServiceEntry_]
-:r: pass:quotes[_Route_]
-:ef: pass:quotes[_EnvoyFilter_]
-:sme: pass:quotes[_WasmPlugin_]
-
-:vss: pass:quotes[_VirtualServices_]
-:gws: pass:quotes[_Gateways_]
-:drs: pass:quotes[_DestinationRules_]
-:ses: pass:quotes[_ServiceEntries_]
-:rs: pass:quotes[_Routes_]
-:efs: pass:quotes[_EnvoyFilters_]
-:smes: pass:quotes[_WasmPlugins_]
-
-:wasm: WebAssembly
-:wae: WebAssembly Extension
-:waes: WebAssembly Extensions
-
-:ig: Ingress Gateway
-:eg: Egress Gateway
-
-//
-:rh: Red Hat
-:rhservices: {rh} Services
-
-:rhel: {rh} Enterprise Linux
-
-:ocp: OpenShift Container Platform
-:rhocp: {rh} {ocp}
-
-:ossm: OpenShift Service Mesh
-:rhossm: {rh} {ossm}
-:ossm-version: 2.1
-
-:ossm_l: {ossm} {ossm-version}
 
 
 // EOF

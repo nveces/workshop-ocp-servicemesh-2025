@@ -1,8 +1,11 @@
-include::./../_attributes.adoc[]
+
 
 = {rhossm}: Extensibility Labs
 
+include::./../_document-vars.adoc[]
+
 //:toc: left
+
 :toc-title: {rhossm}: Extensibility Labs
 
 include::00-intro.adoc[leveloffset=+1]
