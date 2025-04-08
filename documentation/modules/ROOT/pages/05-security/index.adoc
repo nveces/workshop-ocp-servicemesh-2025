@@ -1,6 +1,6 @@
-= Service Mesh Security - Labs
-
 include::./../_attributes.adoc[]
+
+= Service Mesh Security - Labs
 
 :toc: left
 :toc-title: Service Mesh Security - Labs

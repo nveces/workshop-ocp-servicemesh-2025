@@ -1,6 +1,6 @@
-= Welcome to Red Hat Service Mesh: Troubleshooting tutorial
-
 include::./../_attributes.adoc[]
+
+= Welcome to Red Hat Service Mesh: Troubleshooting tutorial
 
 :toc: left
 :toc-title: Service Mesh Troubleshooting

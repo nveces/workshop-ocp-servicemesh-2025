@@ -1,6 +1,6 @@
-= {rhossm}: Traffic Management Labs
-
 include::./../_attributes.adoc[]
+
+= {rhossm}: Traffic Management Labs
 
 :toc: left
 :toc-title: {rhossm}: Traffic Management Labs

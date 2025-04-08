@@ -1,6 +1,6 @@
-= {rhossm}: Extensibility Labs
-
 include::./../_attributes.adoc[]
+
+= {rhossm}: Extensibility Labs
 
 :toc: left
 :toc-title: {rhossm}: Extensibility Labs

@@ -1,6 +1,6 @@
-= Openshift 4 Introduction - Labs
-
 include::./../_attributes.adoc[]
+
+= Openshift 4 Introduction - Labs
 
 :toc: left
 :toc-title: Openshift 4 Introduction - Labs
