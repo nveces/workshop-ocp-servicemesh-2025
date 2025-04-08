@@ -5,20 +5,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Openshift 4 Introduction - Labs :: WorkShop - Service Mesh on OCP 2025</title>
     <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/01-introduction/index.html">
-    <link rel="prev" href="../02-deploy.html">
+    <link rel="prev" href="../01-setup.html">
     <link rel="next" href="../02-envoy-istio-control-plane/index.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body class="article">
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
-          src="../../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
-      <a class="navbar-item" href="https://nveces.github.io/workshop-ocp-servicemesh-2025">WorkShop - Service Mesh on OCP 2025</a>
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://nveces.github.io/workshop-ocp-servicemesh-2025">WorkShop - Service Mesh on OCP 2025</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -27,35 +25,23 @@
     </div>
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
-        <a class="navbar-item" href="#">Books</a>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="#">CheatSheets</a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="#">CheatSheet A</a>
-            <a class="navbar-item" href="#">CheatSheet B</a>
-            <a class="navbar-item" href="#">CheatSheet C</a>
-          </div>
-        </div>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="#">Upcoming Events</a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="#">Event A</a>
-            <a class="navbar-item" href="#">Event B</a>
-            <a class="navbar-item" href="#">Event C</a>
-          </div>
-        </div>
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link" href="#">More Tutorials</a>
           <div class="navbar-dropdown">
-            <a class="navbar-item" href="#">Tutorial A</a>
-            <a class="navbar-item" href="#">Tutorial B</a>
-            <a class="navbar-item" href="#">Tutorial C</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kafka-tutorial/" target="_blank">Kafka</a>
+            <a class="navbar-item" href="https://devsecops-workshop.github.io/" target="_blank">DevSecOps</a>
+            <a class="navbar-item" href="https://acidonper.github.io/redhat-workshop-cicd-gitops/redhat-workshop-cicd-gitops/" target="_blank">CI/CD & GitOps</a>
+            <a class="navbar-item" href="https://atarazana.github.io/gramola-gitops-guide/gramola-gitops-guide/" target="_blank">Gramola GitOps Guide</a>
+            <a class="navbar-item" href="https://luisarizmendi.github.io/tutorial-secure-onboarding/" target="_blank">Secure Edge device onboarding with RHEL and FDO</a>
+            <a class="navbar-item" href="https://xbryan1.github.io/rhte-2023-acm-docs/" target="_blank">Multicluster Application Deployment with Advanced Cluster Management and GitOps</a>
+            <a class="navbar-item" href="https://redhat-scholars.github.io/java-inner-loop-dev-guide/java-inner-loop-dev-guide/index.html" target="_blank">Java Inner Loop Dev Guide</a>
+            <a class="navbar-item" href="https://atarazana.github.io/kitchensink-guide/" target="_blank">Deploying JBoss EAP applications on OpenShift</a>
           </div>
-        </div>
-        <div class="navbar-item">
-          <span class="control">
-            <a class="button is-primary" href="#">Download</a>
-          </span>
         </div>
       </div>
     </div>
@@ -67,13 +53,13 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></h3>
+    <h3 class="title"><a href="../index.html"></a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../01-setup.html">1. Setup</a>
+    <a class="nav-link" href="../01-setup.html">1. Environment Setup</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../01-setup.html#prerequisite">Prerequisites</a>
@@ -83,21 +69,9 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../02-deploy.html">2. Deploy Service</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../02-deploy.html#package">Build Service</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../02-deploy.html#deploy">Deploy Dervice</a>
-  </li>
-</ul>
-  </li>
   <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">3. Introduction - Labs</a>
+    <a class="nav-link" href="index.html">2. Introduction - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#_lab_0_warming_up">Lab 0 - Warming up</a>
@@ -124,7 +98,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../02-envoy-istio-control-plane/index.html">4. Envoy istio Control plane - Labs</a>
+    <a class="nav-link" href="../02-envoy-istio-control-plane/index.html">3. Envoy istio Control plane - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../02-envoy-istio-control-plane/index.html#_lab_1_setup">Lab 1 - Setup</a>
@@ -151,7 +125,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../03-traffic-management/index.html">5. Traffic management - Labs</a>
+    <a class="nav-link" href="../03-traffic-management/index.html">4. Traffic management - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../03-traffic-management/index.html#_rhossm_traffic_management_labs">{rhossm}: Traffic Management Labs</a>
@@ -184,7 +158,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../04-troubleshooting/index.html">6. Troubleshooting - Labs</a>
+    <a class="nav-link" href="../04-troubleshooting/index.html">5. Troubleshooting - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../04-troubleshooting/index.html#_lab_1_setup">Lab 1 - Setup</a>
@@ -211,7 +185,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../05-security/index.html">7. Security - Labs</a>
+    <a class="nav-link" href="../05-security/index.html">6. Security - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../05-security/index.html#_lab_0_warming_up">Lab 0 - Warming up</a>
@@ -235,7 +209,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../06-extensibility/index.html">8. Extensibility - Labs</a>
+    <a class="nav-link" href="../06-extensibility/index.html">7. Extensibility - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../06-extensibility/index.html#_rhossm_extensibility_labs">{rhossm}: Extensibility Labs</a>
@@ -253,22 +227,6 @@
 </ul>
   </nav>
 </div>
-<div class="nav-panel-explore" data-panel="explore">
-  <div class="context">
-    <span class="title">WorkShop - Service Mesh on OCP 2025</span>
-    <span class="version">master</span>
-  </div>
-  <ul class="components">
-    <li class="component is-current">
-      <span class="title">WorkShop - Service Mesh on OCP 2025</span>
-      <ul class="versions">
-        <li class="version is-current">
-          <a href="../index.html">master</a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</div>
     </div>
   </aside>
 </div>
@@ -278,7 +236,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></li>
-    <li><a href="index.html">3. Introduction - Labs</a></li>
+    <li><a href="index.html">2. Introduction - Labs</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/nveces/workshop-ocp-servicemesh-2025/edit/master/documentation/modules/ROOT/pages/01-introduction/index.adoc">Edit this Page</a></div>
@@ -311,8 +269,7 @@ This is not a recommended practices guide nor intended to serve as a reference. 
 <div class="ulist">
 <ul>
 <li>
-<p><strong>$OCP_CONSOLE</strong>: url for accessing to the
-Openshift web console</p>
+<p><strong>$OCP_CONSOLE</strong>: url for accessing to the Openshift web console</p>
 </li>
 <li>
 <p><strong>$OCP_API</strong>: Openshift API endpoint. We will use this endpoint when accesing the cluster from the <code>oc</code> cli.</p>
@@ -332,14 +289,14 @@ Openshift web console</p>
 <p>There is also a list of files needed to run the labs. These files can be found in the following github repository:</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/dsanchor/ocp-intro-dev" class="bare">https://github.com/dsanchor/ocp-intro-dev</a></p>
+<p><a href="https://github.com/nveces/ocp-intro-dev" class="bare" target="_blank" rel="noopener">https://github.com/nveces/ocp-intro-dev</a></p>
 </div>
 <div class="paragraph">
 <p>Clone the repository to your desired location, that will then be referred as <strong>$LABS_HOME</strong> during the labs:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ git clone https://github.com/dsanchor/ocp-intro-dev.git $LABS_HOME</pre>
+<pre>$ git clone https://github.com/nveces/ocp-intro-dev.git $LABS_HOME</pre>
 </div>
 </div>
 <div class="sect1">
@@ -367,7 +324,7 @@ Openshift web console</p>
 <p>We will soon create our first project, but now, it is time to get the Openshift CLI binaries for your specific OS.</p>
 </div>
 <div class="paragraph">
-<p>&#8658; <em>Additional reads: <a href="https://docs.openshift.com/container-platform/4.6/web_console/web-console.html">Web Console</a></em></p>
+<p>&#8658; <em>Additional reads: <a href="https://docs.openshift.com/container-platform/4.18/web_console/web-console.html" target="_blank" rel="noopener">Web Console</a></em></p>
 </div>
 <div class="sect2">
 <h3 id="_download_the_cli"><a class="anchor" href="#_download_the_cli"></a>1.1. Download the CLI</h3>
@@ -437,7 +394,7 @@ You don't have any projects. You can try to create a new project, by running
 <p>Also notice that sometimes we talk about   <code>namespaces</code>, which is the Kubernetes concept and others about <code>projects</code>. A <code>project</code> is a Kubernetes namespace with additional annotations.</p>
 </div>
 <div class="paragraph">
-<p>&#8658; <em>Additional reads: <a href="https://docs.openshift.com/container-platform/4.6/applications/projects/working-with-projects.html">working with projects</a></em></p>
+<p>&#8658; <em>Additional reads: <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/building_applications/projects#working-with-projects" target="_blank" rel="noopener">working with projects</a></em></p>
 </div>
 <div class="paragraph">
 <p>We are now ready to create our first project by running:</p>
@@ -481,13 +438,13 @@ to build a new example application in Ruby. Or use kubectl to deploy a simple Ku
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Deployments</a></p>
+<p><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/" target="_blank" rel="noopener">Deployments</a></p>
 </li>
 <li>
-<p><a href="https://kubernetes.io/docs/concepts/services-networking/service/">Services</a></p>
+<p><a href="https://kubernetes.io/docs/concepts/services-networking/service/" target="_blank" rel="noopener">Services</a></p>
 </li>
 <li>
-<p><a href="https://docs.openshift.com/container-platform/4.6/rest_api/network_apis/route-route-openshift-io-v1.html">Routes</a></p>
+<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/network_apis/route-route-openshift-io-v1" target="_blank" rel="noopener">Routes</a></p>
 </li>
 </ul>
 </div>
@@ -510,7 +467,7 @@ to build a new example application in Ruby. Or use kubectl to deploy a simple Ku
 <p>It basically manage set of Pets, their Owners and Veterinarians appointments. We will play a bit when needed in the labs.</p>
 </div>
 <div class="paragraph">
-<p>Source code is available <a href="https://github.com/dsanchor/petclinic.git">here</a>.</p>
+<p>Source code is available <a href="https://github.com/dsanchor/petclinic.git" target="_blank" rel="noopener">here</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1676,8 +1633,8 @@ networkpolicy.networking.k8s.io/allow-from-openshift-ingress created</pre>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="../02-deploy.html">2. Deploy Service</a></span>
-  <span class="next"><a href="../02-envoy-istio-control-plane/index.html">4. Envoy istio Control plane - Labs</a></span>
+  <span class="prev"><a href="../01-setup.html">1. Environment Setup</a></span>
+  <span class="next"><a href="../02-envoy-istio-control-plane/index.html">3. Envoy istio Control plane - Labs</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
