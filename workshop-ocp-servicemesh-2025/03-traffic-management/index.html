@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Red Hat OpenShift Service Mesh: Traffic Management Labs :: WorkShop - Service Mesh on OCP 2025</title>
+    <title>{rhossm}: Traffic Management Labs :: WorkShop - Service Mesh on OCP 2025</title>
     <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/03-traffic-management/index.html">
     <link rel="prev" href="../02-envoy-istio-control-plane/index.html">
     <link rel="next" href="../04-troubleshooting/index.html">
@@ -243,143 +243,9 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Red Hat OpenShift Service Mesh: Traffic Management Labs</h1>
-<div id="toc" class="toc">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_introduction">1. Introduction</a></li>
-<li><a href="#_setup">2. Setup</a>
-<ul class="sectlevel2">
-<li><a href="#_prerequisites">2.1. Prerequisites</a></li>
-<li><a href="#_laboratory">2.2. Laboratory</a>
-<ul class="sectlevel3">
-<li><a href="#_laboratory_parameters">2.2.1. Laboratory Parameters</a></li>
-<li><a href="#_openshift_cli">2.2.2. OpenShift CLI</a></li>
-<li><a href="#_web_console">2.2.3. Web Console</a></li>
-</ul>
-</li>
-<li><a href="#_gihub_repository">2.3. GiHub Repository</a></li>
-</ul>
-</li>
-<li><a href="#_sample_applications">3. Sample Applications</a>
-<ul class="sectlevel2">
-<li><a href="#_bookinfo">3.1. Bookinfo</a></li>
-<li><a href="#_httpbin">3.2. httpbin</a></li>
-</ul>
-</li>
-<li><a href="#_lab_1_ingress_gateways">4. Lab 1 - Ingress Gateways</a>
-<ul class="sectlevel2">
-<li><a href="#_introduction_2">4.1. Introduction</a>
-<ul class="sectlevel3">
-<li><a href="#_gateway">4.1.1. Gateway</a></li>
-<li><a href="#_virtual_service">4.1.2. Virtual Service</a></li>
-<li><a href="#_route">4.1.3. Route</a></li>
-</ul>
-</li>
-<li><a href="#_deploy_bookinfo_using_an_ingress_gateway">4.2. Deploy Bookinfo using an Ingress Gateway</a>
-<ul class="sectlevel3">
-<li><a href="#_remove_bookinfo">4.2.1. Remove Bookinfo</a></li>
-</ul>
-</li>
-<li><a href="#_deploy_httpbin_using_an_ingress_gateway">4.3. Deploy httpbin using an Ingress Gateway</a>
-<ul class="sectlevel3">
-<li><a href="#_remove_httpbin">4.3.1. Remove httpbin</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_lab_2_requests_routing">5. Lab 2 - Requests Routing</a>
-<ul class="sectlevel2">
-<li><a href="#_introduction_3">5.1. Introduction</a>
-<ul class="sectlevel3">
-<li><a href="#_route_traffic_to_a_specific_version">5.1.1. Route traffic to a specific version</a></li>
-<li><a href="#_route_traffic_based_on_headers">5.1.2. Route traffic based on headers</a></li>
-</ul>
-</li>
-<li><a href="#_deploy_bookinfo">5.2. Deploy Bookinfo</a></li>
-<li><a href="#_route_traffic_to_version_2">5.3. Route traffic to version 2</a></li>
-<li><a href="#_route_traffic_based_on_headers_2">5.4. Route traffic based on headers</a></li>
-<li><a href="#_remove_bookinfo_2">5.5. Remove Bookinfo</a></li>
-</ul>
-</li>
-<li><a href="#_lab_3_traffic_shifting_and_weight_balancing">6. Lab 3 - Traffic Shifting and Weight Balancing</a>
-<ul class="sectlevel2">
-<li><a href="#_introduction_4">6.1. Introduction</a></li>
-<li><a href="#_deploy_bookinfo_2">6.2. Deploy Bookinfo</a></li>
-<li><a href="#_route_10_of_the_traffic_to_a_new_service">6.3. Route 10% of the traffic to a new service</a></li>
-<li><a href="#_route_half_the_traffic_to_each_service">6.4. Route half the traffic to each service</a></li>
-<li><a href="#_route_all_the_traffic_to_the_new_service">6.5. Route all the traffic to the new service</a></li>
-<li><a href="#_remove_bookinfo_3">6.6. Remove Bookinfo</a></li>
-</ul>
-</li>
-<li><a href="#_lab_4_fault_injection">7. Lab 4 - Fault Injection</a>
-<ul class="sectlevel2">
-<li><a href="#_introduction_5">7.1. Introduction</a>
-<ul class="sectlevel3">
-<li><a href="#_delay">7.1.1. Delay</a></li>
-<li><a href="#_abort">7.1.2. Abort</a></li>
-</ul>
-</li>
-<li><a href="#_deploy_bookinfo_3">7.2. Deploy Bookinfo</a></li>
-<li><a href="#_inject_delay">7.3. Inject delay</a></li>
-<li><a href="#_inject_abort">7.4. Inject abort</a></li>
-<li><a href="#_remove_bookinfo_4">7.5. Remove Bookinfo</a></li>
-</ul>
-</li>
-<li><a href="#_lab_5_requests_timeouts">8. Lab 5 - Requests Timeouts</a>
-<ul class="sectlevel2">
-<li><a href="#_introduction_6">8.1. Introduction</a></li>
-<li><a href="#_deploy_bookinfo_4">8.2. Deploy Bookinfo</a></li>
-<li><a href="#_adding_a_delay_to_ratings_service">8.3. Adding a delay to ratings service</a></li>
-<li><a href="#_adding_a_timeout_to_reviews_service">8.4. Adding a timeout to reviews service</a></li>
-<li><a href="#_hardcoded_timeout_in_productpage_service">8.5. Hardcoded timeout in productpage service</a></li>
-<li><a href="#_remove_bookinfo_5">8.6. Remove Bookinfo</a></li>
-</ul>
-</li>
-<li><a href="#_lab_6_circuit_breaking">9. Lab 6 - Circuit Breaking</a>
-<ul class="sectlevel2">
-<li><a href="#_introduction_7">9.1. Introduction</a></li>
-<li><a href="#_deploy_httpbin">9.2. Deploy httpbin</a></li>
-<li><a href="#_deploy_fortio">9.3. Deploy fortio</a></li>
-<li><a href="#_test_the_circuit_breaking">9.4. Test the circuit breaking</a>
-<ul class="sectlevel3">
-<li><a href="#_apply_the_destinationrule">9.4.1. Apply the <em>DestinationRule</em></a></li>
-<li><a href="#_trigger_the_circuit_breaker">9.4.2. Trigger the circuit breaker</a></li>
-</ul>
-</li>
-<li><a href="#_remove_fortio">9.5. Remove fortio</a></li>
-<li><a href="#_remove_httpbin_2">9.6. Remove httpbin</a></li>
-</ul>
-</li>
-<li><a href="#_lab_7_mirroring_and_dark_launches">10. Lab 7 - Mirroring and Dark Launches</a>
-<ul class="sectlevel2">
-<li><a href="#_introduction_8">10.1. Introduction</a></li>
-<li><a href="#_deploy_bookinfo_5">10.2. Deploy Bookinfo</a></li>
-<li><a href="#_mirroring_traffic_to_v2">10.3. Mirroring traffic to v2</a></li>
-<li><a href="#_remove_bookinfo_6">10.4. Remove Bookinfo</a></li>
-</ul>
-</li>
-<li><a href="#_lab_8_egress_gateways">11. Lab 8 - Egress Gateways</a>
-<ul class="sectlevel2">
-<li><a href="#_introduction_9">11.1. Introduction</a></li>
-<li><a href="#_accessing_an_external_service">11.2. Accessing an external service</a></li>
-<li><a href="#_service_entry">11.3. Service Entry</a></li>
-<li><a href="#_egress_gateway">11.4. Egress Gateway</a></li>
-<li><a href="#_remove_everything">11.5. Remove everything</a></li>
-</ul>
-</li>
-<li><a href="#_lab_9_grpc_routing">12. Lab 9 - gRPC Routing</a>
-<ul class="sectlevel2">
-<li><a href="#_introduction_10">12.1. Introduction</a></li>
-<li><a href="#_grpc_demo_without_istio">12.2. gRPC demo without Istio</a></li>
-<li><a href="#_grpc_demo_with_istio">12.3. gRPC demo with Istio</a></li>
-<li><a href="#_remove_everything_2">12.4. Remove everything</a></li>
-</ul>
-</li>
-</ul>
-</div>
+<h1 class="page">{rhossm}: Traffic Management Labs</h1>
 <div class="sect1">
-<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>1. Introduction</h2>
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The objective of these labs is to get a deep understanding of the following topics:</p>
@@ -406,10 +272,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_setup"><a class="anchor" href="#_setup"></a>2. Setup</h2>
+<h2 id="_setup"><a class="anchor" href="#_setup"></a>Setup</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>2.1. Prerequisites</h3>
+<h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h3>
 <div class="paragraph">
 <p>During this tutorial, it will be required to work with different tools for running the exercises included. Please, install the following software:</p>
 </div>
@@ -461,7 +327,7 @@ You must have an up-to-date version of the <em>oc</em> command.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_laboratory"><a class="anchor" href="#_laboratory"></a>2.2. Laboratory</h3>
+<h3 id="_laboratory"><a class="anchor" href="#_laboratory"></a>Laboratory</h3>
 <div class="paragraph">
 <p>This laboratory is based on the following technologies:</p>
 </div>
@@ -479,7 +345,7 @@ You must have an up-to-date version of the <em>oc</em> command.
 <p>The previous technologies and resources will allow you to implement a microservice-based application in OpenShift Container Platform which will be included in Service Mesh. The main objective of deploying this application in OpenShift Container Platform is to understand how to setup routing scenarios in OpenShift Service Mesh.</p>
 </div>
 <div class="sect3">
-<h4 id="_laboratory_parameters"><a class="anchor" href="#_laboratory_parameters"></a>2.2.1. Laboratory Parameters</h4>
+<h4 id="_laboratory_parameters"><a class="anchor" href="#_laboratory_parameters"></a>Laboratory Parameters</h4>
 <div class="paragraph">
 <p>The Instructor will provide users with the OpenShift Container Platform credentials and other important parameters at the beginning of this lab.</p>
 </div>
@@ -588,7 +454,7 @@ From now on, all labs will assume these exports are defined in your shell enviro
 </div>
 </div>
 <div class="sect3">
-<h4 id="_openshift_cli"><a class="anchor" href="#_openshift_cli"></a>2.2.2. OpenShift CLI</h4>
+<h4 id="_openshift_cli"><a class="anchor" href="#_openshift_cli"></a>OpenShift CLI</h4>
 <div class="paragraph">
 <p>The OpenShift Container Platform CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system.</p>
 </div>
@@ -628,7 +494,7 @@ Please, pay special attention to the <em>oc</em> tool as you will need to use it
 </div>
 </div>
 <div class="sect3">
-<h4 id="_web_console"><a class="anchor" href="#_web_console"></a>2.2.3. Web Console</h4>
+<h4 id="_web_console"><a class="anchor" href="#_web_console"></a>Web Console</h4>
 <div class="paragraph">
 <p>In addition, you can access the OpenShift Container Platform Web Console using via web browser, use your credentials to login:</p>
 </div>
@@ -648,7 +514,7 @@ Please, pay special attention to the <em>oc</em> tool as you will need to use it
 </div>
 </div>
 <div class="sect2">
-<h3 id="_gihub_repository"><a class="anchor" href="#_gihub_repository"></a>2.3. GiHub Repository</h3>
+<h3 id="_gihub_repository"><a class="anchor" href="#_gihub_repository"></a>GiHub Repository</h3>
 <div class="paragraph">
 <p>All files used in the labs are located in a GitHub repository for your convenience.</p>
 </div>
@@ -690,10 +556,10 @@ From now on, all labs will assume you are located in this directory.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_sample_applications"><a class="anchor" href="#_sample_applications"></a>3. Sample Applications</h2>
+<h2 id="_sample_applications"><a class="anchor" href="#_sample_applications"></a>Sample Applications</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_bookinfo"><a class="anchor" href="#_bookinfo"></a>3.1. Bookinfo</h3>
+<h3 id="_bookinfo"><a class="anchor" href="#_bookinfo"></a>Bookinfo</h3>
 <div class="paragraph">
 <p>Bookinfo is a sample application composed of four separate microservices used to demonstrate various Istio features.</p>
 </div>
@@ -746,7 +612,7 @@ From now on, all labs will assume you are located in this directory.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_httpbin"><a class="anchor" href="#_httpbin"></a>3.2. httpbin</h3>
+<h3 id="_httpbin"><a class="anchor" href="#_httpbin"></a>httpbin</h3>
 <div class="paragraph">
 <p>Some labs will use <em>httpbin</em> as an HTTP request and response service. It offers many tools to proof test HTTP.</p>
 </div>
@@ -757,15 +623,15 @@ From now on, all labs will assume you are located in this directory.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_1_ingress_gateways"><a class="anchor" href="#_lab_1_ingress_gateways"></a>4. Lab 1 - Ingress Gateways</h2>
+<h2 id="_lab_1_ingress_gateways"><a class="anchor" href="#_lab_1_ingress_gateways"></a>Lab 1 - Ingress Gateways</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_2"><a class="anchor" href="#_introduction_2"></a>4.1. Introduction</h3>
+<h3 id="_introduction_2"><a class="anchor" href="#_introduction_2"></a>Introduction</h3>
 <div class="paragraph">
 <p>An Ingress Gateway describes a load balancer operating at the edge of the mesh that receives incoming HTTP/TCP connections. It configures exposed ports, protocols, etc. but, unlike Kubernetes Ingress Resources, does not include any traffic routing configuration. Traffic routing for ingress traffic is instead configured using Istio routing rules, exactly in the same way as for internal service requests.</p>
 </div>
 <div class="sect3">
-<h4 id="_gateway"><a class="anchor" href="#_gateway"></a>4.1.1. Gateway</h4>
+<h4 id="_gateway"><a class="anchor" href="#_gateway"></a>Gateway</h4>
 <div class="paragraph">
 <p>The first step to enable a new host in the Ingress Gateway is creating a <em>Gateway</em> object.</p>
 </div>
@@ -804,7 +670,7 @@ spec:
 </div>
 </div>
 <div class="sect3">
-<h4 id="_virtual_service"><a class="anchor" href="#_virtual_service"></a>4.1.2. Virtual Service</h4>
+<h4 id="_virtual_service"><a class="anchor" href="#_virtual_service"></a>Virtual Service</h4>
 <div class="paragraph">
 <p>Next, we need to route traffic from the Ingress Gateway to the desired service. In Bookinfo we want users to reach the <em>productpage</em> service.</p>
 </div>
@@ -844,7 +710,7 @@ spec:
 </div>
 </div>
 <div class="sect3">
-<h4 id="_route"><a class="anchor" href="#_route"></a>4.1.3. Route</h4>
+<h4 id="_route"><a class="anchor" href="#_route"></a>Route</h4>
 <div class="paragraph">
 <p>The last step is exposing the Ingress Gateway using an OpenShift Container Platform <em>Route</em>:</p>
 </div>
@@ -875,7 +741,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deploy_bookinfo_using_an_ingress_gateway"><a class="anchor" href="#_deploy_bookinfo_using_an_ingress_gateway"></a>4.2. Deploy Bookinfo using an Ingress Gateway</h3>
+<h3 id="_deploy_bookinfo_using_an_ingress_gateway"><a class="anchor" href="#_deploy_bookinfo_using_an_ingress_gateway"></a>Deploy Bookinfo using an Ingress Gateway</h3>
 <div class="paragraph">
 <p>The following steps will deploy all necessary objects to run Bookinfo in OpenShift Service Mesh.</p>
 </div>
@@ -943,7 +809,7 @@ spec:
 <div class="title">Figure 6. Bookinfo productpage service through an Ingress Gateway</div>
 </div>
 <div class="sect3">
-<h4 id="_remove_bookinfo"><a class="anchor" href="#_remove_bookinfo"></a>4.2.1. Remove Bookinfo</h4>
+<h4 id="_remove_bookinfo"><a class="anchor" href="#_remove_bookinfo"></a>Remove Bookinfo</h4>
 <div class="paragraph">
 <p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in <a href="#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a> as it will be reused.</p>
 </div>
@@ -957,7 +823,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deploy_httpbin_using_an_ingress_gateway"><a class="anchor" href="#_deploy_httpbin_using_an_ingress_gateway"></a>4.3. Deploy httpbin using an Ingress Gateway</h3>
+<h3 id="_deploy_httpbin_using_an_ingress_gateway"><a class="anchor" href="#_deploy_httpbin_using_an_ingress_gateway"></a>Deploy httpbin using an Ingress Gateway</h3>
 <div class="paragraph">
 <p>In the same way as with the Bookinfo <em>productpage</em> service, the following steps will deploy all necessary objects to run <em>httpbin</em> in OpenShift Service Mesh.</p>
 </div>
@@ -1010,7 +876,7 @@ spec:
 <p><span class="image"><a class="image" href="../_images/03-traffic-management/ingress_httpbin.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/ingress_httpbin.png" alt="ingress httpbin"></a></span></p>
 </div>
 <div class="sect3">
-<h4 id="_remove_httpbin"><a class="anchor" href="#_remove_httpbin"></a>4.3.1. Remove httpbin</h4>
+<h4 id="_remove_httpbin"><a class="anchor" href="#_remove_httpbin"></a>Remove httpbin</h4>
 <div class="paragraph">
 <p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in <a href="#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a> as it will be reused.</p>
 </div>
@@ -1026,15 +892,15 @@ spec:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_2_requests_routing"><a class="anchor" href="#_lab_2_requests_routing"></a>5. Lab 2 - Requests Routing</h2>
+<h2 id="_lab_2_requests_routing"><a class="anchor" href="#_lab_2_requests_routing"></a>Lab 2 - Requests Routing</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_3"><a class="anchor" href="#_introduction_3"></a>5.1. Introduction</h3>
+<h3 id="_introduction_3"><a class="anchor" href="#_introduction_3"></a>Introduction</h3>
 <div class="paragraph">
 <p>Now that you have Bookinfo all set up. Is time to do some requests routing. OpenShift Service Mesh by default routes requests in a round robin manner. But in this case, all requests are going only to version 1 of <code>reviews</code> since the <em>VirtualServices</em> are set that way.</p>
 </div>
 <div class="sect3">
-<h4 id="_route_traffic_to_a_specific_version"><a class="anchor" href="#_route_traffic_to_a_specific_version"></a>5.1.1. Route traffic to a specific version</h4>
+<h4 id="_route_traffic_to_a_specific_version"><a class="anchor" href="#_route_traffic_to_a_specific_version"></a>Route traffic to a specific version</h4>
 <div class="paragraph">
 <p>In this lab we will apply the rules to make all requests go to version 2 of <code>reviews</code> so we can see the stars ratings. For that we are going to use the following <em>VirtualService</em>:</p>
 </div>
@@ -1097,7 +963,7 @@ spec:
 </div>
 </div>
 <div class="sect3">
-<h4 id="_route_traffic_based_on_headers"><a class="anchor" href="#_route_traffic_based_on_headers"></a>5.1.2. Route traffic based on headers</h4>
+<h4 id="_route_traffic_based_on_headers"><a class="anchor" href="#_route_traffic_based_on_headers"></a>Route traffic based on headers</h4>
 <div class="paragraph">
 <p>Now let&#8217;s think that we have a new version for the application and you want to deploy it first to a set of premium users. We are going to see how to do that in this lab where we are going to route the requests from one user in particular to version 3 of the <code>reviews</code> service. For that we are going to use the following <em>VirtualService</em>:</p>
 </div>
@@ -1156,7 +1022,7 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deploy_bookinfo"><a class="anchor" href="#_deploy_bookinfo"></a>5.2. Deploy Bookinfo</h3>
+<h3 id="_deploy_bookinfo"><a class="anchor" href="#_deploy_bookinfo"></a>Deploy Bookinfo</h3>
 <div class="paragraph">
 <p>Deploy the application in your namespace:</p>
 </div>
@@ -1189,7 +1055,7 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 </div>
 </div>
 <div class="sect2">
-<h3 id="_route_traffic_to_version_2"><a class="anchor" href="#_route_traffic_to_version_2"></a>5.3. Route traffic to version 2</h3>
+<h3 id="_route_traffic_to_version_2"><a class="anchor" href="#_route_traffic_to_version_2"></a>Route traffic to version 2</h3>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -1225,7 +1091,7 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 </div>
 </div>
 <div class="sect2">
-<h3 id="_route_traffic_based_on_headers_2"><a class="anchor" href="#_route_traffic_based_on_headers_2"></a>5.4. Route traffic based on headers</h3>
+<h3 id="_route_traffic_based_on_headers_2"><a class="anchor" href="#_route_traffic_based_on_headers_2"></a>Route traffic based on headers</h3>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -1248,7 +1114,7 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remove_bookinfo_2"><a class="anchor" href="#_remove_bookinfo_2"></a>5.5. Remove Bookinfo</h3>
+<h3 id="_remove_bookinfo_2"><a class="anchor" href="#_remove_bookinfo_2"></a>Remove Bookinfo</h3>
 <div class="paragraph">
 <p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in <a href="#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a> as it will be reused.</p>
 </div>
@@ -1263,10 +1129,10 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_3_traffic_shifting_and_weight_balancing"><a class="anchor" href="#_lab_3_traffic_shifting_and_weight_balancing"></a>6. Lab 3 - Traffic Shifting and Weight Balancing</h2>
+<h2 id="_lab_3_traffic_shifting_and_weight_balancing"><a class="anchor" href="#_lab_3_traffic_shifting_and_weight_balancing"></a>Lab 3 - Traffic Shifting and Weight Balancing</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_4"><a class="anchor" href="#_introduction_4"></a>6.1. Introduction</h3>
+<h3 id="_introduction_4"><a class="anchor" href="#_introduction_4"></a>Introduction</h3>
 <div class="paragraph">
 <p>In this lab you will learn how to gradually migrate traffic from one version of a service to another.</p>
 </div>
@@ -1281,7 +1147,7 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deploy_bookinfo_2"><a class="anchor" href="#_deploy_bookinfo_2"></a>6.2. Deploy Bookinfo</h3>
+<h3 id="_deploy_bookinfo_2"><a class="anchor" href="#_deploy_bookinfo_2"></a>Deploy Bookinfo</h3>
 <div class="paragraph">
 <p>Deploy the application in your namespace:</p>
 </div>
@@ -1314,7 +1180,7 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 </div>
 </div>
 <div class="sect2">
-<h3 id="_route_10_of_the_traffic_to_a_new_service"><a class="anchor" href="#_route_10_of_the_traffic_to_a_new_service"></a>6.3. Route 10% of the traffic to a new service</h3>
+<h3 id="_route_10_of_the_traffic_to_a_new_service"><a class="anchor" href="#_route_10_of_the_traffic_to_a_new_service"></a>Route 10% of the traffic to a new service</h3>
 <div class="paragraph">
 <p>The first modification to the <em>reviews</em> <em>VirtualService</em> to add a 90/10 routing rule looks like this:</p>
 </div>
@@ -1386,7 +1252,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_route_half_the_traffic_to_each_service"><a class="anchor" href="#_route_half_the_traffic_to_each_service"></a>6.4. Route half the traffic to each service</h3>
+<h3 id="_route_half_the_traffic_to_each_service"><a class="anchor" href="#_route_half_the_traffic_to_each_service"></a>Route half the traffic to each service</h3>
 <div class="paragraph">
 <p>The <em>reviews</em> <em>VirtualService</em> to add a 50/50 routing rule will look like this:</p>
 </div>
@@ -1445,7 +1311,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_route_all_the_traffic_to_the_new_service"><a class="anchor" href="#_route_all_the_traffic_to_the_new_service"></a>6.5. Route all the traffic to the new service</h3>
+<h3 id="_route_all_the_traffic_to_the_new_service"><a class="anchor" href="#_route_all_the_traffic_to_the_new_service"></a>Route all the traffic to the new service</h3>
 <div class="paragraph">
 <p>The <em>reviews</em> <em>VirtualService</em> to add a 100% routing rule to the new service will look like this:</p>
 </div>
@@ -1507,7 +1373,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remove_bookinfo_3"><a class="anchor" href="#_remove_bookinfo_3"></a>6.6. Remove Bookinfo</h3>
+<h3 id="_remove_bookinfo_3"><a class="anchor" href="#_remove_bookinfo_3"></a>Remove Bookinfo</h3>
 <div class="paragraph">
 <p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in <a href="#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a> as it will be reused.</p>
 </div>
@@ -1522,10 +1388,10 @@ spec:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_4_fault_injection"><a class="anchor" href="#_lab_4_fault_injection"></a>7. Lab 4 - Fault Injection</h2>
+<h2 id="_lab_4_fault_injection"><a class="anchor" href="#_lab_4_fault_injection"></a>Lab 4 - Fault Injection</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_5"><a class="anchor" href="#_introduction_5"></a>7.1. Introduction</h3>
+<h3 id="_introduction_5"><a class="anchor" href="#_introduction_5"></a>Introduction</h3>
 <div class="paragraph">
 <p>OpenShift Service Mesh has mechanisms to inject faults in your application to test how it will behave when a real fault happens. This is very useful to check if your application&#8217;s recovery policies aren&#8217;t too restrictive.</p>
 </div>
@@ -1533,7 +1399,7 @@ spec:
 <p>In this lab you will inject two different faults in your application. A delay and an abort. Delays are timing failures and aborts are crash failures. You are going to use a similar method than in <a href="#_lab_2_requests_routing">Lab 2 - Requests Routing</a> when you routed requests using http headers, but this time you are going to inject faults for user "pepito".</p>
 </div>
 <div class="sect3">
-<h4 id="_delay"><a class="anchor" href="#_delay"></a>7.1.1. Delay</h4>
+<h4 id="_delay"><a class="anchor" href="#_delay"></a>Delay</h4>
 <div class="paragraph">
 <p>For the delay you are going to add 7 seconds of delay between the <code>reviews</code> and <code>ratings</code> services, using this <em>VirtualService</em>:</p>
 </div>
@@ -1601,7 +1467,7 @@ spec:
 </div>
 </div>
 <div class="sect3">
-<h4 id="_abort"><a class="anchor" href="#_abort"></a>7.1.2. Abort</h4>
+<h4 id="_abort"><a class="anchor" href="#_abort"></a>Abort</h4>
 <div class="paragraph">
 <p>Now, for the abort, you will use the following <em>VirtualService</em>:</p>
 </div>
@@ -1637,7 +1503,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deploy_bookinfo_3"><a class="anchor" href="#_deploy_bookinfo_3"></a>7.2. Deploy Bookinfo</h3>
+<h3 id="_deploy_bookinfo_3"><a class="anchor" href="#_deploy_bookinfo_3"></a>Deploy Bookinfo</h3>
 <div class="paragraph">
 <p>Deploy the application in your namespace:</p>
 </div>
@@ -1670,7 +1536,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_inject_delay"><a class="anchor" href="#_inject_delay"></a>7.3. Inject delay</h3>
+<h3 id="_inject_delay"><a class="anchor" href="#_inject_delay"></a>Inject delay</h3>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -1691,7 +1557,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_inject_abort"><a class="anchor" href="#_inject_abort"></a>7.4. Inject abort</h3>
+<h3 id="_inject_abort"><a class="anchor" href="#_inject_abort"></a>Inject abort</h3>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -1724,7 +1590,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remove_bookinfo_4"><a class="anchor" href="#_remove_bookinfo_4"></a>7.5. Remove Bookinfo</h3>
+<h3 id="_remove_bookinfo_4"><a class="anchor" href="#_remove_bookinfo_4"></a>Remove Bookinfo</h3>
 <div class="paragraph">
 <p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in <a href="#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a> as it will be reused.</p>
 </div>
@@ -1739,10 +1605,10 @@ spec:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_5_requests_timeouts"><a class="anchor" href="#_lab_5_requests_timeouts"></a>8. Lab 5 - Requests Timeouts</h2>
+<h2 id="_lab_5_requests_timeouts"><a class="anchor" href="#_lab_5_requests_timeouts"></a>Lab 5 - Requests Timeouts</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_6"><a class="anchor" href="#_introduction_6"></a>8.1. Introduction</h3>
+<h3 id="_introduction_6"><a class="anchor" href="#_introduction_6"></a>Introduction</h3>
 <div class="paragraph">
 <p>A timeout for HTTP requests can be specified using the timeout field in the <em>VirtualService</em>. By default, the timeout is 15 seconds, but in this task you override the <em>reviews</em> service timeout to 1 second.</p>
 </div>
@@ -1751,7 +1617,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deploy_bookinfo_4"><a class="anchor" href="#_deploy_bookinfo_4"></a>8.2. Deploy Bookinfo</h3>
+<h3 id="_deploy_bookinfo_4"><a class="anchor" href="#_deploy_bookinfo_4"></a>Deploy Bookinfo</h3>
 <div class="paragraph">
 <p>Deploy the application in your namespace:</p>
 </div>
@@ -1784,7 +1650,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_adding_a_delay_to_ratings_service"><a class="anchor" href="#_adding_a_delay_to_ratings_service"></a>8.3. Adding a delay to ratings service</h3>
+<h3 id="_adding_a_delay_to_ratings_service"><a class="anchor" href="#_adding_a_delay_to_ratings_service"></a>Adding a delay to ratings service</h3>
 <div class="paragraph">
 <p>First, route requests to <em>reviews:v2</em> service (a version that calls the ratings service).</p>
 </div>
@@ -1873,7 +1739,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_adding_a_timeout_to_reviews_service"><a class="anchor" href="#_adding_a_timeout_to_reviews_service"></a>8.4. Adding a timeout to reviews service</h3>
+<h3 id="_adding_a_timeout_to_reviews_service"><a class="anchor" href="#_adding_a_timeout_to_reviews_service"></a>Adding a timeout to reviews service</h3>
 <div class="paragraph">
 <p>Now add a half second request timeout for calls to the <em>reviews</em> service:</p>
 </div>
@@ -1934,7 +1800,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_hardcoded_timeout_in_productpage_service"><a class="anchor" href="#_hardcoded_timeout_in_productpage_service"></a>8.5. Hardcoded timeout in productpage service</h3>
+<h3 id="_hardcoded_timeout_in_productpage_service"><a class="anchor" href="#_hardcoded_timeout_in_productpage_service"></a>Hardcoded timeout in productpage service</h3>
 <div class="paragraph">
 <p>If you examine the <a href="#_lab_4_fault_injection">Lab 4 - Fault Injection</a>, you’ll find out that the productpage microservice also has its own application-level timeout (3 seconds) for calls to the <em>reviews</em> microservice.</p>
 </div>
@@ -1943,7 +1809,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remove_bookinfo_5"><a class="anchor" href="#_remove_bookinfo_5"></a>8.6. Remove Bookinfo</h3>
+<h3 id="_remove_bookinfo_5"><a class="anchor" href="#_remove_bookinfo_5"></a>Remove Bookinfo</h3>
 <div class="paragraph">
 <p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in <a href="#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a> as it will be reused.</p>
 </div>
@@ -1958,10 +1824,10 @@ spec:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_6_circuit_breaking"><a class="anchor" href="#_lab_6_circuit_breaking"></a>9. Lab 6 - Circuit Breaking</h2>
+<h2 id="_lab_6_circuit_breaking"><a class="anchor" href="#_lab_6_circuit_breaking"></a>Lab 6 - Circuit Breaking</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_7"><a class="anchor" href="#_introduction_7"></a>9.1. Introduction</h3>
+<h3 id="_introduction_7"><a class="anchor" href="#_introduction_7"></a>Introduction</h3>
 <div class="paragraph">
 <p>In this lab you are going to configure circuit breaking for connections. This is very important for building resilient microservices, since it helps to limit the impact of failures and latency spikes.</p>
 </div>
@@ -2025,7 +1891,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deploy_httpbin"><a class="anchor" href="#_deploy_httpbin"></a>9.2. Deploy httpbin</h3>
+<h3 id="_deploy_httpbin"><a class="anchor" href="#_deploy_httpbin"></a>Deploy httpbin</h3>
 <div class="paragraph">
 <p>Deploy the application in your namespace:</p>
 </div>
@@ -2058,7 +1924,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deploy_fortio"><a class="anchor" href="#_deploy_fortio"></a>9.3. Deploy fortio</h3>
+<h3 id="_deploy_fortio"><a class="anchor" href="#_deploy_fortio"></a>Deploy fortio</h3>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -2095,9 +1961,9 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_test_the_circuit_breaking"><a class="anchor" href="#_test_the_circuit_breaking"></a>9.4. Test the circuit breaking</h3>
+<h3 id="_test_the_circuit_breaking"><a class="anchor" href="#_test_the_circuit_breaking"></a>Test the circuit breaking</h3>
 <div class="sect3">
-<h4 id="_apply_the_destinationrule"><a class="anchor" href="#_apply_the_destinationrule"></a>9.4.1. Apply the <em>DestinationRule</em></h4>
+<h4 id="_apply_the_destinationrule"><a class="anchor" href="#_apply_the_destinationrule"></a>Apply the <em>DestinationRule</em></h4>
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
@@ -2108,7 +1974,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_trigger_the_circuit_breaker"><a class="anchor" href="#_trigger_the_circuit_breaker"></a>9.4.2. Trigger the circuit breaker</h4>
+<h4 id="_trigger_the_circuit_breaker"><a class="anchor" href="#_trigger_the_circuit_breaker"></a>Trigger the circuit breaker</h4>
 <div class="paragraph">
 <p>Now lets execute the following command that opens 2 simultaneous connections (<code>-c 2</code>) and send 30 requests (<code>-n 30</code>).</p>
 </div>
@@ -2160,7 +2026,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remove_fortio"><a class="anchor" href="#_remove_fortio"></a>9.5. Remove fortio</h3>
+<h3 id="_remove_fortio"><a class="anchor" href="#_remove_fortio"></a>Remove fortio</h3>
 <div class="paragraph">
 <p>Execute the following command to remove <code>fortio</code> from your namespace:</p>
 </div>
@@ -2171,7 +2037,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remove_httpbin_2"><a class="anchor" href="#_remove_httpbin_2"></a>9.6. Remove httpbin</h3>
+<h3 id="_remove_httpbin_2"><a class="anchor" href="#_remove_httpbin_2"></a>Remove httpbin</h3>
 <div class="paragraph">
 <p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in <a href="#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a> as it will be reused.</p>
 </div>
@@ -2186,10 +2052,10 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_7_mirroring_and_dark_launches"><a class="anchor" href="#_lab_7_mirroring_and_dark_launches"></a>10. Lab 7 - Mirroring and Dark Launches</h2>
+<h2 id="_lab_7_mirroring_and_dark_launches"><a class="anchor" href="#_lab_7_mirroring_and_dark_launches"></a>Lab 7 - Mirroring and Dark Launches</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_8"><a class="anchor" href="#_introduction_8"></a>10.1. Introduction</h3>
+<h3 id="_introduction_8"><a class="anchor" href="#_introduction_8"></a>Introduction</h3>
 <div class="paragraph">
 <p>Traffic mirroring, also called shadowing, is a powerful concept that allows feature teams to bring changes to production with as little risk as possible.</p>
 </div>
@@ -2201,7 +2067,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deploy_bookinfo_5"><a class="anchor" href="#_deploy_bookinfo_5"></a>10.2. Deploy Bookinfo</h3>
+<h3 id="_deploy_bookinfo_5"><a class="anchor" href="#_deploy_bookinfo_5"></a>Deploy Bookinfo</h3>
 <div class="paragraph">
 <p>Deploy the application in your namespace:</p>
 </div>
@@ -2234,7 +2100,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_mirroring_traffic_to_v2"><a class="anchor" href="#_mirroring_traffic_to_v2"></a>10.3. Mirroring traffic to v2</h3>
+<h3 id="_mirroring_traffic_to_v2"><a class="anchor" href="#_mirroring_traffic_to_v2"></a>Mirroring traffic to v2</h3>
 <div class="paragraph">
 <p>The following <em>VirtualService</em> sends 100% of the traffic to <em>reviews:v1</em>. The last stanza specifies that you want to mirror to the <em>reviews:v2</em> service:</p>
 </div>
@@ -2299,7 +2165,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remove_bookinfo_6"><a class="anchor" href="#_remove_bookinfo_6"></a>10.4. Remove Bookinfo</h3>
+<h3 id="_remove_bookinfo_6"><a class="anchor" href="#_remove_bookinfo_6"></a>Remove Bookinfo</h3>
 <div class="paragraph">
 <p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in <a href="#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a> as it will be reused.</p>
 </div>
@@ -2314,10 +2180,10 @@ spec:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_8_egress_gateways"><a class="anchor" href="#_lab_8_egress_gateways"></a>11. Lab 8 - Egress Gateways</h2>
+<h2 id="_lab_8_egress_gateways"><a class="anchor" href="#_lab_8_egress_gateways"></a>Lab 8 - Egress Gateways</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_9"><a class="anchor" href="#_introduction_9"></a>11.1. Introduction</h3>
+<h3 id="_introduction_9"><a class="anchor" href="#_introduction_9"></a>Introduction</h3>
 <div class="paragraph">
 <p>In this lab you are going to learn how to configure OpenShift Service Mesh to access external services from inside the applications.</p>
 </div>
@@ -2338,7 +2204,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_accessing_an_external_service"><a class="anchor" href="#_accessing_an_external_service"></a>11.2. Accessing an external service</h3>
+<h3 id="_accessing_an_external_service"><a class="anchor" href="#_accessing_an_external_service"></a>Accessing an external service</h3>
 <div class="paragraph">
 <p>At this point you can test wether you can query a service outside the mesh.</p>
 </div>
@@ -2406,7 +2272,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_service_entry"><a class="anchor" href="#_service_entry"></a>11.3. Service Entry</h3>
+<h3 id="_service_entry"><a class="anchor" href="#_service_entry"></a>Service Entry</h3>
 <div class="paragraph">
 <p>As stated before, in a restrictive state we need to add any external service to Istio&#8217;s internal registry.</p>
 </div>
@@ -2476,7 +2342,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_egress_gateway"><a class="anchor" href="#_egress_gateway"></a>11.4. Egress Gateway</h3>
+<h3 id="_egress_gateway"><a class="anchor" href="#_egress_gateway"></a>Egress Gateway</h3>
 <div class="paragraph">
 <p>In the previous example the external services are called directly from the client sidecar.</p>
 </div>
@@ -2622,7 +2488,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remove_everything"><a class="anchor" href="#_remove_everything"></a>11.5. Remove everything</h3>
+<h3 id="_remove_everything"><a class="anchor" href="#_remove_everything"></a>Remove everything</h3>
 <div class="paragraph">
 <p>Before starting the next lab, remove everything you have created in your namespace:</p>
 </div>
@@ -2638,10 +2504,10 @@ oc delete -f lab8/github-egress-virtualservice.yaml -n ${OCP_NAMESPACE}</code></
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_9_grpc_routing"><a class="anchor" href="#_lab_9_grpc_routing"></a>12. Lab 9 - gRPC Routing</h2>
+<h2 id="_lab_9_grpc_routing"><a class="anchor" href="#_lab_9_grpc_routing"></a>Lab 9 - gRPC Routing</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_10"><a class="anchor" href="#_introduction_10"></a>12.1. Introduction</h3>
+<h3 id="_introduction_10"><a class="anchor" href="#_introduction_10"></a>Introduction</h3>
 <div class="paragraph">
 <p>Many new gRPC users are surprised to find that Kubernetes&#8217;s default load balancing often doesn&#8217;t work out of the box with gRPC.</p>
 </div>
@@ -2662,7 +2528,7 @@ oc delete -f lab8/github-egress-virtualservice.yaml -n ${OCP_NAMESPACE}</code></
 </div>
 </div>
 <div class="sect2">
-<h3 id="_grpc_demo_without_istio"><a class="anchor" href="#_grpc_demo_without_istio"></a>12.2. gRPC demo without Istio</h3>
+<h3 id="_grpc_demo_without_istio"><a class="anchor" href="#_grpc_demo_without_istio"></a>gRPC demo without Istio</h3>
 <div class="paragraph">
 <p>In this lab you are going to deploy a gRPC demo scenario composed in four micro-services.</p>
 </div>
@@ -2757,7 +2623,7 @@ oc process -f lab9/grpc-demo.yaml \
 </div>
 </div>
 <div class="sect2">
-<h3 id="_grpc_demo_with_istio"><a class="anchor" href="#_grpc_demo_with_istio"></a>12.3. gRPC demo with Istio</h3>
+<h3 id="_grpc_demo_with_istio"><a class="anchor" href="#_grpc_demo_with_istio"></a>gRPC demo with Istio</h3>
 <div class="paragraph">
 <p>You are going to test the same scenario but now using Istio. First, deploy the gRPC services and the ingress <em>Route</em>:</p>
 </div>
@@ -2836,7 +2702,7 @@ oc process -f lab9/grpc-demo.yaml \
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remove_everything_2"><a class="anchor" href="#_remove_everything_2"></a>12.4. Remove everything</h3>
+<h3 id="_remove_everything_2"><a class="anchor" href="#_remove_everything_2"></a>Remove everything</h3>
 <div class="paragraph">
 <p>After you have completed the lab you can remove everything:</p>
 </div>

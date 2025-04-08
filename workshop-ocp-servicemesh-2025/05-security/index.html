@@ -244,64 +244,6 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Service Mesh Security - Labs</h1>
-<div id="toc" class="toc">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel0">
-<li><a href="#_lab_0_warming_up">Lab 0 - Warming up</a>
-<ul class="sectlevel1">
-<li><a href="#_access_to_openshift_web_console">1. Access to Openshift Web Console</a>
-<ul class="sectlevel2">
-<li><a href="#_download_the_cli">1.1. Download the CLI</a></li>
-<li><a href="#_access_to_openshift_using_oc">1.2. Access to Openshift using <code>oc</code></a></li>
-</ul>
-</li>
-<li><a href="#_access_to_service_mesh_console_kiali">2. Access to Service Mesh Console: Kiali</a></li>
-</ul>
-</li>
-<li><a href="#_lab_1_setup_demo_applications">Lab 1 - Setup demo applications</a>
-<ul class="sectlevel1">
-<li><a href="#_deploy_services_in_apps_ns1">1. Deploy services in $APPS_NS1</a></li>
-<li><a href="#_deploy_services_in_apps_ns2">2. Deploy services in $APPS_NS2</a></li>
-</ul>
-</li>
-<li><a href="#_lab_2_peerauthentication">Lab 2 - PeerAuthentication</a>
-<ul class="sectlevel1">
-<li><a href="#_enforce_mtls_in_our_namespace_apps_ns1">1. Enforce mTLS in our namespace $APPS_NS1</a></li>
-<li><a href="#_configure_mtls_in_our_services_under_apps_ns1">2. Configure mTLS in our services under $APPS_NS1</a></li>
-<li><a href="#_enforce_mtls_and_configure_services_in_apps_ns2">3. Enforce mTLS and configure services in $APPS_NS2</a></li>
-<li><a href="#_optional_add_namespace_wide_destinationrule_for_mtls">4. Optional: add namespace-wide DestinationRule for mTLS</a></li>
-</ul>
-</li>
-<li><a href="#_lab_3_authorization_part_1">Lab 3 - Authorization: part 1</a>
-<ul class="sectlevel1">
-<li><a href="#_brief_reminder_about_authorizationpolicy">1. Brief reminder about AuthorizationPolicy</a></li>
-<li><a href="#_deny_all_policy">2. Deny all policy</a></li>
-<li><a href="#_allow_access_from_dedicated_ingress_gateway_to_productpage_service">3. Allow access from dedicated Ingress Gateway to Productpage service</a></li>
-<li><a href="#_allow_access_between_services_using_principals">4. Allow access between services using principals</a></li>
-<li><a href="#_extra_check_access_from_independant_pod">5. Extra check: access from independant pod</a></li>
-<li><a href="#_allow_access_between_services_from_different_namespaces">6. Allow access between services from different namespaces</a></li>
-</ul>
-</li>
-<li><a href="#_lab_4_requestauthentication">Lab 4 - RequestAuthentication</a>
-<ul class="sectlevel1">
-<li><a href="#_clean_up_resources_from_previous_lab">1. Clean up resources from previous lab</a></li>
-<li><a href="#_enforce_jwt_authentication">2. Enforce JWT authentication</a></li>
-</ul>
-</li>
-<li><a href="#_lab_5_authorization_part_2">Lab 5 - Authorization: part 2</a>
-<ul class="sectlevel1">
-<li><a href="#_extra_oauth_flow_implementation">1. Extra: OAuth flow implementation</a>
-<ul class="sectlevel2">
-<li><a href="#_deploy_an_oauth2_proxy_helper">1.1. Deploy an OAuth2 proxy (helper)</a></li>
-</ul>
-</li>
-<li><a href="#_configure_requestauthentication_in_apps_ns1">2. Configure RequestAuthentication in $APPS_NS1</a></li>
-<li><a href="#_limit_access_based_on_hosted_domain_claim">3. Limit access based on hosted domain claim</a></li>
-<li><a href="#_limit_access_to_your_user_only">4. Limit access to your user only</a></li>
-</ul>
-</li>
-</ul>
-</div>
 <h1 id="_lab_0_warming_up" class="sect0"><a class="anchor" href="#_lab_0_warming_up"></a>Lab 0 - Warming up</h1>
 <div class="admonitionblock warning">
 <table>

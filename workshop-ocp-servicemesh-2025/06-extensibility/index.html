@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Red Hat OpenShift Service Mesh: Extensibility Labs :: WorkShop - Service Mesh on OCP 2025</title>
+    <title>{rhossm}: Extensibility Labs :: WorkShop - Service Mesh on OCP 2025</title>
     <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/06-extensibility/index.html">
     <link rel="prev" href="../05-security/index.html">
     <meta name="generator" content="Antora 3.0.0">
@@ -242,82 +242,9 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Red Hat OpenShift Service Mesh: Extensibility Labs</h1>
-<div id="toc" class="toc">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_introduction">1. Introduction</a></li>
-<li><a href="#_setup">2. Setup</a>
-<ul class="sectlevel2">
-<li><a href="#_prerequisites">2.1. Prerequisites</a></li>
-<li><a href="#_laboratory">2.2. Laboratory</a>
-<ul class="sectlevel3">
-<li><a href="#_laboratory_parameters">2.2.1. Laboratory Parameters</a></li>
-<li><a href="#_openshift_cli">2.2.2. OpenShift CLI</a></li>
-<li><a href="#_web_console">2.2.3. Web Console</a></li>
-</ul>
-</li>
-<li><a href="#_github_repository">2.3. GitHub Repository</a></li>
-</ul>
-</li>
-<li><a href="#_sample_applications">3. Sample Applications</a>
-<ul class="sectlevel2">
-<li><a href="#_httpbin">3.1. httpbin</a></li>
-</ul>
-</li>
-<li><a href="#_lab_1_envoy_filters">4. Lab 1 - Envoy Filters</a>
-<ul class="sectlevel2">
-<li><a href="#_introduction_2">4.1. Introduction</a>
-<ul class="sectlevel3">
-<li><a href="#_envoyfilter_object">4.1.1. <em>EnvoyFilter</em> Object</a></li>
-<li><a href="#_lab">4.1.2. Lab</a></li>
-</ul>
-</li>
-<li><a href="#_deploy_httpbin_using_an_ingress_gateway">4.2. Deploy httpbin using an Ingress Gateway</a></li>
-<li><a href="#_test_httpbin_with_a_custom_header">4.3. Test httpbin with a custom header</a></li>
-<li><a href="#_add_an_envoyfilter_to_create_a_new_header">4.4. Add an <em>EnvoyFilter</em> to create a new header</a></li>
-<li><a href="#_add_an_envoyfilter_to_remove_the_old_header">4.5. Add an <em>EnvoyFilter</em> to remove the old header</a></li>
-<li><a href="#_create_a_single_envoyfilter_to_replace_the_header">4.6. Create a single <em>EnvoyFilter</em> to replace the header</a></li>
-<li><a href="#_remove_filters">4.7. Remove Filters</a></li>
-<li><a href="#_remove_httpbin">4.8. Remove httpbin</a></li>
-</ul>
-</li>
-<li><a href="#_lab_2_webassembly_extensions">5. Lab 2 - WebAssembly Extensions</a>
-<ul class="sectlevel2">
-<li><a href="#_introduction_3">5.1. Introduction</a>
-<ul class="sectlevel3">
-<li><a href="#_webassembly">5.1.1. WebAssembly</a></li>
-<li><a href="#_envoy_wasm_filter">5.1.2. Envoy Wasm filter</a></li>
-<li><a href="#_openshift_service_mesh_extensions">5.1.3. OpenShift Service Mesh Extensions</a>
-<ul class="sectlevel4">
-<li><a href="#_supported_languages">5.1.3.1. Supported languages</a></li>
-<li><a href="#_container_format">5.1.3.2. Container Format</a></li>
-<li><a href="#_deploying_extensions">5.1.3.3. Deploying extensions</a></li>
-<li><a href="#_support">5.1.3.4. Support</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_modify_the_headers_with_a_webassembly_filter">5.2. Modify the headers with a WebAssembly filter</a>
-<ul class="sectlevel3">
-<li><a href="#_deploy_httpbin">5.2.1. Deploy httpbin</a></li>
-<li><a href="#_apply_the_webassembly_plugin">5.2.2. Apply the WebAssembly plugin</a></li>
-<li><a href="#_remove_the_extension">5.2.3. Remove the extension</a></li>
-</ul>
-</li>
-<li><a href="#_modify_the_body_with_a_webassembly_filter">5.3. Modify the body with a WebAssembly filter</a>
-<ul class="sectlevel3">
-<li><a href="#_apply_the_webassembly_plugin_2">5.3.1. Apply the WebAssembly plugin</a></li>
-<li><a href="#_remove_the_extension_2">5.3.2. Remove the extension</a></li>
-<li><a href="#_remove_httpbin_2">5.3.3. Remove httpbin</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
+<h1 class="page">{rhossm}: Extensibility Labs</h1>
 <div class="sect1">
-<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>1. Introduction</h2>
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The objective of these labs is to get a basic understanding of the following topics:</p>
@@ -335,10 +262,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_setup"><a class="anchor" href="#_setup"></a>2. Setup</h2>
+<h2 id="_setup"><a class="anchor" href="#_setup"></a>Setup</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>2.1. Prerequisites</h3>
+<h3 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h3>
 <div class="paragraph">
 <p>During this tutorial, it will be required to work with different tools for running the exercises included. Please, install the following software:</p>
 </div>
@@ -397,7 +324,7 @@ You must have an up-to-date version of the <em>oc</em> command.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_laboratory"><a class="anchor" href="#_laboratory"></a>2.2. Laboratory</h3>
+<h3 id="_laboratory"><a class="anchor" href="#_laboratory"></a>Laboratory</h3>
 <div class="paragraph">
 <p>This laboratory is based on the following technologies:</p>
 </div>
@@ -418,7 +345,7 @@ You must have an up-to-date version of the <em>oc</em> command.
 <p>The main objective of deploying this application in OpenShift Container Platform is to understand how to extend the <em>Istio</em> functionality by using <em>EnvoyFilters</em> and WebAssembly Extensions in OpenShift Service Mesh.</p>
 </div>
 <div class="sect3">
-<h4 id="_laboratory_parameters"><a class="anchor" href="#_laboratory_parameters"></a>2.2.1. Laboratory Parameters</h4>
+<h4 id="_laboratory_parameters"><a class="anchor" href="#_laboratory_parameters"></a>Laboratory Parameters</h4>
 <div class="paragraph">
 <p>The Instructor will provide OpenShift Container Platform users, credentials and other important parameters at the beginning of this lab.</p>
 </div>
@@ -525,7 +452,7 @@ From now on, all labs will assume these exports are defined in your shell enviro
 </div>
 </div>
 <div class="sect3">
-<h4 id="_openshift_cli"><a class="anchor" href="#_openshift_cli"></a>2.2.2. OpenShift CLI</h4>
+<h4 id="_openshift_cli"><a class="anchor" href="#_openshift_cli"></a>OpenShift CLI</h4>
 <div class="paragraph">
 <p>The OpenShift Container Platform CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system.</p>
 </div>
@@ -565,7 +492,7 @@ Please, pay special attention to the <em>oc</em> tool as you will use it many ti
 </div>
 </div>
 <div class="sect3">
-<h4 id="_web_console"><a class="anchor" href="#_web_console"></a>2.2.3. Web Console</h4>
+<h4 id="_web_console"><a class="anchor" href="#_web_console"></a>Web Console</h4>
 <div class="paragraph">
 <p>In addition, you can access the OpenShift Container Platform Web Console using your web browser. Use your credentials to login:</p>
 </div>
@@ -585,7 +512,7 @@ Please, pay special attention to the <em>oc</em> tool as you will use it many ti
 </div>
 </div>
 <div class="sect2">
-<h3 id="_github_repository"><a class="anchor" href="#_github_repository"></a>2.3. GitHub Repository</h3>
+<h3 id="_github_repository"><a class="anchor" href="#_github_repository"></a>GitHub Repository</h3>
 <div class="paragraph">
 <p>All files used in the labs are located in a GitHub repository for your convenience.</p>
 </div>
@@ -627,10 +554,10 @@ From now on, all labs will assume you are located in this directory.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_sample_applications"><a class="anchor" href="#_sample_applications"></a>3. Sample Applications</h2>
+<h2 id="_sample_applications"><a class="anchor" href="#_sample_applications"></a>Sample Applications</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_httpbin"><a class="anchor" href="#_httpbin"></a>3.1. httpbin</h3>
+<h3 id="_httpbin"><a class="anchor" href="#_httpbin"></a>httpbin</h3>
 <div class="paragraph">
 <p>These labs will use <em>httpbin</em> as an HTTP request and response service. It offers many tools to proof test HTTP.</p>
 </div>
@@ -641,10 +568,10 @@ From now on, all labs will assume you are located in this directory.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_1_envoy_filters"><a class="anchor" href="#_lab_1_envoy_filters"></a>4. Lab 1 - Envoy Filters</h2>
+<h2 id="_lab_1_envoy_filters"><a class="anchor" href="#_lab_1_envoy_filters"></a>Lab 1 - Envoy Filters</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_2"><a class="anchor" href="#_introduction_2"></a>4.1. Introduction</h3>
+<h3 id="_introduction_2"><a class="anchor" href="#_introduction_2"></a>Introduction</h3>
 <div class="paragraph">
 <p>Envoy exposes a set of APIs that let users and control planes statically and dynamically configure the proxy. By configuring a Listener, users can enable the flow of traffic through the proxy, and then enhance the data flow using several Filters.</p>
 </div>
@@ -655,7 +582,7 @@ From now on, all labs will assume you are located in this directory.
 <p>Envoy provides numerous built-in filters, and it also provides APIs to let you create your own.</p>
 </div>
 <div class="sect3">
-<h4 id="_envoyfilter_object"><a class="anchor" href="#_envoyfilter_object"></a>4.1.1. <em>EnvoyFilter</em> Object</h4>
+<h4 id="_envoyfilter_object"><a class="anchor" href="#_envoyfilter_object"></a><em>EnvoyFilter</em> Object</h4>
 <div class="paragraph">
 <p>Istio <em>EnvoyFilter</em> objects provide a mechanism to customize the Envoy configuration generated by Istio Pilot.</p>
 </div>
@@ -685,14 +612,14 @@ From now on, all labs will assume you are located in this directory.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lab"><a class="anchor" href="#_lab"></a>4.1.2. Lab</h4>
+<h4 id="_lab"><a class="anchor" href="#_lab"></a>Lab</h4>
 <div class="paragraph">
 <p>In the following lab you will deploy <a href="https://httpbin.org" target="_blank" rel="noopener">httpbin.org</a> in OpenShift Service Mesh and then modify its behavior by adding some <em>EnvoyFilters</em> to manipulate headers.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_deploy_httpbin_using_an_ingress_gateway"><a class="anchor" href="#_deploy_httpbin_using_an_ingress_gateway"></a>4.2. Deploy httpbin using an Ingress Gateway</h3>
+<h3 id="_deploy_httpbin_using_an_ingress_gateway"><a class="anchor" href="#_deploy_httpbin_using_an_ingress_gateway"></a>Deploy httpbin using an Ingress Gateway</h3>
 <div class="paragraph">
 <p>The following steps will deploy all necessary objects to run <em>httpbin</em> in OpenShift Service Mesh.</p>
 </div>
@@ -746,7 +673,7 @@ From now on, all labs will assume you are located in this directory.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_test_httpbin_with_a_custom_header"><a class="anchor" href="#_test_httpbin_with_a_custom_header"></a>4.3. Test httpbin with a custom header</h3>
+<h3 id="_test_httpbin_with_a_custom_header"><a class="anchor" href="#_test_httpbin_with_a_custom_header"></a>Test httpbin with a custom header</h3>
 <div class="paragraph">
 <p>The <em>httpbin</em> app offers and endpoint that returns anything passed in requests data.</p>
 </div>
@@ -767,7 +694,7 @@ From now on, all labs will assume you are located in this directory.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_an_envoyfilter_to_create_a_new_header"><a class="anchor" href="#_add_an_envoyfilter_to_create_a_new_header"></a>4.4. Add an <em>EnvoyFilter</em> to create a new header</h3>
+<h3 id="_add_an_envoyfilter_to_create_a_new_header"><a class="anchor" href="#_add_an_envoyfilter_to_create_a_new_header"></a>Add an <em>EnvoyFilter</em> to create a new header</h3>
 <div class="paragraph">
 <p>Let&#8217;s suppose that you need to manipulate this custom header in OpenShift Service Mesh before the request reaches the actual <em>httpbin</em> service. This is something that cannot be performed with regular Istio objects but can be performed with an <em>EnvoyFilter</em>.</p>
 </div>
@@ -933,7 +860,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST lo
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_an_envoyfilter_to_remove_the_old_header"><a class="anchor" href="#_add_an_envoyfilter_to_remove_the_old_header"></a>4.5. Add an <em>EnvoyFilter</em> to remove the old header</h3>
+<h3 id="_add_an_envoyfilter_to_remove_the_old_header"><a class="anchor" href="#_add_an_envoyfilter_to_remove_the_old_header"></a>Add an <em>EnvoyFilter</em> to remove the old header</h3>
 <div class="paragraph">
 <p>Now that you have created a new header inside an <em>EnvoyFilter</em> based on the value of another one, let&#8217;s suppose that you need to remove the old header before reaching the actual <em>httpbin</em> service.</p>
 </div>
@@ -1051,7 +978,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST lo
 </div>
 </div>
 <div class="sect2">
-<h3 id="_create_a_single_envoyfilter_to_replace_the_header"><a class="anchor" href="#_create_a_single_envoyfilter_to_replace_the_header"></a>4.6. Create a single <em>EnvoyFilter</em> to replace the header</h3>
+<h3 id="_create_a_single_envoyfilter_to_replace_the_header"><a class="anchor" href="#_create_a_single_envoyfilter_to_replace_the_header"></a>Create a single <em>EnvoyFilter</em> to replace the header</h3>
 <div class="paragraph">
 <p>The previous examples show how to create two different <em>EnvoyFilters</em> to create and remove headers.</p>
 </div>
@@ -1152,7 +1079,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remove_filters"><a class="anchor" href="#_remove_filters"></a>4.7. Remove Filters</h3>
+<h3 id="_remove_filters"><a class="anchor" href="#_remove_filters"></a>Remove Filters</h3>
 <div class="paragraph">
 <p>Make sure you remove any <em>EnvoyFilter</em> you created before moving to the next lab:</p>
 </div>
@@ -1165,7 +1092,7 @@ oc delete -f lab1/envoyfilter-replace-header.yaml -n ${OCP_NAMESPACE}</code></pr
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remove_httpbin"><a class="anchor" href="#_remove_httpbin"></a>4.8. Remove httpbin</h3>
+<h3 id="_remove_httpbin"><a class="anchor" href="#_remove_httpbin"></a>Remove httpbin</h3>
 <div class="paragraph">
 <p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in the first lab.</p>
 </div>
@@ -1180,12 +1107,12 @@ oc delete -f lab1/envoyfilter-replace-header.yaml -n ${OCP_NAMESPACE}</code></pr
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_2_webassembly_extensions"><a class="anchor" href="#_lab_2_webassembly_extensions"></a>5. Lab 2 - WebAssembly Extensions</h2>
+<h2 id="_lab_2_webassembly_extensions"><a class="anchor" href="#_lab_2_webassembly_extensions"></a>Lab 2 - WebAssembly Extensions</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_introduction_3"><a class="anchor" href="#_introduction_3"></a>5.1. Introduction</h3>
+<h3 id="_introduction_3"><a class="anchor" href="#_introduction_3"></a>Introduction</h3>
 <div class="sect3">
-<h4 id="_webassembly"><a class="anchor" href="#_webassembly"></a>5.1.1. WebAssembly</h4>
+<h4 id="_webassembly"><a class="anchor" href="#_webassembly"></a>WebAssembly</h4>
 <div class="paragraph">
 <p>WebAssembly (abbreviated Wasm) is a binary instruction format for a stack-based virtual machine.</p>
 </div>
@@ -1203,7 +1130,7 @@ oc delete -f lab1/envoyfilter-replace-header.yaml -n ${OCP_NAMESPACE}</code></pr
 </div>
 </div>
 <div class="sect3">
-<h4 id="_envoy_wasm_filter"><a class="anchor" href="#_envoy_wasm_filter"></a>5.1.2. Envoy Wasm filter</h4>
+<h4 id="_envoy_wasm_filter"><a class="anchor" href="#_envoy_wasm_filter"></a>Envoy Wasm filter</h4>
 <div class="paragraph">
 <p>An Envoy Wasm filter is a filter that <em>translates</em> Envoy internal C++ API to a Wasm engine via the Wasm ABI. Envoy supports Wasm filters for both the network pipeline as well as the HTTP pipeline (HTTP filters). It’s basically a thin plugin that delegates to a Wasm VM and Wasm module which means you can then write logic for the filter with Wasm (theoretically any language, not just C++).</p>
 </div>
@@ -1218,7 +1145,7 @@ oc delete -f lab1/envoyfilter-replace-header.yaml -n ${OCP_NAMESPACE}</code></pr
 </div>
 </div>
 <div class="sect3">
-<h4 id="_openshift_service_mesh_extensions"><a class="anchor" href="#_openshift_service_mesh_extensions"></a>5.1.3. OpenShift Service Mesh Extensions</h4>
+<h4 id="_openshift_service_mesh_extensions"><a class="anchor" href="#_openshift_service_mesh_extensions"></a>OpenShift Service Mesh Extensions</h4>
 <div class="paragraph">
 <p>You can use WebAssembly plugins to add new features directly into the Red Hat OpenShift Service Mesh proxies, allowing you to move even more common functionality out of your applications, and implement them in a single language that compiles to WebAssembly bytecode.</p>
 </div>
@@ -1245,7 +1172,7 @@ oc delete -f lab1/envoyfilter-replace-header.yaml -n ${OCP_NAMESPACE}</code></pr
 <p>There are two parts to writing a OpenShift Service Mesh extension: you’ll have to write your extension using an SDK that exposes the proxy-wasm API and compile it to a WebAssembly module, and then package it into a container.</p>
 </div>
 <div class="sect4">
-<h5 id="_supported_languages"><a class="anchor" href="#_supported_languages"></a>5.1.3.1. Supported languages</h5>
+<h5 id="_supported_languages"><a class="anchor" href="#_supported_languages"></a>Supported languages</h5>
 <div class="paragraph">
 <p>You can use any language that compiles to WebAssembly bytecode to write a Red Hat OpenShift Service Mesh extension, but the following languages have existing SDKs that expose the proxy-wasm API so that it can be consumed directly.</p>
 </div>
@@ -1299,13 +1226,13 @@ In these labs, two WebAssembly Extensions written in Rust will be used.
 </div>
 </div>
 <div class="sect4">
-<h5 id="_container_format"><a class="anchor" href="#_container_format"></a>5.1.3.2. Container Format</h5>
+<h5 id="_container_format"><a class="anchor" href="#_container_format"></a>Container Format</h5>
 <div class="paragraph">
 <p>You must have a .wasm file containing the bytecode of your WebAssembly module, and a manifest.yaml file in the root of the container filesystem to make your container image a valid extension image.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_deploying_extensions"><a class="anchor" href="#_deploying_extensions"></a>5.1.3.3. Deploying extensions</h5>
+<h5 id="_deploying_extensions"><a class="anchor" href="#_deploying_extensions"></a>Deploying extensions</h5>
 <div class="paragraph">
 <p>OpenShift Service Mesh extensions can be enabled using the <em>WasmPlugin</em> resource. The following snippet is an example resource:</p>
 </div>
@@ -1330,7 +1257,7 @@ spec:
 </div>
 </div>
 <div class="sect4">
-<h5 id="_support"><a class="anchor" href="#_support"></a>5.1.3.4. Support</h5>
+<h5 id="_support"><a class="anchor" href="#_support"></a>Support</h5>
 <div class="paragraph">
 <p>Red Hat OpenShift Service Mesh 2.0 introduces support for WebAssembly extensions to Envoy Proxy. For this version WebAssembly extensions are introduced as a Tech Preview feature.</p>
 </div>
@@ -1344,7 +1271,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_modify_the_headers_with_a_webassembly_filter"><a class="anchor" href="#_modify_the_headers_with_a_webassembly_filter"></a>5.2. Modify the headers with a WebAssembly filter</h3>
+<h3 id="_modify_the_headers_with_a_webassembly_filter"><a class="anchor" href="#_modify_the_headers_with_a_webassembly_filter"></a>Modify the headers with a WebAssembly filter</h3>
 <div class="paragraph">
 <p>In this lab you will apply a previously developed WebAssembly filter to your httpbin application.</p>
 </div>
@@ -1464,7 +1391,7 @@ spec:
 </table>
 </div>
 <div class="sect3">
-<h4 id="_deploy_httpbin"><a class="anchor" href="#_deploy_httpbin"></a>5.2.1. Deploy httpbin</h4>
+<h4 id="_deploy_httpbin"><a class="anchor" href="#_deploy_httpbin"></a>Deploy httpbin</h4>
 <div class="paragraph">
 <p>Deploy the application in your namespace:</p>
 </div>
@@ -1497,7 +1424,7 @@ spec:
 </div>
 </div>
 <div class="sect3">
-<h4 id="_apply_the_webassembly_plugin"><a class="anchor" href="#_apply_the_webassembly_plugin"></a>5.2.2. Apply the WebAssembly plugin</h4>
+<h4 id="_apply_the_webassembly_plugin"><a class="anchor" href="#_apply_the_webassembly_plugin"></a>Apply the WebAssembly plugin</h4>
 <div class="paragraph">
 <p>Now that you have httpbin running you can apply a WebAssembly filter.</p>
 </div>
@@ -1552,7 +1479,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_remove_the_extension"><a class="anchor" href="#_remove_the_extension"></a>5.2.3. Remove the extension</h4>
+<h4 id="_remove_the_extension"><a class="anchor" href="#_remove_the_extension"></a>Remove the extension</h4>
 <div class="paragraph">
 <p>Remove the WebAssembly plugin before starting the next example:</p>
 </div>
@@ -1564,7 +1491,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_modify_the_body_with_a_webassembly_filter"><a class="anchor" href="#_modify_the_body_with_a_webassembly_filter"></a>5.3. Modify the body with a WebAssembly filter</h3>
+<h3 id="_modify_the_body_with_a_webassembly_filter"><a class="anchor" href="#_modify_the_body_with_a_webassembly_filter"></a>Modify the body with a WebAssembly filter</h3>
 <div class="paragraph">
 <p>As with the previous example, in this lab you will apply a previously developed WebAssembly filter to your httpbin application. In this case, the extension will modify the body of the response message.</p>
 </div>
@@ -1616,7 +1543,7 @@ spec:
 </table>
 </div>
 <div class="sect3">
-<h4 id="_apply_the_webassembly_plugin_2"><a class="anchor" href="#_apply_the_webassembly_plugin_2"></a>5.3.1. Apply the WebAssembly plugin</h4>
+<h4 id="_apply_the_webassembly_plugin_2"><a class="anchor" href="#_apply_the_webassembly_plugin_2"></a>Apply the WebAssembly plugin</h4>
 <div class="paragraph">
 <p>Now you can apply the WebAssembly plugin.</p>
 </div>
@@ -1671,7 +1598,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_remove_the_extension_2"><a class="anchor" href="#_remove_the_extension_2"></a>5.3.2. Remove the extension</h4>
+<h4 id="_remove_the_extension_2"><a class="anchor" href="#_remove_the_extension_2"></a>Remove the extension</h4>
 <div class="paragraph">
 <p>Remove the WebAssembly plugin to finish the lab:</p>
 </div>
@@ -1682,7 +1609,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_remove_httpbin_2"><a class="anchor" href="#_remove_httpbin_2"></a>5.3.3. Remove httpbin</h4>
+<h4 id="_remove_httpbin_2"><a class="anchor" href="#_remove_httpbin_2"></a>Remove httpbin</h4>
 <div class="paragraph">
 <p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in the first lab.</p>
 </div>
