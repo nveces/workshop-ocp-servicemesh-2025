@@ -195,7 +195,7 @@ NOTE: Look at the number of containers in each microservice, it must contains 2 
 :jumps: 10000
 :seconds: 1
 
-include::./../..//04-troubleshooting/check_jumpapp_mesh.adoc[]
+include::./../../partials/04-troubleshooting/check_jumpapp_mesh.adoc[]
 
 
 [#03-kiali]

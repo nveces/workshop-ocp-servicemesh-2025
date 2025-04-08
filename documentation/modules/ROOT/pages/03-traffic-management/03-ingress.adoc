@@ -181,4 +181,4 @@ image:03-traffic-management/httpbin_curl.png[link=../_images/03-traffic-manageme
 .httpbin service through an {ig}
 image:03-traffic-management/ingress_httpbin.png[link=../_images/03-traffic-management/ingress_httpbin.png,window=_blank]
 
-include::./../..//03-traffic-management/remove_httpbin.adoc[leveloffset=+2]
+include::./../../partials/03-traffic-management/remove_httpbin.adoc[leveloffset=+2]
