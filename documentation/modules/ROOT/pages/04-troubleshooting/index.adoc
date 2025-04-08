@@ -2,7 +2,7 @@ include::./../_attributes.adoc[]
 
 = Welcome to Red Hat Service Mesh: Troubleshooting tutorial
 
-:toc: left
+//:toc: left
 :toc-title: Service Mesh Troubleshooting
 
 image:04-troubleshooting/logos.png[Envoy,600,200,link=../_images/04-troubleshooting/logos.png,window=_blank]
