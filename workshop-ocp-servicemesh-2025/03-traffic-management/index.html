@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>{rhossm}: Traffic Management Labs :: WorkShop - Service Mesh on OCP 2025</title>
+    <title>Red Hat OpenShift Service Mesh: Traffic Management Labs :: WorkShop - Service Mesh on OCP 2025</title>
     <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/03-traffic-management/index.html">
     <link rel="prev" href="../02-envoy-istio-control-plane/index.html">
     <link rel="next" href="../04-troubleshooting/index.html">
@@ -243,7 +243,141 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">{rhossm}: Traffic Management Labs</h1>
+<h1 class="page">Red Hat OpenShift Service Mesh: Traffic Management Labs</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_introduction">1. Introduction</a></li>
+<li><a href="#_setup">2. Setup</a>
+<ul class="sectlevel2">
+<li><a href="#_prerequisites">2.1. Prerequisites</a></li>
+<li><a href="#_laboratory">2.2. Laboratory</a>
+<ul class="sectlevel3">
+<li><a href="#_laboratory_parameters">2.2.1. Laboratory Parameters</a></li>
+<li><a href="#_openshift_cli">2.2.2. OpenShift CLI</a></li>
+<li><a href="#_web_console">2.2.3. Web Console</a></li>
+</ul>
+</li>
+<li><a href="#_gihub_repository">2.3. GiHub Repository</a></li>
+</ul>
+</li>
+<li><a href="#_sample_applications">3. Sample Applications</a>
+<ul class="sectlevel2">
+<li><a href="#_bookinfo">3.1. Bookinfo</a></li>
+<li><a href="#_httpbin">3.2. httpbin</a></li>
+</ul>
+</li>
+<li><a href="#_lab_1_ingress_gateways">4. Lab 1 - Ingress Gateways</a>
+<ul class="sectlevel2">
+<li><a href="#_introduction_2">4.1. Introduction</a>
+<ul class="sectlevel3">
+<li><a href="#_gateway">4.1.1. Gateway</a></li>
+<li><a href="#_virtual_service">4.1.2. Virtual Service</a></li>
+<li><a href="#_route">4.1.3. Route</a></li>
+</ul>
+</li>
+<li><a href="#_deploy_bookinfo_using_an_ingress_gateway">4.2. Deploy Bookinfo using an Ingress Gateway</a>
+<ul class="sectlevel3">
+<li><a href="#_remove_bookinfo">4.2.1. Remove Bookinfo</a></li>
+</ul>
+</li>
+<li><a href="#_deploy_httpbin_using_an_ingress_gateway">4.3. Deploy httpbin using an Ingress Gateway</a>
+<ul class="sectlevel3">
+<li><a href="#_remove_httpbin">4.3.1. Remove httpbin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_lab_2_requests_routing">5. Lab 2 - Requests Routing</a>
+<ul class="sectlevel2">
+<li><a href="#_introduction_3">5.1. Introduction</a>
+<ul class="sectlevel3">
+<li><a href="#_route_traffic_to_a_specific_version">5.1.1. Route traffic to a specific version</a></li>
+<li><a href="#_route_traffic_based_on_headers">5.1.2. Route traffic based on headers</a></li>
+</ul>
+</li>
+<li><a href="#_deploy_bookinfo">5.2. Deploy Bookinfo</a></li>
+<li><a href="#_route_traffic_to_version_2">5.3. Route traffic to version 2</a></li>
+<li><a href="#_route_traffic_based_on_headers_2">5.4. Route traffic based on headers</a></li>
+<li><a href="#_remove_bookinfo_2">5.5. Remove Bookinfo</a></li>
+</ul>
+</li>
+<li><a href="#_lab_3_traffic_shifting_and_weight_balancing">6. Lab 3 - Traffic Shifting and Weight Balancing</a>
+<ul class="sectlevel2">
+<li><a href="#_introduction_4">6.1. Introduction</a></li>
+<li><a href="#_deploy_bookinfo_2">6.2. Deploy Bookinfo</a></li>
+<li><a href="#_route_10_of_the_traffic_to_a_new_service">6.3. Route 10% of the traffic to a new service</a></li>
+<li><a href="#_route_half_the_traffic_to_each_service">6.4. Route half the traffic to each service</a></li>
+<li><a href="#_route_all_the_traffic_to_the_new_service">6.5. Route all the traffic to the new service</a></li>
+<li><a href="#_remove_bookinfo_3">6.6. Remove Bookinfo</a></li>
+</ul>
+</li>
+<li><a href="#_lab_4_fault_injection">7. Lab 4 - Fault Injection</a>
+<ul class="sectlevel2">
+<li><a href="#_introduction_5">7.1. Introduction</a>
+<ul class="sectlevel3">
+<li><a href="#_delay">7.1.1. Delay</a></li>
+<li><a href="#_abort">7.1.2. Abort</a></li>
+</ul>
+</li>
+<li><a href="#_deploy_bookinfo_3">7.2. Deploy Bookinfo</a></li>
+<li><a href="#_inject_delay">7.3. Inject delay</a></li>
+<li><a href="#_inject_abort">7.4. Inject abort</a></li>
+<li><a href="#_remove_bookinfo_4">7.5. Remove Bookinfo</a></li>
+</ul>
+</li>
+<li><a href="#_lab_5_requests_timeouts">8. Lab 5 - Requests Timeouts</a>
+<ul class="sectlevel2">
+<li><a href="#_introduction_6">8.1. Introduction</a></li>
+<li><a href="#_deploy_bookinfo_4">8.2. Deploy Bookinfo</a></li>
+<li><a href="#_adding_a_delay_to_ratings_service">8.3. Adding a delay to ratings service</a></li>
+<li><a href="#_adding_a_timeout_to_reviews_service">8.4. Adding a timeout to reviews service</a></li>
+<li><a href="#_hardcoded_timeout_in_productpage_service">8.5. Hardcoded timeout in productpage service</a></li>
+<li><a href="#_remove_bookinfo_5">8.6. Remove Bookinfo</a></li>
+</ul>
+</li>
+<li><a href="#_lab_6_circuit_breaking">9. Lab 6 - Circuit Breaking</a>
+<ul class="sectlevel2">
+<li><a href="#_introduction_7">9.1. Introduction</a></li>
+<li><a href="#_deploy_httpbin">9.2. Deploy httpbin</a></li>
+<li><a href="#_deploy_fortio">9.3. Deploy fortio</a></li>
+<li><a href="#_test_the_circuit_breaking">9.4. Test the circuit breaking</a>
+<ul class="sectlevel3">
+<li><a href="#_apply_the_destinationrule">9.4.1. Apply the <em>DestinationRule</em></a></li>
+<li><a href="#_trigger_the_circuit_breaker">9.4.2. Trigger the circuit breaker</a></li>
+</ul>
+</li>
+<li><a href="#_remove_fortio">9.5. Remove fortio</a></li>
+<li><a href="#_remove_httpbin_2">9.6. Remove httpbin</a></li>
+</ul>
+</li>
+<li><a href="#_lab_7_mirroring_and_dark_launches">10. Lab 7 - Mirroring and Dark Launches</a>
+<ul class="sectlevel2">
+<li><a href="#_introduction_8">10.1. Introduction</a></li>
+<li><a href="#_deploy_bookinfo_5">10.2. Deploy Bookinfo</a></li>
+<li><a href="#_mirroring_traffic_to_v2">10.3. Mirroring traffic to v2</a></li>
+<li><a href="#_remove_bookinfo_6">10.4. Remove Bookinfo</a></li>
+</ul>
+</li>
+<li><a href="#_lab_8_egress_gateways">11. Lab 8 - Egress Gateways</a>
+<ul class="sectlevel2">
+<li><a href="#_introduction_9">11.1. Introduction</a></li>
+<li><a href="#_accessing_an_external_service">11.2. Accessing an external service</a></li>
+<li><a href="#_service_entry">11.3. Service Entry</a></li>
+<li><a href="#_egress_gateway">11.4. Egress Gateway</a></li>
+<li><a href="#_remove_everything">11.5. Remove everything</a></li>
+</ul>
+</li>
+<li><a href="#_lab_9_grpc_routing">12. Lab 9 - gRPC Routing</a>
+<ul class="sectlevel2">
+<li><a href="#_introduction_10">12.1. Introduction</a></li>
+<li><a href="#_grpc_demo_without_istio">12.2. gRPC demo without Istio</a></li>
+<li><a href="#_grpc_demo_with_istio">12.3. gRPC demo with Istio</a></li>
+<li><a href="#_remove_everything_2">12.4. Remove everything</a></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="sect1">
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>1. Introduction</h2>
 <div class="sectionbody">

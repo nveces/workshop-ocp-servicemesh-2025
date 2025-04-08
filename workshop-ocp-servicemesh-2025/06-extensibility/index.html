@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>{rhossm}: Extensibility Labs :: WorkShop - Service Mesh on OCP 2025</title>
+    <title>Red Hat OpenShift Service Mesh: Extensibility Labs :: WorkShop - Service Mesh on OCP 2025</title>
     <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/06-extensibility/index.html">
     <link rel="prev" href="../05-security/index.html">
     <meta name="generator" content="Antora 3.0.0">
@@ -242,7 +242,80 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">{rhossm}: Extensibility Labs</h1>
+<h1 class="page">Red Hat OpenShift Service Mesh: Extensibility Labs</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_introduction">1. Introduction</a></li>
+<li><a href="#_setup">2. Setup</a>
+<ul class="sectlevel2">
+<li><a href="#_prerequisites">2.1. Prerequisites</a></li>
+<li><a href="#_laboratory">2.2. Laboratory</a>
+<ul class="sectlevel3">
+<li><a href="#_laboratory_parameters">2.2.1. Laboratory Parameters</a></li>
+<li><a href="#_openshift_cli">2.2.2. OpenShift CLI</a></li>
+<li><a href="#_web_console">2.2.3. Web Console</a></li>
+</ul>
+</li>
+<li><a href="#_github_repository">2.3. GitHub Repository</a></li>
+</ul>
+</li>
+<li><a href="#_sample_applications">3. Sample Applications</a>
+<ul class="sectlevel2">
+<li><a href="#_httpbin">3.1. httpbin</a></li>
+</ul>
+</li>
+<li><a href="#_lab_1_envoy_filters">4. Lab 1 - Envoy Filters</a>
+<ul class="sectlevel2">
+<li><a href="#_introduction_2">4.1. Introduction</a>
+<ul class="sectlevel3">
+<li><a href="#_envoyfilter_object">4.1.1. <em>EnvoyFilter</em> Object</a></li>
+<li><a href="#_lab">4.1.2. Lab</a></li>
+</ul>
+</li>
+<li><a href="#_deploy_httpbin_using_an_ingress_gateway">4.2. Deploy httpbin using an Ingress Gateway</a></li>
+<li><a href="#_test_httpbin_with_a_custom_header">4.3. Test httpbin with a custom header</a></li>
+<li><a href="#_add_an_envoyfilter_to_create_a_new_header">4.4. Add an <em>EnvoyFilter</em> to create a new header</a></li>
+<li><a href="#_add_an_envoyfilter_to_remove_the_old_header">4.5. Add an <em>EnvoyFilter</em> to remove the old header</a></li>
+<li><a href="#_create_a_single_envoyfilter_to_replace_the_header">4.6. Create a single <em>EnvoyFilter</em> to replace the header</a></li>
+<li><a href="#_remove_filters">4.7. Remove Filters</a></li>
+<li><a href="#_remove_httpbin">4.8. Remove httpbin</a></li>
+</ul>
+</li>
+<li><a href="#_lab_2_webassembly_extensions">5. Lab 2 - WebAssembly Extensions</a>
+<ul class="sectlevel2">
+<li><a href="#_introduction_3">5.1. Introduction</a>
+<ul class="sectlevel3">
+<li><a href="#_webassembly">5.1.1. WebAssembly</a></li>
+<li><a href="#_envoy_wasm_filter">5.1.2. Envoy Wasm filter</a></li>
+<li><a href="#_openshift_service_mesh_extensions">5.1.3. OpenShift Service Mesh Extensions</a>
+<ul class="sectlevel4">
+<li><a href="#_supported_languages">5.1.3.1. Supported languages</a></li>
+<li><a href="#_container_format">5.1.3.2. Container Format</a></li>
+<li><a href="#_deploying_extensions">5.1.3.3. Deploying extensions</a></li>
+<li><a href="#_support">5.1.3.4. Support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_modify_the_headers_with_a_webassembly_filter">5.2. Modify the headers with a WebAssembly filter</a>
+<ul class="sectlevel3">
+<li><a href="#_deploy_httpbin">5.2.1. Deploy httpbin</a></li>
+<li><a href="#_apply_the_webassembly_plugin">5.2.2. Apply the WebAssembly plugin</a></li>
+<li><a href="#_remove_the_extension">5.2.3. Remove the extension</a></li>
+</ul>
+</li>
+<li><a href="#_modify_the_body_with_a_webassembly_filter">5.3. Modify the body with a WebAssembly filter</a>
+<ul class="sectlevel3">
+<li><a href="#_apply_the_webassembly_plugin_2">5.3.1. Apply the WebAssembly plugin</a></li>
+<li><a href="#_remove_the_extension_2">5.3.2. Remove the extension</a></li>
+<li><a href="#_remove_httpbin_2">5.3.3. Remove httpbin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="sect1">
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>1. Introduction</h2>
 <div class="sectionbody">
