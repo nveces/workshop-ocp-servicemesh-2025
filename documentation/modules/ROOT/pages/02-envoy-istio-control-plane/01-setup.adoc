@@ -11,7 +11,7 @@
 
 During this tutorial, it will be required to work with different tools for running the exercises included. Please, install the following software:
 
-include::partials/02-envoy-istio-control-plane/requirements.adoc[]
+include::./../../partials/02-envoy-istio-control-plane/requirements.adoc[]
 
 [#laboratory]
 == Laboratory

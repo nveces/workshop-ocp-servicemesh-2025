@@ -33,7 +33,7 @@ Please, create the previous object through the respective Openshift template exe
 :file: 06-istio-ctrlplane/00-jump-app-ns-smr.yaml
 :namespace: <user_namespace>
 
-include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
+include::./../../partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
 
 ._ServiceMeshMember_ Created
 image:02-envoy-istio-control-plane/jump-app-ns-smr.png[link=../_images/02-envoy-istio-control-plane/jump-app-ns-smr.png,window=_blank]
@@ -102,7 +102,7 @@ NOTE: Look at the number of containers in each microservice, it must contains 2 
 :jumps: 10000
 :seconds: 1
 
-include::partials/02-envoy-istio-control-plane/check_jumpapp_mesh.adoc[]
+include::./../../partials/02-envoy-istio-control-plane/check_jumpapp_mesh.adoc[]
 
 
 [#06kiali]

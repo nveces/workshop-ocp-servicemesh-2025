@@ -86,7 +86,7 @@ spec:
 
 NOTE: This file is located in `lab2/vs-reviews-headers.yaml` so feel free to change "pepito" for another name if you prefer.
 
-include::partials/03-traffic-management/deploy_bookinfo.adoc[leveloffset=+1]
+include::./../../partials/03-traffic-management/deploy_bookinfo.adoc[leveloffset=+1]
 
 == Route traffic to version 2
 
@@ -102,7 +102,7 @@ Now check that the product page shows the stars of the ratings visiting https://
 .Product Page showing ratings
 image:03-traffic-management/productpage-v2.png[link=../_images/03-traffic-management/productpage-v2.png,window=_blank]
 
-include::partials/03-traffic-management/kiali_traffic.adoc[leveloffset=+2]
+include::./../../partials/03-traffic-management/kiali_traffic.adoc[leveloffset=+2]
 
 You should see a graph similar to this:
 
@@ -127,4 +127,4 @@ You should see the red stars now:
 .Product Page with red stars
 image::03-traffic-management/productpage-red.png[link=../_images/03-traffic-management/productpage-red.png,window=_blank]
 
-include::partials/03-traffic-management/remove_bookinfo.adoc[leveloffset=+1]
+include::./../../partials/03-traffic-management/remove_bookinfo.adoc[leveloffset=+1]

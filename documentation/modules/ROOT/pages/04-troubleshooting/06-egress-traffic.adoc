@@ -104,7 +104,7 @@ image:04-troubleshooting/jump-app-mesh-external-nginx-conf-ok.png[link=../_image
 :file: 06-secure-egress-traffic-troubleshooting/00-nginx-svc-pod.yml
 :namespace: $USER_NAMESPACE-mesh-external
 
-include::partials/04-troubleshooting/oc_process_apply.adoc[]
+include::./../../partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Nginx deployment and service ok
 image:04-troubleshooting/jump-app-mesh-external-nginx-deployment-ok.png[link=../_images/04-troubleshooting/jump-app-mesh-external-nginx-deployment-ok.png,window=_blank]
@@ -184,7 +184,7 @@ Please, follow the next steps to deploy this new microservice in your main names
 :file: 06-secure-egress-traffic-troubleshooting/01-jump-app-sleep-svc-pod.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/04-troubleshooting/oc_process_apply.adoc[]
+include::./../../partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Testing service created
 image:04-troubleshooting/jump-app-mesh-external-nginx-client-pod.png[link=../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-pod.png,window=_blank]
@@ -251,7 +251,7 @@ Taking this into account, it is time to create a set of _Istio objects_ in your 
 :file: 06-secure-egress-traffic-troubleshooting/02-jump-app-egress-gw-dr.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/04-troubleshooting/oc_process_apply.adoc[]
+include::./../../partials/04-troubleshooting/oc_process_apply.adoc[]
 
 
 .Gateway, Virtual Service and Destination Rules OK
@@ -282,7 +282,7 @@ image:04-troubleshooting/jump-app-mesh-external-nginx-istio-system-certs.png[lin
 :file: 06-secure-egress-traffic-troubleshooting/03-istio-system-dr-sds.yml
 :namespace: istio-system
 
-include::partials/04-troubleshooting/oc_process_apply.adoc[]
+include::./../../partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Nginx service destination rule and service entry
 image:04-troubleshooting/jump-app-mesh-nginx-dr-se.png[link=../_images/04-troubleshooting/jump-app-mesh-nginx-dr-se.png,window=_blank]

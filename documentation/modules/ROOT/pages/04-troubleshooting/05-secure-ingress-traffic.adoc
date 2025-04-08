@@ -39,7 +39,7 @@ Please, modify back-golang OCP route in **istio-system** namespace through the r
 :file: 05-secure-ingress-traffic-troubleshooting/00-jump-app-golang-route.yaml
 :namespace: istio-system
 
-include::partials/04-troubleshooting/oc_process_apply.adoc[]
+include::./../../partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .back-golang Route Modified
 image:04-troubleshooting/jump-app-routes-sds-mod.png[link=../_images/04-troubleshooting/jump-app-routes-sds-mod.png,window=_blank]
@@ -56,7 +56,7 @@ Please, modify existing frontend *gateway* object executing the following comman
 :file: 05-secure-ingress-traffic-troubleshooting/01-jump-app-golang-gw.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/04-troubleshooting/oc_process_apply.adoc[]
+include::./../../partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .back-golang Gateway Modified
 image:04-troubleshooting/jump-app-gw-ok.png[link=../_images/04-troubleshooting/jump-app-gw-ok.png,window=_blank]
@@ -75,7 +75,7 @@ Please, execute the following steps in order to review your demo app current sta
 
 :errorimage: 04-troubleshooting/jump-app-unavailable-back-route.png
 
-include::partials/04-troubleshooting/check_jumpapp_mesh_fail.adoc[]
+include::./../../partials/04-troubleshooting/check_jumpapp_mesh_fail.adoc[]
 
 [#05-router]
 == Openshift Router -> Ingress Gateway Secure Connectivity
@@ -157,7 +157,7 @@ oc project $USER_NAMESPACE
 :file: 05-secure-ingress-traffic-troubleshooting/02-jump-app-sec-services.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/04-troubleshooting/oc_process_apply.adoc[]
+include::./../../partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .PeerAuthentication and Destination Rule created
 image:04-troubleshooting/jump-app-trou-05-padr.png[link=../_images/04-troubleshooting/jump-app-trou-05-padr.png,window=_blank]
@@ -345,7 +345,7 @@ Once _Jump App_ objects have been modified and fixed in Kiali and Openshift, it 
 :jumps: 1000
 :seconds: 1
 
-include::partials/04-troubleshooting/check_jumpapp_mesh.adoc[]
+include::./../../partials/04-troubleshooting/check_jumpapp_mesh.adoc[]
 
 [#05-kiali]
 == Visit Kiali

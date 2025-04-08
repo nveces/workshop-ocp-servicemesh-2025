@@ -18,7 +18,7 @@ Please, create the previous object through the respective Openshift template exe
 :file: 03-jump-app-flows/04-jump-app-ns-smr.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/04-troubleshooting/oc_process_apply.adoc[]
+include::./../../partials/04-troubleshooting/oc_process_apply.adoc[]
 
 ._ServiceMeshMember_ Created
 image:04-troubleshooting/jump-app-ns-smr.png[link=../_images/04-troubleshooting/jump-app-ns-smr.png,window=_blank]
@@ -53,7 +53,7 @@ Please, return to git repository and create *gateways* through the respective Op
 :file: 03-jump-app-flows/00-jump-app-gws.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/04-troubleshooting/oc_process_apply.adoc[]
+include::./../../partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Gateways Created
 image:04-troubleshooting/jump-app-gws-ok.png[link=../_images/04-troubleshooting/jump-app-gws-ok.png,window=_blank]
@@ -83,7 +83,7 @@ Please, create new *destination rules* through the respective Openshift template
 :file: 03-jump-app-flows/02-jump-app-drs.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/04-troubleshooting/oc_process_apply.adoc[]
+include::./../../partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Destination Rules Created
 image:04-troubleshooting/jump-app-drs-ok.png[link=../_images/04-troubleshooting/jump-app-drs-ok.png,window=_blank]
@@ -98,7 +98,7 @@ Please, create new *k8s services* through the respective Openshift template exec
 :file: 03-jump-app-flows/03-jump-app-services.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/04-troubleshooting/oc_process_apply.adoc[]
+include::./../../partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .k8s Services Created
 image:04-troubleshooting/jump-app-svcs-ok.png[link=../_images/04-troubleshooting/jump-app-svcs-ok.png,window=_blank]
@@ -151,7 +151,7 @@ image:04-troubleshooting/jump-app-back-go-depl-patch.png[link=../_images/04-trou
 
 Before continuing with the following steps, please test Jump App _pods_ status, in order to be sure that 2 replicas are running for each microservice:
 
-include::partials/04-troubleshooting/check_jumpapp_mesh_pod.adoc[]
+include::./../../partials/04-troubleshooting/check_jumpapp_mesh_pod.adoc[]
 
 [#routes]
 === Configure Routes
@@ -180,7 +180,7 @@ Please, create new *routes* in **istio-system** namespace through the respective
 :file: 03-jump-app-flows/05-jump-app-routes.yaml
 :namespace: istio-system
 
-include::partials/04-troubleshooting/oc_process_create.adoc[]
+include::./../../partials/04-troubleshooting/oc_process_create.adoc[]
 
 .Mesh Routes Created
 image:04-troubleshooting/jump-app-routes-mesh-ok.png[link=../_images/04-troubleshooting/jump-app-routes-mesh-ok.png,window=_blank]

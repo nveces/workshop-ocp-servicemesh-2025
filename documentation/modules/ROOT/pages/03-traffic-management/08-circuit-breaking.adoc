@@ -43,7 +43,7 @@ You can do more things like load balancing, ejecting with consecutive 500 errors
 
 After this, you are going to test the circuit breaking with the `fortio` client.
 
-include::partials/03-traffic-management/deploy_httpbin.adoc[leveloffset=+1]
+include::./../../partials/03-traffic-management/deploy_httpbin.adoc[leveloffset=+1]
 
 == Deploy fortio
 
@@ -129,4 +129,4 @@ Execute the following command to remove `fortio` from your namespace:
 oc delete -f fortio/fortio.yaml -n ${OCP_NAMESPACE}
 ----
 
-include::partials/03-traffic-management/remove_httpbin.adoc[leveloffset=+1]
+include::./../../partials/03-traffic-management/remove_httpbin.adoc[leveloffset=+1]

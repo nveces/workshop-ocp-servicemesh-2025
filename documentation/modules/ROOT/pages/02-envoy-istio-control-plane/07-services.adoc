@@ -48,7 +48,7 @@ Please, modify existing frontend *gateway* object executing the following comman
 :file: 07-istio-sds/00-jump-app-front-gw.yaml
 :namespace: <user_namespace>
 
-include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
+include::./../../partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
 
 .Front Gateway Modified
 image:02-envoy-istio-control-plane/jump-app-gw-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-gw-ok.png,window=_blank]

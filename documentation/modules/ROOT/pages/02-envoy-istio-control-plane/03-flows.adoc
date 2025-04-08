@@ -29,7 +29,7 @@ Please, return to git repository and create *gateways* through the respective Op
 :file: 03-jump-app-flows/00-jump-app-gws.yaml
 :namespace: <user_namespace>
 
-include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
+include::./../../partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
 
 .Gateways Created
 image:02-envoy-istio-control-plane/jump-app-gws-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-gws-ok.png,window=_blank]
@@ -44,7 +44,7 @@ Please, create new *virtual services* through the respective Openshift template 
 :file: 03-jump-app-flows/01-jump-app-vss.yaml
 :namespace: <user_namespace>
 
-include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
+include::./../../partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
 
 .Virtual Services Created
 image:02-envoy-istio-control-plane/jump-app-vss-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-vss-ok.png,window=_blank]
@@ -59,7 +59,7 @@ Please, create new *destination rules* through the respective Openshift template
 :file: 03-jump-app-flows/02-jump-app-drs.yaml
 :namespace: <user_namespace>
 
-include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
+include::./../../partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
 
 .Destination Rules Created
 image:02-envoy-istio-control-plane/jump-app-drs-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-drs-ok.png,window=_blank]
@@ -197,7 +197,7 @@ NOTE: Look at the number of containers in each microservice, it must contains 2 
 :jumps: 10000
 :seconds: 1
 
-include::partials/02-envoy-istio-control-plane/check_jumpapp_mesh.adoc[]
+include::./../../partials/02-envoy-istio-control-plane/check_jumpapp_mesh.adoc[]
 
 
 [#kiali]

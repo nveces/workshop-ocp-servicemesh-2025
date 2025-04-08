@@ -16,7 +16,7 @@ Please, create the previous object through the respective Openshift template exe
 :file: 04-istio-envoy-relationship/00-istio-envoy-rel-micro-version.yaml
 :namespace: <user_namespace>
 
-include::partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
+include::./../../partials/02-envoy-istio-control-plane/oc_process_apply.adoc[]
 
 .New Micro Version Created
 image:02-envoy-istio-control-plane/jump-app-new-micro-version-ok.png[link=../_images/02-envoy-istio-control-plane/jump-app-new-micro-version-ok.png,window=_blank]
@@ -59,7 +59,7 @@ WARNING: Please, replace *<user_namespace>* and *<back-golang-pod_id>* with the 
 :image_config_init: jump-app-dr-golang.png
 :image_config_compare: jump-app-dr-compare.png
 
-include::partials/02-envoy-istio-control-plane/rel_step.adoc[]
+include::./../../partials/02-envoy-istio-control-plane/rel_step.adoc[]
 
 [#04vsvc]
 === Virtual Services
@@ -71,7 +71,7 @@ include::partials/02-envoy-istio-control-plane/rel_step.adoc[]
 :image_config_init: jump-app-vs-golang.png
 :image_config_compare: jump-app-vs-compare.png
 
-include::partials/02-envoy-istio-control-plane/rel_step.adoc[]
+include::./../../partials/02-envoy-istio-control-plane/rel_step.adoc[]
 
 
 NOTE: Additionally, perform a GET request using _curl_ in order to test out headers modification
@@ -125,7 +125,7 @@ image:02-envoy-istio-control-plane/jump-app-kiali-v2.png[link=../_images/02-envo
 :image_config_init: jump-app-se-golang.png
 :image_config_compare: jump-app-se-compare.png
 
-include::partials/02-envoy-istio-control-plane/rel_step.adoc[]
+include::./../../partials/02-envoy-istio-control-plane/rel_step.adoc[]
 
 [.console-input]
 [source,input,subs="+macros,+attributes"]

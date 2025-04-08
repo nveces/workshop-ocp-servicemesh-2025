@@ -10,7 +10,7 @@ First you will deploy Bookinfo and then you will configure a sequence of rules t
 
 In this lab you will use 2 versions of the same service but you could create more complex routing rules weigth-balancing between many different versions of the same service or even different services.
 
-include::partials/03-traffic-management/deploy_bookinfo.adoc[leveloffset=+1]
+include::./../../partials/03-traffic-management/deploy_bookinfo.adoc[leveloffset=+1]
 
 == Route 10% of the traffic to a new service
 
@@ -49,7 +49,7 @@ You can apply it with the following command:
 oc apply -f lab3/vs-reviews-shifting-90-10.yaml -n ${OCP_NAMESPACE}
 ----
 
-include::partials/03-traffic-management/kiali_traffic_loop.adoc[leveloffset=+2]
+include::./../../partials/03-traffic-management/kiali_traffic_loop.adoc[leveloffset=+2]
 
 Make sure you select _Request Percentage_ in the _Show Edge Labels_ display options in Kiali:
 
@@ -96,7 +96,7 @@ You can apply it with the following command:
 oc apply -f lab3/vs-reviews-shifting-50-50.yaml -n ${OCP_NAMESPACE}
 ----
 
-include::partials/03-traffic-management/kiali_traffic_loop.adoc[leveloffset=+2]
+include::./../../partials/03-traffic-management/kiali_traffic_loop.adoc[leveloffset=+2]
 
 .Kiali traffic shifting 50/50
 image:03-traffic-management/kiali-shifting-50-50.png[link=../_images/03-traffic-management/kiali-shifting-50-50.png,window=_blank]
@@ -138,9 +138,9 @@ You can apply it with the following command:
 oc apply -f lab3/vs-reviews-shifting-0-100.yaml -n ${OCP_NAMESPACE}
 ----
 
-include::partials/03-traffic-management/kiali_traffic_loop.adoc[leveloffset=+2]
+include::./../../partials/03-traffic-management/kiali_traffic_loop.adoc[leveloffset=+2]
 
 .Kiali traffic shifting 0/100
 image:03-traffic-management/kiali-shifting-0-100.png[link=../_images/03-traffic-management/kiali-shifting-0-100.png,window=_blank]
 
-include::partials/03-traffic-management/remove_bookinfo.adoc[leveloffset=+1]
+include::./../../partials/03-traffic-management/remove_bookinfo.adoc[leveloffset=+1]

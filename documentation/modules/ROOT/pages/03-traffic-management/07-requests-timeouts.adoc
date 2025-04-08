@@ -6,7 +6,7 @@ A timeout for HTTP requests can be specified using the timeout field in the {vs}
 
 To see its effect, however, you also introduce an artificial 2 second delay in calls to the _ratings_ service.
 
-include::partials/03-traffic-management/deploy_bookinfo.adoc[leveloffset=+1]
+include::./../../partials/03-traffic-management/deploy_bookinfo.adoc[leveloffset=+1]
 
 == Adding a delay to ratings service
 
@@ -64,7 +64,7 @@ You can apply this change with this command:
 oc apply -f lab5/vs-ratings-delay.yaml -n ${OCP_NAMESPACE}
 ----
 
-include::partials/03-traffic-management/kiali_traffic_loop.adoc[leveloffset=+2]
+include::./../../partials/03-traffic-management/kiali_traffic_loop.adoc[leveloffset=+2]
 
 Make sure you select _Response Time_ in the _Show Edge Labels_ display options in Kiali:
 
@@ -118,7 +118,7 @@ You can observe that instead of displaying reviews, the Bookinfo product page (w
 
 You may have noticed that it returns in about 1 second, instead of 2, and the reviews are unavailable. The reason that the response takes 1 second, even though the timeout is configured at half a second, is because there is a hard-coded retry in the _productpage_ service, so it calls the timing out reviews service twice before returning.
 
-include::partials/03-traffic-management/kiali_traffic_loop.adoc[leveloffset=+2]
+include::./../../partials/03-traffic-management/kiali_traffic_loop.adoc[leveloffset=+2]
 
 Check the results in Kiali:
 
@@ -131,4 +131,4 @@ If you examine the <<Lab 4 - Fault Injection>>, you’ll find out that the produ
 
 Notice that in this lab you used an Istio route rule to set the timeout to half a second. Had you instead set the timeout to something greater than 3 seconds (such as 4 seconds) the timeout would have had no effect since the more restrictive of the two takes precedence.
 
-include::partials/03-traffic-management/remove_bookinfo.adoc[leveloffset=+1]
+include::./../../partials/03-traffic-management/remove_bookinfo.adoc[leveloffset=+1]

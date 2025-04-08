@@ -38,7 +38,7 @@ Please, return to the git repository and apply some customizations through the r
 :file: 04-ingress-traffic-troubleshooting/00-jump-app-ingress-customization.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/04-troubleshooting/oc_process_apply.adoc[]
+include::./../../partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .Jump App Customizations Applied I
 image:04-troubleshooting/jump-app-mod-gw-ok.png[link=../_images/04-troubleshooting/jump-app-mod-gw-ok.png,window=_blank]
@@ -46,7 +46,7 @@ image:04-troubleshooting/jump-app-mod-gw-ok.png[link=../_images/04-troubleshooti
 :file: 04-ingress-traffic-troubleshooting/01-jump-app-back-golang-svc.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/04-troubleshooting/oc_process_delete.adoc[]
+include::./../../partials/04-troubleshooting/oc_process_delete.adoc[]
 
 .Jump App Customizations Applied II
 image:04-troubleshooting/jump-app-mod-svc-ok.png[link=../_images/04-troubleshooting/jump-app-mod-svc-ok.png,window=_blank]
@@ -60,7 +60,7 @@ Please, execute the following steps in order to review your demo app current sta
 
 :errorimage: 04-troubleshooting/jump-app-unavailable-back.png
 
-include::partials/04-troubleshooting/check_jumpapp_mesh_fail.adoc[]
+include::./../../partials/04-troubleshooting/check_jumpapp_mesh_fail.adoc[]
 
 [#04-router]
 == Openshift Router -> Ingress Gateway Connectivity
@@ -226,7 +226,7 @@ oc project $USER_NAMESPACE
 :file: 04-ingress-traffic-troubleshooting/01-jump-app-back-golang-svc.yaml
 :namespace: $USER_NAMESPACE
 
-include::partials/04-troubleshooting/oc_process_apply.adoc[]
+include::./../../partials/04-troubleshooting/oc_process_apply.adoc[]
 
 .back-golang k8s Service Created
 image:04-troubleshooting/jump-app-trou-04-svc-created.png[link=../_images/04-troubleshooting/jump-app-trou-04-svc-created.png,window=_blank]
