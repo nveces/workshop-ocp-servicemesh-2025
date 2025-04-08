@@ -252,7 +252,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The general idea of <em>Red Hat Service Mesh: Envoy &amp; Istio Control Plane</em> tutorial is to get a deep understanding of the following points:</p>
@@ -741,8 +741,11 @@ oc process -f 03-jump-app-flows/02-jump-app-drs.yaml --param-file=params.env --i
 <div class="paragraph">
 <p>Please, create new <strong>k8s services</strong> through the respective Openshift template executing the following command:</p>
 </div>
-<div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/03-flows.adoc - include::/02-envoy-istio-control-plane/oc_process_apply.adoc[]</p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project &lt;user_namespace&gt;
+oc process -f 03-jump-app-flows/03-jump-app-services.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <div class="title">k8s Services Created</div>
@@ -852,8 +855,14 @@ If you are an advanced user and can not wait for the instructor, please visit <a
 <div class="paragraph">
 <p>Before continuing with the following steps, please test Jump App <em>pods</em> status, in order to be sure that 2 replicas are running for each microservice:</p>
 </div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/02-envoy-istio-control-plane/03-flows.adoc - include::/02-envoy-istio-control-plane/chec_jumpapp_mesh_pod.adoc[]</p>
+<div class="title">Jump App Pods Mesh</div>
+<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
 </div>
 </div>
 <div class="sect2">

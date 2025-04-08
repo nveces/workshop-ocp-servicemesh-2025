@@ -412,7 +412,12 @@ spec:
 <div class="title">Figure 1. Bookinfo productpage service working</div>
 </div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/03-ingress.adoc - include::/03-traffic-management/kiali_traffic.adoc[]</p>
+<p>Run this command to simulate traffic in Kiali:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch -n 1 curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage"</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Now, this is how the {ig} looks like in Kiali:</p>
@@ -493,7 +498,7 @@ spec:
 <p><span class="image"><a class="image" href="../_images/03-traffic-management/ingress_httpbin.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/ingress_httpbin.png" alt="ingress httpbin"></a></span></p>
 </div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/03-ingress.adoc - include::/03-traffic-management/remove_httpbin.adoc[]</p>
+<p>Unresolved include directive in modules/ROOT/pages/03-traffic-management/03-ingress.adoc - include::./../..//03-traffic-management/remove_httpbin.adoc[]</p>
 </div>
 </div>
 </div>

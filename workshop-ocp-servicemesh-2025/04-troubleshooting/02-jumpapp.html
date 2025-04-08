@@ -341,8 +341,21 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="paragraph">
 <p>Once <em>Jump App</em> objects have been created in Openshift, it is required to follow the next steps in order to ensure your demo app is running properly:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get pods</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods -n $USER_NAMESPACE</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Unresolved include directive in modules/ROOT/pages/04-troubleshooting/02-jumpapp.adoc - include::/04-troubleshooting/check_jumpapp.adoc[]</p>
+<div class="title">Jump App Pods</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump_app_pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump_app_pods.png" alt="jump app pods"></a></span></p>
 </div>
 </div>
 <div class="sect2">
