@@ -72,22 +72,25 @@
     <a class="nav-link" href="index.html#_lab_0_warming_up">Lab 0 - Warming up</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_1_first_application_deployment">Lab 1 - First application deployment</a>
+    <a class="nav-link" href="index.html#_lab_1_database_deployment">Lab 1 - Database deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_2_complete_application_deployment">Lab 2 - Complete application deployment</a>
+    <a class="nav-link" href="index.html#_lab_1_first_application_deployment">Lab 2 - First application deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_3_adding_persistent_volumes">Lab 3 - Adding persistent volumes</a>
+    <a class="nav-link" href="index.html#_lab_2_complete_application_deployment">Lab 3 - Complete application deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_4_configuration_management">Lab 4 - Configuration management</a>
+    <a class="nav-link" href="index.html#_lab_3_adding_persistent_volumes">Lab 4 - Adding persistent volumes</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_5_resources">Lab 5 - Resources</a>
+    <a class="nav-link" href="index.html#_lab_4_configuration_management">Lab 5 - Configuration management</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_6_liveness_and_readiness_probes">Lab 6 - Liveness and readiness probes</a>
+    <a class="nav-link" href="index.html#_lab_5_resources">Lab 6 - Resources</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#_lab_6_liveness_and_readiness_probes">Lab 7 - Liveness and readiness probes</a>
   </li>
 </ul>
   </li>
@@ -243,10 +246,9 @@
 <div id="toctitle">Database deployment</div>
 <ul class="sectlevel1">
 <li><a href="#_deploy_an_ephemeral_postgresql">1. Deploy an ephemeral Postgresql</a></li>
-<li><a href="#_connect_application_to_database">2. Connect application to Database</a></li>
-<li><a href="#_scale_the_application_pod_replicas">3. Scale the application pod replicas</a>
+<li><a href="#_scale_the_application_pod_replicas">2. Scale the application pod replicas</a>
 <ul class="sectlevel2">
-<li><a href="#_extra_rolling_vs_recreate_deployment_strategy">3.1. Extra: Rolling vs Recreate deployment strategy</a></li>
+<li><a href="#_extra_rolling_vs_recreate_deployment_strategy">2.1. Extra: Rolling vs Recreate deployment strategy</a></li>
 </ul>
 </li>
 </ul>
@@ -303,52 +305,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_connect_application_to_database"><a class="anchor" href="#_connect_application_to_database"></a>2. Connect application to Database</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>We have now the Postgresql pod running, but the application pod is not connected to it yet.</p>
-</div>
-<div class="paragraph">
-<p>For that, we will deploy a new application image tag that has the proper configuration to connect to the DB (the application configuration is set in this <a href="https://github.com/dsanchor/petclinic/blob/mnl-db/quarkus-petclinic/src/main/resources/application.properties">application.properties</a> file).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This approach of defining the configuration within the application (and then, inside the image) could be seen as not very Cloud Native&#8230;&#8203; even when it is somehow set with profiles. To solve this, we will extract this configuration to a <code>ConfigMap</code> later on these labs.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>It is time for deploy a new version of our application. To do so, we will only update the image in our existing deployment:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>$ oc set image deployment/quarkus-petclinic *=quay.io/dsanchor/quarkus-petclinic:db  -n &lt;YOUR_PROJECT&gt;
-
-deployment.apps/quarkus-petclinic image updated</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Once the image has been updated, a new pod has been created, while the old one has been terminated. If you missed that process, here it is a short replay:</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/01-introduction/rolling-update.gif" target="_blank" rel="noopener"><img src="../_images/01-introduction/rolling-update.gif" alt="rolling update"></a></span></p>
-</div>
-<div class="paragraph">
-<p>That list of <code>pods</code> could be seen under the <code>Administrator</code> view, then <code>Workloads</code> and finally <code>Pods</code>.</p>
-</div>
-<div class="paragraph">
-<p>We can now test the application again. Feel free to add new owners, pets and so on, those new changes are now persisted in the Database. To validate this behavior, delete the existing application <code>pod</code> and validate that the data is still there when the new <code>pod</code> has been created.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_scale_the_application_pod_replicas"><a class="anchor" href="#_scale_the_application_pod_replicas"></a>3. Scale the application pod replicas</h2>
+<h2 id="_scale_the_application_pod_replicas"><a class="anchor" href="#_scale_the_application_pod_replicas"></a>2. Scale the application pod replicas</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>So far, we have just a single replica of our "Pet clinic" web site&#8230;&#8203; That is not high available and fault tolerant at all.</p>
@@ -370,7 +327,7 @@ deployment.apps/quarkus-petclinic scaled</pre>
 <p>Feel free to scale it down and up again and check that the application works as expected and does not miss any data.</p>
 </div>
 <div class="sect2">
-<h3 id="_extra_rolling_vs_recreate_deployment_strategy"><a class="anchor" href="#_extra_rolling_vs_recreate_deployment_strategy"></a>3.1. Extra: Rolling vs Recreate deployment strategy</h3>
+<h3 id="_extra_rolling_vs_recreate_deployment_strategy"><a class="anchor" href="#_extra_rolling_vs_recreate_deployment_strategy"></a>2.1. Extra: Rolling vs Recreate deployment strategy</h3>
 <div class="paragraph">
 <p>Have a look at the following resources and then, answer a couple of questions that are related to this topic based on our scenario:</p>
 </div>
