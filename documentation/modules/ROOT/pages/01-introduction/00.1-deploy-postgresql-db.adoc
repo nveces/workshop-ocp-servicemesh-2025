@@ -7,33 +7,52 @@
 In this lab, we will deploy a Postgresql Database to persist data of an application called PetClinic.
 
 :numbered:
-== Deploy an ephemeral Postgresql
+== Deploy a Postgresql DB
 
-This time, we will do the full deployment from the `web console`.
+Run the following commands:
+----
+cd $LABS_HOME/lab1/
+./db.sh -n <YOUR_PROJECT>
 
-Let's move to the `console` and select the `Developer` view.
+Output:
+######## Deploying PostgreSQL ########
+service/postgresql created
+deployment.apps/postgresql created
+deployment.apps/postgresql condition met
 
-As in next screenshot, first, ensure you are on the right project (it is very likely you are.. unless you have created more than one project), click on `Add` and select `Database`:
 
-image:01-introduction/dev-add-db.png[add db,link=../_images/01-introduction/dev-add-db.png,window=_blank]
+######## Create Schema PostgreSQL ########
+job.batch/petclinic-schema created
+job.batch/petclinic-schema condition met
+----
 
-Then, select `Postgresql ephemeral`:
+// This time, we will do the full deployment from the `web console`.
 
-image:01-introduction/select-postgresql-eph.png[postgresql ephemeral,link=../_images/01-introduction/select-postgresql-eph.png,window=_blank]
+// Let's move to the `console` and select the `Developer` view.
 
-Yes.. we are going to deploy an ephemeral Postgresql... so in case the Postgresql `pod` is recreated we will lose the data. We will add a persistent volume later in these labs.
+// As in next screenshot, first, ensure you are on the right project (it is very likely you are.. unless you have created more than one project), click on `Add` and select `Database`:
 
-Click on `Instantiate Template`:
+// image:01-introduction/dev-add-db.png[add db,link=../_images/01-introduction/dev-add-db.png,window=_blank]
 
-image:01-introduction/instantiate-template.png[instantiate template,link=../_images/01-introduction/instantiate-template.png,window=_blank]
+// Then, select `Postgresql ephemeral`:
 
-And set the following parameter values set in red (ensure you use those):
+// image:01-introduction/select-postgresql-eph.png[postgresql ephemeral,link=../_images/01-introduction/select-postgresql-eph.png,window=_blank]
 
-image:01-introduction/db-parameters.png[db parameters,link=../_images/01-introduction/db-parameters.png,window=_blank]
+// Yes.. we are going to deploy an ephemeral Postgresql... so in case the Postgresql `pod` is recreated we will lose the data. We will add a persistent volume later in these labs.
 
-As a result, you should see both the application and postgresql pods running:
+// Click on `Instantiate Template`:
 
-image:01-introduction/apps-pods.png[application pods,link=../_images/01-introduction/apps-pods.png,window=_blank]
+// image:01-introduction/instantiate-template.png[instantiate template,link=../_images/01-introduction/instantiate-template.png,window=_blank]
+
+// And set the following parameter values set in red (ensure you use those):
+
+// image:01-introduction/db-parameters.png[db parameters,link=../_images/01-introduction/db-parameters.png,window=_blank]
+
+As a result, you should see two pods running: a postgresql pods and a job (that will populate the DB)
+
+image:01-introduction/db-pods.png[application pods,link=../_images/01-introduction/db-pods.png,window=_blank]
+//image:01-introduction/apps-pods.png[application pods,link=../_images/01-introduction/apps-pods.png,window=_blank]
+
 
 // Fix para reorgnizar contenido: app PetClinic no funciona sin DB ----------------------
 //
