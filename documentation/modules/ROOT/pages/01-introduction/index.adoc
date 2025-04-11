@@ -8,9 +8,13 @@ include::./../_document-vars.adoc[]
 
 include::00-intro-and-prereq.adoc[]
 
+// Fix para reorgnizar contenido: app PetClinic no funciona sin DB
+include::00.1-deploy-postgresql-db.adoc[]
+
 include::01-first-deploy.adoc[]
 
-include::02-complete-application-deployment.adoc[]
+// Fix para reorgnizar contenido: app PetClinic no funciona sin DB
+// include::02-complete-application-deployment.adoc[]
 
 include::03-adding-persistent-volumes.adoc[]
 
