@@ -435,13 +435,19 @@ You can move to one project to another with <code>oc project &lt;PROJECT&gt;</co
 <pre>$ oc get all -n &lt;YOUR_PROJECT&gt;
 
 NAME                                     READY   STATUS    RESTARTS   AGE
-pod/quarkus-petclinic-7cdcd76595-vrbd2   1/1     Running   0          2m33s
+pod/postgresql-767f6bfb8-gv8qg           1/1     Running   0          20m
+pod/quarkus-petclinic-7c97ccbb85-gv8rd   1/1     Running   0          37s
+
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/postgresql   ClusterIP   172.30.149.10   &lt;none&gt;        5432/TCP   20m
 
 NAME                                READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/quarkus-petclinic   1/1     1            1           2m33s
+deployment.apps/postgresql          1/1     1            1           20m
+deployment.apps/quarkus-petclinic   1/1     1            1           38s
 
 NAME                                           DESIRED   CURRENT   READY   AGE
-replicaset.apps/quarkus-petclinic-7cdcd76595   1         1         1       2m33s</pre>
+replicaset.apps/postgresql-767f6bfb8           1         1         1       20m
+replicaset.apps/quarkus-petclinic-7c97ccbb85   1         1         1       38s</pre>
 </div>
 </div>
 <div class="paragraph">
