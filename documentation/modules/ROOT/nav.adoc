@@ -6,12 +6,15 @@ include::./pages/_document-vars.adoc[]
 
 * xref:01-introduction/index.adoc[2. Introduction - Labs]
 ** xref:01-introduction/index.adoc#_lab_0_warming_up[Lab 0 - Warming up]
-** xref:01-introduction/index.adoc#_lab_1_first_application_deployment[Lab 1 - First application deployment]
-** xref:01-introduction/index.adoc#_lab_2_complete_application_deployment[Lab 2 - Complete application deployment]
-** xref:01-introduction/index.adoc#_lab_3_adding_persistent_volumes[Lab 3 - Adding persistent volumes]
-** xref:01-introduction/index.adoc#_lab_4_configuration_management[Lab 4 - Configuration management]
-** xref:01-introduction/index.adoc#_lab_5_resources[Lab 5 - Resources]
-** xref:01-introduction/index.adoc#_lab_6_liveness_and_readiness_probes[Lab 6 - Liveness and readiness probes]
+// Fix para reorgnizar contenido: app PetClinic no funciona sin DB
+** xref:01-introduction/index.adoc#_lab_1_database_deployment[Lab 1 - Database deployment]
+// ----------------------------------------------------------------
+** xref:01-introduction/index.adoc#_lab_1_first_application_deployment[Lab 2 - First application deployment]
+** xref:01-introduction/index.adoc#_lab_2_complete_application_deployment[Lab 3 - Complete application deployment]
+** xref:01-introduction/index.adoc#_lab_3_adding_persistent_volumes[Lab 4 - Adding persistent volumes]
+** xref:01-introduction/index.adoc#_lab_4_configuration_management[Lab 5 - Configuration management]
+** xref:01-introduction/index.adoc#_lab_5_resources[Lab 6 - Resources]
+** xref:01-introduction/index.adoc#_lab_6_liveness_and_readiness_probes[Lab 7 - Liveness and readiness probes]
 
 
 * xref:02-envoy-istio-control-plane/index.adoc[3. Envoy istio Control plane - Labs]

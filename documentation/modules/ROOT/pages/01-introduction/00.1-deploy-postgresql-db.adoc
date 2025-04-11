@@ -35,29 +35,29 @@ As a result, you should see both the application and postgresql pods running:
 
 image:01-introduction/apps-pods.png[application pods,link=../_images/01-introduction/apps-pods.png,window=_blank]
 
-== Connect application to Database
+// == Connect application to Database
 
-We have now the Postgresql pod running, but the application pod is not connected to it yet.
+// We have now the Postgresql pod running, but the application pod is not connected to it yet.
 
-For that, we will deploy a new application image tag that has the proper configuration to connect to the DB (the application configuration is set in this https://github.com/dsanchor/petclinic/blob/mnl-db/quarkus-petclinic/src/main/resources/application.properties[application.properties] file).
+// For that, we will deploy a new application image tag that has the proper configuration to connect to the DB (the application configuration is set in this https://github.com/dsanchor/petclinic/blob/mnl-db/quarkus-petclinic/src/main/resources/application.properties[application.properties] file).
 
-NOTE: This approach of defining the configuration within the application (and then, inside the image) could be seen as not very Cloud Native... even when it is somehow set with profiles. To solve this, we will extract this configuration to a `ConfigMap` later on these labs.
+// NOTE: This approach of defining the configuration within the application (and then, inside the image) could be seen as not very Cloud Native... even when it is somehow set with profiles. To solve this, we will extract this configuration to a `ConfigMap` later on these labs.
 
-It is time for deploy a new version of our application. To do so, we will only update the image in our existing deployment:
+// It is time for deploy a new version of our application. To do so, we will only update the image in our existing deployment:
 
-....
-$ oc set image deployment/quarkus-petclinic *=quay.io/dsanchor/quarkus-petclinic:db  -n <YOUR_PROJECT>
+// ....
+// $ oc set image deployment/quarkus-petclinic *=quay.io/dsanchor/quarkus-petclinic:db  -n <YOUR_PROJECT>
 
-deployment.apps/quarkus-petclinic image updated
-....
+// deployment.apps/quarkus-petclinic image updated
+// ....
 
-Once the image has been updated, a new pod has been created, while the old one has been terminated. If you missed that process, here it is a short replay:
+// Once the image has been updated, a new pod has been created, while the old one has been terminated. If you missed that process, here it is a short replay:
 
-image:01-introduction/rolling-update.gif[rolling update,link=../_images/01-introduction/rolling-update.gif,window=_blank]
+// image:01-introduction/rolling-update.gif[rolling update,link=../_images/01-introduction/rolling-update.gif,window=_blank]
 
-That list of `pods` could be seen under the `Administrator` view, then `Workloads` and finally `Pods`.
+// That list of `pods` could be seen under the `Administrator` view, then `Workloads` and finally `Pods`.
 
-We can now test the application again. Feel free to add new owners, pets and so on, those new changes are now persisted in the Database. To validate this behavior, delete the existing application `pod` and validate that the data is still there when the new `pod` has been created.
+// We can now test the application again. Feel free to add new owners, pets and so on, those new changes are now persisted in the Database. To validate this behavior, delete the existing application `pod` and validate that the data is still there when the new `pod` has been created.
 
 
 == Scale the application pod replicas
