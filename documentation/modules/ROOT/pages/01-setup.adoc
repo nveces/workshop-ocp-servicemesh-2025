@@ -4,12 +4,90 @@ include::_attributes.adoc[]
 [#prerequisite]
 == Prerequisite CLI tools
 
+
+
+The following CLI tools are required for running the exercises in this tutorial. +
+Please have them installed and configured before you get started with any of the tutorial chapters.
+
+
+[cols="5*^,5*.",options="header,+attributes"]
+|===
+|**Tool**|**Fedora**|**macOS**|**windows**|**Official Documentation**
+| oc
+| https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz[Download]
+| https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-mac.tar.gz[Download]
+| https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-windows.zip[Download]
+| https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html[OpenShift CLI - Docs]
+| git
+| https://git-scm.com/download/linux[Download]
+| https://git-scm.com/download/mac[Download]
+| https://git-scm.com/download/win[Download]
+| https://git-scm.com[Git - Docs]
+| Visual Studio Code (or other IDE of your choice)
+| https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64[Download]
+| https://code.visualstudio.com/sha/download?build=stable&os=darwin[Download]
+| https://code.visualstudio.com/sha/download?build=stable&os=win32-user[Download]
+| https://code.visualstudio.com/[Visual Studio Code - Docs]
+| istioctl (1.12.2) [optional]
+| https://github.com/istio/istio/releases/download/1.12.2/istioctl-1.12.2-linux-amd64.tar.gz[Download, window="_blank"]
+| https://github.com/istio/istio/releases/download/1.12.2/istioctl-1.12.2-osx.tar.gz[Download, window="_blank"]
+| https://github.com/istio/istio/releases/download/1.12.2/istioctl-1.12.2-win.zip[Download, window="_blank"]
+| https://istio.io/v1.9/docs/reference/commands/istioctl/[istioctl - Docs, window="_blank"]
+|===
+
+
+NOTE: Please review the official documentation to install the latest versions of these tools on your laptop following the optimum procedure
+
+It is also required to have a https://github.com[GitHub,window=_blank] account in order to create some repositories during this tutorial.
+
+
+NOTE: Check the versions of the tools installed on your laptop using the following commands. For example:
+
+
+[source,bash]
+----
+$ oc version
+Client Version: 4.15.14
+Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
+Server Version: 4.17.17
+Kubernetes Version: v1.30.7
+----
+
+[source,bash]
+----
+$ git -v
+git version 2.48.1
+----
+
+
+[IMPORTANT]
+====
+*Remember* to configure your Git account with your name and email address after to fork the repositories. This is important because Git uses this information to identify the author of the commits you create. You can configure your Git account using the following commands:
+
+[.lines_space]
+[.console-input]
+[source,bash]
+----
+git config --local user.name "<Your Name>"
+git config --local user.email "<your email>"
+----
+
+====
+
+
+
+////
 include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/prerequisites-kubernetes.adoc[]
 |===
+
+
 
 include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/optional-requisites.adoc[]
 |===
 
+////
+
+////
 [#minikube]
 == Setup Kubernetes
 
@@ -27,3 +105,8 @@ image:kubelogo.png[]
 :tutorial-url: https://github.com/redhat-developer-demos/rhd-tutorial-common.git
 :folder: my_folder
 include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/download-sources.adoc[]
+
+////
+
+
+// EOF

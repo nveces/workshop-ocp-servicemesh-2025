@@ -3,7 +3,6 @@ include::./pages/_document-vars.adoc[]
 
 * xref:01-setup.adoc[1. Environment Setup]
 ** xref:01-setup.adoc#prerequisite[Prerequisites]
-** xref:01-setup.adoc#minikube[Setup Minikube]
 
 * xref:01-introduction/index.adoc[2. Introduction - Labs]
 ** xref:01-introduction/index.adoc#_lab_0_warming_up[Lab 0 - Warming up]

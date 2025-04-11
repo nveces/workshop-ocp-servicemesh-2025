@@ -1,7 +1,9 @@
-include::_attributes.adoc[]
+
 include::_document-vars.adoc[]
 
 = Welcome to Workshop - {ossm_l}
+
+include::_attributes.adoc[]
 
 :page-layout: home
 :!sectids:
