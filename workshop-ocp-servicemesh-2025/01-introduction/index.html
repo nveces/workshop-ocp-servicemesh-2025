@@ -433,46 +433,33 @@ to build a new example application in Ruby. Or use kubectl to deploy a simple Ku
 <p>In this lab, we will deploy a Postgresql Database to persist data of an application called PetClinic.</p>
 </div>
 <div class="sect1">
-<h2 id="_deploy_an_ephemeral_postgresql"><a class="anchor" href="#_deploy_an_ephemeral_postgresql"></a>1. Deploy an ephemeral Postgresql</h2>
+<h2 id="_deploy_a_postgresql_db"><a class="anchor" href="#_deploy_a_postgresql_db"></a>1. Deploy a Postgresql DB</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This time, we will do the full deployment from the <code>web console</code>.</p>
+<p>Run the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>cd $LABS_HOME/lab1/
+./db.sh -n &lt;YOUR_PROJECT&gt;
+
+Output:
+######## Deploying PostgreSQL ########
+service/postgresql created
+deployment.apps/postgresql created
+deployment.apps/postgresql condition met
+
+
+######## Create Schema PostgreSQL ########
+job.batch/petclinic-schema created
+job.batch/petclinic-schema condition met</pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s move to the <code>console</code> and select the <code>Developer</code> view.</p>
+<p>As a result, you should see two pods running: a postgresql pods and a job (that will populate the DB)</p>
 </div>
 <div class="paragraph">
-<p>As in next screenshot, first, ensure you are on the right project (it is very likely you are.. unless you have created more than one project), click on <code>Add</code> and select <code>Database</code>:</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/01-introduction/dev-add-db.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/dev-add-db.png" alt="add db"></a></span></p>
-</div>
-<div class="paragraph">
-<p>Then, select <code>Postgresql ephemeral</code>:</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/01-introduction/select-postgresql-eph.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/select-postgresql-eph.png" alt="postgresql ephemeral"></a></span></p>
-</div>
-<div class="paragraph">
-<p>Yes.. we are going to deploy an ephemeral Postgresql&#8230;&#8203; so in case the Postgresql <code>pod</code> is recreated we will lose the data. We will add a persistent volume later in these labs.</p>
-</div>
-<div class="paragraph">
-<p>Click on <code>Instantiate Template</code>:</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/01-introduction/instantiate-template.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/instantiate-template.png" alt="instantiate template"></a></span></p>
-</div>
-<div class="paragraph">
-<p>And set the following parameter values set in red (ensure you use those):</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/01-introduction/db-parameters.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/db-parameters.png" alt="db parameters"></a></span></p>
-</div>
-<div class="paragraph">
-<p>As a result, you should see both the application and postgresql pods running:</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/01-introduction/apps-pods.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/apps-pods.png" alt="application pods"></a></span></p>
+<p><span class="image"><a class="image" href="../_images/01-introduction/db-pods.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/db-pods.png" alt="application pods"></a></span></p>
 </div>
 </div>
 </div>
