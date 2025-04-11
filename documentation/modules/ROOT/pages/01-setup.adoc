@@ -28,7 +28,8 @@ Please have them installed and configured before you get started with any of the
 | https://code.visualstudio.com/sha/download?build=stable&os=darwin[Download]
 | https://code.visualstudio.com/sha/download?build=stable&os=win32-user[Download]
 | https://code.visualstudio.com/[Visual Studio Code - Docs]
-| istioctl (1.12.2) [optional]
+| istioctl (1.12.2) +
+[optional]
 | https://github.com/istio/istio/releases/download/1.12.2/istioctl-1.12.2-linux-amd64.tar.gz[Download, window="_blank"]
 | https://github.com/istio/istio/releases/download/1.12.2/istioctl-1.12.2-osx.tar.gz[Download, window="_blank"]
 | https://github.com/istio/istio/releases/download/1.12.2/istioctl-1.12.2-win.zip[Download, window="_blank"]
