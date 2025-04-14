@@ -436,9 +436,11 @@ export OCP_APPS_DOMAIN=&lt;openshift_apps_domain&gt;</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u $USER -p $PASS $OCP_API</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">OC CLI Login Output</div>
-<p>04-troubleshooting/oc_login_output.png[]</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/oc_login_output.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/oc_login_output.png" alt="oc login output"></a>
+</div>
+<div class="title">Figure 1. OC CLI Login Output</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -469,13 +471,13 @@ Please, pay special attention to <em>oc CLI</em>  because you will need to use t
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp_console_oauth.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp_console_oauth.png" alt="ocp console oauth"></a>
 </div>
-<div class="title">Figure 1. Openshift Console Oauth</div>
+<div class="title">Figure 2. Openshift Console Oauth</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp_console.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp_console.png" alt="ocp console"></a>
 </div>
-<div class="title">Figure 2. Openshift Console</div>
+<div class="title">Figure 3. Openshift Console</div>
 </div>
 </div>
 </div>
@@ -497,9 +499,11 @@ Please, pay special attention to <em>oc CLI</em>  because you will need to use t
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u $USER -p $PASS $OCP_API</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">OC CLI Login Output</div>
-<p>04-troubleshooting/oc_login_output.png[]</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/oc_login_output.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/oc_login_output.png" alt="oc login output"></a>
+</div>
+<div class="title">Figure 4. OC CLI Login Output</div>
 </div>
 </div>
 <div class="sect2">
@@ -519,7 +523,7 @@ Please, pay special attention to <em>oc CLI</em>  because you will need to use t
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/git_clone_output.png" alt="git clone output"></a>
 </div>
-<div class="title">Figure 3. git clone output</div>
+<div class="title">Figure 5. git clone output</div>
 </div>
 <div class="paragraph">
 <p>Finally, navigate to the new folder created in your system after repository download for completing all tasks included in this tutorial:</p>
@@ -562,7 +566,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/lojump_app_createdgin.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump_app_created.png" alt="jump app created"></a>
 </div>
-<div class="title">Figure 4. Jump App Deployed</div>
+<div class="title">Figure 6. Jump App Deployed</div>
 </div>
 </div>
 <div class="sect2">
@@ -586,7 +590,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump_app_pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump_app_pods.png" alt="jump app pods"></a>
 </div>
-<div class="title">Figure 5. Jump App Pods</div>
+<div class="title">Figure 7. Jump App Pods</div>
 </div>
 </div>
 <div class="sect2">
@@ -610,7 +614,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-routes.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-routes.png" alt="jump app routes"></a>
 </div>
-<div class="title">Figure 6. Jump App Routes</div>
+<div class="title">Figure 8. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -623,7 +627,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-ok.png" alt="jump app back ok"></a>
 </div>
-<div class="title">Figure 7. Jump App Back</div>
+<div class="title">Figure 9. Jump App Back</div>
 </div>
 <div class="ulist">
 <ul>
@@ -641,7 +645,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-front-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-ok.png" alt="jump app front ok"></a>
 </div>
-<div class="title">Figure 8. Jump App Frontend Web UI</div>
+<div class="title">Figure 10. Jump App Frontend Web UI</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -659,7 +663,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/certs_warning.png" alt="certs warning" width="50%"></a>
 </div>
-<div class="title">Figure 9. Openshift Self-signed Certificates Warning</div>
+<div class="title">Figure 11. Openshift Self-signed Certificates Warning</div>
 </div>
 </div>
 </div>
@@ -686,7 +690,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-ns-smr.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ns-smr.png" alt="jump app ns smr"></a>
 </div>
-<div class="title">Figure 10. <em>ServiceMeshMember</em> Created</div>
+<div class="title">Figure 12. <em>ServiceMeshMember</em> Created</div>
 </div>
 <div class="paragraph">
 <p>Additionally, you are able to check this new object through the Openshift Console:</p>
@@ -695,19 +699,19 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-ns-smr-con1.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ns-smr-con1.png" alt="jump app ns smr con1"></a>
 </div>
-<div class="title">Figure 11. <em>ServiceMeshMember</em> Created Console- 1</div>
+<div class="title">Figure 13. <em>ServiceMeshMember</em> Created Console- 1</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-ns-smr-con2.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ns-smr-con2.png" alt="jump app ns smr con2"></a>
 </div>
-<div class="title">Figure 12. <em>ServiceMeshMember</em> Created Console - 2</div>
+<div class="title">Figure 14. <em>ServiceMeshMember</em> Created Console - 2</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-ns-smr-con3.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ns-smr-con3.png" alt="jump app ns smr con3"></a>
 </div>
-<div class="title">Figure 13. <em>ServiceMeshMember</em> Created Console - 3</div>
+<div class="title">Figure 15. <em>ServiceMeshMember</em> Created Console - 3</div>
 </div>
 </div>
 </div>
@@ -750,7 +754,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-gws-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-gws-ok.png" alt="jump app gws ok"></a>
 </div>
-<div class="title">Figure 14. Gateways Created</div>
+<div class="title">Figure 16. Gateways Created</div>
 </div>
 </div>
 <div class="sect2">
@@ -770,7 +774,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-vss-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-vss-ok.png" alt="jump app vss ok"></a>
 </div>
-<div class="title">Figure 15. Virtual Services Created</div>
+<div class="title">Figure 17. Virtual Services Created</div>
 </div>
 </div>
 <div class="sect2">
@@ -790,7 +794,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-drs-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-drs-ok.png" alt="jump app drs ok"></a>
 </div>
-<div class="title">Figure 16. Destination Rules Created</div>
+<div class="title">Figure 18. Destination Rules Created</div>
 </div>
 </div>
 <div class="sect2">
@@ -810,7 +814,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-svcs-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-svcs-ok.png" alt="jump app svcs ok"></a>
 </div>
-<div class="title">Figure 17. k8s Services Created</div>
+<div class="title">Figure 19. k8s Services Created</div>
 </div>
 </div>
 </div>
@@ -835,7 +839,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-front-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-depl-patch.png" alt="jump app front depl patch"></a>
 </div>
-<div class="title">Figure 18. Front Patched</div>
+<div class="title">Figure 20. Front Patched</div>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -846,7 +850,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-back-spb-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-spb-depl-patch.png" alt="jump app back spb depl patch"></a>
 </div>
-<div class="title">Figure 19. Back Springboot Patched</div>
+<div class="title">Figure 21. Back Springboot Patched</div>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -857,7 +861,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-back-py-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-py-depl-patch.png" alt="jump app back py depl patch"></a>
 </div>
-<div class="title">Figure 20. Back Python Patched</div>
+<div class="title">Figure 22. Back Python Patched</div>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -868,7 +872,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-back-go-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-go-depl-patch.png" alt="jump app back go depl patch"></a>
 </div>
-<div class="title">Figure 21. Back Golang Patched</div>
+<div class="title">Figure 23. Back Golang Patched</div>
 </div>
 <div class="paragraph">
 <p>Before continuing with the following steps, please test Jump App <em>pods</em> status, in order to be sure that 2 replicas are running for each microservice:</p>
@@ -882,7 +886,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a>
 </div>
-<div class="title">Figure 22. Jump App Pods Mesh</div>
+<div class="title">Figure 24. Jump App Pods Mesh</div>
 </div>
 </div>
 <div class="sect2">
@@ -904,7 +908,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-route-del.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-route-del.png" alt="jump app route del"></a>
 </div>
-<div class="title">Figure 23. Jump App Routes Deleted</div>
+<div class="title">Figure 25. Jump App Routes Deleted</div>
 </div>
 </div>
 <div class="sect3">
@@ -924,7 +928,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-routes-mesh-ok.png" alt="jump app routes mesh ok"></a>
 </div>
-<div class="title">Figure 24. Mesh Routes Created</div>
+<div class="title">Figure 26. Mesh Routes Created</div>
 </div>
 </div>
 </div>
@@ -964,7 +968,7 @@ Look at the number of containers in each microservice, it must contains 2 contai
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a>
 </div>
-<div class="title">Figure 25. Jump App Pods Mesh</div>
+<div class="title">Figure 27. Jump App Pods Mesh</div>
 </div>
 <div class="ulist">
 <ul>
@@ -982,7 +986,7 @@ Look at the number of containers in each microservice, it must contains 2 contai
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a>
 </div>
-<div class="title">Figure 26. Jump App Routes</div>
+<div class="title">Figure 28. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -995,7 +999,7 @@ Look at the number of containers in each microservice, it must contains 2 contai
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-ok.png" alt="jump app back ok"></a>
 </div>
-<div class="title">Figure 27. Jump App Back</div>
+<div class="title">Figure 29. Jump App Back</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1013,7 +1017,7 @@ Look at the number of containers in each microservice, it must contains 2 contai
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a>
 </div>
-<div class="title">Figure 28. Jump App Front Web UI Multi Jumps</div>
+<div class="title">Figure 30. Jump App Front Web UI Multi Jumps</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1031,7 +1035,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/certs_warning.png" alt="certs warning" width="50%"></a>
 </div>
-<div class="title">Figure 29. Openshift Self-signed Certificates Warning</div>
+<div class="title">Figure 31. Openshift Self-signed Certificates Warning</div>
 </div>
 </div>
 </div>
@@ -1045,7 +1049,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-kiali.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali.png" alt="jump app kiali"></a>
 </div>
-<div class="title">Figure 30. Kiali Console</div>
+<div class="title">Figure 32. Kiali Console</div>
 </div>
 </div>
 </div>
@@ -1125,7 +1129,7 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mod-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mod-gw-ok.png" alt="jump app mod gw ok"></a>
 </div>
-<div class="title">Figure 31. Jump App Customizations Applied I</div>
+<div class="title">Figure 33. Jump App Customizations Applied I</div>
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
@@ -1136,7 +1140,7 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mod-svc-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mod-svc-ok.png" alt="jump app mod svc ok"></a>
 </div>
-<div class="title">Figure 32. Jump App Customizations Applied II</div>
+<div class="title">Figure 34. Jump App Customizations Applied II</div>
 </div>
 <div class="sect2">
 <h3 id="04-cust-state"><a class="anchor" href="#04-cust-state"></a>3.1. Confirm <em>Jump App</em> state</h3>
@@ -1162,7 +1166,7 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a>
 </div>
-<div class="title">Figure 33. Jump App Pods Mesh</div>
+<div class="title">Figure 35. Jump App Pods Mesh</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1180,7 +1184,7 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a>
 </div>
-<div class="title">Figure 34. Jump App Routes</div>
+<div class="title">Figure 36. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1193,7 +1197,7 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/04-troubleshooting/jump-app-unavailable-back.png" target="_blank" rel="noopener"><img src="04-troubleshooting/04-troubleshooting/jump-app-unavailable-back.png" alt="jump app unavailable back"></a>
 </div>
-<div class="title">Figure 35. Jump App Back Unavailable</div>
+<div class="title">Figure 37. Jump App Back Unavailable</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1206,7 +1210,7 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-unavailable-front.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-unavailable-front.png" alt="jump app unavailable front"></a>
 </div>
-<div class="title">Figure 36. Jump App Front with Errors</div>
+<div class="title">Figure 38. Jump App Front with Errors</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1252,7 +1256,7 @@ An error message appears when the frontend tries to call backend services
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp-routers-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-routers-pods.png" alt="ocp routers pods"></a>
 </div>
-<div class="title">Figure 37. OCP Router Pods</div>
+<div class="title">Figure 39. OCP Router Pods</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1284,7 +1288,7 @@ oc rsh $POD</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-gw.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-gw.png" alt="jump app trou 04 gw"></a>
 </div>
-<div class="title">Figure 38. HTTP Response Error 404</div>
+<div class="title">Figure 40. HTTP Response Error 404</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1308,13 +1312,13 @@ Note that the error is 404 because of the route, or path, is not found
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04.png" alt="jump app kiali trou 04"></a>
 </div>
-<div class="title">Figure 39. Kiali Console</div>
+<div class="title">Figure 41. Kiali Console</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04-error.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04-error.png" alt="jump app kiali trou 04 error"></a>
 </div>
-<div class="title">Figure 40. Kiali Console Gateway Error</div>
+<div class="title">Figure 42. Kiali Console Gateway Error</div>
 </div>
 <div class="paragraph">
 <p>If you take a look at the host paths closely, you can find a bad definition because of the pattern <strong>"-fail"</strong> included in the path. Please, modify this hostname and click on <strong>[ SAVE ]</strong>.</p>
@@ -1341,7 +1345,7 @@ Note that the error is 404 because of the route, or path, is not found
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp-routers-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-routers-pods.png" alt="ocp routers pods"></a>
 </div>
-<div class="title">Figure 41. OCP Routers Pods</div>
+<div class="title">Figure 43. OCP Routers Pods</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1373,7 +1377,7 @@ oc rsh $POD</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-gw-ok.png" alt="jump app trou 04 gw ok"></a>
 </div>
-<div class="title">Figure 42. HTTP Response 503</div>
+<div class="title">Figure 44. HTTP Response 503</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1419,7 +1423,7 @@ At this time, you obtain a 503 error because the service is unavailable but this
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></a>
 </div>
-<div class="title">Figure 43. Istio ControlPlane Pods</div>
+<div class="title">Figure 45. Istio ControlPlane Pods</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1451,7 +1455,7 @@ oc rsh $POD</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-svc.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-svc.png" alt="jump app trou 04 svc"></a>
 </div>
-<div class="title">Figure 44. HTTP Response Error</div>
+<div class="title">Figure 46. HTTP Response Error</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1485,7 +1489,7 @@ At this time, you obtain <em>"Could not resolve host: back-golang.user1-namespac
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-svc-created.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-svc-created.png" alt="jump app trou 04 svc created"></a>
 </div>
-<div class="title">Figure 45. back-golang k8s Service Created</div>
+<div class="title">Figure 47. back-golang k8s Service Created</div>
 </div>
 </div>
 <div class="sect2">
@@ -1562,13 +1566,13 @@ At this time, you obtain a 200 in this command but <em>external access</em> has 
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04-vs-dr.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04-vs-dr.png" alt="jump app kiali trou 04 vs dr"></a>
 </div>
-<div class="title">Figure 46. Kiali Console</div>
+<div class="title">Figure 48. Kiali Console</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04-error-vs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04-error-vs.png" alt="jump app kiali trou 04 error vs"></a>
 </div>
-<div class="title">Figure 47. Kiali Console Virtual Service Error</div>
+<div class="title">Figure 49. Kiali Console Virtual Service Error</div>
 </div>
 <div class="paragraph">
 <p>If you take a look at the host paths closely you can find a bad definition because of the pattern <strong>"-fail"</strong> included in the path. Please, modify this hostname and click on <strong>[ SAVE ]</strong>.</p>
@@ -1577,7 +1581,7 @@ At this time, you obtain a 200 in this command but <em>external access</em> has 
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04-error-dr.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04-error-dr.png" alt="jump app kiali trou 04 error dr"></a>
 </div>
-<div class="title">Figure 48. Kiali Console Destination Rule Error</div>
+<div class="title">Figure 50. Kiali Console Destination Rule Error</div>
 </div>
 <div class="paragraph">
 <p>Lastly, if you take a look at the label version you can find a bad definition. Please, replace <strong>fail</strong> with <strong>v1</strong> version and click on <strong>[ SAVE ]</strong>.</p>
@@ -1604,7 +1608,7 @@ At this time, you obtain a 200 in this command but <em>external access</em> has 
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></a>
 </div>
-<div class="title">Figure 49. Istio ControlPlane Pods</div>
+<div class="title">Figure 51. Istio ControlPlane Pods</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1636,7 +1640,7 @@ oc rsh $POD</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-vsdr-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-vsdr-ok.png" alt="jump app trou 04 vsdr ok"></a>
 </div>
-<div class="title">Figure 50. HTTP Response 200</div>
+<div class="title">Figure 52. HTTP Response 200</div>
 </div>
 </div>
 </div>
@@ -1670,7 +1674,7 @@ oc rsh $POD</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump_app_pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump_app_pods.png" alt="jump app pods"></a>
 </div>
-<div class="title">Figure 51. Jump App Pods</div>
+<div class="title">Figure 53. Jump App Pods</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1701,7 +1705,7 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-sidecar-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-sidecar-ok.png" alt="jump app trou 04 sidecar ok"></a>
 </div>
-<div class="title">Figure 52. HTTP Response 200</div>
+<div class="title">Figure 54. HTTP Response 200</div>
 </div>
 </div>
 </div>
@@ -1728,7 +1732,7 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a>
 </div>
-<div class="title">Figure 53. Jump App Pods Mesh</div>
+<div class="title">Figure 55. Jump App Pods Mesh</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1746,7 +1750,7 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a>
 </div>
-<div class="title">Figure 54. Jump App Routes</div>
+<div class="title">Figure 56. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1759,7 +1763,7 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-ok.png" alt="jump app back ok"></a>
 </div>
-<div class="title">Figure 55. Jump App Back</div>
+<div class="title">Figure 57. Jump App Back</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1777,7 +1781,7 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a>
 </div>
-<div class="title">Figure 56. Jump App Front Web UI Multi Jumps</div>
+<div class="title">Figure 58. Jump App Front Web UI Multi Jumps</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1795,7 +1799,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/certs_warning.png" alt="certs warning" width="50%"></a>
 </div>
-<div class="title">Figure 57. Openshift Self-signed Certificates Warning</div>
+<div class="title">Figure 59. Openshift Self-signed Certificates Warning</div>
 </div>
 </div>
 </div>
@@ -1809,7 +1813,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-kiali.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali.png" alt="jump app kiali"></a>
 </div>
-<div class="title">Figure 58. Kiali Console</div>
+<div class="title">Figure 60. Kiali Console</div>
 </div>
 </div>
 </div>
@@ -1840,7 +1844,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-secret-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-secret-ok.png" alt="jump app secret ok"></a>
 </div>
-<div class="title">Figure 59. Secret Created</div>
+<div class="title">Figure 61. Secret Created</div>
 </div>
 </div>
 <div class="sect2">
@@ -1860,7 +1864,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-routes-sds-mod.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-routes-sds-mod.png" alt="jump app routes sds mod"></a>
 </div>
-<div class="title">Figure 60. back-golang Route Modified</div>
+<div class="title">Figure 62. back-golang Route Modified</div>
 </div>
 </div>
 <div class="sect2">
@@ -1883,7 +1887,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-gw-ok.png" alt="jump app gw ok"></a>
 </div>
-<div class="title">Figure 61. back-golang Gateway Modified</div>
+<div class="title">Figure 63. back-golang Gateway Modified</div>
 </div>
 <div class="paragraph">
 <p>In order to ensure the Istio Secret Discovery Service (SDS) has been configured properly, you can review the <em>istio ingress gateway</em> pod as shown the following picture:</p>
@@ -1892,7 +1896,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-sds-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-sds-ok.png" alt="jump app sds ok"></a>
 </div>
-<div class="title">Figure 62. Secret Added to SDS</div>
+<div class="title">Figure 64. Secret Added to SDS</div>
 </div>
 </div>
 </div>
@@ -1922,7 +1926,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a>
 </div>
-<div class="title">Figure 63. Jump App Pods Mesh</div>
+<div class="title">Figure 65. Jump App Pods Mesh</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1940,7 +1944,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a>
 </div>
-<div class="title">Figure 64. Jump App Routes</div>
+<div class="title">Figure 66. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1953,7 +1957,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/04-troubleshooting/jump-app-unavailable-back-route.png" target="_blank" rel="noopener"><img src="04-troubleshooting/04-troubleshooting/jump-app-unavailable-back-route.png" alt="jump app unavailable back route"></a>
 </div>
-<div class="title">Figure 65. Jump App Back Unavailable</div>
+<div class="title">Figure 67. Jump App Back Unavailable</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1966,7 +1970,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-unavailable-front.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-unavailable-front.png" alt="jump app unavailable front"></a>
 </div>
-<div class="title">Figure 66. Jump App Front with Errors</div>
+<div class="title">Figure 68. Jump App Front with Errors</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2011,7 +2015,7 @@ An error message appears when the frontend tries to call backend services
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp-routers-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-routers-pods.png" alt="ocp routers pods"></a>
 </div>
-<div class="title">Figure 67. OCP Router Pods</div>
+<div class="title">Figure 69. OCP Router Pods</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2043,7 +2047,7 @@ oc rsh $POD</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-gw.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-gw.png" alt="jump app trou 05 gw"></a>
 </div>
-<div class="title">Figure 68. HTTP Response 200</div>
+<div class="title">Figure 70. HTTP Response 200</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -2067,13 +2071,13 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-ocp-trou-05.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ocp-trou-05.png" alt="jump app ocp trou 05"></a>
 </div>
-<div class="title">Figure 69. OCP Console</div>
+<div class="title">Figure 71. OCP Console</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-ocp-trou-05-error.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ocp-trou-05-error.png" alt="jump app ocp trou 05 error"></a>
 </div>
-<div class="title">Figure 70. OCP Console Bad Configuration</div>
+<div class="title">Figure 72. OCP Console Bad Configuration</div>
 </div>
 <div class="paragraph">
 <p>If you take a look at the <em>target port</em> closely, you can find <em>http2</em>. In order to support passthrough routes and connect with <em>Ingress Gateway</em> secure ports, it is required define a secured port. Please, <em>edit route</em>, define <em>https</em> as target port and click on <strong>[ SAVE ]</strong>.</p>
@@ -2108,7 +2112,7 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-padr.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-padr.png" alt="jump app trou 05 padr"></a>
 </div>
-<div class="title">Figure 71. PeerAuthentication and Destination Rule created</div>
+<div class="title">Figure 73. PeerAuthentication and Destination Rule created</div>
 </div>
 </div>
 <div class="sect2">
@@ -2132,7 +2136,7 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></a>
 </div>
-<div class="title">Figure 72. Istio ControlPlane Pods</div>
+<div class="title">Figure 74. Istio ControlPlane Pods</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2164,7 +2168,7 @@ oc rsh $POD</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv.png" alt="jump app trou 05 k8ssrv"></a>
 </div>
-<div class="title">Figure 73. HTTP Response <em>Connection reset by peer</em></div>
+<div class="title">Figure 75. HTTP Response <em>Connection reset by peer</em></div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2204,7 +2208,7 @@ oc extract secret/istio-ca-secret --to=. -n istio-system</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp-istio-ca-certs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-ca-certs.png" alt="ocp istio ca certs"></a>
 </div>
-<div class="title">Figure 74. Istio CA Certs</div>
+<div class="title">Figure 76. Istio CA Certs</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2251,7 +2255,7 @@ EOF</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp-istio-gen-cert-req.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-gen-cert-req.png" alt="ocp istio gen cert req"></a>
 </div>
-<div class="title">Figure 75. New Certificate Request</div>
+<div class="title">Figure 77. New Certificate Request</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2269,7 +2273,7 @@ EOF</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp-istio-gen-cert.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-gen-cert.png" alt="ocp istio gen cert"></a>
 </div>
-<div class="title">Figure 76. New Istio CA signed Certificate</div>
+<div class="title">Figure 78. New Istio CA signed Certificate</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2287,7 +2291,7 @@ EOF</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></a>
 </div>
-<div class="title">Figure 77. Istio ControlPlane Pods</div>
+<div class="title">Figure 79. Istio ControlPlane Pods</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2338,7 +2342,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert.png" alt="jump app trou 05 k8ssrv cert"></a>
 </div>
-<div class="title">Figure 78. HTTP Response <em>Certificate required</em></div>
+<div class="title">Figure 80. HTTP Response <em>Certificate required</em></div>
 </div>
 <div class="ulist">
 <ul>
@@ -2356,7 +2360,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert-ok.png" alt="jump app trou 05 k8ssrv cert ok"></a>
 </div>
-<div class="title">Figure 79. HTTP Response 200</div>
+<div class="title">Figure 81. HTTP Response 200</div>
 </div>
 </div>
 </div>
@@ -2383,7 +2387,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a>
 </div>
-<div class="title">Figure 80. Jump App Pods Mesh</div>
+<div class="title">Figure 82. Jump App Pods Mesh</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2401,7 +2405,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a>
 </div>
-<div class="title">Figure 81. Jump App Routes</div>
+<div class="title">Figure 83. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2414,7 +2418,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-ok.png" alt="jump app back ok"></a>
 </div>
-<div class="title">Figure 82. Jump App Back</div>
+<div class="title">Figure 84. Jump App Back</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2432,7 +2436,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a>
 </div>
-<div class="title">Figure 83. Jump App Front Web UI Multi Jumps</div>
+<div class="title">Figure 85. Jump App Front Web UI Multi Jumps</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -2450,7 +2454,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/certs_warning.png" alt="certs warning" width="50%"></a>
 </div>
-<div class="title">Figure 84. Openshift Self-signed Certificates Warning</div>
+<div class="title">Figure 86. Openshift Self-signed Certificates Warning</div>
 </div>
 </div>
 </div>
@@ -2464,7 +2468,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-kiali.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali.png" alt="jump app kiali"></a>
 </div>
-<div class="title">Figure 85. Kiali Console</div>
+<div class="title">Figure 87. Kiali Console</div>
 </div>
 </div>
 </div>
@@ -2562,7 +2566,7 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-svc-cert-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-svc-cert-ok.png" alt="jump app mesh external svc cert ok"></a>
 </div>
-<div class="title">Figure 86. Server certificates OK</div>
+<div class="title">Figure 88. Server certificates OK</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2580,7 +2584,7 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-ca-cert-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-ca-cert-ok.png" alt="jump app mesh external ca cert ok"></a>
 </div>
-<div class="title">Figure 87. CA certificates OK</div>
+<div class="title">Figure 89. CA certificates OK</div>
 </div>
 </div>
 </div>
@@ -2610,7 +2614,7 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-conf-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-conf-ok.png" alt="jump app mesh external nginx conf ok"></a>
 </div>
-<div class="title">Figure 88. Nginx config file OK</div>
+<div class="title">Figure 90. Nginx config file OK</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2628,7 +2632,7 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-deployment-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-deployment-ok.png" alt="jump app mesh external nginx deployment ok"></a>
 </div>
-<div class="title">Figure 89. Nginx deployment and service ok</div>
+<div class="title">Figure 91. Nginx deployment and service ok</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2646,7 +2650,7 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-pods-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-pods-ok.png" alt="jump app mesh external nginx pods ok"></a>
 </div>
-<div class="title">Figure 90. Nginx pod ok</div>
+<div class="title">Figure 92. Nginx pod ok</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2666,7 +2670,7 @@ oc rsh $POD curl <a href="https://localhost:443" class="bare">https://localhost:
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png" alt="jump app mesh external nginx svc ok 404"></a>
 </div>
-<div class="title">Figure 91. Nginx service mTLS ERROR</div>
+<div class="title">Figure 93. Nginx service mTLS ERROR</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2718,7 +2722,7 @@ oc create -n $USER_NAMESPACE secret tls nginx-client-certs --key client.example.
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-certs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-certs.png" alt="jump app mesh external nginx access certs"></a>
 </div>
-<div class="title">Figure 92. Client certificates OK</div>
+<div class="title">Figure 94. Client certificates OK</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2736,7 +2740,7 @@ oc create -n $USER_NAMESPACE secret tls nginx-client-certs --key client.example.
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-ca-certs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-ca-certs.png" alt="jump app mesh external nginx access ca certs"></a>
 </div>
-<div class="title">Figure 93. CA certificates OK</div>
+<div class="title">Figure 95. CA certificates OK</div>
 </div>
 </div>
 <div class="sect2">
@@ -2763,7 +2767,7 @@ oc create -n $USER_NAMESPACE secret tls nginx-client-certs --key client.example.
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-pod.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-pod.png" alt="jump app mesh external nginx client pod"></a>
 </div>
-<div class="title">Figure 94. Testing service created</div>
+<div class="title">Figure 96. Testing service created</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2781,7 +2785,7 @@ oc create -n $USER_NAMESPACE secret tls nginx-client-certs --key client.example.
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/lojump-app-mesh-external-nginx-client-pod-okgin.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-pod-ok.png" alt="jump app mesh external nginx client pod ok"></a>
 </div>
-<div class="title">Figure 95. Testing service pod OK</div>
+<div class="title">Figure 97. Testing service pod OK</div>
 </div>
 </div>
 <div class="sect2">
@@ -2804,7 +2808,7 @@ oc exec -it $POD -c sleep -- curl -v --cacert /etc/nginx-ca-certs/example.com.cr
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-mtls-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-mtls-ok.png" alt="jump app mesh external nginx client mtls ok"></a>
 </div>
-<div class="title">Figure 96. Nginx service with mTLS</div>
+<div class="title">Figure 98. Nginx service with mTLS</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2824,7 +2828,7 @@ oc exec -it $POD -c sleep -- curl -v <a href="https://my-nginx.$USER_NAMESPACE-m
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png" alt="jump app mesh external nginx svc ok 404"></a>
 </div>
-<div class="title">Figure 97. Nginx service mTLS ERROR</div>
+<div class="title">Figure 99. Nginx service mTLS ERROR</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2880,7 +2884,7 @@ You have deployed a nginx mTLS service and you are receiving a <em>400 Bad Reque
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-objects-new.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-objects-new.png" alt="jump app mesh external nginx access egress objects new"></a>
 </div>
-<div class="title">Figure 98. Gateway, Virtual Service and Destination Rules OK</div>
+<div class="title">Figure 100. Gateway, Virtual Service and Destination Rules OK</div>
 </div>
 <div class="sect2">
 <h3 id="_configure_the_egress_gateway"><a class="anchor" href="#_configure_the_egress_gateway"></a>5.1. Configure the <em>Egress Gateway</em></h3>
@@ -2909,7 +2913,7 @@ You have deployed a nginx mTLS service and you are receiving a <em>400 Bad Reque
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-istio-system-certs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-istio-system-certs.png" alt="jump app mesh external nginx istio system certs"></a>
 </div>
-<div class="title">Figure 99. Nginx client egress certificate</div>
+<div class="title">Figure 101. Nginx client egress certificate</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2927,7 +2931,7 @@ You have deployed a nginx mTLS service and you are receiving a <em>400 Bad Reque
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mesh-nginx-dr-se.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-nginx-dr-se.png" alt="jump app mesh nginx dr se"></a>
 </div>
-<div class="title">Figure 100. Nginx service destination rule and service entry</div>
+<div class="title">Figure 102. Nginx service destination rule and service entry</div>
 </div>
 </div>
 <div class="sect2">
@@ -2953,7 +2957,7 @@ oc exec -it $POD -c sleep -- curl -v <a href="http://my-nginx.$USER_NAMESPACE-me
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-con-ok-mtls.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-con-ok-mtls.png" alt="jump app mesh external nginx access egress con ok mtls"></a>
 </div>
-<div class="title">Figure 101. nginx.example.com mTLS connection OK</div>
+<div class="title">Figure 103. nginx.example.com mTLS connection OK</div>
 </div>
 </div>
 </div>
@@ -2983,7 +2987,7 @@ oc exec -it $POD -c sleep -- curl -v <a href="http://my-nginx.$USER_NAMESPACE-me
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-jaeger-traces.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-jaeger-traces.png" alt="jump app jaeger traces"></a>
 </div>
-<div class="title">Figure 102. Traces in jaeger</div>
+<div class="title">Figure 104. Traces in jaeger</div>
 </div>
 <div class="paragraph">
 <p>Click on any of them and you will see the following page will all the jumps your application did and how long did they take:</p>
@@ -2992,7 +2996,7 @@ oc exec -it $POD -c sleep -- curl -v <a href="http://my-nginx.$USER_NAMESPACE-me
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-jaeger-spans.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-jaeger-spans.png" alt="jump app jaeger spans"></a>
 </div>
-<div class="title">Figure 103. Spans in jaeger</div>
+<div class="title">Figure 105. Spans in jaeger</div>
 </div>
 <div class="paragraph">
 <p>Those are called spans and they represent a logical unit of work in Jaeger that has an operation name, the start time of the operation, and the duration. Spans may be nested and ordered to model causal relationships. This could help you see where is your application spending more time and find bottlenecks in an easy manner.</p>
@@ -3017,7 +3021,7 @@ oc exec -it $POD -c sleep -- curl -v <a href="http://my-nginx.$USER_NAMESPACE-me
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-kiali-delay.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-delay.png" alt="jump app kiali delay"></a>
 </div>
-<div class="title">Figure 104. See delay in Kiali</div>
+<div class="title">Figure 106. See delay in Kiali</div>
 </div>
 <div class="paragraph">
 <p>You&#8217;ll notice that requests in <code>back-golang</code> are now taking roughly 2 seconds. This capacity of Kiali to see the response time is another way of watching where your application is spending more time. But you can play with other metrics that Kiali gives you like Request Percentage, Requests per Second and even see the traffic animation and security.</p>
@@ -3044,7 +3048,7 @@ oc exec -it $POD -c istio-proxy -- curl localhost:15000/config_dump &gt; dump.js
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/config_dump.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/config_dump.png" alt="config dump"></a>
 </div>
-<div class="title">Figure 105. Envoy config dump</div>
+<div class="title">Figure 107. Envoy config dump</div>
 </div>
 <div class="paragraph">
 <p>Take some time checking the config dump, since this file has all the configuration parameters of the Envoy proxies inside the Service Mesh.</p>
@@ -3092,7 +3096,7 @@ oc exec -it $POD -c istio-proxy -- curl -X POST localhost:15000/logging</code></
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/envoy-logging.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/envoy-logging.png" alt="envoy logging"></a>
 </div>
-<div class="title">Figure 106. Active Loggers</div>
+<div class="title">Figure 108. Active Loggers</div>
 </div>
 <div class="paragraph">
 <p>Now, you will change the level of one of them:</p>
