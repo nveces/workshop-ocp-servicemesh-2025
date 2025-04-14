@@ -294,31 +294,11 @@
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ oc scale dc/petclinic-database --replicas=0 -n &lt;YOUR_PROJECT&gt;
+<pre>$ oc scale deployment/postgresql --replicas=0 -n &lt;YOUR_PROJECT&gt;
 
 
-deploymentconfig.apps.openshift.io/petclinic-database scaled</pre>
+deployment.apps/postgresql scaled</pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Now, edit the <code>petclinic-database</code> <code>DeploymentConfig</code> to remove any <code>volume</code> and <code>volumeMount</code> reference to avoid conflicts when adding new storage. Before removing, keep save somewhere the path related to the volume mount. You can manually edit the <code>DeploymentConfig</code>  from the <code>web console</code> or by running:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre> oc edit dc/petclinic-database  -n &lt;YOUR_PROJECT&gt;</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Remove <code>emptyDir</code> volume:</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/01-introduction/emptydir.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/emptydir.png" alt="Empty dir"></a></span></p>
-</div>
-<div class="paragraph">
-<p>Remove volume mount:</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/01-introduction/vol-mount.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/vol-mount.png" alt="Volume mount"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s add storage now. Move to the <code>Developer</code> view and click on the Database application and then, <code>Add storage</code>:</p>
@@ -333,14 +313,14 @@ deploymentconfig.apps.openshift.io/petclinic-database scaled</pre>
 <p><span class="image"><a class="image" href="../_images/01-introduction/add-storage-detail.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/add-storage-detail.png" alt="Add storage"></a></span></p>
 </div>
 <div class="paragraph">
-<p>Scale the Database <code>DeploymentConfig</code> back to one replica:</p>
+<p>Scale the Database <code>Deployment</code> back to one replica:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ oc scale dc/petclinic-database --replicas=1 -n &lt;YOUR_PROJECT&gt;
+<pre>$ oc scale deployment/postgresql --replicas=1 -n &lt;YOUR_PROJECT&gt;
 
 
-deploymentconfig.apps.openshift.io/petclinic-database scaled</pre>
+deployment.apps/postgresql scaled</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -349,7 +329,7 @@ deploymentconfig.apps.openshift.io/petclinic-database scaled</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Have a look at the new <code>DeploymentConfig</code> volume and volumeMount section</p>
+<p>Have a look at the new <code>Deployment</code> volume and volumeMount section</p>
 </li>
 <li>
 <p>Navigate to the <code>web console</code> and <code>storage</code> menu and verify that the <code>pvc</code> appears as bound</p>
