@@ -78,19 +78,13 @@
     <a class="nav-link" href="index.html#_lab_1_first_application_deployment">Lab 2 - First application deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_2_complete_application_deployment">Lab 3 - Complete application deployment</a>
+    <a class="nav-link" href="index.html#_lab_3_adding_persistent_volumes">Lab 3 - Adding persistent volumes</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_3_adding_persistent_volumes">Lab 4 - Adding persistent volumes</a>
+    <a class="nav-link" href="index.html#_lab_5_resources">Lab 4 - Resources</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_4_configuration_management">Lab 5 - Configuration management</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_5_resources">Lab 6 - Resources</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_6_liveness_and_readiness_probes">Lab 7 - Liveness and readiness probes</a>
+    <a class="nav-link" href="index.html#_lab_6_liveness_and_readiness_probes">Lab 5 - Liveness and readiness probes</a>
   </li>
 </ul>
   </li>
@@ -323,9 +317,9 @@
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ oc set resources dc/petclinic-database --limits=cpu=10m,memory=512Mi --requests=cpu=10m,memory=512Mi -n &lt;TOUR PROJECT&gt;
+<pre>$ oc set resources deployment/postgresql --limits=cpu=10m,memory=512Mi --requests=cpu=10m,memory=512Mi -n &lt;TOUR PROJECT&gt;
 
-deploymentconfig.apps.openshift.io/petclinic-database resource requirements updated</pre>
+deployment.apps/postgresql resource requirements updated</pre>
 </div>
 </div>
 <div class="paragraph">
