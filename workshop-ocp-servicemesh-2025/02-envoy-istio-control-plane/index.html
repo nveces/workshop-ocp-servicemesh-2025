@@ -240,8 +240,11 @@
 <h1 class="page">Service Mesh: Envoy &amp; Istio Control Plane Tutorial</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/logos.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/logos.png" alt="logos"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/logos.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/logos.png" alt="logos"></a>
+</div>
+<div class="title">Figure 1. Product Logos</div>
 </div>
 </div>
 </div>
@@ -274,7 +277,7 @@
 </div>
 <h1 id="_lab_1_setup" class="sect0"><a class="anchor" href="#_lab_1_setup"></a>Lab 1 - Setup</h1>
 <div class="sect1">
-<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>1. Prerequisites</h2>
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>During this tutorial, it will be required to work with different tools for running the exercises included. Please, install the following software:</p>
@@ -323,7 +326,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="laboratory"><a class="anchor" href="#laboratory"></a>2. Laboratory</h2>
+<h2 id="laboratory"><a class="anchor" href="#laboratory"></a>Laboratory</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Tutorial&#8217;s laboratory is basically based on the following technologies:</p>
@@ -345,7 +348,7 @@
 <p>The previous technologies and resources will allow you to implement a microservice-based application in Openshift which will be included in Service Mesh. The main objective of deploying this application in Openshift using Service Mesh is to understand how <em>Istio</em> &amp; <em>Envoy</em> are tightly related.</p>
 </div>
 <div class="sect2">
-<h3 id="_laboratory_parameters"><a class="anchor" href="#_laboratory_parameters"></a>2.1. Laboratory Parameters</h3>
+<h3 id="_laboratory_parameters"><a class="anchor" href="#_laboratory_parameters"></a>Laboratory Parameters</h3>
 <div class="paragraph">
 <p>The Instructor provides users the Openshift credentials and other important parameters at the beginning of this tutorial in order to access the laboratory.</p>
 </div>
@@ -369,17 +372,18 @@
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Openshift Cluster API (Access CLI)</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&lt;ocp_cluster_api&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://api.labs.sandbox1420.opentlc.com:6443" class="bare">https://api.labs.sandbox1420.opentlc.com:6443</a></em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://api.apps.ocp.sandbox2865.opentlc.com:6443" class="bare">https://api.apps.ocp.sandbox2865.opentlc.com:6443</a></em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Openshift Cluster Console</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&lt;ocp_cluster_console&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://console-openshift-console.apps.labs.sandbox1420.opentlc.com" class="bare">https://console-openshift-console.apps.labs.sandbox1420.opentlc.com</a></em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://console-openshift-console.apps.ocp.sandbox2865.opentlc.com/" class="bare">https://console-openshift-console.apps.ocp.sandbox2865.opentlc.com/</a></em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Username</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;user&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">user1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;userXX&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">user01<br>
+  user15</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Password</p></td>
@@ -389,23 +393,24 @@
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Namespace</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&lt;user_namespace&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">user1-namespace</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">user01-sm<br>
+  user15-sm</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Openshift Apps Domain</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&lt;openshift_apps_domain&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><em>apps.labs.sandbox1420.opentlc.com</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>apps.ocp.sandbox2865.opentlc.com</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Kiali Url</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&lt;kiali_url&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://kiali-istio-system.apps.labs.sandbox1420.opentlc.com" class="bare">https://kiali-istio-system.apps.labs.sandbox1420.opentlc.com</a></em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com" class="bare">https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com</a></em></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_access_laboratory_oc_client"><a class="anchor" href="#_access_laboratory_oc_client"></a>2.2. Access Laboratory - OC Client</h3>
+<h3 id="_access_laboratory_oc_client"><a class="anchor" href="#_access_laboratory_oc_client"></a>Access Laboratory - OC Client</h3>
 <div class="paragraph">
 <p>The OpenShift Container Platform CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system.</p>
 </div>
@@ -417,9 +422,11 @@
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u &lt;user&gt; -p &lt;pass&gt; &lt;ocp_cluster_api&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">OC CLI Login Output</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/oc_login_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/oc_login_output.png" alt="oc login output"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/oc_login_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/oc_login_output.png" alt="oc login output"></a>
+</div>
+<div class="title">Figure 2. OC CLI Login Output</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -435,27 +442,29 @@ Please, pay special attention to <em>oc CLI</em>  because you will need to use t
 </div>
 </div>
 <div class="sect2">
-<h3 id="_access_laboratory_console"><a class="anchor" href="#_access_laboratory_console"></a>2.3. Access Laboratory - Console</h3>
+<h3 id="_access_laboratory_console"><a class="anchor" href="#_access_laboratory_console"></a>Access Laboratory - Console</h3>
 <div class="paragraph">
 <p>In addition, access Openshift Console using your credentials via browser in order to check connectivity and accessibility to the console:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>&lt;ocp_cluster_console&gt; (<em>E.g. <a href="https://console-openshift-console.apps.labs.sandbox1420.opentlc.com" class="bare">https://console-openshift-console.apps.labs.sandbox1420.opentlc.com</a></em>)</p>
+<p>&lt;ocp_cluster_console&gt; (<em>E.g. <a href="https://console-openshift-console.apps.ocp.sandbox2865.opentlc.com/" class="bare" target="_blank" rel="noopener">https://console-openshift-console.apps.ocp.sandbox2865.opentlc.com/</a></em>)</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Openshift Console</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/ocp_console.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/ocp_console.png" alt="ocp console"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/ocp_console.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/ocp_console.png" alt="ocp console"></a>
+</div>
+<div class="title">Figure 3. Openshift Console</div>
 </div>
 </div>
 </div>
 </div>
 <h1 id="_lab_2_deploy_jump_app" class="sect0"><a class="anchor" href="#_lab_2_deploy_jump_app"></a>Lab 2 - Deploy Jump App</h1>
 <div class="sect1">
-<h2 id="_deploy_jump_app_microservices"><a class="anchor" href="#_deploy_jump_app_microservices"></a>1. Deploy <em>Jump App</em> Microservices</h2>
+<h2 id="_deploy_jump_app_microservices"><a class="anchor" href="#_deploy_jump_app_microservices"></a>Deploy <em>Jump App</em> Microservices</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><em>Jump App</em> is a microservice-based application created to emulate an enterprise application complex architecture with multi environments. This app allows users to configure a set of jumps between components and generate a continuous traffic flow defining the number of retries and their span of time.</p>
@@ -476,19 +485,21 @@ Please, replace <strong>&lt;user&gt;</strong>, <strong>&lt;pass&gt;</strong>, <s
 </table>
 </div>
 <div class="sect2">
-<h3 id="login"><a class="anchor" href="#login"></a>1.1. Login in Openshift</h3>
+<h3 id="login"><a class="anchor" href="#login"></a>Login in Openshift</h3>
 <div class="listingblock lines_space console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u &lt;user&gt; -p &lt;pass&gt; &lt;ocp_cluster_api&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">OC CLI Login Output</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/oc_login_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/oc_login_output.png" alt="oc login output"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/oc_login_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/oc_login_output.png" alt="oc login output"></a>
+</div>
+<div class="title">Figure 4. OC CLI Login Output</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="github"><a class="anchor" href="#github"></a>1.2. Clone GitHub Repository</h3>
+<h3 id="github"><a class="anchor" href="#github"></a>Clone GitHub Repository</h3>
 <div class="paragraph">
 <p><em>Jump App Gitops</em> is one of a set of repositories developed to generate a microservice based application, named Jump App. This repository includes an automated way of deploy Jump App&#8217;s microservices and all stuff around this application (Deployments, Services, Build Configs, Pipelines, etc), including optionally CI/CD or Service Mesh objects as well.</p>
 </div>
@@ -500,9 +511,26 @@ Please, replace <strong>&lt;user&gt;</strong>, <strong>&lt;pass&gt;</strong>, <s
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git" class="bare">https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git</a></code></pre>
 </div>
 </div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/git_clone_output.png" alt="git clone output"></a>
+</div>
+<div class="title">Figure 5. git clone output</div>
+</div>
 <div class="paragraph">
-<div class="title">git clone output</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/git_clone_output.png" alt="git clone output"></a></span></p>
+<p>or if you prefer to use <strong>SSH</strong>, <code>git clone <a href="mailto:git@github.com">git@github.com</a>:acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone git@github.com:acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git
+Cloning into 'rh-service-mesh-v2-istio-crtlplane-resources'...
+remote: Enumerating objects: 97, done.
+remote: Counting objects: 100% (97/97), done.
+remote: Compressing objects: 100% (64/64), done.
+remote: Total 97 (delta 50), reused 70 (delta 29), pack-reused 0 (from 0)
+Receiving objects: 100% (97/97), 27.05 KiB | 395.00 KiB/s, done.
+Resolving deltas: 100% (50/50), done.</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Finally, navigate to the new folder created in your system after repository download for completing all tasks included in this tutorial:</p>
@@ -514,9 +542,9 @@ Please, replace <strong>&lt;user&gt;</strong>, <strong>&lt;pass&gt;</strong>, <s
 </div>
 </div>
 <div class="sect2">
-<h3 id="jumpappobjects"><a class="anchor" href="#jumpappobjects"></a>1.3. Create <em>Jump App</em> Objects in Openshift</h3>
+<h3 id="jumpappobjects"><a class="anchor" href="#jumpappobjects"></a>Create <em>Jump App</em> Objects in Openshift</h3>
 <div class="paragraph">
-<p>First of all, it is required to modify <em>params.env</em> file to include the parameters provided by the Instructor:</p>
+<p>First of all, it is required to modify <code>params.env</code> file to include the parameters provided by the Instructor:</p>
 </div>
 <div class="listingblock lines_7 console-input">
 <div class="content">
@@ -527,8 +555,8 @@ Please, replace <strong>&lt;user&gt;</strong>, <strong>&lt;pass&gt;</strong>, <s
 <div class="title">Example 1. params file content</div>
 <div class="content">
 <div class="paragraph">
-<p>USER_NAMESPACE=user1<br>
-OCP_APPS_DOMAIN=apps.tutorialrhmesh.sandbox507.opentlc.com</p>
+<p>USER_NAMESPACE=user01<br>
+OCP_APPS_DOMAIN=apps.ocp.sandbox2865.opentlc.com</p>
 </div>
 </div>
 </div>
@@ -541,13 +569,15 @@ OCP_APPS_DOMAIN=apps.tutorialrhmesh.sandbox507.opentlc.com</p>
 oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Deployed</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump_app_created.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump_app_created.png" alt="jump app created"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump_app_created.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump_app_created.png" alt="jump app created"></a>
+</div>
+<div class="title">Figure 6. Jump App Deployed</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="test"><a class="anchor" href="#test"></a>1.4. Confirm <em>Jump App</em> is already running in Openshift</h3>
+<h3 id="test"><a class="anchor" href="#test"></a>Confirm <em>Jump App</em> is already running in Openshift</h3>
 <div class="paragraph">
 <p>Once <em>Jump App</em> objects have been created in Openshift, it is required to follow the next steps in order to ensure your demo app is running properly:</p>
 </div>
@@ -563,13 +593,15 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods -n &lt;user_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Pods</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump_app_pods.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump_app_pods.png" alt="jump app pods"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump_app_pods.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump_app_pods.png" alt="jump app pods"></a>
+</div>
+<div class="title">Figure 7. Jump App Pods</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="testapp"><a class="anchor" href="#testapp"></a>1.5. Access to <em>Jump App</em></h3>
+<h3 id="testapp"><a class="anchor" href="#testapp"></a>Access to <em>Jump App</em></h3>
 <div class="paragraph">
 <p>Once <em>Jump App</em> is already running in Openshift, it is time to access <em>Jump App</em> public services in order to test the application:</p>
 </div>
@@ -585,9 +617,11 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n &lt;user_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Routes</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-routes.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-routes.png" alt="jump app routes"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-routes.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-routes.png" alt="jump app routes"></a>
+</div>
+<div class="title">Figure 8. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -596,9 +630,11 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Back</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" alt="jump app back ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" alt="jump app back ok"></a>
+</div>
+<div class="title">Figure 9. Jump App Back</div>
 </div>
 <div class="ulist">
 <ul>
@@ -612,9 +648,11 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Frontend Web UI</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-ok.png" alt="jump app front ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-ok.png" alt="jump app front ok"></a>
+</div>
+<div class="title">Figure 10. Jump App Frontend Web UI</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -628,16 +666,18 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<div class="title">Openshift Self-signed Certificates Warning</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/certs_warning.png" alt="certs warning" width="50%"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/certs_warning.png" alt="certs warning" width="50%"></a>
+</div>
+<div class="title">Figure 11. Openshift Self-signed Certificates Warning</div>
 </div>
 </div>
 </div>
 </div>
 <h1 id="_lab_3_service_mesh_communication_flows" class="sect0"><a class="anchor" href="#_lab_3_service_mesh_communication_flows"></a>Lab 3 - Service Mesh Communication Flows</h1>
 <div class="sect1">
-<h2 id="create"><a class="anchor" href="#create"></a>1. Create Red Hat Service Mesh Traffic Flow objects</h2>
+<h2 id="create"><a class="anchor" href="#create"></a>Create Red Hat Service Mesh Traffic Flow objects</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In order to make an application available through Service Mesh, it is required to create a set of Service Mesh objects related to the traffic flow:</p>
@@ -645,13 +685,13 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="ulist">
 <ul>
 <li>
-<p>Gateways - Describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections (Please, visit this link <a href="https://istio.io/v1.6/docs/concepts/traffic-management/#gateways">Gateways</a> for more information about <em>gateways</em>)</p>
+<p>Gateways - Describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections (Please, visit this link <a href="https://istio.io/v1.6/docs/concepts/traffic-management/#gateways" target="<em>blank">Gateways</a> for more information about _gateways</em>)</p>
 </li>
 <li>
-<p>Virtual Services - Defines a set of traffic routing rules to apply when a host is addressed (Please, visit this link <a href="https://istio.io/v1.6/docs/concepts/traffic-management/#virtual-services">Virtual Services</a> for more information about <em>virtual services</em>)</p>
+<p>Virtual Services - Defines a set of traffic routing rules to apply when a host is addressed (Please, visit this link <a href="https://istio.io/v1.6/docs/concepts/traffic-management/#virtual-services" target="<em>blank">Virtual Services</a> for more information about _virtual services</em>)</p>
 </li>
 <li>
-<p>Destination Rules - Defines policies that apply to traffic intended for a service after routing has occurred (Please, visit this link <a href="https://istio.io/v1.6/docs/concepts/traffic-management/#destination-rules">Destination Rules</a> for more information about <em>destination rules</em>)</p>
+<p>Destination Rules - Defines policies that apply to traffic intended for a service after routing has occurred (Please, visit this link <a href="https://istio.io/v1.6/docs/concepts/traffic-management/#destination-rules" target="<em>blank">Destination Rules</a> for more information about _destination rules</em>)</p>
 </li>
 </ul>
 </div>
@@ -671,7 +711,7 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 </table>
 </div>
 <div class="sect2">
-<h3 id="gw"><a class="anchor" href="#gw"></a>1.1. Gateways</h3>
+<h3 id="gw"><a class="anchor" href="#gw"></a>Gateways</h3>
 <div class="paragraph">
 <p>First of all, it is required to create a Gateway for external access. In the <em>Jump App</em> architecture, you have a couple of services which have to be exposes to external clients in order to present the Frontend and Backend services.</p>
 </div>
@@ -684,13 +724,15 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 oc process -f 03-jump-app-flows/00-jump-app-gws.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Gateways Created</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-gws-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-gws-ok.png" alt="jump app gws ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-gws-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-gws-ok.png" alt="jump app gws ok"></a>
+</div>
+<div class="title">Figure 12. Gateways Created</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="vsvc"><a class="anchor" href="#vsvc"></a>1.2. Virtual Services</h3>
+<h3 id="vsvc"><a class="anchor" href="#vsvc"></a>Virtual Services</h3>
 <div class="paragraph">
 <p>Once gateways are created and the application is reacheabled, it is time to create the traffic rules inside your namespace in order to route this traffic to the specific endpoint.</p>
 </div>
@@ -703,13 +745,15 @@ oc process -f 03-jump-app-flows/00-jump-app-gws.yaml --param-file=params.env --i
 oc process -f 03-jump-app-flows/01-jump-app-vss.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Virtual Services Created</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-vss-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-vss-ok.png" alt="jump app vss ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-vss-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-vss-ok.png" alt="jump app vss ok"></a>
+</div>
+<div class="title">Figure 13. Virtual Services Created</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="dr"><a class="anchor" href="#dr"></a>1.3. Destination Rules</h3>
+<h3 id="dr"><a class="anchor" href="#dr"></a>Destination Rules</h3>
 <div class="paragraph">
 <p>Once previous objects are created, it is required  to define the policies which will be applied to traffic intended for a service after routing has occurred.</p>
 </div>
@@ -722,13 +766,15 @@ oc process -f 03-jump-app-flows/01-jump-app-vss.yaml --param-file=params.env --i
 oc process -f 03-jump-app-flows/02-jump-app-drs.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Destination Rules Created</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-drs-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-drs-ok.png" alt="jump app drs ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-drs-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-drs-ok.png" alt="jump app drs ok"></a>
+</div>
+<div class="title">Figure 14. Destination Rules Created</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="services"><a class="anchor" href="#services"></a>1.4. K8s Services</h3>
+<h3 id="services"><a class="anchor" href="#services"></a>K8s Services</h3>
 <div class="paragraph">
 <p>Once you have created gateways, virtual services and destination rules, it is time to include a specific annotation in your app deployments in order to allow Service Mesh control and run the respective envoy sidecar automatically.</p>
 </div>
@@ -741,15 +787,17 @@ oc process -f 03-jump-app-flows/02-jump-app-drs.yaml --param-file=params.env --i
 oc process -f 03-jump-app-flows/03-jump-app-services.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">k8s Services Created</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-svcs-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-svcs-ok.png" alt="jump app svcs ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-svcs-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-svcs-ok.png" alt="jump app svcs ok"></a>
+</div>
+<div class="title">Figure 15. k8s Services Created</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="memberrol"><a class="anchor" href="#memberrol"></a>2. Adding a new project to Red Hat Service Mesh Control Plane</h2>
+<h2 id="memberrol"><a class="anchor" href="#memberrol"></a>Adding a new project to Red Hat Service Mesh Control Plane</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The ServiceMeshMemberRoll lists the projects belonging to the control plane. Only projects listed in the ServiceMeshMemberRoll are affected by the control plane.</p>
@@ -772,9 +820,11 @@ Let the Instructor know that you are at this point
 <div class="paragraph">
 <p>At this moment, you are not able to access to <em>Jump App</em> because of a set of required tasks which you have to perform next.</p>
 </div>
-<div class="paragraph">
-<div class="title">Frontend KO</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-ko.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-ko.png" alt="jump app front ko"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-ko.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-ko.png" alt="jump app front ko"></a>
+</div>
+<div class="title">Figure 16. Frontend KO</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -791,10 +841,10 @@ If you are an advanced user and can not wait for the instructor, please visit <a
 </div>
 </div>
 <div class="sect1">
-<h2 id="finalsteps"><a class="anchor" href="#finalsteps"></a>3. Final Steps</h2>
+<h2 id="finalsteps"><a class="anchor" href="#finalsteps"></a>Final Steps</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="annotation"><a class="anchor" href="#annotation"></a>3.1. Add <em>Istio Sidecar</em> annotation in <em>Jump App</em> deployments</h3>
+<h3 id="annotation"><a class="anchor" href="#annotation"></a>Add <em>Istio Sidecar</em> annotation in <em>Jump App</em> deployments</h3>
 <div class="paragraph">
 <p>Once traffic flow objects are created and your namespace is included as member in the Service Mesh Control Plane, it is time to include a specific annotation in your app deployments in order to allow Service Mesh control and run the respective envoy sidecar automatically.</p>
 </div>
@@ -806,27 +856,33 @@ If you are an advanced user and can not wait for the instructor, please visit <a
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc patch deployment front-javascript-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n &lt;user_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Front Patched</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-depl-patch.png" alt="jump app front depl patch"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-depl-patch.png" alt="jump app front depl patch"></a>
+</div>
+<div class="title">Figure 17. Front Patched</div>
 </div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc patch deployment back-springboot-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n &lt;user_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Back Springboot Patched</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-spb-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-spb-depl-patch.png" alt="jump app back spb depl patch"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-spb-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-spb-depl-patch.png" alt="jump app back spb depl patch"></a>
+</div>
+<div class="title">Figure 18. Back Springboot Patched</div>
 </div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc patch deployment back-python-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n &lt;user_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Back Python Patched</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-py-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-py-depl-patch.png" alt="jump app back py depl patch"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-py-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-py-depl-patch.png" alt="jump app back py depl patch"></a>
+</div>
+<div class="title">Figure 19. Back Python Patched</div>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -842,9 +898,11 @@ If you are an advanced user and can not wait for the instructor, please visit <a
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc patch deployment mongo -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n &lt;user_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">MongoDB Patched</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-mg-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-mg-depl-patch.png" alt="jump app back mg depl patch"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-mg-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-mg-depl-patch.png" alt="jump app back mg depl patch"></a>
+</div>
+<div class="title">Figure 20. MongoDB Patched</div>
 </div>
 <div class="paragraph">
 <p>Before continuing with the following steps, please test Jump App <em>pods</em> status, in order to be sure that 2 replicas are running for each microservice:</p>
@@ -854,13 +912,15 @@ If you are an advanced user and can not wait for the instructor, please visit <a
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Pods Mesh</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a>
+</div>
+<div class="title">Figure 21. Jump App Pods Mesh</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="routes"><a class="anchor" href="#routes"></a>3.2. Configure Routes</h3>
+<h3 id="routes"><a class="anchor" href="#routes"></a>Configure Routes</h3>
 <div class="paragraph">
 <p>An OpenShift Container Platform <strong>route</strong> exposes a service at a host name, such as www.example.com, so that external clients can reach it by name. When you manage routes outside Service Mesh, it is required to create these objects in each namespace.</p>
 </div>
@@ -868,19 +928,21 @@ If you are an advanced user and can not wait for the instructor, please visit <a
 <p>Once you have a project integrated in Service Mesh, routes should be created in istio-system, or wherever the control plane is installed, to make this external service available through the Istio Ingress Gateway. For this reason, it is required to follow the next steps:</p>
 </div>
 <div class="sect3">
-<h4 id="_delete_all_current_routes_in_user_namespace"><a class="anchor" href="#_delete_all_current_routes_in_user_namespace"></a>3.2.1. <strong>Delete all current routes in &lt;user_namespace&gt;</strong></h4>
+<h4 id="_delete_all_current_routes_in_user_namespace"><a class="anchor" href="#_delete_all_current_routes_in_user_namespace"></a><strong>Delete all current routes in &lt;user_namespace&gt;</strong></h4>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n &lt;user_namespace&gt; | grep -v NAME | awk '{print "oc delete route " $1}' | sh</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Routes Deleted</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-route-del.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-route-del.png" alt="jump app route del"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-route-del.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-route-del.png" alt="jump app route del"></a>
+</div>
+<div class="title">Figure 22. Jump App Routes Deleted</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_create_a_new_routes_in_istio_system"><a class="anchor" href="#_create_a_new_routes_in_istio_system"></a>3.2.2. <strong>Create a new routes in istio-system</strong></h4>
+<h4 id="_create_a_new_routes_in_istio_system"><a class="anchor" href="#_create_a_new_routes_in_istio_system"></a><strong>Create a new routes in istio-system</strong></h4>
 <div class="paragraph">
 <p>Once "regular" routes are deleted, it is required to create the new ones.</p>
 </div>
@@ -892,14 +954,16 @@ If you are an advanced user and can not wait for the instructor, please visit <a
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc process -f 03-jump-app-flows/04-jump-app-routes.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n istio-system</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Mesh Routes Created</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-routes-mesh-ok.png" alt="jump app routes mesh ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-routes-mesh-ok.png" alt="jump app routes mesh ok"></a>
+</div>
+<div class="title">Figure 23. Mesh Routes Created</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="03test"><a class="anchor" href="#03test"></a>3.3. Confirm <em>Jump App</em> is running again</h3>
+<h3 id="03test"><a class="anchor" href="#03test"></a>Confirm <em>Jump App</em> is running again</h3>
 <div class="paragraph">
 <p>Once <em>Jump App</em> objects have been created in Openshift, it is required to follow the next steps in order to ensure your demo app is running properly:</p>
 </div>
@@ -927,9 +991,11 @@ Look at the number of containers in each microservice, it must contains 2 contai
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Pods Mesh</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a>
+</div>
+<div class="title">Figure 24. Jump App Pods Mesh</div>
 </div>
 <div class="ulist">
 <ul>
@@ -943,9 +1009,11 @@ Look at the number of containers in each microservice, it must contains 2 contai
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n istio-system | grep &lt;user_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Routes</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a>
+</div>
+<div class="title">Figure 25. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -954,9 +1022,11 @@ Look at the number of containers in each microservice, it must contains 2 contai
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Back</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" alt="jump app back ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" alt="jump app back ok"></a>
+</div>
+<div class="title">Figure 26. Jump App Back</div>
 </div>
 <div class="ulist">
 <ul>
@@ -970,9 +1040,11 @@ Look at the number of containers in each microservice, it must contains 2 contai
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Front Web UI Multi Jumps</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a>
+</div>
+<div class="title">Figure 27. Jump App Front Web UI Multi Jumps</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -986,26 +1058,30 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<div class="title">Openshift Self-signed Certificates Warning</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/certs_warning.png" alt="certs warning" width="50%"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/certs_warning.png" alt="certs warning" width="50%"></a>
+</div>
+<div class="title">Figure 28. Openshift Self-signed Certificates Warning</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="kiali"><a class="anchor" href="#kiali"></a>3.4. Visit Kiali</h3>
+<h3 id="kiali"><a class="anchor" href="#kiali"></a>Visit Kiali</h3>
 <div class="paragraph">
-<p>Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console <strong>&lt;kiali_url&gt;</strong> (<em>E.g. <a href="https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com" class="bare">https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com</a></em>):</p>
+<p>Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console <strong>&lt;kiali_url&gt;</strong> (<em>E.g. <a href="https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com" class="bare">https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com</a></em>):</p>
 </div>
-<div class="paragraph">
-<div class="title">Kiali Console</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-kiali.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-kiali.png" alt="jump app kiali"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-kiali.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-kiali.png" alt="jump app kiali"></a>
+</div>
+<div class="title">Figure 29. Kiali Console</div>
 </div>
 </div>
 </div>
 </div>
 <h1 id="_lab_4_istio_envoy_objects_relationship" class="sect0"><a class="anchor" href="#_lab_4_istio_envoy_objects_relationship"></a>Lab 4 - Istio-Envoy Objects Relationship</h1>
 <div class="sect1">
-<h2 id="previous"><a class="anchor" href="#previous"></a>1. Create a new microservice version</h2>
+<h2 id="previous"><a class="anchor" href="#previous"></a>Create a new microservice version</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>First of all, it is required to create a new microservice <em>deployment</em> and a <em>service</em> objects for being able to work with different micro versions in Service Mesh.</p>
@@ -1019,23 +1095,27 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 oc process -f 04-istio-envoy-relationship/00-istio-envoy-rel-micro-version.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">New Micro Version Created</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-new-micro-version-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-new-micro-version-ok.png" alt="jump app new micro version ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-new-micro-version-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-new-micro-version-ok.png" alt="jump app new micro version ok"></a>
+</div>
+<div class="title">Figure 30. New Micro Version Created</div>
 </div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc patch deployment back-golang-v2 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n &lt;user_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Front Patched</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-golang-v2-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-golang-v2-depl-patch.png" alt="jump app back golang v2 depl patch"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-golang-v2-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-golang-v2-depl-patch.png" alt="jump app back golang v2 depl patch"></a>
+</div>
+<div class="title">Figure 31. Front Patched</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="reviewing"><a class="anchor" href="#reviewing"></a>2. Review Red Hat Service Mesh objects</h2>
+<h2 id="reviewing"><a class="anchor" href="#reviewing"></a>Review Red Hat Service Mesh objects</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>When a new Service Mesh object is created in a specific namespace, a set of configuration blocks are added to Envoy proxies in order to be able to apply these rules in the mesh traffic flow.</p>
@@ -1048,9 +1128,11 @@ oc process -f 04-istio-envoy-relationship/00-istio-envoy-rel-micro-version.yaml 
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Pods Mesh</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-pods-2-v2.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-pods-2-v2.png" alt="jump app pods 2 v2"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-pods-2-v2.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-pods-2-v2.png" alt="jump app pods 2 v2"></a>
+</div>
+<div class="title">Figure 32. Jump App Pods Mesh</div>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -1065,7 +1147,7 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> and <strong>&lt;back-gol
 </table>
 </div>
 <div class="sect2">
-<h3 id="04dr"><a class="anchor" href="#04dr"></a>2.1. Destination Rules</h3>
+<h3 id="04dr"><a class="anchor" href="#04dr"></a>Destination Rules</h3>
 <div class="paragraph">
 <p>Before applying changes, please save the original Envoy proxy configuration following next steps:</p>
 </div>
@@ -1074,9 +1156,11 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> and <strong>&lt;back-gol
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; destination-rule-config-init.json</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Envoy Configuration</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-dr-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-dr-golang.png" alt="jump app dr golang"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-dr-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-dr-golang.png" alt="jump app dr golang"></a>
+</div>
+<div class="title">Figure 33. Envoy Configuration</div>
 </div>
 <div class="paragraph">
 <p>It is time to modify a <em>Destination Rule</em> in order to see how it is implemented in Envoy proxy configuration through the respective configuration blocks:</p>
@@ -1087,9 +1171,11 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> and <strong>&lt;back-gol
 oc process -f 04-istio-envoy-relationship/00-istio-envoy-rel-drs.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Modifed <em>Destination Rule</em> Configuration</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-dr-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-dr-new.png" alt="jump app dr new"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-dr-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-dr-new.png" alt="jump app dr new"></a>
+</div>
+<div class="title">Figure 34. Modifed <em>Destination Rule</em> Configuration</div>
 </div>
 <div class="paragraph">
 <p>Once this new <em>Destination Rule</em> has been modified, save the custom Envoy proxy configuration following next steps:</p>
@@ -1102,12 +1188,14 @@ oc process -f 04-istio-envoy-relationship/00-istio-envoy-rel-drs.yaml --param-fi
 <div class="paragraph">
 <p>Finally, compare both files differences and draw a definitive conclusion:</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-dr-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-dr-compare.png" alt="jump app dr compare"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-dr-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-dr-compare.png" alt="jump app dr compare"></a>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="04vsvc"><a class="anchor" href="#04vsvc"></a>2.2. Virtual Services</h3>
+<h3 id="04vsvc"><a class="anchor" href="#04vsvc"></a>Virtual Services</h3>
 <div class="paragraph">
 <p>Before applying changes, please save the original Envoy proxy configuration following next steps:</p>
 </div>
@@ -1116,9 +1204,11 @@ oc process -f 04-istio-envoy-relationship/00-istio-envoy-rel-drs.yaml --param-fi
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; virtual-service-config-init.json</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Envoy Configuration</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-vs-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-vs-golang.png" alt="jump app vs golang"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-vs-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-vs-golang.png" alt="jump app vs golang"></a>
+</div>
+<div class="title">Figure 35. Envoy Configuration</div>
 </div>
 <div class="paragraph">
 <p>It is time to modify a <em>Virtual Services</em> in order to see how it is implemented in Envoy proxy configuration through the respective configuration blocks:</p>
@@ -1129,9 +1219,11 @@ oc process -f 04-istio-envoy-relationship/00-istio-envoy-rel-drs.yaml --param-fi
 oc process -f 04-istio-envoy-relationship/01-istio-envoy-rel-vss.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Modifed <em>Virtual Services</em> Configuration</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-vs-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-vs-new.png" alt="jump app vs new"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-vs-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-vs-new.png" alt="jump app vs new"></a>
+</div>
+<div class="title">Figure 36. Modifed <em>Virtual Services</em> Configuration</div>
 </div>
 <div class="paragraph">
 <p>Once this new <em>Virtual Services</em> has been modified, save the custom Envoy proxy configuration following next steps:</p>
@@ -1144,8 +1236,10 @@ oc process -f 04-istio-envoy-relationship/01-istio-envoy-rel-vss.yaml --param-fi
 <div class="paragraph">
 <p>Finally, compare both files differences and draw a definitive conclusion:</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-vs-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-vs-compare.png" alt="jump app vs compare"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-vs-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-vs-compare.png" alt="jump app vs compare"></a>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1173,16 +1267,18 @@ Additionally, perform a GET request using <em>curl</em> in order to test out hea
 </div>
 </div>
 <div class="sect3">
-<h4 id="testvsvc"><a class="anchor" href="#testvsvc"></a>2.2.1. Test Jump App</h4>
+<h4 id="testvsvc"><a class="anchor" href="#testvsvc"></a>Test Jump App</h4>
 <div class="paragraph">
 <p>Once the previous objects are applied, it is time to test our services again with a multiple number of connections. For this step, please follow the next steps:</p>
 </div>
 <div class="paragraph">
 <p>Once the Virtual Service rules are applied, visit the <strong>back</strong>, <em>back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;/redirection-test</em>, route via your web browser</p>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Back Redirection</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-golang-redirect-ok.png.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-golang-redirect-ok.png" alt="jump app back golang redirect ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-golang-redirect-ok.png.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-golang-redirect-ok.png" alt="jump app back golang redirect ok"></a>
+</div>
+<div class="title">Figure 37. Jump App Back Redirection</div>
 </div>
 <div class="paragraph">
 <p>Visit the <strong>front</strong>, <em>front-javascript-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser. In addition, configure <strong>[ 1000 ]</strong> retries with <strong>[ 1 ]</strong> interval and press <strong>[ JUMP ]</strong> and ensure the following message is displaying in your screen</p>
@@ -1192,24 +1288,28 @@ Additionally, perform a GET request using <em>curl</em> in order to test out hea
 <pre>...{"code":200,"message":"/jump - Greetings from Python!"}</pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Front Web UI Multi Jumps</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a>
+</div>
+<div class="title">Figure 38. Jump App Front Web UI Multi Jumps</div>
 </div>
 <div class="paragraph">
 <p><strong>KIALI</strong></p>
 </div>
 <div class="paragraph">
-<p>Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console <strong>&lt;kiali_url&gt;</strong> (<em>E.g. <a href="https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com" class="bare">https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com</a></em>):</p>
+<p>Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console <strong>&lt;kiali_url&gt;</strong> (<em>E.g. <a href="https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com" class="bare" target="_blank" rel="noopener">https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com</a></em>):</p>
 </div>
-<div class="paragraph">
-<div class="title">Kiali Console</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-kiali-v2.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-kiali-v2.png" alt="jump app kiali v2"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-kiali-v2.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-kiali-v2.png" alt="jump app kiali v2"></a>
+</div>
+<div class="title">Figure 39. Kiali Console</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="se"><a class="anchor" href="#se"></a>2.3. Service Entry</h3>
+<h3 id="se"><a class="anchor" href="#se"></a>Service Entry</h3>
 <div class="paragraph">
 <p>Before applying changes, please save the original Envoy proxy configuration following next steps:</p>
 </div>
@@ -1218,9 +1318,11 @@ Additionally, perform a GET request using <em>curl</em> in order to test out hea
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; service-entry-config-init.json</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Envoy Configuration</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-se-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-se-golang.png" alt="jump app se golang"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-se-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-se-golang.png" alt="jump app se golang"></a>
+</div>
+<div class="title">Figure 40. Envoy Configuration</div>
 </div>
 <div class="paragraph">
 <p>It is time to modify a <em>Service Entry</em> in order to see how it is implemented in Envoy proxy configuration through the respective configuration blocks:</p>
@@ -1231,9 +1333,11 @@ Additionally, perform a GET request using <em>curl</em> in order to test out hea
 oc process -f 04-istio-envoy-relationship/02-istio-envoy-rel-ses.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Modifed <em>Service Entry</em> Configuration</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-se-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-se-new.png" alt="jump app se new"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-se-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-se-new.png" alt="jump app se new"></a>
+</div>
+<div class="title">Figure 41. Modifed <em>Service Entry</em> Configuration</div>
 </div>
 <div class="paragraph">
 <p>Once this new <em>Service Entry</em> has been modified, save the custom Envoy proxy configuration following next steps:</p>
@@ -1246,8 +1350,10 @@ oc process -f 04-istio-envoy-relationship/02-istio-envoy-rel-ses.yaml --param-fi
 <div class="paragraph">
 <p>Finally, compare both files differences and draw a definitive conclusion:</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-se-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-se-compare.png" alt="jump app se compare"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-se-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-se-compare.png" alt="jump app se compare"></a>
+</div>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -1304,7 +1410,7 @@ Note that the response is generated by Openshift and not by <em>www.google.es</e
 </div>
 <h1 id="_lab_5_envoy_proxy" class="sect0"><a class="anchor" href="#_lab_5_envoy_proxy"></a>Lab 5 - Envoy Proxy</h1>
 <div class="sect1">
-<h2 id="_review_envoy_proxy_through_envoy_filters"><a class="anchor" href="#_review_envoy_proxy_through_envoy_filters"></a>1. Review Envoy Proxy through Envoy Filters</h2>
+<h2 id="_review_envoy_proxy_through_envoy_filters"><a class="anchor" href="#_review_envoy_proxy_through_envoy_filters"></a>Review Envoy Proxy through Envoy Filters</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In Envoy Proxy, a <em>filter chain</em> wraps a set of match criteria, an option TLS context, a set of filters, and various other parameters. When a request is received in an Envoy Proxy, a communication flow is generated going through a set of filter chains which might can modify this request in a number of ways.</p>
@@ -1316,7 +1422,7 @@ Note that the response is generated by Openshift and not by <em>www.google.es</e
 <p>In this step, you will review how <em>envoy filters</em> affect Envoy traffic applying different rules based on a set of criteria.</p>
 </div>
 <div class="paragraph">
-<p>Please, visit this link <a href="https://istio.io/v1.6/docs/reference/config/networking/envoy-filter/">Envoy Filters</a> for more information about <em>envoy filters</em>.</p>
+<p>Please, visit this link <a href="https://istio.io/v1.6/docs/reference/config/networking/envoy-filter/" target="<em>blank">Envoy Filters</a> for more information about _envoy filters</em>.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -1331,7 +1437,7 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 </table>
 </div>
 <div class="sect2">
-<h3 id="ef"><a class="anchor" href="#ef"></a>1.1. Envoy Filter</h3>
+<h3 id="ef"><a class="anchor" href="#ef"></a>Envoy Filter</h3>
 <div class="paragraph">
 <p>Before applying changes, please save the original Envoy proxy configuration following next steps:</p>
 </div>
@@ -1340,9 +1446,11 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; envoy-filter-config-init.json</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Envoy Configuration</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ef-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ef-golang.png" alt="jump app ef golang"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ef-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ef-golang.png" alt="jump app ef golang"></a>
+</div>
+<div class="title">Figure 42. Envoy Configuration</div>
 </div>
 <div class="paragraph">
 <p>It is time to modify a <em>Envoy Filter</em> in order to see how it is implemented in Envoy proxy configuration through the respective configuration blocks:</p>
@@ -1353,9 +1461,11 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 oc process -f 05-envoy-proxy/00-istio-envoy-rel-ef.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Modifed <em>Envoy Filter</em> Configuration</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ef-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ef-new.png" alt="jump app ef new"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ef-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ef-new.png" alt="jump app ef new"></a>
+</div>
+<div class="title">Figure 43. Modifed <em>Envoy Filter</em> Configuration</div>
 </div>
 <div class="paragraph">
 <p>Once this new <em>Envoy Filter</em> has been modified, save the custom Envoy proxy configuration following next steps:</p>
@@ -1368,8 +1478,10 @@ oc process -f 05-envoy-proxy/00-istio-envoy-rel-ef.yaml --param-file=params.env 
 <div class="paragraph">
 <p>Finally, compare both files differences and draw a definitive conclusion:</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ef-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ef-compare.png" alt="jump app ef compare"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ef-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ef-compare.png" alt="jump app ef compare"></a>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1416,7 +1528,7 @@ Let the Instructor know that you are at this point
 <p>At this moment, you are not able to access to <em>Jump App</em> because of a set of required tasks which you have to perform next.</p>
 </div>
 <div class="sect1">
-<h2 id="review"><a class="anchor" href="#review"></a>1. Review consequences of adding a new project to Istio Control Plane</h2>
+<h2 id="review"><a class="anchor" href="#review"></a>Review consequences of adding a new project to Istio Control Plane</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In Istio, the <em>ServiceMeshMemberRoll</em> lists the projects belonging to the control plane and only projects listed in the ServiceMeshMemberRoll are affected by the control plane.</p>
@@ -1443,7 +1555,7 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 </table>
 </div>
 <div class="sect2">
-<h3 id="smr"><a class="anchor" href="#smr"></a>1.1. Create <em>ServiceMeshMember</em> Object</h3>
+<h3 id="smr"><a class="anchor" href="#smr"></a>Create <em>ServiceMeshMember</em> Object</h3>
 <div class="paragraph">
 <p>First of all, it is required to create a new <em>ServiceMeshMember</em> object for being able to add a new project to the Service Mesh.</p>
 </div>
@@ -1456,24 +1568,36 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 oc process -f 06-istio-ctrlplane/00-jump-app-ns-smr.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title"><em>ServiceMeshMember</em> Created</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ns-smr.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ns-smr.png" alt="jump app ns smr"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ns-smr.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ns-smr.png" alt="jump app ns smr"></a>
+</div>
+<div class="title">Figure 44. <em>ServiceMeshMember</em> Created</div>
 </div>
 <div class="paragraph">
 <p>Additionally, you are able to check this new object through the Openshift Console:</p>
 </div>
-<div class="paragraph">
-<div class="title"><em>ServiceMeshMember</em> Created Console- 1</div>
-<p><span class="image"><a class="image" href="../<em>images/02-envoy-istio-control-plane/jump-app-ns-smr-con1.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-con1.png" alt="jump app ns smr con1"></a></span>
-._ServiceMeshMember</em> Created Console - 2
-<span class="image"><a class="image" href="../<em>images/02-envoy-istio-control-plane/jump-app-ns-smr-con2.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-con2.png" alt="jump app ns smr con2"></a></span>
-._ServiceMeshMember</em> Created Console - 3
-<span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-con3.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-con3.png" alt="jump app ns smr con3"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-con1.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-con1.png" alt="jump app ns smr con1"></a>
+</div>
+<div class="title">Figure 45. <em>ServiceMeshMember</em> Created Console- 1</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-con2.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-con2.png" alt="jump app ns smr con2"></a>
+</div>
+<div class="title">Figure 46. <em>ServiceMeshMember</em> Created Console - 2</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-con3.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-con3.png" alt="jump app ns smr con3"></a>
+</div>
+<div class="title">Figure 47. <em>ServiceMeshMember</em> Created Console - 3</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="np"><a class="anchor" href="#np"></a>1.2. Review Network Policies Created</h3>
+<h3 id="np"><a class="anchor" href="#np"></a>Review Network Policies Created</h3>
 <div class="paragraph">
 <p>In a cluster using a Kubernetes Container Network Interface (CNI) plug-in that supports Kubernetes network policy, network isolation is controlled entirely by NetworkPolicy objects.  In OpenShift Container Platform, OpenShift SDN supports using network policy in its default network isolation mode.</p>
 </div>
@@ -1488,9 +1612,11 @@ oc process -f 06-istio-ctrlplane/00-jump-app-ns-smr.yaml --param-file=params.env
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get networkpolicies -n &lt;user_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title"><em>NetworkPolicies</em> Created Project</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-np.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-np.png" alt="jump app ns smr np"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-np.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-np.png" alt="jump app ns smr np"></a>
+</div>
+<div class="title">Figure 48. <em>NetworkPolicies</em> Created Project</div>
 </div>
 <div class="paragraph">
 <p>Then, you should review the first network policy in order to understand why external traffic flow is allowed through Istio Gateway to Jump App pods which are exposed by a <em>Gateway</em> Object:</p>
@@ -1500,9 +1626,11 @@ oc process -f 06-istio-ctrlplane/00-jump-app-ns-smr.yaml --param-file=params.env
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get networkpolicy istio-expose-route-basic -o yaml -n &lt;user_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title"><em>NetworkPolicies</em> Created Project</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-np-1.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-np-1.png" alt="jump app ns smr np 1"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-np-1.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-np-1.png" alt="jump app ns smr np 1"></a>
+</div>
+<div class="title">Figure 49. <em>NetworkPolicies</em> Created Project</div>
 </div>
 <div class="paragraph">
 <p>Finally, the second network policy allows internal Service Mesh traffic through any pod included in a project inside the Service Mesh Control Plane installed in <em>istio-system</em> namespace:</p>
@@ -1512,18 +1640,20 @@ oc process -f 06-istio-ctrlplane/00-jump-app-ns-smr.yaml --param-file=params.env
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get networkpolicy istio-mesh-basic -o yaml -n &lt;user_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title"><em>NetworkPolicies</em> Created Project</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-np-2.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-np-2.png" alt="jump app ns smr np 2"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-np-2.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ns-smr-np-2.png" alt="jump app ns smr np 2"></a>
+</div>
+<div class="title">Figure 50. <em>NetworkPolicies</em> Created Project</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="06test"><a class="anchor" href="#06test"></a>2. Test <em>Jump App</em></h2>
+<h2 id="06test"><a class="anchor" href="#06test"></a>Test <em>Jump App</em></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="up"><a class="anchor" href="#up"></a>2.1. Confirm <em>Jump App</em> is running again</h3>
+<h3 id="up"><a class="anchor" href="#up"></a>Confirm <em>Jump App</em> is running again</h3>
 <div class="paragraph">
 <p>Once your project has been added to the Service Mesh Control Plane, it is required to follow the next steps in order to ensure your demo app is running properly:</p>
 </div>
@@ -1551,9 +1681,11 @@ Look at the number of containers in each microservice, it must contains 2 contai
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Pods Mesh</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a>
+</div>
+<div class="title">Figure 51. Jump App Pods Mesh</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1567,9 +1699,11 @@ Look at the number of containers in each microservice, it must contains 2 contai
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n istio-system | grep &lt;user_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Routes</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a>
+</div>
+<div class="title">Figure 52. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1578,9 +1712,11 @@ Look at the number of containers in each microservice, it must contains 2 contai
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Back</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" alt="jump app back ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" alt="jump app back ok"></a>
+</div>
+<div class="title">Figure 53. Jump App Back</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1594,9 +1730,11 @@ Look at the number of containers in each microservice, it must contains 2 contai
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Front Web UI Multi Jumps</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a>
+</div>
+<div class="title">Figure 54. Jump App Front Web UI Multi Jumps</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1610,26 +1748,30 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<div class="title">Openshift Self-signed Certificates Warning</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/certs_warning.png" alt="certs warning" width="50%"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/certs_warning.png" alt="certs warning" width="50%"></a>
+</div>
+<div class="title">Figure 55. Openshift Self-signed Certificates Warning</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="06kiali"><a class="anchor" href="#06kiali"></a>2.2. Visit Kiali</h3>
+<h3 id="06kiali"><a class="anchor" href="#06kiali"></a>Visit Kiali</h3>
 <div class="paragraph">
-<p>Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console <strong>&lt;kiali_url&gt;</strong> (<em>E.g. <a href="https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com" class="bare">https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com</a></em>):</p>
+<p>Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console <strong>&lt;kiali_url&gt;</strong> (<em>E.g. <a href="https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com" class="bare" target="_blank" rel="noopener">https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com</a></em>):</p>
 </div>
-<div class="paragraph">
-<div class="title">Kiali Console</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-kiali-v2.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-kiali-v2.png" alt="jump app kiali v2"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-kiali-v2.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-kiali-v2.png" alt="jump app kiali v2"></a>
+</div>
+<div class="title">Figure 56. Kiali Console</div>
 </div>
 </div>
 </div>
 </div>
 <h1 id="_lab_7_istio_global_services" class="sect0"><a class="anchor" href="#_lab_7_istio_global_services"></a>Lab 7 - Istio Global Services</h1>
 <div class="sect1">
-<h2 id="secure"><a class="anchor" href="#secure"></a>1. Secure Gateways</h2>
+<h2 id="secure"><a class="anchor" href="#secure"></a>Secure Gateways</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>As you might know, Gateway describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections.</p>
@@ -1638,7 +1780,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <p>During this step, you will review how to expose a secure HTTPS service using a Gateway, a custom certificate and Istio Secret Discovery Service (SDS).</p>
 </div>
 <div class="sect2">
-<h3 id="cert"><a class="anchor" href="#cert"></a>1.1. Generate a Custom Certificate</h3>
+<h3 id="cert"><a class="anchor" href="#cert"></a>Generate a Custom Certificate</h3>
 <div class="paragraph">
 <p>It is not required to perform any task related to generate custom certificates. These resources are included in GitHub repository.</p>
 </div>
@@ -1649,14 +1791,14 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Follow <a href="https://istio.io/v1.6/docs/tasks/traffic-management/ingress/secure-ingress/">Secure Ingress</a> for more information about generate certificates
+Follow <a href="https://istio.io/v1.6/docs/tasks/traffic-management/ingress/secure-ingress/" target="_blank" rel="noopener">Secure Ingress</a> for more information about generate certificates
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="addcert"><a class="anchor" href="#addcert"></a>1.2. Create in Istio the Custom Certificate using SDS</h3>
+<h3 id="addcert"><a class="anchor" href="#addcert"></a>Create in Istio the Custom Certificate using SDS</h3>
 <div class="paragraph">
 <p>Once the custom certificate is created, it is time to create a new secret in Openshift to save the respective files.</p>
 </div>
@@ -1668,13 +1810,15 @@ Follow <a href="https://istio.io/v1.6/docs/tasks/traffic-management/ingress/secu
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc create -n istio-system secret tls &lt;user_namespace&gt;-credential --key=./07-istio-sds/front.jumpapp.com.key --cert=./07-istio-sds/front.jumpapp.com.crt</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Secret Created</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-secret-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-secret-ok.png" alt="jump app secret ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-secret-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-secret-ok.png" alt="jump app secret ok"></a>
+</div>
+<div class="title">Figure 57. Secret Created</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="07gw"><a class="anchor" href="#07gw"></a>1.3. Configure Gateway</h3>
+<h3 id="07gw"><a class="anchor" href="#07gw"></a>Configure Gateway</h3>
 <div class="paragraph">
 <p>If you remember, a gateway describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections.</p>
 </div>
@@ -1690,20 +1834,24 @@ Follow <a href="https://istio.io/v1.6/docs/tasks/traffic-management/ingress/secu
 oc process -f 07-istio-sds/00-jump-app-front-gw.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Front Gateway Modified</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-gw-ok.png" alt="jump app gw ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-gw-ok.png" alt="jump app gw ok"></a>
+</div>
+<div class="title">Figure 58. Front Gateway Modified</div>
 </div>
 <div class="paragraph">
 <p>In order to sure our Istio Secret Discovery Service (SDS) has been configured properly, you can review the <em>istio ingress gateway</em> pod as shown the following picture:</p>
 </div>
-<div class="paragraph">
-<div class="title">Secret Added to SDS</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-sds-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-sds-ok.png" alt="jump app sds ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-sds-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-sds-ok.png" alt="jump app sds ok"></a>
+</div>
+<div class="title">Figure 59. Secret Added to SDS</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="route"><a class="anchor" href="#route"></a>1.4. Modify Route</h3>
+<h3 id="route"><a class="anchor" href="#route"></a>Modify Route</h3>
 <div class="paragraph">
 <p>As you might remember, an OpenShift route exposes a service at a host name, such as www.example.com, so that external clients can reach it by name. By default, the Openshift Routers handle these external accesses and theirs respective protection.</p>
 </div>
@@ -1715,13 +1863,15 @@ oc process -f 07-istio-sds/00-jump-app-front-gw.yaml --param-file=params.env --i
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc process -f 07-istio-sds/01-jump-app-front-route.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n istio-system</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Front Route Modified</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-istio-route-mod-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-istio-route-mod-ok.png" alt="jump app istio route mod ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-istio-route-mod-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-istio-route-mod-ok.png" alt="jump app istio route mod ok"></a>
+</div>
+<div class="title">Figure 60. Front Route Modified</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="07test"><a class="anchor" href="#07test"></a>1.5. Test HTTPS connections</h3>
+<h3 id="07test"><a class="anchor" href="#07test"></a>Test HTTPS connections</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1734,9 +1884,11 @@ oc process -f 07-istio-sds/00-jump-app-front-gw.yaml --param-file=params.env --i
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n istio-system | grep &lt;user_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Routes</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a>
+</div>
+<div class="title">Figure 61. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1745,9 +1897,11 @@ oc process -f 07-istio-sds/00-jump-app-front-gw.yaml --param-file=params.env --i
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Self-signed Certificates Warning</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning.png" alt="jump app front cert warning"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning.png" alt="jump app front cert warning"></a>
+</div>
+<div class="title">Figure 62. Jump App Self-signed Certificates Warning</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1756,13 +1910,17 @@ oc process -f 07-istio-sds/00-jump-app-front-gw.yaml --param-file=params.env --i
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Self-signed Certificates Warning</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-1.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-1.png" alt="jump app front cert warning int 1"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-1.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-1.png" alt="jump app front cert warning int 1"></a>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Self-signed Certificates Warning</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-2.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-2.png" alt="jump app front cert warning int 2"></a></span></p>
+<div class="title">Figure 63. Jump App Self-signed Certificates Warning</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-2.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-2.png" alt="jump app front cert warning int 2"></a>
+</div>
+<div class="title">Figure 64. Jump App Self-signed Certificates Warning</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1776,9 +1934,11 @@ oc process -f 07-istio-sds/00-jump-app-front-gw.yaml --param-file=params.env --i
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Front Web UI Multi Jumps</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a>
+</div>
+<div class="title">Figure 65. Jump App Front Web UI Multi Jumps</div>
 </div>
 </div>
 </div>

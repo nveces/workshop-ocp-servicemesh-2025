@@ -236,18 +236,8 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Lab 5 - Envoy Proxy</h1>
-<div id="toc" class="toc">
-<div id="toctitle">Envoy Proxy</div>
-<ul class="sectlevel1">
-<li><a href="#_review_envoy_proxy_through_envoy_filters">1. Review Envoy Proxy through Envoy Filters</a>
-<ul class="sectlevel2">
-<li><a href="#ef">1.1. Envoy Filter</a></li>
-</ul>
-</li>
-</ul>
-</div>
 <div class="sect1">
-<h2 id="_review_envoy_proxy_through_envoy_filters"><a class="anchor" href="#_review_envoy_proxy_through_envoy_filters"></a>1. Review Envoy Proxy through Envoy Filters</h2>
+<h2 id="_review_envoy_proxy_through_envoy_filters"><a class="anchor" href="#_review_envoy_proxy_through_envoy_filters"></a>Review Envoy Proxy through Envoy Filters</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In Envoy Proxy, a <em>filter chain</em> wraps a set of match criteria, an option TLS context, a set of filters, and various other parameters. When a request is received in an Envoy Proxy, a communication flow is generated going through a set of filter chains which might can modify this request in a number of ways.</p>
@@ -259,7 +249,7 @@
 <p>In this step, you will review how <em>envoy filters</em> affect Envoy traffic applying different rules based on a set of criteria.</p>
 </div>
 <div class="paragraph">
-<p>Please, visit this link <a href="https://istio.io/v1.6/docs/reference/config/networking/envoy-filter/">Envoy Filters</a> for more information about <em>envoy filters</em>.</p>
+<p>Please, visit this link <a href="https://istio.io/v1.6/docs/reference/config/networking/envoy-filter/" target="<em>blank">Envoy Filters</a> for more information about _envoy filters</em>.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -274,7 +264,7 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 </table>
 </div>
 <div class="sect2">
-<h3 id="ef"><a class="anchor" href="#ef"></a>1.1. Envoy Filter</h3>
+<h3 id="ef"><a class="anchor" href="#ef"></a>Envoy Filter</h3>
 <div class="paragraph">
 <p>Before applying changes, please save the original Envoy proxy configuration following next steps:</p>
 </div>
@@ -283,9 +273,11 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; envoy-filter-config-init.json</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Envoy Configuration</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ef-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ef-golang.png" alt="jump app ef golang"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ef-golang.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ef-golang.png" alt="jump app ef golang"></a>
+</div>
+<div class="title">Figure 1. Envoy Configuration</div>
 </div>
 <div class="paragraph">
 <p>It is time to modify a <em>Envoy Filter</em> in order to see how it is implemented in Envoy proxy configuration through the respective configuration blocks:</p>
@@ -296,9 +288,11 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 oc process -f 05-envoy-proxy/00-istio-envoy-rel-ef.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Modifed <em>Envoy Filter</em> Configuration</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ef-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ef-new.png" alt="jump app ef new"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ef-new.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ef-new.png" alt="jump app ef new"></a>
+</div>
+<div class="title">Figure 2. Modifed <em>Envoy Filter</em> Configuration</div>
 </div>
 <div class="paragraph">
 <p>Once this new <em>Envoy Filter</em> has been modified, save the custom Envoy proxy configuration following next steps:</p>
@@ -311,8 +305,10 @@ oc process -f 05-envoy-proxy/00-istio-envoy-rel-ef.yaml --param-file=params.env 
 <div class="paragraph">
 <p>Finally, compare both files differences and draw a definitive conclusion:</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ef-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ef-compare.png" alt="jump app ef compare"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-ef-compare.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-ef-compare.png" alt="jump app ef compare"></a>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>

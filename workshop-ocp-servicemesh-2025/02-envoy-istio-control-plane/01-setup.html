@@ -236,21 +236,8 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Lab 1 - Setup</h1>
-<div id="toc" class="toc">
-<div id="toctitle">Setup</div>
-<ul class="sectlevel1">
-<li><a href="#prerequisites">1. Prerequisites</a></li>
-<li><a href="#laboratory">2. Laboratory</a>
-<ul class="sectlevel2">
-<li><a href="#_laboratory_parameters">2.1. Laboratory Parameters</a></li>
-<li><a href="#_access_laboratory_oc_client">2.2. Access Laboratory - OC Client</a></li>
-<li><a href="#_access_laboratory_console">2.3. Access Laboratory - Console</a></li>
-</ul>
-</li>
-</ul>
-</div>
 <div class="sect1">
-<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>1. Prerequisites</h2>
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>During this tutorial, it will be required to work with different tools for running the exercises included. Please, install the following software:</p>
@@ -299,7 +286,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="laboratory"><a class="anchor" href="#laboratory"></a>2. Laboratory</h2>
+<h2 id="laboratory"><a class="anchor" href="#laboratory"></a>Laboratory</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Tutorial&#8217;s laboratory is basically based on the following technologies:</p>
@@ -321,7 +308,7 @@
 <p>The previous technologies and resources will allow you to implement a microservice-based application in Openshift which will be included in Service Mesh. The main objective of deploying this application in Openshift using Service Mesh is to understand how <em>Istio</em> &amp; <em>Envoy</em> are tightly related.</p>
 </div>
 <div class="sect2">
-<h3 id="_laboratory_parameters"><a class="anchor" href="#_laboratory_parameters"></a>2.1. Laboratory Parameters</h3>
+<h3 id="_laboratory_parameters"><a class="anchor" href="#_laboratory_parameters"></a>Laboratory Parameters</h3>
 <div class="paragraph">
 <p>The Instructor provides users the Openshift credentials and other important parameters at the beginning of this tutorial in order to access the laboratory.</p>
 </div>
@@ -345,17 +332,18 @@
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Openshift Cluster API (Access CLI)</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&lt;ocp_cluster_api&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://api.labs.sandbox1420.opentlc.com:6443" class="bare">https://api.labs.sandbox1420.opentlc.com:6443</a></em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>{ocp_cluster_api}</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Openshift Cluster Console</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&lt;ocp_cluster_console&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://console-openshift-console.apps.labs.sandbox1420.opentlc.com" class="bare">https://console-openshift-console.apps.labs.sandbox1420.opentlc.com</a></em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>{ocp_cluster_console}</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Username</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;user&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">user1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;userXX&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">user01<br>
+  user15</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Password</p></td>
@@ -365,23 +353,24 @@
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Namespace</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&lt;user_namespace&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">user1-namespace</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">user01-sm<br>
+  user15-sm</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Openshift Apps Domain</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&lt;openshift_apps_domain&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><em>apps.labs.sandbox1420.opentlc.com</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>{ocp_apps_domain}</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Kiali Url</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&lt;kiali_url&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://kiali-istio-system.apps.labs.sandbox1420.opentlc.com" class="bare">https://kiali-istio-system.apps.labs.sandbox1420.opentlc.com</a></em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>{kiali_url}</em></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_access_laboratory_oc_client"><a class="anchor" href="#_access_laboratory_oc_client"></a>2.2. Access Laboratory - OC Client</h3>
+<h3 id="_access_laboratory_oc_client"><a class="anchor" href="#_access_laboratory_oc_client"></a>Access Laboratory - OC Client</h3>
 <div class="paragraph">
 <p>The OpenShift Container Platform CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system.</p>
 </div>
@@ -393,9 +382,11 @@
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u &lt;user&gt; -p &lt;pass&gt; &lt;ocp_cluster_api&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">OC CLI Login Output</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/oc_login_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/oc_login_output.png" alt="oc login output"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/oc_login_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/oc_login_output.png" alt="oc login output"></a>
+</div>
+<div class="title">Figure 1. OC CLI Login Output</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -411,20 +402,22 @@ Please, pay special attention to <em>oc CLI</em>  because you will need to use t
 </div>
 </div>
 <div class="sect2">
-<h3 id="_access_laboratory_console"><a class="anchor" href="#_access_laboratory_console"></a>2.3. Access Laboratory - Console</h3>
+<h3 id="_access_laboratory_console"><a class="anchor" href="#_access_laboratory_console"></a>Access Laboratory - Console</h3>
 <div class="paragraph">
 <p>In addition, access Openshift Console using your credentials via browser in order to check connectivity and accessibility to the console:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>&lt;ocp_cluster_console&gt; (<em>E.g. <a href="https://console-openshift-console.apps.labs.sandbox1420.opentlc.com" class="bare">https://console-openshift-console.apps.labs.sandbox1420.opentlc.com</a></em>)</p>
+<p>&lt;ocp_cluster_console&gt; (<em>E.g. {ocp_cluster_console}[window=_blank]</em>)</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Openshift Console</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/ocp_console.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/ocp_console.png" alt="ocp console"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/ocp_console.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/ocp_console.png" alt="ocp console"></a>
+</div>
+<div class="title">Figure 2. Openshift Console</div>
 </div>
 </div>
 </div>

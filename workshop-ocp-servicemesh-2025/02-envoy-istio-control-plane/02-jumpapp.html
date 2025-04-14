@@ -236,22 +236,8 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Lab 2 - Deploy Jump App</h1>
-<div id="toc" class="toc">
-<div id="toctitle">Deploy Jump App</div>
-<ul class="sectlevel1">
-<li><a href="#_deploy_jump_app_microservices">1. Deploy <em>Jump App</em> Microservices</a>
-<ul class="sectlevel2">
-<li><a href="#login">1.1. Login in Openshift</a></li>
-<li><a href="#github">1.2. Clone GitHub Repository</a></li>
-<li><a href="#jumpappobjects">1.3. Create <em>Jump App</em> Objects in Openshift</a></li>
-<li><a href="#test">1.4. Confirm <em>Jump App</em> is already running in Openshift</a></li>
-<li><a href="#testapp">1.5. Access to <em>Jump App</em></a></li>
-</ul>
-</li>
-</ul>
-</div>
 <div class="sect1">
-<h2 id="_deploy_jump_app_microservices"><a class="anchor" href="#_deploy_jump_app_microservices"></a>1. Deploy <em>Jump App</em> Microservices</h2>
+<h2 id="_deploy_jump_app_microservices"><a class="anchor" href="#_deploy_jump_app_microservices"></a>Deploy <em>Jump App</em> Microservices</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><em>Jump App</em> is a microservice-based application created to emulate an enterprise application complex architecture with multi environments. This app allows users to configure a set of jumps between components and generate a continuous traffic flow defining the number of retries and their span of time.</p>
@@ -272,19 +258,21 @@ Please, replace <strong>&lt;user&gt;</strong>, <strong>&lt;pass&gt;</strong>, <s
 </table>
 </div>
 <div class="sect2">
-<h3 id="login"><a class="anchor" href="#login"></a>1.1. Login in Openshift</h3>
+<h3 id="login"><a class="anchor" href="#login"></a>Login in Openshift</h3>
 <div class="listingblock lines_space console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u &lt;user&gt; -p &lt;pass&gt; &lt;ocp_cluster_api&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">OC CLI Login Output</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/oc_login_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/oc_login_output.png" alt="oc login output"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/oc_login_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/oc_login_output.png" alt="oc login output"></a>
+</div>
+<div class="title">Figure 1. OC CLI Login Output</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="github"><a class="anchor" href="#github"></a>1.2. Clone GitHub Repository</h3>
+<h3 id="github"><a class="anchor" href="#github"></a>Clone GitHub Repository</h3>
 <div class="paragraph">
 <p><em>Jump App Gitops</em> is one of a set of repositories developed to generate a microservice based application, named Jump App. This repository includes an automated way of deploy Jump App&#8217;s microservices and all stuff around this application (Deployments, Services, Build Configs, Pipelines, etc), including optionally CI/CD or Service Mesh objects as well.</p>
 </div>
@@ -296,9 +284,26 @@ Please, replace <strong>&lt;user&gt;</strong>, <strong>&lt;pass&gt;</strong>, <s
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git" class="bare">https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git</a></code></pre>
 </div>
 </div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/git_clone_output.png" alt="git clone output"></a>
+</div>
+<div class="title">Figure 2. git clone output</div>
+</div>
 <div class="paragraph">
-<div class="title">git clone output</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/git_clone_output.png" alt="git clone output"></a></span></p>
+<p>or if you prefer to use <strong>SSH</strong>, <code>git clone <a href="mailto:git@github.com">git@github.com</a>:acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone git@github.com:acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git
+Cloning into 'rh-service-mesh-v2-istio-crtlplane-resources'...
+remote: Enumerating objects: 97, done.
+remote: Counting objects: 100% (97/97), done.
+remote: Compressing objects: 100% (64/64), done.
+remote: Total 97 (delta 50), reused 70 (delta 29), pack-reused 0 (from 0)
+Receiving objects: 100% (97/97), 27.05 KiB | 395.00 KiB/s, done.
+Resolving deltas: 100% (50/50), done.</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Finally, navigate to the new folder created in your system after repository download for completing all tasks included in this tutorial:</p>
@@ -310,9 +315,9 @@ Please, replace <strong>&lt;user&gt;</strong>, <strong>&lt;pass&gt;</strong>, <s
 </div>
 </div>
 <div class="sect2">
-<h3 id="jumpappobjects"><a class="anchor" href="#jumpappobjects"></a>1.3. Create <em>Jump App</em> Objects in Openshift</h3>
+<h3 id="jumpappobjects"><a class="anchor" href="#jumpappobjects"></a>Create <em>Jump App</em> Objects in Openshift</h3>
 <div class="paragraph">
-<p>First of all, it is required to modify <em>params.env</em> file to include the parameters provided by the Instructor:</p>
+<p>First of all, it is required to modify <code>params.env</code> file to include the parameters provided by the Instructor:</p>
 </div>
 <div class="listingblock lines_7 console-input">
 <div class="content">
@@ -323,8 +328,8 @@ Please, replace <strong>&lt;user&gt;</strong>, <strong>&lt;pass&gt;</strong>, <s
 <div class="title">Example 1. params file content</div>
 <div class="content">
 <div class="paragraph">
-<p>USER_NAMESPACE=user1<br>
-OCP_APPS_DOMAIN=apps.tutorialrhmesh.sandbox507.opentlc.com</p>
+<p>USER_NAMESPACE=user01<br>
+OCP_APPS_DOMAIN={ocp_apps_domain}</p>
 </div>
 </div>
 </div>
@@ -337,13 +342,15 @@ OCP_APPS_DOMAIN=apps.tutorialrhmesh.sandbox507.opentlc.com</p>
 oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Deployed</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump_app_created.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump_app_created.png" alt="jump app created"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump_app_created.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump_app_created.png" alt="jump app created"></a>
+</div>
+<div class="title">Figure 3. Jump App Deployed</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="test"><a class="anchor" href="#test"></a>1.4. Confirm <em>Jump App</em> is already running in Openshift</h3>
+<h3 id="test"><a class="anchor" href="#test"></a>Confirm <em>Jump App</em> is already running in Openshift</h3>
 <div class="paragraph">
 <p>Once <em>Jump App</em> objects have been created in Openshift, it is required to follow the next steps in order to ensure your demo app is running properly:</p>
 </div>
@@ -359,13 +366,15 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods -n &lt;user_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Pods</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump_app_pods.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump_app_pods.png" alt="jump app pods"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump_app_pods.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump_app_pods.png" alt="jump app pods"></a>
+</div>
+<div class="title">Figure 4. Jump App Pods</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="testapp"><a class="anchor" href="#testapp"></a>1.5. Access to <em>Jump App</em></h3>
+<h3 id="testapp"><a class="anchor" href="#testapp"></a>Access to <em>Jump App</em></h3>
 <div class="paragraph">
 <p>Once <em>Jump App</em> is already running in Openshift, it is time to access <em>Jump App</em> public services in order to test the application:</p>
 </div>
@@ -381,9 +390,11 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n &lt;user_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Routes</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-routes.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-routes.png" alt="jump app routes"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-routes.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-routes.png" alt="jump app routes"></a>
+</div>
+<div class="title">Figure 5. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -392,9 +403,11 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Back</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" alt="jump app back ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" alt="jump app back ok"></a>
+</div>
+<div class="title">Figure 6. Jump App Back</div>
 </div>
 <div class="ulist">
 <ul>
@@ -408,9 +421,11 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Frontend Web UI</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-ok.png" alt="jump app front ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-ok.png" alt="jump app front ok"></a>
+</div>
+<div class="title">Figure 7. Jump App Frontend Web UI</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -424,9 +439,11 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<div class="title">Openshift Self-signed Certificates Warning</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/certs_warning.png" alt="certs warning" width="50%"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/certs_warning.png" alt="certs warning" width="50%"></a>
+</div>
+<div class="title">Figure 8. Openshift Self-signed Certificates Warning</div>
 </div>
 </div>
 </div>

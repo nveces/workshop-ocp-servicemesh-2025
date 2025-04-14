@@ -236,22 +236,8 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Lab 7 - Istio Global Services</h1>
-<div id="toc" class="toc">
-<div id="toctitle">Istio Global Services</div>
-<ul class="sectlevel1">
-<li><a href="#secure">1. Secure Gateways</a>
-<ul class="sectlevel2">
-<li><a href="#cert">1.1. Generate a Custom Certificate</a></li>
-<li><a href="#addcert">1.2. Create in Istio the Custom Certificate using SDS</a></li>
-<li><a href="#07gw">1.3. Configure Gateway</a></li>
-<li><a href="#route">1.4. Modify Route</a></li>
-<li><a href="#07test">1.5. Test HTTPS connections</a></li>
-</ul>
-</li>
-</ul>
-</div>
 <div class="sect1">
-<h2 id="secure"><a class="anchor" href="#secure"></a>1. Secure Gateways</h2>
+<h2 id="secure"><a class="anchor" href="#secure"></a>Secure Gateways</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>As you might know, Gateway describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections.</p>
@@ -260,7 +246,7 @@
 <p>During this step, you will review how to expose a secure HTTPS service using a Gateway, a custom certificate and Istio Secret Discovery Service (SDS).</p>
 </div>
 <div class="sect2">
-<h3 id="cert"><a class="anchor" href="#cert"></a>1.1. Generate a Custom Certificate</h3>
+<h3 id="cert"><a class="anchor" href="#cert"></a>Generate a Custom Certificate</h3>
 <div class="paragraph">
 <p>It is not required to perform any task related to generate custom certificates. These resources are included in GitHub repository.</p>
 </div>
@@ -271,14 +257,14 @@
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Follow <a href="https://istio.io/v1.6/docs/tasks/traffic-management/ingress/secure-ingress/">Secure Ingress</a> for more information about generate certificates
+Follow <a href="https://istio.io/v1.6/docs/tasks/traffic-management/ingress/secure-ingress/" target="_blank" rel="noopener">Secure Ingress</a> for more information about generate certificates
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="addcert"><a class="anchor" href="#addcert"></a>1.2. Create in Istio the Custom Certificate using SDS</h3>
+<h3 id="addcert"><a class="anchor" href="#addcert"></a>Create in Istio the Custom Certificate using SDS</h3>
 <div class="paragraph">
 <p>Once the custom certificate is created, it is time to create a new secret in Openshift to save the respective files.</p>
 </div>
@@ -290,13 +276,15 @@ Follow <a href="https://istio.io/v1.6/docs/tasks/traffic-management/ingress/secu
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc create -n istio-system secret tls &lt;user_namespace&gt;-credential --key=./07-istio-sds/front.jumpapp.com.key --cert=./07-istio-sds/front.jumpapp.com.crt</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Secret Created</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-secret-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-secret-ok.png" alt="jump app secret ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-secret-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-secret-ok.png" alt="jump app secret ok"></a>
+</div>
+<div class="title">Figure 1. Secret Created</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="07gw"><a class="anchor" href="#07gw"></a>1.3. Configure Gateway</h3>
+<h3 id="07gw"><a class="anchor" href="#07gw"></a>Configure Gateway</h3>
 <div class="paragraph">
 <p>If you remember, a gateway describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections.</p>
 </div>
@@ -312,20 +300,24 @@ Follow <a href="https://istio.io/v1.6/docs/tasks/traffic-management/ingress/secu
 oc process -f 07-istio-sds/00-jump-app-front-gw.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Front Gateway Modified</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-gw-ok.png" alt="jump app gw ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-gw-ok.png" alt="jump app gw ok"></a>
+</div>
+<div class="title">Figure 2. Front Gateway Modified</div>
 </div>
 <div class="paragraph">
 <p>In order to sure our Istio Secret Discovery Service (SDS) has been configured properly, you can review the <em>istio ingress gateway</em> pod as shown the following picture:</p>
 </div>
-<div class="paragraph">
-<div class="title">Secret Added to SDS</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-sds-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-sds-ok.png" alt="jump app sds ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-sds-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-sds-ok.png" alt="jump app sds ok"></a>
+</div>
+<div class="title">Figure 3. Secret Added to SDS</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="route"><a class="anchor" href="#route"></a>1.4. Modify Route</h3>
+<h3 id="route"><a class="anchor" href="#route"></a>Modify Route</h3>
 <div class="paragraph">
 <p>As you might remember, an OpenShift route exposes a service at a host name, such as www.example.com, so that external clients can reach it by name. By default, the Openshift Routers handle these external accesses and theirs respective protection.</p>
 </div>
@@ -337,13 +329,15 @@ oc process -f 07-istio-sds/00-jump-app-front-gw.yaml --param-file=params.env --i
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc process -f 07-istio-sds/01-jump-app-front-route.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n istio-system</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Front Route Modified</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-istio-route-mod-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-istio-route-mod-ok.png" alt="jump app istio route mod ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-istio-route-mod-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-istio-route-mod-ok.png" alt="jump app istio route mod ok"></a>
+</div>
+<div class="title">Figure 4. Front Route Modified</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="07test"><a class="anchor" href="#07test"></a>1.5. Test HTTPS connections</h3>
+<h3 id="07test"><a class="anchor" href="#07test"></a>Test HTTPS connections</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -356,9 +350,11 @@ oc process -f 07-istio-sds/00-jump-app-front-gw.yaml --param-file=params.env --i
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n istio-system | grep &lt;user_namespace&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Routes</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a>
+</div>
+<div class="title">Figure 5. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -367,9 +363,11 @@ oc process -f 07-istio-sds/00-jump-app-front-gw.yaml --param-file=params.env --i
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Self-signed Certificates Warning</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning.png" alt="jump app front cert warning"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning.png" alt="jump app front cert warning"></a>
+</div>
+<div class="title">Figure 6. Jump App Self-signed Certificates Warning</div>
 </div>
 <div class="ulist">
 <ul>
@@ -378,13 +376,17 @@ oc process -f 07-istio-sds/00-jump-app-front-gw.yaml --param-file=params.env --i
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Self-signed Certificates Warning</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-1.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-1.png" alt="jump app front cert warning int 1"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-1.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-1.png" alt="jump app front cert warning int 1"></a>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Self-signed Certificates Warning</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-2.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-2.png" alt="jump app front cert warning int 2"></a></span></p>
+<div class="title">Figure 7. Jump App Self-signed Certificates Warning</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-2.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-cert-warning-int-2.png" alt="jump app front cert warning int 2"></a>
+</div>
+<div class="title">Figure 8. Jump App Self-signed Certificates Warning</div>
 </div>
 <div class="ulist">
 <ul>
@@ -398,9 +400,11 @@ oc process -f 07-istio-sds/00-jump-app-front-gw.yaml --param-file=params.env --i
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Front Web UI Multi Jumps</div>
-<p><span class="image"><a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a>
+</div>
+<div class="title">Figure 9. Jump App Front Web UI Multi Jumps</div>
 </div>
 </div>
 </div>

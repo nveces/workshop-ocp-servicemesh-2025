@@ -342,18 +342,22 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 04-ingress-traffic-troubleshooting/00-jump-app-ingress-customization.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Customizations Applied I</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mod-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mod-gw-ok.png" alt="jump app mod gw ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-mod-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mod-gw-ok.png" alt="jump app mod gw ok"></a>
+</div>
+<div class="title">Figure 1. Jump App Customizations Applied I</div>
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 04-ingress-traffic-troubleshooting/01-jump-app-back-golang-svc.yaml --param-file=params.env --ignore-unknown-parameters | oc delete -f - -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Customizations Applied II</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mod-svc-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mod-svc-ok.png" alt="jump app mod svc ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-mod-svc-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mod-svc-ok.png" alt="jump app mod svc ok"></a>
+</div>
+<div class="title">Figure 2. Jump App Customizations Applied II</div>
 </div>
 <div class="sect2">
 <h3 id="04-cust-state"><a class="anchor" href="#04-cust-state"></a>3.1. Confirm <em>Jump App</em> state</h3>
@@ -375,9 +379,11 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Pods Mesh</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a>
+</div>
+<div class="title">Figure 3. Jump App Pods Mesh</div>
 </div>
 <div class="ulist">
 <ul>
@@ -391,9 +397,11 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n istio-system | grep $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Routes</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a>
+</div>
+<div class="title">Figure 4. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -402,9 +410,11 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Back Unavailable</div>
-<p><span class="image unresolved"><a class="image" href="../_images/04-troubleshooting/04-troubleshooting/jump-app-unavailable-back.png" target="_blank" rel="noopener"><img src="04-troubleshooting/04-troubleshooting/jump-app-unavailable-back.png" alt="jump app unavailable back"></a></span></p>
+<div class="imageblock unresolved">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/04-troubleshooting/jump-app-unavailable-back.png" target="_blank" rel="noopener"><img src="04-troubleshooting/04-troubleshooting/jump-app-unavailable-back.png" alt="jump app unavailable back"></a>
+</div>
+<div class="title">Figure 5. Jump App Back Unavailable</div>
 </div>
 <div class="ulist">
 <ul>
@@ -413,9 +423,11 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Front with Errors</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-unavailable-front.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-unavailable-front.png" alt="jump app unavailable front"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-unavailable-front.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-unavailable-front.png" alt="jump app unavailable front"></a>
+</div>
+<div class="title">Figure 6. Jump App Front with Errors</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -435,8 +447,10 @@ An error message appears when the frontend tries to call backend services
 <div class="sect1">
 <h2 id="04-router"><a class="anchor" href="#04-router"></a>4. Openshift Router &#8594; Ingress Gateway Connectivity</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ingress-router-gw.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ingress-router-gw.png" alt="jump app ingress router gw"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-ingress-router-gw.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ingress-router-gw.png" alt="jump app ingress router gw"></a>
+</div>
 </div>
 <div class="sect2">
 <h3 id="04-trou-con"><a class="anchor" href="#04-trou-con"></a>4.1. Test connectivity via command line</h3>
@@ -455,9 +469,11 @@ An error message appears when the frontend tries to call backend services
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods -n openshift-ingress</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">OCP Router Pods</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-routers-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-routers-pods.png" alt="ocp routers pods"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/ocp-routers-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-routers-pods.png" alt="ocp routers pods"></a>
+</div>
+<div class="title">Figure 7. OCP Router Pods</div>
 </div>
 <div class="ulist">
 <ul>
@@ -485,9 +501,11 @@ oc rsh $POD</code></pre>
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">curl -XGET -v --header "Host: back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;" <a href="http://istio-ingressgateway.istio-system.svc.cluster.local:80" class="bare">http://istio-ingressgateway.istio-system.svc.cluster.local:80</a> -v</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">HTTP Response Error 404</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-gw.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-gw.png" alt="jump app trou 04 gw"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-gw.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-gw.png" alt="jump app trou 04 gw"></a>
+</div>
+<div class="title">Figure 8. HTTP Response Error 404</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -507,13 +525,17 @@ Note that the error is 404 because of the route, or path, is not found
 <div class="paragraph">
 <p>After test the connectivity from the <em>OCP routers</em> to the <em>ingress gateway</em>, you should review the <em>Gateway</em> object configuration in order to verify its definition. Please, visit the Kiali console <strong>&lt;kiali_url&gt;</strong> and review the <em>Gateway</em> object current state:</p>
 </div>
-<div class="paragraph">
-<div class="title">Kiali Console</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04.png" alt="jump app kiali trou 04"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04.png" alt="jump app kiali trou 04"></a>
 </div>
-<div class="paragraph">
-<div class="title">Kiali Console Gateway Error</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04-error.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04-error.png" alt="jump app kiali trou 04 error"></a></span></p>
+<div class="title">Figure 9. Kiali Console</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04-error.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04-error.png" alt="jump app kiali trou 04 error"></a>
+</div>
+<div class="title">Figure 10. Kiali Console Gateway Error</div>
 </div>
 <div class="paragraph">
 <p>If you take a look at the host paths closely, you can find a bad definition because of the pattern <strong>"-fail"</strong> included in the path. Please, modify this hostname and click on <strong>[ SAVE ]</strong>.</p>
@@ -536,9 +558,11 @@ Note that the error is 404 because of the route, or path, is not found
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods -n openshift-ingress</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">OCP Routers Pods</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-routers-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-routers-pods.png" alt="ocp routers pods"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/ocp-routers-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-routers-pods.png" alt="ocp routers pods"></a>
+</div>
+<div class="title">Figure 11. OCP Routers Pods</div>
 </div>
 <div class="ulist">
 <ul>
@@ -566,9 +590,11 @@ oc rsh $POD</code></pre>
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">curl -XGET -v --header "Host: back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;" <a href="http://istio-ingressgateway.istio-system.svc.cluster.local:80" class="bare">http://istio-ingressgateway.istio-system.svc.cluster.local:80</a> -v</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">HTTP Response 503</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-gw-ok.png" alt="jump app trou 04 gw ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-gw-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-gw-ok.png" alt="jump app trou 04 gw ok"></a>
+</div>
+<div class="title">Figure 12. HTTP Response 503</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -588,8 +614,10 @@ At this time, you obtain a 503 error because the service is unavailable but this
 <div class="sect1">
 <h2 id="04-gateway"><a class="anchor" href="#04-gateway"></a>5. Test Ingress Gateway &#8594; Sidecar Connectivity</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ingress-gw-sidecar.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ingress-gw-sidecar.png" alt="jump app ingress gw sidecar"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-ingress-gw-sidecar.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ingress-gw-sidecar.png" alt="jump app ingress gw sidecar"></a>
+</div>
 </div>
 <div class="sect2">
 <h3 id="04-gateway-con"><a class="anchor" href="#04-gateway-con"></a>5.1. Test connectivity via command line</h3>
@@ -608,9 +636,11 @@ At this time, you obtain a 503 error because the service is unavailable but this
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods -n istio-system</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Istio ControlPlane Pods</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></a>
+</div>
+<div class="title">Figure 13. Istio ControlPlane Pods</div>
 </div>
 <div class="ulist">
 <ul>
@@ -638,9 +668,11 @@ oc rsh $POD</code></pre>
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">curl -XGET -v --header "Host: back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;" <a href="http://back-golang.&lt;user_namespace&gt;.svc.cluster.local:8442" class="bare">http://back-golang.&lt;user_namespace&gt;.svc.cluster.local:8442</a> -v</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">HTTP Response Error</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-svc.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-svc.png" alt="jump app trou 04 svc"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-svc.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-svc.png" alt="jump app trou 04 svc"></a>
+</div>
+<div class="title">Figure 14. HTTP Response Error</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -670,9 +702,11 @@ At this time, you obtain <em>"Could not resolve host: back-golang.user1-namespac
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 04-ingress-traffic-troubleshooting/01-jump-app-back-golang-svc.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">back-golang k8s Service Created</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-svc-created.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-svc-created.png" alt="jump app trou 04 svc created"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-svc-created.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-svc-created.png" alt="jump app trou 04 svc created"></a>
+</div>
+<div class="title">Figure 15. back-golang k8s Service Created</div>
 </div>
 </div>
 <div class="sect2">
@@ -722,8 +756,10 @@ oc rsh $POD</code></pre>
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">curl -XGET -v --header "Host: back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;" <a href="http://istio-ingressgateway.istio-system.svc.cluster.local:80" class="bare">http://istio-ingressgateway.istio-system.svc.cluster.local:80</a> -v</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-unavailable-back.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-unavailable-back.png" alt="jump app unavailable back"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-unavailable-back.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-unavailable-back.png" alt="jump app unavailable back"></a>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -743,20 +779,26 @@ At this time, you obtain a 200 in this command but <em>external access</em> has 
 <div class="paragraph">
 <p>After test the connectivity from the from the <em>Ingress Gateway</em> to the <em>Envoy Sidecar</em>, via <em>k8s service</em>, you should review the <em>Virtual Service</em> and <em>Destination Rule</em> objects configuration in order to verify their definition. Please, visit the Kiali console <strong>&lt;kiali_url&gt;</strong> and review the objects general state:</p>
 </div>
-<div class="paragraph">
-<div class="title">Kiali Console</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04-vs-dr.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04-vs-dr.png" alt="jump app kiali trou 04 vs dr"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04-vs-dr.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04-vs-dr.png" alt="jump app kiali trou 04 vs dr"></a>
 </div>
-<div class="paragraph">
-<div class="title">Kiali Console Virtual Service Error</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04-error-vs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04-error-vs.png" alt="jump app kiali trou 04 error vs"></a></span></p>
+<div class="title">Figure 16. Kiali Console</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04-error-vs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04-error-vs.png" alt="jump app kiali trou 04 error vs"></a>
+</div>
+<div class="title">Figure 17. Kiali Console Virtual Service Error</div>
 </div>
 <div class="paragraph">
 <p>If you take a look at the host paths closely you can find a bad definition because of the pattern <strong>"-fail"</strong> included in the path. Please, modify this hostname and click on <strong>[ SAVE ]</strong>.</p>
 </div>
-<div class="paragraph">
-<div class="title">Kiali Console Destination Rule Error</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04-error-dr.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04-error-dr.png" alt="jump app kiali trou 04 error dr"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-kiali-trou-04-error-dr.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-trou-04-error-dr.png" alt="jump app kiali trou 04 error dr"></a>
+</div>
+<div class="title">Figure 18. Kiali Console Destination Rule Error</div>
 </div>
 <div class="paragraph">
 <p>Lastly, if you take a look at the label version you can find a bad definition. Please, replace <strong>fail</strong> with <strong>v1</strong> version and click on <strong>[ SAVE ]</strong>.</p>
@@ -779,9 +821,11 @@ At this time, you obtain a 200 in this command but <em>external access</em> has 
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods -n istio-system</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Istio ControlPlane Pods</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></a>
+</div>
+<div class="title">Figure 19. Istio ControlPlane Pods</div>
 </div>
 <div class="ulist">
 <ul>
@@ -809,9 +853,11 @@ oc rsh $POD</code></pre>
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">curl -XGET -v --header "Host: back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;" <a href="http://istio-ingressgateway.istio-system.svc.cluster.local:80" class="bare">http://istio-ingressgateway.istio-system.svc.cluster.local:80</a> -v</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">HTTP Response 200</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-vsdr-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-vsdr-ok.png" alt="jump app trou 04 vsdr ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-vsdr-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-vsdr-ok.png" alt="jump app trou 04 vsdr ok"></a>
+</div>
+<div class="title">Figure 20. HTTP Response 200</div>
 </div>
 </div>
 </div>
@@ -819,8 +865,10 @@ oc rsh $POD</code></pre>
 <div class="sect1">
 <h2 id="04-sidecar"><a class="anchor" href="#04-sidecar"></a>6. Test Sidecar &#8594; App Connectivity</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ingress-sidecar-app.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ingress-sidecar-app.png" alt="jump app ingress sidecar app"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-ingress-sidecar-app.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ingress-sidecar-app.png" alt="jump app ingress sidecar app"></a>
+</div>
 </div>
 <div class="sect2">
 <h3 id="04-sidecar-test"><a class="anchor" href="#04-sidecar-test"></a>6.1. Test connectivity via command line</h3>
@@ -839,9 +887,11 @@ oc rsh $POD</code></pre>
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Pods</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump_app_pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump_app_pods.png" alt="jump app pods"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump_app_pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump_app_pods.png" alt="jump app pods"></a>
+</div>
+<div class="title">Figure 21. Jump App Pods</div>
 </div>
 <div class="ulist">
 <ul>
@@ -868,9 +918,11 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">curl -XGET -v --header "Host: back-golang-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;" <a href="http://localhost:8442" class="bare">http://localhost:8442</a></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">HTTP Response 200</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-sidecar-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-sidecar-ok.png" alt="jump app trou 04 sidecar ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-trou-04-sidecar-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-04-sidecar-ok.png" alt="jump app trou 04 sidecar ok"></a>
+</div>
+<div class="title">Figure 22. HTTP Response 200</div>
 </div>
 </div>
 </div>
@@ -893,9 +945,11 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Pods Mesh</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a>
+</div>
+<div class="title">Figure 23. Jump App Pods Mesh</div>
 </div>
 <div class="ulist">
 <ul>
@@ -909,9 +963,11 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n istio-system | grep $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Routes</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a>
+</div>
+<div class="title">Figure 24. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -920,9 +976,11 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Back</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-ok.png" alt="jump app back ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-ok.png" alt="jump app back ok"></a>
+</div>
+<div class="title">Figure 25. Jump App Back</div>
 </div>
 <div class="ulist">
 <ul>
@@ -936,9 +994,11 @@ oc exec -ti &lt;back-golang_pod_id&gt; -c istio-proxy -- sh</code></pre>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Front Web UI Multi Jumps</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a>
+</div>
+<div class="title">Figure 26. Jump App Front Web UI Multi Jumps</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -952,9 +1012,11 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<div class="title">Openshift Self-signed Certificates Warning</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/certs_warning.png" alt="certs warning" width="50%"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/certs_warning.png" alt="certs warning" width="50%"></a>
+</div>
+<div class="title">Figure 27. Openshift Self-signed Certificates Warning</div>
 </div>
 </div>
 </div>
@@ -964,9 +1026,11 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="paragraph">
 <p>At this time, <em>Jump App</em> is generating traffic flow thanks to the frontend where it was given an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit the Kiali console <strong>&lt;kiali_url&gt;</strong>:</p>
 </div>
-<div class="paragraph">
-<div class="title">Kiali Console</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali.png" alt="jump app kiali"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-kiali.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali.png" alt="jump app kiali"></a>
+</div>
+<div class="title">Figure 28. Kiali Console</div>
 </div>
 </div>
 </div>

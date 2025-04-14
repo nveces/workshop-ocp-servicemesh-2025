@@ -275,20 +275,32 @@
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/04-jump-app-ns-smr.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title"><em>ServiceMeshMember</em> Created</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ns-smr.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ns-smr.png" alt="jump app ns smr"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-ns-smr.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ns-smr.png" alt="jump app ns smr"></a>
+</div>
+<div class="title">Figure 1. <em>ServiceMeshMember</em> Created</div>
 </div>
 <div class="paragraph">
 <p>Additionally, you are able to check this new object through the Openshift Console:</p>
 </div>
-<div class="paragraph">
-<div class="title"><em>ServiceMeshMember</em> Created Console- 1</div>
-<p><span class="image"><a class="image" href="../<em>images/04-troubleshooting/jump-app-ns-smr-con1.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ns-smr-con1.png" alt="jump app ns smr con1"></a></span>
-._ServiceMeshMember</em> Created Console - 2
-<span class="image"><a class="image" href="../<em>images/04-troubleshooting/jump-app-ns-smr-con2.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ns-smr-con2.png" alt="jump app ns smr con2"></a></span>
-._ServiceMeshMember</em> Created Console - 3
-<span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-ns-smr-con3.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ns-smr-con3.png" alt="jump app ns smr con3"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-ns-smr-con1.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ns-smr-con1.png" alt="jump app ns smr con1"></a>
+</div>
+<div class="title">Figure 2. <em>ServiceMeshMember</em> Created Console- 1</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-ns-smr-con2.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ns-smr-con2.png" alt="jump app ns smr con2"></a>
+</div>
+<div class="title">Figure 3. <em>ServiceMeshMember</em> Created Console - 2</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-ns-smr-con3.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-ns-smr-con3.png" alt="jump app ns smr con3"></a>
+</div>
+<div class="title">Figure 4. <em>ServiceMeshMember</em> Created Console - 3</div>
 </div>
 </div>
 </div>
@@ -301,13 +313,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Gateways - Describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections (Please, visit this link <a href="https://istio.io/v1.16/docs/concepts/traffic-management/#gateways">Gateways</a> for more information about <em>gateways</em>)</p>
+<p>Gateways - Describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections (Please, visit this link <a href="https://istio.io/v1.16/docs/concepts/traffic-management/#gateways" target="<em>blank">Gateways</a> for more information about _gateways</em>)</p>
 </li>
 <li>
-<p>Virtual Services - Defines a set of traffic routing rules to apply when a host is addressed (Please, visit this link <a href="https://istio.io/v1.16/docs/concepts/traffic-management/#virtual-services">Virtual Services</a> for more information about <em>virtual services</em>)</p>
+<p>Virtual Services - Defines a set of traffic routing rules to apply when a host is addressed (Please, visit this link <a href="https://istio.io/v1.16/docs/concepts/traffic-management/#virtual-services" target="<em>blank">Virtual Services</a> for more information about _virtual services</em>)</p>
 </li>
 <li>
-<p>Destination Rules - Defines policies that apply to traffic intended for a service after routing has occurred (Please, visit this link <a href="https://istio.io/v1.16/docs/concepts/traffic-management/#destination-rules">Destination Rules</a> for more information about <em>destination rules</em>)</p>
+<p>Destination Rules - Defines policies that apply to traffic intended for a service after routing has occurred (Please, visit this link <a href="https://istio.io/v1.16/docs/concepts/traffic-management/#destination-rules" target="<em>blank">Destination Rules</a> for more information about _destination rules</em>)</p>
 </li>
 </ul>
 </div>
@@ -327,9 +339,11 @@
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/00-jump-app-gws.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Gateways Created</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-gws-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-gws-ok.png" alt="jump app gws ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-gws-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-gws-ok.png" alt="jump app gws ok"></a>
+</div>
+<div class="title">Figure 5. Gateways Created</div>
 </div>
 </div>
 <div class="sect2">
@@ -345,9 +359,11 @@
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/01-jump-app-vss.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Virtual Services Created</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-vss-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-vss-ok.png" alt="jump app vss ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-vss-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-vss-ok.png" alt="jump app vss ok"></a>
+</div>
+<div class="title">Figure 6. Virtual Services Created</div>
 </div>
 </div>
 <div class="sect2">
@@ -363,9 +379,11 @@
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/02-jump-app-drs.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Destination Rules Created</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-drs-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-drs-ok.png" alt="jump app drs ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-drs-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-drs-ok.png" alt="jump app drs ok"></a>
+</div>
+<div class="title">Figure 7. Destination Rules Created</div>
 </div>
 </div>
 <div class="sect2">
@@ -381,9 +399,11 @@
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/03-jump-app-services.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">k8s Services Created</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-svcs-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-svcs-ok.png" alt="jump app svcs ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-svcs-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-svcs-ok.png" alt="jump app svcs ok"></a>
+</div>
+<div class="title">Figure 8. k8s Services Created</div>
 </div>
 </div>
 </div>
@@ -404,36 +424,44 @@
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc patch deployment front-javascript-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Front Patched</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-front-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-depl-patch.png" alt="jump app front depl patch"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-front-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-depl-patch.png" alt="jump app front depl patch"></a>
+</div>
+<div class="title">Figure 9. Front Patched</div>
 </div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc patch deployment back-springboot-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Back Springboot Patched</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-back-spb-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-spb-depl-patch.png" alt="jump app back spb depl patch"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-back-spb-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-spb-depl-patch.png" alt="jump app back spb depl patch"></a>
+</div>
+<div class="title">Figure 10. Back Springboot Patched</div>
 </div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc patch deployment back-python-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Back Python Patched</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-back-py-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-py-depl-patch.png" alt="jump app back py depl patch"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-back-py-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-py-depl-patch.png" alt="jump app back py depl patch"></a>
+</div>
+<div class="title">Figure 11. Back Python Patched</div>
 </div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc patch deployment back-golang-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Back Golang Patched</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-back-go-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-go-depl-patch.png" alt="jump app back go depl patch"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-back-go-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-go-depl-patch.png" alt="jump app back go depl patch"></a>
+</div>
+<div class="title">Figure 12. Back Golang Patched</div>
 </div>
 <div class="paragraph">
 <p>Before continuing with the following steps, please test Jump App <em>pods</em> status, in order to be sure that 2 replicas are running for each microservice:</p>
@@ -443,9 +471,11 @@
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Pods Mesh</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a>
+</div>
+<div class="title">Figure 13. Jump App Pods Mesh</div>
 </div>
 </div>
 <div class="sect2">
@@ -463,9 +493,11 @@
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n $USER_NAMESPACE | grep -v NAME | awk '{print "oc delete route " $1 " -n $USER_NAMESPACE"}' | sh</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Routes Deleted</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-route-del.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-route-del.png" alt="jump app route del"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-route-del.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-route-del.png" alt="jump app route del"></a>
+</div>
+<div class="title">Figure 14. Jump App Routes Deleted</div>
 </div>
 </div>
 <div class="sect3">
@@ -481,9 +513,11 @@
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/05-jump-app-routes.yaml --param-file=params.env --ignore-unknown-parameters | oc create -f - -n istio-system</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Mesh Routes Created</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-routes-mesh-ok.png" alt="jump app routes mesh ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-routes-mesh-ok.png" alt="jump app routes mesh ok"></a>
+</div>
+<div class="title">Figure 15. Mesh Routes Created</div>
 </div>
 </div>
 </div>
@@ -519,9 +553,11 @@ Look at the number of containers in each microservice, it must contains 2 contai
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Pods Mesh</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a>
+</div>
+<div class="title">Figure 16. Jump App Pods Mesh</div>
 </div>
 <div class="ulist">
 <ul>
@@ -535,9 +571,11 @@ Look at the number of containers in each microservice, it must contains 2 contai
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n istio-system | grep $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Routes</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a>
+</div>
+<div class="title">Figure 17. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -546,9 +584,11 @@ Look at the number of containers in each microservice, it must contains 2 contai
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Back</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-ok.png" alt="jump app back ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-ok.png" alt="jump app back ok"></a>
+</div>
+<div class="title">Figure 18. Jump App Back</div>
 </div>
 <div class="ulist">
 <ul>
@@ -562,9 +602,11 @@ Look at the number of containers in each microservice, it must contains 2 contai
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Front Web UI Multi Jumps</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a>
+</div>
+<div class="title">Figure 19. Jump App Front Web UI Multi Jumps</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -578,9 +620,11 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<div class="title">Openshift Self-signed Certificates Warning</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/certs_warning.png" alt="certs warning" width="50%"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/certs_warning.png" alt="certs warning" width="50%"></a>
+</div>
+<div class="title">Figure 20. Openshift Self-signed Certificates Warning</div>
 </div>
 </div>
 </div>
@@ -588,11 +632,13 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <h2 id="03-kiali"><a class="anchor" href="#03-kiali"></a>5. Visit Kiali</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jump App is generating traffic flow thanks to the frontend where it was given an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit the Kiali console <strong>&lt;kiali_url&gt;</strong> (<em>E.g. <a href="https://kiali-istio-system.apps.labs.sandbox1562.opentlc.com" class="bare">https://kiali-istio-system.apps.labs.sandbox1562.opentlc.com</a></em>):</p>
+<p>Jump App is generating traffic flow thanks to the frontend where it was given an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit the Kiali console <strong>&lt;kiali_url&gt;</strong> (<em>E.g. {kiali_url}[window=_blank]</em>):</p>
 </div>
-<div class="paragraph">
-<div class="title">Kiali Console</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali.png" alt="jump app kiali"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-kiali.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali.png" alt="jump app kiali"></a>
+</div>
+<div class="title">Figure 21. Kiali Console</div>
 </div>
 </div>
 </div>

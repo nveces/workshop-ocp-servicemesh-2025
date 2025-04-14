@@ -284,9 +284,11 @@
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/acidonper/rh-service-mesh-v2-troubleshooting-resources.git" class="bare">https://github.com/acidonper/rh-service-mesh-v2-troubleshooting-resources.git</a></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">git clone output</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/git_clone_output.png" alt="git clone output"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/git_clone_output.png" alt="git clone output"></a>
+</div>
+<div class="title">Figure 1. git clone output</div>
 </div>
 <div class="paragraph">
 <p>Finally, navigate to the new folder created in your system after repository download for completing all tasks included in this tutorial:</p>
@@ -325,9 +327,11 @@ OCP_APPS_DOMAIN=apps.labs.sandbox1562.opentlc.com</p>
 oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Deployed</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/lojump_app_createdgin.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump_app_created.png" alt="jump app created"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/lojump_app_createdgin.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump_app_created.png" alt="jump app created"></a>
+</div>
+<div class="title">Figure 2. Jump App Deployed</div>
 </div>
 </div>
 <div class="sect2">
@@ -347,9 +351,11 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Pods</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump_app_pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump_app_pods.png" alt="jump app pods"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump_app_pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump_app_pods.png" alt="jump app pods"></a>
+</div>
+<div class="title">Figure 3. Jump App Pods</div>
 </div>
 </div>
 <div class="sect2">
@@ -369,9 +375,11 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Routes</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-routes.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-routes.png" alt="jump app routes"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-routes.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-routes.png" alt="jump app routes"></a>
+</div>
+<div class="title">Figure 4. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -380,9 +388,11 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Back</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-ok.png" alt="jump app back ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-ok.png" alt="jump app back ok"></a>
+</div>
+<div class="title">Figure 5. Jump App Back</div>
 </div>
 <div class="ulist">
 <ul>
@@ -396,9 +406,11 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<div class="title">Jump App Frontend Web UI</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-front-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-ok.png" alt="jump app front ok"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-front-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-ok.png" alt="jump app front ok"></a>
+</div>
+<div class="title">Figure 6. Jump App Frontend Web UI</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -412,9 +424,11 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<div class="title">Openshift Self-signed Certificates Warning</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/certs_warning.png" alt="certs warning" width="50%"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/certs_warning.png" alt="certs warning" width="50%"></a>
+</div>
+<div class="title">Figure 7. Openshift Self-signed Certificates Warning</div>
 </div>
 </div>
 </div>

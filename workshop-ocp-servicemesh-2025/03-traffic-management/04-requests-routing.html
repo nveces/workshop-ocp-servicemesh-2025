@@ -394,9 +394,11 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_BOOKINFO_HOST}/productpage"</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Bookinfo productpage service working</div>
-<p><span class="image"><a class="image" href="../_images/03-traffic-management/bookinfo_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/bookinfo_curl.png" alt="Bookinfo productpage service working" width="80%"></a></span></p>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="../_images/03-traffic-management/bookinfo_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/bookinfo_curl.png" alt="Bookinfo productpage service working" width="80%"></a>
+</div>
+<div class="title">Figure 1. Bookinfo productpage service working</div>
 </div>
 </div>
 </div>
@@ -414,9 +416,11 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 <div class="paragraph">
 <p>Now check that the product page shows the stars of the ratings visiting <a href="https://&lt;user&gt;.bookinfo.&lt;openshift_apps_domain&gt;/productpage" class="bare">https://&lt;user&gt;.bookinfo.&lt;openshift_apps_domain&gt;/productpage</a> with your browser:</p>
 </div>
-<div class="paragraph">
-<div class="title">Product Page showing ratings</div>
-<p><span class="image"><a class="image" href="../_images/03-traffic-management/productpage-v2.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/productpage-v2.png" alt="productpage v2"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/03-traffic-management/productpage-v2.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/productpage-v2.png" alt="productpage v2"></a>
+</div>
+<div class="title">Figure 2. Product Page showing ratings</div>
 </div>
 <div class="paragraph">
 <p>Run this command to simulate traffic in Kiali:</p>
@@ -429,9 +433,11 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 <div class="paragraph">
 <p>You should see a graph similar to this:</p>
 </div>
-<div class="paragraph">
-<div class="title">Kiali traffic version 2</div>
-<p><span class="image"><a class="image" href="../_images/03-traffic-management/kiali-traffic-v2.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-traffic-v2.png" alt="kiali traffic v2"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/03-traffic-management/kiali-traffic-v2.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-traffic-v2.png" alt="kiali traffic v2"></a>
+</div>
+<div class="title">Figure 3. Kiali traffic version 2</div>
 </div>
 <div class="paragraph">
 <p>You see there that all traffic goes to version 2 of the <code>reviews</code> service that calls the <code>ratings</code> service to get the stars.</p>
@@ -459,7 +465,7 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/productpage-red.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/productpage-red.png" alt="productpage red"></a>
 </div>
-<div class="title">Figure 1. Product Page with red stars</div>
+<div class="title">Figure 4. Product Page with red stars</div>
 </div>
 </div>
 </div>

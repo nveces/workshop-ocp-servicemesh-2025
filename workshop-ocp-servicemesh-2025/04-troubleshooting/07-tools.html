@@ -264,16 +264,20 @@
 <div class="paragraph">
 <p>Once in Jaeger, select <code>back-golang.&lt;user-namespace&gt;</code> as the Service in the left menu and then click at the bottom on "Find Traces". You will see that several traces appear on the right:</p>
 </div>
-<div class="paragraph">
-<div class="title">Traces in jaeger</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-jaeger-traces.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-jaeger-traces.png" alt="jump app jaeger traces"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-jaeger-traces.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-jaeger-traces.png" alt="jump app jaeger traces"></a>
+</div>
+<div class="title">Figure 1. Traces in jaeger</div>
 </div>
 <div class="paragraph">
 <p>Click on any of them and you will see the following page will all the jumps your application did and how long did they take:</p>
 </div>
-<div class="paragraph">
-<div class="title">Spans in jaeger</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-jaeger-spans.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-jaeger-spans.png" alt="jump app jaeger spans"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-jaeger-spans.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-jaeger-spans.png" alt="jump app jaeger spans"></a>
+</div>
+<div class="title">Figure 2. Spans in jaeger</div>
 </div>
 <div class="paragraph">
 <p>Those are called spans and they represent a logical unit of work in Jaeger that has an operation name, the start time of the operation, and the duration. Spans may be nested and ordered to model causal relationships. This could help you see where is your application spending more time and find bottlenecks in an easy manner.</p>
@@ -294,9 +298,11 @@
 <div class="paragraph">
 <p>You are adding 2 seconds of delay and since there are 2 jumps, the <strong>front</strong> is going to receive the response 4 seconds late. Go to the <strong>front</strong>, set several retries (maybe 10) and the <em>Calls Interval</em> put it in 4 to send requests every 4 seconds. Now go to <em>Kiali</em> and check the delay by toggling the <em>Response Time</em> in the Display menu. You should see something similar to this:</p>
 </div>
-<div class="paragraph">
-<div class="title">See delay in Kiali</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-kiali-delay.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-delay.png" alt="jump app kiali delay"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-kiali-delay.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-delay.png" alt="jump app kiali delay"></a>
+</div>
+<div class="title">Figure 3. See delay in Kiali</div>
 </div>
 <div class="paragraph">
 <p>You&#8217;ll notice that requests in <code>back-golang</code> are now taking roughly 2 seconds. This capacity of Kiali to see the response time is another way of watching where your application is spending more time. But you can play with other metrics that Kiali gives you like Request Percentage, Requests per Second and even see the traffic animation and security.</p>
@@ -319,9 +325,11 @@ oc exec -it $POD -c istio-proxy -- curl localhost:15000/config_dump &gt; dump.js
 <div class="paragraph">
 <p>You will get a very long file that looks like this:</p>
 </div>
-<div class="paragraph">
-<div class="title">Envoy config dump</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/config_dump.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/config_dump.png" alt="config dump"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/config_dump.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/config_dump.png" alt="config dump"></a>
+</div>
+<div class="title">Figure 4. Envoy config dump</div>
 </div>
 <div class="paragraph">
 <p>Take some time checking the config dump, since this file has all the configuration parameters of the Envoy proxies inside the Service Mesh.</p>
@@ -365,9 +373,11 @@ oc exec -it $POD -c istio-proxy -- curl -X POST localhost:15000/logging</code></
 <div class="paragraph">
 <p>You&#8217;ll get something similar to this, which is the list of loggers you can edit to see more information:</p>
 </div>
-<div class="paragraph">
-<div class="title">Active Loggers</div>
-<p><span class="image"><a class="image" href="../_images/04-troubleshooting/envoy-logging.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/envoy-logging.png" alt="envoy logging"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/envoy-logging.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/envoy-logging.png" alt="envoy logging"></a>
+</div>
+<div class="title">Figure 5. Active Loggers</div>
 </div>
 <div class="paragraph">
 <p>Now, you will change the level of one of them:</p>

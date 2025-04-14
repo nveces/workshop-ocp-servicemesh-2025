@@ -657,13 +657,17 @@ From now on, all labs will assume you are located in this directory.
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_HTTPBIN_HOST}"</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">httpbin service working</div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_curl.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_curl.png" alt="httpbin curl"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/httpbin_curl.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_curl.png" alt="httpbin curl"></a>
 </div>
-<div class="paragraph">
-<div class="title">httpbin service through an Ingress Gateway</div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/ingress_httpbin.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/ingress_httpbin.png" alt="ingress httpbin"></a></span></p>
+<div class="title">Figure 4. httpbin service working</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/ingress_httpbin.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/ingress_httpbin.png" alt="ingress httpbin"></a>
+</div>
+<div class="title">Figure 5. httpbin service through an Ingress Gateway</div>
 </div>
 </div>
 <div class="sect2">
@@ -682,9 +686,11 @@ From now on, all labs will assume you are located in this directory.
 <div class="paragraph">
 <p>As you can see, <em>httpbin</em> app returns a JSON with everything that was passed in the request, including your custom header:</p>
 </div>
-<div class="paragraph">
-<div class="title">httpbin returns a custom header</div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_header_1.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_header_1.png" alt="httpbin header 1"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/httpbin_header_1.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_header_1.png" alt="httpbin header 1"></a>
+</div>
+<div class="title">Figure 6. httpbin returns a custom header</div>
 </div>
 </div>
 <div class="sect2">
@@ -824,9 +830,11 @@ It may take some seconds for the configuration to propagate through the mesh bef
 <div class="paragraph">
 <p>You should see your custom header and the additional header that was created in the <em>EnvoyFilter</em>:</p>
 </div>
-<div class="paragraph">
-<div class="title">httpbin returns a new header created in the <em>EnvoyFilter</em></div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_header_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_header_2.png" alt="httpbin header 2"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/httpbin_header_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_header_2.png" alt="httpbin header 2"></a>
+</div>
+<div class="title">Figure 7. httpbin returns a new header created in the <em>EnvoyFilter</em></div>
 </div>
 <div class="paragraph">
 <p>You can check wether your filter has been inserted in the filter chain by looking at the Envoy config. In order to do this you can use <em>istioctl</em>:</p>
@@ -838,9 +846,11 @@ It may take some seconds for the configuration to propagate through the mesh bef
 istioctl proxy-config listeners -n ${OCP_NAMESPACE} ${HTTPBIN_POD} -o json</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Envoy config including the custom Lua filter</div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_envoy_config.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_envoy_config.png" alt="httpbin envoy config"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/httpbin_envoy_config.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_envoy_config.png" alt="httpbin envoy config"></a>
+</div>
+<div class="title">Figure 8. Envoy config including the custom Lua filter</div>
 </div>
 <div class="paragraph">
 <p>If you don&#8217;t have <em>istioctl</em> installed you can also run the following commands:</p>
@@ -935,9 +945,11 @@ spec:
 <div class="paragraph">
 <p>You should see your custom header being replaced with the additional header that was created in the first <em>EnvoyFilter</em>, your custom header has been removed:</p>
 </div>
-<div class="paragraph">
-<div class="title">httpbin returns a replaced custom header created in the <em>EnvoyFilter</em></div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_header_3.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_header_3.png" alt="httpbin header 3"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/httpbin_header_3.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_header_3.png" alt="httpbin header 3"></a>
+</div>
+<div class="title">Figure 9. httpbin returns a replaced custom header created in the <em>EnvoyFilter</em></div>
 </div>
 <div class="paragraph">
 <p>You can check the position of your new filter in the filter chain by looking at the Envoy config:</p>
@@ -949,9 +961,11 @@ spec:
 istioctl proxy-config listeners -n ${OCP_NAMESPACE} ${HTTPBIN_POD} -o json</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Envoy config including the removal Lua filter at the end of the chain</div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_envoy_config_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_envoy_config_2.png" alt="httpbin envoy config 2"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/httpbin_envoy_config_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_envoy_config_2.png" alt="httpbin envoy config 2"></a>
+</div>
+<div class="title">Figure 10. Envoy config including the removal Lua filter at the end of the chain</div>
 </div>
 <div class="paragraph">
 <p>If you don&#8217;t have <em>istioctl</em> installed you can also run the following commands:</p>
@@ -966,9 +980,11 @@ oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST lo
 <div class="paragraph">
 <p>Additionally, it is possible to review all of this information via Kiali.</p>
 </div>
-<div class="paragraph">
-<div class="title">Envoy config including the removal Lua filter at the end of the chain (Kiali)</div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_envoy_config_kiali.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_envoy_config_kiali.png" alt="httpbin envoy config kiali"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/httpbin_envoy_config_kiali.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_envoy_config_kiali.png" alt="httpbin envoy config kiali"></a>
+</div>
+<div class="title">Figure 11. Envoy config including the removal Lua filter at the end of the chain (Kiali)</div>
 </div>
 </div>
 <div class="sect2">
@@ -1060,16 +1076,20 @@ spec:
 <div class="paragraph">
 <p>You should see your custom header being replaced with the additional header and your custom header removed, but this time with only one <em>EnvoyFilter</em>:</p>
 </div>
-<div class="paragraph">
-<div class="title">httpbin returns a replaced custom header created in the <em>EnvoyFilter</em></div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_header_4.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_header_4.png" alt="httpbin header 4"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/httpbin_header_4.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_header_4.png" alt="httpbin header 4"></a>
+</div>
+<div class="title">Figure 12. httpbin returns a replaced custom header created in the <em>EnvoyFilter</em></div>
 </div>
 <div class="paragraph">
 <p>Additionally, it is possible to review all of this information via Kiali.</p>
 </div>
-<div class="paragraph">
-<div class="title">Envoy config including the removal Lua filter at the end of the chain (Kiali)</div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_envoy_config_kiali_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_envoy_config_kiali_2.png" alt="httpbin envoy config kiali 2"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/httpbin_envoy_config_kiali_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_envoy_config_kiali_2.png" alt="httpbin envoy config kiali 2"></a>
+</div>
+<div class="title">Figure 13. Envoy config including the removal Lua filter at the end of the chain (Kiali)</div>
 </div>
 </div>
 <div class="sect2">
@@ -1284,9 +1304,11 @@ spec:
 <div class="paragraph">
 <p>This is the code where the actual header replacing takes place:</p>
 </div>
-<div class="paragraph">
-<div class="title">Headers filter source code</div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/wasm_headers_code.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/wasm_headers_code.png" alt="wasm headers code"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/wasm_headers_code.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/wasm_headers_code.png" alt="wasm headers code"></a>
+</div>
+<div class="title">Figure 14. Headers filter source code</div>
 </div>
 <div class="paragraph">
 <p>It is important to take a look at the manifest packed in the container image:</p>
@@ -1412,9 +1434,11 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_HTTPBIN_HOST}"</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">httpbin service working</div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_curl.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_curl.png" alt="httpbin service working" width="80%"></a></span></p>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/httpbin_curl.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_curl.png" alt="httpbin service working" width="80%"></a>
+</div>
+<div class="title">Figure 15. httpbin service working</div>
 </div>
 </div>
 <div class="sect3">
@@ -1452,9 +1476,11 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="paragraph">
 <p>As you can see, <em>httpbin</em> app returns a JSON with everything that was passed in the request, including your custom header but nothing has been changed:</p>
 </div>
-<div class="paragraph">
-<div class="title">httpbin returns a custom header</div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_wasm_header_1.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_header_1.png" alt="httpbin wasm header 1"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/httpbin_wasm_header_1.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_header_1.png" alt="httpbin wasm header 1"></a>
+</div>
+<div class="title">Figure 16. httpbin returns a custom header</div>
 </div>
 <div class="paragraph">
 <p>Now, use the <em>Custom-Header</em> the extension is expecting:</p>
@@ -1467,9 +1493,11 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="paragraph">
 <p>As you can see now, <em>Custom-Header</em> has been replaced with <em>Custom-Wasm-Header</em> and <em>Custom-Wasm-Config-Header</em>. Notice that the value of <em>Custom-Wasm-Header</em> is the original value of <em>Custom-Header</em> and the value of <em>Custom-Wasm-Config-Header</em> is taken from the <em>WasmPlugin</em> deployment manifest:</p>
 </div>
-<div class="paragraph">
-<div class="title">WebAssembly plugin replaces the custom header</div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_wasm_header_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_header_2.png" alt="httpbin wasm header 2"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/httpbin_wasm_header_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_header_2.png" alt="httpbin wasm header 2"></a>
+</div>
+<div class="title">Figure 17. WebAssembly plugin replaces the custom header</div>
 </div>
 </div>
 <div class="sect3">
@@ -1504,9 +1532,11 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="paragraph">
 <p>This is the code where the actual body replacing takes place:</p>
 </div>
-<div class="paragraph">
-<div class="title">Body filter source code</div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/wasm_body_code.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/wasm_body_code.png" alt="wasm body code"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/wasm_body_code.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/wasm_body_code.png" alt="wasm body code"></a>
+</div>
+<div class="title">Figure 18. Body filter source code</div>
 </div>
 <div class="paragraph">
 <p>Take a look at the deployment <em>WasmPlugin</em> resource:</p>
@@ -1571,9 +1601,11 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="paragraph">
 <p>As you can see, <em>httpbin</em> app returns a JSON with everything that was passed in the request, including your custom body but nothing special happened:</p>
 </div>
-<div class="paragraph">
-<div class="title">httpbin returns a custom body</div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_wasm_body_1.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_body_1.png" alt="httpbin wasm body 1"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/httpbin_wasm_body_1.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_body_1.png" alt="httpbin wasm body 1"></a>
+</div>
+<div class="title">Figure 19. httpbin returns a custom body</div>
 </div>
 <div class="paragraph">
 <p>Now, include the word <em>secret</em> in the body, as defined in the <em>WasmPlugin</em> resource:</p>
@@ -1586,9 +1618,11 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="paragraph">
 <p>As you can see now, the extension has detected the word in the body and has replaced all the body with a predefined message:</p>
 </div>
-<div class="paragraph">
-<div class="title">WebAssembly plugin replaces body</div>
-<p><span class="image"><a class="image" href="../_images/06-extensibility/httpbin_wasm_body_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_body_2.png" alt="httpbin wasm body 2"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/httpbin_wasm_body_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_body_2.png" alt="httpbin wasm body 2"></a>
+</div>
+<div class="title">Figure 20. WebAssembly plugin replaces body</div>
 </div>
 </div>
 <div class="sect3">

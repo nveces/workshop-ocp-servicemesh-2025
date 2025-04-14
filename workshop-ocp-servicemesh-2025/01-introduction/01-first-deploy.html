@@ -289,8 +289,10 @@
 <div class="paragraph">
 <p>Next diagram describes the 3 layer application architecture:</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/01-introduction/app-arch.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/app-arch.png" alt="app-arch"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/01-introduction/app-arch.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/app-arch.png" alt="app-arch"></a>
+</div>
 </div>
 <div class="paragraph">
 <p>It basically manage set of Pets, their Owners and Veterinarians appointments. We will play a bit when needed in the labs.</p>
@@ -363,8 +365,10 @@ spec:
 <div class="paragraph">
 <p>First part, there is basically the <code>kind</code> and <code>apiVersion</code> for a <code>Deployment</code> API object and then, we just add a name and a set of <code>labels</code> under <code>metadata</code>:</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/01-introduction/d-name.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/d-name.png" alt="deployment name"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/01-introduction/d-name.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/d-name.png" alt="deployment name"></a>
+</div>
 </div>
 <div class="paragraph">
 <p>Next, we have the <code>spec</code> part of the object. This is where we basically define the desired state of our <code>Deployment</code>.</p>
@@ -372,8 +376,10 @@ spec:
 <div class="paragraph">
 <p>Grouping some parts of it, we have:</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/01-introduction/d-part1.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/d-part1.png" alt="deployment part1"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/01-introduction/d-part1.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/d-part1.png" alt="deployment part1"></a>
+</div>
 </div>
 <div class="ulist">
 <ul>
@@ -391,8 +397,10 @@ spec:
 <div class="paragraph">
 <p>And finally the template definition, that describes how a pod will look like:</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/01-introduction/d-part2.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/d-part2.png" alt="deployment part2"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/01-introduction/d-part2.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/d-part2.png" alt="deployment part2"></a>
+</div>
 </div>
 <div class="paragraph">
 <p>We will see more details about every part of the <code>pod</code> itself while going through the labs.</p>
@@ -453,8 +461,10 @@ replicaset.apps/quarkus-petclinic-7c97ccbb85   1         1         1       38s</
 <div class="paragraph">
 <p>Let&#8217;s move to the console and see what we have. This time, we will use the <code>Developer</code> view. Select that perspective on the left top corner:</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/01-introduction/just-deployment.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/just-deployment.png" alt="just deployment"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/01-introduction/just-deployment.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/just-deployment.png" alt="just deployment"></a>
+</div>
 </div>
 <div class="paragraph">
 <p>If you click on the blue circle (2), you will get all details about the application (3).</p>
@@ -465,8 +475,10 @@ replicaset.apps/quarkus-petclinic-7c97ccbb85   1         1         1       38s</
 <div class="paragraph">
 <p>Click on the <code>pod</code> link (4) and get a terminal screen within that <code>pod</code>:</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/01-introduction/pod-terminal.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/pod-terminal.png" alt="pod terminal"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/01-introduction/pod-terminal.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/pod-terminal.png" alt="pod terminal"></a>
+</div>
 </div>
 <div class="paragraph">
 <p>To test the application locally, execute the following in the terminal:</p>
@@ -515,8 +527,10 @@ service/quarkus-petclinic created</pre>
 <div class="paragraph">
 <p>Also, if you move back to the console, you will notice that the service is "assigned" to the application:</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/01-introduction/with-service.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/with-service.png" alt="with service"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/01-introduction/with-service.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/with-service.png" alt="with service"></a>
+</div>
 </div>
 <div class="paragraph">
 <p>Test the application again from the <code>pod</code> terminal, but this time use the <code>service</code> name instead:</p>
@@ -564,8 +578,10 @@ quarkus-petclinic   quarkus-petclinic-user0.apps.labs.sandbox779.opentlc.com    
 <div class="paragraph">
 <p>Copy the value under <code>HOST/PORT</code> column in your preferred web browser. And then&#8230;&#8203; there we go!</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><a class="image" href="../_images/01-introduction/petclinic-web.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/petclinic-web.png" alt="petclinic"></a></span></p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/01-introduction/petclinic-web.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/petclinic-web.png" alt="petclinic"></a>
+</div>
 </div>
 <div class="paragraph">
 <p>Congratulations! You have successfully deployed your first application.</p>
