@@ -209,13 +209,13 @@ image:01-introduction/petclinic-web.png[petclinic,link=../_images/01-introductio
 
 Congratulations! You have successfully deployed your first application.
 
-Just a few  considerations about the application. This application requires access to a DB in order to persist any change. In this lab, we used an in-memory H2 DB within our application.. so in case you add/remove pets, this changes are only persisted to that single pod.
+// Just a few  considerations about the application. This application requires access to a DB in order to persist any change. In this lab, we used an in-memory H2 DB within our application.. so in case you add/remove pets, this changes are only persisted to that single pod.
 
-You would also notice that in case you kill/delete the pod, those pets previously created would have been lost.
+// You would also notice that in case you kill/delete the pod, those pets previously created would have been lost.
 
-Feel free to perform these very usefull exercises to understand that _pods are ephemeral_.
+// Feel free to perform these very usefull exercises to understand that _pods are ephemeral_.
 
-But no worries, *our pets deserve the best*.. so will deploy a proper DB in the next lab and link the application pods to it.
+// But no worries, *our pets deserve the best*.. so will deploy a proper DB in the next lab and link the application pods to it.
 
 // Fix para reorgnizar contenido: lo muevo a 'First deploy' ----------------------
 == Scale the application pod replicas
