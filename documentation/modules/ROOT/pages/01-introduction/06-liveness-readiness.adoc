@@ -67,7 +67,8 @@ We will add both liveness and readiness probe to the existing deployment. To do 
 
 Using the `Developer` view, click on the `quarkus-petclinic` application, and then `Add Health Check`:
 
-01-introduction/add-hc.png[add hc]
+// image:01-introduction/cncf-qos.png[QoS,link=../_images/01-introduction/cncf-qos.png,window=_blank]
+image:01-introduction/add-hc.png[add hc]
 
 Then, configure both `liveness` and `readiness` probe.
 
