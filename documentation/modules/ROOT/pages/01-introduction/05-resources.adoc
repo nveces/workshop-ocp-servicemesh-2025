@@ -49,9 +49,9 @@ For the Postgresql Database, we will set `Guaranteed` resources, while we leave 
 Let's start with the DB. We will use the `oc` cli in both cases. We will set 512m and 10 milicores:
 
 ....
-$ oc set resources dc/petclinic-database --limits=cpu=10m,memory=512Mi --requests=cpu=10m,memory=512Mi -n <TOUR PROJECT>
+$ oc set resources deployment/postgresql --limits=cpu=10m,memory=512Mi --requests=cpu=10m,memory=512Mi -n <TOUR PROJECT>
 
-deploymentconfig.apps.openshift.io/petclinic-database resource requirements updated
+deployment.apps/postgresql resource requirements updated
 ....
 
 And then, we will just define cpu and memory `request` in our application, so we let the application consume as much as the node can give to `pods`:
