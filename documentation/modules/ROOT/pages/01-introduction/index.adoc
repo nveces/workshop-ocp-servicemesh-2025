@@ -18,7 +18,7 @@ include::01-first-deploy.adoc[]
 
 include::03-adding-persistent-volumes.adoc[]
 
-include::04-configuration-management.adoc[]
+// include::04-configuration-management.adoc[]
 
 include::05-resources.adoc[]
 
