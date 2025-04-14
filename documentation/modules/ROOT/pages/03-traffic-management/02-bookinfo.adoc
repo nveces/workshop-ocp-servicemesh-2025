@@ -28,4 +28,4 @@ image::03-traffic-management/bookinfo.png[link=../_images/03-traffic-management/
 
 Some labs will use _httpbin_ as an HTTP request and response service. It offers many tools to proof test HTTP.
 
-This service is a local version of https://httpbin.org/
+This service is a local version of https://httpbin.org/[window=_blank].

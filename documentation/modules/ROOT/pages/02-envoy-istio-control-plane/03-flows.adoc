@@ -139,7 +139,7 @@ oc patch deployment back-golang-v1 -p '{"spec":{"template":{"metadata":{"annotat
 ----
 
 .Back Golang Patched
-02-envoy-istio-control-plane/jump-app-back-go-depl-patch.png[]
+image::02-envoy-istio-control-plane/jump-app-back-go-depl-patch.png[link=../_images/02-envoy-istio-control-plane/jump-app-back-go-depl-patch.png,window=_blank]
 
 [.console-input]
 [source,input,subs="+macros,+attributes"]

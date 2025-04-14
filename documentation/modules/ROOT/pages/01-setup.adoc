@@ -77,12 +77,6 @@ git config --local user.email "<your email>"
 
 
 
-
-$ oc edit smmr -n <controlplane-namespace>
-
-
-
-
 ////
 include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/prerequisites-kubernetes.adoc[]
 |===
