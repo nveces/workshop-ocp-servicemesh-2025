@@ -40,6 +40,12 @@
 :ossm-version: 2.1
 
 :ossm_l: {ossm} {ossm-version}
+//
+:ocp_cluster_api: https://api.apps.ocp.sandbox2865.opentlc.com:6443
+:ocp_cluster_console: https://console-openshift-console.apps.ocp.sandbox2865.opentlc.com/
+:ocp_apps_domain: apps.ocp.sandbox2865.opentlc.com
+//
+:kiali_url: https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com
 
 
 // EOF

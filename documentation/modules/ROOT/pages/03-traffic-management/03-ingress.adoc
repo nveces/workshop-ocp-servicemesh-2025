@@ -176,9 +176,9 @@ curl -s -kI "https://${OCP_HTTPBIN_HOST}"
 ----
 
 .httpbin service working
-image:03-traffic-management/httpbin_curl.png[link=../_images/03-traffic-management/httpbin_curl.png,window=_blank]
+image::03-traffic-management/httpbin_curl.png[link=../_images/03-traffic-management/httpbin_curl.png,window=_blank]
 
 .httpbin service through an {ig}
-image:03-traffic-management/ingress_httpbin.png[link=../_images/03-traffic-management/ingress_httpbin.png,window=_blank]
+image::03-traffic-management/ingress_httpbin.png[link=../_images/03-traffic-management/ingress_httpbin.png,window=_blank]
 
 include::./../../partials/03-traffic-management/remove_httpbin.adoc[leveloffset=+2]

@@ -23,7 +23,7 @@ In our case, we have made some modifications to make it more appropiate to certa
 
 Next diagram describes the 3 layer application architecture:
 
-image:01-introduction/app-arch.png[app-arch,link=../_images/01-introduction/app-arch.png,window=_blank]
+image::01-introduction/app-arch.png[app-arch,link=../_images/01-introduction/app-arch.png,window=_blank]
 
 It basically manage set of Pets, their Owners and Veterinarians appointments. We will play a bit when needed in the labs.
 
@@ -76,13 +76,13 @@ Let's focus on each individual parts:
 
 First part, there is basically the `kind` and `apiVersion` for a `Deployment` API object and then, we just add a name and a set of `labels` under `metadata`:
 
-image:01-introduction/d-name.png[deployment name,link=../_images/01-introduction/d-name.png,window=_blank]
+image::01-introduction/d-name.png[deployment name,link=../_images/01-introduction/d-name.png,window=_blank]
 
 Next, we have the `spec` part of the object. This is where we basically define the desired state of our `Deployment`.
 
 Grouping some parts of it, we have:
 
-image:01-introduction/d-part1.png[deployment part1,link=../_images/01-introduction/d-part1.png,window=_blank]
+image::01-introduction/d-part1.png[deployment part1,link=../_images/01-introduction/d-part1.png,window=_blank]
 
 - Number of desired pods managed by this `Deployment` and its `ReplicaSet`
 - Selector, that will basically tell which pods are managed by the `ReplicaSet`.
@@ -90,7 +90,7 @@ image:01-introduction/d-part1.png[deployment part1,link=../_images/01-introducti
 
 And finally the template definition, that describes how a pod will look like:
 
-image:01-introduction/d-part2.png[deployment part2,link=../_images/01-introduction/d-part2.png,window=_blank]
+image::01-introduction/d-part2.png[deployment part2,link=../_images/01-introduction/d-part2.png,window=_blank]
 
 We will see more details about every part of the `pod` itself while going through the labs.
 
@@ -134,7 +134,7 @@ By creating a `Deployment`, a `ReplicaSet` has been created in order to ensure t
 
 Let's move to the console and see what we have. This time, we will use the `Developer` view. Select that perspective on the left top corner:
 
-image:01-introduction/just-deployment.png[just deployment,link=../_images/01-introduction/just-deployment.png,window=_blank]
+image::01-introduction/just-deployment.png[just deployment,link=../_images/01-introduction/just-deployment.png,window=_blank]
 
 If you click on the blue circle (2), you will get all details about the application (3).
 
@@ -142,7 +142,7 @@ As you can tell, there is not any `Service` nor `Route` created for it yet. That
 
 Click on the `pod` link (4) and get a terminal screen within that `pod`:
 
-image:01-introduction/pod-terminal.png[pod terminal,link=../_images/01-introduction/pod-terminal.png,window=_blank]
+image::01-introduction/pod-terminal.png[pod terminal,link=../_images/01-introduction/pod-terminal.png,window=_blank]
 
 To test the application locally, execute the following in the terminal:
 ....
@@ -170,7 +170,7 @@ Feel free to run again a _oc get all_ to see that the service has been successfu
 
 Also, if you move back to the console, you will notice that the service is "assigned" to the application:
 
-image:01-introduction/with-service.png[with service,link=../_images/01-introduction/with-service.png,window=_blank]
+image::01-introduction/with-service.png[with service,link=../_images/01-introduction/with-service.png,window=_blank]
 
 Test the application again from the `pod` terminal, but this time use the `service` name instead:
 
@@ -205,7 +205,7 @@ quarkus-petclinic   quarkus-petclinic-user0.apps.labs.sandbox779.opentlc.com    
 
 Copy the value under `HOST/PORT` column in your preferred web browser. And then... there we go!
 
-image:01-introduction/petclinic-web.png[petclinic,link=../_images/01-introduction/petclinic-web.png,window=_blank]
+image::01-introduction/petclinic-web.png[petclinic,link=../_images/01-introduction/petclinic-web.png,window=_blank]
 
 Congratulations! You have successfully deployed your first application.
 
@@ -241,7 +241,7 @@ Have a look at the following resources and then, answer a couple of questions th
 - https://docs.openshift.com/container-platform/4.6/applications/deployments/deployment-strategies.html#deployments-rolling-strategy_deployment-strategies[Rolling]
 - https://docs.openshift.com/container-platform/4.6/applications/deployments/deployment-strategies.html#deployments-recreate-strategy_deployment-strategies[Recreate]
 
-So.. could you have a look at what strategies are used in both the application and the Database? 
+So.. could you have a look at what strategies are used in both the application and the Database?
 
 // Why are they different?
 // Fix para reorgnizar contenido: lo muevo a 'First deploy' ----------------------

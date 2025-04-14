@@ -69,7 +69,7 @@ oc exec -it ${UBI_POD} -n ${OCP_NAMESPACE} -c ubi -- curl -I https://github.com
 ----
 
 .Accessing external service without {se}
-image:03-traffic-management/egress_without_se.png[link=../_images/03-traffic-management/egress_without_se.png,window=_blank]
+image::03-traffic-management/egress_without_se.png[link=../_images/03-traffic-management/egress_without_se.png,window=_blank]
 
 Ooops, you can't, because {ossm} is configured with a restrictive policy.
 
@@ -115,12 +115,12 @@ oc exec -it ${UBI_POD} -n ${OCP_NAMESPACE} -c ubi -- curl -I https://github.com
 ----
 
 .Accessing external service with {se}
-image:03-traffic-management/egress_with_se.png[link=../_images/03-traffic-management/egress_with_se.png,window=_blank]
+image::03-traffic-management/egress_with_se.png[link=../_images/03-traffic-management/egress_with_se.png,window=_blank]
 
 So, this is now a controlled way to enable access to external services.
 
 .Kiali external service with {se}
-image:03-traffic-management/kiali_egress_with_se.png[link=../_images/03-traffic-management/kiali_egress_with_se.png,window=_blank]
+image::03-traffic-management/kiali_egress_with_se.png[link=../_images/03-traffic-management/kiali_egress_with_se.png,window=_blank]
 
 == Egress Gateway
 
@@ -222,7 +222,7 @@ while true; do oc exec -it ${UBI_POD} -n ${OCP_NAMESPACE} -c ubi -- curl -I http
 In Kiali you can see this time that the traffic is going through the {eg}:
 
 .Kiali external service with {eg}
-image:03-traffic-management/kiali_egress_with_egress.png[link=../_images/03-traffic-management/kiali_egress_with_egress.png,window=_blank]
+image::03-traffic-management/kiali_egress_with_egress.png[link=../_images/03-traffic-management/kiali_egress_with_egress.png,window=_blank]
 
 == Remove everything
 

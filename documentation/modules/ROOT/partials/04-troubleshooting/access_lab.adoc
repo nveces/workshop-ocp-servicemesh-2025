@@ -8,25 +8,27 @@ The following table includes the parameters that the Instructor should provide y
 |**Name**|**Reference**|**Example**
 | Openshift Cluster API (Access CLI)
 | <ocp_cluster_url>
-| _https://api.tutorialrhmesh.sandbox507.opentlc.com_
+| _{ocp_cluster_api}_
 | Openshift Cluster Console
 | <ocp_cluster_console>
-| _https://console-openshift-console.apps.labs.sandbox1562.opentlc.com_
+| _{ocp_cluster_console}_
 | Username
 | <user>
-| user1
+| user01 +
+  user15
 | Password
 | <pass>
 | P4ssw0rd
 | Namespace
 | <user_namespace>
-| user1-namespace
+| user01-sm +
+  user15-sm
 | Openshift Apps Domain
 | <openshift_apps_domain>
-| _apps.labs.sandbox1562.opentlc.com_
+| _{ocp_apps_domain}_
 | Kiali Url
 | <kiali_url>
-| _https://kiali-istio-system.apps.labs.sandbox1562.opentlc.com_
+| _{kiali_url}_
 |===
 
 Then export them:
@@ -59,7 +61,7 @@ In addition, access Openshift Console using your credentials via browser in orde
 - <ocp_cluster_console> (_E.g. https://console-openshift-console.apps.labs.sandbox1562.opentlc.com_)
 
 .Openshift Console Oauth
-image:04-troubleshooting/ocp_console_oauth.png[link=../_images/04-troubleshooting/ocp_console_oauth.png,window=_blank]
+image::04-troubleshooting/ocp_console_oauth.png[link=../_images/04-troubleshooting/ocp_console_oauth.png,window=_blank]
 
 .Openshift Console
-image:04-troubleshooting/ocp_console.png[link=../_images/04-troubleshooting/ocp_console.png,window=_blank]
+image::04-troubleshooting/ocp_console.png[link=../_images/04-troubleshooting/ocp_console.png,window=_blank]

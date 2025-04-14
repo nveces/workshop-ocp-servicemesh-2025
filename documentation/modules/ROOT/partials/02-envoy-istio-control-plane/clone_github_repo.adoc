@@ -11,7 +11,22 @@ git clone https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resour
 ----
 
 .git clone output
-image:02-envoy-istio-control-plane/git_clone_output.png[link=../_images/02-envoy-istio-control-plane/git_clone_output.png,window=_blank]
+image::02-envoy-istio-control-plane/git_clone_output.png[link=../_images/02-envoy-istio-control-plane/git_clone_output.png,window=_blank]
+
+
+or if you prefer to use *SSH*, `git clone git@github.com:acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git`.
+
+[source,bash]
+----
+git clone git@github.com:acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git
+Cloning into 'rh-service-mesh-v2-istio-crtlplane-resources'...
+remote: Enumerating objects: 97, done.
+remote: Counting objects: 100% (97/97), done.
+remote: Compressing objects: 100% (64/64), done.
+remote: Total 97 (delta 50), reused 70 (delta 29), pack-reused 0 (from 0)
+Receiving objects: 100% (97/97), 27.05 KiB | 395.00 KiB/s, done.
+Resolving deltas: 100% (50/50), done.
+----
 
 Finally, navigate to the new folder created in your system after repository download for completing all tasks included in this tutorial:
 

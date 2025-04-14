@@ -29,7 +29,7 @@ peerauthentication.security.istio.io/peer-auth-policy created
 ....
 
 WARNING: When setting PeerAuthentication to STRICT namespace wide, we will get an error in `Kiali` telling that "Destination Rule enabling namespace-wide mTLS is missing". In our case, we don't really care, as in this lab, we will enable mTLS service by service in the namespace.
-image:05-security/error-paut.png[Error PeerAthentication,link=../_images/05-security/error-paut.png,window=_blank]
+image::05-security/error-paut.png[Error PeerAthentication,link=../_images/05-security/error-paut.png,window=_blank]
 *Ignore it for the rest of the lab.*
 
 
@@ -121,7 +121,7 @@ watch -n1 curl -k https://${PRODUCTPAGE_HOST}/productpage
 
 Finally, move to `Kiali` and select the `Security` check box in the graph `Display options`. We should get a lock icon between each service call:
 
-image:05-security/security-check.gif[Mtls in ns1,link=../_images/05-security/security-check.gif,window=_blank]
+image::05-security/security-check.gif[Mtls in ns1,link=../_images/05-security/security-check.gif,window=_blank]
 
 == Enforce mTLS and configure services in $APPS_NS2
 

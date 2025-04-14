@@ -48,16 +48,16 @@ NOTE: Check the versions of the tools installed on your laptop using the followi
 [source,bash]
 ----
 $ oc version
-Client Version: 4.15.14
-Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
-Server Version: 4.17.17
-Kubernetes Version: v1.30.7
+Client Version: 4.18.8
+Kustomize Version: v5.4.2
+Server Version: 4.18.7
+Kubernetes Version: v1.31.6
 ----
 
 [source,bash]
 ----
 $ git -v
-git version 2.48.1
+git version 2.49.0
 ----
 
 
@@ -74,6 +74,12 @@ git config --local user.email "<your email>"
 ----
 
 ====
+
+
+
+
+$ oc edit smmr -n <controlplane-namespace>
+
 
 
 
@@ -98,7 +104,7 @@ include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-c
 
 And then you are ready for start using Kubernetes:
 
-image:kubelogo.png[]
+image::kubelogo.png[]
 
 [#downloadtutorial]
 == Get tutorial sources

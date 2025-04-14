@@ -13,7 +13,7 @@ We will deploy the `bookinfo` app we are already familiar with, but we will do i
 
 The final set of application deployments will look like follows:
 
-image:05-security/namespaces-deployments.png[Apps in ns,link=../_images/05-security/namespaces-deployments.png,window=_blank]
+image::05-security/namespaces-deployments.png[Apps in ns,link=../_images/05-security/namespaces-deployments.png,window=_blank]
 
 :numbered:
 == Deploy services in $APPS_NS1
@@ -151,15 +151,15 @@ http://productpage-dsanchor-1.apps.labs.sandbox671.opentlc.com
 
 Test the application in your `Web browser`. You will be redirected to an `https` url and warned about the self-signed certificate we have configured:
 
-image:05-security/self-signed-cert.png[Self signed cert,link=../_images/05-security/self-signed-cert.png,window=_blank]
+image::05-security/self-signed-cert.png[Self signed cert,link=../_images/05-security/self-signed-cert.png,window=_blank]
 
 Accept the risk ;-) and you will land in the following page:
 
-image:05-security/landing-page.png[Landing page,link=../_images/05-security/landing-page.png,window=_blank]
+image::05-security/landing-page.png[Landing page,link=../_images/05-security/landing-page.png,window=_blank]
 
 Click on `Access to productpage` link (bottom left of the page) and voila:
 
-image:05-security/productpage.png[Productpage,link=../_images/05-security/productpage.png,window=_blank]
+image::05-security/productpage.png[Productpage,link=../_images/05-security/productpage.png,window=_blank]
 
 Keep a test running on the background to generate telemetry (don't forget to use your domain in the url):
 
@@ -169,7 +169,7 @@ watch -n1 curl -k https://${PRODUCTPAGE_HOST}/productpage
 
 If you check then the graph in `Kiali`, you should get a similar flow:
 
-image:05-security/first-graph.gif[First graph,link=../_images/05-security/first-graph.gif,window=_blank]
+image::05-security/first-graph.gif[First graph,link=../_images/05-security/first-graph.gif,window=_blank]
 
 Notice the starting node in the graph... it should be your dedicated ingress gateway.
 
@@ -216,11 +216,11 @@ destinationrule.networking.istio.io/ratings created
 
 So far, we just deployed and configured some services in $APPS_NS2, but these are not yet accesible. The current request flow looks like:
 
-image:05-security/apps-ns1-workflow.png[Apps ns1 workflow,link=../_images/05-security/apps-ns1-workflow.png,window=_blank]
+image::05-security/apps-ns1-workflow.png[Apps ns1 workflow,link=../_images/05-security/apps-ns1-workflow.png,window=_blank]
 
 But in some scenarios during these labs, we want to make use of the services we have deployed on $APPS_NS2 as in next diagram:
 
-image:05-security/apps-ns2-workflow.png[Apps ns2 workflow,link=../_images/05-security/apps-ns2-workflow.png,window=_blank]
+image::05-security/apps-ns2-workflow.png[Apps ns2 workflow,link=../_images/05-security/apps-ns2-workflow.png,window=_blank]
 
 In order to achieve this, we will have to set certain `env variable` in `productpage` to target to a different `reviews` service than the default one (same namespace). Execute the following to configure the `reviews` service in $APPS_NS2 as target service:
 
@@ -232,11 +232,11 @@ deployment.apps/productpage-v1 updated
 
 A rollout of `productpage`is triggered and then, test the service again. You should get the `ratings` with red stars:
 
-image:05-security/ratings-ns2.png[Ratings from ns2,link=../_images/05-security/ratings-ns2.png,window=_blank]
+image::05-security/ratings-ns2.png[Ratings from ns2,link=../_images/05-security/ratings-ns2.png,window=_blank]
 
 And if you keep sending requests.. you would get the following graph (notice that we jump from `productpage` in your $APPS_NS1 to `reviews` in your $APPS_NS2):
 
-image:05-security/graph-with-ns2.gif[Graph with ns2,link=../_images/05-security/graph-with-ns2.gif,window=_blank]
+image::05-security/graph-with-ns2.gif[Graph with ns2,link=../_images/05-security/graph-with-ns2.gif,window=_blank]
 
 Once tested, we will move back to default, as we will start from the first scenario, where all services run in $APPS_NS1.
 

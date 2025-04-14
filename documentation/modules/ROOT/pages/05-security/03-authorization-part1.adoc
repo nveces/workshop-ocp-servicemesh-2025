@@ -61,7 +61,7 @@ authorizationpolicy.security.istio.io/deny-all-in-ns created
 
 Test the application again and see that we get an `RBAC: denied access error`. If you left some test running in the background, you would have a similar graph to the one shown below in `Kiali`:
 
-image:05-security/kiali-rbac-error.gif[Kiali RBAC error,link=../_images/05-security/kiali-rbac-error.gif,window=_blank]
+image::05-security/kiali-rbac-error.gif[Kiali RBAC error,link=../_images/05-security/kiali-rbac-error.gif,window=_blank]
 
 
 We will start now given access gradually to services.
@@ -170,11 +170,11 @@ authorizationpolicy.security.istio.io/allow-ingress-productpage created
 
 Test the application again and you should be able to reach it, although you still won't have access to the `details` and `ratings` services:
 
-image:05-security/rbac-productpage.png[Productpage RBAC,link=../_images/05-security/rbac-productpage.png,window=_blank]
+image::05-security/rbac-productpage.png[Productpage RBAC,link=../_images/05-security/rbac-productpage.png,window=_blank]
 
 And the following graph can be seen in `Kiali`:
 
-image:05-security/kiali-rbac-error-2.gif[Kiali RBAC error,link=../_images/05-security/kiali-rbac-error-2.gif,window=_blank]
+image::05-security/kiali-rbac-error-2.gif[Kiali RBAC error,link=../_images/05-security/kiali-rbac-error-2.gif,window=_blank]
 
 We are now restricted all services behind the `productpage` service. Let's start activating accesses `workload`  by `workload`.
 
@@ -213,11 +213,11 @@ authorizationpolicy.security.istio.io/allow-ratings created
 
 If you test the application again, everything should work fine:
 
-image:05-security/productpage-rbac-ok.png[Productpage RBAC,link=../_images/05-security/productpage-rbac-ok.png,window=_blank]
+image::05-security/productpage-rbac-ok.png[Productpage RBAC,link=../_images/05-security/productpage-rbac-ok.png,window=_blank]
 
 And this the `Kiali` graph again where will see all interactions between servies working as expected:
 
-image:05-security/kiali-rbac-ok.gif[Kiali RBAC ok,link=../_images/05-security/kiali-rbac-ok.gif,window=_blank]
+image::05-security/kiali-rbac-ok.gif[Kiali RBAC ok,link=../_images/05-security/kiali-rbac-ok.gif,window=_blank]
 
 
 == Extra check: access from independant pod
@@ -300,4 +300,4 @@ authorizationpolicy.security.istio.io/allow-ratings created
 
 Verify that the application works and that you see calls between services from different `namespaces` as shown below:
 
-image:05-security/rbac-cross-ns.png[RBAC cross namespaces,link=../_images/05-security/rbac-cross-ns.png,window=_blank]
+image::05-security/rbac-cross-ns.png[RBAC cross namespaces,link=../_images/05-security/rbac-cross-ns.png,window=_blank]

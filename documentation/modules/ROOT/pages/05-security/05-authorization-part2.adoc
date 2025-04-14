@@ -20,7 +20,7 @@ This implementation shown in this section is *just an example*. In a few words, 
 Next diagram shows all the interactions between all pieces involved (I have skipped the Openshift Router, so I only focus on elements once entering in the Service Mesh).
 
 
-image:05-security/oauth2-flow.png[Oauth flow,link=../_images/05-security/oauth2-flow.png,window=_blank]
+image::05-security/oauth2-flow.png[Oauth flow,link=../_images/05-security/oauth2-flow.png,window=_blank]
 
 Another possiblity would be to implement this mechanism with a WebAssembly module (WASM). This https://github.com/dgn/oidc-filter[project] could be used as a good starting point.
 
@@ -63,7 +63,7 @@ Test the application now.
 
 You will first be redirected to select your gmail account:
 
-image:05-security/google-account-selection.png[Google account selection,link=../_images/05-security/google-account-selection.png,window=_blank]
+image::05-security/google-account-selection.png[Google account selection,link=../_images/05-security/google-account-selection.png,window=_blank]
 
 And once you have selected your preferred account, you will land into the bookinfo application.
 

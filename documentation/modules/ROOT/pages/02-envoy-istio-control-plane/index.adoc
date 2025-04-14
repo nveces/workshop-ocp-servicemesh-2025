@@ -5,8 +5,8 @@ include::./../_document-vars.adoc[]
 //:toc: left
 :toc-title: Envoy & Istio Control Plane Tutorial
 
-
-image:02-envoy-istio-control-plane/logos.png[link=../_images/02-envoy-istio-control-plane/logos.png,window=_blank]
+.Product Logos
+image::02-envoy-istio-control-plane/logos.png[link=../_images/02-envoy-istio-control-plane/logos.png,window=_blank]
 
 == Introduction
 

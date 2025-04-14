@@ -6,4 +6,4 @@ oc get pods
 ----
 
 .Jump App Pods Mesh
-image:04-troubleshooting/jump-app-pods-2-ok.png[link=../_images/04-troubleshooting/jump-app-pods-2-ok.png,window=_blank]
+image::04-troubleshooting/jump-app-pods-2-ok.png[link=../_images/04-troubleshooting/jump-app-pods-2-ok.png,window=_blank]
