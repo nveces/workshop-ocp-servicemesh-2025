@@ -27,24 +27,24 @@ Let's now add persistent storage to the Postgresql Database we have deployed so 
 First, we will scale down to 0. You can use the `web console` or the `oc`. Here is the command:
 
 ....
-$ oc scale dc/petclinic-database --replicas=0 -n <YOUR_PROJECT>
+$ oc scale deployment/postgresql --replicas=0 -n <YOUR_PROJECT>
 
 
-deploymentconfig.apps.openshift.io/petclinic-database scaled
+deployment.apps/postgresql scaled
 ....
 
-Now, edit the `petclinic-database` `DeploymentConfig` to remove any `volume` and `volumeMount` reference to avoid conflicts when adding new storage. Before removing, keep save somewhere the path related to the volume mount. You can manually edit the `DeploymentConfig`  from the `web console` or by running:
-....
- oc edit dc/petclinic-database  -n <YOUR_PROJECT>
-....
+// Now, edit the `petclinic-database` `DeploymentConfig` to remove any `volume` and `volumeMount` reference to avoid conflicts when adding new storage. Before removing, keep save somewhere the path related to the volume mount. You can manually edit the `DeploymentConfig`  from the `web console` or by running:
+// ....
+//  oc edit dc/petclinic-database  -n <YOUR_PROJECT>
+// ....
 
-Remove `emptyDir` volume:
+// Remove `emptyDir` volume:
 
-image:01-introduction/emptydir.png[Empty dir,link=../_images/01-introduction/emptydir.png,window=_blank]
+// image:01-introduction/emptydir.png[Empty dir,link=../_images/01-introduction/emptydir.png,window=_blank]
 
-Remove volume mount:
+// Remove volume mount:
 
-image:01-introduction/vol-mount.png[Volume mount,link=../_images/01-introduction/vol-mount.png,window=_blank]
+// image:01-introduction/vol-mount.png[Volume mount,link=../_images/01-introduction/vol-mount.png,window=_blank]
 
 Let's add storage now. Move to the `Developer` view and click on the Database application and then, `Add storage`:
 
@@ -54,18 +54,18 @@ Chose `Create new claim` and set the values according to next picture:
 
 image:01-introduction/add-storage-detail.png[Add storage,link=../_images/01-introduction/add-storage-detail.png,window=_blank]
 
-Scale the Database `DeploymentConfig` back to one replica:
+Scale the Database `Deployment` back to one replica:
 
 ....
-$ oc scale dc/petclinic-database --replicas=1 -n <YOUR_PROJECT>
+$ oc scale deployment/postgresql --replicas=1 -n <YOUR_PROJECT>
 
 
-deploymentconfig.apps.openshift.io/petclinic-database scaled
+deployment.apps/postgresql scaled
 ....
 
 Do some extra checks:
 
-- Have a look at the new `DeploymentConfig` volume and volumeMount section
+- Have a look at the new `Deployment` volume and volumeMount section
 - Navigate to the `web console` and `storage` menu and verify that the `pvc` appears as bound
 - And try to get details about the `pv` (No, you won't get those details as your are not cluster administrator)
 
