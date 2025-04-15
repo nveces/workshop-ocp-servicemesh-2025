@@ -15,7 +15,7 @@ include::./pages/_document-vars.adoc[]
 // ** xref:01-introduction/index.adoc#_lab_4_configuration_management[Lab 5 - Configuration management]
 ** xref:01-introduction/index.adoc#_lab_4_resources[Lab 4 - Resources]
 ** xref:01-introduction/index.adoc#_lab_5_liveness_and_readiness_probes[Lab 5 - Liveness and readiness probes]
-** xref:01-introduction/index.adoc#_lab_7_network_policies[Lab 6 - Network Policies]
+** xref:01-introduction/index.adoc#_lab_6_network_policies[Lab 6 - Network Policies]
 
 
 
