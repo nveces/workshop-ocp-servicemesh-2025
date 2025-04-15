@@ -77,13 +77,13 @@
     <a class="nav-link" href="#_lab_1_database_deployment">Lab 1 - Database deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#_lab_1_first_application_deployment">Lab 2 - First application deployment</a>
+    <a class="nav-link" href="#_lab_2_first_application_deployment">Lab 2 - First application deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#_lab_3_adding_persistent_volumes">Lab 3 - Adding persistent volumes</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#_lab_5_resources">Lab 4 - Resources</a>
+    <a class="nav-link" href="#_lab_4_resources">Lab 4 - Resources</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#_lab_5_liveness_and_readiness_probes">Lab 5 - Liveness and readiness probes</a>
@@ -289,11 +289,19 @@ This is not a recommended practices guide nor intended to serve as a reference. 
 <p><a href="https://github.com/nveces/ocp-intro-dev" class="bare" target="_blank" rel="noopener">https://github.com/nveces/ocp-intro-dev</a></p>
 </div>
 <div class="paragraph">
-<p>Clone the repository to your desired location, that will then be referred as <strong>$LABS_HOME</strong> during the labs:</p>
+<p>Clone the repository to your desired location:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ git clone https://github.com/nveces/ocp-intro-dev.git $LABS_HOME</pre>
+<pre>$ git clone https://github.com/nveces/ocp-servicemesh-labs-2025.git</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is recommended to set a variable called <strong>LABS_HOME</strong> as follows:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>export LABS_HOME=&lt;YOUR-SELECTED-FOLDER&gt;/lab-01</pre>
 </div>
 </div>
 <div class="sect1">
@@ -447,7 +455,7 @@ to build a new example application in Ruby. Or use kubectl to deploy a simple Ku
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cd $LABS_HOME/lab1/
+<pre>cd $LABS_HOME
 ./db.sh -n &lt;YOUR_PROJECT&gt;
 
 Output:
@@ -627,7 +635,7 @@ spec:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>$ oc apply -f $LABS_HOME/lab1/app-deployment.yaml -n &lt;YOUR_PROJECT&gt;
+<pre>$ oc apply -f $LABS_HOME/app-deployment.yaml -n &lt;YOUR_PROJECT&gt;
 
 deployment.apps/quarkus-petclinic created</pre>
 </div>
@@ -723,7 +731,7 @@ In case you did not get a <code>HTTP/1.1 200 OK</code> response, let us know.
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ oc apply -f $LABS_HOME/lab1/app-service.yaml -n &lt;YOUR_PROJECT&gt;
+<pre>$ oc apply -f $LABS_HOME/app-service.yaml -n &lt;YOUR_PROJECT&gt;
 
 service/quarkus-petclinic created</pre>
 </div>
@@ -766,7 +774,7 @@ service/quarkus-petclinic created</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ oc apply -f $LABS_HOME/lab1/app-route.yaml -n &lt;YOUR_PROJECT&gt;
+<pre>$ oc apply -f $LABS_HOME/app-route.yaml -n &lt;YOUR_PROJECT&gt;
 
 route.route.openshift.io/quarkus-petclinic created</pre>
 </div>
@@ -1323,7 +1331,7 @@ petclinic-database scaled</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>$ oc apply -f $LABS_HOME/lab1/app-deployment.yaml -n &lt;YOUR_PROJECT&gt;-external
+<pre>$ oc apply -f $LABS_HOME/app-deployment.yaml -n &lt;YOUR_PROJECT&gt;-external
 
 deployment.apps/quarkus-petclinic created</pre>
 </div>
@@ -1342,6 +1350,14 @@ deployment.apps/quarkus-petclinic created</pre>
 <div class="literalblock">
 <div class="content">
 <pre>$ curl -v quarkus-petclinic.&lt;YOUR REGULAR PROJECT&gt;.svc:8080 | grep 200</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can take the hostname of your service as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/01-introduction/service.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/service.png" alt="service"></a>
 </div>
 </div>
 <div class="paragraph">

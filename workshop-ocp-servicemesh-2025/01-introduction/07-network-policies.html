@@ -75,13 +75,13 @@
     <a class="nav-link" href="index.html#_lab_1_database_deployment">Lab 1 - Database deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_1_first_application_deployment">Lab 2 - First application deployment</a>
+    <a class="nav-link" href="index.html#_lab_2_first_application_deployment">Lab 2 - First application deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html#_lab_3_adding_persistent_volumes">Lab 3 - Adding persistent volumes</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_5_resources">Lab 4 - Resources</a>
+    <a class="nav-link" href="index.html#_lab_4_resources">Lab 4 - Resources</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html#_lab_5_liveness_and_readiness_probes">Lab 5 - Liveness and readiness probes</a>
@@ -291,7 +291,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>$ oc apply -f $LABS_HOME/lab1/app-deployment.yaml -n &lt;YOUR_PROJECT&gt;-external
+<pre>$ oc apply -f $LABS_HOME/app-deployment.yaml -n &lt;YOUR_PROJECT&gt;-external
 
 deployment.apps/quarkus-petclinic created</pre>
 </div>
@@ -310,6 +310,14 @@ deployment.apps/quarkus-petclinic created</pre>
 <div class="literalblock">
 <div class="content">
 <pre>$ curl -v quarkus-petclinic.&lt;YOUR REGULAR PROJECT&gt;.svc:8080 | grep 200</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can take the hostname of your service as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/01-introduction/service.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/service.png" alt="service"></a>
 </div>
 </div>
 <div class="paragraph">

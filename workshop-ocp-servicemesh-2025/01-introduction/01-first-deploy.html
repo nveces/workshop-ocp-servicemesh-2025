@@ -75,13 +75,13 @@
     <a class="nav-link" href="index.html#_lab_1_database_deployment">Lab 1 - Database deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_1_first_application_deployment">Lab 2 - First application deployment</a>
+    <a class="nav-link" href="index.html#_lab_2_first_application_deployment">Lab 2 - First application deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html#_lab_3_adding_persistent_volumes">Lab 3 - Adding persistent volumes</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_5_resources">Lab 4 - Resources</a>
+    <a class="nav-link" href="index.html#_lab_4_resources">Lab 4 - Resources</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html#_lab_5_liveness_and_readiness_probes">Lab 5 - Liveness and readiness probes</a>
@@ -415,7 +415,7 @@ spec:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>$ oc apply -f $LABS_HOME/lab1/app-deployment.yaml -n &lt;YOUR_PROJECT&gt;
+<pre>$ oc apply -f $LABS_HOME/app-deployment.yaml -n &lt;YOUR_PROJECT&gt;
 
 deployment.apps/quarkus-petclinic created</pre>
 </div>
@@ -511,7 +511,7 @@ In case you did not get a <code>HTTP/1.1 200 OK</code> response, let us know.
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ oc apply -f $LABS_HOME/lab1/app-service.yaml -n &lt;YOUR_PROJECT&gt;
+<pre>$ oc apply -f $LABS_HOME/app-service.yaml -n &lt;YOUR_PROJECT&gt;
 
 service/quarkus-petclinic created</pre>
 </div>
@@ -554,7 +554,7 @@ service/quarkus-petclinic created</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ oc apply -f $LABS_HOME/lab1/app-route.yaml -n &lt;YOUR_PROJECT&gt;
+<pre>$ oc apply -f $LABS_HOME/app-route.yaml -n &lt;YOUR_PROJECT&gt;
 
 route.route.openshift.io/quarkus-petclinic created</pre>
 </div>
