@@ -388,7 +388,7 @@ You must have an up-to-date version of the <em>oc</em> command.
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">OpenShift Apps Domain</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&lt;openshift_apps_domain&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><em>apps.ocp.sandbox2865.opentlc.com[window=_blank]</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>apps.ocp.sandbox2865.opentlc.com</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Kiali Url</p></td>
@@ -417,8 +417,8 @@ The labs will reference these parameters. You will need to replace the reference
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export OCP_USER="&lt;user&gt;"
 export OCP_PASSWORD="&lt;pass&gt;"
 export OCP_NAMESPACE="${OCP_USER}-namespace"
-export OCP_API="&lt;ocp_cluster_api&gt;"
-export OCP_DOMAIN="&lt;openshift_apps_domain&gt;"
+export OCP_API="https://api.apps.ocp.sandbox2865.opentlc.com:6443"
+export OCP_DOMAIN="apps.ocp.sandbox2865.opentlc.com"
 export OCP_HTTPBIN_HOST="${OCP_USER}.httpbin.${OCP_DOMAIN}"</code></pre>
 </div>
 </div>
@@ -430,8 +430,8 @@ export OCP_HTTPBIN_HOST="${OCP_USER}.httpbin.${OCP_DOMAIN}"</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export OCP_USER="user1"
 export OCP_PASSWORD="P4ssw0rd"
 export OCP_NAMESPACE="${OCP_USER}-namespace"
-export OCP_API="https://api.labs.sandbox1212.opentlc.com:6443"
-export OCP_DOMAIN="apps.labs.sandbox1212.opentlc.com"
+export OCP_API="https://api.apps.ocp.sandbox2865.opentlc.com:6443"
+export OCP_DOMAIN="apps.ocp.sandbox2865.opentlc.com"
 export OCP_HTTPBIN_HOST="${OCP_USER}.httpbin.${OCP_DOMAIN}"</code></pre>
 </div>
 </div>
@@ -496,7 +496,7 @@ Please, pay special attention to the <em>oc</em> tool as you will use it many ti
 <div class="ulist">
 <ul>
 <li>
-<p>&lt;ocp_cluster_console&gt; (<em>E.g. <a href="https://console-openshift-console.apps.labs.sandbox1212.opentlc.com" class="bare">https://console-openshift-console.apps.labs.sandbox1212.opentlc.com</a></em>)</p>
+<p>&lt;ocp_cluster_console&gt; (<em>E.g. <a href="https://console-openshift-console.apps.ocp.sandbox2865.opentlc.com/" class="bare" target="_blank" rel="noopener">https://console-openshift-console.apps.ocp.sandbox2865.opentlc.com/</a></em>)</p>
 </li>
 </ul>
 </div>
@@ -518,21 +518,36 @@ Please, pay special attention to the <em>oc</em> tool as you will use it many ti
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/acidonper/ossm-extensibility.git" class="bare">https://github.com/acidonper/ossm-extensibility.git</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/nveces/ocp-servicemesh-labs-2025.git" class="bare">https://github.com/nveces/ocp-servicemesh-labs-2025.git</a></code></pre>
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="../_images/06-extensibility/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/git_clone_output.png" alt="git clone output"></a>
+<a class="image" href="../_images/02-envoy-istio-control-plane/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/git_clone_output.png" alt="git clone output"></a>
 </div>
-<div class="title">Figure 3. Git clone output</div>
+<div class="title">Figure 3. git clone output</div>
+</div>
+<div class="paragraph">
+<p>or if you prefer to use <strong>SSH</strong>, <code>git clone <a href="mailto:git@github.com">git@github.com</a>:nveces/ocp-servicemesh-labs-2025.git</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone git@github.com:nveces/ocp-servicemesh-labs-2025.git
+Cloning into 'ocp-servicemesh-labs-2025'...
+remote: Enumerating objects: 101, done.
+remote: Counting objects: 100% (101/101), done.
+remote: Compressing objects: 100% (68/68), done.
+remote: Total 101 (delta 30), reused 101 (delta 30), pack-reused 0 (from 0)
+Receiving objects: 100% (101/101), 38.07 KiB | 433.00 KiB/s, done.
+Resolving deltas: 100% (30/30), done.</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Navigate to the new directory created in your system:</p>
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ossm-extensibility</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-06</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">

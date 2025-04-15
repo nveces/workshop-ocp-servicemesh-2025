@@ -273,10 +273,8 @@
 <div class="paragraph">
 <p>During this step, you will review how to work with a secure HTTPS service through Egress Gateway and a custom certificate.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-egress-traffic.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-egress-traffic.png" alt="jump app egress traffic"></a>
-</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-egress-traffic.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-egress-traffic.png" alt="jump app egress traffic"></a></span></p>
 </div>
 </div>
 </div>
@@ -289,10 +287,8 @@
 <div class="paragraph">
 <p>Just a information, this service is based on Nginx server with a custom certificates generated with openssl.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-egress-service.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-egress-service.png" alt="jump app egress service"></a>
-</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-egress-service.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-egress-service.png" alt="jump app egress service"></a></span></p>
 </div>
 <div class="sect2">
 <h3 id="06-addcerts"><a class="anchor" href="#06-addcerts"></a>2.1. Add a Custom Certificate</h3>
@@ -353,11 +349,9 @@ openssl x509 -req -days 365 -CA example.com.crt -CAkey example.com.key -set_seri
 oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local.key --cert my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local.crt</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-svc-cert-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-svc-cert-ok.png" alt="jump app mesh external svc cert ok"></a>
-</div>
-<div class="title">Figure 1. Server certificates OK</div>
+<div class="paragraph">
+<div class="title">Server certificates OK</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-svc-cert-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-svc-cert-ok.png" alt="jump app mesh external svc cert ok"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -371,11 +365,9 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc create -n $USER_NAMESPACE-mesh-external secret generic nginx-ca-certs --from-file=example.com.crt</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-ca-cert-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-ca-cert-ok.png" alt="jump app mesh external ca cert ok"></a>
-</div>
-<div class="title">Figure 2. CA certificates OK</div>
+<div class="paragraph">
+<div class="title">CA certificates OK</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-ca-cert-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-ca-cert-ok.png" alt="jump app mesh external ca cert ok"></a></span></p>
 </div>
 </div>
 </div>
@@ -401,11 +393,9 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc create configmap nginx-configmap -n $USER_NAMESPACE-mesh-external --from-file=nginx.conf=./06-secure-egress-traffic-troubleshooting/nginx.conf</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-conf-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-conf-ok.png" alt="jump app mesh external nginx conf ok"></a>
-</div>
-<div class="title">Figure 3. Nginx config file OK</div>
+<div class="paragraph">
+<div class="title">Nginx config file OK</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-conf-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-conf-ok.png" alt="jump app mesh external nginx conf ok"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -419,11 +409,9 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 06-secure-egress-traffic-troubleshooting/00-nginx-svc-pod.yml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE-mesh-external</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-deployment-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-deployment-ok.png" alt="jump app mesh external nginx deployment ok"></a>
-</div>
-<div class="title">Figure 4. Nginx deployment and service ok</div>
+<div class="paragraph">
+<div class="title">Nginx deployment and service ok</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-deployment-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-deployment-ok.png" alt="jump app mesh external nginx deployment ok"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -437,11 +425,9 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods -n $USER_NAMESPACE-mesh-external</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-pods-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-pods-ok.png" alt="jump app mesh external nginx pods ok"></a>
-</div>
-<div class="title">Figure 5. Nginx pod ok</div>
+<div class="paragraph">
+<div class="title">Nginx pod ok</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-pods-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-pods-ok.png" alt="jump app mesh external nginx pods ok"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -457,11 +443,9 @@ POD=$(oc get po -l run=my-nginx -o jsonpath='{.items[0].metadata.name}')
 oc rsh $POD curl <a href="https://localhost:443" class="bare">https://localhost:443</a> -k -v</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png" alt="jump app mesh external nginx svc ok 404"></a>
-</div>
-<div class="title">Figure 6. Nginx service mTLS ERROR</div>
+<div class="paragraph">
+<div class="title">Nginx service mTLS ERROR</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png" alt="jump app mesh external nginx svc ok 404"></a></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -483,10 +467,8 @@ You have deployed a mTLS service and you are receiving a <em>400 Bad Request</em
 <div class="paragraph">
 <p>In order to test your Nginx service, it is required to create a microservice-based testing tool which allows you to stablish secure connections based on mTLS.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-test-tool.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-test-tool.png" alt="jump app test tool"></a>
-</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-test-tool.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-test-tool.png" alt="jump app test tool"></a></span></p>
 </div>
 <div class="sect2">
 <h3 id="06-createtestingcerts"><a class="anchor" href="#06-createtestingcerts"></a>4.1. Add a Custom Certificate</h3>
@@ -509,11 +491,9 @@ You have deployed a mTLS service and you are receiving a <em>400 Bad Request</em
 oc create -n $USER_NAMESPACE secret tls nginx-client-certs --key client.example.com.key --cert client.example.com.crt</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-certs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-certs.png" alt="jump app mesh external nginx access certs"></a>
-</div>
-<div class="title">Figure 7. Client certificates OK</div>
+<div class="paragraph">
+<div class="title">Client certificates OK</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-certs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-certs.png" alt="jump app mesh external nginx access certs"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -527,11 +507,9 @@ oc create -n $USER_NAMESPACE secret tls nginx-client-certs --key client.example.
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc create -n $USER_NAMESPACE secret generic nginx-ca-certs --from-file=example.com.crt</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-ca-certs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-ca-certs.png" alt="jump app mesh external nginx access ca certs"></a>
-</div>
-<div class="title">Figure 8. CA certificates OK</div>
+<div class="paragraph">
+<div class="title">CA certificates OK</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-ca-certs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-ca-certs.png" alt="jump app mesh external nginx access ca certs"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -554,11 +532,9 @@ oc create -n $USER_NAMESPACE secret tls nginx-client-certs --key client.example.
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 06-secure-egress-traffic-troubleshooting/01-jump-app-sleep-svc-pod.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-pod.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-pod.png" alt="jump app mesh external nginx client pod"></a>
-</div>
-<div class="title">Figure 9. Testing service created</div>
+<div class="paragraph">
+<div class="title">Testing service created</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-pod.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-pod.png" alt="jump app mesh external nginx client pod"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -572,11 +548,9 @@ oc create -n $USER_NAMESPACE secret tls nginx-client-certs --key client.example.
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/lojump-app-mesh-external-nginx-client-pod-okgin.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-pod-ok.png" alt="jump app mesh external nginx client pod ok"></a>
-</div>
-<div class="title">Figure 10. Testing service pod OK</div>
+<div class="paragraph">
+<div class="title">Testing service pod OK</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/lojump-app-mesh-external-nginx-client-pod-okgin.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-pod-ok.png" alt="jump app mesh external nginx client pod ok"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -595,11 +569,9 @@ POD=$(oc get po -l app=sleep -o jsonpath='{.items[0].metadata.name}')
 oc exec -it $POD -c sleep -- curl -v --cacert /etc/nginx-ca-certs/example.com.crt --cert /etc/nginx-client-certs/tls.crt --key /etc/nginx-client-certs/tls.key <a href="https://my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local" class="bare">https://my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local</a> -k</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-mtls-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-mtls-ok.png" alt="jump app mesh external nginx client mtls ok"></a>
-</div>
-<div class="title">Figure 11. Nginx service with mTLS</div>
+<div class="paragraph">
+<div class="title">Nginx service with mTLS</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-mtls-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-client-mtls-ok.png" alt="jump app mesh external nginx client mtls ok"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -615,11 +587,9 @@ POD=$(oc get po -l app=sleep -o jsonpath='{.items[0].metadata.name}')
 oc exec -it $POD -c sleep -- curl -v <a href="https://my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local" class="bare">https://my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local</a> -k</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png" alt="jump app mesh external nginx svc ok 404"></a>
-</div>
-<div class="title">Figure 12. Nginx service mTLS ERROR</div>
+<div class="paragraph">
+<div class="title">Nginx service mTLS ERROR</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-svc-ok-404.png" alt="jump app mesh external nginx svc ok 404"></a></span></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -639,10 +609,8 @@ You have deployed a nginx mTLS service and you are receiving a <em>400 Bad Reque
 <div class="sect1">
 <h2 id="06-configureegressaccess"><a class="anchor" href="#06-configureegressaccess"></a>5. Configure mutual TLS origination for egress traffic</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-egress-traffic-graph.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-egress-traffic-graph.png" alt="jump app egress traffic graph"></a>
-</div>
+<div class="paragraph">
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-egress-traffic-graph.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-egress-traffic-graph.png" alt="jump app egress traffic graph"></a></span></p>
 </div>
 <div class="paragraph">
 <p>When you have the testing tool and the Nginx service up and running, it is time to introduce the <em>Egress Gateway</em>.</p>
@@ -671,11 +639,9 @@ You have deployed a nginx mTLS service and you are receiving a <em>400 Bad Reque
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 06-secure-egress-traffic-troubleshooting/02-jump-app-egress-gw-dr.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-objects-new.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-objects-new.png" alt="jump app mesh external nginx access egress objects new"></a>
-</div>
-<div class="title">Figure 13. Gateway, Virtual Service and Destination Rules OK</div>
+<div class="paragraph">
+<div class="title">Gateway, Virtual Service and Destination Rules OK</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-objects-new.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-objects-new.png" alt="jump app mesh external nginx access egress objects new"></a></span></p>
 </div>
 <div class="sect2">
 <h3 id="_configure_the_egress_gateway"><a class="anchor" href="#_configure_the_egress_gateway"></a>5.1. Configure the <em>Egress Gateway</em></h3>
@@ -700,11 +666,9 @@ You have deployed a nginx mTLS service and you are receiving a <em>400 Bad Reque
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc create secret -n istio-system generic $USER_NAMESPACE-mesh-external-egress-nginx-client-certs  --from-file=tls.key=client.example.com.key  --from-file=tls.crt=client.example.com.crt  --from-file=ca.crt=example.com.crt</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-istio-system-certs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-istio-system-certs.png" alt="jump app mesh external nginx istio system certs"></a>
-</div>
-<div class="title">Figure 14. Nginx client egress certificate</div>
+<div class="paragraph">
+<div class="title">Nginx client egress certificate</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-istio-system-certs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-istio-system-certs.png" alt="jump app mesh external nginx istio system certs"></a></span></p>
 </div>
 <div class="ulist">
 <ul>
@@ -718,11 +682,9 @@ You have deployed a nginx mTLS service and you are receiving a <em>400 Bad Reque
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 06-secure-egress-traffic-troubleshooting/03-istio-system-dr-sds.yml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n istio-system</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-mesh-nginx-dr-se.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-nginx-dr-se.png" alt="jump app mesh nginx dr se"></a>
-</div>
-<div class="title">Figure 15. Nginx service destination rule and service entry</div>
+<div class="paragraph">
+<div class="title">Nginx service destination rule and service entry</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-nginx-dr-se.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-nginx-dr-se.png" alt="jump app mesh nginx dr se"></a></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -744,11 +706,9 @@ POD=$(oc get po -l app=sleep -o jsonpath='{.items[0].metadata.name}')
 oc exec -it $POD -c sleep -- curl -v <a href="http://my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local" class="bare">http://my-nginx.$USER_NAMESPACE-mesh-external.svc.cluster.local</a> -k</code></pre>
 </div>
 </div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-con-ok-mtls.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-con-ok-mtls.png" alt="jump app mesh external nginx access egress con ok mtls"></a>
-</div>
-<div class="title">Figure 16. nginx.example.com mTLS connection OK</div>
+<div class="paragraph">
+<div class="title">nginx.example.com mTLS connection OK</div>
+<p><span class="image"><a class="image" href="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-con-ok-mtls.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-mesh-external-nginx-access-egress-con-ok-mtls.png" alt="jump app mesh external nginx access egress con ok mtls"></a></span></p>
 </div>
 </div>
 </div>
