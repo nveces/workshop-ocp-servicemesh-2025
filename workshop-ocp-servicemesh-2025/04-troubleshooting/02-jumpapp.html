@@ -286,21 +286,36 @@
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/acidonper/rh-service-mesh-v2-troubleshooting-resources.git" class="bare">https://github.com/acidonper/rh-service-mesh-v2-troubleshooting-resources.git</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/nveces/ocp-servicemesh-labs-2025.git" class="bare">https://github.com/nveces/ocp-servicemesh-labs-2025.git</a></code></pre>
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<a class="image" href="../_images/04-troubleshooting/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/git_clone_output.png" alt="git clone output"></a>
+<a class="image" href="../_images/02-envoy-istio-control-plane/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/git_clone_output.png" alt="git clone output"></a>
 </div>
 <div class="title">Figure 2. git clone output</div>
+</div>
+<div class="paragraph">
+<p>or if you prefer to use <strong>SSH</strong>, <code>git clone <a href="mailto:git@github.com">git@github.com</a>:nveces/ocp-servicemesh-labs-2025.git</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone git@github.com:nveces/ocp-servicemesh-labs-2025.git
+Cloning into 'ocp-servicemesh-labs-2025'...
+remote: Enumerating objects: 101, done.
+remote: Counting objects: 100% (101/101), done.
+remote: Compressing objects: 100% (68/68), done.
+remote: Total 101 (delta 30), reused 101 (delta 30), pack-reused 0 (from 0)
+Receiving objects: 100% (101/101), 38.07 KiB | 433.00 KiB/s, done.
+Resolving deltas: 100% (30/30), done.</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Finally, navigate to the new folder created in your system after repository download for completing all tasks included in this tutorial:</p>
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd rh-service-mesh-v2-troubleshooting-resources</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-04</code></pre>
 </div>
 </div>
 </div>
@@ -318,8 +333,8 @@
 <div class="title">Example 1. params file content</div>
 <div class="content">
 <div class="paragraph">
-<p>USER_NAMESPACE=user1-namespace<br>
-OCP_APPS_DOMAIN=apps.labs.sandbox1562.opentlc.com</p>
+<p>USER_NAMESPACE=user01-sm<br>
+OCP_APPS_DOMAIN={ocp_apps_domain}</p>
 </div>
 </div>
 </div>
