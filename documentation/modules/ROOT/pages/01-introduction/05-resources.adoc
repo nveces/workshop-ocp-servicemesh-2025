@@ -1,4 +1,4 @@
-= Lab 5 - Resources
+= Lab 4 - Resources
 :imagesdir: ./images
 :toc: left
 :toc-title: Resources

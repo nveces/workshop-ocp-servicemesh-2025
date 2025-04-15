@@ -1,4 +1,4 @@
-= Lab 1 - First application deployment
+= Lab 2 - First application deployment
 :imagesdir: ./images
 :toc: left
 :toc-title: First application deployment
