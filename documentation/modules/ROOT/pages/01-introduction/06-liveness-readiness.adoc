@@ -90,18 +90,18 @@ There should not be any issue and both probes should have passed successfully: a
 Let's now force the `readiness probe` to fail. To do so, we will scale the Database down to zero replicas:
 
 ....
-oc scale dc/petclinic-database --replicas=0 -n <YOUR_PROJECT>
+oc scale deployment/petclinic-database --replicas=0 -n <YOUR_PROJECT>
 
-deploymentconfig.apps.openshift.io/petclinic-database scaled
+deployment.apps/petclinic-database scaled
 ....
 
 Once the Database pod is gone, check both `logs` and `events` in the application pod:
 
 *Logs*
-image::01-introduction/logs-hc.png[logs,link=../_images/01-introduction/logs-hc.png,window=_blank]
+image:01-introduction/logs-hc.png[logs,link=../_images/01-introduction/logs-hc.png,window=_blank]
 
 *Events*
-image::01-introduction/events-hc.png[events,link=../_images/01-introduction/events-hc.png,window=_blank]
+image:01-introduction/events-hc.png[events,link=../_images/01-introduction/events-hc.png,window=_blank]
 
 Manually test the readiness probe to see the current response:
 ....
