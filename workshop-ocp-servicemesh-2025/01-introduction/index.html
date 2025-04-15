@@ -1195,9 +1195,9 @@ deployment.apps/quarkus-petclinic resource requirements updated</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>oc scale dc/petclinic-database --replicas=0 -n &lt;YOUR_PROJECT&gt;
+<pre>oc scale deployment/petclinic-database --replicas=0 -n &lt;YOUR_PROJECT&gt;
 
-deploymentconfig.apps.openshift.io/petclinic-database scaled</pre>
+deployment.apps/petclinic-database scaled</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1205,11 +1205,11 @@ deploymentconfig.apps.openshift.io/petclinic-database scaled</pre>
 </div>
 <div class="paragraph">
 <p><strong>Logs</strong>
-image::01-introduction/logs-hc.png[logs,link=../_images/01-introduction/logs-hc.png,window=_blank]</p>
+<span class="image"><a class="image" href="../_images/01-introduction/logs-hc.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/logs-hc.png" alt="logs"></a></span></p>
 </div>
 <div class="paragraph">
 <p><strong>Events</strong>
-image::01-introduction/events-hc.png[events,link=../_images/01-introduction/events-hc.png,window=_blank]</p>
+<span class="image"><a class="image" href="../_images/01-introduction/events-hc.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/events-hc.png" alt="events"></a></span></p>
 </div>
 <div class="paragraph">
 <p>Manually test the readiness probe to see the current response:</p>
