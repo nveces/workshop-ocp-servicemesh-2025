@@ -28,11 +28,18 @@ There is also a list of files needed to run the labs. These files can be found i
 https://github.com/nveces/ocp-intro-dev[window=_blank]
 
 
-Clone the repository to your desired location, that will then be referred as *$LABS_HOME* during the labs:
+Clone the repository to your desired location:
 
 ....
-$ git clone https://github.com/nveces/ocp-intro-dev.git $LABS_HOME
+$ git clone https://github.com/nveces/ocp-servicemesh-labs-2025.git
 ....
+
+It is recommended to set a variable called *LABS_HOME* as follows:
+
+....
+export LABS_HOME=<YOUR-SELECTED-FOLDER>/lab-01
+....
+
 
 :numbered:
 == Access to Openshift Web Console

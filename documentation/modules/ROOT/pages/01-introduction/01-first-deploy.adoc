@@ -99,7 +99,7 @@ We will see more details about every part of the `pod` itself while going throug
 As said, we will apply the YAML descriptor into our project. To do so, execute:
 
 ----
-$ oc apply -f $LABS_HOME/lab1/app-deployment.yaml -n <YOUR_PROJECT>
+$ oc apply -f $LABS_HOME/app-deployment.yaml -n <YOUR_PROJECT>
 
 deployment.apps/quarkus-petclinic created
 ----
@@ -156,7 +156,7 @@ NOTE: In case you did not get a `HTTP/1.1 200 OK` response, let us know.
 Once we tested the application, lets add a `Service` that will provide us a logical name to access to this application. It will also be used as a load balancer for the possible 'n' pods we may have later for this `Deployment`.
 
 ....
-$ oc apply -f $LABS_HOME/lab1/app-service.yaml -n <YOUR_PROJECT>
+$ oc apply -f $LABS_HOME/app-service.yaml -n <YOUR_PROJECT>
 
 service/quarkus-petclinic created
 ....
@@ -184,7 +184,7 @@ Hope you got a `HTTP/1.1 200 OK`! If that is the case, let's make our applicatio
 
 Apply the following YAML in your project:
 ....
-$ oc apply -f $LABS_HOME/lab1/app-route.yaml -n <YOUR_PROJECT>
+$ oc apply -f $LABS_HOME/app-route.yaml -n <YOUR_PROJECT>
 
 route.route.openshift.io/quarkus-petclinic created
 ....

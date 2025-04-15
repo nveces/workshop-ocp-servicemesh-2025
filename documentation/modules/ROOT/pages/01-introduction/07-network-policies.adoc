@@ -30,7 +30,7 @@ oc new-project <UP_TO_YOU>-external
 Once the project is created, create a `pod` that will be used as client for our tests (we will reuse the first application we deployed):
 
 ----
-$ oc apply -f $LABS_HOME/lab1/app-deployment.yaml -n <YOUR_PROJECT>-external
+$ oc apply -f $LABS_HOME/app-deployment.yaml -n <YOUR_PROJECT>-external
 
 deployment.apps/quarkus-petclinic created
 ----
@@ -44,6 +44,10 @@ In that terminal, we will try to access to the `Petclinic` service that it is ru
 ....
 $ curl -v quarkus-petclinic.<YOUR REGULAR PROJECT>.svc:8080 | grep 200
 ....
+
+You can take the hostname of your service as follows:
+
+image::01-introduction/service.png[service,link=../_images/01-introduction/service.png,window=_blank]
 
 So far, there is not any restriction at all, so we could reach our application from any other `project`.
 
