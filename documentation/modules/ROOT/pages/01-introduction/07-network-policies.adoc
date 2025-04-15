@@ -1,4 +1,4 @@
-= Lab 7 - Network Policies
+= Lab 6 - Network Policies
 :imagesdir: ./images
 :toc: left
 :toc-title: Network Policies
@@ -27,10 +27,12 @@ We will use an extra `project` so we can deploy a  single `pod` to test some sce
 oc new-project <UP_TO_YOU>-external
 ....
 
+NOTE: We will refer to this new project as *YOUR-EXTERNAL-PROJECT* and the previous one as *YOUR_REGULAR_PROJECT*
+
 Once the project is created, create a `pod` that will be used as client for our tests (we will reuse the first application we deployed):
 
 ----
-$ oc apply -f $LABS_HOME/app-deployment.yaml -n <YOUR_PROJECT>-external
+$ oc apply -f $LABS_HOME/app-deployment.yaml -n <YOUR-EXTERNAL-PROJECT>
 
 deployment.apps/quarkus-petclinic created
 ----
@@ -42,7 +44,7 @@ image::01-introduction/new-pod.png[new pod,link=../_images/01-introduction/new-p
 In that terminal, we will try to access to the `Petclinic` service that it is running in a different `project`. Execute the following, do not forget to use your target `namespace` (notice that we use now the svc FQDN instead => myservice.ns.svc):
 
 ....
-$ curl -v quarkus-petclinic.<YOUR REGULAR PROJECT>.svc:8080 | grep 200
+$ curl -v quarkus-petclinic.<YOUR_REGULAR_PROJECT>.svc:8080 | grep 200
 ....
 
 You can take the hostname of your service as follows:
@@ -54,7 +56,7 @@ So far, there is not any restriction at all, so we could reach our application f
 Let's create our first `NetworkPolicy` to isolate all `pods` in the `project` from other `pods` in different projects:
 
 ....
-$ oc apply -f $LABS_HOME/lab7/np-same-project.yaml -n <YOUR_PROJECT>
+$ oc apply -f $LABS_HOME/np-same-project.yaml -n <YOUR_REGULAR_PROJECT>
 
 networkpolicy.networking.k8s.io/allow-only-project created
 ....
@@ -68,7 +70,7 @@ image::01-introduction/np-same-project.png[np same project,link=../_images/01-in
 We need to allow access from the router `pods`. Run:
 
 ....
-$ oc apply -f $LABS_HOME/lab7/allow-openshift-ingress.yaml -n <YOUR_PROJECT>
+$ oc apply -f $LABS_HOME/allow-openshift-ingress.yaml -n <YOUR_REGULAR_PROJECT>
 
 networkpolicy.networking.k8s.io/allow-from-openshift-ingress created
 ....
