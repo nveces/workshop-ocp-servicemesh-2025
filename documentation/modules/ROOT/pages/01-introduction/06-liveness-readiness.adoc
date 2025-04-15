@@ -1,4 +1,4 @@
-= Lab 6 - Liveness and readiness probes
+= Lab 5 - Liveness and readiness probes
 :imagesdir: ./images
 :toc: left
 :toc-title: Liveness and readiness
@@ -98,10 +98,12 @@ deployment.apps/petclinic-database scaled
 Once the Database pod is gone, check both `logs` and `events` in the application pod:
 
 *Logs*
-image:01-introduction/logs-hc.png[logs,link=../_images/01-introduction/logs-hc.png,window=_blank]
+
+image::01-introduction/logs-hc.png[logs,link=../_images/01-introduction/logs-hc.png,window=_blank]
 
 *Events*
-image:01-introduction/events-hc.png[events,link=../_images/01-introduction/events-hc.png,window=_blank]
+
+image::01-introduction/events-hc.png[events,link=../_images/01-introduction/events-hc.png,window=_blank]
 
 Manually test the readiness probe to see the current response:
 ....
@@ -141,11 +143,11 @@ And finally.. try to access to the application again... :-(
 In order to make the application back to `Ready`, scale up the Database to 1:
 
 ....
-oc scale dc/petclinic-database --replicas=1 -n <YOUR_PROJECT>
+oc scale deployment/petclinic-database --replicas=1 -n <YOUR_PROJECT>
 
 petclinic-database scaled
 ....
 
 Wait until the Database is back and try to access to the application again.
 
-Everything should be back to normal.
+Everything should be back to normal: try again with "curl -v http://<APP_HOST_PORT>/health/ready".
