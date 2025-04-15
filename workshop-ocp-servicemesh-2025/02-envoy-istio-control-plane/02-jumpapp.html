@@ -284,7 +284,7 @@ Please, replace <strong>&lt;user&gt;</strong>, <strong>&lt;pass&gt;</strong>, <s
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git" class="bare">https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/nveces/ocp-servicemesh-labs-2025.git" class="bare">https://github.com/nveces/ocp-servicemesh-labs-2025.git</a></code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -294,18 +294,18 @@ Please, replace <strong>&lt;user&gt;</strong>, <strong>&lt;pass&gt;</strong>, <s
 <div class="title">Figure 2. git clone output</div>
 </div>
 <div class="paragraph">
-<p>or if you prefer to use <strong>SSH</strong>, <code>git clone <a href="mailto:git@github.com">git@github.com</a>:acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git</code>.</p>
+<p>or if you prefer to use <strong>SSH</strong>, <code>git clone <a href="mailto:git@github.com">git@github.com</a>:nveces/ocp-servicemesh-labs-2025.git</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone git@github.com:acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git
-Cloning into 'rh-service-mesh-v2-istio-crtlplane-resources'...
-remote: Enumerating objects: 97, done.
-remote: Counting objects: 100% (97/97), done.
-remote: Compressing objects: 100% (64/64), done.
-remote: Total 97 (delta 50), reused 70 (delta 29), pack-reused 0 (from 0)
-Receiving objects: 100% (97/97), 27.05 KiB | 395.00 KiB/s, done.
-Resolving deltas: 100% (50/50), done.</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone git@github.com:nveces/ocp-servicemesh-labs-2025.git
+Cloning into 'ocp-servicemesh-labs-2025'...
+remote: Enumerating objects: 101, done.
+remote: Counting objects: 100% (101/101), done.
+remote: Compressing objects: 100% (68/68), done.
+remote: Total 101 (delta 30), reused 101 (delta 30), pack-reused 0 (from 0)
+Receiving objects: 100% (101/101), 38.07 KiB | 433.00 KiB/s, done.
+Resolving deltas: 100% (30/30), done.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -313,7 +313,7 @@ Resolving deltas: 100% (50/50), done.</code></pre>
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd rh-service-mesh-v2-istio-crtlplane-resources</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-02</code></pre>
 </div>
 </div>
 </div>
@@ -331,7 +331,7 @@ Resolving deltas: 100% (50/50), done.</code></pre>
 <div class="title">Example 1. params file content</div>
 <div class="content">
 <div class="paragraph">
-<p>USER_NAMESPACE=user01<br>
+<p>USER_NAMESPACE=user01-sm<br>
 OCP_APPS_DOMAIN={ocp_apps_domain}</p>
 </div>
 </div>

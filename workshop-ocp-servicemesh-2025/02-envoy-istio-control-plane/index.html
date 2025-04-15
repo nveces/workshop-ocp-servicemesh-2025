@@ -375,12 +375,12 @@
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Openshift Cluster API (Access CLI)</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&lt;ocp_cluster_api&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://api.apps.ocp.sandbox2865.opentlc.com:6443" class="bare">https://api.apps.ocp.sandbox2865.opentlc.com:6443</a></em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://api.apps.ocp.sandbox2865.opentlc.com:6443" class="bare" target="_blank" rel="noopener">https://api.apps.ocp.sandbox2865.opentlc.com:6443</a></em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Openshift Cluster Console</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&lt;ocp_cluster_console&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://console-openshift-console.apps.ocp.sandbox2865.opentlc.com/" class="bare">https://console-openshift-console.apps.ocp.sandbox2865.opentlc.com/</a></em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://console-openshift-console.apps.ocp.sandbox2865.opentlc.com/" class="bare" target="_blank" rel="noopener">https://console-openshift-console.apps.ocp.sandbox2865.opentlc.com/</a></em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Username</p></td>
@@ -402,12 +402,12 @@
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Openshift Apps Domain</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&lt;openshift_apps_domain&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><em>apps.ocp.sandbox2865.opentlc.com</em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>apps.ocp.sandbox2865.opentlc.com[window=_blank]</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Kiali Url</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">&lt;kiali_url&gt;</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com" class="bare">https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com</a></em></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com" class="bare" target="_blank" rel="noopener">https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com</a></em></p></td>
 </tr>
 </tbody>
 </table>
@@ -511,7 +511,7 @@ Please, replace <strong>&lt;user&gt;</strong>, <strong>&lt;pass&gt;</strong>, <s
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git" class="bare">https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/nveces/ocp-servicemesh-labs-2025.git" class="bare">https://github.com/nveces/ocp-servicemesh-labs-2025.git</a></code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -521,18 +521,18 @@ Please, replace <strong>&lt;user&gt;</strong>, <strong>&lt;pass&gt;</strong>, <s
 <div class="title">Figure 5. git clone output</div>
 </div>
 <div class="paragraph">
-<p>or if you prefer to use <strong>SSH</strong>, <code>git clone <a href="mailto:git@github.com">git@github.com</a>:acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git</code>.</p>
+<p>or if you prefer to use <strong>SSH</strong>, <code>git clone <a href="mailto:git@github.com">git@github.com</a>:nveces/ocp-servicemesh-labs-2025.git</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone git@github.com:acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git
-Cloning into 'rh-service-mesh-v2-istio-crtlplane-resources'...
-remote: Enumerating objects: 97, done.
-remote: Counting objects: 100% (97/97), done.
-remote: Compressing objects: 100% (64/64), done.
-remote: Total 97 (delta 50), reused 70 (delta 29), pack-reused 0 (from 0)
-Receiving objects: 100% (97/97), 27.05 KiB | 395.00 KiB/s, done.
-Resolving deltas: 100% (50/50), done.</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone git@github.com:nveces/ocp-servicemesh-labs-2025.git
+Cloning into 'ocp-servicemesh-labs-2025'...
+remote: Enumerating objects: 101, done.
+remote: Counting objects: 100% (101/101), done.
+remote: Compressing objects: 100% (68/68), done.
+remote: Total 101 (delta 30), reused 101 (delta 30), pack-reused 0 (from 0)
+Receiving objects: 100% (101/101), 38.07 KiB | 433.00 KiB/s, done.
+Resolving deltas: 100% (30/30), done.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -540,7 +540,7 @@ Resolving deltas: 100% (50/50), done.</code></pre>
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd rh-service-mesh-v2-istio-crtlplane-resources</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-02</code></pre>
 </div>
 </div>
 </div>
@@ -558,7 +558,7 @@ Resolving deltas: 100% (50/50), done.</code></pre>
 <div class="title">Example 1. params file content</div>
 <div class="content">
 <div class="paragraph">
-<p>USER_NAMESPACE=user01<br>
+<p>USER_NAMESPACE=user01-sm<br>
 OCP_APPS_DOMAIN=apps.ocp.sandbox2865.opentlc.com</p>
 </div>
 </div>
@@ -844,7 +844,7 @@ Let the Instructor know that you are at this point.
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-If you are an advanced user and can not wait for the instructor, please visit <a href="#06-crtlplane.adoc#smr" class="xref unresolved">6.1.1 Create <em>ServiceMeshMember</em> Object</a> and follow the instructions included there and go back again.
+If you are an advanced user and can not wait for the instructor, please visit <a href="#smr">Create ServiceMeshMember Object</a> and follow the instructions included there and go back again. Anyway, we will return to this point in that section <a href="#smr">Create ServiceMeshMember Object</a>.
 </td>
 </tr>
 </table>
@@ -1070,7 +1070,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="sect2">
 <h3 id="kiali"><a class="anchor" href="#kiali"></a>Visit Kiali</h3>
 <div class="paragraph">
-<p>Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console <strong>&lt;kiali_url&gt;</strong> (<em>E.g. <a href="https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com" class="bare">https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com</a></em>):</p>
+<p>Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console <strong>&lt;kiali_url&gt;</strong> (<em>E.g. <a href="https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com" class="bare" target="_blank" rel="noopener">https://kiali-istio-system.apps.ocp.sandbox2865.opentlc.com</a></em>):</p>
 </div>
 <div class="imageblock">
 <div class="content">
