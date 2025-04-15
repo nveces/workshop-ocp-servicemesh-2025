@@ -372,13 +372,21 @@ oc process -f 03-jump-app-flows/03-jump-app-services.yaml --param-file=params.en
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Let the Instructor know that you are at this point
+Let the Instructor know that you are at this point.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>At this moment, you are not able to access to <em>Jump App</em> because of a set of required tasks which you have to perform next.</p>
+<p>You can include the namespace yourself in the mesh by creating the ServiceMeshMember (SMM) object:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc process -f 06-istio-ctrlplane/00-jump-app-ns-smr.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once the namespace has been included in the mesh, a series of network policies are created that we will examine later and you are no longer able to access to <em>Jump App</em>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -455,17 +463,6 @@ If you are an advanced user and can not wait for the instructor, please visit <a
 </div>
 <div class="title">Figure 9. Back Golang Patched</div>
 </div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc patch deployment mongo -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n &lt;user_namespace&gt;</code></pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-back-mg-depl-patch.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-mg-depl-patch.png" alt="jump app back mg depl patch"></a>
-</div>
-<div class="title">Figure 10. MongoDB Patched</div>
-</div>
 <div class="paragraph">
 <p>Before continuing with the following steps, please test Jump App <em>pods</em> status, in order to be sure that 2 replicas are running for each microservice:</p>
 </div>
@@ -478,7 +475,7 @@ If you are an advanced user and can not wait for the instructor, please visit <a
 <div class="content">
 <a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a>
 </div>
-<div class="title">Figure 11. Jump App Pods Mesh</div>
+<div class="title">Figure 10. Jump App Pods Mesh</div>
 </div>
 </div>
 <div class="sect2">
@@ -500,7 +497,7 @@ If you are an advanced user and can not wait for the instructor, please visit <a
 <div class="content">
 <a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-route-del.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-route-del.png" alt="jump app route del"></a>
 </div>
-<div class="title">Figure 12. Jump App Routes Deleted</div>
+<div class="title">Figure 11. Jump App Routes Deleted</div>
 </div>
 </div>
 <div class="sect3">
@@ -520,7 +517,7 @@ If you are an advanced user and can not wait for the instructor, please visit <a
 <div class="content">
 <a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-routes-mesh-ok.png" alt="jump app routes mesh ok"></a>
 </div>
-<div class="title">Figure 13. Mesh Routes Created</div>
+<div class="title">Figure 12. Mesh Routes Created</div>
 </div>
 </div>
 </div>
@@ -557,7 +554,7 @@ Look at the number of containers in each microservice, it must contains 2 contai
 <div class="content">
 <a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a>
 </div>
-<div class="title">Figure 14. Jump App Pods Mesh</div>
+<div class="title">Figure 13. Jump App Pods Mesh</div>
 </div>
 <div class="ulist">
 <ul>
@@ -575,7 +572,7 @@ Look at the number of containers in each microservice, it must contains 2 contai
 <div class="content">
 <a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a>
 </div>
-<div class="title">Figure 15. Jump App Routes</div>
+<div class="title">Figure 14. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -588,7 +585,7 @@ Look at the number of containers in each microservice, it must contains 2 contai
 <div class="content">
 <a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-back-ok.png" alt="jump app back ok"></a>
 </div>
-<div class="title">Figure 16. Jump App Back</div>
+<div class="title">Figure 15. Jump App Back</div>
 </div>
 <div class="ulist">
 <ul>
@@ -606,7 +603,7 @@ Look at the number of containers in each microservice, it must contains 2 contai
 <div class="content">
 <a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a>
 </div>
-<div class="title">Figure 17. Jump App Front Web UI Multi Jumps</div>
+<div class="title">Figure 16. Jump App Front Web UI Multi Jumps</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -624,7 +621,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/02-envoy-istio-control-plane/login.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/certs_warning.png" alt="certs warning" width="50%"></a>
 </div>
-<div class="title">Figure 18. Openshift Self-signed Certificates Warning</div>
+<div class="title">Figure 17. Openshift Self-signed Certificates Warning</div>
 </div>
 </div>
 <div class="sect2">
@@ -636,7 +633,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/02-envoy-istio-control-plane/jump-app-kiali.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/jump-app-kiali.png" alt="jump app kiali"></a>
 </div>
-<div class="title">Figure 19. Kiali Console</div>
+<div class="title">Figure 18. Kiali Console</div>
 </div>
 </div>
 </div>
