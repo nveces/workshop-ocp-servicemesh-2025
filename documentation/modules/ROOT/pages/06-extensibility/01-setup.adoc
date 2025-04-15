@@ -61,7 +61,7 @@ The Instructor will provide {ocp} users, credentials and other important paramet
 | _user1-namespace_
 | OpenShift Apps Domain
 | <openshift_apps_domain>
-| _{ocp_apps_domain}[window=_blank]_
+| _{ocp_apps_domain}_
 | Kiali Url
 | <kiali_url>
 | _{kiali_url}[window=_blank]_
@@ -71,25 +71,25 @@ IMPORTANT: The labs will reference these parameters. You will need to replace th
 
 For simplicity, the commands in these labs will use environment variables. Make sure you export the environment variables in your shell before running any command, replacing the placeholders with the values provided to you:
 
-[source,bash]
+[source,bash, subs="+attributes"]
 ----
 export OCP_USER="<user>"
 export OCP_PASSWORD="<pass>"
 export OCP_NAMESPACE="${OCP_USER}-namespace"
-export OCP_API="<ocp_cluster_api>"
-export OCP_DOMAIN="<openshift_apps_domain>"
+export OCP_API="{ocp_cluster_api}"
+export OCP_DOMAIN="{ocp_apps_domain}"
 export OCP_HTTPBIN_HOST="${OCP_USER}.httpbin.${OCP_DOMAIN}"
 ----
 
 For example:
 
-[source,bash]
+[source,bash, subs="+attributes"]
 ----
 export OCP_USER="user1"
 export OCP_PASSWORD="P4ssw0rd"
 export OCP_NAMESPACE="${OCP_USER}-namespace"
-export OCP_API="https://api.labs.sandbox1212.opentlc.com:6443"
-export OCP_DOMAIN="apps.labs.sandbox1212.opentlc.com"
+export OCP_API="{ocp_cluster_api}"
+export OCP_DOMAIN="{ocp_apps_domain}"
 export OCP_HTTPBIN_HOST="${OCP_USER}.httpbin.${OCP_DOMAIN}"
 ----
 
@@ -126,7 +126,7 @@ oc project ${OCP_NAMESPACE}
 
 In addition, you can access the {ocp} Web Console using your web browser. Use your credentials to login:
 
-- <ocp_cluster_console> (_E.g. https://console-openshift-console.apps.labs.sandbox1212.opentlc.com_)
+- <ocp_cluster_console> (_E.g. {ocp_cluster_console}[window=_blank]_)
 
 .{rhocp} Web Console login
 image::06-extensibility/ocp_console.png[link=../_images/06-extensibility/ocp_console.png,window=_blank]
@@ -137,15 +137,35 @@ All files used in the labs are located in a GitHub repository for your convenien
 
 Follow the next steps in order to clone the repository:
 
+
 [.lines_space]
 [.console-input]
 [source,bash, subs="+macros,+attributes"]
 ----
-git clone https://github.com/acidonper/ossm-extensibility.git
+git clone https://github.com/nveces/ocp-servicemesh-labs-2025.git
+----
+// Original
+// git clone https://github.com/acidonper/ossm-extensibility.git
+
+.git clone output
+image::02-envoy-istio-control-plane/git_clone_output.png[link=../_images/02-envoy-istio-control-plane/git_clone_output.png,window=_blank]
+
+
+or if you prefer to use *SSH*, `git clone git@github.com:nveces/ocp-servicemesh-labs-2025.git`.
+
+[source,bash]
+----
+$ git clone git@github.com:nveces/ocp-servicemesh-labs-2025.git
+Cloning into 'ocp-servicemesh-labs-2025'...
+remote: Enumerating objects: 101, done.
+remote: Counting objects: 100% (101/101), done.
+remote: Compressing objects: 100% (68/68), done.
+remote: Total 101 (delta 30), reused 101 (delta 30), pack-reused 0 (from 0)
+Receiving objects: 100% (101/101), 38.07 KiB | 433.00 KiB/s, done.
+Resolving deltas: 100% (30/30), done.
 ----
 
-.Git clone output
-image::06-extensibility/git_clone_output.png[link=../_images/06-extensibility/git_clone_output.png,window=_blank]
+
 
 Navigate to the new directory created in your system:
 
@@ -153,7 +173,7 @@ Navigate to the new directory created in your system:
 [.console-input]
 [source,bash, subs="+macros,+attributes"]
 ----
-cd ossm-extensibility
+cd ocp-servicemesh-labs-2025/lab-06
 ----
 
 IMPORTANT: From now on, all labs will assume you are located in this directory.
