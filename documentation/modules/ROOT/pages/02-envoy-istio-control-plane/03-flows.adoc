@@ -86,9 +86,18 @@ The ServiceMeshMemberRoll lists the projects belonging to the control plane. Onl
 
 In order to add this new project to the Service Mesh and make possible the traffic between each microservice, it is required to modify the ServiceMeshMemberRoll **default** object at this moment.
 
-IMPORTANT: Let the Instructor know that you are at this point
+IMPORTANT: Let the Instructor know that you are at this point.
 
-At this moment, you are not able to access to _Jump App_ because of a set of required tasks which you have to perform next.
+You can include the namespace yourself in the mesh by creating the ServiceMeshMember (SMM) object:
+
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+oc process -f 06-istio-ctrlplane/00-jump-app-ns-smr.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f -
+----
+
+Once the namespace has been included in the mesh, a series of network policies are created that we will examine later and you are no longer able to access to _Jump App_.
+
 
 .Frontend KO
 image::02-envoy-istio-control-plane/jump-app-front-ko.png[link=../_images/02-envoy-istio-control-plane/jump-app-front-ko.png,window=_blank]
@@ -141,14 +150,6 @@ oc patch deployment back-golang-v1 -p '{"spec":{"template":{"metadata":{"annotat
 .Back Golang Patched
 image::02-envoy-istio-control-plane/jump-app-back-go-depl-patch.png[link=../_images/02-envoy-istio-control-plane/jump-app-back-go-depl-patch.png,window=_blank]
 
-[.console-input]
-[source,input,subs="+macros,+attributes"]
-----
-oc patch deployment mongo -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n <user_namespace>
-----
-
-.MongoDB Patched
-image::02-envoy-istio-control-plane/jump-app-back-mg-depl-patch.png[link=../_images/02-envoy-istio-control-plane/jump-app-back-mg-depl-patch.png,window=_blank]
 
 Before continuing with the following steps, please test Jump App _pods_ status, in order to be sure that 2 replicas are running for each microservice:
 

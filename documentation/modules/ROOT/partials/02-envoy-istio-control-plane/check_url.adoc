@@ -17,7 +17,6 @@ back-golang-v2-213fhfd23d-23ass        1/1     Running   0          1m
 back-python-v1-74c65d94b5-9hzxd        1/1     Running   0          1m
 back-springboot-v1-74db6bb8b4-pw74s    1/1     Running   0          1m
 front-javascript-v1-7b6d4fb65c-9fdfb   1/1     Running   0          1m
-mongo-7c8f67cc4b-t9dnf                 1/1     Running   0          1m
 ----
 
 - Connect to a pod
