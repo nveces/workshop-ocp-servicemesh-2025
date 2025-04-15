@@ -9,11 +9,11 @@ include::./pages/_document-vars.adoc[]
 // Fix para reorgnizar contenido: app PetClinic no funciona sin DB
 ** xref:01-introduction/index.adoc#_lab_1_database_deployment[Lab 1 - Database deployment]
 // ----------------------------------------------------------------
-** xref:01-introduction/index.adoc#_lab_1_first_application_deployment[Lab 2 - First application deployment]
+** xref:01-introduction/index.adoc#_lab_2_first_application_deployment[Lab 2 - First application deployment]
 // ** xref:01-introduction/index.adoc#_lab_2_complete_application_deployment[Lab 3 - Complete application deployment]
 ** xref:01-introduction/index.adoc#_lab_3_adding_persistent_volumes[Lab 3 - Adding persistent volumes]
 // ** xref:01-introduction/index.adoc#_lab_4_configuration_management[Lab 5 - Configuration management]
-** xref:01-introduction/index.adoc#_lab_5_resources[Lab 4 - Resources]
+** xref:01-introduction/index.adoc#_lab_4_resources[Lab 4 - Resources]
 ** xref:01-introduction/index.adoc#_lab_5_liveness_and_readiness_probes[Lab 5 - Liveness and readiness probes]
 ** xref:01-introduction/index.adoc#_lab_7_network_policies[Lab 6 - Network Policies]
 
