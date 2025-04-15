@@ -36,8 +36,8 @@ vi params.env
 
 .params file content
 ====
-USER_NAMESPACE=user1-namespace +
-OCP_APPS_DOMAIN=apps.labs.sandbox1562.opentlc.com
+USER_NAMESPACE=user01-sm +
+OCP_APPS_DOMAIN={ocp_apps_domain}
 ====
 
 Once the params file is saved, you are able to process with _Jump App_ deployment phase:

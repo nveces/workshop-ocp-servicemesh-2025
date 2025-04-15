@@ -17,8 +17,10 @@ image::04-troubleshooting/jump-app-get-routes-mesh-ok.png[link=../_images/04-tro
 
 - Visit the *back*, _back-golang-<user_namespace>.<openshift_apps_domain>_, route via your web browser
 
+
 .Jump App Back Unavailable
-image::04-troubleshooting/{errorimage}[link=../_images/04-troubleshooting/{errorimage},window=_blank]
+image::{errorimage}[link=../_images/{errorimage},window=_blank]
+
 
 - Visit the *front*, _front-javascript-<user_namespace>.<openshift_apps_domain>_, route via your web browser.In addition, configure *[ 1 ]* retries with *[ 1 ]* interval and press *[ JUMP ]* and ensure the following message is displaying in your screen
 

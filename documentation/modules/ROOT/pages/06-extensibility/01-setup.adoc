@@ -46,10 +46,10 @@ The Instructor will provide {ocp} users, credentials and other important paramet
 |**Name**|**Reference**|**Example**
 | OpenShift API (used with _oc_ CLI)
 | <ocp_cluster_api>
-| _https://api.labs.sandbox1212.opentlc.com:6443_
+| _{ocp_cluster_api}[window=_blank]_
 | OpenShift Web Console
 | <ocp_cluster_console>
-| _https://console-openshift-console.apps.labs.sandbox1212.opentlc.com_
+| _{ocp_cluster_console}[window=_blank]_
 | Username
 | <user>
 | _user1_
@@ -61,10 +61,10 @@ The Instructor will provide {ocp} users, credentials and other important paramet
 | _user1-namespace_
 | OpenShift Apps Domain
 | <openshift_apps_domain>
-| _apps.labs.sandbox1212.opentlc.com_
+| _{ocp_apps_domain}[window=_blank]_
 | Kiali Url
 | <kiali_url>
-| _https://kiali-istio-system.apps.labs.sandbox1212.opentlc.com_
+| _{kiali_url}[window=_blank]_
 |===
 
 IMPORTANT: The labs will reference these parameters. You will need to replace the referenced parameters with the correct values.

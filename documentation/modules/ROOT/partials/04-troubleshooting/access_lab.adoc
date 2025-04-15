@@ -8,10 +8,10 @@ The following table includes the parameters that the Instructor should provide y
 |**Name**|**Reference**|**Example**
 | Openshift Cluster API (Access CLI)
 | <ocp_cluster_url>
-| _{ocp_cluster_api}_
+| _{ocp_cluster_api}[window=_blank]_
 | Openshift Cluster Console
 | <ocp_cluster_console>
-| _{ocp_cluster_console}_
+| _{ocp_cluster_console}[window=_blank]_
 | Username
 | <user>
 | user01 +
@@ -28,7 +28,7 @@ The following table includes the parameters that the Instructor should provide y
 | _{ocp_apps_domain}_
 | Kiali Url
 | <kiali_url>
-| _{kiali_url}_
+| _{kiali_url}[window=_blank]_
 |===
 
 Then export them:
@@ -58,7 +58,7 @@ TIP: Please, pay special attention to _oc CLI_  because you will need to use thi
 
 In addition, access Openshift Console using your credentials via browser in order to check connectivity and accessibility to the console:
 
-- <ocp_cluster_console> (_E.g. https://console-openshift-console.apps.labs.sandbox1562.opentlc.com_)
+- <ocp_cluster_console> (_E.g. {ocp_cluster_console}[window=_blank]_)
 
 .Openshift Console Oauth
 image::04-troubleshooting/ocp_console_oauth.png[link=../_images/04-troubleshooting/ocp_console_oauth.png,window=_blank]

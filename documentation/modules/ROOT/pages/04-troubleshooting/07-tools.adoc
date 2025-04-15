@@ -1,10 +1,13 @@
 = Lab 7 - Troubleshooting Tools
-:author: Ernesto Gonzalez / Asier Cidon
-:email: ergonzal@redhat.com / acidonpe@redhat.com
-:imagesdir: ./images
+
+// :author: Ernesto Gonzalez / Asier Cidon
+// :email: ergonzal@redhat.com / acidonpe@redhat.com
+// :imagesdir: ./images
 :toc: left
 :toc-title: Troubleshooting Tools
 :numbered:
+
+////
 [#07-jaeger]
 == See traces in Jaeger
 
@@ -31,6 +34,8 @@ Click on any of them and you will see the following page will all the jumps your
 image::04-troubleshooting/jump-app-jaeger-spans.png[link=../_images/04-troubleshooting/jump-app-jaeger-spans.png,window=_blank]
 
 Those are called spans and they represent a logical unit of work in Jaeger that has an operation name, the start time of the operation, and the duration. Spans may be nested and ordered to model causal relationships. This could help you see where is your application spending more time and find bottlenecks in an easy manner.
+
+////
 
 [#07-delay]
 == See a delay in Kiali
@@ -84,7 +89,7 @@ oc exec -it $POD -c istio-proxy -- curl localhost:15000/stats > stats.txt
 
 In this file you have different metrics that Envoy collects that you can use to see the current status of the mesh. For example, in the previous lab about Traffic Management you used these stats to see the pending requests in the Circuit Breaking section. You can also see the number of http responses, how many times a specific code came in the response, total requests sent, total bytes sent, etc.
 
-To know more about all the statistics, you could check the link:https://www.envoyproxy.io/docs/envoy/latest/configuration/upstream/cluster_manager/cluster_stats#statistics[Envoy docs].
+To know more about all the statistics, you could check the link:https://www.envoyproxy.io/docs/envoy/latest/configuration/upstream/cluster_manager/cluster_stats#statistics[Envoy docs,window=_blank].
 
 [#07-logging]
 == Envoy logging

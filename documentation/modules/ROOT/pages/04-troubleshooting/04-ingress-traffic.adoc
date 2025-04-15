@@ -388,7 +388,7 @@ include::./../../partials/04-troubleshooting/check_jumpapp_mesh.adoc[]
 [#04-kiali]
 == Visit Kiali
 
-At this time, _Jump App_ is generating traffic flow thanks to the frontend where it was given an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit the Kiali console *<kiali_url>*:
+At this time, _Jump App_ is generating traffic flow thanks to the frontend where it was given an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit the Kiali console *{kiali_url}[window=_blank]*:
 
 .Kiali Console
 image::04-troubleshooting/jump-app-kiali.png[link=../_images/04-troubleshooting/jump-app-kiali.png,window=_blank]
