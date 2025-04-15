@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Lab 6 - Liveness and readiness probes :: WorkShop - Service Mesh on OCP 2025</title>
+    <title>Lab 5 - Liveness and readiness probes :: WorkShop - Service Mesh on OCP 2025</title>
     <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/01-introduction/06-liveness-readiness.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -228,14 +228,14 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></li>
-    <li><a href="06-liveness-readiness.html">Lab 6 - Liveness and readiness probes</a></li>
+    <li><a href="06-liveness-readiness.html">Lab 5 - Liveness and readiness probes</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/nveces/workshop-ocp-servicemesh-2025/edit/master/documentation/modules/ROOT/pages/01-introduction/06-liveness-readiness.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Lab 6 - Liveness and readiness probes</h1>
+<h1 class="page">Lab 5 - Liveness and readiness probes</h1>
 <div id="toc" class="toc">
 <div id="toctitle">Liveness and readiness</div>
 <ul class="sectlevel1">
@@ -395,12 +395,20 @@ deployment.apps/petclinic-database scaled</pre>
 <p>Once the Database pod is gone, check both <code>logs</code> and <code>events</code> in the application pod:</p>
 </div>
 <div class="paragraph">
-<p><strong>Logs</strong>
-<span class="image"><a class="image" href="../_images/01-introduction/logs-hc.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/logs-hc.png" alt="logs"></a></span></p>
+<p><strong>Logs</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/01-introduction/logs-hc.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/logs-hc.png" alt="logs"></a>
+</div>
 </div>
 <div class="paragraph">
-<p><strong>Events</strong>
-<span class="image"><a class="image" href="../_images/01-introduction/events-hc.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/events-hc.png" alt="events"></a></span></p>
+<p><strong>Events</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/01-introduction/events-hc.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/events-hc.png" alt="events"></a>
+</div>
 </div>
 <div class="paragraph">
 <p>Manually test the readiness probe to see the current response:</p>
@@ -447,7 +455,7 @@ quarkus-petclinic-79d56759f5-q8vwc   0/1     Running     0          18m</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>oc scale dc/petclinic-database --replicas=1 -n &lt;YOUR_PROJECT&gt;
+<pre>oc scale deployment/petclinic-database --replicas=1 -n &lt;YOUR_PROJECT&gt;
 
 petclinic-database scaled</pre>
 </div>
@@ -456,7 +464,7 @@ petclinic-database scaled</pre>
 <p>Wait until the Database is back and try to access to the application again.</p>
 </div>
 <div class="paragraph">
-<p>Everything should be back to normal.</p>
+<p>Everything should be back to normal: try again with "curl -v <a href="http://&lt;APP_HOST_PORT&gt;/health/ready"" class="bare">http://&lt;APP_HOST_PORT&gt;/health/ready"</a>.</p>
 </div>
 </div>
 </div>

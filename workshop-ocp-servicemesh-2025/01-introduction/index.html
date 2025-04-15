@@ -1060,7 +1060,7 @@ deployment.apps/quarkus-petclinic resource requirements updated</pre>
 </div>
 </div>
 </div>
-<h1 id="_lab_6_liveness_and_readiness_probes" class="sect0"><a class="anchor" href="#_lab_6_liveness_and_readiness_probes"></a>Lab 6 - Liveness and readiness probes</h1>
+<h1 id="_lab_5_liveness_and_readiness_probes" class="sect0"><a class="anchor" href="#_lab_5_liveness_and_readiness_probes"></a>Lab 5 - Liveness and readiness probes</h1>
 <div class="paragraph">
 <p>In this lab, we will introduce the concept of application health checking by configuring both liveness and readiness probes.</p>
 </div>
@@ -1204,12 +1204,20 @@ deployment.apps/petclinic-database scaled</pre>
 <p>Once the Database pod is gone, check both <code>logs</code> and <code>events</code> in the application pod:</p>
 </div>
 <div class="paragraph">
-<p><strong>Logs</strong>
-<span class="image"><a class="image" href="../_images/01-introduction/logs-hc.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/logs-hc.png" alt="logs"></a></span></p>
+<p><strong>Logs</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/01-introduction/logs-hc.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/logs-hc.png" alt="logs"></a>
+</div>
 </div>
 <div class="paragraph">
-<p><strong>Events</strong>
-<span class="image"><a class="image" href="../_images/01-introduction/events-hc.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/events-hc.png" alt="events"></a></span></p>
+<p><strong>Events</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/01-introduction/events-hc.png" target="_blank" rel="noopener"><img src="../_images/01-introduction/events-hc.png" alt="events"></a>
+</div>
 </div>
 <div class="paragraph">
 <p>Manually test the readiness probe to see the current response:</p>
@@ -1256,7 +1264,7 @@ quarkus-petclinic-79d56759f5-q8vwc   0/1     Running     0          18m</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>oc scale dc/petclinic-database --replicas=1 -n &lt;YOUR_PROJECT&gt;
+<pre>oc scale deployment/petclinic-database --replicas=1 -n &lt;YOUR_PROJECT&gt;
 
 petclinic-database scaled</pre>
 </div>
@@ -1265,7 +1273,7 @@ petclinic-database scaled</pre>
 <p>Wait until the Database is back and try to access to the application again.</p>
 </div>
 <div class="paragraph">
-<p>Everything should be back to normal.</p>
+<p>Everything should be back to normal: try again with "curl -v <a href="http://&lt;APP_HOST_PORT&gt;/health/ready"" class="bare">http://&lt;APP_HOST_PORT&gt;/health/ready"</a>.</p>
 </div>
 </div>
 </div>
