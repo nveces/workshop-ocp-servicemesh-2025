@@ -102,7 +102,8 @@ Once the namespace has been included in the mesh, a series of network policies a
 .Frontend KO
 image::02-envoy-istio-control-plane/jump-app-front-ko.png[link=../_images/02-envoy-istio-control-plane/jump-app-front-ko.png,window=_blank]
 
-TIP: If you are an advanced user and can not wait for the instructor, please visit xref:06-crtlplane.adoc#smr[6.1.1 Create _ServiceMeshMember_ Object] and follow the instructions included there and go back again.
+TIP: If you are an advanced user and can not wait for the instructor, please visit xref:02-envoy-istio-control-plane/index.adoc#smr[Create ServiceMeshMember Object] and follow the instructions included there and go back again. Anyway, we will return to this point in that section xref:02-envoy-istio-control-plane/index.adoc#smr[Create ServiceMeshMember Object].
+
 
 [#finalsteps]
 == Final Steps
@@ -204,7 +205,7 @@ include::./../../partials/02-envoy-istio-control-plane/check_jumpapp_mesh.adoc[]
 [#kiali]
 === Visit Kiali
 
-Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console *<kiali_url>* (_E.g. {kiali_url}_):
+Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console *<kiali_url>* (_E.g. {kiali_url}[window=_blank]_):
 
 .Kiali Console
 image::02-envoy-istio-control-plane/jump-app-kiali.png[link=../_images/02-envoy-istio-control-plane/jump-app-kiali.png,window=_blank]

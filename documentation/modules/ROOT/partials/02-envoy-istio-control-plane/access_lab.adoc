@@ -8,10 +8,10 @@ The following table includes the parameters that the Instructor should provide y
 |**Name**|**Reference**|**Example**
 | Openshift Cluster API (Access CLI)
 | <ocp_cluster_api>
-| _{ocp_cluster_api}_
+| _{ocp_cluster_api}[window=_blank]_
 | Openshift Cluster Console
 | <ocp_cluster_console>
-| _{ocp_cluster_console}_
+| _{ocp_cluster_console}[window=_blank]_
 | Username
 | <userXX>
 | user01 +
@@ -25,10 +25,10 @@ The following table includes the parameters that the Instructor should provide y
   user15-sm
 | Openshift Apps Domain
 | <openshift_apps_domain>
-| _{ocp_apps_domain}_
+| _{ocp_apps_domain}[window=_blank]_
 | Kiali Url
 | <kiali_url>
-| _{kiali_url}_
+| _{kiali_url}[window=_blank]_
 |===
 
 === Access Laboratory - OC Client

@@ -38,7 +38,7 @@ vi params.env
 
 .params file content
 ====
-USER_NAMESPACE=user01 +
+USER_NAMESPACE=user01-sm +
 OCP_APPS_DOMAIN={ocp_apps_domain}
 ====
 
