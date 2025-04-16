@@ -523,21 +523,23 @@ Please, pay special attention to the <em>oc</em> tool as you will need to use it
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/drhelius/ossm-traffic-management.git" class="bare">https://github.com/drhelius/ossm-traffic-management.git</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/nveces/ocp-servicemesh-labs-2025.git" class="bare">https://github.com/nveces/ocp-servicemesh-labs-2025.git</a> &lt;YOUR-SELECTED-FOLDER&gt;</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="paragraph">
+<p>It is recommended to update a variable called <strong>LABS_HOME</strong> as follows:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<a class="image" href="../_images/03-traffic-management/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/git_clone_output.png" alt="git clone output"></a>
+<pre>export LABS_HOME=&lt;YOUR-SELECTED-FOLDER&gt;/lab-03</pre>
 </div>
-<div class="title">Figure 3. Red Hat OpenShift Container Platform 4.18 Git clone output</div>
 </div>
 <div class="paragraph">
 <p>Navigate to the new directory created in your system:</p>
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ossm-traffic-management</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $LABS_HOME</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -608,7 +610,7 @@ From now on, all labs will assume you are located in this directory.
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/bookinfo.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/bookinfo.png" alt="bookinfo"></a>
 </div>
-<div class="title">Figure 4. Red Hat OpenShift Container Platform 4.18 Bookinfo application architecture</div>
+<div class="title">Figure 3. Red Hat OpenShift Container Platform 4.18 Bookinfo application architecture</div>
 </div>
 </div>
 <div class="sect2">
@@ -789,7 +791,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/bookinfo_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/bookinfo_curl.png" alt="bookinfo curl"></a>
 </div>
-<div class="title">Figure 5. Bookinfo productpage service working</div>
+<div class="title">Figure 4. Bookinfo productpage service working</div>
 </div>
 <div class="paragraph">
 <p>Run this command to simulate traffic in Kiali:</p>
@@ -806,7 +808,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/ingress_bookinfo.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/ingress_bookinfo.png" alt="ingress bookinfo"></a>
 </div>
-<div class="title">Figure 6. Bookinfo productpage service through an Ingress Gateway</div>
+<div class="title">Figure 5. Bookinfo productpage service through an Ingress Gateway</div>
 </div>
 <div class="sect3">
 <h4 id="_remove_bookinfo"><a class="anchor" href="#_remove_bookinfo"></a>Remove Bookinfo</h4>
@@ -871,13 +873,13 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/httpbin_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/httpbin_curl.png" alt="httpbin curl"></a>
 </div>
-<div class="title">Figure 7. httpbin service working</div>
+<div class="title">Figure 6. httpbin service working</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/ingress_httpbin.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/ingress_httpbin.png" alt="ingress httpbin"></a>
 </div>
-<div class="title">Figure 8. httpbin service through an Ingress Gateway</div>
+<div class="title">Figure 7. httpbin service through an Ingress Gateway</div>
 </div>
 <div class="sect3">
 <h4 id="_remove_httpbin"><a class="anchor" href="#_remove_httpbin"></a>Remove httpbin</h4>
@@ -1057,7 +1059,7 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/bookinfo_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/bookinfo_curl.png" alt="Bookinfo productpage service working" width="80%"></a>
 </div>
-<div class="title">Figure 9. Bookinfo productpage service working</div>
+<div class="title">Figure 8. Bookinfo productpage service working</div>
 </div>
 </div>
 <div class="sect2">
@@ -1077,7 +1079,7 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/productpage-v2.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/productpage-v2.png" alt="productpage v2"></a>
 </div>
-<div class="title">Figure 10. Product Page showing ratings</div>
+<div class="title">Figure 9. Product Page showing ratings</div>
 </div>
 <div class="paragraph">
 <p>Run this command to simulate traffic in Kiali:</p>
@@ -1094,7 +1096,7 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/kiali-traffic-v2.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-traffic-v2.png" alt="kiali traffic v2"></a>
 </div>
-<div class="title">Figure 11. Kiali traffic version 2</div>
+<div class="title">Figure 10. Kiali traffic version 2</div>
 </div>
 <div class="paragraph">
 <p>You see there that all traffic goes to version 2 of the <code>reviews</code> service that calls the <code>ratings</code> service to get the stars.</p>
@@ -1120,7 +1122,7 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/productpage-red.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/productpage-red.png" alt="productpage red"></a>
 </div>
-<div class="title">Figure 12. Product Page with red stars</div>
+<div class="title">Figure 11. Product Page with red stars</div>
 </div>
 </div>
 <div class="sect2">
@@ -1188,7 +1190,7 @@ This file is located in <code>lab2/vs-reviews-headers.yaml</code> so feel free t
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/bookinfo_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/bookinfo_curl.png" alt="Bookinfo productpage service working" width="80%"></a>
 </div>
-<div class="title">Figure 13. Bookinfo productpage service working</div>
+<div class="title">Figure 12. Bookinfo productpage service working</div>
 </div>
 </div>
 <div class="sect2">
@@ -1255,7 +1257,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/kiali_percentage.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali_percentage.png" alt="kiali percentage"></a>
 </div>
-<div class="title">Figure 14. Kiali Request Percentage</div>
+<div class="title">Figure 13. Kiali Request Percentage</div>
 </div>
 <div class="paragraph">
 <p>Check the results:</p>
@@ -1264,7 +1266,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/kiali-shifting-90-10.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-shifting-90-10.png" alt="kiali shifting 90 10"></a>
 </div>
-<div class="title">Figure 15. Kiali traffic shifting 90/10</div>
+<div class="title">Figure 14. Kiali traffic shifting 90/10</div>
 </div>
 </div>
 <div class="sect2">
@@ -1325,7 +1327,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/kiali-shifting-50-50.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-shifting-50-50.png" alt="kiali shifting 50 50"></a>
 </div>
-<div class="title">Figure 16. Kiali traffic shifting 50/50</div>
+<div class="title">Figure 15. Kiali traffic shifting 50/50</div>
 </div>
 </div>
 <div class="sect2">
@@ -1389,7 +1391,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/kiali-shifting-0-100.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-shifting-0-100.png" alt="kiali shifting 0 100"></a>
 </div>
-<div class="title">Figure 17. Kiali traffic shifting 0/100</div>
+<div class="title">Figure 16. Kiali traffic shifting 0/100</div>
 </div>
 </div>
 <div class="sect2">
@@ -1554,7 +1556,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/bookinfo_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/bookinfo_curl.png" alt="Bookinfo productpage service working" width="80%"></a>
 </div>
-<div class="title">Figure 18. Bookinfo productpage service working</div>
+<div class="title">Figure 17. Bookinfo productpage service working</div>
 </div>
 </div>
 <div class="sect2">
@@ -1574,7 +1576,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/reviews-failure.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/reviews-failure.png" alt="reviews failure"></a>
 </div>
-<div class="title">Figure 19. Reviews failure</div>
+<div class="title">Figure 18. Reviews failure</div>
 </div>
 <div class="paragraph">
 <p>This happens because there is a hard-coded timeout between <code>productpage</code> service and <code>reviews</code> service of 3 seconds and 1 retry, so a total of 6 seconds. Then, you can&#8217;t see the <code>reviews</code> because of this timeout.</p>
@@ -1597,7 +1599,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/ratings-failure.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/ratings-failure.png" alt="ratings failure"></a>
 </div>
-<div class="title">Figure 20. Ratings failure</div>
+<div class="title">Figure 19. Ratings failure</div>
 </div>
 <div class="paragraph">
 <p>Run this command to simulate traffic in Kiali:</p>
@@ -1614,7 +1616,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/kiali-ratings-failure.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-ratings-failure.png" alt="kiali ratings failure"></a>
 </div>
-<div class="title">Figure 21. Kiali ratings failure</div>
+<div class="title">Figure 20. Kiali ratings failure</div>
 </div>
 </div>
 <div class="sect2">
@@ -1676,7 +1678,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/bookinfo_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/bookinfo_curl.png" alt="Bookinfo productpage service working" width="80%"></a>
 </div>
-<div class="title">Figure 22. Bookinfo productpage service working</div>
+<div class="title">Figure 21. Bookinfo productpage service working</div>
 </div>
 </div>
 <div class="sect2">
@@ -1754,7 +1756,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/kiali_response.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali_response.png" alt="kiali response"></a>
 </div>
-<div class="title">Figure 23. Kiali Response Time</div>
+<div class="title">Figure 22. Kiali Response Time</div>
 </div>
 <div class="paragraph">
 <p>Check the results in Kiali. You may notice a 2 second delay in the ratings call:</p>
@@ -1763,7 +1765,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/kiali-timeouts-ratings-delay.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-timeouts-ratings-delay.png" alt="kiali timeouts ratings delay"></a>
 </div>
-<div class="title">Figure 24. Kiali Ratings service with 2s delay</div>
+<div class="title">Figure 23. Kiali Ratings service with 2s delay</div>
 </div>
 <div class="paragraph">
 <p>If you visit the Bookinfo app with your browser you should see the Bookinfo application working normally (with ratings stars displayed), but there is a 2 second delay whenever you refresh the page:</p>
@@ -1832,7 +1834,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/kiali-timeouts-reviews.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-timeouts-reviews.png" alt="kiali timeouts reviews"></a>
 </div>
-<div class="title">Figure 25. Kiali Reviews service with timeout</div>
+<div class="title">Figure 24. Kiali Reviews service with timeout</div>
 </div>
 </div>
 <div class="sect2">
@@ -1958,7 +1960,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/login.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/httpbin_curl.png" alt="httpbin service working" width="80%"></a>
 </div>
-<div class="title">Figure 26. httpbin service working</div>
+<div class="title">Figure 25. httpbin service working</div>
 </div>
 </div>
 <div class="sect2">
@@ -1997,7 +1999,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/fortio-check.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/fortio-check.png" alt="fortio check"></a>
 </div>
-<div class="title">Figure 27. Fortio check result</div>
+<div class="title">Figure 26. Fortio check result</div>
 </div>
 </div>
 <div class="sect2">
@@ -2030,7 +2032,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/fortio-2-30.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/fortio-2-30.png" alt="fortio 2 30"></a>
 </div>
-<div class="title">Figure 28. Fortio with 2 connections</div>
+<div class="title">Figure 27. Fortio with 2 connections</div>
 </div>
 <div class="paragraph">
 <p>You will notice that your results are not the same as the ones in the lab, but generally all requests arrive. This is because the <code>istio-proxy</code> is flexible and does not break all requests.</p>
@@ -2062,7 +2064,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/envoy-stats.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/envoy-stats.png" alt="envoy stats"></a>
 </div>
-<div class="title">Figure 29. Overflow requests</div>
+<div class="title">Figure 28. Overflow requests</div>
 </div>
 <div class="paragraph">
 <p>Notice that the stats are grouped by the subsets defined in the <em>DestinationRule</em>.</p>
@@ -2142,7 +2144,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/bookinfo_curl.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/bookinfo_curl.png" alt="Bookinfo productpage service working" width="80%"></a>
 </div>
-<div class="title">Figure 30. Bookinfo productpage service working</div>
+<div class="title">Figure 29. Bookinfo productpage service working</div>
 </div>
 </div>
 <div class="sect2">
@@ -2209,7 +2211,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/kiali-mirroring.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali-mirroring.png" alt="kiali mirroring"></a>
 </div>
-<div class="title">Figure 31. Kiali traffic mirroring to reviews:v2 service</div>
+<div class="title">Figure 30. Kiali traffic mirroring to reviews:v2 service</div>
 </div>
 </div>
 <div class="sect2">
@@ -2315,7 +2317,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/egress_without_se.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/egress_without_se.png" alt="egress without se"></a>
 </div>
-<div class="title">Figure 32. Accessing external service without <em>ServiceEntry</em></div>
+<div class="title">Figure 31. Accessing external service without <em>ServiceEntry</em></div>
 </div>
 <div class="paragraph">
 <p>Ooops, you can&#8217;t, because OpenShift Service Mesh is configured with a restrictive policy.</p>
@@ -2383,7 +2385,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/egress_with_se.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/egress_with_se.png" alt="egress with se"></a>
 </div>
-<div class="title">Figure 33. Accessing external service with <em>ServiceEntry</em></div>
+<div class="title">Figure 32. Accessing external service with <em>ServiceEntry</em></div>
 </div>
 <div class="paragraph">
 <p>So, this is now a controlled way to enable access to external services.</p>
@@ -2392,7 +2394,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/kiali_egress_with_se.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali_egress_with_se.png" alt="kiali egress with se"></a>
 </div>
-<div class="title">Figure 34. Kiali external service with <em>ServiceEntry</em></div>
+<div class="title">Figure 33. Kiali external service with <em>ServiceEntry</em></div>
 </div>
 </div>
 <div class="sect2">
@@ -2540,7 +2542,7 @@ spec:
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/kiali_egress_with_egress.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/kiali_egress_with_egress.png" alt="kiali egress with egress"></a>
 </div>
-<div class="title">Figure 35. Kiali external service with Egress Gateway</div>
+<div class="title">Figure 34. Kiali external service with Egress Gateway</div>
 </div>
 </div>
 <div class="sect2">
@@ -2604,7 +2606,7 @@ You are going to use a template to deploy the gRPC demo scenario so you are not 
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/grpc_kiali.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_kiali.png" alt="grpc kiali"></a>
 </div>
-<div class="title">Figure 36. gRPC demo in Kiali</div>
+<div class="title">Figure 35. gRPC demo in Kiali</div>
 </div>
 <div class="paragraph">
 <p>First, deploy the gRPC services without Istio to understand the problem.</p>
@@ -2630,7 +2632,7 @@ oc process -f lab9/grpc-demo.yaml \
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/grpc_ready.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_ready.png" alt="grpc ready"></a>
 </div>
-<div class="title">Figure 37. gRPC demo services ready</div>
+<div class="title">Figure 36. gRPC demo services ready</div>
 </div>
 <div class="paragraph">
 <p>Scale <em>user</em> service to 2 replicas:</p>
@@ -2652,7 +2654,7 @@ oc process -f lab9/grpc-demo.yaml \
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/grpc_ready_replicas.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_ready_replicas.png" alt="grpc ready replicas"></a>
 </div>
-<div class="title">Figure 38. user service with two replicas</div>
+<div class="title">Figure 37. user service with two replicas</div>
 </div>
 <div class="paragraph">
 <p>Now, simulate some traffic with this command:</p>
@@ -2669,13 +2671,13 @@ oc process -f lab9/grpc-demo.yaml \
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/grpc_log1.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_log1.png" alt="grpc log1"></a>
 </div>
-<div class="title">Figure 39. user service logs (replica 1)</div>
+<div class="title">Figure 38. user service logs (replica 1)</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/grpc_log2.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_log2.png" alt="grpc log2"></a>
 </div>
-<div class="title">Figure 40. user service logs (replica 2)</div>
+<div class="title">Figure 39. user service logs (replica 2)</div>
 </div>
 <div class="paragraph">
 <p>Now that you have checked there is no actual load balancing between <em>user</em> replicas, remove everything:</p>
@@ -2720,7 +2722,7 @@ oc process -f lab9/grpc-demo.yaml \
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/logrpc_ready_istiogin.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_ready_istio.png" alt="grpc ready istio"></a>
 </div>
-<div class="title">Figure 41. gRPC demo services ready</div>
+<div class="title">Figure 40. gRPC demo services ready</div>
 </div>
 <div class="paragraph">
 <p>Scale <em>user</em> service to 2 replicas:</p>
@@ -2742,7 +2744,7 @@ oc process -f lab9/grpc-demo.yaml \
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/grpc_ready_replicas_istio.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_ready_replicas_istio.png" alt="grpc ready replicas istio"></a>
 </div>
-<div class="title">Figure 42. user service with two replicas</div>
+<div class="title">Figure 41. user service with two replicas</div>
 </div>
 <div class="paragraph">
 <p>Now, simulate some traffic with this command:</p>
@@ -2759,13 +2761,13 @@ oc process -f lab9/grpc-demo.yaml \
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/grpc_log1_istio.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_log1_istio.png" alt="grpc log1 istio"></a>
 </div>
-<div class="title">Figure 43. user service logs (replica 1)</div>
+<div class="title">Figure 42. user service logs (replica 1)</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/grpc_log2_istio.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_log2_istio.png" alt="grpc log2 istio"></a>
 </div>
-<div class="title">Figure 44. user service logs (replica 2)</div>
+<div class="title">Figure 43. user service logs (replica 2)</div>
 </div>
 <div class="paragraph">
 <p>In Kiali you can check all the information about the replicas for this service:</p>
@@ -2774,7 +2776,7 @@ oc process -f lab9/grpc-demo.yaml \
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/grpc_kiali_replicas.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/grpc_kiali_replicas.png" alt="grpc kiali replicas"></a>
 </div>
-<div class="title">Figure 45. user service in Kiali</div>
+<div class="title">Figure 44. user service in Kiali</div>
 </div>
 </div>
 <div class="sect2">

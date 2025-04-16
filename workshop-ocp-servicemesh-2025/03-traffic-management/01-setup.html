@@ -496,21 +496,23 @@ Please, pay special attention to the <em>oc</em> tool as you will need to use it
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/drhelius/ossm-traffic-management.git" class="bare">https://github.com/drhelius/ossm-traffic-management.git</a></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/nveces/ocp-servicemesh-labs-2025.git" class="bare">https://github.com/nveces/ocp-servicemesh-labs-2025.git</a> &lt;YOUR-SELECTED-FOLDER&gt;</code></pre>
 </div>
 </div>
-<div class="imageblock">
+<div class="paragraph">
+<p>It is recommended to update a variable called <strong>LABS_HOME</strong> as follows:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<a class="image" href="../_images/03-traffic-management/git_clone_output.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/git_clone_output.png" alt="git clone output"></a>
+<pre>export LABS_HOME=&lt;YOUR-SELECTED-FOLDER&gt;/lab-03</pre>
 </div>
-<div class="title">Figure 3. {rhocp} Git clone output</div>
 </div>
 <div class="paragraph">
 <p>Navigate to the new directory created in your system:</p>
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ossm-traffic-management</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $LABS_HOME</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
