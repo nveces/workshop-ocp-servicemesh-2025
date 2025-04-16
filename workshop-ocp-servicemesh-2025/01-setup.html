@@ -64,6 +64,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#prerequisite">Prerequisites</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#_prerequisite_platform">Platform</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -125,7 +128,7 @@
     <a class="nav-link" href="03-traffic-management/index.html">4. Traffic management - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="03-traffic-management/index.html#_rhossm_traffic_management_labs">Red Hat OpenShift Service Mesh: Traffic Management Labs</a>
+    <a class="nav-link" href="03-traffic-management/index.html#_rhossm_traffic_management_labs">Red Hat OpenShift Service Mesh 2.6.6: Traffic Management Labs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="03-traffic-management/index.html#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a>
@@ -209,7 +212,7 @@
     <a class="nav-link" href="06-extensibility/index.html">7. Extensibility - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="06-extensibility/index.html#_rhossm_extensibility_labs">Red Hat OpenShift Service Mesh: Extensibility Labs</a>
+    <a class="nav-link" href="06-extensibility/index.html#_rhossm_extensibility_labs">Red Hat OpenShift Service Mesh 2.6.6: Extensibility Labs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="06-extensibility/index.html#_lab_1_envoy_filters">Lab 1 - Envoy Filters</a>
@@ -355,6 +358,73 @@ git version 2.49.0</code></pre>
 git config --local user.email "&lt;your email&gt;"</code></pre>
 </div>
 </div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_platform"><a class="anchor" href="#_platform"></a>2. Platform</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following platform is required for running the exercises in this tutorial.<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Red Hat OpenShift Container Platform 4.18</strong> with the following Operators:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Red Hat OpenShift Service Mesh 2.6.6 Operator</strong>.</p>
+</li>
+<li>
+<p><strong>Kiali Operator 2.4.4 provided by Red Hat</strong>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The files used to deploy the operators are located in the following GitHub repository:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/nveces/ocp-servicemesh-labs-2025.git" class="bare">https://github.com/nveces/ocp-servicemesh-labs-2025.git</a></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or if you prefer to use <strong>SSH</strong>, <code>git clone <a href="mailto:git@github.com">git@github.com</a>:nveces/ocp-servicemesh-labs-2025.git</code>.</p>
+</div>
+<div class="paragraph">
+<p>Finally, navigate to the new folder created in your system after repository download:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-00</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To deploy the <strong>Red Hat OpenShift Service Mesh 2.6.6 Operator</strong>, you can use the following command:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 10-ns-istio-system.yaml
+oc apply -f 20-sub-servicemesh.yaml
+oc apply -f 21-sub-kiali.yaml
+oc apply -f 30-servicemesh-controlplane.yaml</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+These steps have already been completed by the instructor team.
 </td>
 </tr>
 </table>

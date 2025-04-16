@@ -64,6 +64,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../01-setup.html#prerequisite">Prerequisites</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#_prerequisite_platform">Platform</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -125,7 +128,7 @@
     <a class="nav-link" href="../03-traffic-management/index.html">4. Traffic management - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../03-traffic-management/index.html#_rhossm_traffic_management_labs">Red Hat OpenShift Service Mesh: Traffic Management Labs</a>
+    <a class="nav-link" href="../03-traffic-management/index.html#_rhossm_traffic_management_labs">Red Hat OpenShift Service Mesh 2.6.6: Traffic Management Labs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../03-traffic-management/index.html#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a>
@@ -209,7 +212,7 @@
     <a class="nav-link" href="../06-extensibility/index.html">7. Extensibility - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../06-extensibility/index.html#_rhossm_extensibility_labs">Red Hat OpenShift Service Mesh: Extensibility Labs</a>
+    <a class="nav-link" href="../06-extensibility/index.html#_rhossm_extensibility_labs">Red Hat OpenShift Service Mesh 2.6.6: Extensibility Labs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../06-extensibility/index.html#_lab_1_envoy_filters">Lab 1 - Envoy Filters</a>
@@ -241,19 +244,67 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Service Mesh: Envoy &amp; Istio Control Plane Tutorial</h1>
-<div id="preamble">
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Service Mesh, which is based on the open source <a href="https://istio.io/" target="_blank" rel="noopener">Istio project</a>, provides an easy way to create a network of deployed services that provides:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>discovery,</p>
+</li>
+<li>
+<p>load balancing,</p>
+</li>
+<li>
+<p>service-to-service authentication,</p>
+</li>
+<li>
+<p>failure recovery,</p>
+</li>
+<li>
+<p>metrics,</p>
+</li>
+<li>
+<p>and monitoring</p>
+</li>
+</ul>
+</div>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="../_images/02-envoy-istio-control-plane/logos.png" target="_blank" rel="noopener"><img src="../_images/02-envoy-istio-control-plane/logos.png" alt="logos"></a>
 </div>
 <div class="title">Figure 1. Product Logos</div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
-<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html-single/service_mesh/index#ossm-release-2-6-6_ossm-release-notes" target="_blank" rel="noopener">Service Mesh 2.6.6 Component version</a></caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><strong>Component</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Version</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Istio</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1.20.8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Envoy Proxy</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1.28.7</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Kiali Server</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1.73.19</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p>The general idea of <em>Red Hat Service Mesh: Envoy &amp; Istio Control Plane</em> tutorial is to get a deep understanding of the following points:</p>
 </div>
@@ -276,6 +327,20 @@
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><strong>Official Documentation</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html-single/service_mesh/index" class="bare" target="_blank" rel="noopener">https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html-single/service_mesh/index</a> - Red Hat Service Mesh Documentation</p>
+</li>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html-single/service_mesh/index#ossm-about" class="bare" target="_blank" rel="noopener">https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html-single/service_mesh/index#ossm-about</a> - Red Hat Service Mesh 2.x</p>
+</li>
+</ul>
+</div>
+<hr>
 </div>
 </div>
 <h1 id="_lab_1_setup" class="sect0"><a class="anchor" href="#_lab_1_setup"></a>Lab 1 - Setup</h1>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Red Hat OpenShift Service Mesh: Extensibility Labs :: WorkShop - Service Mesh on OCP 2025</title>
+    <title>Red Hat OpenShift Service Mesh 2.6.6: Extensibility Labs :: WorkShop - Service Mesh on OCP 2025</title>
     <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/06-extensibility/index.html">
     <link rel="prev" href="../05-security/index.html">
     <meta name="generator" content="Antora 3.0.0">
@@ -62,6 +62,9 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../01-setup.html#prerequisite">Prerequisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#_prerequisite_platform">Platform</a>
   </li>
 </ul>
   </li>
@@ -124,7 +127,7 @@
     <a class="nav-link" href="../03-traffic-management/index.html">4. Traffic management - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../03-traffic-management/index.html#_rhossm_traffic_management_labs">Red Hat OpenShift Service Mesh: Traffic Management Labs</a>
+    <a class="nav-link" href="../03-traffic-management/index.html#_rhossm_traffic_management_labs">Red Hat OpenShift Service Mesh 2.6.6: Traffic Management Labs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../03-traffic-management/index.html#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a>
@@ -208,7 +211,7 @@
     <a class="nav-link" href="index.html">7. Extensibility - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#_rhossm_extensibility_labs">Red Hat OpenShift Service Mesh: Extensibility Labs</a>
+    <a class="nav-link" href="#_rhossm_extensibility_labs">Red Hat OpenShift Service Mesh 2.6.6: Extensibility Labs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#_lab_1_envoy_filters">Lab 1 - Envoy Filters</a>
@@ -239,7 +242,7 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Red Hat OpenShift Service Mesh: Extensibility Labs</h1>
+<h1 class="page">Red Hat OpenShift Service Mesh 2.6.6: Extensibility Labs</h1>
 <div class="sect1">
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
@@ -328,10 +331,10 @@ You must have an up-to-date version of the <em>oc</em> command.
 <div class="ulist">
 <ul>
 <li>
-<p>Red Hat OpenShift Container Platform</p>
+<p>Red Hat OpenShift Container Platform 4.18</p>
 </li>
 <li>
-<p>Red Hat OpenShift Service Mesh based on <em>Istio</em></p>
+<p>Red Hat OpenShift Service Mesh 2.6.6 based on <em>Istio</em></p>
 </li>
 </ul>
 </div>
@@ -465,7 +468,7 @@ From now on, all labs will assume these exports are defined in your shell enviro
 <div class="content">
 <a class="image" href="../_images/06-extensibility/oc_login_output.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/oc_login_output.png" alt="oc login output"></a>
 </div>
-<div class="title">Figure 1. Red Hat OpenShift Container Platform CLI login</div>
+<div class="title">Figure 1. Red Hat OpenShift Container Platform 4.18 CLI login</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -504,7 +507,7 @@ Please, pay special attention to the <em>oc</em> tool as you will use it many ti
 <div class="content">
 <a class="image" href="../_images/06-extensibility/ocp_console.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/ocp_console.png" alt="ocp console"></a>
 </div>
-<div class="title">Figure 2. Red Hat OpenShift Container Platform Web Console login</div>
+<div class="title">Figure 2. Red Hat OpenShift Container Platform 4.18 Web Console login</div>
 </div>
 </div>
 </div>
@@ -1179,7 +1182,7 @@ oc delete -f lab1/envoyfilter-replace-header.yaml -n ${OCP_NAMESPACE}</code></pr
 <div class="sect3">
 <h4 id="_openshift_service_mesh_extensions"><a class="anchor" href="#_openshift_service_mesh_extensions"></a>OpenShift Service Mesh Extensions</h4>
 <div class="paragraph">
-<p>You can use WebAssembly plugins to add new features directly into the Red Hat OpenShift Service Mesh proxies, allowing you to move even more common functionality out of your applications, and implement them in a single language that compiles to WebAssembly bytecode.</p>
+<p>You can use WebAssembly plugins to add new features directly into the Red Hat OpenShift Service Mesh 2.6.6 proxies, allowing you to move even more common functionality out of your applications, and implement them in a single language that compiles to WebAssembly bytecode.</p>
 </div>
 <div class="paragraph">
 <p>WebAssembly modules can be run on many platforms, including proxies, and has broad language support, fast execution and a sandboxed-by-default security model.</p>
@@ -1206,7 +1209,7 @@ oc delete -f lab1/envoyfilter-replace-header.yaml -n ${OCP_NAMESPACE}</code></pr
 <div class="sect4">
 <h5 id="_supported_languages"><a class="anchor" href="#_supported_languages"></a>Supported languages</h5>
 <div class="paragraph">
-<p>You can use any language that compiles to WebAssembly bytecode to write a Red Hat OpenShift Service Mesh extension, but the following languages have existing SDKs that expose the proxy-wasm API so that it can be consumed directly.</p>
+<p>You can use any language that compiles to WebAssembly bytecode to write a Red Hat OpenShift Service Mesh 2.6.6 extension, but the following languages have existing SDKs that expose the proxy-wasm API so that it can be consumed directly.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
