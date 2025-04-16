@@ -136,11 +136,17 @@ Follow the next steps in order to clone the repository:
 [.console-input]
 [source,bash, subs="+macros,+attributes"]
 ----
-git clone https://github.com/drhelius/ossm-traffic-management.git
+git clone https://github.com/nveces/ocp-servicemesh-labs-2025.git <YOUR-SELECTED-FOLDER>
 ----
 
-.{rhocp} Git clone output
-image::03-traffic-management/git_clone_output.png[link=../_images/03-traffic-management/git_clone_output.png,window=_blank]
+It is recommended to update a variable called *LABS_HOME* as follows:
+
+----
+export LABS_HOME=<YOUR-SELECTED-FOLDER>/lab-03
+----
+
+// .{rhocp} Git clone output
+// image::03-traffic-management/git_clone_output.png[link=../_images/03-traffic-management/git_clone_output.png,window=_blank]
 
 Navigate to the new directory created in your system:
 
@@ -148,7 +154,7 @@ Navigate to the new directory created in your system:
 [.console-input]
 [source,bash, subs="+macros,+attributes"]
 ----
-cd ossm-traffic-management
+cd $LABS_HOME
 ----
 
 IMPORTANT: From now on, all labs will assume you are located in this directory.
