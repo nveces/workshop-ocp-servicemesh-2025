@@ -391,7 +391,7 @@ The labs will reference these parameters. You will need to replace the reference
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export OCP_USER="&lt;user&gt;"
 export OCP_PASSWORD="&lt;pass&gt;"
 export OCP_NAMESPACE="${OCP_USER}-namespace"
-export OCP_API="&lt;ocp_cluster_api&gt;"
+export OCP_API="_{ocp_cluster_api}_"
 export OCP_DOMAIN="&lt;openshift_apps_domain&gt;"
 export OCP_BOOKINFO_HOST="${OCP_USER}.bookinfo.${OCP_DOMAIN}"
 export OCP_HTTPBIN_HOST="${OCP_USER}.httpbin.${OCP_DOMAIN}"</code></pre>
@@ -402,11 +402,11 @@ export OCP_HTTPBIN_HOST="${OCP_USER}.httpbin.${OCP_DOMAIN}"</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export OCP_USER="user1"
-export OCP_PASSWORD="P4ssw0rd"
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export OCP_USER="user01"
+export OCP_PASSWORD="user01"
 export OCP_NAMESPACE="${OCP_USER}-namespace"
-export OCP_API="https://api.labs.sandbox1293.opentlc.com:6443"
-export OCP_DOMAIN="apps.labs.sandbox1293.opentlc.com"
+export OCP_API="_{ocp_cluster_api}_"
+export OCP_DOMAIN="_{ocp_apps_domain}_"
 export OCP_BOOKINFO_HOST="${OCP_USER}.bookinfo.${OCP_DOMAIN}"
 export OCP_HTTPBIN_HOST="${OCP_USER}.httpbin.${OCP_DOMAIN}"</code></pre>
 </div>
