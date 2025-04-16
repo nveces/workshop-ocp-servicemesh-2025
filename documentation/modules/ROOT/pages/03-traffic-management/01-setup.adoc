@@ -121,7 +121,7 @@ oc project ${OCP_NAMESPACE}
 
 In addition, you can access the {ocp} Web Console using via web browser, use your credentials to login:
 
-- <ocp_cluster_console> (_E.g. https://console-openshift-console.apps.labs.sandbox1420.opentlc.com_)
+- <ocp_cluster_console> (_E.g. {ocp_cluster_console}_)
 
 .{rhocp} Web Console login
 image::03-traffic-management/ocp_console.png[link=../_images/03-traffic-management/ocp_console.png,window=_blank]
