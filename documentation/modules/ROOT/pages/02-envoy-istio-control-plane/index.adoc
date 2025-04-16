@@ -5,10 +5,33 @@ include::./../_document-vars.adoc[]
 //:toc: left
 :toc-title: Envoy & Istio Control Plane Tutorial
 
+
+== Introduction
+
+Service Mesh, which is based on the open source https://istio.io/[Istio project,window=_blank], provides an easy way to create a network of deployed services that provides:
+
+* discovery,
+* load balancing,
+* service-to-service authentication,
+* failure recovery,
+* metrics,
+* and monitoring
+
 .Product Logos
 image::02-envoy-istio-control-plane/logos.png[link=../_images/02-envoy-istio-control-plane/logos.png,window=_blank]
 
-== Introduction
+.https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html-single/service_mesh/index#ossm-release-2-6-6_ossm-release-notes[Service Mesh 2.6.6 Component version, window=_blank]
+[cols="2*^,2*.",options="header,+attributes"]
+|===
+|**Component**|**Version**
+| Istio
+| 1.20.8
+| Envoy Proxy
+| 1.28.7
+| Kiali Server
+| 1.73.19
+|===
+
 
 The general idea of _Red Hat Service Mesh: Envoy & Istio Control Plane_ tutorial is to get a deep understanding of the following points:
 
@@ -17,6 +40,15 @@ The general idea of _Red Hat Service Mesh: Envoy & Istio Control Plane_ tutorial
 - Envoy Proxy
 - Istio Control Plane Objects
 - Istio Global Services
+
+
+*Official Documentation*
+
+* https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html-single/service_mesh/index[window=_blank] - Red Hat Service Mesh Documentation
+* https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html-single/service_mesh/index#ossm-about[window=_blank] - Red Hat Service Mesh 2.x
+
+[sidebar]
+---
 
 include::01-setup.adoc[]
 

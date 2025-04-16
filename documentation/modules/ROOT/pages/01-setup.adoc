@@ -1,10 +1,10 @@
 = Setup
+
 include::_attributes.adoc[]
+include::_document-vars.adoc[]
 
 [#prerequisite]
 == Prerequisite CLI tools
-
-
 
 The following CLI tools are required for running the exercises in this tutorial. +
 Please have them installed and configured before you get started with any of the tutorial chapters.
@@ -76,6 +76,54 @@ git config --local user.email "<your email>"
 ====
 
 
+
+== Platform
+
+The following platform is required for running the exercises in this tutorial. +
+
+* *{rhocp}* with the following Operators:
+** *{rhossm} Operator*.
+** *{kiali_op_l}*.
+
+
+The files used to deploy the operators are located in the following GitHub repository:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+git clone https://github.com/nveces/ocp-servicemesh-labs-2025.git
+----
+
+or if you prefer to use *SSH*, `git clone git@github.com:nveces/ocp-servicemesh-labs-2025.git`.
+
+
+Finally, navigate to the new folder created in your system after repository download:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+cd ocp-servicemesh-labs-2025/lab-00
+----
+
+To deploy the *{rhossm} Operator*, you can use the following command:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 10-ns-istio-system.yaml
+oc apply -f 20-sub-servicemesh.yaml
+oc apply -f 21-sub-kiali.yaml
+oc apply -f 30-servicemesh-controlplane.yaml
+----
+
+NOTE: These steps have already been completed by the instructor team.
+
+
+
+// Original
 
 ////
 include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/prerequisites-kubernetes.adoc[]
