@@ -44,7 +44,7 @@
 :kiali_op_v: 2.4.4
 :kiali_op_l: Kiali Operator {kiali_op_v} provided by Red Hat
 //
-:ocp_cluster_api: https://api.apps.ocp.sandbox2865.opentlc.com:6443
+:ocp_cluster_api: https://api.ocp.sandbox2865.opentlc.com:6443
 :ocp_cluster_console: https://console-openshift-console.apps.ocp.sandbox2865.opentlc.com/
 :ocp_apps_domain: apps.ocp.sandbox2865.opentlc.com
 //
