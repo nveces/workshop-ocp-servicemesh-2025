@@ -48,7 +48,7 @@ The Instructor will provide users with the {ocp} credentials and other important
 | _user1_
 | Password
 | <pass>
-| _P4ssw0rd_
+| _user1_
 | Namespace
 | <user_namespace>
 | _user1-namespace_
@@ -76,6 +76,9 @@ export OCP_HTTPBIN_HOST="${OCP_USER}.httpbin.${OCP_DOMAIN}"
 ----
 
 For example:
+
+_{ocp_apps_domain}_
+_{ocp_cluster_api}_
 
 [source,bash]
 ----
