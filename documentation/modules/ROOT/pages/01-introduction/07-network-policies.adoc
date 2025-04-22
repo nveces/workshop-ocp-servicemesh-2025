@@ -81,4 +81,4 @@ Also, have a look at the content of the `NetworkPolicy` you just created. The ke
 
 image::01-introduction/np-ingress.png[np ingress,link=../_images/01-introduction/np-ingress.png,window=_blank]
 
-Just as an additional read, a regular requirement from customers is to move from the default behavior of "there is no traffic restriction between pods" to a concept of "multinenant configuration". In the following link, you could find how to achieve this goal: https://docs.openshift.com/container-platform/4.6/networking/network_policy/multitenant-network-policy.html
+Just as an additional read, a regular requirement from customers is to move from the default behavior of "there is no traffic restriction between pods" to a concept of "multinenant configuration". In the following link, you could find how to achieve this goal: https://docs.openshift.com/container-platform/4.6/networking/network_policy/multitenant-network-policy.html[window=_blank]

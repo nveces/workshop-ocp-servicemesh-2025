@@ -238,8 +238,8 @@ Feel free to scale it down and up again and check that the application works as 
 
 Have a look at the following resources and then, answer a couple of questions that are related to this topic based on our scenario:
 
-- https://docs.openshift.com/container-platform/4.6/applications/deployments/deployment-strategies.html#deployments-rolling-strategy_deployment-strategies[Rolling]
-- https://docs.openshift.com/container-platform/4.6/applications/deployments/deployment-strategies.html#deployments-recreate-strategy_deployment-strategies[Recreate]
+- https://docs.openshift.com/container-platform/4.6/applications/deployments/deployment-strategies.html#deployments-rolling-strategy_deployment-strategies[Rolling,window=_blank]
+- https://docs.openshift.com/container-platform/4.6/applications/deployments/deployment-strategies.html#deployments-recreate-strategy_deployment-strategies[Recreate,window=_blank]
 
 So.. could you have a look at what strategies are used in both the application and the Database?
 

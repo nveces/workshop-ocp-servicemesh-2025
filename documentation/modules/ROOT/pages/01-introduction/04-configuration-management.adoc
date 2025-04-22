@@ -12,8 +12,8 @@ In this lab, we will introduce the concepts of `ConfigMap` and `Secrets` and we 
 
 Before continue to the labs, I highly encourage you to read the following (brief) documentation about:
 
-- https://kubernetes.io/docs/concepts/configuration/configmap/[ConfigMaps]
-- https://kubernetes.io/docs/concepts/configuration/secret/[Secrets]
+- https://kubernetes.io/docs/concepts/configuration/configmap/[ConfigMaps,window=_blank]
+- https://kubernetes.io/docs/concepts/configuration/secret/[Secrets,window=_blank]
 
 
 == ConfigMaps
@@ -37,7 +37,7 @@ oc scale deployment/quarkus-petclinic --replicas=1 -n <YOUR_PROJECT>
 deployment.apps/quarkus-petclinic scaled
 ....
 
-Back to the topic, the main difference with the other application versions is that, this version, will try to read from a _/deployments/tcs.txt_ (as per defined in https://github.com/dsanchor/petclinic/blob/mnl-config/quarkus-petclinic/src/main/resources/application.properties[application configration]) to load the content of the `Terms and conditions` text.
+Back to the topic, the main difference with the other application versions is that, this version, will try to read from a _/deployments/tcs.txt_ (as per defined in https://github.com/dsanchor/petclinic/blob/mnl-config/quarkus-petclinic/src/main/resources/application.properties[application configration,window=_blank]) to load the content of the `Terms and conditions` text.
 
 If you click now on the "T&Cs" tab, you will get a message like this one:
 

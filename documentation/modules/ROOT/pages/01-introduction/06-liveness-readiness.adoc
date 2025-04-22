@@ -11,13 +11,13 @@ A startup probe has been added recently, but we will not consider it in this lab
 :numbered:
 == What and why
 
-To answers these two questions, what are liveness/readiness probes? why are they needed? read the next article (10 minutes) that will give through different examples and scenarios the response to both questions: https://developers.redhat.com/blog/2020/11/10/you-probably-need-liveness-and-readiness-probes/
+To answers these two questions, what are liveness/readiness probes? why are they needed? read the next article (10 minutes) that will give through different examples and scenarios the response to both questions: https://developers.redhat.com/blog/2020/11/10/you-probably-need-liveness-and-readiness-probes/[window=_blank]
 
 == Configure liveness and readiness
 
 === Application endpoints
 
-Our application, which is based on Quarkus, provides a built-in health check endpoints when including `quarkus-smallrye-health` extension (for more detailes, see how it is done in our example application https://github.com/dsanchor/petclinic/blob/mnl-config/quarkus-petclinic/pom.xml#L73[here]).
+Our application, which is based on Quarkus, provides a built-in health check endpoints when including `quarkus-smallrye-health` extension (for more detailes, see how it is done in our example application https://github.com/dsanchor/petclinic/blob/mnl-config/quarkus-petclinic/pom.xml#L73[here,window=_blank]).
 
 Before configuring any probe, let's try both health checks (liveness/readiness) endpoints manually to see the actual responses.
 

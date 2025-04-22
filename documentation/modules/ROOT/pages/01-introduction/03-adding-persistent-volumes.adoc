@@ -13,12 +13,12 @@ Let's fix this!!
 :numbered:
 == Understanding storage
 
-I would like you to spend some time to read the Openshift official documentation about storage and understand the main concepts around it: https://docs.openshift.com/container-platform/4.6/storage/understanding-persistent-storage.html[Understanding persistent storage].
+I would like you to spend some time to read the Openshift official documentation about storage and understand the main concepts around it: https://docs.openshift.com/container-platform/4.6/storage/understanding-persistent-storage.html[Understanding persistent storage,window=_blank].
 
 Or in case you just want the basics for the lab, just read the following:
 
-- https://docs.openshift.com/container-platform/4.6/storage/understanding-persistent-storage.html#persistent-volumes_understanding-persistent-storage[PersistentVolume]
-- https://docs.openshift.com/container-platform/4.6/storage/understanding-persistent-storage.html#persistent-volumes_understanding-persistent-storage[PersistentVolumeClaim]
+- https://docs.openshift.com/container-platform/4.6/storage/understanding-persistent-storage.html#persistent-volumes_understanding-persistent-storage[PersistentVolume,window=_blank]
+- https://docs.openshift.com/container-platform/4.6/storage/understanding-persistent-storage.html#persistent-volumes_understanding-persistent-storage[PersistentVolumeClaim,window=_blank]
 
 == Setting persistent storage to the Database
 
