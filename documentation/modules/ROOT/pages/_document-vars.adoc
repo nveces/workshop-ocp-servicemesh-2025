@@ -36,7 +36,7 @@
 :ocp: OpenShift Container Platform
 :rhocp: {rh} {ocp} {ocp_v}
 
-:ossm-version: 2.6.6
+:ossm-version: 2.6.7
 :ossm: OpenShift Service Mesh
 :rhossm: {rh} {ossm} {ossm-version}
 :ossm_l: {ossm} {ossm-version}
