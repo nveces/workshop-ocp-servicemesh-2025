@@ -845,10 +845,10 @@ deployment.apps/quarkus-petclinic scaled</pre>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.openshift.com/container-platform/4.6/applications/deployments/deployment-strategies.html#deployments-rolling-strategy_deployment-strategies">Rolling</a></p>
+<p><a href="https://docs.openshift.com/container-platform/4.6/applications/deployments/deployment-strategies.html#deployments-rolling-strategy_deployment-strategies" target="_blank" rel="noopener">Rolling</a></p>
 </li>
 <li>
-<p><a href="https://docs.openshift.com/container-platform/4.6/applications/deployments/deployment-strategies.html#deployments-recreate-strategy_deployment-strategies">Recreate</a></p>
+<p><a href="https://docs.openshift.com/container-platform/4.6/applications/deployments/deployment-strategies.html#deployments-recreate-strategy_deployment-strategies" target="_blank" rel="noopener">Recreate</a></p>
 </li>
 </ul>
 </div>
@@ -872,7 +872,7 @@ deployment.apps/quarkus-petclinic scaled</pre>
 <h2 id="_understanding_storage"><a class="anchor" href="#_understanding_storage"></a>1. Understanding storage</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>I would like you to spend some time to read the Openshift official documentation about storage and understand the main concepts around it: <a href="https://docs.openshift.com/container-platform/4.6/storage/understanding-persistent-storage.html">Understanding persistent storage</a>.</p>
+<p>I would like you to spend some time to read the Openshift official documentation about storage and understand the main concepts around it: <a href="https://docs.openshift.com/container-platform/4.6/storage/understanding-persistent-storage.html" target="_blank" rel="noopener">Understanding persistent storage</a>.</p>
 </div>
 <div class="paragraph">
 <p>Or in case you just want the basics for the lab, just read the following:</p>
@@ -880,10 +880,10 @@ deployment.apps/quarkus-petclinic scaled</pre>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.openshift.com/container-platform/4.6/storage/understanding-persistent-storage.html#persistent-volumes_understanding-persistent-storage">PersistentVolume</a></p>
+<p><a href="https://docs.openshift.com/container-platform/4.6/storage/understanding-persistent-storage.html#persistent-volumes_understanding-persistent-storage" target="_blank" rel="noopener">PersistentVolume</a></p>
 </li>
 <li>
-<p><a href="https://docs.openshift.com/container-platform/4.6/storage/understanding-persistent-storage.html#persistent-volumes_understanding-persistent-storage">PersistentVolumeClaim</a></p>
+<p><a href="https://docs.openshift.com/container-platform/4.6/storage/understanding-persistent-storage.html#persistent-volumes_understanding-persistent-storage" target="_blank" rel="noopener">PersistentVolumeClaim</a></p>
 </li>
 </ul>
 </div>
@@ -993,7 +993,7 @@ deployment.apps/quarkus-petclinic scaled</pre>
 <h2 id="_requests_and_limits"><a class="anchor" href="#_requests_and_limits"></a>1. Requests and limits</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Next paragraphs have been extracted from the official <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits">Kubernetes documentation</a>. Summary is next.</p>
+<p>Next paragraphs have been extracted from the official <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits" target="_blank" rel="noopener">Kubernetes documentation</a>. Summary is next.</p>
 </div>
 <div class="paragraph">
 <p>When you specify the resource request for Containers in a Pod, the scheduler uses this information to decide which node to place the Pod on. When you specify a resource limit for a Container, the kubelet enforces those limits so that the running container is not allowed to use more of that resource than the limit you set. The kubelet also reserves at least the request amount of that system resource specifically for that container to use.</p>
@@ -1085,7 +1085,7 @@ deployment.apps/quarkus-petclinic resource requirements updated</pre>
 <h2 id="_what_and_why"><a class="anchor" href="#_what_and_why"></a>1. What and why</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To answers these two questions, what are liveness/readiness probes? why are they needed? read the next article (10 minutes) that will give through different examples and scenarios the response to both questions: <a href="https://developers.redhat.com/blog/2020/11/10/you-probably-need-liveness-and-readiness-probes/" class="bare">https://developers.redhat.com/blog/2020/11/10/you-probably-need-liveness-and-readiness-probes/</a></p>
+<p>To answers these two questions, what are liveness/readiness probes? why are they needed? read the next article (10 minutes) that will give through different examples and scenarios the response to both questions: <a href="https://developers.redhat.com/blog/2020/11/10/you-probably-need-liveness-and-readiness-probes/" class="bare" target="_blank" rel="noopener">https://developers.redhat.com/blog/2020/11/10/you-probably-need-liveness-and-readiness-probes/</a></p>
 </div>
 </div>
 </div>
@@ -1095,7 +1095,7 @@ deployment.apps/quarkus-petclinic resource requirements updated</pre>
 <div class="sect2">
 <h3 id="_application_endpoints"><a class="anchor" href="#_application_endpoints"></a>2.1. Application endpoints</h3>
 <div class="paragraph">
-<p>Our application, which is based on Quarkus, provides a built-in health check endpoints when including <code>quarkus-smallrye-health</code> extension (for more detailes, see how it is done in our example application <a href="https://github.com/dsanchor/petclinic/blob/mnl-config/quarkus-petclinic/pom.xml#L73">here</a>).</p>
+<p>Our application, which is based on Quarkus, provides a built-in health check endpoints when including <code>quarkus-smallrye-health</code> extension (for more detailes, see how it is done in our example application <a href="https://github.com/dsanchor/petclinic/blob/mnl-config/quarkus-petclinic/pom.xml#L73" target="_blank" rel="noopener">here</a>).</p>
 </div>
 <div class="paragraph">
 <p>Before configuring any probe, let&#8217;s try both health checks (liveness/readiness) endpoints manually to see the actual responses.</p>
@@ -1421,7 +1421,7 @@ networkpolicy.networking.k8s.io/allow-from-openshift-ingress created</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Just as an additional read, a regular requirement from customers is to move from the default behavior of "there is no traffic restriction between pods" to a concept of "multinenant configuration". In the following link, you could find how to achieve this goal: <a href="https://docs.openshift.com/container-platform/4.6/networking/network_policy/multitenant-network-policy.html" class="bare">https://docs.openshift.com/container-platform/4.6/networking/network_policy/multitenant-network-policy.html</a></p>
+<p>Just as an additional read, a regular requirement from customers is to move from the default behavior of "there is no traffic restriction between pods" to a concept of "multinenant configuration". In the following link, you could find how to achieve this goal: <a href="https://docs.openshift.com/container-platform/4.6/networking/network_policy/multitenant-network-policy.html" class="bare" target="_blank" rel="noopener">https://docs.openshift.com/container-platform/4.6/networking/network_policy/multitenant-network-policy.html</a></p>
 </div>
 </div>
 </div>
