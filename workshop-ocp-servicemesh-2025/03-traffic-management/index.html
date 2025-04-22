@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Red Hat OpenShift Service Mesh 2.6.6: Traffic Management Labs :: WorkShop - Service Mesh on OCP 2025</title>
+    <title>Red Hat OpenShift Service Mesh 2.6.7: Traffic Management Labs :: WorkShop - Service Mesh on OCP 2025</title>
     <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/03-traffic-management/index.html">
     <link rel="prev" href="../02-envoy-istio-control-plane/index.html">
     <link rel="next" href="../04-troubleshooting/index.html">
@@ -128,7 +128,7 @@
     <a class="nav-link" href="index.html">4. Traffic management - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#_rhossm_traffic_management_labs">Red Hat OpenShift Service Mesh 2.6.6: Traffic Management Labs</a>
+    <a class="nav-link" href="#_rhossm_traffic_management_labs">Red Hat OpenShift Service Mesh 2.6.7: Traffic Management Labs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a>
@@ -212,7 +212,7 @@
     <a class="nav-link" href="../06-extensibility/index.html">7. Extensibility - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../06-extensibility/index.html#_rhossm_extensibility_labs">Red Hat OpenShift Service Mesh 2.6.6: Extensibility Labs</a>
+    <a class="nav-link" href="../06-extensibility/index.html#_rhossm_extensibility_labs">Red Hat OpenShift Service Mesh 2.6.7: Extensibility Labs</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../06-extensibility/index.html#_lab_1_envoy_filters">Lab 1 - Envoy Filters</a>
@@ -243,7 +243,7 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Red Hat OpenShift Service Mesh 2.6.6: Traffic Management Labs</h1>
+<h1 class="page">Red Hat OpenShift Service Mesh 2.6.7: Traffic Management Labs</h1>
 <div class="sect1">
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
@@ -337,7 +337,7 @@ You must have an up-to-date version of the <em>oc</em> command.
 <p>Red Hat OpenShift Container Platform 4.18</p>
 </li>
 <li>
-<p>Red Hat OpenShift Service Mesh 2.6.6 based on <em>Istio</em></p>
+<p>Red Hat OpenShift Service Mesh 2.6.7 based on <em>Istio</em></p>
 </li>
 </ul>
 </div>
@@ -2244,7 +2244,7 @@ spec:
 <p>By default, Istio configures the Envoy proxy to pass through requests for unknown services.</p>
 </div>
 <div class="paragraph">
-<p>Red Hat OpenShift Service Mesh 2.6.6 can be configured with a special policy for handling external services, that is, those services that are not defined in Istio’s internal service registry.</p>
+<p>Red Hat OpenShift Service Mesh 2.6.7 can be configured with a special policy for handling external services, that is, those services that are not defined in Istio’s internal service registry.</p>
 </div>
 <div class="paragraph">
 <p>If the policy is in permissive state (by default), the Istio proxy lets calls to unknown services pass through. If the policy is set to a restrictive state, then the Istio proxy blocks any host without a <em>ServiceEntry</em> defined within the mesh.</p>
