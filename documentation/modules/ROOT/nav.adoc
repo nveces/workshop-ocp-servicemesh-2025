@@ -3,7 +3,7 @@ include::./pages/_document-vars.adoc[]
 
 * xref:01-setup.adoc[1. Environment Setup]
 ** xref:01-setup.adoc#prerequisite[Prerequisites]
-** xref:01-setup.adoc#_prerequisite_platform[Platform]
+** xref:01-setup.adoc#_platform[Platform]
 
 
 * xref:01-introduction/index.adoc[2. Introduction - Labs]

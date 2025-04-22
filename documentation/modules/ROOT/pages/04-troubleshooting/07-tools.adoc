@@ -7,7 +7,7 @@
 :toc-title: Troubleshooting Tools
 :numbered:
 
-////
+
 [#07-jaeger]
 == See traces in Jaeger
 
@@ -35,7 +35,7 @@ image::04-troubleshooting/jump-app-jaeger-spans.png[link=../_images/04-troublesh
 
 Those are called spans and they represent a logical unit of work in Jaeger that has an operation name, the start time of the operation, and the duration. Spans may be nested and ordered to model causal relationships. This could help you see where is your application spending more time and find bottlenecks in an easy manner.
 
-////
+
 
 [#07-delay]
 == See a delay in Kiali

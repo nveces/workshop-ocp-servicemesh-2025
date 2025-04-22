@@ -41,6 +41,8 @@
 :rhossm: {rh} {ossm} {ossm-version}
 :ossm_l: {ossm} {ossm-version}
 
+:rhossm_l: Red Hat {ossm}
+
 :kiali_op_v: 2.4.4
 :kiali_op_l: Kiali Operator {kiali_op_v} provided by Red Hat
 //

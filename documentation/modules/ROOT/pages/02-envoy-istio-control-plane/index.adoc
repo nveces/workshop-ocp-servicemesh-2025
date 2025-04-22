@@ -8,14 +8,21 @@ include::./../_document-vars.adoc[]
 
 == Introduction
 
-Service Mesh, which is based on the open source https://istio.io/[Istio project,window=_blank], provides an easy way to create a network of deployed services that provides:
+*{rhossm_l}*, which is based on the open source https://istio.io/[Istio project,window=_blank], provides an easy way to create a network of deployed services that provides:
 
-* discovery,
-* load balancing,
-* service-to-service authentication,
+* Discovery,
+* Load balancing,
+* Service-to-service authentication,
 * failure recovery,
-* metrics,
-* and monitoring
+* Metrics,
+* and Monitoring
+
+*{rhossm_l}* also provides more complex operational functions including:
+
+* A/B testing
+* Canary releases
+* Access control
+* End-to-end authentication
 
 .Product Logos
 image::02-envoy-istio-control-plane/logos.png[link=../_images/02-envoy-istio-control-plane/logos.png,window=_blank]
