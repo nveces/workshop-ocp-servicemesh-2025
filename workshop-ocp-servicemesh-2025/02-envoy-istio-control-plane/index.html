@@ -1239,7 +1239,7 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> and <strong>&lt;back-gol
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; destination-rule-config-init.json</code></pre>
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; -- curl localhost:15000/config_dump &gt; destination-rule-config-init.json</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -1268,7 +1268,7 @@ oc process -f 04-istio-envoy-relationship/00-istio-envoy-rel-drs.yaml --param-fi
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; destination-rule-config-custom.json</code></pre>
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; -- curl localhost:15000/config_dump &gt; destination-rule-config-custom.json</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1287,7 +1287,7 @@ oc process -f 04-istio-envoy-relationship/00-istio-envoy-rel-drs.yaml --param-fi
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; virtual-service-config-init.json</code></pre>
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; -- curl localhost:15000/config_dump &gt; virtual-service-config-init.json</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -1316,7 +1316,7 @@ oc process -f 04-istio-envoy-relationship/01-istio-envoy-rel-vss.yaml --param-fi
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; virtual-service-config-custom.json</code></pre>
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; -- curl localhost:15000/config_dump &gt; virtual-service-config-custom.json</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1401,7 +1401,7 @@ Additionally, perform a GET request using <em>curl</em> in order to test out hea
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; service-entry-config-init.json</code></pre>
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; -- curl localhost:15000/config_dump &gt; service-entry-config-init.json</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -1430,7 +1430,7 @@ oc process -f 04-istio-envoy-relationship/02-istio-envoy-rel-ses.yaml --param-fi
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; service-entry-config-custom.json</code></pre>
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; -- curl localhost:15000/config_dump &gt; service-entry-config-custom.json</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1529,7 +1529,7 @@ Please, replace <strong>&lt;user_namespace&gt;</strong> with the value provided 
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; envoy-filter-config-init.json</code></pre>
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; -- curl localhost:15000/config_dump &gt; envoy-filter-config-init.json</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -1558,7 +1558,7 @@ oc process -f 05-envoy-proxy/00-istio-envoy-rel-ef.yaml --param-file=params.env 
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; curl localhost:15000/config_dump &gt; envoy-filter-config-custom.json</code></pre>
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc exec &lt;back-golang-pod_id&gt; -c istio-proxy -n &lt;user_namespace&gt; -- curl localhost:15000/config_dump &gt; envoy-filter-config-custom.json</code></pre>
 </div>
 </div>
 <div class="paragraph">
