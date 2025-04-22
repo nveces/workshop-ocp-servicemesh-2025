@@ -65,7 +65,7 @@
     <a class="nav-link" href="../01-setup.html#prerequisite">Prerequisites</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../01-setup.html#_prerequisite_platform">Platform</a>
+    <a class="nav-link" href="../01-setup.html#_platform">Platform</a>
   </li>
 </ul>
   </li>
@@ -248,27 +248,46 @@
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Service Mesh, which is based on the open source <a href="https://istio.io/" target="_blank" rel="noopener">Istio project</a>, provides an easy way to create a network of deployed services that provides:</p>
+<p><strong>Red Hat OpenShift Service Mesh</strong>, which is based on the open source <a href="https://istio.io/" target="_blank" rel="noopener">Istio project</a>, provides an easy way to create a network of deployed services that provides:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>discovery,</p>
+<p>Discovery,</p>
 </li>
 <li>
-<p>load balancing,</p>
+<p>Load balancing,</p>
 </li>
 <li>
-<p>service-to-service authentication,</p>
+<p>Service-to-service authentication,</p>
 </li>
 <li>
 <p>failure recovery,</p>
 </li>
 <li>
-<p>metrics,</p>
+<p>Metrics,</p>
 </li>
 <li>
-<p>and monitoring</p>
+<p>and Monitoring</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Red Hat OpenShift Service Mesh</strong> also provides more complex operational functions including:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A/B testing</p>
+</li>
+<li>
+<p>Canary releases</p>
+</li>
+<li>
+<p>Access control</p>
+</li>
+<li>
+<p>End-to-end authentication</p>
 </li>
 </ul>
 </div>
@@ -753,13 +772,13 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="ulist">
 <ul>
 <li>
-<p>Gateways - Describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections (Please, visit this link <a href="https://istio.io/v1.6/docs/concepts/traffic-management/#gateways" target="<em>blank">Gateways</a> for more information about _gateways</em>)</p>
+<p><strong>Gateways</strong> - Describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections (Please, visit this link <a href="https://istio.io/v1.6/docs/concepts/traffic-management/#gateways" target="<em>blank">Gateways</a> for more information about _gateways</em>)</p>
 </li>
 <li>
-<p>Virtual Services - Defines a set of traffic routing rules to apply when a host is addressed (Please, visit this link <a href="https://istio.io/v1.6/docs/concepts/traffic-management/#virtual-services" target="<em>blank">Virtual Services</a> for more information about _virtual services</em>)</p>
+<p><strong>Virtual Services</strong> - Defines a set of traffic routing rules to apply when a host is addressed (Please, visit this link <a href="https://istio.io/v1.6/docs/concepts/traffic-management/#virtual-services" target="<em>blank">Virtual Services</a> for more information about _virtual services</em>)</p>
 </li>
 <li>
-<p>Destination Rules - Defines policies that apply to traffic intended for a service after routing has occurred (Please, visit this link <a href="https://istio.io/v1.6/docs/concepts/traffic-management/#destination-rules" target="<em>blank">Destination Rules</a> for more information about _destination rules</em>)</p>
+<p><strong>Destination Rules</strong> - Defines policies that apply to traffic intended for a service after routing has occurred (Please, visit this link <a href="https://istio.io/v1.6/docs/concepts/traffic-management/#destination-rules" target="<em>blank">Destination Rules</a> for more information about _destination rules</em>)</p>
 </li>
 </ul>
 </div>

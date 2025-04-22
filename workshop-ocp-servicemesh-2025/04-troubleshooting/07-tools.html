@@ -63,7 +63,7 @@
     <a class="nav-link" href="../01-setup.html#prerequisite">Prerequisites</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../01-setup.html#_prerequisite_platform">Platform</a>
+    <a class="nav-link" href="../01-setup.html#_platform">Platform</a>
   </li>
 </ul>
   </li>
@@ -243,7 +243,47 @@
 <article class="doc">
 <h1 class="page">Lab 7 - Troubleshooting Tools</h1>
 <div class="sect1">
-<h2 id="07-delay"><a class="anchor" href="#07-delay"></a>1. See a delay in Kiali</h2>
+<h2 id="07-jaeger"><a class="anchor" href="#07-jaeger"></a>1. See traces in Jaeger</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Distributed tracing is a technique that is used to tie the information about different units of work together—usually executed in different processes or hosts—in order to understand a whole chain of events in a distributed transaction. Distributed tracing lets developers visualize call flows in large service oriented architectures. It can be invaluable in understanding serialization, parallelism, and sources of latency.</p>
+</div>
+<div class="paragraph">
+<p>OpenShift Service Mesh comes with Jaeger and you can use it to monitor distributed transactions, optimize performance and latency and to perform root cause analysis.</p>
+</div>
+<div class="paragraph">
+<p>Before opening Jaeger to see the traces of the <em>Jump App</em> application, you need to create traffic, so go to the <strong>front</strong> and make several requests. After that open Jaeger, you can find the route like this:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n istio-system | grep jaeger</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once in Jaeger, select <code>back-golang.&lt;user-namespace&gt;</code> as the Service in the left menu and then click at the bottom on "Find Traces". You will see that several traces appear on the right:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-jaeger-traces.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-jaeger-traces.png" alt="jump app jaeger traces"></a>
+</div>
+<div class="title">Figure 1. Traces in jaeger</div>
+</div>
+<div class="paragraph">
+<p>Click on any of them and you will see the following page will all the jumps your application did and how long did they take:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-jaeger-spans.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-jaeger-spans.png" alt="jump app jaeger spans"></a>
+</div>
+<div class="title">Figure 2. Spans in jaeger</div>
+</div>
+<div class="paragraph">
+<p>Those are called spans and they represent a logical unit of work in Jaeger that has an operation name, the start time of the operation, and the duration. Spans may be nested and ordered to model causal relationships. This could help you see where is your application spending more time and find bottlenecks in an easy manner.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="07-delay"><a class="anchor" href="#07-delay"></a>2. See a delay in Kiali</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>As you know from the last course, you can add delay to your applications in the mesh to do some testing. In this lab we are going to add a delay in the <code>back-golang</code> service to see how it shows in Jaeger and Kiali when a service is adding some latency to your workflow.</p>
@@ -260,7 +300,7 @@
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-kiali-delay.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali-delay.png" alt="jump app kiali delay"></a>
 </div>
-<div class="title">Figure 1. See delay in Kiali</div>
+<div class="title">Figure 3. See delay in Kiali</div>
 </div>
 <div class="paragraph">
 <p>You&#8217;ll notice that requests in <code>back-golang</code> are now taking roughly 2 seconds. This capacity of Kiali to see the response time is another way of watching where your application is spending more time. But you can play with other metrics that Kiali gives you like Request Percentage, Requests per Second and even see the traffic animation and security.</p>
@@ -268,7 +308,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="07-dump"><a class="anchor" href="#07-dump"></a>2. Check a config dump</h2>
+<h2 id="07-dump"><a class="anchor" href="#07-dump"></a>3. Check a config dump</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Another tool you have for troubleshooting is the config dump of the Envoy proxies of the mesh. The config dump has all the information, in JSON format, about how are the Envoy proxies configured in the mesh. To do this, you just need to execute a request to the <code>/config_dump</code> endpoint inside any sidecar in your mesh.</p>
@@ -287,7 +327,7 @@ oc exec -it $POD -c istio-proxy -- curl localhost:15000/config_dump &gt; dump.js
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/config_dump.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/config_dump.png" alt="config dump"></a>
 </div>
-<div class="title">Figure 2. Envoy config dump</div>
+<div class="title">Figure 4. Envoy config dump</div>
 </div>
 <div class="paragraph">
 <p>Take some time checking the config dump, since this file has all the configuration parameters of the Envoy proxies inside the Service Mesh.</p>
@@ -295,7 +335,7 @@ oc exec -it $POD -c istio-proxy -- curl localhost:15000/config_dump &gt; dump.js
 </div>
 </div>
 <div class="sect1">
-<h2 id="07-stats"><a class="anchor" href="#07-stats"></a>3. Check the stats</h2>
+<h2 id="07-stats"><a class="anchor" href="#07-stats"></a>4. Check the stats</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Envoy also has stats of their proxies that you can see by doing a request to the <code>/stats</code> endpoint inside the proxy.</p>
@@ -316,7 +356,7 @@ oc exec -it $POD -c istio-proxy -- curl localhost:15000/stats &gt; stats.txt</co
 </div>
 </div>
 <div class="sect1">
-<h2 id="07-logging"><a class="anchor" href="#07-logging"></a>4. Envoy logging</h2>
+<h2 id="07-logging"><a class="anchor" href="#07-logging"></a>5. Envoy logging</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Envoy even let you change the logging level inside a sidecar by doing some http requests too. If you want to see all the logging possibilities and levels, execute the following command:</p>
@@ -335,7 +375,7 @@ oc exec -it $POD -c istio-proxy -- curl -X POST localhost:15000/logging</code></
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/envoy-logging.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/envoy-logging.png" alt="envoy logging"></a>
 </div>
-<div class="title">Figure 3. Active Loggers</div>
+<div class="title">Figure 5. Active Loggers</div>
 </div>
 <div class="paragraph">
 <p>Now, you will change the level of one of them:</p>
