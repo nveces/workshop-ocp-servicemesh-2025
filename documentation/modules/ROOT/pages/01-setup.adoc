@@ -123,6 +123,12 @@ NOTE: These steps have already been completed by the instructor team.
 
 
 
+== OpenShift Cheat Sheet
+
+include::./../partials/00-cheat-sheet.adoc[]
+
+
+
 // Original
 
 ////
