@@ -8,7 +8,7 @@
 [Abstract]
 In this next lab, we will introduce the concept of `end-user-authentication` by configuring a `RequestAuthentication` in our service mesh.
 
-This time,  Istio enables request-level authentication with JSON Web Token (JWT) validation. 
+This time,  Istio enables request-level authentication with JSON Web Token (JWT) validation.
 
 Before starting, I truly recommend to spend some minutes reading an https://jwt.io/introduction[introduction about JWT].
 
@@ -18,7 +18,7 @@ This fourth lab, will be very brief as the authentication part with JWT is very 
 :numbered:
 == Clean up resources from previous lab
 
-Firstly, we will remove all the `AuthorizationPolicies` we created in last lab. We will keep the `PeerAuthentication` as we still want to enforce `STRICT` mTLS between services calls. 
+Firstly, we will remove all the `AuthorizationPolicies` we created in last lab. We will keep the `PeerAuthentication` as we still want to enforce `STRICT` mTLS between services calls.
 
 Ingress policy:
 ....
@@ -73,12 +73,12 @@ deployment.apps/productpage-v1 updated
 
 Test the application again.. everything should work without any RBAC or authentication error.
 
-== Enforce JWT authentication 
+== Enforce JWT authentication
 
-The first step we do now is to enable JWT authentication by creating a simple `RequestAuthentication` object. 
+The first step we do now is to enable JWT authentication by creating a simple `RequestAuthentication` object.
 We will use  Google's OAuth 2.0 authentication system for user login, so we will have to first discover some important configuration data from the OIDC discovery configuration url.
 
-Google's OIDC configuration is accesible here: https://accounts.google.com/.well-known/openid-configuration. 
+Google's OIDC configuration is accesible here: https://accounts.google.com/.well-known/openid-configuration.
 
 If you access to that endpoint, you will get a similar output to this:
 ....
@@ -144,7 +144,7 @@ If you access to that endpoint, you will get a similar output to this:
 
 In order to configure the `RequestAuthentication` for this lab, we will just use the following attributes from above:
 
-- issuer: https://accounts.google.com. This will be the only valid issuing authority inside a token. 
+- issuer: https://accounts.google.com. This will be the only valid issuing authority inside a token.
 - jwks_uri: https://www.googleapis.com/oauth2/v3/certs, which basically tells from where to obtain the `public key` to verify the signature of a token.
 
 Once we have this information, let me show you the `RequestAuthentication` YAML file we will use as template:
@@ -164,7 +164,7 @@ spec:
     jwksUri: ${OIDC_JWKS_URI}
 ....
 
-The above YAML basically means: 
+The above YAML basically means:
 
 _"A `RequestAuthentication` will be applied on those pods running in `istio-system` which match the label `app: $INGRESS_GW` (that is, your dedicated ingress Gateway). The JWT issuer is $OIDC_ISSUER_URL and the certs to verify the signature of the token will be obtained from $OIDC_JWKS_URI. Also, the JWT token will be forwarded to upstream service."_
 
@@ -177,7 +177,7 @@ requestauthentication.security.istio.io/dsanchor-ingress-request-authentication 
 
 If you test the application again it should still work, even though we have not provide any token. And that is because when requests carry no token, they are accepted by default. To reject requests without tokens, provide authorization rules that specify the restrictions for specific operations, for example paths or actions. And that's what will do next.
 
-Create a simple `AuthorizationPolicy` that forces the request to contain a valid `requestPrincipal` (just to avoid confusions with previous labs, it is important to mention that we used `principals` when using workload-to-workload authentication and for this next lab, we will use `requestPrincipals`. More details can be found https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#Source[here]).
+Create a simple `AuthorizationPolicy` that forces the request to contain a valid `requestPrincipal` (just to avoid confusions with previous labs, it is important to mention that we used `principals` when using workload-to-workload authentication and for this next lab, we will use `requestPrincipals`. More details can be found {istio_doc}/reference/config/security/authorization-policy/#Source[here,window=_blank]).
 
 Execute:
 
@@ -191,7 +191,7 @@ If you now test the application again, you will get an `RBAC: access denied` err
 
 We have to provide a valid JWT token... and the process of getting a token from the OAuth server is out of the scope of Istio. Istio will just verify incoming tokens and will extract the data from the token body, so it can later be used during the authorization phase.
 
-In next lab, we will deploy some utilities on Openshift that will be configured to automatically manage the OAuth flow of getting a valid token against Google's OAuth server, but now, we would like to test what we just did. 
+In next lab, we will deploy some utilities on Openshift that will be configured to automatically manage the OAuth flow of getting a valid token against Google's OAuth server, but now, we would like to test what we just did.
 
 To do so, I will provide a temporal token that can be used for this test. *Please ask if you haven't be given one and export it as $JWT_TOKEN*
 
@@ -200,6 +200,6 @@ Then, test the application using next curl:
  curl -v -k -H "Authorization: Bearer $JWT_TOKEN" https://${PRODUCTPAGE_HOST}/productpage
 ....
 
-Did it work?  Hope so. That means, the token you have provided is valid. 
+Did it work?  Hope so. That means, the token you have provided is valid.
 
 If you try againg using your web browser (that is, no token is provided), it would fail.

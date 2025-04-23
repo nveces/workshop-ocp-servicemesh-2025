@@ -20,7 +20,7 @@ NOTE: This lab about mTLS is very similar to the one we did in *Service Mesh - I
 
 First, we are going to enforce that any service to service communication in our `namespace` is covered by mTLS.
 
-To do so, we will create a https://istio.io/v1.6/docs/reference/config/security/peer_authentication/[PeerAuthentication] object that set the mTLS mode to `strict`:
+To do so, we will create a {istio_doc}/reference/config/security/peer_authentication/[PeerAuthentication,window=_blank] object that set the mTLS mode to `strict`:
 
 ....
 $ oc apply -f $LABS_HOME/lab2/peer-authentication-strict.yaml -n $APPS_NS1

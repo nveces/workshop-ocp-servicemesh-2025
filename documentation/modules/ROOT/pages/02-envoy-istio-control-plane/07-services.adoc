@@ -18,7 +18,7 @@ During this step, you will review how to expose a secure HTTPS service using a G
 
 It is not required to perform any task related to generate custom certificates. These resources are included in GitHub repository.
 
-TIP: Follow https://istio.io/v1.6/docs/tasks/traffic-management/ingress/secure-ingress/[Secure Ingress,window=_blank] for more information about generate certificates
+TIP: Follow {istio_doc}/tasks/traffic-management/ingress/secure-ingress/[Secure Ingress,window=_blank] for more information about generate certificates
 
 [#addcert]
 === Create in Istio the Custom Certificate using SDS

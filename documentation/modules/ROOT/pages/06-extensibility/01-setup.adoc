@@ -21,7 +21,7 @@ During this tutorial, it will be required to work with different tools for runni
 | https://github.com/istio/istio/releases/download/1.12.2/istioctl-1.12.2-linux-amd64.tar.gz[Download, window="_blank"]
 | https://github.com/istio/istio/releases/download/1.12.2/istioctl-1.12.2-osx.tar.gz[Download, window="_blank"]
 | https://github.com/istio/istio/releases/download/1.12.2/istioctl-1.12.2-win.zip[Download, window="_blank"]
-| https://istio.io/v1.9/docs/reference/commands/istioctl/[istioctl - Docs, window="_blank"]
+| {istio_doc}/reference/commands/istioctl/[istioctl - Docs, window="_blank"]
 |===
 
 IMPORTANT: You must have an up-to-date version of the _oc_ command.

@@ -31,13 +31,14 @@ image::02-envoy-istio-control-plane/logos.png[link=../_images/02-envoy-istio-con
 [cols="2*^,2*.",options="header,+attributes"]
 |===
 |**Component**|**Version**
-| Istio
+| {istio_doc}/[Istio,window=_blank]
 | 1.20.8
-| Envoy Proxy
+| {envoy_doc}/[Envoy Proxy,window=_blank]
 | 1.28.7
-| Kiali Server
+| {kiali_doc}/[Kiali Server,window=_blank]
 | 1.73.19
 |===
+
 
 
 The general idea of _Red Hat Service Mesh: Envoy & Istio Control Plane_ tutorial is to get a deep understanding of the following points:

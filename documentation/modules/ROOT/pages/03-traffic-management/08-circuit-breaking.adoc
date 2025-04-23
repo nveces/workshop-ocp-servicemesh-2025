@@ -39,7 +39,7 @@ spec:
 <3> You only want a number of connections of 1 TCP connection and 1 HTTP request per connection.
 <4> Here you are checking every second that any host with one error should be ejected from the pool for 3 minutes.
 
-You can do more things like load balancing, ejecting with consecutive 500 errors, and more. If you want to learn more, check the link:https://istio.io/v1.6/docs/reference/config/networking/destination-rule[Destination Rule] page at Istio.
+You can do more things like load balancing, ejecting with consecutive 500 errors, and more. If you want to learn more, check the link:{istio_doc}/reference/config/networking/destination-rule[Destination Rule,window=_blank] page at Istio.
 
 After this, you are going to test the circuit breaking with the `fortio` client.
 

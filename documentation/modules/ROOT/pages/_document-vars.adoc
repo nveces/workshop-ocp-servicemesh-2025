@@ -52,5 +52,11 @@
 //
 :kiali_url: https://kiali-istio-system.apps.ocp.sandbox2790.opentlc.com
 
+// Istio 1.20.8 - https://istio.io/v1.20/docs/
+:istio_doc: https://istio.io/v1.20/docs
+// Envoy Proxy 1.28.7 - https://www.envoyproxy.io/docs/envoy/v1.28.7/
+:envoy_doc: https://www.envoyproxy.io/docs/envoy/v1.28.7
+// Kiali Server 1.73.19 - https://v1-73.kiali.io/docs/ https://v1-78.kiali.io/docs/
+:kiali_doc: https://v1-73.kiali.io/docs
 
 // EOF

@@ -17,15 +17,15 @@ In this first part, we will introduce the concept of peer identities (thanks to 
 
 The `AuthorizationPolicy` custom resource is mainly divided in three parts: a selector, an action and a list of rules.
 
-- The https://istio.io/v1.6/docs/reference/config/networking/sidecar/#WorkloadSelector[selector] field specifies the target of the policy.
-- The https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#AuthorizationPolicy-Action[action] field specifies whether to allow or deny the request.
-- The https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#Rule[rules] specify when to trigger the action
+- The {istio_doc}/reference/config/networking/sidecar/#WorkloadSelector[selector,window=_blank] field specifies the target of the policy.
+- The {istio_doc}/reference/config/security/authorization-policy/#AuthorizationPolicy-Action[action,window=_blank] field specifies whether to allow or deny the request.
+- The {istio_doc}/reference/config/security/authorization-policy/#Rule[rules,window=_blank] specify when to trigger the action
 
     ** The *from* field in the rules specifies the sources of the request
     ** The *to* field in the rules specifies the operations of the request
     ** The *when* field specifies the conditions needed to apply the rule
 
-We will be creating this kind of manifest during the following labs, so in case you have any doubt, please feel free to ask. I also recommend to have a look at the https://istio.io/v1.6/docs/reference/config/security/authorization-policy/[official documentation].
+We will be creating this kind of manifest during the following labs, so in case you have any doubt, please feel free to ask. I also recommend to have a look at the {istio_doc}/reference/config/security/authorization-policy/[official documentation,window=_blank].
 
 == Deny all policy
 
@@ -40,7 +40,7 @@ metadata:
 spec: {}
 ....
 
-As per https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#AuthorizationPolicy[doc], the above means:
+As per {istio_doc}/reference/config/security/authorization-policy/#AuthorizationPolicy[doc,window=_blank], the above means:
 
 - if no `selector`, the authorization policy will be applied to all workloads in the same namespace as the authorization policy.
 - if no `rules`, the match will never occur. This is equivalent to setting a default of deny for the target workloads.
@@ -73,9 +73,9 @@ The first allow policy we will define will be to allow access from your dedicate
 
 We will do so by enabling access only from the identity of your dedicated ingress `Gateway` as a valid `principal`. But... where is that identity coming from? How do I know it?
 
-The answer is that in the Kubernetes world, https://istio.io/v1.6/docs/concepts/security/#istio-identity[Istio uses an identity] associated to each `ServiceAccount`. Remember that we must have mTLS enabled, so for each caller service, there will be a client certificate present.
+The answer is that in the Kubernetes world, {istio_doc}/concepts/security/#istio-identity[Istio uses an identity,window=_blank] associated to each `ServiceAccount`. Remember that we must have mTLS enabled, so for each caller service, there will be a client certificate present.
 
-To better understand it, we will set the `rbac` log level to debug in our `productpage` pod and determine what is the value coming in the `source.principal` attribute (which is the attribute that is used to be checked as principal, according to the https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#Source[docs])
+To better understand it, we will set the `rbac` log level to debug in our `productpage` pod and determine what is the value coming in the `source.principal` attribute (which is the attribute that is used to be checked as principal, according to the {istio_doc}/reference/config/security/authorization-policy/#Source[docs,window=_blank])
 
 Run the following command to set the proper rbac log level:
 ....

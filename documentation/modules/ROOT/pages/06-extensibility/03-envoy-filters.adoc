@@ -14,7 +14,7 @@ Istio {ef} objects provide a mechanism to customize the Envoy configuration gene
 
 You can use an {ef} object to modify values for certain fields, add specific filters, or even add entirely new listeners, clusters, etc. This feature must be used with care, as incorrect configurations could potentially destabilize the entire mesh.
 
-IMPORTANT: {efs} are not officially supported in {ossm}. {efs} can be created in {ocp} by referring to the Istio documentation https://istio.io/v1.6/docs/reference/config/networking/envoy-filter/[here, window="_blank"] but any configuration issues are not officially supported: https://access.redhat.com/solutions/5672521[window="_blank"]
+IMPORTANT: {efs} are not officially supported in {ossm}. {efs} can be created in {ocp} by referring to the Istio documentation {istio_doc}/reference/config/networking/envoy-filter/[here, window="_blank"] but any configuration issues are not officially supported: https://access.redhat.com/solutions/5672521[window="_blank"]
 
 Unlike other Istio networking objects, {efs} are additively applied. Any number of {efs} can exist for a given workload in a specific namespace. The order of application of these {efs} is as follows: all {efs} in the control plane namespace, followed by all matching {efs} in the workload’s namespace.
 
