@@ -23,6 +23,14 @@ TIP: Follow {istio_doc}/tasks/traffic-management/ingress/secure-ingress/[Secure 
 [#addcert]
 === Create in Istio the Custom Certificate using SDS
 
+First of all, we make a backup of the *front-javascript* gateway object. This is important because we will modify this object in order to add the custom certificate.
+
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+oc get gateway front-javascript -n <user_namespace> -o yaml > gw-front-javascript.yaml
+----
+
 Once the custom certificate is created, it is time to create a new secret in Openshift to save the respective files.
 
 Please, create this new *secret* executing the following command:
