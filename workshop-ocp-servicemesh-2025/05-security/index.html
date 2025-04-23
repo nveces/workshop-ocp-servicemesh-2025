@@ -816,7 +816,7 @@ This lab about mTLS is very similar to the one we did in <strong>Service Mesh - 
 <p>First, we are going to enforce that any service to service communication in our <code>namespace</code> is covered by mTLS.</p>
 </div>
 <div class="paragraph">
-<p>To do so, we will create a <a href="https://istio.io/v1.6/docs/reference/config/security/peer_authentication/">PeerAuthentication</a> object that set the mTLS mode to <code>strict</code>:</p>
+<p>To do so, we will create a <a href="https://istio.io/v1.20/docs/reference/config/security/peer_authentication/" target="_blank" rel="noopener">PeerAuthentication</a> object that set the mTLS mode to <code>strict</code>:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1049,13 +1049,13 @@ spec:
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="https://istio.io/v1.6/docs/reference/config/networking/sidecar/#WorkloadSelector">selector</a> field specifies the target of the policy.</p>
+<p>The <a href="https://istio.io/v1.20/docs/reference/config/networking/sidecar/#WorkloadSelector" target="_blank" rel="noopener">selector</a> field specifies the target of the policy.</p>
 </li>
 <li>
-<p>The <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#AuthorizationPolicy-Action">action</a> field specifies whether to allow or deny the request.</p>
+<p>The <a href="https://istio.io/v1.20/docs/reference/config/security/authorization-policy/#AuthorizationPolicy-Action" target="_blank" rel="noopener">action</a> field specifies whether to allow or deny the request.</p>
 </li>
 <li>
-<p>The <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#Rule">rules</a> specify when to trigger the action</p>
+<p>The <a href="https://istio.io/v1.20/docs/reference/config/security/authorization-policy/#Rule" target="_blank" rel="noopener">rules</a> specify when to trigger the action</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1073,7 +1073,7 @@ spec:
 </ul>
 </div>
 <div class="paragraph">
-<p>We will be creating this kind of manifest during the following labs, so in case you have any doubt, please feel free to ask. I also recommend to have a look at the <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/">official documentation</a>.</p>
+<p>We will be creating this kind of manifest during the following labs, so in case you have any doubt, please feel free to ask. I also recommend to have a look at the <a href="https://istio.io/v1.20/docs/reference/config/security/authorization-policy/" target="_blank" rel="noopener">official documentation</a>.</p>
 </div>
 </div>
 </div>
@@ -1096,7 +1096,7 @@ spec: {}</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>As per <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#AuthorizationPolicy">doc</a>, the above means:</p>
+<p>As per <a href="https://istio.io/v1.20/docs/reference/config/security/authorization-policy/#AuthorizationPolicy" target="_blank" rel="noopener">doc</a>, the above means:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1151,10 +1151,10 @@ authorizationpolicy.security.istio.io/deny-all-in-ns created</pre>
 <p>We will do so by enabling access only from the identity of your dedicated ingress <code>Gateway</code> as a valid <code>principal</code>. But&#8230;&#8203; where is that identity coming from? How do I know it?</p>
 </div>
 <div class="paragraph">
-<p>The answer is that in the Kubernetes world, <a href="https://istio.io/v1.6/docs/concepts/security/#istio-identity">Istio uses an identity</a> associated to each <code>ServiceAccount</code>. Remember that we must have mTLS enabled, so for each caller service, there will be a client certificate present.</p>
+<p>The answer is that in the Kubernetes world, <a href="https://istio.io/v1.20/docs/concepts/security/#istio-identity" target="_blank" rel="noopener">Istio uses an identity</a> associated to each <code>ServiceAccount</code>. Remember that we must have mTLS enabled, so for each caller service, there will be a client certificate present.</p>
 </div>
 <div class="paragraph">
-<p>To better understand it, we will set the <code>rbac</code> log level to debug in our <code>productpage</code> pod and determine what is the value coming in the <code>source.principal</code> attribute (which is the attribute that is used to be checked as principal, according to the <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#Source">docs</a>)</p>
+<p>To better understand it, we will set the <code>rbac</code> log level to debug in our <code>productpage</code> pod and determine what is the value coming in the <code>source.principal</code> attribute (which is the attribute that is used to be checked as principal, according to the <a href="https://istio.io/v1.20/docs/reference/config/security/authorization-policy/#Source" target="_blank" rel="noopener">docs</a>)</p>
 </div>
 <div class="paragraph">
 <p>Run the following command to set the proper rbac log level:</p>
@@ -1733,7 +1733,7 @@ requestauthentication.security.istio.io/dsanchor-ingress-request-authentication 
 <p>If you test the application again it should still work, even though we have not provide any token. And that is because when requests carry no token, they are accepted by default. To reject requests without tokens, provide authorization rules that specify the restrictions for specific operations, for example paths or actions. And that&#8217;s what will do next.</p>
 </div>
 <div class="paragraph">
-<p>Create a simple <code>AuthorizationPolicy</code> that forces the request to contain a valid <code>requestPrincipal</code> (just to avoid confusions with previous labs, it is important to mention that we used <code>principals</code> when using workload-to-workload authentication and for this next lab, we will use <code>requestPrincipals</code>. More details can be found <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#Source">here</a>).</p>
+<p>Create a simple <code>AuthorizationPolicy</code> that forces the request to contain a valid <code>requestPrincipal</code> (just to avoid confusions with previous labs, it is important to mention that we used <code>principals</code> when using workload-to-workload authentication and for this next lab, we will use <code>requestPrincipals</code>. More details can be found <a href="https://istio.io/v1.20/docs/reference/config/security/authorization-policy/#Source" target="_blank" rel="noopener">here</a>).</p>
 </div>
 <div class="paragraph">
 <p>Execute:</p>
@@ -1828,7 +1828,7 @@ serviceentry.networking.istio.io/oauth2-googleapis created</pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-There were some basic objects created that you are familiar to as in any regular OCP+Mesh application deployment: <code>Service</code>, <code>Deployment</code>, <code>VirtualService</code> and <code>DestinationRule</code>. Then, there are two <code>ServiceEntries</code> that have been created in order to allow access to external resources which are Google&#8217;s related. This is because we have restricted the access to any external resource from within the <code>Service Mesh</code> (as we are in the Security Workshop, we would like to have certain control to which external resources are consumed). To achieve this goal, we configured our <code>ServiceMeshControlPlane</code> with a <code>REGISTRY_ONLY</code> <code>outboutTrafficPolicy</code> <a href="https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/">mode</a>. Feel free to have a look at the configuration and the <code>ServiceEntries</code> as well.
+There were some basic objects created that you are familiar to as in any regular OCP+Mesh application deployment: <code>Service</code>, <code>Deployment</code>, <code>VirtualService</code> and <code>DestinationRule</code>. Then, there are two <code>ServiceEntries</code> that have been created in order to allow access to external resources which are Google&#8217;s related. This is because we have restricted the access to any external resource from within the <code>Service Mesh</code> (as we are in the Security Workshop, we would like to have certain control to which external resources are consumed). To achieve this goal, we configured our <code>ServiceMeshControlPlane</code> with a <code>REGISTRY_ONLY</code> <code>outboutTrafficPolicy</code> <a href="https://istio.io/v1.20/docs/reference/config/istio.mesh.v1alpha1/" target="_blank" rel="noopener">mode</a>. Feel free to have a look at the configuration and the <code>ServiceEntries</code> as well.
 </td>
 </tr>
 </table>

@@ -275,13 +275,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="https://istio.io/v1.6/docs/reference/config/networking/sidecar/#WorkloadSelector">selector</a> field specifies the target of the policy.</p>
+<p>The {istio_doc}/reference/config/networking/sidecar/#WorkloadSelector[selector,window=_blank] field specifies the target of the policy.</p>
 </li>
 <li>
-<p>The <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#AuthorizationPolicy-Action">action</a> field specifies whether to allow or deny the request.</p>
+<p>The {istio_doc}/reference/config/security/authorization-policy/#AuthorizationPolicy-Action[action,window=_blank] field specifies whether to allow or deny the request.</p>
 </li>
 <li>
-<p>The <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#Rule">rules</a> specify when to trigger the action</p>
+<p>The {istio_doc}/reference/config/security/authorization-policy/#Rule[rules,window=_blank] specify when to trigger the action</p>
 <div class="ulist">
 <ul>
 <li>
@@ -299,7 +299,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>We will be creating this kind of manifest during the following labs, so in case you have any doubt, please feel free to ask. I also recommend to have a look at the <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/">official documentation</a>.</p>
+<p>We will be creating this kind of manifest during the following labs, so in case you have any doubt, please feel free to ask. I also recommend to have a look at the {istio_doc}/reference/config/security/authorization-policy/[official documentation,window=_blank].</p>
 </div>
 </div>
 </div>
@@ -322,7 +322,7 @@ spec: {}</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>As per <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#AuthorizationPolicy">doc</a>, the above means:</p>
+<p>As per {istio_doc}/reference/config/security/authorization-policy/#AuthorizationPolicy[doc,window=_blank], the above means:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -377,10 +377,10 @@ authorizationpolicy.security.istio.io/deny-all-in-ns created</pre>
 <p>We will do so by enabling access only from the identity of your dedicated ingress <code>Gateway</code> as a valid <code>principal</code>. But&#8230;&#8203; where is that identity coming from? How do I know it?</p>
 </div>
 <div class="paragraph">
-<p>The answer is that in the Kubernetes world, <a href="https://istio.io/v1.6/docs/concepts/security/#istio-identity">Istio uses an identity</a> associated to each <code>ServiceAccount</code>. Remember that we must have mTLS enabled, so for each caller service, there will be a client certificate present.</p>
+<p>The answer is that in the Kubernetes world, {istio_doc}/concepts/security/#istio-identity[Istio uses an identity,window=_blank] associated to each <code>ServiceAccount</code>. Remember that we must have mTLS enabled, so for each caller service, there will be a client certificate present.</p>
 </div>
 <div class="paragraph">
-<p>To better understand it, we will set the <code>rbac</code> log level to debug in our <code>productpage</code> pod and determine what is the value coming in the <code>source.principal</code> attribute (which is the attribute that is used to be checked as principal, according to the <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#Source">docs</a>)</p>
+<p>To better understand it, we will set the <code>rbac</code> log level to debug in our <code>productpage</code> pod and determine what is the value coming in the <code>source.principal</code> attribute (which is the attribute that is used to be checked as principal, according to the {istio_doc}/reference/config/security/authorization-policy/#Source[docs,window=_blank])</p>
 </div>
 <div class="paragraph">
 <p>Run the following command to set the proper rbac log level:</p>

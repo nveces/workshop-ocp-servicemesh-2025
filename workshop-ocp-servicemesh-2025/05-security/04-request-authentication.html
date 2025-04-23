@@ -474,7 +474,7 @@ requestauthentication.security.istio.io/dsanchor-ingress-request-authentication 
 <p>If you test the application again it should still work, even though we have not provide any token. And that is because when requests carry no token, they are accepted by default. To reject requests without tokens, provide authorization rules that specify the restrictions for specific operations, for example paths or actions. And that&#8217;s what will do next.</p>
 </div>
 <div class="paragraph">
-<p>Create a simple <code>AuthorizationPolicy</code> that forces the request to contain a valid <code>requestPrincipal</code> (just to avoid confusions with previous labs, it is important to mention that we used <code>principals</code> when using workload-to-workload authentication and for this next lab, we will use <code>requestPrincipals</code>. More details can be found <a href="https://istio.io/v1.6/docs/reference/config/security/authorization-policy/#Source">here</a>).</p>
+<p>Create a simple <code>AuthorizationPolicy</code> that forces the request to contain a valid <code>requestPrincipal</code> (just to avoid confusions with previous labs, it is important to mention that we used <code>principals</code> when using workload-to-workload authentication and for this next lab, we will use <code>requestPrincipals</code>. More details can be found {istio_doc}/reference/config/security/authorization-policy/#Source[here,window=_blank]).</p>
 </div>
 <div class="paragraph">
 <p>Execute:</p>
