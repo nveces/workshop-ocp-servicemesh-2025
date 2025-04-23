@@ -67,6 +67,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#_platform">Platform</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#_openshift_cheat_sheet">OpenShift Cheat Sheet</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -428,6 +431,107 @@ These steps have already been completed by the instructor team.
 </td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_openshift_cheat_sheet"><a class="anchor" href="#_openshift_cheat_sheet"></a>3. OpenShift Cheat Sheet</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To view its API documentation without accessing the internet, examples:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc api-resources
+oc api-resources | grep deployment
+oc api-resources | head -n 5
+oc api-resources --verbs=list --namespaced -o name</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>More examples:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc api-resources | grep "maistra"
+oc api-resources --api-group="authentication.maistra.io" --sort-by=name -o wide
+oc api-resources --api-group="federation.maistra.io"     --sort-by=name -o wide
+oc api-resources --api-group="maistra.io"                --sort-by=name -o wide
+oc api-resources --api-group="rbac.maistra.io"           --sort-by=name -o wide</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc api-resources | grep -i "istio"
+oc api-resources --api-group="networking.istio.io"  --sort-by=name -o wide</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To view your API versions, type:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc api-versions
+oc api-versions | grep "maistra"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Explore the APIs</strong>. To view the contents of an API in detail, use:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc explain</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="title">Explore the <strong>maistra</strong> API resources.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc explain --api-version="authentication.maistra.io/v1"  servicemeshpolicies.spec
+oc explain --api-version="federation.maistra.io/v1"      exportedservicesets.spec
+oc explain --api-version="federation.maistra.io/v1"      importedservicesets.spec
+oc explain --api-version="federation.maistra.io/v1"      servicemeshpeers.spec
+oc explain --api-version="maistra.io/v2"                 servicemeshcontrolplanes.spec
+oc explain --api-version="maistra.io/v2"                 servicemeshcontrolplanes.spec.gateways
+oc explain --api-version="maistra.io/v1"                 servicemeshmemberrolls.spec
+oc explain --api-version="maistra.io/v1"                 servicemeshmembers.spec
+oc explain --api-version="rbac.maistra.io/v1"            servicemeshrbacconfigs.spec</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="title">Explore the <strong>maistra</strong> API resources.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc explain --api-version="extensions.istio.io/v1alpha1"   wasmplugins.spec
+oc explain --api-version="networking.istio.io/v1beta1"    destinationrules.spec
+oc explain --api-version="networking.istio.io/v1alpha3"   envoyfilters.spec
+oc explain --api-version="networking.istio.io/v1beta1"    gateways.spec
+oc explain --api-version="networking.istio.io/v1beta1"    proxyconfigs.spec
+oc explain --api-version="networking.istio.io/v1beta1"    serviceentries.spec
+oc explain --api-version="networking.istio.io/v1beta1"    sidecars.spec
+oc explain --api-version="networking.istio.io/v1beta1"    virtualservices.spec
+oc explain --api-version="networking.istio.io/v1beta1"    workloadentries.spec
+oc explain --api-version="networking.istio.io/v1beta1"    workloadgroups.spec
+oc explain --api-version="operator.openshift.io/v1alpha1" istiocsrs.spec
+oc explain --api-version="security.istio.io/v1"           authorizationpolicies.spec
+oc explain --api-version="security.istio.io/v1beta1"      peerauthentications.spec
+oc explain --api-version="security.istio.io/v1"           requestauthentications.spec
+oc explain --api-version="telemetry.istio.io/v1alpha1"    telemetries.spec</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>References:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.redhat.com/en/blog/openshift-api" class="bare" target="_blank" rel="noopener">https://www.redhat.com/en/blog/openshift-api</a></p>
+</li>
+<li>
+<p><a href="https://developers.redhat.com/cheat-sheets/openshift-command-line-essentials-cheat-sheet" class="bare" target="_blank" rel="noopener">https://developers.redhat.com/cheat-sheets/openshift-command-line-essentials-cheat-sheet</a></p>
+</li>
+<li>
+<p><a href="https://developers.redhat.com/cheat-sheets/red-hat-openshift-container-platform" class="bare" target="_blank" rel="noopener">https://developers.redhat.com/cheat-sheets/red-hat-openshift-container-platform</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
