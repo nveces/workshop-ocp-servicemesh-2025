@@ -1727,7 +1727,7 @@ spec:
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ oc process -f $LABS_HOME/lab4/request-authentication.yaml -p INGRESS_GW=$INGRESS_GW OIDC_ISSUER_URL=https://accounts.google.com OIDC_JWKS_URI=https://www.googleapis.com/oauth2/v3/certs -n istio-system | oc apply -f - -n istio-system
+<pre>$ oc process -f $LABS_HOME/lab4/request-authentication.yaml -p INGRESS_GW=$INGRESS_GW OIDC_ISSUER_URL=https://accounts.google.com OIDC_JWKS_URI=https://www.googleapis.com/oauth2/v3/certs -n istio-system | oc apply -n istio-system -f -
 
 requestauthentication.security.istio.io/dsanchor-ingress-request-authentication created</pre>
 </div>
@@ -1743,7 +1743,7 @@ requestauthentication.security.istio.io/dsanchor-ingress-request-authentication 
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ oc process -f $LABS_HOME/lab4/simple-auth-policy.yaml -p INGRESS_GW=$INGRESS_GW -n istio-system | oc apply -f - -n istio-system
+<pre>$ oc process -f $LABS_HOME/lab4/simple-auth-policy.yaml -p INGRESS_GW=$INGRESS_GW -n istio-system | oc apply -n istio-system -f -
 
 authorizationpolicy.security.istio.io/dsanchor-ingress-policy created</pre>
 </div>

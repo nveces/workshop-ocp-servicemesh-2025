@@ -312,7 +312,7 @@
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 05-secure-ingress-traffic-troubleshooting/00-jump-app-golang-route.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n istio-system</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 05-secure-ingress-traffic-troubleshooting/00-jump-app-golang-route.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n istio-system -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -335,7 +335,7 @@
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 05-secure-ingress-traffic-troubleshooting/01-jump-app-golang-gw.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 05-secure-ingress-traffic-troubleshooting/01-jump-app-golang-gw.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -560,7 +560,7 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 05-secure-ingress-traffic-troubleshooting/02-jump-app-sec-services.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 05-secure-ingress-traffic-troubleshooting/02-jump-app-sec-services.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">

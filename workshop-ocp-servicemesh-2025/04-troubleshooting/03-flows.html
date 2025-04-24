@@ -281,7 +281,7 @@
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/04-jump-app-ns-smr.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/04-jump-app-ns-smr.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -345,7 +345,7 @@
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/00-jump-app-gws.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/00-jump-app-gws.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -365,7 +365,7 @@
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/01-jump-app-vss.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/01-jump-app-vss.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -385,7 +385,7 @@
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/02-jump-app-drs.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/02-jump-app-drs.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -405,7 +405,7 @@
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/03-jump-app-services.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/03-jump-app-services.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -519,7 +519,7 @@
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/05-jump-app-routes.yaml --param-file=params.env --ignore-unknown-parameters | oc create -f - -n istio-system</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/05-jump-app-routes.yaml --param-file=params.env --ignore-unknown-parameters | oc create -n istio-system -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">

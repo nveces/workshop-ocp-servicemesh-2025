@@ -707,7 +707,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/04-jump-app-ns-smr.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/04-jump-app-ns-smr.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -771,7 +771,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/00-jump-app-gws.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/00-jump-app-gws.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -791,7 +791,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/01-jump-app-vss.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/01-jump-app-vss.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -811,7 +811,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/02-jump-app-drs.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/02-jump-app-drs.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -831,7 +831,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/03-jump-app-services.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/03-jump-app-services.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -945,7 +945,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/05-jump-app-routes.yaml --param-file=params.env --ignore-unknown-parameters | oc create -f - -n istio-system</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 03-jump-app-flows/05-jump-app-routes.yaml --param-file=params.env --ignore-unknown-parameters | oc create -n istio-system -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -1146,7 +1146,7 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 04-ingress-traffic-troubleshooting/00-jump-app-ingress-customization.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 04-ingress-traffic-troubleshooting/00-jump-app-ingress-customization.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -1157,7 +1157,7 @@ You will use <em>OC client</em>, <em>curl</em> and <em>Kiali</em> as the main tr
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 04-ingress-traffic-troubleshooting/01-jump-app-back-golang-svc.yaml --param-file=params.env --ignore-unknown-parameters | oc delete -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 04-ingress-traffic-troubleshooting/01-jump-app-back-golang-svc.yaml --param-file=params.env --ignore-unknown-parameters | oc delete -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -1506,7 +1506,7 @@ At this time, you obtain <em>"Could not resolve host: back-golang.user1-namespac
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 04-ingress-traffic-troubleshooting/01-jump-app-back-golang-svc.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 04-ingress-traffic-troubleshooting/01-jump-app-back-golang-svc.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -1881,7 +1881,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 05-secure-ingress-traffic-troubleshooting/00-jump-app-golang-route.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n istio-system</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 05-secure-ingress-traffic-troubleshooting/00-jump-app-golang-route.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n istio-system -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -1904,7 +1904,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 05-secure-ingress-traffic-troubleshooting/01-jump-app-golang-gw.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 05-secure-ingress-traffic-troubleshooting/01-jump-app-golang-gw.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -2129,7 +2129,7 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 05-secure-ingress-traffic-troubleshooting/02-jump-app-sec-services.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 05-secure-ingress-traffic-troubleshooting/02-jump-app-sec-services.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -2639,7 +2639,7 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 06-secure-egress-traffic-troubleshooting/00-nginx-svc-pod.yml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE-mesh-external</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 06-secure-egress-traffic-troubleshooting/00-nginx-svc-pod.yml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE-mesh-external -f -</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2762,7 +2762,7 @@ oc create -n $USER_NAMESPACE secret tls nginx-client-certs --key client.example.
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 06-secure-egress-traffic-troubleshooting/01-jump-app-sleep-svc-pod.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 06-secure-egress-traffic-troubleshooting/01-jump-app-sleep-svc-pod.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2869,7 +2869,7 @@ You have deployed a nginx mTLS service and you are receiving a <em>400 Bad Reque
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 06-secure-egress-traffic-troubleshooting/02-jump-app-egress-gw-dr.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 06-secure-egress-traffic-troubleshooting/02-jump-app-egress-gw-dr.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2912,7 +2912,7 @@ You have deployed a nginx mTLS service and you are receiving a <em>400 Bad Reque
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 06-secure-egress-traffic-troubleshooting/03-istio-system-dr-sds.yml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n istio-system</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 06-secure-egress-traffic-troubleshooting/03-istio-system-dr-sds.yml --param-file=params.env --ignore-unknown-parameters | oc apply -n istio-system -f -</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2995,7 +2995,7 @@ oc exec -it $POD -c sleep -- curl -v <a href="http://my-nginx.$USER_NAMESPACE-me
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 07-troubleshooting-tools/00-jump-app-delay.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n $USER_NAMESPACE</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f 07-troubleshooting-tools/00-jump-app-delay.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n $USER_NAMESPACE -f -</code></pre>
 </div>
 </div>
 <div class="paragraph">
