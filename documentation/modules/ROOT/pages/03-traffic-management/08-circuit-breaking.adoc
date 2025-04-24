@@ -104,7 +104,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 ----
 
 .Fortio with 4 connections
-03-traffic-management/fortio-4-30.png[]
+image::03-traffic-management/fortio-4-30.png[link=../_images/03-traffic-management/fortio-4-30.png,window=_blank]
 
 If you query the `istio-proxy` stats, you can see how many requests were flagged for circuit breaking:
 
