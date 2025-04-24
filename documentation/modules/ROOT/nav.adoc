@@ -41,8 +41,7 @@ include::./pages/_document-vars.adoc[]
 ** xref:03-traffic-management/index.adoc#_lab_5_requests_timeouts[Lab 5 - Requests Timeouts]
 ** xref:03-traffic-management/index.adoc#_lab_6_circuit_breaking[Lab 6 - Circuit Breaking]
 ** xref:03-traffic-management/index.adoc#_lab_7_mirroring_and_dark_launches[Lab 7 - Mirroring and Dark Launches]
-** xref:03-traffic-management/index.adoc#_lab_0_warming_up[Lab 0 - Warming up]
-
+** xref:03-traffic-management/index.adoc#_lab_8_egress_gateways[Lab 8 - Egress Gateways]
 
 * xref:04-troubleshooting/index.adoc[5. Troubleshooting - Labs]
 ** xref:04-troubleshooting/index.adoc#_lab_1_setup[Lab 1 - Setup]
