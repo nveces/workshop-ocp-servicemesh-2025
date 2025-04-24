@@ -433,9 +433,11 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load -c 4 -qps 0 -n 30 -loglevel Warning http://httpbin:9080/get</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Fortio with 4 connections</div>
-<p>03-traffic-management/fortio-4-30.png[]</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/03-traffic-management/fortio-4-30.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/fortio-4-30.png" alt="fortio 4 30"></a>
+</div>
+<div class="title">Figure 4. Fortio with 4 connections</div>
 </div>
 <div class="paragraph">
 <p>If you query the <code>istio-proxy</code> stats, you can see how many requests were flagged for circuit breaking:</p>
@@ -452,7 +454,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${FORTIO_POD} -c fortio -- /usr/bin/fortio load 
 <div class="content">
 <a class="image" href="../_images/03-traffic-management/envoy-stats.png" target="_blank" rel="noopener"><img src="../_images/03-traffic-management/envoy-stats.png" alt="envoy stats"></a>
 </div>
-<div class="title">Figure 4. Overflow requests</div>
+<div class="title">Figure 5. Overflow requests</div>
 </div>
 <div class="paragraph">
 <p>Notice that the stats are grouped by the subsets defined in the {dr}.</p>
