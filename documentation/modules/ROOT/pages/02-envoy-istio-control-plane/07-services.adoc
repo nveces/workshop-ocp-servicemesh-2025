@@ -77,7 +77,7 @@ Please, modify existing frontend *route* object executing the following command:
 [.console-input]
 [source,input,subs="+macros,+attributes"]
 ----
-oc process -f 07-istio-sds/01-jump-app-front-route.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n istio-system
+oc process -f 07-istio-sds/01-jump-app-front-route.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n istio-system -f -
 ----
 
 .Front Route Modified

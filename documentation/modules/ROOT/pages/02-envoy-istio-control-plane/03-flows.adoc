@@ -183,7 +183,7 @@ Please, create new *routes* in **istio-system** namespace through the respective
 [.console-input]
 [source,input,subs="+macros,+attributes"]
 ----
-oc process -f 03-jump-app-flows/04-jump-app-routes.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -f - -n istio-system
+oc process -f 03-jump-app-flows/04-jump-app-routes.yaml --param-file=params.env --ignore-unknown-parameters | oc apply -n istio-system -f -
 ----
 
 .Mesh Routes Created
