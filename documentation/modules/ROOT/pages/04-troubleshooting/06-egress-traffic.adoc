@@ -126,7 +126,7 @@ image:04-troubleshooting/jump-app-mesh-external-nginx-pods-ok.png[link=../_image
 [source,input,subs="+macros,+attributes"]
 ----
 oc project $USER_NAMESPACE-mesh-external
-POD=$(oc get po -l run=my-nginx -o jsonpath='{.items[0].metadata.name}')
+POD=$(oc get pod -l run=my-nginx -o jsonpath='{.items[0].metadata.name}')
 oc rsh $POD curl https://localhost:443 -k -v
 ----
 
