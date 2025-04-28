@@ -448,7 +448,7 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc project $USER_NAMESPACE-mesh-external
-POD=$(oc get po -l run=my-nginx -o jsonpath='{.items[0].metadata.name}')
+POD=$(oc get pod -l run=my-nginx -o jsonpath='{.items[0].metadata.name}')
 oc rsh $POD curl <a href="https://localhost:443" class="bare">https://localhost:443</a> -k -v</code></pre>
 </div>
 </div>

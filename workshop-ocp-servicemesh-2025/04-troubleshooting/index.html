@@ -2777,7 +2777,7 @@ oc create -n $USER_NAMESPACE-mesh-external secret tls nginx-server-certs --key m
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc project $USER_NAMESPACE-mesh-external
-POD=$(oc get po -l run=my-nginx -o jsonpath='{.items[0].metadata.name}')
+POD=$(oc get pod -l run=my-nginx -o jsonpath='{.items[0].metadata.name}')
 oc rsh $POD curl <a href="https://localhost:443" class="bare">https://localhost:443</a> -k -v</code></pre>
 </div>
 </div>
@@ -3055,6 +3055,27 @@ oc exec -it $POD -c sleep -- curl -v <a href="http://my-nginx.$USER_NAMESPACE-me
 <div class="sect1">
 <h2 id="07-jaeger"><a class="anchor" href="#07-jaeger"></a>1. See traces in Jaeger</h2>
 <div class="sectionbody">
+<details>
+<summary class="title">Warning: Distributed tracing plarform (Jaeger)</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/tracing-jaeger-01.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/tracing-jaeger-01.png" alt="tracing jaeger 01"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Source: <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/distributed_tracing/distributed-tracing-platform-jaeger#dist-tracing-jaeger-installing" class="bare" target="_blank" rel="noopener">https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/distributed_tracing/distributed-tracing-platform-jaeger#dist-tracing-jaeger-installing</a></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/tracing-jaeger-02.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/tracing-jaeger-02.png" alt="tracing jaeger 02"></a>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/distributed_tracing/distributed-tracing-platform-tempo" class="bare" target="_blank" rel="noopener">https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/distributed_tracing/distributed-tracing-platform-tempo</a></p>
+</div>
+</div>
+</details>
 <div class="paragraph">
 <p>Distributed tracing is a technique that is used to tie the information about different units of work together—usually executed in different processes or hosts—in order to understand a whole chain of events in a distributed transaction. Distributed tracing lets developers visualize call flows in large service oriented architectures. It can be invaluable in understanding serialization, parallelism, and sources of latency.</p>
 </div>
