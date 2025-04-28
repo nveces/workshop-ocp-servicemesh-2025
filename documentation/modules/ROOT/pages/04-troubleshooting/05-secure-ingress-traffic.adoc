@@ -106,7 +106,7 @@ image::04-troubleshooting/ocp-routers-pods.png[link=../_images/04-troubleshootin
 [source,input,subs="+macros,+attributes"]
 ----
 oc project openshift-ingress
-POD=$(oc get po -o jsonpath='{.items[0].metadata.name}' -n openshift-ingress)
+POD=$(oc get pod -o jsonpath='{.items[0].metadata.name}' -n openshift-ingress)
 oc rsh $POD
 ----
 
