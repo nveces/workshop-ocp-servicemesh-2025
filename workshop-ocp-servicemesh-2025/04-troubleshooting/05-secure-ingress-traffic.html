@@ -540,6 +540,24 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 <div class="paragraph">
 <p>If you take a look at the <em>target port</em> closely, you can find <em>http2</em>. In order to support passthrough routes and connect with <em>Ingress Gateway</em> secure ports, it is required define a secured port. Please, <em>edit route</em>, define <em>https</em> as target port and click on <strong>[ SAVE ]</strong>.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-gw-fixed-01.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-gw-fixed-01.png" alt="jump app trou 05 gw fixed 01"></a>
+</div>
+<div class="title">Figure 13. Edit the route</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-gw-fixed-02.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-gw-fixed-02.png" alt="jump app trou 05 gw fixed 02"></a>
+</div>
+<div class="title">Figure 14. Change to https secure port</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-gw-fixed-03.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-gw-fixed-03.png" alt="jump app trou 05 gw fixed 03"></a>
+</div>
+<div class="title">Figure 15. Save the route</div>
+</div>
 </div>
 </div>
 </div>
@@ -570,7 +588,7 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-padr.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-padr.png" alt="jump app trou 05 padr"></a>
 </div>
-<div class="title">Figure 13. PeerAuthentication and Destination Rule created</div>
+<div class="title">Figure 16. PeerAuthentication and Destination Rule created</div>
 </div>
 </div>
 <div class="sect2">
@@ -594,7 +612,7 @@ Note that the <em>Ingress Gateway</em> is exposing back-golang service properly.
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></a>
 </div>
-<div class="title">Figure 14. Istio ControlPlane Pods</div>
+<div class="title">Figure 17. Istio ControlPlane Pods</div>
 </div>
 <div class="ulist">
 <ul>
@@ -626,7 +644,7 @@ oc rsh $POD</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv.png" alt="jump app trou 05 k8ssrv"></a>
 </div>
-<div class="title">Figure 15. HTTP Response <em>Connection reset by peer</em></div>
+<div class="title">Figure 18. HTTP Response <em>Connection reset by peer</em></div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -666,7 +684,7 @@ oc extract secret/istio-ca-secret --to=. -n istio-system</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp-istio-ca-certs.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-ca-certs.png" alt="ocp istio ca certs"></a>
 </div>
-<div class="title">Figure 16. Istio CA Certs</div>
+<div class="title">Figure 19. Istio CA Certs</div>
 </div>
 <div class="ulist">
 <ul>
@@ -713,7 +731,7 @@ EOF</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp-istio-gen-cert-req.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-gen-cert-req.png" alt="ocp istio gen cert req"></a>
 </div>
-<div class="title">Figure 17. New Certificate Request</div>
+<div class="title">Figure 20. New Certificate Request</div>
 </div>
 <div class="ulist">
 <ul>
@@ -731,7 +749,7 @@ EOF</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp-istio-gen-cert.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-gen-cert.png" alt="ocp istio gen cert"></a>
 </div>
-<div class="title">Figure 18. New Istio CA signed Certificate</div>
+<div class="title">Figure 21. New Istio CA signed Certificate</div>
 </div>
 <div class="ulist">
 <ul>
@@ -749,7 +767,7 @@ EOF</code></pre>
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/ocp-istio-controlplane-pods.png" alt="ocp istio controlplane pods"></a>
 </div>
-<div class="title">Figure 19. Istio ControlPlane Pods</div>
+<div class="title">Figure 22. Istio ControlPlane Pods</div>
 </div>
 <div class="ulist">
 <ul>
@@ -800,7 +818,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert.png" alt="jump app trou 05 k8ssrv cert"></a>
 </div>
-<div class="title">Figure 20. HTTP Response <em>Certificate required</em></div>
+<div class="title">Figure 23. HTTP Response <em>Certificate required</em></div>
 </div>
 <div class="ulist">
 <ul>
@@ -818,7 +836,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-trou-05-k8ssrv-cert-ok.png" alt="jump app trou 05 k8ssrv cert ok"></a>
 </div>
-<div class="title">Figure 21. HTTP Response 200</div>
+<div class="title">Figure 24. HTTP Response 200</div>
 </div>
 </div>
 </div>
@@ -845,7 +863,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-pods-2-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-pods-2-ok.png" alt="jump app pods 2 ok"></a>
 </div>
-<div class="title">Figure 22. Jump App Pods Mesh</div>
+<div class="title">Figure 25. Jump App Pods Mesh</div>
 </div>
 <div class="ulist">
 <ul>
@@ -863,7 +881,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-get-routes-mesh-ok.png" alt="jump app get routes mesh ok"></a>
 </div>
-<div class="title">Figure 23. Jump App Routes</div>
+<div class="title">Figure 26. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -876,7 +894,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-back-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-back-ok.png" alt="jump app back ok"></a>
 </div>
-<div class="title">Figure 24. Jump App Back</div>
+<div class="title">Figure 27. Jump App Back</div>
 </div>
 <div class="ulist">
 <ul>
@@ -894,7 +912,7 @@ cd /var/run/secrets/workload-spiffe-credentials/tmp/&lt;user_namespace&gt;</code
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-front-jumps-ok.png" alt="jump app front jumps ok"></a>
 </div>
-<div class="title">Figure 25. Jump App Front Web UI Multi Jumps</div>
+<div class="title">Figure 28. Jump App Front Web UI Multi Jumps</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -912,7 +930,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/certs_warning.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/certs_warning.png" alt="certs warning" width="50%"></a>
 </div>
-<div class="title">Figure 26. Openshift Self-signed Certificates Warning</div>
+<div class="title">Figure 29. Openshift Self-signed Certificates Warning</div>
 </div>
 </div>
 </div>
@@ -926,7 +944,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <a class="image" href="../_images/04-troubleshooting/jump-app-kiali.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/jump-app-kiali.png" alt="jump app kiali"></a>
 </div>
-<div class="title">Figure 27. Kiali Console</div>
+<div class="title">Figure 30. Kiali Console</div>
 </div>
 </div>
 </div>

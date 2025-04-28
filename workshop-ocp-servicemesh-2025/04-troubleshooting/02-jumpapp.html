@@ -253,11 +253,12 @@
 <ul class="sectlevel1">
 <li><a href="#_deploy_jump_app_microservices">1. Deploy <em>Jump App</em> Microservices</a>
 <ul class="sectlevel2">
-<li><a href="#login">1.1. Login in Openshift</a></li>
-<li><a href="#github">1.2. Clone GitHub Repository</a></li>
-<li><a href="#jumpappobjects">1.3. Create <em>Jump App</em> Objects in Openshift</a></li>
-<li><a href="#test">1.4. Confirm that <em>Jump App</em> is already running in Openshift</a></li>
-<li><a href="#testapp">1.5. Access to <em>Jump App</em></a></li>
+<li><a href="#resetapp">1.1. Reset <em>Jump App</em> Application</a></li>
+<li><a href="#login">1.2. Login in Openshift</a></li>
+<li><a href="#github">1.3. Clone GitHub Repository</a></li>
+<li><a href="#jumpappobjects">1.4. Create <em>Jump App</em> Objects in Openshift</a></li>
+<li><a href="#test">1.5. Confirm that <em>Jump App</em> is already running in Openshift</a></li>
+<li><a href="#testapp">1.6. Access to <em>Jump App</em></a></li>
 </ul>
 </li>
 </ul>
@@ -271,8 +272,42 @@
 <div class="paragraph">
 <p>First of all, it is required to deploy Jump App application in Openshift in order to have the demo application environment ready. The following steps in this section helps you to deploy <em>Jump App</em>.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you realized the previous lab, you should have already deployed the <em>Jump App</em> application. In this case, you can skip this stop and go to the next one <a href="index.html#resetapp" class="xref page">Reset Jump App</a>.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
-<h3 id="login"><a class="anchor" href="#login"></a>1.1. Login in Openshift</h3>
+<h3 id="resetapp"><a class="anchor" href="#resetapp"></a>1.1. Reset <em>Jump App</em> Application</h3>
+<div class="paragraph">
+<p>If you want to reset the <em>Jump App</em> application, you can do it by following the next steps:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc delete all,virtualservices,destinationrules,gateways,ServiceMeshMember,EnvoyFilter,ServiceEntry --all -n &lt;usernamespace&gt;
+oc delete route back-golang-&lt;usernamespace&gt; -n istio-system
+oc delete route front-javascript-&lt;usernamespace&gt; -n istio-system
+oc delete secret &lt;usernamespace&gt;-credential  -n istio-system</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Navigate to the new folder created in your system for completing all tasks included in this tutorial:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-04</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="login"><a class="anchor" href="#login"></a>1.2. Login in Openshift</h3>
 <div class="listingblock lines_space console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u $USER -p $PASS $OCP_API</code></pre>
@@ -286,7 +321,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="github"><a class="anchor" href="#github"></a>1.2. Clone GitHub Repository</h3>
+<h3 id="github"><a class="anchor" href="#github"></a>1.3. Clone GitHub Repository</h3>
 <div class="paragraph">
 <p><em>Jump App GitOps</em> is one of a set of repositories developed to generate a microservice based application, named Jump App. This repository includes an automated way of deploying Jump App&#8217;s microservices and all stuff around this application (Deployments, Services, Build Configs, Pipelines, etc), including optionally CI/CD or Service Mesh objects as well.</p>
 </div>
@@ -329,7 +364,7 @@ Resolving deltas: 100% (30/30), done.</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="jumpappobjects"><a class="anchor" href="#jumpappobjects"></a>1.3. Create <em>Jump App</em> Objects in Openshift</h3>
+<h3 id="jumpappobjects"><a class="anchor" href="#jumpappobjects"></a>1.4. Create <em>Jump App</em> Objects in Openshift</h3>
 <div class="paragraph">
 <p>First of all, it is required to modify <em>params.env</em> file to include the parameters provided by the Instructor:</p>
 </div>
@@ -364,7 +399,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </div>
 </div>
 <div class="sect2">
-<h3 id="test"><a class="anchor" href="#test"></a>1.4. Confirm that <em>Jump App</em> is already running in Openshift</h3>
+<h3 id="test"><a class="anchor" href="#test"></a>1.5. Confirm that <em>Jump App</em> is already running in Openshift</h3>
 <div class="paragraph">
 <p>Once <em>Jump App</em> objects have been created in Openshift, it is required to follow the next steps in order to ensure your demo app is running properly:</p>
 </div>
@@ -388,7 +423,7 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 </div>
 </div>
 <div class="sect2">
-<h3 id="testapp"><a class="anchor" href="#testapp"></a>1.5. Access to <em>Jump App</em></h3>
+<h3 id="testapp"><a class="anchor" href="#testapp"></a>1.6. Access to <em>Jump App</em></h3>
 <div class="paragraph">
 <p>Once <em>Jump App</em> is already running in Openshift, it is time to access <em>Jump App</em> public services in order to test the application:</p>
 </div>
