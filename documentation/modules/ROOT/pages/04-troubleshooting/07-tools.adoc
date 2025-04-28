@@ -152,3 +152,27 @@ oc logs -f $POD -c istio-proxy
 You should start seeing http debug logs for that sidecar.
 
 Configuration extends to all proxy sidecars, so if you do a `config_dump` in any sidecar you should get very similar results, but logging is specific for each sidecar, so test watching the logs of another sidecar in your namespace to check that you will not see the http debug logs as in the one you recently modified.
+
+
+Envoy has several endpoints that you can use to check the status of the proxy. You can see all of them by executing the following command:
+
+.Other endpoints
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+curl -v http://localhost:15000/
+curl -v http://localhost:15000/certs
+curl -v http://localhost:15000/clusters
+curl -v http://localhost:15000/contention
+curl -v http://localhost:15000/heap_dump
+curl -v http://localhost:15000/help
+curl -v http://localhost:15000/hot_restart_version
+curl -v http://localhost:15000/memory
+curl -v http://localhost:15000/ready
+curl -v http://localhost:15000/runtime
+curl -v http://localhost:15000/server_info
+curl -v http://localhost:15000/stats_recentlookups
+----
+
+
+// EOF
