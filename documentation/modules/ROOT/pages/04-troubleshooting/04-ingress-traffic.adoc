@@ -159,10 +159,15 @@ oc rsh $POD
 curl -XGET -v --header "Host: back-golang-<user_namespace>.<openshift_apps_domain>" http://istio-ingressgateway.istio-system.svc.cluster.local:80 -v
 ----
 
-.HTTP Response 503
+.HTTP Response 503 returned by curl command
 image::04-troubleshooting/jump-app-trou-04-gw-ok.png[link=../_images/04-troubleshooting/jump-app-trou-04-gw-ok.png,window=_blank]
 
-NOTE: At this time, you obtain a 503 error because the service is unavailable but this host exists and it is reachable
+
+.HTTP Response 503 returned by Firefox browser
+image::04-troubleshooting/jump-app-trou-04-gw-ok-503.png[link=../_images/04-troubleshooting/jump-app-trou-04-gw-ok-503.png,window=_blank]
+
+
+NOTE: At this time, you obtain a *503 error* because the service is unavailable but this host exists and it is reachable
 
 [#04-gateway]
 == Test Ingress Gateway -> Sidecar Connectivity
@@ -246,7 +251,7 @@ oc get pods -n istio-system
 ----
 
 .Istio ControlPlane Pods
-04-troubleshooting/ocp-istio-controlplane-pods.png[]
+image::04-troubleshooting/ocp-istio-controlplane-pods.png[link=../_images/04-troubleshooting/ocp-istio-controlplane-pods.png,window=_blank]
 
 * Connect to the _ingress gateway_ pod
 
@@ -283,12 +288,28 @@ image::04-troubleshooting/jump-app-kiali-trou-04-vs-dr.png[link=../_images/04-tr
 .Kiali Console Virtual Service Error
 image::04-troubleshooting/jump-app-kiali-trou-04-error-vs.png[link=../_images/04-troubleshooting/jump-app-kiali-trou-04-error-vs.png,window=_blank]
 
-If you take a look at the host paths closely you can find a bad definition because of the pattern *"-fail"* included in the path. Please, modify this hostname and click on *[ SAVE ]*.
+.Kiali Console Virtual Service Error
+image::04-troubleshooting/jump-app-kiali-trou-04-error-vs-01.png[link=../_images/04-troubleshooting/jump-app-kiali-trou-04-error-vs-01.png,window=_blank]
+
+IMPORTANT: If you take a look at the host paths closely you can find a bad definition because of the pattern *"-fail"* included in the path. Please, modify this hostname and click on *[ SAVE ]*.
+
+.Kiali Console Virtual Service Fixed
+image::04-troubleshooting/jump-app-kiali-trou-04-fixed-vs.png[link=../_images/04-troubleshooting/jump-app-kiali-trou-04-fixed-vs.png,window=_blank]
+
 
 .Kiali Console Destination Rule Error
 image::04-troubleshooting/jump-app-kiali-trou-04-error-dr.png[link=../_images/04-troubleshooting/jump-app-kiali-trou-04-error-dr.png,window=_blank]
 
-Lastly, if you take a look at the label version you can find a bad definition. Please, replace *fail* with *v1* version and click on *[ SAVE ]*.
+.Kiali Console Destination Rule Error
+image::04-troubleshooting/jump-app-kiali-trou-04-error-dr-01.png[link=../_images/04-troubleshooting/jump-app-kiali-trou-04-error-dr-01.png,window=_blank]
+
+
+IMPORTANT: Lastly, if you take a look at the label version you can find a bad definition. Please, replace *fail* with *v1* version and click on *[ SAVE ]*.
+
+.Kiali Console DestinationRule Fixed
+image::04-troubleshooting/jump-app-kiali-trou-04-fixed-dr-01.png[link=../_images/04-troubleshooting/jump-app-kiali-trou-04-fixed-dr-01.png,window=_blank]
+
+
 
 [#04-gateway-con-again2]
 === Test connectivity again via command line
@@ -350,7 +371,7 @@ oc get pods -n $USER_NAMESPACE
 ----
 
 .Jump App Pods
-image::04-troubleshooting/jump_app_pods.png[link=../_images/04-troubleshooting/jump_app_pods.png,window=_blank]
+image::04-troubleshooting/jump-app-pods-2-ok.png[link=../_images/04-troubleshooting/jump-app-pods-2-ok.png,window=_blank]
 
 * Connect to the _back-golang_ pod
 

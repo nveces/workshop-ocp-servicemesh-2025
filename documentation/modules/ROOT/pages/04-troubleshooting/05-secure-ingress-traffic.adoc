@@ -137,6 +137,17 @@ image::04-troubleshooting/jump-app-ocp-trou-05-error.png[link=../_images/04-trou
 
 If you take a look at the _target port_ closely, you can find _http2_. In order to support passthrough routes and connect with _Ingress Gateway_ secure ports, it is required define a secured port. Please, _edit route_, define _https_ as target port and click on *[ SAVE ]*.
 
+
+.Edit the route
+image::04-troubleshooting/jump-app-trou-05-gw-fixed-01.png[link=../_images/04-troubleshooting/jump-app-trou-05-gw-fixed-01.png,window=_blank]
+
+.Change to https secure port
+image::04-troubleshooting/jump-app-trou-05-gw-fixed-02.png[link=../_images/04-troubleshooting/jump-app-trou-05-gw-fixed-02.png,window=_blank]
+
+.Save the route
+image::04-troubleshooting/jump-app-trou-05-gw-fixed-03.png[link=../_images/04-troubleshooting/jump-app-trou-05-gw-fixed-03.png,window=_blank]
+
+
 [#05-gateway]
 == Ingress Gateway -> Envoy Sidecar Secure Connectivity
 
