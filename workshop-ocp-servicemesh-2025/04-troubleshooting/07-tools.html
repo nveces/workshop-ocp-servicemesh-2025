@@ -430,6 +430,26 @@ oc logs -f $POD -c istio-proxy</code></pre>
 <div class="paragraph">
 <p>Configuration extends to all proxy sidecars, so if you do a <code>config_dump</code> in any sidecar you should get very similar results, but logging is specific for each sidecar, so test watching the logs of another sidecar in your namespace to check that you will not see the http debug logs as in the one you recently modified.</p>
 </div>
+<div class="paragraph">
+<p>Envoy has several endpoints that you can use to check the status of the proxy. You can see all of them by executing the following command:</p>
+</div>
+<div class="listingblock console-input">
+<div class="title">Other endpoints</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">curl -v <a href="http://localhost:15000/" class="bare">http://localhost:15000/</a>
+curl -v <a href="http://localhost:15000/certs" class="bare">http://localhost:15000/certs</a>
+curl -v <a href="http://localhost:15000/clusters" class="bare">http://localhost:15000/clusters</a>
+curl -v <a href="http://localhost:15000/contention" class="bare">http://localhost:15000/contention</a>
+curl -v <a href="http://localhost:15000/heap_dump" class="bare">http://localhost:15000/heap_dump</a>
+curl -v <a href="http://localhost:15000/help" class="bare">http://localhost:15000/help</a>
+curl -v <a href="http://localhost:15000/hot_restart_version" class="bare">http://localhost:15000/hot_restart_version</a>
+curl -v <a href="http://localhost:15000/memory" class="bare">http://localhost:15000/memory</a>
+curl -v <a href="http://localhost:15000/ready" class="bare">http://localhost:15000/ready</a>
+curl -v <a href="http://localhost:15000/runtime" class="bare">http://localhost:15000/runtime</a>
+curl -v <a href="http://localhost:15000/server_info" class="bare">http://localhost:15000/server_info</a>
+curl -v <a href="http://localhost:15000/stats_recentlookups" class="bare">http://localhost:15000/stats_recentlookups</a></code></pre>
+</div>
+</div>
 </div>
 </div>
 </article>
