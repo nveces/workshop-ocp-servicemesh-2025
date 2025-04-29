@@ -224,4 +224,71 @@ curl -v http://localhost:15000/stats_recentlookups
 ----
 
 
+== Pod / Container images
+
+*Pod router*
+
+[source]
+----
+Namespace -: openshif-ingress
+Pod -------: router-<router-name>
+Container -: router
+Image -----: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+Product ---: haproxy
+----
+
+.HAproxy version
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+sh-5.1$ haproxy -version
+HAProxy version 2.8.10-f28885f 2024/06/14 - https://haproxy.org/
+Status: long-term supported branch - will stop receiving fixes around Q2 2028.
+Known bugs: http://www.haproxy.org/bugs/bugs-2.8.10.html
+Running on: Linux 5.14.0-427.62.1.el9_4.x86_64 #1 SMP PREEMPT_DYNAMIC Sat Mar 22 10:20:42 EDT 2025 x86_64
+----
+
+* Configuration file: `/var/lib/haproxy/conf/haproxy.config`
+* Executable file: `/usr/sbin/haproxy`
+* PID file: `/var/lib/haproxy/run/haproxy.pid`
+
+[sidebar]
+---
+
+*Pod istio-ingressgateway*:
+
+[source]
+----
+Namespace -: istio-system
+Pod -------: istio-ingressgateway-<pod-name>
+Container -: istio-proxy
+Image -----: registry.redhat.io/openshift-service-mesh/proxyv2-rhel9 <1>
+Product ---: Envoy proxy
+----
+
+Where:
+
+<1> https://catalog.redhat.com/software/containers/openshift-service-mesh/proxyv2-rhel9/64010fd529d6b9c7d9c6bdc2[window=_blank]
+
+
+.Envoy version
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+sh-5.1$ cd /usr/local/bin/
+sh-5.1$ ./envoy --version
+./envoy  version: c6160ecc199f34ab6c3e6a5f16958d150e536faa/1.28.8-dev/OSSM 2.6.7-1/RELEASE/OpenSSL
+----
+
+*Istio Pilot agent* runs in the sidecar or gateway container and bootstraps Envoy.
+
+.Istio Pilot agent version.
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+sh-5.1$ ./pilot-agent version
+version.BuildInfo{Version:"OSSM_2.6.7-1", GitRevision:"e1d197c84f9e1f436139bcdf81215d67a8edfd81", GolangVersion:"go1.21.13 (Red Hat 1.21.13-5.el9_4) X:strictfipsruntime", BuildStatus:"Clean", GitTag:"2.6.7"}
+----
+
+
+
 // EOF
