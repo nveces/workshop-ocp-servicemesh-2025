@@ -3077,6 +3077,74 @@ oc exec -it $POD -c sleep -- curl -v <a href="http://my-nginx.$USER_NAMESPACE-me
 </div>
 </details>
 <div class="paragraph">
+<p>First of all, to use <strong>Jaeger</strong> in your <strong>Control plane</strong> you need to have it installed in your cluster.
+You can install <strong>Red Hat OpenShift distributed tracing platform Operator</strong> from the OperatorHub in the OpenShift console. Once you have it installed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/tracing-jaeger-03.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/tracing-jaeger-03.png" alt="tracing jaeger 03"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/tracing-jaeger-04.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/tracing-jaeger-04.png" alt="tracing jaeger 04"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>, you can create a new instance of Jaeger by going to the <strong>Jaeger</strong> section in the left menu and clicking on <code>Create Instance</code>. You can use the default values for the installation.</p>
+</div>
+<div class="listingblock console-input">
+<div class="title">ServiceMeshControlPlane YAML</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">  tracing:
+    sampling: 10000
+    type: Jaeger  <i class="conum" data-value="1"></i><b>(1)</b>
+.../...
+  addons:
+    grafana:
+      enabled: true
+    kiali:
+      enabled: true
+      name: kiali
+    jaeger:      <i class="conum" data-value="2"></i><b>(2)</b>
+      install:
+        storage:
+          type: Memory</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Change <code>None</code> to <code>Jaeger</code> to enable <strong>Jaeger</strong> in the <strong>Service Mesh Control Plane</strong>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Configure addon to create a <strong>Jaeger</strong> instance using Memory storage.</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/tracing-jaeger-05.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/tracing-jaeger-05.png" alt="tracing jaeger 05"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/tracing-jaeger-06.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/tracing-jaeger-06.png" alt="tracing jaeger 06"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Click on link to access the <strong>Jaeger UI</strong>:</p>
+</div>
+<div class="imageblock console-input">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/tracing-jaeger-07.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/tracing-jaeger-07.png" alt="tracing jaeger 07"></a>
+</div>
+</div>
+<hr>
+<hr>
+<div class="paragraph">
 <p>Distributed tracing is a technique that is used to tie the information about different units of work together—usually executed in different processes or hosts—in order to understand a whole chain of events in a distributed transaction. Distributed tracing lets developers visualize call flows in large service oriented architectures. It can be invaluable in understanding serialization, parallelism, and sources of latency.</p>
 </div>
 <div class="paragraph">
