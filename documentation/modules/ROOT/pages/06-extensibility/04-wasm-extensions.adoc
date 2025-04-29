@@ -67,7 +67,8 @@ You must have a .wasm file containing the bytecode of your {wasm} module, and a 
 ==== Deploying extensions
 {ossm} extensions can be enabled using the {sme} resource. The following snippet is an example resource:
 
-[source,yaml]
+[.console-input]
+[source,yaml,subs="+macros,+attributes"]
 ----
 apiVersion: extensions.istio.io/v1alpha1
 kind: WasmPlugin
@@ -113,7 +114,8 @@ image::06-extensibility/wasm_headers_code.png[link=../_images/06-extensibility/w
 
 It is important to take a look at the manifest packed in the container image:
 
-[source,yaml]
+[.console-input]
+[source,yaml,subs="+macros,+attributes"]
 ----
 schemaVersion: 1 <1>
 
@@ -134,7 +136,9 @@ module: extension.wasm <7>
 
 Take a look also at the deployment manifest too:
 
-[source,yaml]
+
+[.console-input]
+[source,yaml,subs="+macros,+attributes"]
 ----
 apiVersion: extensions.istio.io/v1alpha1
 kind: WasmPlugin
@@ -166,17 +170,23 @@ Now that you have httpbin running you can apply a {wasm} filter.
 
 Execute the following command:
 
-[source, terminal]
+[.console-input]
+[source,terminal,subs="+macros,+attributes"]
 ----
 oc apply -f lab2/ossm-extension-headers.yaml -n ${OCP_NAMESPACE}
 ----
 
 If everything works properly, it is possible to find the following log in the istio-proxy sidecar container executing the next procedure:
 
-[source, terminal]
+[.console-input]
+[source,terminal,subs="+macros,+attributes"]
 ----
 export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
 oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
+----
+
+[source,terminal]
+----
 ...
 2023-08-30T11:26:44.785184Z info wasm fetching image acidonpe/ossm-example-headers-extension from registry quay.io with tag 1.0.0
 
@@ -184,9 +194,10 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 
 As in the previous lab, you are going to query the httpbin _anything_ endpoint using an additional custom header:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
-curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"
+curl -k -H "My-Header: my-value Test 005" "https://${OCP_HTTPBIN_HOST}/anything"
 ----
 
 As you can see, _httpbin_ app returns a JSON with everything that was passed in the request, including your custom header but nothing has been changed:
@@ -196,9 +207,10 @@ image::06-extensibility/httpbin_wasm_header_1.png[link=../_images/06-extensibili
 
 Now, use the _Custom-Header_ the extension is expecting:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
-curl -k -H "Custom-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"
+curl -k -H "Custom-Header: my-value Test 006" "https://${OCP_HTTPBIN_HOST}/anything"
 ----
 
 As you can see now, _Custom-Header_ has been replaced with _Custom-Wasm-Header_ and _Custom-Wasm-Config-Header_. Notice that the value of _Custom-Wasm-Header_ is the original value of _Custom-Header_ and the value of _Custom-Wasm-Config-Header_ is taken from the {sme} deployment manifest:
@@ -210,7 +222,8 @@ image::06-extensibility/httpbin_wasm_header_2.png[link=../_images/06-extensibili
 
 Remove the {wasm} plugin before starting the next example:
 
-[source, terminal]
+[.console-input]
+[source,terminal,subs="+macros,+attributes"]
 ----
 oc delete -f lab2/ossm-extension-headers.yaml -n ${OCP_NAMESPACE}
 ----
@@ -234,7 +247,8 @@ image::06-extensibility/wasm_body_code.png[link=../_images/06-extensibility/wasm
 
 Take a look at the deployment {sme} resource:
 
-[source,yaml]
+[.console-input]
+[source,yaml,subs="+macros,+attributes"]
 ----
 apiVersion: extensions.istio.io/v1alpha1
 kind: WasmPlugin
@@ -258,24 +272,31 @@ Now you can apply the {wasm} plugin.
 
 Execute the following command:
 
-[source, terminal]
+[.console-input]
+[source,terminal,subs="+macros,+attributes"]
 ----
 oc apply -f lab2/ossm-extension-body.yaml -n ${OCP_NAMESPACE}
 ----
 
 If everything works properly, it is possible to find the following log in the istio-proxy sidecar container executing the next procedure:
 
-[source, terminal]
+[.console-input]
+[source,terminal,subs="+macros,+attributes"]
 ----
 export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
 oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
+----
+
+[source,terminal]
+----
 ...
 2023-08-30T11:51:46.862406Z info wasm fetching image acidonpe/ossm-example-body-extension from registry quay.io with tag 1.0.0
 ----
 
 As in the previous lab, you are going to query the httpbin _anything_ endpoint but this time using a custom body:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
 curl -k -d "My message" "https://${OCP_HTTPBIN_HOST}/anything"
 ----
@@ -287,7 +308,8 @@ image::06-extensibility/httpbin_wasm_body_1.png[link=../_images/06-extensibility
 
 Now, include the word _secret_ in the body, as defined in the {sme} resource:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
 curl -k -d "My secret message" "https://${OCP_HTTPBIN_HOST}/anything"
 ----
@@ -301,7 +323,8 @@ image::06-extensibility/httpbin_wasm_body_2.png[link=../_images/06-extensibility
 
 Remove the {wasm} plugin to finish the lab:
 
-[source, terminal]
+[.console-input]
+[source,terminal,subs="+macros,+attributes"]
 ----
 oc delete -f lab2/ossm-extension-body.yaml -n ${OCP_NAMESPACE}
 ----

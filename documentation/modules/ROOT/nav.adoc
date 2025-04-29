@@ -64,9 +64,8 @@ include::./pages/_document-vars.adoc[]
 
 
 * xref:06-extensibility/index.adoc[7. Extensibility - Labs]
-** xref:06-extensibility/index.adoc#_rhossm_extensibility_labs[{rhossm}: Extensibility Labs]
 ** xref:06-extensibility/index.adoc#_lab_1_envoy_filters[Lab 1 - Envoy Filters]
-** xref:06-extensibility/index.adoc#_lab_2_waes[Lab 2 - {waes}]
+** xref:06-extensibility/index.adoc#_lab_2_webassembly_extensions[Lab 2 - {waes}]
 
 
 // * xref:07-Tempo[8. Tempo - Labs]

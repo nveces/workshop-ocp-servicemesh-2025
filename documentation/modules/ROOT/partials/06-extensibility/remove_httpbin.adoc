@@ -2,7 +2,8 @@
 
 Before starting the next lab, remove the application in your namespace. This will not remove the {r} created in the first lab.
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
 oc process -f httpbin/httpbin.yaml \
     -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \

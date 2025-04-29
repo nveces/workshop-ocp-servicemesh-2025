@@ -2,5 +2,5 @@
 
 The objective of these labs is to get a basic understanding of the following topics:
 
-- {efs}
-- {waes}
+- {istio_doc}/reference/config/networking/envoy-filter/[{efs},window=_blank]
+- {istio_doc}/reference/config/proxy_extensions/wasm-plugin/[{waes},window=_blank]

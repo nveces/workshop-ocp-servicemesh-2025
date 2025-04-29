@@ -14,7 +14,7 @@ Istio {ef} objects provide a mechanism to customize the Envoy configuration gene
 
 You can use an {ef} object to modify values for certain fields, add specific filters, or even add entirely new listeners, clusters, etc. This feature must be used with care, as incorrect configurations could potentially destabilize the entire mesh.
 
-IMPORTANT: {efs} are not officially supported in {ossm}. {efs} can be created in {ocp} by referring to the Istio documentation {istio_doc}/reference/config/networking/envoy-filter/[here, window="_blank"] but any configuration issues are not officially supported: https://access.redhat.com/solutions/5672521[window="_blank"]
+IMPORTANT: {efs} are not officially supported in {ossm}. {efs} can be created in {ocp} by referring to the Istio documentation {istio_doc}/reference/config/networking/envoy-filter/[here, window="_blank"] but any configuration issues are not officially supported: https://access.redhat.com/solutions/5672521[Envoy Filter in Openshift Service Mesh, window="_blank"]
 
 Unlike other Istio networking objects, {efs} are additively applied. Any number of {efs} can exist for a given workload in a specific namespace. The order of application of these {efs} is as follows: all {efs} in the control plane namespace, followed by all matching {efs} in the workload’s namespace.
 
@@ -34,7 +34,8 @@ A {gw}, {vs} and {r} for the {ig} will also be created. Take a look at the `http
 
 Deploy the application in your namespace:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
 oc process -f httpbin/httpbin.yaml \
     -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
@@ -43,7 +44,8 @@ oc process -f httpbin/httpbin.yaml \
 
 You will create a route in the `istio-system` namespace to expose the _httpbin_ service through an Ingress Gateway:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
 oc process -f httpbin/httpbin-route.yaml \
     -p HTTPBIN_ROUTE_NAME="${OCP_USER}-httpbin" -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" \
@@ -53,14 +55,16 @@ oc process -f httpbin/httpbin-route.yaml \
 
 Wait some seconds for all the pods to be ready:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
 watch oc get pods -n ${OCP_NAMESPACE}
 ----
 
 Verify that the application is reachable and is running ok:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
 curl -s -kI "https://${OCP_HTTPBIN_HOST}"
 ----
@@ -77,9 +81,10 @@ The _httpbin_ app offers and endpoint that returns anything passed in requests d
 
 In this example, you are going to query this endpoint using an additional custom header. Now that you have the app deployed you can try this by running the following command:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
-curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"
+curl -k -H "My-Header: my-value Test 001" "https://${OCP_HTTPBIN_HOST}/anything"
 ----
 
 As you can see, _httpbin_ app returns a JSON with everything that was passed in the request, including your custom header:
@@ -91,13 +96,17 @@ image::06-extensibility/httpbin_header_1.png[link=../_images/06-extensibility/ht
 
 Let's suppose that you need to manipulate this custom header in {ossm} before the request reaches the actual _httpbin_ service. This is something that cannot be performed with regular Istio objects but can be performed with an {ef}.
 
-You have two options: develop your own Envoy Filter in C++ like in https://github.com/envoyproxy/envoy-filter-example[this example, window="_blank"], or use the existing Envoy Lua filter to programmatically create the desired behavior by using a Lua script.
+You have two options:
+
+. develop your own Envoy Filter in C++ like in https://github.com/envoyproxy/envoy-filter-example[this example, window="_blank"],
+. or use the existing *Envoy Lua filter* to programmatically create the desired behavior by using a https://www.lua.org/[*Lua script*,window=_blank].
 
 For simplicity reasons, in this lab you will use the second approach.
 
-This {ef} will check if the custom header exists in the requests and then it will create an additional custom header with the same value of our original header.
+This *{ef}* will check if the custom header exists in the requests and then it will create an additional custom header with the same value of our original header.
 
-[source,yaml]
+[.console-input]
+[source,yaml,subs="+macros,+attributes"]
 ----
 apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
@@ -146,22 +155,24 @@ spec:
 
 TIP: To apply an {ef} resource to all workloads (sidecars and gateways) in the system, define the resource in the control plane namespace, without a _workloadSelector_.
 
-The previous Lua code will check if the header _My-Header_ already exists in the request and then will add a new header _My-New-Header_ with the same value of _My-Header_.
+The previous *Lua code* will check if the header `My-Header` already exists in the request and then will add a new header `My-New-Header` with the same value of `My-Header`.
 
-Note that there are some logging commands in the Lua script. This log traces will appear in the "lua" logger of the Envoy proxy.
+Note that there are some logging commands in the *Lua script*. This log traces will appear in the "lua" logger of the *Envoy proxy*.
 
-To test it, create this {ef} in your namespace:
+To test it, create this *{ef}* in your namespace:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
 oc apply -f lab1/envoyfilter-add-header.yaml -n ${OCP_NAMESPACE}
 ----
 
 Now run the same query with your custom header again:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
-curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"
+curl -k -H "My-Header: my-value Test 002" "https://${OCP_HTTPBIN_HOST}/anything"
 ----
 
 NOTE: It may take some seconds for the configuration to propagate through the mesh before you see it working.
@@ -173,7 +184,8 @@ image::06-extensibility/httpbin_header_2.png[link=../_images/06-extensibility/ht
 
 You can check wether your filter has been inserted in the filter chain by looking at the Envoy config. In order to do this you can use _istioctl_:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
 export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
 
@@ -185,11 +197,12 @@ image::06-extensibility/httpbin_envoy_config.png[link=../_images/06-extensibilit
 
 If you don't have _istioctl_ installed you can also run the following commands:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
 export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
 
-oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST localhost:15000/config_dump
+oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST localhost:15000/config_dump | grep -i -A 5 -B 5 "lab.httpbin_add_header"
 ----
 
 == Add an {ef} to remove the old header
@@ -200,7 +213,8 @@ You can create a new filter to remove this header but it is important to notice 
 
 To make sure the removal filter is executed last, you will insert it at the end of chain.
 
-[source,yaml]
+[.console-input]
+[source,yaml,subs="+macros,+attributes"]
 ----
 apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
@@ -244,16 +258,18 @@ spec:
 
 To test it, create this {ef} in your namespace:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
 oc apply -f lab1/envoyfilter-remove-header.yaml -n ${OCP_NAMESPACE}
 ----
 
 Now run the same query with your custom header again:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
-curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"
+curl -k -H "My-Header: my-value Test 003" "https://${OCP_HTTPBIN_HOST}/anything"
 ----
 
 You should see your custom header being replaced with the additional header that was created in the first {ef}, your custom header has been removed:
@@ -263,7 +279,8 @@ image::06-extensibility/httpbin_header_3.png[link=../_images/06-extensibility/ht
 
 You can check the position of your new filter in the filter chain by looking at the Envoy config:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
 export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
 
@@ -275,11 +292,12 @@ image::06-extensibility/httpbin_envoy_config_2.png[link=../_images/06-extensibil
 
 If you don't have _istioctl_ installed you can also run the following commands:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
 export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
 
-oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST localhost:15000/config_dump
+oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST localhost:15000/config_dump | grep -i -A 5 -B 5 "lab.httpbin_add_header"
 ----
 
 Additionally, it is possible to review all of this information via Kiali.
@@ -297,7 +315,8 @@ In this example you are going to create an {ef} that will combine both actions.
 
 First, remove the previous filters from your namespace:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
 oc delete -f lab1/envoyfilter-add-header.yaml -n ${OCP_NAMESPACE}
 oc delete -f lab1/envoyfilter-remove-header.yaml -n ${OCP_NAMESPACE}
@@ -305,7 +324,8 @@ oc delete -f lab1/envoyfilter-remove-header.yaml -n ${OCP_NAMESPACE}
 
 This is the {ef} with the functionality combined:
 
-[source,yaml]
+[.console-input]
+[source,yaml,subs="+macros,+attributes"]
 ----
 apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
@@ -347,16 +367,18 @@ spec:
 
 To test it, create this {ef} in your namespace:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
 oc apply -f lab1/envoyfilter-replace-header.yaml -n ${OCP_NAMESPACE}
 ----
 
 Now run the same query with your custom header again:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
-curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"
+curl -k -H "My-Header: my-value Test 004" "https://${OCP_HTTPBIN_HOST}/anything"
 ----
 
 You should see your custom header being replaced with the additional header and your custom header removed, but this time with only one {ef}:
@@ -373,11 +395,15 @@ image::06-extensibility/httpbin_envoy_config_kiali_2.png[link=../_images/06-exte
 
 Make sure you remove any {ef} you created before moving to the next lab:
 
-[source,bash]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
 ----
-oc delete -f lab1/envoyfilter-add-header.yaml -n ${OCP_NAMESPACE}
-oc delete -f lab1/envoyfilter-remove-header.yaml -n ${OCP_NAMESPACE}
+oc delete -f lab1/envoyfilter-add-header.yaml     -n ${OCP_NAMESPACE}
+oc delete -f lab1/envoyfilter-remove-header.yaml  -n ${OCP_NAMESPACE}
 oc delete -f lab1/envoyfilter-replace-header.yaml -n ${OCP_NAMESPACE}
 ----
 
 include::./../../partials/06-extensibility/remove_httpbin.adoc[leveloffset=+1]
+
+
+// EOF

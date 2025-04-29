@@ -113,7 +113,7 @@ Enter your `username` and `password` and click `Log In`.
 If you have successfully logged in, you will arrive to the main dashboard where you will see the main `Service Mesh Control Plane` namespace and your two `Apps namespaces`:
 
 
-05-security/kiali-projects.png[Kiali mesh and namespaces]
+image::05-security/kiali-projects.png[Kiali mesh and namespaces,link=../_images/05-security/kiali-login.png,window=_blank]
 
 Notice that this time, your two `Apps namespaces` are already part of the mesh, that is, we simply added the `ServiceMeshMember` for you, as you have done this task many times in previous labs.
 
