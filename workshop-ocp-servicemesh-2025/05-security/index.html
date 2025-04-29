@@ -287,7 +287,7 @@ This is not a recommended practices guide nor intended to serve as a reference. 
 <p><strong>$PASSWORD</strong>:  your secret password used for Openshift authentication</p>
 </li>
 <li>
-<p><strong>$APPS_NS1</strong> and <strong>$APPS_NS2</strong> : namespaces where you will deploy your apps during the whole series of labs. Ex: <code>dsanchor-1</code> and <code>dsanchor-2</code></p>
+<p><strong>$APPS_NS1</strong> and <strong>$APPS_NS2</strong> : namespaces where you will deploy your apps during the whole series of labs. Ex: <code>user24-sm</code> and <code>user24-2-sm</code></p>
 </li>
 <li>
 <p><strong>$SERVICE_MESH_NS</strong>: namespace of the Istio Control Plane you will be using. This time, there will be only a single control plane shared by all: <code>istio-system</code>.</p>
@@ -310,14 +310,14 @@ This is not a recommended practices guide nor intended to serve as a reference. 
 <p>There is also a list of files needed to run the labs. These files can be found in the following github repository:</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/dsanchor/service-mesh-security" class="bare">https://github.com/dsanchor/service-mesh-security</a></p>
+<p><a href="https://github.com/nveces/ocp-servicemesh-labs-2025.git" class="bare">https://github.com/nveces/ocp-servicemesh-labs-2025.git</a></p>
 </div>
 <div class="paragraph">
 <p>Clone the repository to your desired location, that will then be referred as <strong>$LABS_HOME</strong> during the labs:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ git clone https://github.com/dsanchor/service-mesh-security.git $LABS_HOME</pre>
+<pre>$ git clone https://github.com/nveces/ocp-servicemesh-labs-2025.git $LABS_HOME</pre>
 </div>
 </div>
 <div class="sect1">
@@ -399,8 +399,8 @@ Login successful.
 You have access to the following projects and can switch between them with ' project &lt;projectname&gt;':
 
   * istio-system
-    dsanchor-1
-    dsanchor-2
+    user24-sm
+    user24-2-sm
 
 Using project "istio-system".</pre>
 </div>
@@ -839,11 +839,17 @@ peerauthentication.security.istio.io/peer-auth-policy created</pre>
 </td>
 <td class="content">
 When setting PeerAuthentication to STRICT namespace wide, we will get an error in <code>Kiali</code> telling that "Destination Rule enabling namespace-wide mTLS is missing". In our case, we don&#8217;t really care, as in this lab, we will enable mTLS service by service in the namespace.
-image::05-security/error-paut.png[Error PeerAthentication,link=../_images/05-security/error-paut.png,window=_blank]
-<strong>Ignore it for the rest of the lab.</strong>
 </td>
 </tr>
 </table>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/05-security/error-paut.png" target="_blank" rel="noopener"><img src="../_images/05-security/error-paut.png" alt="Error PeerAthentication"></a>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Ignore it for the rest of the lab.</strong></p>
 </div>
 <div class="paragraph">
 <p>Test your application again. It does not work anymore. You should get an error like this one:</p>
