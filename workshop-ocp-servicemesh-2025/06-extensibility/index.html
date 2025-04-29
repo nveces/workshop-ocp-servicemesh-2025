@@ -217,13 +217,10 @@
     <a class="nav-link" href="index.html">7. Extensibility - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#_rhossm_extensibility_labs">Red Hat OpenShift Service Mesh 2.6.7: Extensibility Labs</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#_lab_1_envoy_filters">Lab 1 - Envoy Filters</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#_lab_2_waes">Lab 2 - WebAssembly Extensions</a>
+    <a class="nav-link" href="#_lab_2_webassembly_extensions">Lab 2 - WebAssembly Extensions</a>
   </li>
 </ul>
   </li>
@@ -258,10 +255,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p><em>EnvoyFilters</em></p>
+<p><a href="https://istio.io/v1.20/docs/reference/config/networking/envoy-filter/" target="_blank" rel="noopener"><em>EnvoyFilters</em></a></p>
 </li>
 <li>
-<p>WebAssembly Extensions</p>
+<p><a href="https://istio.io/v1.20/docs/reference/config/proxy_extensions/wasm-plugin/" target="_blank" rel="noopener">WebAssembly Extensions</a></p>
 </li>
 </ul>
 </div>
@@ -421,11 +418,11 @@ The labs will reference these parameters. You will need to replace the reference
 <div class="paragraph">
 <p>For simplicity, the commands in these labs will use environment variables. Make sure you export the environment variables in your shell before running any command, replacing the placeholders with the values provided to you:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export OCP_USER="&lt;user&gt;"
 export OCP_PASSWORD="&lt;pass&gt;"
-export OCP_NAMESPACE="${OCP_USER}-namespace"
+export OCP_NAMESPACE="${OCP_USER}-sm"
 export OCP_API="https://api.ocp.sandbox2790.opentlc.com:6443"
 export OCP_DOMAIN="apps.ocp.sandbox2790.opentlc.com"
 export OCP_HTTPBIN_HOST="${OCP_USER}.httpbin.${OCP_DOMAIN}"</code></pre>
@@ -434,11 +431,11 @@ export OCP_HTTPBIN_HOST="${OCP_USER}.httpbin.${OCP_DOMAIN}"</code></pre>
 <div class="paragraph">
 <p>For example:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export OCP_USER="user1"
-export OCP_PASSWORD="P4ssw0rd"
-export OCP_NAMESPACE="${OCP_USER}-namespace"
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export OCP_USER="user01"
+export OCP_PASSWORD="user01"
+export OCP_NAMESPACE="${OCP_USER}-sm"
 export OCP_API="https://api.ocp.sandbox2790.opentlc.com:6443"
 export OCP_DOMAIN="apps.ocp.sandbox2790.opentlc.com"
 export OCP_HTTPBIN_HOST="${OCP_USER}.httpbin.${OCP_DOMAIN}"</code></pre>
@@ -617,7 +614,7 @@ From now on, all labs will assume you are located in this directory.
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-<em>EnvoyFilters</em> are not officially supported in OpenShift Service Mesh. <em>EnvoyFilters</em> can be created in OpenShift Container Platform by referring to the Istio documentation <a href="https://istio.io/v1.20/docs/reference/config/networking/envoy-filter/" target="_blank" rel="noopener">here</a> but any configuration issues are not officially supported: <a href="https://access.redhat.com/solutions/5672521" class="bare" target="_blank" rel="noopener">https://access.redhat.com/solutions/5672521</a>
+<em>EnvoyFilters</em> are not officially supported in OpenShift Service Mesh. <em>EnvoyFilters</em> can be created in OpenShift Container Platform by referring to the Istio documentation <a href="https://istio.io/v1.20/docs/reference/config/networking/envoy-filter/" target="_blank" rel="noopener">here</a> but any configuration issues are not officially supported: <a href="https://access.redhat.com/solutions/5672521" target="_blank" rel="noopener">Envoy Filter in Openshift Service Mesh</a>
 </td>
 </tr>
 </table>
@@ -650,7 +647,7 @@ From now on, all labs will assume you are located in this directory.
 <div class="paragraph">
 <p>Deploy the application in your namespace:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin.yaml \
     -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
@@ -660,7 +657,7 @@ From now on, all labs will assume you are located in this directory.
 <div class="paragraph">
 <p>You will create a route in the <code>istio-system</code> namespace to expose the <em>httpbin</em> service through an Ingress Gateway:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin-route.yaml \
     -p HTTPBIN_ROUTE_NAME="${OCP_USER}-httpbin" -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" \
@@ -671,7 +668,7 @@ From now on, all labs will assume you are located in this directory.
 <div class="paragraph">
 <p>Wait some seconds for all the pods to be ready:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get pods -n ${OCP_NAMESPACE}</code></pre>
 </div>
@@ -679,7 +676,7 @@ From now on, all labs will assume you are located in this directory.
 <div class="paragraph">
 <p>Verify that the application is reachable and is running ok:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_HTTPBIN_HOST}"</code></pre>
 </div>
@@ -705,9 +702,9 @@ From now on, all labs will assume you are located in this directory.
 <div class="paragraph">
 <p>In this example, you are going to query this endpoint using an additional custom header. Now that you have the app deployed you can try this by running the following command:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value Test 001" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -726,15 +723,25 @@ From now on, all labs will assume you are located in this directory.
 <p>Let&#8217;s suppose that you need to manipulate this custom header in OpenShift Service Mesh before the request reaches the actual <em>httpbin</em> service. This is something that cannot be performed with regular Istio objects but can be performed with an <em>EnvoyFilter</em>.</p>
 </div>
 <div class="paragraph">
-<p>You have two options: develop your own Envoy Filter in C++ like in <a href="https://github.com/envoyproxy/envoy-filter-example" target="_blank" rel="noopener">this example</a>, or use the existing Envoy Lua filter to programmatically create the desired behavior by using a Lua script.</p>
+<p>You have two options:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>develop your own Envoy Filter in C++ like in <a href="https://github.com/envoyproxy/envoy-filter-example" target="_blank" rel="noopener">this example</a>,</p>
+</li>
+<li>
+<p>or use the existing <strong>Envoy Lua filter</strong> to programmatically create the desired behavior by using a <a href="https://www.lua.org/" target="_blank" rel="noopener"><strong>Lua script</strong></a>.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>For simplicity reasons, in this lab you will use the second approach.</p>
 </div>
 <div class="paragraph">
-<p>This <em>EnvoyFilter</em> will check if the custom header exists in the requests and then it will create an additional custom header with the same value of our original header.</p>
+<p>This <strong><em>EnvoyFilter</em></strong> will check if the custom header exists in the requests and then it will create an additional custom header with the same value of our original header.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
@@ -821,15 +828,15 @@ To apply an <em>EnvoyFilter</em> resource to all workloads (sidecars and gateway
 </table>
 </div>
 <div class="paragraph">
-<p>The previous Lua code will check if the header <em>My-Header</em> already exists in the request and then will add a new header <em>My-New-Header</em> with the same value of <em>My-Header</em>.</p>
+<p>The previous <strong>Lua code</strong> will check if the header <code>My-Header</code> already exists in the request and then will add a new header <code>My-New-Header</code> with the same value of <code>My-Header</code>.</p>
 </div>
 <div class="paragraph">
-<p>Note that there are some logging commands in the Lua script. This log traces will appear in the "lua" logger of the Envoy proxy.</p>
+<p>Note that there are some logging commands in the <strong>Lua script</strong>. This log traces will appear in the "lua" logger of the <strong>Envoy proxy</strong>.</p>
 </div>
 <div class="paragraph">
-<p>To test it, create this <em>EnvoyFilter</em> in your namespace:</p>
+<p>To test it, create this <strong><em>EnvoyFilter</em></strong> in your namespace:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f lab1/envoyfilter-add-header.yaml -n ${OCP_NAMESPACE}</code></pre>
 </div>
@@ -837,9 +844,9 @@ To apply an <em>EnvoyFilter</em> resource to all workloads (sidecars and gateway
 <div class="paragraph">
 <p>Now run the same query with your custom header again:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value Test 002" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -866,7 +873,7 @@ It may take some seconds for the configuration to propagate through the mesh bef
 <div class="paragraph">
 <p>You can check wether your filter has been inserted in the filter chain by looking at the Envoy config. In order to do this you can use <em>istioctl</em>:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
 
@@ -882,11 +889,11 @@ istioctl proxy-config listeners -n ${OCP_NAMESPACE} ${HTTPBIN_POD} -o json</code
 <div class="paragraph">
 <p>If you don&#8217;t have <em>istioctl</em> installed you can also run the following commands:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
 
-oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST localhost:15000/config_dump</code></pre>
+oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST localhost:15000/config_dump | grep -i -A 5 -B 5 "lab.httpbin_add_header"</code></pre>
 </div>
 </div>
 </div>
@@ -901,7 +908,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST lo
 <div class="paragraph">
 <p>To make sure the removal filter is executed last, you will insert it at the end of chain.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
@@ -956,7 +963,7 @@ spec:
 <div class="paragraph">
 <p>To test it, create this <em>EnvoyFilter</em> in your namespace:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f lab1/envoyfilter-remove-header.yaml -n ${OCP_NAMESPACE}</code></pre>
 </div>
@@ -964,9 +971,9 @@ spec:
 <div class="paragraph">
 <p>Now run the same query with your custom header again:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value Test 003" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -981,7 +988,7 @@ spec:
 <div class="paragraph">
 <p>You can check the position of your new filter in the filter chain by looking at the Envoy config:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
 
@@ -997,11 +1004,11 @@ istioctl proxy-config listeners -n ${OCP_NAMESPACE} ${HTTPBIN_POD} -o json</code
 <div class="paragraph">
 <p>If you don&#8217;t have <em>istioctl</em> installed you can also run the following commands:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
 
-oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST localhost:15000/config_dump</code></pre>
+oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST localhost:15000/config_dump | grep -i -A 5 -B 5 "lab.httpbin_add_header"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1028,7 +1035,7 @@ oc exec -n ${OCP_NAMESPACE} -it ${HTTPBIN_POD} -c istio-proxy -- curl -X POST lo
 <div class="paragraph">
 <p>First, remove the previous filters from your namespace:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc delete -f lab1/envoyfilter-add-header.yaml -n ${OCP_NAMESPACE}
 oc delete -f lab1/envoyfilter-remove-header.yaml -n ${OCP_NAMESPACE}</code></pre>
@@ -1037,7 +1044,7 @@ oc delete -f lab1/envoyfilter-remove-header.yaml -n ${OCP_NAMESPACE}</code></pre
 <div class="paragraph">
 <p>This is the <em>EnvoyFilter</em> with the functionality combined:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
@@ -1087,7 +1094,7 @@ spec:
 <div class="paragraph">
 <p>To test it, create this <em>EnvoyFilter</em> in your namespace:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f lab1/envoyfilter-replace-header.yaml -n ${OCP_NAMESPACE}</code></pre>
 </div>
@@ -1095,9 +1102,9 @@ spec:
 <div class="paragraph">
 <p>Now run the same query with your custom header again:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value Test 004" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1124,10 +1131,10 @@ spec:
 <div class="paragraph">
 <p>Make sure you remove any <em>EnvoyFilter</em> you created before moving to the next lab:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc delete -f lab1/envoyfilter-add-header.yaml -n ${OCP_NAMESPACE}
-oc delete -f lab1/envoyfilter-remove-header.yaml -n ${OCP_NAMESPACE}
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc delete -f lab1/envoyfilter-add-header.yaml     -n ${OCP_NAMESPACE}
+oc delete -f lab1/envoyfilter-remove-header.yaml  -n ${OCP_NAMESPACE}
 oc delete -f lab1/envoyfilter-replace-header.yaml -n ${OCP_NAMESPACE}</code></pre>
 </div>
 </div>
@@ -1137,7 +1144,7 @@ oc delete -f lab1/envoyfilter-replace-header.yaml -n ${OCP_NAMESPACE}</code></pr
 <div class="paragraph">
 <p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in the first lab.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin.yaml \
     -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
@@ -1277,7 +1284,7 @@ In these labs, two WebAssembly Extensions written in Rust will be used.
 <div class="paragraph">
 <p>OpenShift Service Mesh extensions can be enabled using the <em>WasmPlugin</em> resource. The following snippet is an example resource:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: extensions.istio.io/v1alpha1
 kind: WasmPlugin
@@ -1340,7 +1347,7 @@ spec:
 <div class="paragraph">
 <p>It is important to take a look at the manifest packed in the container image:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 1 <i class="conum" data-value="1"></i><b>(1)</b>
 
@@ -1387,7 +1394,7 @@ module: extension.wasm <i class="conum" data-value="7"></i><b>(7)</b></code></pr
 <div class="paragraph">
 <p>Take a look also at the deployment manifest too:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: extensions.istio.io/v1alpha1
 kind: WasmPlugin
@@ -1438,7 +1445,7 @@ spec:
 <div class="paragraph">
 <p>Deploy the application in your namespace:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin.yaml \
     -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
@@ -1448,7 +1455,7 @@ spec:
 <div class="paragraph">
 <p>Wait some seconds for all the pods to be ready:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get pods -n ${OCP_NAMESPACE}</code></pre>
 </div>
@@ -1456,7 +1463,7 @@ spec:
 <div class="paragraph">
 <p>Verify that the application is reachable and is running ok:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_HTTPBIN_HOST}"</code></pre>
 </div>
@@ -1467,6 +1474,12 @@ spec:
 </div>
 <div class="title">Figure 15. httpbin service working</div>
 </div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/httpbin_curl_01.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_curl_01.png" alt="httpbin service working" width="80%"></a>
+</div>
+<div class="title">Figure 16. httpbin service working</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_apply_the_webassembly_plugin"><a class="anchor" href="#_apply_the_webassembly_plugin"></a>Apply the WebAssembly plugin</h4>
@@ -1476,7 +1489,7 @@ spec:
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">oc apply -f lab2/ossm-extension-headers.yaml -n ${OCP_NAMESPACE}</code></pre>
 </div>
@@ -1484,20 +1497,24 @@ spec:
 <div class="paragraph">
 <p>If everything works properly, it is possible to find the following log in the istio-proxy sidecar container executing the next procedure:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
-oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
-...
+oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">...
 2023-08-30T11:26:44.785184Z info wasm fetching image acidonpe/ossm-example-headers-extension from registry quay.io with tag 1.0.0</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>As in the previous lab, you are going to query the httpbin <em>anything</em> endpoint using an additional custom header:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value Test 005" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1507,14 +1524,14 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="content">
 <a class="image" href="../_images/06-extensibility/httpbin_wasm_header_1.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_header_1.png" alt="httpbin wasm header 1"></a>
 </div>
-<div class="title">Figure 16. httpbin returns a custom header</div>
+<div class="title">Figure 17. httpbin returns a custom header</div>
 </div>
 <div class="paragraph">
 <p>Now, use the <em>Custom-Header</em> the extension is expecting:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "Custom-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "Custom-Header: my-value Test 006" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1524,7 +1541,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="content">
 <a class="image" href="../_images/06-extensibility/httpbin_wasm_header_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_header_2.png" alt="httpbin wasm header 2"></a>
 </div>
-<div class="title">Figure 17. WebAssembly plugin replaces the custom header</div>
+<div class="title">Figure 18. WebAssembly plugin replaces the custom header</div>
 </div>
 </div>
 <div class="sect3">
@@ -1532,7 +1549,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="paragraph">
 <p>Remove the WebAssembly plugin before starting the next example:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">oc delete -f lab2/ossm-extension-headers.yaml -n ${OCP_NAMESPACE}</code></pre>
 </div>
@@ -1563,12 +1580,12 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="content">
 <a class="image" href="../_images/06-extensibility/wasm_body_code.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/wasm_body_code.png" alt="wasm body code"></a>
 </div>
-<div class="title">Figure 18. Body filter source code</div>
+<div class="title">Figure 19. Body filter source code</div>
 </div>
 <div class="paragraph">
 <p>Take a look at the deployment <em>WasmPlugin</em> resource:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: extensions.istio.io/v1alpha1
 kind: WasmPlugin
@@ -1601,7 +1618,7 @@ spec:
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">oc apply -f lab2/ossm-extension-body.yaml -n ${OCP_NAMESPACE}</code></pre>
 </div>
@@ -1609,18 +1626,22 @@ spec:
 <div class="paragraph">
 <p>If everything works properly, it is possible to find the following log in the istio-proxy sidecar container executing the next procedure:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
-oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
-...
+oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">...
 2023-08-30T11:51:46.862406Z info wasm fetching image acidonpe/ossm-example-body-extension from registry quay.io with tag 1.0.0</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>As in the previous lab, you are going to query the httpbin <em>anything</em> endpoint but this time using a custom body:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -d "My message" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
 </div>
@@ -1632,12 +1653,12 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="content">
 <a class="image" href="../_images/06-extensibility/httpbin_wasm_body_1.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_body_1.png" alt="httpbin wasm body 1"></a>
 </div>
-<div class="title">Figure 19. httpbin returns a custom body</div>
+<div class="title">Figure 20. httpbin returns a custom body</div>
 </div>
 <div class="paragraph">
 <p>Now, include the word <em>secret</em> in the body, as defined in the <em>WasmPlugin</em> resource:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -d "My secret message" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
 </div>
@@ -1649,7 +1670,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="content">
 <a class="image" href="../_images/06-extensibility/httpbin_wasm_body_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_body_2.png" alt="httpbin wasm body 2"></a>
 </div>
-<div class="title">Figure 20. WebAssembly plugin replaces body</div>
+<div class="title">Figure 21. WebAssembly plugin replaces body</div>
 </div>
 </div>
 <div class="sect3">
@@ -1657,7 +1678,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="paragraph">
 <p>Remove the WebAssembly plugin to finish the lab:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">oc delete -f lab2/ossm-extension-body.yaml -n ${OCP_NAMESPACE}</code></pre>
 </div>
@@ -1668,7 +1689,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="paragraph">
 <p>Before starting the next lab, remove the application in your namespace. This will not remove the <em>Route</em> created in the first lab.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin.yaml \
     -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \

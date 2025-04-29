@@ -216,13 +216,10 @@
     <a class="nav-link" href="index.html">7. Extensibility - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_rhossm_extensibility_labs">Red Hat OpenShift Service Mesh 2.6.7: Extensibility Labs</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html#_lab_1_envoy_filters">Lab 1 - Envoy Filters</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_2_waes">Lab 2 - WebAssembly Extensions</a>
+    <a class="nav-link" href="index.html#_lab_2_webassembly_extensions">Lab 2 - WebAssembly Extensions</a>
   </li>
 </ul>
   </li>
@@ -376,7 +373,7 @@ In these labs, two {waes} written in Rust will be used.
 <div class="paragraph">
 <p>{ossm} extensions can be enabled using the {sme} resource. The following snippet is an example resource:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: extensions.istio.io/v1alpha1
 kind: WasmPlugin
@@ -441,7 +438,7 @@ spec:
 <div class="paragraph">
 <p>It is important to take a look at the manifest packed in the container image:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 1 <i class="conum" data-value="1"></i><b>(1)</b>
 
@@ -488,7 +485,7 @@ module: extension.wasm <i class="conum" data-value="7"></i><b>(7)</b></code></pr
 <div class="paragraph">
 <p>Take a look also at the deployment manifest too:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: extensions.istio.io/v1alpha1
 kind: WasmPlugin
@@ -539,7 +536,7 @@ spec:
 <div class="paragraph">
 <p>Deploy the application in your namespace:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin.yaml \
     -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
@@ -549,7 +546,7 @@ spec:
 <div class="paragraph">
 <p>Wait some seconds for all the pods to be ready:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch oc get pods -n ${OCP_NAMESPACE}</code></pre>
 </div>
@@ -557,7 +554,7 @@ spec:
 <div class="paragraph">
 <p>Verify that the application is reachable and is running ok:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s -kI "https://${OCP_HTTPBIN_HOST}"</code></pre>
 </div>
@@ -568,6 +565,12 @@ spec:
 </div>
 <div class="title">Figure 2. httpbin service working</div>
 </div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="../_images/06-extensibility/httpbin_curl_01.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_curl_01.png" alt="httpbin service working" width="80%"></a>
+</div>
+<div class="title">Figure 3. httpbin service working</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_apply_the_wasm_plugin"><a class="anchor" href="#_apply_the_wasm_plugin"></a>Apply the {wasm} plugin</h3>
@@ -577,7 +580,7 @@ spec:
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">oc apply -f lab2/ossm-extension-headers.yaml -n ${OCP_NAMESPACE}</code></pre>
 </div>
@@ -585,20 +588,24 @@ spec:
 <div class="paragraph">
 <p>If everything works properly, it is possible to find the following log in the istio-proxy sidecar container executing the next procedure:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
-oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
-...
+oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">...
 2023-08-30T11:26:44.785184Z info wasm fetching image acidonpe/ossm-example-headers-extension from registry quay.io with tag 1.0.0</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>As in the previous lab, you are going to query the httpbin <em>anything</em> endpoint using an additional custom header:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "My-Header: my-value Test 005" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -608,14 +615,14 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="content">
 <a class="image" href="../_images/06-extensibility/httpbin_wasm_header_1.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_header_1.png" alt="httpbin wasm header 1"></a>
 </div>
-<div class="title">Figure 3. httpbin returns a custom header</div>
+<div class="title">Figure 4. httpbin returns a custom header</div>
 </div>
 <div class="paragraph">
 <p>Now, use the <em>Custom-Header</em> the extension is expecting:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "Custom-Header: my-value" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -H "Custom-Header: my-value Test 006" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -625,7 +632,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="content">
 <a class="image" href="../_images/06-extensibility/httpbin_wasm_header_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_header_2.png" alt="httpbin wasm header 2"></a>
 </div>
-<div class="title">Figure 4. {wasm} plugin replaces the custom header</div>
+<div class="title">Figure 5. {wasm} plugin replaces the custom header</div>
 </div>
 </div>
 <div class="sect2">
@@ -633,7 +640,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="paragraph">
 <p>Remove the {wasm} plugin before starting the next example:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">oc delete -f lab2/ossm-extension-headers.yaml -n ${OCP_NAMESPACE}</code></pre>
 </div>
@@ -666,12 +673,12 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="content">
 <a class="image" href="../_images/06-extensibility/wasm_body_code.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/wasm_body_code.png" alt="wasm body code"></a>
 </div>
-<div class="title">Figure 5. Body filter source code</div>
+<div class="title">Figure 6. Body filter source code</div>
 </div>
 <div class="paragraph">
 <p>Take a look at the deployment {sme} resource:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: extensions.istio.io/v1alpha1
 kind: WasmPlugin
@@ -704,7 +711,7 @@ spec:
 <div class="paragraph">
 <p>Execute the following command:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">oc apply -f lab2/ossm-extension-body.yaml -n ${OCP_NAMESPACE}</code></pre>
 </div>
@@ -712,18 +719,22 @@ spec:
 <div class="paragraph">
 <p>If everything works properly, it is possible to find the following log in the istio-proxy sidecar container executing the next procedure:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">export HTTPBIN_POD=$(oc get pods --no-headers -n ${OCP_NAMESPACE} | awk '{ print $1 }' | grep httpbin)
-oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
-...
+oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">...
 2023-08-30T11:51:46.862406Z info wasm fetching image acidonpe/ossm-example-body-extension from registry quay.io with tag 1.0.0</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>As in the previous lab, you are going to query the httpbin <em>anything</em> endpoint but this time using a custom body:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -d "My message" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
 </div>
@@ -735,12 +746,12 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="content">
 <a class="image" href="../_images/06-extensibility/httpbin_wasm_body_1.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_body_1.png" alt="httpbin wasm body 1"></a>
 </div>
-<div class="title">Figure 6. httpbin returns a custom body</div>
+<div class="title">Figure 7. httpbin returns a custom body</div>
 </div>
 <div class="paragraph">
 <p>Now, include the word <em>secret</em> in the body, as defined in the {sme} resource:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -k -d "My secret message" "https://${OCP_HTTPBIN_HOST}/anything"</code></pre>
 </div>
@@ -752,7 +763,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="content">
 <a class="image" href="../_images/06-extensibility/httpbin_wasm_body_2.png" target="_blank" rel="noopener"><img src="../_images/06-extensibility/httpbin_wasm_body_2.png" alt="httpbin wasm body 2"></a>
 </div>
-<div class="title">Figure 7. {wasm} plugin replaces body</div>
+<div class="title">Figure 8. {wasm} plugin replaces body</div>
 </div>
 </div>
 <div class="sect2">
@@ -760,7 +771,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="paragraph">
 <p>Remove the {wasm} plugin to finish the lab:</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">oc delete -f lab2/ossm-extension-body.yaml -n ${OCP_NAMESPACE}</code></pre>
 </div>
@@ -771,7 +782,7 @@ oc logs $HTTPBIN_POD -c istio-proxy -n ${OCP_NAMESPACE}
 <div class="paragraph">
 <p>Before starting the next lab, remove the application in your namespace. This will not remove the {r} created in the first lab.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc process -f httpbin/httpbin.yaml \
     -p HTTPBIN_ROUTE="${OCP_HTTPBIN_HOST}" -n ${OCP_NAMESPACE} \
