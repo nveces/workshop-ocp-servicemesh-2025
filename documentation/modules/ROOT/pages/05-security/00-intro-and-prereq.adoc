@@ -20,7 +20,7 @@ These variables are:
 - *$OCP_API*: Openshift API endpoint. We will use this endpoint when accesing the cluster from the `oc` cli.
 - *$USER*: your private user id used for Openshift authentication
 - *$PASSWORD*:  your secret password used for Openshift authentication
-- *$APPS_NS1* and *$APPS_NS2* : namespaces where you will deploy your apps during the whole series of labs. Ex: `dsanchor-1` and `dsanchor-2`
+- *$APPS_NS1* and *$APPS_NS2* : namespaces where you will deploy your apps during the whole series of labs. Ex: `user24-sm` and `user24-2-sm`
 - *$SERVICE_MESH_NS*: namespace of the Istio Control Plane you will be using. This time, there will be only a single control plane shared by all: `istio-system`.
 - *$KIALI_CONSOLE*: each Service Mesh will have their own console. Use this url to access to the `Kiali console`.
 - *$INGRESS_GW*: every user will have a dedicated Ingress Gateway to manage his/her ingress traffic. Ex: `dsanchor-ingress`
@@ -31,12 +31,12 @@ Feel free to export these variables in your environment.
 
 There is also a list of files needed to run the labs. These files can be found in the following github repository:
 
-https://github.com/dsanchor/service-mesh-security
+https://github.com/nveces/ocp-servicemesh-labs-2025.git
 
 Clone the repository to your desired location, that will then be referred as *$LABS_HOME* during the labs:
 
 ....
-$ git clone https://github.com/dsanchor/service-mesh-security.git $LABS_HOME
+$ git clone https://github.com/nveces/ocp-servicemesh-labs-2025.git $LABS_HOME
 ....
 
 :numbered:
@@ -93,8 +93,8 @@ Login successful.
 You have access to the following projects and can switch between them with ' project <projectname>':
 
   * istio-system
-    dsanchor-1
-    dsanchor-2
+    user24-sm
+    user24-2-sm
 
 Using project "istio-system".
 ....
