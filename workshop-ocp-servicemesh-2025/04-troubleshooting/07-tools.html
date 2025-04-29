@@ -520,6 +520,89 @@ curl -v <a href="http://localhost:15000/stats_recentlookups" class="bare">http:/
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_pod_container_images"><a class="anchor" href="#_pod_container_images"></a>6. Pod / Container images</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Pod router</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Namespace -: openshif-ingress
+Pod -------: router-&lt;router-name&gt;
+Container -: router
+Image -----: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+Product ---: haproxy</code></pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="title">HAproxy version</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">sh-5.1$ haproxy -version
+HAProxy version 2.8.10-f28885f 2024/06/14 - <a href="https://haproxy.org/" class="bare">https://haproxy.org/</a>
+Status: long-term supported branch - will stop receiving fixes around Q2 2028.
+Known bugs: <a href="http://www.haproxy.org/bugs/bugs-2.8.10.html" class="bare">http://www.haproxy.org/bugs/bugs-2.8.10.html</a>
+Running on: Linux 5.14.0-427.62.1.el9_4.x86_64 #1 SMP PREEMPT_DYNAMIC Sat Mar 22 10:20:42 EDT 2025 x86_64
+----</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Configuration file: <code>/var/lib/haproxy/conf/haproxy.config</code></p>
+</li>
+<li>
+<p>Executable file: <code>/usr/sbin/haproxy</code></p>
+</li>
+<li>
+<p>PID file: <code>/var/lib/haproxy/run/haproxy.pid</code></p>
+</li>
+</ul>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Pod istio-ingressgateway</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Namespace -: istio-system
+Pod -------: istio-ingressgateway-&lt;pod-name&gt;
+Container -: istio-proxy
+Image -----: registry.redhat.io/openshift-service-mesh/proxyv2-rhel9  <i class="conum" data-value="1"></i><b>(1)</b>
+Product ---: Envoy proxy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where:</p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://catalog.redhat.com/software/containers/openshift-service-mesh/proxyv2-rhel9/64010fd529d6b9c7d9c6bdc2" class="bare" target="_blank" rel="noopener">https://catalog.redhat.com/software/containers/openshift-service-mesh/proxyv2-rhel9/64010fd529d6b9c7d9c6bdc2</a></td>
+</tr>
+</table>
+</div>
+<div class="listingblock console-input">
+<div class="title">Envoy version</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">sh-5.1$ cd /usr/local/bin/
+sh-5.1$ ./envoy --version
+./envoy  version: c6160ecc199f34ab6c3e6a5f16958d150e536faa/1.28.8-dev/OSSM 2.6.7-1/RELEASE/OpenSSL</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Istio Pilot agent</strong> runs in the sidecar or gateway container and bootstraps Envoy.</p>
+</div>
+<div class="listingblock console-input">
+<div class="title">Istio Pilot agent version.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">sh-5.1$ ./pilot-agent version
+version.BuildInfo{Version:"OSSM_2.6.7-1", GitRevision:"e1d197c84f9e1f436139bcdf81215d67a8edfd81", GolangVersion:"go1.21.13 (Red Hat 1.21.13-5.el9_4) X:strictfipsruntime", BuildStatus:"Clean", GitTag:"2.6.7"}</code></pre>
+</div>
+</div>
+</div>
+</div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
