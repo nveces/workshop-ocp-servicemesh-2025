@@ -261,7 +261,7 @@ Running on: Linux 5.14.0-427.62.1.el9_4.x86_64 #1 SMP PREEMPT_DYNAMIC Sat Mar 22
 Namespace -: istio-system
 Pod -------: istio-ingressgateway-<pod-name>
 Container -: istio-proxy
-Image -----: registry.redhat.io/openshift-service-mesh/proxyv2-rhel9 <1>
+Image -----: registry.redhat.io/openshift-service-mesh/proxyv2-rhel9  <1>
 Product ---: Envoy proxy
 ----
 
