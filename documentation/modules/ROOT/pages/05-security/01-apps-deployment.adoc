@@ -169,9 +169,9 @@ watch -n1 curl -k https://${PRODUCTPAGE_HOST}/productpage
 
 If you check then the graph in `Kiali`, you should get a similar flow:
 
-image::05-security/first-graph.gif[First graph,link=../_images/05-security/first-graph.gif,window=_blank]
+image::05-security/first-graph.png[First graph,link=../_images/05-security/first-graph.png,window=_blank]
 
-Notice the starting node in the graph... it should be your dedicated ingress gateway.
+// Notice the starting node in the graph... it should be your dedicated ingress gateway.
 
 
 == Deploy services in $APPS_NS2
