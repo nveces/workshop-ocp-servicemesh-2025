@@ -273,7 +273,7 @@ deployment.apps/productpage-v1 updated
 
 Test that the `productpage` service cannot reach the `reviews` service in $APPS_NS2 after the config change:
 
-05-security/productpage-accesing-ns2.png[RBAC error ns2]
+image::05-security/productpage-accesing-ns2.png[RBAC error ns2,link=../_images/05-security/productpage-accesing-ns2.png,window=_blank]
 
 And now, process the following `AuthorizationPolicy` template to check what we will be creating:
 
