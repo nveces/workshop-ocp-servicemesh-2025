@@ -217,7 +217,7 @@ image::05-security/productpage-rbac-ok.png[Productpage RBAC,link=../_images/05-s
 
 And this the `Kiali` graph again where will see all interactions between servies working as expected:
 
-image::05-security/kiali-rbac-ok.gif[Kiali RBAC ok,link=../_images/05-security/kiali-rbac-ok.gif,window=_blank]
+image::05-security/kiali-rbac-ok.png[Kiali RBAC ok,link=../_images/05-security/kiali-rbac-ok.png,window=_blank]
 
 
 == Extra check: access from independant pod
