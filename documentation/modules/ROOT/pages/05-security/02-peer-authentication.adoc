@@ -124,7 +124,7 @@ watch -n1 curl -k https://${PRODUCTPAGE_HOST}/productpage
 Finally, move to `Kiali` and select the `Security` check box in the graph `Display options`. We should get a lock icon between each service call:
 
 // image::05-security/kiali-login.png[Kiali login,link=../_images/05-security/kiali-login.png,window=_blank]
-image::05-security/security-check.gif[Mtls in ns1,link=../_images/05-security/security-check.gif,window=_blank]
+image::05-security/security-check.png[Mtls in ns1,link=../_images/05-security/security-check.png,window=_blank]
 
 
 == Enforce mTLS and configure services in $APPS_NS2
