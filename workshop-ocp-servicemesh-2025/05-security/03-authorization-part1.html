@@ -688,8 +688,10 @@ deployment.apps/productpage-v1 updated</pre>
 <div class="paragraph">
 <p>Test that the <code>productpage</code> service cannot reach the <code>reviews</code> service in $APPS_NS2 after the config change:</p>
 </div>
-<div class="paragraph">
-<p>05-security/productpage-accesing-ns2.png[RBAC error ns2]</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/05-security/productpage-accesing-ns2.png" target="_blank" rel="noopener"><img src="../_images/05-security/productpage-accesing-ns2.png" alt="RBAC error ns2"></a>
+</div>
 </div>
 <div class="paragraph">
 <p>And now, process the following <code>AuthorizationPolicy</code> template to check what we will be creating:</p>
