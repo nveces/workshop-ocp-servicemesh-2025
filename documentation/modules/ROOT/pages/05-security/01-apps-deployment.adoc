@@ -236,7 +236,7 @@ image::05-security/ratings-ns2.png[Ratings from ns2,link=../_images/05-security/
 
 And if you keep sending requests.. you would get the following graph (notice that we jump from `productpage` in your $APPS_NS1 to `reviews` in your $APPS_NS2):
 
-image::05-security/graph-with-ns2.gif[Graph with ns2,link=../_images/05-security/graph-with-ns2.gif,window=_blank]
+image::05-security/graph-with-ns2.png[Graph with ns2,link=../_images/05-security/graph-with-ns2.png,window=_blank]
 
 Once tested, we will move back to default, as we will start from the first scenario, where all services run in $APPS_NS1.
 
