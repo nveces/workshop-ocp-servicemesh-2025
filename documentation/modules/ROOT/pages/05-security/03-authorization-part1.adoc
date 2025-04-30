@@ -61,7 +61,7 @@ authorizationpolicy.security.istio.io/deny-all-in-ns created
 
 Test the application again and see that we get an `RBAC: denied access error`. If you left some test running in the background, you would have a similar graph to the one shown below in `Kiali`:
 
-image::05-security/kiali-rbac-error.gif[Kiali RBAC error,link=../_images/05-security/kiali-rbac-error.gif,window=_blank]
+image::05-security/kiali-rbac-error.png[Kiali RBAC error,link=../_images/05-security/kiali-rbac-error.png,window=_blank]
 
 
 We will start now given access gradually to services.
