@@ -293,7 +293,7 @@ This is not a recommended practices guide nor intended to serve as a reference. 
 <p><strong>$KIALI_CONSOLE</strong>: each Service Mesh will have their own console. Use this url to access to the <code>Kiali console</code>.</p>
 </li>
 <li>
-<p><strong>$INGRESS_GW</strong>: every user will have a dedicated Ingress Gateway to manage his/her ingress traffic. Ex: <code>user24-ingress</code></p>
+<p><strong>$INGRESS_GW</strong>: <code>istio-ingressgateway</code></p>
 </li>
 <li>
 <p><strong>$PRODUCTPAGE_HOST</strong>: external domain for the productpage service. Ex: <code>productpage-user24-sm.apps.ocp.sandbox2790.opentlc.com</code></p>
@@ -1289,7 +1289,7 @@ In last command, we just run <code>curl -X POST localhost:15000/logging?rbac=deb
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ oc process -f $LABS_HOME/lab3/allow-ingress-productpage.yaml -p INGRESS_GW=$INGRESS_GW -o yaml -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
+<pre>$ oc process -f $LABS_HOME/lab3/allow-ingress-productpage.yaml -p INGRESS_GW=istio-ingressgateway -o yaml -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
 
 authorizationpolicy.security.istio.io/allow-ingress-productpage created</pre>
 </div>
@@ -1300,14 +1300,6 @@ authorizationpolicy.security.istio.io/allow-ingress-productpage created</pre>
 <div class="imageblock">
 <div class="content">
 <a class="image" href="../_images/05-security/rbac-productpage.png" target="_blank" rel="noopener"><img src="../_images/05-security/rbac-productpage.png" alt="Productpage RBAC"></a>
-</div>
-</div>
-<div class="paragraph">
-<p>And the following graph can be seen in <code>Kiali</code>:</p>
-</div>
-<div class="imageblock unresolved">
-<div class="content">
-<a class="image" href="../_images/05-security/kiali-rbac-error-2.gif" target="_blank" rel="noopener"><img src="05-security/kiali-rbac-error-2.gif" alt="Kiali RBAC error"></a>
 </div>
 </div>
 <div class="paragraph">
