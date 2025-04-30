@@ -163,7 +163,7 @@ Review that:
 
 Finally, apply the resulting `AuthorizationPolicy`:
 ....
-$ oc process -f $LABS_HOME/lab3/allow-ingress-productpage.yaml -p INGRESS_GW=$INGRESS_GW -o yaml -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
+$ oc process -f $LABS_HOME/lab3/allow-ingress-productpage.yaml -p INGRESS_GW=istio-ingressgateway -o yaml -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
 
 authorizationpolicy.security.istio.io/allow-ingress-productpage created
 ....
@@ -172,9 +172,9 @@ Test the application again and you should be able to reach it, although you stil
 
 image::05-security/rbac-productpage.png[Productpage RBAC,link=../_images/05-security/rbac-productpage.png,window=_blank]
 
-And the following graph can be seen in `Kiali`:
+// And the following graph can be seen in `Kiali`:
 
-image::05-security/kiali-rbac-error-2.gif[Kiali RBAC error,link=../_images/05-security/kiali-rbac-error-2.gif,window=_blank]
+// image::05-security/kiali-rbac-error-2.gif[Kiali RBAC error,link=../_images/05-security/kiali-rbac-error-2.gif,window=_blank]
 
 We are now restricted all services behind the `productpage` service. Let's start activating accesses `workload`  by `workload`.
 

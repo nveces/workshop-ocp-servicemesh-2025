@@ -23,7 +23,8 @@ These variables are:
 - *$APPS_NS1* and *$APPS_NS2* : namespaces where you will deploy your apps during the whole series of labs. Ex: `user24-sm` and `user24-2-sm`
 - *$SERVICE_MESH_NS*: namespace of the Istio Control Plane you will be using. This time, there will be only a single control plane shared by all: `istio-system`.
 - *$KIALI_CONSOLE*: each Service Mesh will have their own console. Use this url to access to the `Kiali console`.
-- *$INGRESS_GW*: every user will have a dedicated Ingress Gateway to manage his/her ingress traffic. Ex: `user24-ingress`
+// - *$INGRESS_GW*: every user will have a dedicated Ingress Gateway to manage his/her ingress traffic. Ex: `user24-ingress`
+- *$INGRESS_GW*: `istio-ingressgateway`
 - *$PRODUCTPAGE_HOST*: external domain for the productpage service. Ex: `productpage-user24-sm.apps.ocp.sandbox2790.opentlc.com`
 
 
