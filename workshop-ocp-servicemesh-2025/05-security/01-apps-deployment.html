@@ -431,7 +431,7 @@ destinationrule.networking.istio.io/ratings created</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ oc process -f $LABS_HOME/lab1/istio/productpage-v1.yaml -p PRODUCTPAGE_HOST=$PRODUCTPAGE_HOST -p INGRESS_GW=$INGRESS_GW -p APPS_NS=$APPS_NS1 -p MESH_NS=$SERVICE_MESH_NS -o yaml | oc apply -f -
+<pre>$ oc process -f $LABS_HOME/lab1/istio/productpage-v1.yaml -p PRODUCTPAGE_HOST=$PRODUCTPAGE_HOST -p INGRESS_GW=$USER -p APPS_NS=$APPS_NS1 -p MESH_NS=$SERVICE_MESH_NS -o yaml | oc apply -f -
 
 route.route.openshift.io/dsanchor-ingress-productpage created
 gateway.networking.istio.io/dsanchor-ingress-productpage created
@@ -444,7 +444,7 @@ destinationrule.networking.istio.io/productpage created</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ oc get route/${INGRESS_GW}-productpage -o template='http://{{.spec.host}}' -n istio-system
+<pre>$ oc get route/${APPS_NS1}-productpage -o template='http://{{.spec.host}}' -n istio-system
 
 http://productpage-dsanchor-1.apps.labs.sandbox671.opentlc.com</pre>
 </div>
