@@ -47,7 +47,6 @@ virtualservice.networking.istio.io/oauth2-proxy created
 destinationrule.networking.istio.io/oauth2-proxy created
 serviceentry.networking.istio.io/accounts-google created
 serviceentry.networking.istio.io/oauth2-googleapis created
-
 ....
 
 NOTE: There were some basic objects created that you are familiar to as in any regular OCP+Mesh application deployment: `Service`, `Deployment`, `VirtualService` and `DestinationRule`. Then, there are two `ServiceEntries` that have been created in order to allow access to external resources which are Google's related. This is because we have restricted the access to any external resource from within the `Service Mesh` (as we are in the Security Workshop, we would like to have certain control to which external resources are consumed). To achieve this goal, we configured our `ServiceMeshControlPlane` with a `REGISTRY_ONLY` `outboutTrafficPolicy` {istio_doc}/reference/config/istio.mesh.v1alpha1/[mode,window=_blank]. Feel free to have a look at the configuration and the `ServiceEntries` as well.
