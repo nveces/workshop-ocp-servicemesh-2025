@@ -298,7 +298,12 @@
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ oc process -f $LABS_HOME/lab5/oauth2-proxy.yaml \
+<pre>export MY_CLIENT="391916373246-6sl1ld3qoqv6k1atnrbli75vpq7bsfrb.apps.googleusercontent.com"
+export MY_SECRET="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"
+export GOOGLE_OIDC_ISSUER_URL=https://accounts.google.com
+
+
+$ oc process -f $LABS_HOME/lab5/oauth2-proxy.yaml \
     -p USER=$USER \
     -p INGRESS_GW=$INGRESS_GW \
     -p APP_DOMAIN=$PRODUCTPAGE_HOST \
@@ -335,7 +340,7 @@ There were some basic objects created that you are familiar to as in any regular
 <div class="literalblock">
 <div class="content">
 <pre>[2021/04/03 20:49:58] [proxy.go:59] mapping path "/" =&gt; static response 200
-[2021/04/03 20:49:58] [oauthproxy.go:137] OAuthProxy configured for OpenID Connect Client ID: 80.....apps.googleusercontent.com
+[2021/04/03 20:49:58] [oauthproxy.go:137] OAuthProxy configured for OpenID Connect Client ID: 80.....apps.googl....ontent.com
 [2021/04/03 20:49:58] [oauthproxy.go:143] Cookie settings: name:_oauth2_proxy_dsanchor-ingress secure(https):true httponly:true expiry:4h0m0s domains: path:/ samesite:lax refresh:after 30m0s
 [2021/04/03 20:49:58] [http.go:57] HTTP: listening on 0.0.0.0:4180</pre>
 </div>
