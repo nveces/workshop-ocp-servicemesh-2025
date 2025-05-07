@@ -54,7 +54,7 @@ NOTE: There were some basic objects created that you are familiar to as in any r
 If may take some restarts to have the application running since the `oauth2-proxy` container tries to load the OIDC configuration from an external resource and the `istio-proxy` may not have started yet. Finally, you should see a similar output on the `oauth2-proxy` contatiner within the pod:
 ....
 [2021/04/03 20:49:58] [proxy.go:59] mapping path "/" => static response 200
-[2021/04/03 20:49:58] [oauthproxy.go:137] OAuthProxy configured for OpenID Connect Client ID: 805248467061-9nkgmsfmdu3me5d4ngiemvb1en3s550b.apps.googleusercontent.com
+[2021/04/03 20:49:58] [oauthproxy.go:137] OAuthProxy configured for OpenID Connect Client ID: 80.....apps.googleusercontent.com
 [2021/04/03 20:49:58] [oauthproxy.go:143] Cookie settings: name:_oauth2_proxy_dsanchor-ingress secure(https):true httponly:true expiry:4h0m0s domains: path:/ samesite:lax refresh:after 30m0s
 [2021/04/03 20:49:58] [http.go:57] HTTP: listening on 0.0.0.0:4180
 ....
