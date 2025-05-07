@@ -30,9 +30,6 @@ Let's now put all we have described above in practice. First, we need to deploy 
 
 We will deploy it under our $APPS_NS1:
 ....
-export MY_CLIENT="391916373246-6sl1ld3qoqv6k1atnrbli75vpq7bsfrb.apps.googleusercontent.com"
-export MY_SECRET="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"
-
 $ oc process -f $LABS_HOME/lab5/oauth2-proxy.yaml \
     -p USER=$USER \
     -p INGRESS_GW=$INGRESS_GW \
@@ -40,7 +37,7 @@ $ oc process -f $LABS_HOME/lab5/oauth2-proxy.yaml \
     -p CLIENT_ID=$MY_CLIENT \
     -p CLIENT_SECRET=$MY_SECRET \
     -p COOKIE_SECRET=$(openssl rand -hex 16) \
-    -p OIDC_ISSUER_URL=https://accounts.google.com \
+    -p OIDC_ISSUER_URL=$GOOGLE_OIDC_ISSUER_URL \
     -p OAUTH_NS=$APPS_NS1 -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
 
 secret/oauth2-proxy created
