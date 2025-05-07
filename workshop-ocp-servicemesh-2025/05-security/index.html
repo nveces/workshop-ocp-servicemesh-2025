@@ -1798,7 +1798,15 @@ authorizationpolicy.security.istio.io/dsanchor-ingress-policy created</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ oc process -f $LABS_HOME/lab5/oauth2-proxy.yaml -p INGRESS_GW=$INGRESS_GW -p APP_DOMAIN=$PRODUCTPAGE_HOST -p CLIENT_ID="805248467061-9nkgmsfmdu3me5d4ngiemvb1en3s550b.apps.googleusercontent.com" -p CLIENT_SECRET="-RPI_Pgs_IKn0sIkYiB_7DAn" -p COOKIE_SECRET=$(openssl rand -hex 16) -p OIDC_ISSUER_URL=https://accounts.google.com OAUTH_NS=$APPS_NS1 -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
+<pre>$ oc process -f $LABS_HOME/lab5/oauth2-proxy.yaml \
+    -p USER=$USER \
+    -p INGRESS_GW=$INGRESS_GW \
+    -p APP_DOMAIN=$PRODUCTPAGE_HOST \
+    -p CLIENT_ID=$MY_CLIENT \
+    -p CLIENT_SECRET=$MY_SECRET \
+    -p COOKIE_SECRET=$(openssl rand -hex 16) \
+    -p OIDC_ISSUER_URL=$GOOGLE_OIDC_ISSUER_URL \
+    -p OAUTH_NS=$APPS_NS1 -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
 
 secret/oauth2-proxy created
 service/oauth2-proxy created
@@ -1827,7 +1835,7 @@ There were some basic objects created that you are familiar to as in any regular
 <div class="literalblock">
 <div class="content">
 <pre>[2021/04/03 20:49:58] [proxy.go:59] mapping path "/" =&gt; static response 200
-[2021/04/03 20:49:58] [oauthproxy.go:137] OAuthProxy configured for OpenID Connect Client ID: 805248467061-9nkgmsfmdu3me5d4ngiemvb1en3s550b.apps.googleusercontent.com
+[2021/04/03 20:49:58] [oauthproxy.go:137] OAuthProxy configured for OpenID Connect Client ID: 80.....apps.googleusercontent.com
 [2021/04/03 20:49:58] [oauthproxy.go:143] Cookie settings: name:_oauth2_proxy_dsanchor-ingress secure(https):true httponly:true expiry:4h0m0s domains: path:/ samesite:lax refresh:after 30m0s
 [2021/04/03 20:49:58] [http.go:57] HTTP: listening on 0.0.0.0:4180</pre>
 </div>
