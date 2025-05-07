@@ -193,13 +193,13 @@ We have to provide a valid JWT token... and the process of getting a token from 
 
 In next lab, we will deploy some utilities on Openshift that will be configured to automatically manage the OAuth flow of getting a valid token against Google's OAuth server, but now, we would like to test what we just did.
 
-To do so, I will provide a temporal token that can be used for this test. *Please ask if you haven't be given one and export it as $JWT_TOKEN*
+// To do so, I will provide a temporal token that can be used for this test. *Please ask if you haven't be given one and export it as $JWT_TOKEN*
 
-Then, test the application using next curl:
-....
- curl -v -k -H "Authorization: Bearer $JWT_TOKEN" https://${PRODUCTPAGE_HOST}/productpage
-....
+// Then, test the application using next curl:
+// ....
+//  curl -v -k -H "Authorization: Bearer $JWT_TOKEN" https://${PRODUCTPAGE_HOST}/productpage
+// ....
 
-Did it work?  Hope so. That means, the token you have provided is valid.
+// Did it work?  Hope so. That means, the token you have provided is valid.
 
 If you try againg using your web browser (that is, no token is provided), it would fail.
