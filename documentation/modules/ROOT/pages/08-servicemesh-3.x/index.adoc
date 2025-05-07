@@ -1,0 +1,35 @@
+= Tempo
+
+include::./../_document-vars.adoc[]
+
+//:toc: left
+:toc-title: Tempo
+
+
+== Introduction
+
+
+====
+IMPORTANT: *Red Hat OpenShift Service Mesh 3.0* releases on a different cadence from *OpenShift Container Platform*, the *Service Mesh documentation* is available as a separate documentation set at
+
+* https://docs.redhat.com/en/documentation/red_hat_openshift_service_mesh/3.0[window=_blank] - Red Hat Service Mesh Documentation
+
+====
+
+[sidebar]
+---
+
+
+* https://docs.redhat.com/en/documentation/red_hat_openshift_service_mesh/3.0/html-single/migrating_from_service_mesh_2_to_service_mesh_3/index#ossm-migrating-from-service-mesh-2-to-3[window=_blank]
+
+* https://docs.redhat.com/en/documentation/red_hat_openshift_service_mesh/3.0/html-single/migrating_from_service_mesh_2_to_service_mesh_3/index#ossm-2-and-3-differences_ossm-migrating-read-me[window=_blank]
+
+* https://docs.redhat.com/en/documentation/red_hat_openshift_service_mesh/3.0/html-single/migrating_from_service_mesh_2_to_service_mesh_3/index[window=_blank]
+
+
+include::01-migrating-from-ossm2.adoc[leveloffset=+1]
+include::02-installation-from-scratch.adoc[leveloffset=+1]
+
+
+
+// EOF

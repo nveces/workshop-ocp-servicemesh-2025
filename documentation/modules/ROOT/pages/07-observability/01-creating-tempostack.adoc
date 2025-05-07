@@ -1,0 +1,138 @@
+////
+
+////
+
+= Lab 3 - Creating a TempoStack
+
+
+Create the `tempo-observability` namespace:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 11-ns-tempo-observability.yaml
+----
+
+
+Create the Object Storage bucket:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 40-objectbucketclaim-tempo.yaml
+----
+
+.Check the Object Storage bucket status: Bound
+[.lines_space]
+[.console-input]
+image::07-observability/tempo_bucket_01.png[link=../_images/07-observability/tempo_bucket_01.png,window=_blank]
+
+IMPORTANT: This step creates also the `tempo-bucket-odf` secret in the `tempo-observability` namespace. This secret contains the credentials to access the bucket.
+
+Create the `tempostack-dev-s3` secret for the TempoStack on the `tempo-observability` namespace:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+ oc -n tempo-observability create secret generic tempostack-dev-s3 \   <1>
+  --from-literal=bucket="<tempo_bucket>" \                             <2>
+  --from-literal=endpoint="<bucket_endpoint>" \                        <3>
+  --from-literal=access_key_id="<bucket_access_key>" \                 <4>
+  --from-literal=access_key_secret="<bucket_secret_key>"               <5>
+----
+
+<1> Name of the secret.
+<2> Name of the bucket. From the `tempo-bucket-odf` secret.
+<3> Endpoint of the bucket.
+<4> Access key ID. From the `tempo-bucket-odf` secret, the `access_key_id` key.
+<5> Access key secret. From the `tempo-bucket-odf` secret, the `access_key_secret` key.
+
+
+From the `tempo-bucket-odf` secret created when we did create the objectbucket claim in the previous step, you can get the values for the bucket name, endpoint, access key ID, and access key secret.
+
+* `AWS_ACCESS_KEY_ID`
+* `AWS_SECRET_ACCESS_KEY`
+
+Get the `AWS_ACCESS_KEY_ID` key value from the `tempo-bucket-odf` secret:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc -n tempo-observability get secret tempo-bucket-odf -o jsonpath='{.data.AWS_ACCESS_KEY_ID}'  | base64 --decode
+----
+
+Get the `AWS_SECRET_ACCESS_KEY` key value from the `tempo-bucket-odf` secret:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc -n tempo-observability get secret tempo-bucket-odf -o jsonpath='{.data.AWS_SECRET_ACCESS_KEY}'  | base64 --decode
+----
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc -n tempo-observability get ObjectBucketClaim tempo-bucket-odf -o jsonpath='{.spec.bucketName}'
+----
+
+For example, if you have the following values:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+ oc -n tempo-observability create secret generic tempostack-dev-s3 \
+  --from-literal=bucket="$(oc -n tempo-observability get ObjectBucketClaim tempo-bucket-odf -o jsonpath='{.spec.bucketName}')" \
+  --from-literal=endpoint="s3.openshift-storage.svc:443" \
+  --from-literal=access_key_id="$(oc -n tempo-observability get secret tempo-bucket-odf -o jsonpath='{.data.AWS_ACCESS_KEY_ID}'  | base64 --decode)" \
+  --from-literal=access_key_secret="$(oc -n tempo-observability get secret tempo-bucket-odf -o jsonpath='{.data.AWS_SECRET_ACCESS_KEY}'  | base64 --decode)"
+----
+
+
+
+Create the `TempoStack` object:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 50-tempostack-tempo.yaml
+----
+
+
+We highlight:
+
+To enable metrics of a TempoStack instance, set the spec.observability.metrics.createServiceMonitors field to true
+
+[.lines_space]
+[.console-input]
+----
+.../...
+ observability:
+    metrics:
+      createServiceMonitors: true
+.../...
+----
+
+To enable alerts for a TempoStack instance, set the spec.observability.metrics.createPrometheusRules field to true
+
+
+[.lines_space]
+[.console-input]
+----
+.../...
+ observability:
+    metrics:
+      createPrometheusRules: true
+.../...
+----
+
+
+
+// EOF

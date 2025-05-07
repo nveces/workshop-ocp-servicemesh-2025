@@ -1,0 +1,108 @@
+
+= Lab 1 - Install Tempo Operator
+
+Naturally, we could install operators using the OpenShift Web Console, but for this tutorial, we will use the CLI.
+
+
+image::07-observability/tempo_operator_01.png[link=../_images/07-observability/tempo_operator_01.png,window=_blank,width=75%]
+
+image::07-observability/tempo_operator_02.png[link=../_images/07-observability/tempo_operator_02.png,window=_blank,width=75%]
+
+
+[sidebar]
+---
+
+Navigate to the project folder in your system after repository download for completing all tasks included in this tutorial:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+cd ocp-servicemesh-labs-2025/lab-00/tempo
+----
+
+
+Create the `openshift-tempo-operator` namespace:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 10-ns-tempo-operator.yaml
+----
+
+Create an Operator group:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 20-operatorgroup-tempo.yaml
+----
+
+Create the subscrition:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 30-sub-tempo.yaml
+----
+
+.How to know the current version of an operator.
+[.lines_space]
+[.console-input]
+[%collapsible]
+====
+Before to create subscrption, if you want to know the specific channel name, currentCSV, and other information about this operator, run the following command:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc get packagemanifest tempo-product -o yaml
+----
+
+We highlight the lines:
+
+[.lines_space]
+[.console-input]
+[source,yaml, subs="+macros,+attributes"]
+----
+.../...
+status:
+  catalogSource: redhat-operators
+  catalogSourceDisplayName: Red Hat Operators
+  catalogSourceNamespace: openshift-marketplace
+  catalogSourcePublisher: Red Hat
+  channels:
+  - currentCSV: tempo-operator.v0.15.4-1
+.../...
+----
+====
+
+Check the Operator status by running the following command:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc get csv -n openshift-tempo-operator
+----
+
+[.lines_space]
+[source,bash, subs="+macros,+attributes"]
+----
+oc get csv -n openshift-tempo-operator | grep tempo
+tempo-operator.v0.15.4-1     Tempo Operator        0.15.4-1   tempo-operator.v0.15.3-1       Succeeded
+----
+
+
+= Lab 2 - Install Red Hat build of OpenTelemetry Operator
+
+
+
+Create the `tempo-observability` namespace:
+
+
+// EOF

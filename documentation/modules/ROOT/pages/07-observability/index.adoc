@@ -1,0 +1,42 @@
+= Tempo
+
+include::./../_document-vars.adoc[]
+
+//:toc: left
+:toc-title: Tempo
+
+== Introduction
+
+include::./../../partials/04-troubleshooting/jaeger_deprecated.adoc[]
+
+NOTE: The *Red Hat OpenShift distributed tracing platform (Jaeger)* is a deprecated feature. +
+Deprecated functionality is still included in OpenShift Container Platform and continues to be supported; however, it will be removed in a future release of this product and is not recommended for new deployments.
+
+NOTE: Users must migrate to the *Tempo Operator* and the Red Hat build of OpenTelemetry for distributed tracing collection and storage.
+
+
+The *Tempo operator* supports for storing Tempo data:
+
+* OpenShift Data Foundation,
+* AWS S3,
+* Azure,
+* GCS
+* and Minio.
+
+
+References:
+
+* https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html-single/distributed_tracing/index#distributed-tracing-platform-tempo[window=_blank] - Distributed tracing platform (Tempo)
+* https://access.redhat.com/solutions/7083722[window=_blank] - Jaeger Deprecation and Removal in OpenShift
+* https://developers.redhat.com/articles/2023/08/01/how-deploy-new-grafana-tempo-operator-openshift[window=_blank]
+* https://developers.redhat.com/articles/2024/08/14/introducing-tempo-monolithic-mode[window=_blank]
+* https://grafana.com/docs/tempo/latest/setup/operator/[window=_blank]
+* https://access.redhat.com/solutions/7040685[window=_blank] - How to deploy the different TempoStack components on "infra" nodes using nodeSelector and tolerations in OpenShift 4
+
+
+include::00-setup-operators.adoc[leveloffset=+1]
+include::01-creating-tempostack.adoc[leveloffset=+1]
+include::02-ossm-tempo.adoc[leveloffset=+1]
+
+
+// EOF

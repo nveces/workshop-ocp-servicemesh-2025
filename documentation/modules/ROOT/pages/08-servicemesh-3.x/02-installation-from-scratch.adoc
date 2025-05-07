@@ -1,0 +1,17 @@
+////
+
+////
+
+
+= Lab 2 - Service Mesh 3.x Getting Started
+
+We recommend to watch this interactive resource to learn how to install and configure the Service Mesh 3.x:
+
+image::08-servicemesh-3.x/rh_interactive_servicemesh_3.png[link=https://interact.redhat.com/share/3gtDpD8ZgZP1KIo2UNux,window=_blank]
+
+
+
+https://www.redhat.com/en/interactive-experiences[window=_blank]
+
+
+// EOF
