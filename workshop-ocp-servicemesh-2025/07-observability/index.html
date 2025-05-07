@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Tempo :: WorkShop - Service Mesh on OCP 2025</title>
+    <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/07-observability/index.html">
+    <link rel="prev" href="../06-extensibility/index.html">
+    <link rel="next" href="../08-servicemesh-3.x/index.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://nveces.github.io/workshop-ocp-servicemesh-2025">WorkShop - Service Mesh on OCP 2025</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kafka-tutorial/" target="_blank">Kafka</a>
+            <a class="navbar-item" href="https://devsecops-workshop.github.io/" target="_blank">DevSecOps</a>
+            <a class="navbar-item" href="https://acidonper.github.io/redhat-workshop-cicd-gitops/redhat-workshop-cicd-gitops/" target="_blank">CI/CD & GitOps</a>
+            <a class="navbar-item" href="https://atarazana.github.io/gramola-gitops-guide/gramola-gitops-guide/" target="_blank">Gramola GitOps Guide</a>
+            <a class="navbar-item" href="https://luisarizmendi.github.io/tutorial-secure-onboarding/" target="_blank">Secure Edge device onboarding with RHEL and FDO</a>
+            <a class="navbar-item" href="https://xbryan1.github.io/rhte-2023-acm-docs/" target="_blank">Multicluster Application Deployment with Advanced Cluster Management and GitOps</a>
+            <a class="navbar-item" href="https://redhat-scholars.github.io/java-inner-loop-dev-guide/java-inner-loop-dev-guide/index.html" target="_blank">Java Inner Loop Dev Guide</a>
+            <a class="navbar-item" href="https://atarazana.github.io/kitchensink-guide/" target="_blank">Deploying JBoss EAP applications on OpenShift</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="workshop-ocp-servicemesh-2025" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../01-setup.html">1. Environment Setup</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#prerequisite">Prerequisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#_platform">Platform</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-setup.html#_openshift_cheat_sheet">OpenShift Cheat Sheet</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../01-introduction/index.html">2. Introduction - Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-introduction/index.html#_lab_0_warming_up">Lab 0 - Warming up</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-introduction/index.html#_lab_1_database_deployment">Lab 1 - Database deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-introduction/index.html#_lab_2_first_application_deployment">Lab 2 - First application deployment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-introduction/index.html#_lab_3_adding_persistent_volumes">Lab 3 - Adding persistent volumes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-introduction/index.html#_lab_4_resources">Lab 4 - Resources</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-introduction/index.html#_lab_5_liveness_and_readiness_probes">Lab 5 - Liveness and readiness probes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../01-introduction/index.html#_lab_6_network_policies">Lab 6 - Network Policies</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../02-envoy-istio-control-plane/index.html">3. Envoy istio Control plane - Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-envoy-istio-control-plane/index.html#_lab_1_setup">Lab 1 - Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-envoy-istio-control-plane/index.html#_lab_2_deploy_jump_app">Lab 2 - Deploy Jump App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-envoy-istio-control-plane/index.html#_lab_3_service_mesh_communication_flows">Lab 3 - Service Mesh Communication Flows</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-envoy-istio-control-plane/index.html#_lab_4_istio_envoy_objects_relationship">Lab 4 - Istio-Envoy Objects Relationship</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-envoy-istio-control-plane/index.html#_lab_5_envoy_proxy">Lab 5 - Envoy Proxy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-envoy-istio-control-plane/index.html#_lab_6_istio_control_plane">Lab 6 - Istio Control Plane</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../02-envoy-istio-control-plane/index.html#_lab_7_istio_global_services">Lab 7 - Istio Global Services</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../03-traffic-management/index.html">4. Traffic management - Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../03-traffic-management/index.html#_rhossm_traffic_management_labs">Red Hat OpenShift Service Mesh 2.6.7: Traffic Management Labs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../03-traffic-management/index.html#_lab_1_ingress_gateways">Lab 1 - Ingress Gateways</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../03-traffic-management/index.html#_lab_2_requests_routing">Lab 2 - Requests Routing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../03-traffic-management/index.html#_lab_3_traffic_shifting_and_weight_balancing">Lab 3 - Traffic Shifting and Weight Balancing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../03-traffic-management/index.html#_lab_4_fault_injection">Lab 4 - Fault Injection</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../03-traffic-management/index.html#_lab_5_requests_timeouts">Lab 5 - Requests Timeouts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../03-traffic-management/index.html#_lab_6_circuit_breaking">Lab 6 - Circuit Breaking</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../03-traffic-management/index.html#_lab_7_mirroring_and_dark_launches">Lab 7 - Mirroring and Dark Launches</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../03-traffic-management/index.html#_lab_8_egress_gateways">Lab 8 - Egress Gateways</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../03-traffic-management/index.html#_lab_9_grpc_routing">Lab 9 - gRPC Routing</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../04-troubleshooting/index.html">5. Troubleshooting - Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../04-troubleshooting/index.html#_lab_1_setup">Lab 1 - Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../04-troubleshooting/index.html#_lab_2_deploy_jump_app">Lab 2 - Deploy Jump App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../04-troubleshooting/index.html#_lab_3_service_mesh_communication_flows">Lab 3 - Service Mesh Communication Flows</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../04-troubleshooting/index.html#_lab_4_service_mesh_ingress_traffic_flow">Lab 4 - Service Mesh Ingress Traffic Flow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../04-troubleshooting/index.html#_lab_5_service_mesh_secure_ingress_traffic_flow">Lab 5 - Service Mesh Secure Ingress Traffic Flow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../04-troubleshooting/index.html#_lab_6_service_mesh_secure_egress_traffic_flow">Lab 6 - Service Mesh Secure Egress Traffic Flow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../04-troubleshooting/index.html#_lab_7_troubleshooting_tools">Lab 7 - Troubleshooting Tools</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../05-security/index.html">6. Security - Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../05-security/index.html#_lab_0_warming_up">Lab 0 - Warming up</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../05-security/index.html#_lab_1_setup_demo_applications">Lab 1 - Setup demo applications</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../05-security/index.html#_lab_2_peerauthentication">Lab 2 - PeerAuthentication</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../05-security/index.html#_lab_3_authorization_part_1">Lab 3 - Authorization: part 1</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../05-security/index.html#_lab_4_requestauthentication">Lab 4 - RequestAuthentication</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../05-security/index.html#_lab_5_authorization_part_2">Lab 5 - Authorization: part 2</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../06-extensibility/index.html">7. Extensibility - Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../06-extensibility/index.html#_lab_1_envoy_filters">Lab 1 - Envoy Filters</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../06-extensibility/index.html#_lab_2_webassembly_extensions">Lab 2 - WebAssembly Extensions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">8. Observability - Labs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#_lab_1_install_tempo_operator">Lab 1 - Install Tempo Operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#_lab_2_install_red_hat_build_of_opentelemetry_operator">Lab 2 - Install Red Hat build of OpenTelemetry Operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#_lab_3_creating_a_tempostack">Lab 3 - Creating a TempoStack</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#_lab_4_openshift_service_mesh_and_tempo">Lab 4 - OpenShift Service Mesh and Tempo</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../08-servicemesh-3.x/index.html">9. Service Mesh 3.0</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../08-servicemesh-3.x/index.html#_lab_1_migration_from_2_x_to_3_x">Lab 1 - Migration from 2.x to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../08-servicemesh-3.x/index.html#_lab_2_service_mesh_3_x_getting_started">Lab 2 - Service Mesh 3.x Getting Started</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></li>
+    <li><a href="index.html">8. Observability - Labs</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/nveces/workshop-ocp-servicemesh-2025/edit/master/documentation/modules/ROOT/pages/07-observability/index.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Tempo</h1>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<details>
+<summary class="title">Warning: Distributed tracing plarform (Jaeger)</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/tracing-jaeger-01.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/tracing-jaeger-01.png" alt="tracing jaeger 01"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Source: <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/distributed_tracing/distributed-tracing-platform-jaeger#dist-tracing-jaeger-installing" class="bare" target="_blank" rel="noopener">https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/distributed_tracing/distributed-tracing-platform-jaeger#dist-tracing-jaeger-installing</a></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/04-troubleshooting/tracing-jaeger-02.png" target="_blank" rel="noopener"><img src="../_images/04-troubleshooting/tracing-jaeger-02.png" alt="tracing jaeger 02"></a>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/distributed_tracing/distributed-tracing-platform-tempo" class="bare" target="_blank" rel="noopener">https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/distributed_tracing/distributed-tracing-platform-tempo</a></p>
+</div>
+</div>
+</details>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <strong>Red Hat OpenShift distributed tracing platform (Jaeger)</strong> is a deprecated feature.<br>
+Deprecated functionality is still included in OpenShift Container Platform and continues to be supported; however, it will be removed in a future release of this product and is not recommended for new deployments.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Users must migrate to the <strong>Tempo Operator</strong> and the Red Hat build of OpenTelemetry for distributed tracing collection and storage.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <strong>Tempo operator</strong> supports for storing Tempo data:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>OpenShift Data Foundation,</p>
+</li>
+<li>
+<p>AWS S3,</p>
+</li>
+<li>
+<p>Azure,</p>
+</li>
+<li>
+<p>GCS</p>
+</li>
+<li>
+<p>and Minio.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>References:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html-single/distributed_tracing/index#distributed-tracing-platform-tempo" class="bare" target="_blank" rel="noopener">https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html-single/distributed_tracing/index#distributed-tracing-platform-tempo</a> - Distributed tracing platform (Tempo)</p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/solutions/7083722" class="bare" target="_blank" rel="noopener">https://access.redhat.com/solutions/7083722</a> - Jaeger Deprecation and Removal in OpenShift</p>
+</li>
+<li>
+<p><a href="https://developers.redhat.com/articles/2023/08/01/how-deploy-new-grafana-tempo-operator-openshift" class="bare" target="_blank" rel="noopener">https://developers.redhat.com/articles/2023/08/01/how-deploy-new-grafana-tempo-operator-openshift</a></p>
+</li>
+<li>
+<p><a href="https://developers.redhat.com/articles/2024/08/14/introducing-tempo-monolithic-mode" class="bare" target="_blank" rel="noopener">https://developers.redhat.com/articles/2024/08/14/introducing-tempo-monolithic-mode</a></p>
+</li>
+<li>
+<p><a href="https://grafana.com/docs/tempo/latest/setup/operator/" class="bare" target="_blank" rel="noopener">https://grafana.com/docs/tempo/latest/setup/operator/</a></p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/solutions/7040685" class="bare" target="_blank" rel="noopener">https://access.redhat.com/solutions/7040685</a> - How to deploy the different TempoStack components on "infra" nodes using nodeSelector and tolerations in OpenShift 4</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lab_1_install_tempo_operator"><a class="anchor" href="#_lab_1_install_tempo_operator"></a>Lab 1 - Install Tempo Operator</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Naturally, we could install operators using the OpenShift Web Console, but for this tutorial, we will use the CLI.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/tempo_operator_01.png" target="_blank" rel="noopener"><img src="../_images/07-observability/tempo_operator_01.png" alt="tempo operator 01" width="75%"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/tempo_operator_02.png" target="_blank" rel="noopener"><img src="../_images/07-observability/tempo_operator_02.png" alt="tempo operator 02" width="75%"></a>
+</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>Navigate to the project folder in your system after repository download for completing all tasks included in this tutorial:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-00/tempo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the <code>openshift-tempo-operator</code> namespace:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 10-ns-tempo-operator.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create an Operator group:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 20-operatorgroup-tempo.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the subscrition:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 30-sub-tempo.yaml</code></pre>
+</div>
+</div>
+<details class="lines_space console-input">
+<summary class="title">How to know the current version of an operator.</summary>
+<div class="content">
+<div class="paragraph">
+<p>Before to create subscrption, if you want to know the specific channel name, currentCSV, and other information about this operator, run the following command:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get packagemanifest tempo-product -o yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We highlight the lines:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">.../...
+status:
+  catalogSource: redhat-operators
+  catalogSourceDisplayName: Red Hat Operators
+  catalogSourceNamespace: openshift-marketplace
+  catalogSourcePublisher: Red Hat
+  channels:
+  - currentCSV: tempo-operator.v0.15.4-1
+.../...</code></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>Check the Operator status by running the following command:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get csv -n openshift-tempo-operator</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get csv -n openshift-tempo-operator | grep tempo
+tempo-operator.v0.15.4-1     Tempo Operator        0.15.4-1   tempo-operator.v0.15.3-1       Succeeded</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lab_2_install_red_hat_build_of_opentelemetry_operator"><a class="anchor" href="#_lab_2_install_red_hat_build_of_opentelemetry_operator"></a>Lab 2 - Install Red Hat build of OpenTelemetry Operator</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create the <code>tempo-observability</code> namespace:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lab_3_creating_a_tempostack"><a class="anchor" href="#_lab_3_creating_a_tempostack"></a>Lab 3 - Creating a TempoStack</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create the <code>tempo-observability</code> namespace:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 11-ns-tempo-observability.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the Object Storage bucket:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 40-objectbucketclaim-tempo.yaml</code></pre>
+</div>
+</div>
+<div class="imageblock lines_space console-input">
+<div class="content">
+<a class="image" href="../_images/07-observability/tempo_bucket_01.png" target="_blank" rel="noopener"><img src="../_images/07-observability/tempo_bucket_01.png" alt="tempo bucket 01"></a>
+</div>
+<div class="title">Figure 1. Check the Object Storage bucket status: Bound</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This step creates also the <code>tempo-bucket-odf</code> secret in the <code>tempo-observability</code> namespace. This secret contains the credentials to access the bucket.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Create the <code>tempostack-dev-s3</code> secret for the TempoStack on the <code>tempo-observability</code> namespace:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"> oc -n tempo-observability create secret generic tempostack-dev-s3 \   <i class="conum" data-value="1"></i><b>(1)</b>
+  --from-literal=bucket="&lt;tempo_bucket&gt;" \                             <i class="conum" data-value="2"></i><b>(2)</b>
+  --from-literal=endpoint="&lt;bucket_endpoint&gt;" \                        <i class="conum" data-value="3"></i><b>(3)</b>
+  --from-literal=access_key_id="&lt;bucket_access_key&gt;" \                 <i class="conum" data-value="4"></i><b>(4)</b>
+  --from-literal=access_key_secret="&lt;bucket_secret_key&gt;"               <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Name of the secret.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Name of the bucket. From the <code>tempo-bucket-odf</code> secret.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Endpoint of the bucket.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Access key ID. From the <code>tempo-bucket-odf</code> secret, the <code>access_key_id</code> key.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Access key secret. From the <code>tempo-bucket-odf</code> secret, the <code>access_key_secret</code> key.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>From the <code>tempo-bucket-odf</code> secret created when we did create the objectbucket claim in the previous step, you can get the values for the bucket name, endpoint, access key ID, and access key secret.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AWS_ACCESS_KEY_ID</code></p>
+</li>
+<li>
+<p><code>AWS_SECRET_ACCESS_KEY</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Get the <code>AWS_ACCESS_KEY_ID</code> key value from the <code>tempo-bucket-odf</code> secret:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n tempo-observability get secret tempo-bucket-odf -o jsonpath='{.data.AWS_ACCESS_KEY_ID}'  | base64 --decode</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Get the <code>AWS_SECRET_ACCESS_KEY</code> key value from the <code>tempo-bucket-odf</code> secret:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n tempo-observability get secret tempo-bucket-odf -o jsonpath='{.data.AWS_SECRET_ACCESS_KEY}'  | base64 --decode</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n tempo-observability get ObjectBucketClaim tempo-bucket-odf -o jsonpath='{.spec.bucketName}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For example, if you have the following values:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"> oc -n tempo-observability create secret generic tempostack-dev-s3 \
+  --from-literal=bucket="$(oc -n tempo-observability get ObjectBucketClaim tempo-bucket-odf -o jsonpath='{.spec.bucketName}')" \
+  --from-literal=endpoint="s3.openshift-storage.svc:443" \
+  --from-literal=access_key_id="$(oc -n tempo-observability get secret tempo-bucket-odf -o jsonpath='{.data.AWS_ACCESS_KEY_ID}'  | base64 --decode)" \
+  --from-literal=access_key_secret="$(oc -n tempo-observability get secret tempo-bucket-odf -o jsonpath='{.data.AWS_SECRET_ACCESS_KEY}'  | base64 --decode)"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the <code>TempoStack</code> object:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 50-tempostack-tempo.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We highlight:</p>
+</div>
+<div class="paragraph">
+<p>To enable metrics of a TempoStack instance, set the spec.observability.metrics.createServiceMonitors field to true</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre>.../...
+ observability:
+    metrics:
+      createServiceMonitors: true
+.../...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To enable alerts for a TempoStack instance, set the spec.observability.metrics.createPrometheusRules field to true</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre>.../...
+ observability:
+    metrics:
+      createPrometheusRules: true
+.../...</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lab_4_openshift_service_mesh_and_tempo"><a class="anchor" href="#_lab_4_openshift_service_mesh_and_tempo"></a>Lab 4 - OpenShift Service Mesh and Tempo</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><mark>TODO</mark></p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../06-extensibility/index.html">7. Extensibility - Labs</a></span>
+  <span class="next"><a href="../08-servicemesh-3.x/index.html">9. Service Mesh 3.0</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
