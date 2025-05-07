@@ -1757,20 +1757,6 @@ authorizationpolicy.security.istio.io/dsanchor-ingress-policy created</pre>
 <p>In next lab, we will deploy some utilities on Openshift that will be configured to automatically manage the OAuth flow of getting a valid token against Google&#8217;s OAuth server, but now, we would like to test what we just did.</p>
 </div>
 <div class="paragraph">
-<p>To do so, I will provide a temporal token that can be used for this test. <strong>Please ask if you haven&#8217;t be given one and export it as $JWT_TOKEN</strong></p>
-</div>
-<div class="paragraph">
-<p>Then, test the application using next curl:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre> curl -v -k -H "Authorization: Bearer $JWT_TOKEN" https://${PRODUCTPAGE_HOST}/productpage</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Did it work?  Hope so. That means, the token you have provided is valid.</p>
-</div>
-<div class="paragraph">
 <p>If you try againg using your web browser (that is, no token is provided), it would fail.</p>
 </div>
 </div>
