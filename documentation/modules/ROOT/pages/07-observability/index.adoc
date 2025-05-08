@@ -36,8 +36,10 @@ References:
 ====
 IMPORTANT: Special mention to the *following redhatter* for their contributions to this section:
 
-* *Álvaro López alopezme@redhat.com* - His repository about *Grafana Tempo and OpenTelemetry Operator*: +
-https://github.com/alvarolop/quarkus-observability-app/[window=_blank]
+* *Álvaro López alopezme@redhat.com* - His repositories about *Grafana Tempo and OpenTelemetry Operator*: +
+https://github.com/alvarolop/quarkus-observability-app/[window=_blank] and +
+https://github.com/alvarolop/ocp-ossm/[window=_blank]
+
 
 ====
 
