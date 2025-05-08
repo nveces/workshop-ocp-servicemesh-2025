@@ -390,8 +390,9 @@ Special mention to the <strong>following redhatter</strong> for their contributi
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Álvaro López <a href="mailto:alopezme@redhat.com">alopezme@redhat.com</a></strong> - His repository about <strong>Grafana Tempo and OpenTelemetry Operator</strong>:<br>
-<a href="https://github.com/alvarolop/quarkus-observability-app/" class="bare" target="_blank" rel="noopener">https://github.com/alvarolop/quarkus-observability-app/</a></p>
+<p><strong>Álvaro López <a href="mailto:alopezme@redhat.com">alopezme@redhat.com</a></strong> - His repositories about <strong>Grafana Tempo and OpenTelemetry Operator</strong>:<br>
+<a href="https://github.com/alvarolop/quarkus-observability-app/" class="bare" target="_blank" rel="noopener">https://github.com/alvarolop/quarkus-observability-app/</a> and<br>
+<a href="https://github.com/alvarolop/ocp-ossm/" class="bare" target="_blank" rel="noopener">https://github.com/alvarolop/ocp-ossm/</a></p>
 </li>
 </ul>
 </div>
@@ -421,7 +422,7 @@ Special mention to the <strong>following redhatter</strong> for their contributi
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-00/tempo</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-00/01-tempo</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -516,11 +517,11 @@ tempo-operator.v0.15.4-1     Tempo Operator        0.15.4-1   tempo-operator.v0.
 </div>
 <hr>
 <div class="paragraph">
-<p>Change directory to the <code>lab-00/03-coo</code> folder:</p>
+<p>Change directory to the <code>lab-00/02-opentelemetry</code> folder:</p>
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-00/03-coo</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-00/02-opentelemetry</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -586,11 +587,11 @@ opentelemetry-operator.v0.119.0-2   Red Hat build of OpenTelemetry      0.119.0-
 </div>
 <hr>
 <div class="paragraph">
-<p>Change directory to the <code>lab-00/03-coo</code> folder:</p>
+<p>Change directory to the <code>lab-00/04-coo</code> folder:</p>
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-00/03-coo</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-00/04-coo</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -814,8 +815,29 @@ This step creates also the <code>tempo-bucket-odf</code> secret in the <code>tem
 <div class="sect1">
 <h2 id="_lab_4_openshift_service_mesh_and_tempo"><a class="anchor" href="#_lab_4_openshift_service_mesh_and_tempo"></a>Lab 4 - OpenShift Service Mesh and Tempo</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p><mark>TODO</mark></p>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-00/01-temp</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 60-cl-tempostack-reader-dev.yaml
+oc apply -f 61-cl-tempostack-reader-prod.yaml
+oc apply -f 70-crb-tempostack-traces-reader-dev.yaml
+oc apply -f 71-crb-tempostack-traces-reader-prod.yaml
+oc apply -f 80-telemetry.yaml</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-00/</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 33-servicemesh-controlplane-tempo.yaml</code></pre>
+</div>
 </div>
 </div>
 </div>
