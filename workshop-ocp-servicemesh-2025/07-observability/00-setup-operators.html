@@ -234,10 +234,13 @@
     <a class="nav-link" href="index.html#_lab_2_install_red_hat_build_of_opentelemetry_operator">Lab 2 - Install Red Hat build of OpenTelemetry Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_3_creating_a_tempostack">Lab 3 - Creating a TempoStack</a>
+    <a class="nav-link" href="index.html#_lab_3_install_cluster_observability_operator">Lab 3 -  Install Cluster Observability Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_4_openshift_service_mesh_and_tempo">Lab 4 - OpenShift Service Mesh and Tempo</a>
+    <a class="nav-link" href="index.html#_lab_3_creating_a_tempostack">Lab 4 - Creating a TempoStack</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#_lab_4_openshift_service_mesh_and_tempo">Lab 5 - OpenShift Service Mesh and Tempo</a>
   </li>
 </ul>
   </li>
@@ -246,10 +249,7 @@
     <a class="nav-link" href="../08-servicemesh-3.x/index.html">9. Service Mesh 3.0</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../08-servicemesh-3.x/index.html#_lab_1_migration_from_2_x_to_3_x">Lab 1 - Migration from 2.x to 3.x</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../08-servicemesh-3.x/index.html#_lab_2_service_mesh_3_x_getting_started">Lab 2 - Service Mesh 3.x Getting Started</a>
+    <a class="nav-link" href="../08-servicemesh-3.x/index.html#_service_mesh_3_x_getting_started"> Service Mesh 3.x Getting Started</a>
   </li>
 </ul>
   </li>
@@ -316,7 +316,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Create the subscrition:</p>
+<p>Create the subscription:</p>
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
@@ -370,7 +370,157 @@ tempo-operator.v0.15.4-1     Tempo Operator        0.15.4-1   tempo-operator.v0.
 </div>
 <h1 id="_lab_2_install_red_hat_build_of_opentelemetry_operator" class="sect0"><a class="anchor" href="#_lab_2_install_red_hat_build_of_opentelemetry_operator"></a>Lab 2 - Install Red Hat build of OpenTelemetry Operator</h1>
 <div class="paragraph">
-<p>Create the <code>tempo-observability</code> namespace:</p>
+<p>Naturally, we could install operators using the OpenShift Web Console, but for this tutorial, we will use the CLI.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/opentelemetry_operator_01.png" target="_blank" rel="noopener"><img src="../_images/07-observability/opentelemetry_operator_01.png" alt="opentelemetry operator 01" width="75%"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/opentelemetry_operator_02.png" target="_blank" rel="noopener"><img src="../_images/07-observability/opentelemetry_operator_02.png" alt="opentelemetry operator 02" width="75%"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/opentelemetry_operator_03.png" target="_blank" rel="noopener"><img src="../_images/07-observability/opentelemetry_operator_03.png" alt="opentelemetry operator 03" width="75%"></a>
+</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>Change directory to the <code>lab-00/03-coo</code> folder:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-00/03-coo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the <code>openshift-opentelemetry-operator</code> namespace:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 12-ns-opentelemetry-operator.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create an Operator group:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 21-operatorgroup-opentelemetry-operator.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the subscritpion:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 31-sub-opentelemetry.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check the Operator status by running the following command:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get csv -n openshift-opentelemetry-operator</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get csv -n openshift-opentelemetry-operator | grep "opentelemetry"
+opentelemetry-operator.v0.119.0-2   Red Hat build of OpenTelemetry      0.119.0-2   opentelemetry-operator.v0.119.0-1      Succeeded</code></pre>
+</div>
+</div>
+<h1 id="_lab_3_install_cluster_observability_operator" class="sect0"><a class="anchor" href="#_lab_3_install_cluster_observability_operator"></a>Lab 3 - Install Cluster Observability Operator</h1>
+<div class="paragraph">
+<p>Naturally, we could install operators using the OpenShift Web Console, but for this tutorial, we will use the CLI.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/cluster-observability-operator_01.png" target="_blank" rel="noopener"><img src="../_images/07-observability/cluster-observability-operator_01.png" alt="cluster observability operator 01" width="75%"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/cluster-observability-operator_02.png" target="_blank" rel="noopener"><img src="../_images/07-observability/cluster-observability-operator_02.png" alt="cluster observability operator 02" width="75%"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/cluster-observability-operator_03.png" target="_blank" rel="noopener"><img src="../_images/07-observability/cluster-observability-operator_03.png" alt="cluster observability operator 03" width="75%"></a>
+</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>Change directory to the <code>lab-00/03-coo</code> folder:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-00/03-coo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the subscription:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 20-sub-cluster-observability-operator.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check the Operator status by running the following command:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get csv -n openshift-operators</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get csv -n openshift-operators | grep "cluster-observability"
+cluster-observability-operator.v1.1.1   Cluster Observability Operator       1.1.1
+cluster-observability-operator.v1.1.0     Succeeded</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We install the distributedTracing plugin for the <strong>Cluster Observability Operator</strong>:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 30-uiplugin-distributedTracing.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the installation process the <strong>OpenShift console web</strong> shows the following message:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/uiplugin_tracing_01.png" target="_blank" rel="noopener"><img src="../_images/07-observability/uiplugin_tracing_01.png" alt="uiplugin tracing 01" width="75%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>We refresh the web console and we can see the new plugin in the <strong>Obverve</strong> section:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/uiplugin_tracing_02.png" target="_blank" rel="noopener"><img src="../_images/07-observability/uiplugin_tracing_02.png" alt="uiplugin tracing 02" width="75%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>And select a <strong>Tempo Instance</strong>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/uiplugin_tracing_03.png" target="_blank" rel="noopener"><img src="../_images/07-observability/uiplugin_tracing_03.png" alt="uiplugin tracing 03" width="75%"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/uiplugin_tracing_04.png" target="_blank" rel="noopener"><img src="../_images/07-observability/uiplugin_tracing_04.png" alt="uiplugin tracing 04" width="75%"></a>
+</div>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
