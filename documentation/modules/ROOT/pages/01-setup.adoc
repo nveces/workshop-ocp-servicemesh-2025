@@ -114,9 +114,12 @@ To deploy the *{rhossm} Operator*, you can use the following command:
 [source,bash, subs="+macros,+attributes"]
 ----
 oc apply -f 10-ns-istio-system.yaml
-oc apply -f 20-sub-servicemesh.yaml
-oc apply -f 21-sub-kiali.yaml
-oc apply -f 30-servicemesh-controlplane.yaml
+oc apply -f 11-ns-openshift-distributed-tracing.yaml
+oc apply -f 20-operatorgroup-openshift-distributed-tracing.yml
+oc apply -f 31-sub-kiali.yaml
+oc apply -f 32-sub-openshift-distributed-tracing.yaml
+oc apply -f 42-servicemesh-controlplane-jaeger.yaml
+oc apply -f 50-servicemesh-memberroll.yaml
 ----
 
 NOTE: These steps have already been completed by the instructor team.

@@ -1,5 +1,136 @@
+= Lab 1 - Install Red Hat build of OpenTelemetry Operator
 
-= Lab 1 - Install Tempo Operator
+// https://github.com/alvarolop/quarkus-observability-app/tree/main/gitops/ocp-dist-tracing/02-opentelemetry-operator
+
+Naturally, we could install operators using the OpenShift Web Console, but for this tutorial, we will use the CLI.
+
+image::07-observability/opentelemetry_operator_01.png[link=../_images/07-observability/opentelemetry_operator_01.png,window=_blank,width=75%]
+
+image::07-observability/opentelemetry_operator_02.png[link=../_images/07-observability/opentelemetry_operator_02.png,window=_blank,width=75%]
+
+image::07-observability/opentelemetry_operator_03.png[link=../_images/07-observability/opentelemetry_operator_03.png,window=_blank,width=75%]
+
+
+[sidebar]
+---
+
+
+Change directory to the `lab-00/01-opentelemetry` folder:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+cd ocp-servicemesh-labs-2025/lab-00/01-opentelemetry
+----
+
+
+Create the `openshift-opentelemetry-operator` namespace:
+
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 10-ns-opentelemetry-operator.yaml
+----
+
+Create the operator group:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 20-operatorgroup-opentelemetry-operator.yaml
+----
+
+Create the subscription:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 30-sub-opentelemetry.yaml
+----
+
+
+Check the Operator status by running the following command:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc get csv -n openshift-opentelemetry-operator
+----
+
+[.lines_space]
+[source,bash, subs="+macros,+attributes"]
+----
+oc get csv -n openshift-opentelemetry-operator | grep "opentelemetry"
+opentelemetry-operator.v0.119.0-2   Red Hat build of OpenTelemetry      0.119.0-2   opentelemetry-operator.v0.119.0-1      Succeeded
+----
+
+
+= Lab 2 - Install OpenTelemetry Collector
+
+
+Change directory to the `lab-00/02-otel` folder:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+cd ocp-servicemesh-labs-2025/lab-00/02-otel
+----
+
+
+Create the `otel` namespace:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 10-ns-otel.yaml
+----
+
+
+Create the `15-sa-otel-collector.yaml` serviceaccount:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 15-sa-otel-collector.yaml
+----
+
+Create the `otel` OpenTelemetryCollector:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 20-opentelemetrycollector-otel.yaml
+----
+
+Create the *ClusterRoles* and *ClusterRoleBindings* for the `otel-collector` serviceaccount:
+
+[.lines_space]
+[.console-input]
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 30-cr-openshift-tracing-otel-collector.yaml
+oc apply -f 31-cr-tempostack-traces-writer-dev.yaml
+oc apply -f 32-cr-tempostack-traces-writer-prod.yaml
+oc apply -f 40-crb-openshift-tracing-otel-collector.yaml
+oc apply -f 41-crb-tempostack-traces-writer-dev.yaml
+oc apply -f 42-crb-tempostack-traces-writer-prod.yaml
+----
+
+
+= Lab 3 - Install Tempo Operator
 
 Naturally, we could install operators using the OpenShift Web Console, but for this tutorial, we will use the CLI.
 
@@ -19,7 +150,7 @@ Navigate to the project folder in your system after repository download for comp
 [.console-input]
 [source,bash, subs="+macros,+attributes"]
 ----
-cd ocp-servicemesh-labs-2025/lab-00/01-tempo
+cd ocp-servicemesh-labs-2025/lab-00/03-tempo
 ----
 
 
@@ -32,7 +163,7 @@ Create the `openshift-tempo-operator` namespace:
 oc apply -f 10-ns-tempo-operator.yaml
 ----
 
-Create an Operator group:
+Create the operator group:
 
 [.lines_space]
 [.console-input]
@@ -99,161 +230,5 @@ tempo-operator.v0.15.4-1     Tempo Operator        0.15.4-1   tempo-operator.v0.
 ----
 
 
-= Lab 2 - Install Red Hat build of OpenTelemetry Operator
-
-// https://github.com/alvarolop/quarkus-observability-app/tree/main/gitops/ocp-dist-tracing/02-opentelemetry-operator
-
-Naturally, we could install operators using the OpenShift Web Console, but for this tutorial, we will use the CLI.
-
-image::07-observability/opentelemetry_operator_01.png[link=../_images/07-observability/opentelemetry_operator_01.png,window=_blank,width=75%]
-
-image::07-observability/opentelemetry_operator_02.png[link=../_images/07-observability/opentelemetry_operator_02.png,window=_blank,width=75%]
-
-image::07-observability/opentelemetry_operator_03.png[link=../_images/07-observability/opentelemetry_operator_03.png,window=_blank,width=75%]
-
-
-[sidebar]
----
-
-
-
-Change directory to the `lab-00/02-opentelemetry` folder:
-
-[.lines_space]
-[.console-input]
-[source,bash, subs="+macros,+attributes"]
-----
-cd ocp-servicemesh-labs-2025/lab-00/02-opentelemetry
-----
-
-
-
-Create the `openshift-opentelemetry-operator` namespace:
-
-
-[.lines_space]
-[.console-input]
-[source,bash, subs="+macros,+attributes"]
-----
-oc apply -f 12-ns-opentelemetry-operator.yaml
-----
-
-Create an Operator group:
-
-[.lines_space]
-[.console-input]
-[source,bash, subs="+macros,+attributes"]
-----
-oc apply -f 21-operatorgroup-opentelemetry-operator.yaml
-----
-
-Create the subscritpion:
-
-[.lines_space]
-[.console-input]
-[source,bash, subs="+macros,+attributes"]
-----
-oc apply -f 31-sub-opentelemetry.yaml
-----
-
-
-Check the Operator status by running the following command:
-
-[.lines_space]
-[.console-input]
-[source,bash, subs="+macros,+attributes"]
-----
-oc get csv -n openshift-opentelemetry-operator
-----
-
-[.lines_space]
-[source,bash, subs="+macros,+attributes"]
-----
-oc get csv -n openshift-opentelemetry-operator | grep "opentelemetry"
-opentelemetry-operator.v0.119.0-2   Red Hat build of OpenTelemetry      0.119.0-2   opentelemetry-operator.v0.119.0-1      Succeeded
-----
-
-
-= Lab 3 - Install Cluster Observability Operator
-
-// Source: https://github.com/alvarolop/quarkus-observability-app/tree/main/gitops/ocp-coo/
-
-Naturally, we could install operators using the OpenShift Web Console, but for this tutorial, we will use the CLI.
-
-image::07-observability/cluster-observability-operator_01.png[link=../_images/07-observability/cluster-observability-operator_01.png,window=_blank,width=75%]
-
-image::07-observability/cluster-observability-operator_02.png[link=../_images/07-observability/cluster-observability-operator_02.png,window=_blank,width=75%]
-
-image::07-observability/cluster-observability-operator_03.png[link=../_images/07-observability/cluster-observability-operator_03.png,window=_blank,width=75%]
-
-
-[sidebar]
----
-
-
-Change directory to the `lab-00/04-coo` folder:
-
-[.lines_space]
-[.console-input]
-[source,bash, subs="+macros,+attributes"]
-----
-cd ocp-servicemesh-labs-2025/lab-00/04-coo
-----
-
-
-Create the subscription:
-
-[.lines_space]
-[.console-input]
-[source,bash, subs="+macros,+attributes"]
-----
-oc apply -f 20-sub-cluster-observability-operator.yaml
-----
-
-
-Check the Operator status by running the following command:
-
-[.lines_space]
-[.console-input]
-[source,bash, subs="+macros,+attributes"]
-----
-oc get csv -n openshift-operators
-----
-
-[.lines_space]
-[source,bash, subs="+macros,+attributes"]
-----
-oc get csv -n openshift-operators | grep "cluster-observability"
-cluster-observability-operator.v1.1.1   Cluster Observability Operator       1.1.1
-cluster-observability-operator.v1.1.0     Succeeded
-----
-
-
-
-We install the distributedTracing plugin for the *Cluster Observability Operator*:
-
-[.lines_space]
-[.console-input]
-[source,bash, subs="+macros,+attributes"]
-----
-oc apply -f 30-uiplugin-distributedTracing.yaml
-----
-
-
-
-After the installation process the *OpenShift console web* shows the following message:
-
-image::07-observability/uiplugin_tracing_01.png[link=../_images/07-observability/uiplugin_tracing_01.png,window=_blank,width=75%]
-
-We refresh the web console and we can see the new plugin in the *Obverve* section:
-
-image::07-observability/uiplugin_tracing_02.png[link=../_images/07-observability/uiplugin_tracing_02.png,window=_blank,width=75%]
-
-And select a *Tempo Instance*:
-
-image::07-observability/uiplugin_tracing_03.png[link=../_images/07-observability/uiplugin_tracing_03.png,window=_blank,width=75%]
-
-
-image::07-observability/uiplugin_tracing_04.png[link=../_images/07-observability/uiplugin_tracing_04.png,window=_blank,width=75%]
 
 // EOF

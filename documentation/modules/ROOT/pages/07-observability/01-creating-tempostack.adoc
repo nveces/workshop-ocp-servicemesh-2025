@@ -2,8 +2,16 @@
 
 ////
 
-= Lab 3 - Creating a TempoStack
+= Lab 4 - Creating a TempoStack
 
+We are still located in the `lab-00/03-tempo` folder:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+cd ocp-servicemesh-labs-2025/lab-00/03-tempo
+----
 
 Create the `tempo-observability` namespace:
 
@@ -133,6 +141,28 @@ To enable alerts for a TempoStack instance, set the spec.observability.metrics.c
 .../...
 ----
 
+Now, Create the *ClusterRoles* and *ClusterRoleBindings* for the `otel-collector` serviceaccount:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 60-cl-tempostack-reader-dev.yaml
+oc apply -f 61-cl-tempostack-reader-prod.yaml
+oc apply -f 62-cl-tempostack-writer-dev.yaml
+oc apply -f 70-crb-tempostack-traces-reader-dev.yaml
+oc apply -f 71-crb-tempostack-traces-reader-prod.yaml
+oc apply -f 72-crb-tempostack-traces-writer-dev.yaml
+----
+
+Create the `Telemetry` object for the `istio-system` namespace:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 80-telemetry.yaml
+----
 
 
 // EOF

@@ -1,28 +1,10 @@
 ////
 ////
 
-= Lab 4 - {ossm} and Tempo
+= Lab 5 - {ossm} and Tempo
 
 
-[.lines_space]
-[.console-input]
-[source,bash, subs="+macros,+attributes"]
-----
-cd ocp-servicemesh-labs-2025/lab-00/01-temp
-----
-
-
-[.lines_space]
-[.console-input]
-[source,bash, subs="+macros,+attributes"]
-----
-oc apply -f 60-cl-tempostack-reader-dev.yaml
-oc apply -f 61-cl-tempostack-reader-prod.yaml
-oc apply -f 70-crb-tempostack-traces-reader-dev.yaml
-oc apply -f 71-crb-tempostack-traces-reader-prod.yaml
-oc apply -f 80-telemetry.yaml
-----
-
+Finally, we update the *Controlplane* instance to use *Tempo* as the default tracing backend. This is done by applying the following YAML file:
 
 [.lines_space]
 [.console-input]
@@ -31,16 +13,137 @@ oc apply -f 80-telemetry.yaml
 cd ocp-servicemesh-labs-2025/lab-00/
 ----
 
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 43-servicemesh-controlplane-tempo.yaml
+----
 
+[sidebar]
+---
+
+We higlight the following lines in the `43-servicemesh-controlplane-tempo.yaml` YAML file:
+
+.From: the `ocp-servicemesh-labs-2025/lab-00/03-tempo/43-servicemesh-controlplane-tempo.yaml` file.
+[.lines_space]
+[.console-input]
+[source,yaml, subs="+macros,+attributes"]
+----
+spec:
+  .../...
+  meshConfig:
+    extensionProviders:
+      - name: otel
+        opentelemetry:
+          port: 4317
+          service: otel-collector.otel.svc.cluster.local
+  .../...
+  tracing:
+    sampling: 10000
+    type: None  <-- Change "jaeger" to "None"
+  .../...
+  policy:
+    type: Istiod
+  telemetry:
+    type: Istiod
+  version: v2.6
+  .../...
+  addons:
+    grafana:
+      enabled: true
+    kiali:
+      enabled: true
+      name: kiali
+    # jaeger:  <-- Commnent or remove the jaeger section
+    #   install:
+    #     storage:
+    #       type: Memory
+    #       memory:
+    #         maxTraces: 100000
+----
+
+
+= Lab 6 - Install Cluster Observability Operator
+
+// Source: https://github.com/alvarolop/quarkus-observability-app/tree/main/gitops/ocp-coo/
+
+Naturally, we could install operators using the OpenShift Web Console, but for this tutorial, we will use the CLI.
+
+image::07-observability/cluster-observability-operator_01.png[link=../_images/07-observability/cluster-observability-operator_01.png,window=_blank,width=75%]
+
+image::07-observability/cluster-observability-operator_02.png[link=../_images/07-observability/cluster-observability-operator_02.png,window=_blank,width=75%]
+
+image::07-observability/cluster-observability-operator_03.png[link=../_images/07-observability/cluster-observability-operator_03.png,window=_blank,width=75%]
+
+
+[sidebar]
+---
+
+
+Change directory to the `lab-00/04-coo` folder:
 
 [.lines_space]
 [.console-input]
 [source,bash, subs="+macros,+attributes"]
 ----
-oc apply -f 33-servicemesh-controlplane-tempo.yaml
+cd ocp-servicemesh-labs-2025/lab-00/04-coo
 ----
 
 
+Create the subscription:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 20-sub-cluster-observability-operator.yaml
+----
+
+
+Check the Operator status by running the following command:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc get csv -n openshift-operators
+----
+
+[.lines_space]
+[source,bash, subs="+macros,+attributes"]
+----
+oc get csv -n openshift-operators | grep "cluster-observability"
+cluster-observability-operator.v1.1.1   Cluster Observability Operator       1.1.1
+cluster-observability-operator.v1.1.0     Succeeded
+----
+
+
+
+We install the distributedTracing plugin for the *Cluster Observability Operator*:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc apply -f 30-uiplugin-distributedTracing.yaml
+----
+
+
+After the installation process the *OpenShift console web* shows the following message:
+
+image::07-observability/uiplugin_tracing_01.png[link=../_images/07-observability/uiplugin_tracing_01.png,window=_blank,width=75%]
+
+We refresh the web console and we can see the new plugin in the *Obverve* section:
+
+image::07-observability/uiplugin_tracing_02.png[link=../_images/07-observability/uiplugin_tracing_02.png,window=_blank,width=75%]
+
+And select a *Tempo Instance* and *Tenant name*:
+
+image::07-observability/uiplugin_tracing_03.png[link=../_images/07-observability/uiplugin_tracing_03.png,window=_blank,width=75%]
+
+
+image::07-observability/uiplugin_tracing_04.png[link=../_images/07-observability/uiplugin_tracing_04.png,window=_blank,width=75%]
 
 
 // EOF
