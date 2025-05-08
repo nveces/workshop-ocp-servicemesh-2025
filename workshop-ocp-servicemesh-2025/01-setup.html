@@ -230,19 +230,22 @@
     <a class="nav-link" href="07-observability/index.html">8. Observability - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="07-observability/index.html#_lab_1_install_tempo_operator">Lab 1 - Install Tempo Operator</a>
+    <a class="nav-link" href="07-observability/index.html#_lab_1_install_red_hat_build_of_opentelemetry_operator">Lab 1 - Install Red Hat build of OpenTelemetry Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="07-observability/index.html#_lab_2_install_red_hat_build_of_opentelemetry_operator">Lab 2 - Install Red Hat build of OpenTelemetry Operator</a>
+    <a class="nav-link" href="07-observability/index.html#_lab_2_install_opentelemetry_collector">Lab 2 -  Install OpenTelemetry Collector</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="07-observability/index.html#_lab_3_install_cluster_observability_operator">Lab 3 -  Install Cluster Observability Operator</a>
+    <a class="nav-link" href="07-observability/index.html#_lab_3_install_tempo_operator">Lab 3 - Install Tempo Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="07-observability/index.html#_lab_3_creating_a_tempostack">Lab 4 - Creating a TempoStack</a>
+    <a class="nav-link" href="07-observability/index.html#_lab_4_creating_a_tempostack">Lab 4 - Creating a TempoStack</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="07-observability/index.html#_lab_4_openshift_service_mesh_and_tempo">Lab 5 - OpenShift Service Mesh and Tempo</a>
+    <a class="nav-link" href="07-observability/index.html#_lab_5_openshift_service_mesh_and_tempo">Lab 5 - OpenShift Service Mesh and Tempo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07-observability/index.html#_lab_6_install_cluster_observability_operator">Lab 6 - Install Cluster Observability Operator</a>
   </li>
 </ul>
   </li>
@@ -445,9 +448,12 @@ git config --local user.email "&lt;your email&gt;"</code></pre>
 <div class="listingblock lines_space console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 10-ns-istio-system.yaml
-oc apply -f 20-sub-servicemesh.yaml
-oc apply -f 21-sub-kiali.yaml
-oc apply -f 30-servicemesh-controlplane.yaml</code></pre>
+oc apply -f 11-ns-openshift-distributed-tracing.yaml
+oc apply -f 20-operatorgroup-openshift-distributed-tracing.yml
+oc apply -f 31-sub-kiali.yaml
+oc apply -f 32-sub-openshift-distributed-tracing.yaml
+oc apply -f 42-servicemesh-controlplane-jaeger.yaml
+oc apply -f 50-servicemesh-memberroll.yaml</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">

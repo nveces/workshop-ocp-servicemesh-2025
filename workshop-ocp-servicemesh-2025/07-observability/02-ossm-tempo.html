@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Lab 4 - {ossm} and Tempo :: WorkShop - Service Mesh on OCP 2025</title>
+    <title>Lab 5 - {ossm} and Tempo :: WorkShop - Service Mesh on OCP 2025</title>
     <link rel="canonical" href="https://nveces.github.io/workshop-ocp-servicemesh-2025/workshop-ocp-servicemesh-2025/07-observability/02-ossm-tempo.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -228,19 +228,22 @@
     <a class="nav-link" href="index.html">8. Observability - Labs</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_1_install_tempo_operator">Lab 1 - Install Tempo Operator</a>
+    <a class="nav-link" href="index.html#_lab_1_install_red_hat_build_of_opentelemetry_operator">Lab 1 - Install Red Hat build of OpenTelemetry Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_2_install_red_hat_build_of_opentelemetry_operator">Lab 2 - Install Red Hat build of OpenTelemetry Operator</a>
+    <a class="nav-link" href="index.html#_lab_2_install_opentelemetry_collector">Lab 2 -  Install OpenTelemetry Collector</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_3_install_cluster_observability_operator">Lab 3 -  Install Cluster Observability Operator</a>
+    <a class="nav-link" href="index.html#_lab_3_install_tempo_operator">Lab 3 - Install Tempo Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_3_creating_a_tempostack">Lab 4 - Creating a TempoStack</a>
+    <a class="nav-link" href="index.html#_lab_4_creating_a_tempostack">Lab 4 - Creating a TempoStack</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="index.html#_lab_4_openshift_service_mesh_and_tempo">Lab 5 - OpenShift Service Mesh and Tempo</a>
+    <a class="nav-link" href="index.html#_lab_5_openshift_service_mesh_and_tempo">Lab 5 - OpenShift Service Mesh and Tempo</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#_lab_6_install_cluster_observability_operator">Lab 6 - Install Cluster Observability Operator</a>
   </li>
 </ul>
   </li>
@@ -267,27 +270,18 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">WorkShop - Service Mesh on OCP 2025</a></li>
-    <li><a href="02-ossm-tempo.html">Lab 4 - {ossm} and Tempo</a></li>
+    <li><a href="02-ossm-tempo.html">Lab 5 - {ossm} and Tempo</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/nveces/workshop-ocp-servicemesh-2025/edit/master/documentation/modules/ROOT/pages/07-observability/02-ossm-tempo.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Lab 4 - {ossm} and Tempo</h1>
-<div class="listingblock lines_space console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-00/01-temp</code></pre>
-</div>
-</div>
-<div class="listingblock lines_space console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 60-cl-tempostack-reader-dev.yaml
-oc apply -f 61-cl-tempostack-reader-prod.yaml
-oc apply -f 70-crb-tempostack-traces-reader-dev.yaml
-oc apply -f 71-crb-tempostack-traces-reader-prod.yaml
-oc apply -f 80-telemetry.yaml</code></pre>
-</div>
+<h1 class="page">Lab 5 - {ossm} and Tempo</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Finally, we update the <strong>Controlplane</strong> instance to use <strong>Tempo</strong> as the default tracing backend. This is done by applying the following YAML file:</p>
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
@@ -296,7 +290,137 @@ oc apply -f 80-telemetry.yaml</code></pre>
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 33-servicemesh-controlplane-tempo.yaml</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 43-servicemesh-controlplane-tempo.yaml</code></pre>
+</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>We higlight the following lines in the <code>43-servicemesh-controlplane-tempo.yaml</code> YAML file:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="title">From: the <code>ocp-servicemesh-labs-2025/lab-00/03-tempo/43-servicemesh-controlplane-tempo.yaml</code> file.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  .../...
+  meshConfig:
+    extensionProviders:
+      - name: otel
+        opentelemetry:
+          port: 4317
+          service: otel-collector.otel.svc.cluster.local
+  .../...
+  tracing:
+    sampling: 10000
+    type: None  &lt;-- Change "jaeger" to "None"
+  .../...
+  policy:
+    type: Istiod
+  telemetry:
+    type: Istiod
+  version: v2.6
+  .../...
+  addons:
+    grafana:
+      enabled: true
+    kiali:
+      enabled: true
+      name: kiali
+    # jaeger:  &lt;-- Commnent or remove the jaeger section
+    #   install:
+    #     storage:
+    #       type: Memory
+    #       memory:
+    #         maxTraces: 100000</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_lab_6_install_cluster_observability_operator" class="sect0"><a class="anchor" href="#_lab_6_install_cluster_observability_operator"></a>Lab 6 - Install Cluster Observability Operator</h1>
+<div class="paragraph">
+<p>Naturally, we could install operators using the OpenShift Web Console, but for this tutorial, we will use the CLI.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/cluster-observability-operator_01.png" target="_blank" rel="noopener"><img src="../_images/07-observability/cluster-observability-operator_01.png" alt="cluster observability operator 01" width="75%"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/cluster-observability-operator_02.png" target="_blank" rel="noopener"><img src="../_images/07-observability/cluster-observability-operator_02.png" alt="cluster observability operator 02" width="75%"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/cluster-observability-operator_03.png" target="_blank" rel="noopener"><img src="../_images/07-observability/cluster-observability-operator_03.png" alt="cluster observability operator 03" width="75%"></a>
+</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>Change directory to the <code>lab-00/04-coo</code> folder:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ocp-servicemesh-labs-2025/lab-00/04-coo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the subscription:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 20-sub-cluster-observability-operator.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check the Operator status by running the following command:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get csv -n openshift-operators</code></pre>
+</div>
+</div>
+<div class="listingblock lines_space">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get csv -n openshift-operators | grep "cluster-observability"
+cluster-observability-operator.v1.1.1   Cluster Observability Operator       1.1.1
+cluster-observability-operator.v1.1.0     Succeeded</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We install the distributedTracing plugin for the <strong>Cluster Observability Operator</strong>:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f 30-uiplugin-distributedTracing.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the installation process the <strong>OpenShift console web</strong> shows the following message:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/uiplugin_tracing_01.png" target="_blank" rel="noopener"><img src="../_images/07-observability/uiplugin_tracing_01.png" alt="uiplugin tracing 01" width="75%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>We refresh the web console and we can see the new plugin in the <strong>Obverve</strong> section:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/uiplugin_tracing_02.png" target="_blank" rel="noopener"><img src="../_images/07-observability/uiplugin_tracing_02.png" alt="uiplugin tracing 02" width="75%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>And select a <strong>Tempo Instance</strong> and <strong>Tenant name</strong>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/uiplugin_tracing_03.png" target="_blank" rel="noopener"><img src="../_images/07-observability/uiplugin_tracing_03.png" alt="uiplugin tracing 03" width="75%"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="../_images/07-observability/uiplugin_tracing_04.png" target="_blank" rel="noopener"><img src="../_images/07-observability/uiplugin_tracing_04.png" alt="uiplugin tracing 04" width="75%"></a>
 </div>
 </div>
 </article>
