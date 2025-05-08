@@ -23,6 +23,7 @@ For more information on training or guidelines related to this topic or product,
 This workshop is the culmination of the efforts of several redhatters, and we would like to thank them for their contributions. +
 The collective effort and dedication of this team are truly inspiring. Your commitment to achieving excellence and the consistently high caliber of your work are deeply appreciated and command my utmost respect. It's a privilege to witness such talent and dedication in action:
 
+* Álvaro López alopezme@redhat.com
 * Asier Cidon acidonpe@redhat.com
 * David Sancho dsanchor@redhat.com
 * Ernesto Gonzalez ergonzal@redhat.com

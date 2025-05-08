@@ -33,6 +33,13 @@ References:
 * https://grafana.com/docs/tempo/latest/setup/operator/[window=_blank]
 * https://access.redhat.com/solutions/7040685[window=_blank] - How to deploy the different TempoStack components on "infra" nodes using nodeSelector and tolerations in OpenShift 4
 
+====
+IMPORTANT: Special mention to the *following redhatter* for their contributions to this section:
+
+* *Álvaro López alopezme@redhat.com* - His repository about *Grafana Tempo and OpenTelemetry Operator*: +
+https://github.com/alvarolop/quarkus-observability-app/[window=_blank]
+
+====
 
 include::00-setup-operators.adoc[leveloffset=+1]
 include::01-creating-tempostack.adoc[leveloffset=+1]

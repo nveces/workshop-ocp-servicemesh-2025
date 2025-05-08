@@ -3,7 +3,7 @@
 ////
 
 
-= Lab 2 - Service Mesh 3.x Getting Started
+= Service Mesh 3.x Getting Started
 
 We recommend to watch this interactive resource to learn how to install and configure the Service Mesh 3.x:
 

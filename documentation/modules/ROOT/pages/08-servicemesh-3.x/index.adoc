@@ -27,7 +27,7 @@ IMPORTANT: *Red Hat OpenShift Service Mesh 3.0* releases on a different cadence 
 * https://docs.redhat.com/en/documentation/red_hat_openshift_service_mesh/3.0/html-single/migrating_from_service_mesh_2_to_service_mesh_3/index[window=_blank]
 
 
-include::01-migrating-from-ossm2.adoc[leveloffset=+1]
+//include::01-migrating-from-ossm2.adoc[leveloffset=+1]
 include::02-installation-from-scratch.adoc[leveloffset=+1]
 
 
