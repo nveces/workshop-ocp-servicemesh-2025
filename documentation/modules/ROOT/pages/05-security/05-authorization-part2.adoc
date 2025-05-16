@@ -1,6 +1,8 @@
 = Lab 5 - Authorization: part 2
-:author: David Sancho
-:email: dsanchor@redhat.com
+// :author: David Sancho
+// :email: dsanchor@redhat.com
+:author: Sergio Platas
+:email: splatas@redhat.com
 :imagesdir: ./images
 :toc: left
 :toc-title: Authorization: part 2
@@ -278,9 +280,10 @@ $ oc exec "$(oc get pod -l app=curl -n user01 -o jsonpath={.items..metadata.name
 ```
 
 .Allow requests with valid JWT and list-typed claims 
+
 *Reference*: https://istio.io/latest/docs/tasks/security/authorization/authz-jwt/#allow-requests-with-valid-jwt-and-list-typed-claims
 
-- The following command creates the *'jwt-example' request authentication* policy for the httpbin workload in the namespace. This policy for httpbin workload accepts a JWT issued by testing@secure.istio.io:
+The following command creates the *'jwt-example' request authentication* policy for the httpbin workload in the namespace. This policy for httpbin workload accepts a JWT issued by testing@secure.istio.io:
 ```
 $ oc apply -f 02.request-authentication.yaml
 ```
@@ -289,7 +292,7 @@ OUTPUT:
 requestauthentication.security.istio.io/jwt-example created
 ```
 
-- Verify that a request with an invalid JWT *is denied*:
+Verify that a request with an invalid JWT *is denied*:
 ```
 $ oc exec "$(oc get pod -l app=curl -o jsonpath={.items..metadata.name})" -c curl  -- curl "http://httpbin:8000/headers" -sS -o /dev/null -H "Authorization: Bearer invalidToken" -w "%{http_code}\n"
 ```
@@ -303,7 +306,7 @@ IMPORTANT: If not working as expected, you can try adding the namespace as follo
 $ oc exec "$(oc get pod -l app=curl -n foo -o jsonpath={.items..metadata.name})" -c curl -n foo -- curl "http://httpbin.foo:8000/headers" -sS -o /dev/null -H "Authorization: Bearer invalidToken" -w "%{http_code}\n"
 ```
 
-- Verify that a *request without a JWT is allowed* because there is no authorization policy:
+Verify that a *request without a JWT is allowed* because there is no authorization policy:
 ```
 $ oc exec "$(oc get pod -l app=curl -o jsonpath={.items..metadata.name})" -c curl -- curl "http://httpbin:8000/headers" -sS -o /dev/null -w "%{http_code}\n"
 ```
@@ -317,7 +320,7 @@ IMPORTANT: If not working as expected, you can try adding the namespace as follo
 $ oc exec "$(oc get pod -l app=curl -n user01 -o jsonpath={.items..metadata.name})" -c curl -n user01 -- curl "http://httpbin.user01:8000/headers" -sS -o /dev/null -w "%{http_code}\n"
 ```
 
-- The following command creates the **'require-jwt' authorization policy** for the httpbin workload in the namespace. The policy requires *all requests to the httpbin workload to have a valid JWT* with requestPrincipal set to testing@secure.istio.io/testing@secure.istio.io. Istio constructs the requestPrincipal by combining the iss and sub of the JWT token with a / separator as shown:    
+The following command creates the **'require-jwt' authorization policy** for the httpbin workload in the namespace. The policy requires *all requests to the httpbin workload to have a valid JWT* with requestPrincipal set to testing@secure.istio.io/testing@secure.istio.io. Istio constructs the requestPrincipal by combining the iss and sub of the JWT token with a / separator as shown:    
 ```
 $ oc apply -f 03.authorization-policy.yaml
 ```
@@ -326,7 +329,7 @@ OUTPUT:
 authorizationpolicy.security.istio.io/require-jwt created
 ```
 
-- Then run again the following command:
+Then run again the following command:
 ```
 oc exec "$(oc get pod -l app=curl -o jsonpath={.items..metadata.name})" -c curl -- curl "http://httpbin:8000/headers" -sS -o /dev/null -w "%{http_code}\n"
 ```
@@ -334,12 +337,12 @@ oc exec "$(oc get pod -l app=curl -o jsonpath={.items..metadata.name})" -c curl 
 OUTPUT: 403 (indicates the auth.policy blocked a request without token)
 ```
 
-- Get the JWT that sets the iss and sub keys to the same value, testing@secure.istio.io. This causes Istio to generate the attribute requestPrincipal with the value testing@secure.istio.io/testing@secure.istio.io:
+Get the JWT that sets the iss and sub keys to the same value, testing@secure.istio.io. This causes Istio to generate the attribute requestPrincipal with the value testing@secure.istio.io/testing@secure.istio.io:
 ```
 TOKEN=$(curl https://raw.githubusercontent.com/istio/istio/release-1.26/security/tools/jwt/samples/demo.jwt -s) && echo "$TOKEN" | cut -d '.' -f2 - | base64 --decode
 ```
 
-- Verify that a request with a valid JWT is allowed:
+Verify that a request with a valid JWT is allowed:
 ```
 $ oc exec "$(oc get pod -l app=curl -o jsonpath={.items..metadata.name})" -c curl -- curl "http://httpbin:8000/headers" -sS -o /dev/null -H "Authorization: Bearer $TOKEN" -w "%{http_code}\n"
 ```
@@ -348,7 +351,7 @@ OUTPUT:
 200 ( A REQUEST WITH A VALID TOKEN WORKS FINE!!)
 ```
 
-- The following command **updates** the require-jwt authorization policy to also require the **JWT to have a claim named groups** containing the value **group1**:
+The following command **updates** the require-jwt authorization policy to also require the **JWT to have a claim named groups** containing the value **group1**:
 ```
 $ oc apply -f 04.authorization-policy-group1.yaml
 ```
@@ -357,7 +360,7 @@ OUTPUT:
 authorizationpolicy.security.istio.io/require-jwt configured
 ```
 
-- Get the JWT that sets the groups claim to a list of strings: group1 and group2:
+Get the JWT that sets the groups claim to a list of strings: group1 and group2:
 ```
 $ TOKEN_GROUP=$(curl https://raw.githubusercontent.com/istio/istio/release-1.26/security/tools/jwt/samples/groups-scope.jwt -s) && echo "$TOKEN_GROUP" | cut -d '.' -f2 - | base64 --decode
 ```
@@ -366,7 +369,7 @@ OUTPUT:
 {"exp":3537391104,"groups":["group1","group2"],"iat":1537391104,"iss":"testing@secure.istio.io","scope":["scope1","scope2"],"sub":"testing@secure.istio.io"}
 ```
 
-- Verify that a request with the JWT that includes group1 in the groups claim is allowed:
+Verify that a request with the JWT that includes group1 in the groups claim is allowed:
 ```
 $ oc exec "$(oc get pod -l app=curl -n foo -o jsonpath={.items..metadata.name})" -c curl -n foo -- curl "http://httpbin.foo:8000/headers" -sS -o /dev/null -H "Authorization: Bearer $TOKEN_GROUP" -w "%{http_code}\n"
 ```
@@ -375,7 +378,7 @@ OUTPUT:
 200 (request allowed!!)
 ```
 
-- Verify that a request with a JWT, which doesn’t have the groups claim **is rejected**:
+Verify that a request with a JWT, which doesn’t have the groups claim **is rejected**:
 ```
 $ oc exec "$(oc get pod -l app=curl -n foo -o jsonpath={.items..metadata.name})" -c curl -n foo -- curl "http://httpbin.foo:8000/headers" -sS -o /dev/null -H "Authorization: Bearer $TOKEN" -w "%{http_code}\n"
 ```
