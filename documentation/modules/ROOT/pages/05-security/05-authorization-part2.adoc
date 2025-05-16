@@ -214,6 +214,12 @@ An Istio authorization policy supports both string typed and list-of-string type
 - Deploy two workloads: httpbin and curl. Deploy these in one namespace, for example foo. Both workloads run with an Envoy proxy in front of each. Deploy the example namespace and workloads using these commands:
 
 === Step by Step
+.Move to folder 'lab6':
+```
+$ cd lab-05/lab6/
+```
+Remember that our repository of reference is: https://github.com/nveces/ocp-servicemesh-labs-2025.git
+
 .Create namespace with istio annotations:
 ```
 $ oc new-project user01
