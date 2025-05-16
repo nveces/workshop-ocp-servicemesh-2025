@@ -279,7 +279,7 @@ IMPORTANT: If not working, you can try adding the namespace as follows:
 $ oc exec "$(oc get pod -l app=curl -n user01 -o jsonpath={.items..metadata.name})" -c curl -n user01 -- curl http://httpbin.user01:8000/ip -sS -o /dev/null -w "%{http_code}\n"
 ```
 
-.Allow requests with valid JWT and list-typed claims 
+==== Allow requests with valid JWT and list-typed claims 
 
 *Reference*: https://istio.io/latest/docs/tasks/security/authorization/authz-jwt/#allow-requests-with-valid-jwt-and-list-typed-claims
 
