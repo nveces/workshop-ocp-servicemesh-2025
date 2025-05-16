@@ -202,7 +202,7 @@ An Istio authorization policy supports both string typed and list-of-string type
 
 *Reference*: https://istio.io/latest/docs/tasks/security/authorization/authz-jwt/
 
-=== A. Before you begin this task, do the following:**
+=== Before you begin this task, do the following:
 - Complete the Istio end user authentication task. Ref: https://istio.io/latest/docs/tasks/security/authentication/authn-policy/#end-user-authentication
 
 - Read the Istio authorization concepts. Ref: https://istio.io/latest/docs/concepts/security/#authorization
@@ -244,7 +244,6 @@ deployment.apps/httpbin created
 ```
 
 IMPORTANT: you should see 2 pods running related to httpin, that is due to the annotation **sidecar.istio.io/inject: "true"** in the Deployment. If not, please verify your configuration (Deployment and SMMR). 
-
 ```
 $ oc get pods
 NAME                       READY   STATUS    RESTARTS   AGE
@@ -263,7 +262,6 @@ deployment.apps/curl created
 ```
 
 .Verify that curl successfully communicates with httpbin using this command:
-
 ```
 $ oc project $MY_PROJECT ('user01' in our example)
 
@@ -279,11 +277,10 @@ IMPORTANT: If not working, you can try adding the namespace as follows:
 $ oc exec "$(oc get pod -l app=curl -n user01 -o jsonpath={.items..metadata.name})" -c curl -n user01 -- curl http://httpbin.user01:8000/ip -sS -o /dev/null -w "%{http_code}\n"
 ```
 
-.Allow requests with valid JWT and list-typed claims** 
-(https://istio.io/latest/docs/tasks/security/authorization/authz-jwt/#allow-requests-with-valid-jwt-and-list-typed-claims)
+.Allow requests with valid JWT and list-typed claims 
+*Reference*: https://istio.io/latest/docs/tasks/security/authorization/authz-jwt/#allow-requests-with-valid-jwt-and-list-typed-claims
 
 - The following command creates the *'jwt-example' request authentication* policy for the httpbin workload in the namespace. This policy for httpbin workload accepts a JWT issued by testing@secure.istio.io:
-
 ```
 $ oc apply -f 02.request-authentication.yaml
 ```
@@ -386,7 +383,3 @@ $ oc exec "$(oc get pod -l app=curl -n foo -o jsonpath={.items..metadata.name})"
 OUTPUT:
 403 (request with INVALID TOKEN is NOT ALLOWED!)
 ```
-
-
-
-
