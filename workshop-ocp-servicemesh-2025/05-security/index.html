@@ -1936,12 +1936,8 @@ If not working, you can try adding the namespace as follows:
 <div class="title">Allow requests with valid JWT and list-typed claims</div>
 <p><strong>Reference</strong>: <a href="https://istio.io/latest/docs/tasks/security/authorization/authz-jwt/#allow-requests-with-valid-jwt-and-list-typed-claims" class="bare">https://istio.io/latest/docs/tasks/security/authorization/authz-jwt/#allow-requests-with-valid-jwt-and-list-typed-claims</a></p>
 </div>
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>The following command creates the <strong>'jwt-example' request authentication</strong> policy for the httpbin workload in the namespace. This policy for httpbin workload accepts a JWT issued by <a href="mailto:testing@secure.istio.io">testing@secure.istio.io</a>:</p>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1954,12 +1950,8 @@ If not working, you can try adding the namespace as follows:
 requestauthentication.security.istio.io/jwt-example created</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>Verify that a request with an invalid JWT <strong>is denied</strong>:</p>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1989,12 +1981,8 @@ If not working as expected, you can try adding the namespace as follows:
 <pre class="highlightjs highlight"><code class="language-none hljs">$ oc exec "$(oc get pod -l app=curl -n foo -o jsonpath={.items..metadata.name})" -c curl -n foo -- curl "http://httpbin.foo:8000/headers" -sS -o /dev/null -H "Authorization: Bearer invalidToken" -w "%{http_code}\n"</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>Verify that a <strong>request without a JWT is allowed</strong> because there is no authorization policy:</p>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2024,12 +2012,8 @@ If not working as expected, you can try adding the namespace as follows:
 <pre class="highlightjs highlight"><code class="language-none hljs">$ oc exec "$(oc get pod -l app=curl -n user01 -o jsonpath={.items..metadata.name})" -c curl -n user01 -- curl "http://httpbin.user01:8000/headers" -sS -o /dev/null -w "%{http_code}\n"</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>The following command creates the <strong>'require-jwt' authorization policy</strong> for the httpbin workload in the namespace. The policy requires <strong>all requests to the httpbin workload to have a valid JWT</strong> with requestPrincipal set to <a href="mailto:testing@secure.istio.io">testing@secure.istio.io</a>/testing@secure.istio.io. Istio constructs the requestPrincipal by combining the iss and sub of the JWT token with a / separator as shown:</p>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2042,12 +2026,8 @@ If not working as expected, you can try adding the namespace as follows:
 authorizationpolicy.security.istio.io/require-jwt created</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>Then run again the following command:</p>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2059,24 +2039,16 @@ authorizationpolicy.security.istio.io/require-jwt created</code></pre>
 <pre class="highlightjs highlight"><code class="language-none hljs">OUTPUT: 403 (indicates the auth.policy blocked a request without token)</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>Get the JWT that sets the iss and sub keys to the same value, <a href="mailto:testing@secure.istio.io">testing@secure.istio.io</a>. This causes Istio to generate the attribute requestPrincipal with the value <a href="mailto:testing@secure.istio.io">testing@secure.istio.io</a>/testing@secure.istio.io:</p>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">TOKEN=$(curl https://raw.githubusercontent.com/istio/istio/release-1.26/security/tools/jwt/samples/demo.jwt -s) &amp;&amp; echo "$TOKEN" | cut -d '.' -f2 - | base64 --decode</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>Verify that a request with a valid JWT is allowed:</p>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2089,12 +2061,8 @@ authorizationpolicy.security.istio.io/require-jwt created</code></pre>
 200 ( A REQUEST WITH A VALID TOKEN WORKS FINE!!)</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>The following command <strong>updates</strong> the require-jwt authorization policy to also require the <strong>JWT to have a claim named groups</strong> containing the value <strong>group1</strong>:</p>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2107,12 +2075,8 @@ authorizationpolicy.security.istio.io/require-jwt created</code></pre>
 authorizationpolicy.security.istio.io/require-jwt configured</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>Get the JWT that sets the groups claim to a list of strings: group1 and group2:</p>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2125,12 +2089,8 @@ authorizationpolicy.security.istio.io/require-jwt configured</code></pre>
 {"exp":3537391104,"groups":["group1","group2"],"iat":1537391104,"iss":"testing@secure.istio.io","scope":["scope1","scope2"],"sub":"testing@secure.istio.io"}</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>Verify that a request with the JWT that includes group1 in the groups claim is allowed:</p>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2143,12 +2103,8 @@ authorizationpolicy.security.istio.io/require-jwt configured</code></pre>
 200 (request allowed!!)</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>Verify that a request with a JWT, which doesn’t have the groups claim <strong>is rejected</strong>:</p>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
