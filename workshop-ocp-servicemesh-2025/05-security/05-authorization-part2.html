@@ -430,8 +430,9 @@ If not working, you can try adding the namespace as follows:
 <pre class="highlightjs highlight"><code class="language-none hljs">$ oc exec "$(oc get pod -l app=curl -n user01 -o jsonpath={.items..metadata.name})" -c curl -n user01 -- curl http://httpbin.user01:8000/ip -sS -o /dev/null -w "%{http_code}\n"</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_allow_requests_with_valid_jwt_and_list_typed_claims"><a class="anchor" href="#_allow_requests_with_valid_jwt_and_list_typed_claims"></a>1.2.1. Allow requests with valid JWT and list-typed claims</h4>
 <div class="paragraph">
-<div class="title">Allow requests with valid JWT and list-typed claims</div>
 <p><strong>Reference</strong>: <a href="https://istio.io/latest/docs/tasks/security/authorization/authz-jwt/#allow-requests-with-valid-jwt-and-list-typed-claims" class="bare">https://istio.io/latest/docs/tasks/security/authorization/authz-jwt/#allow-requests-with-valid-jwt-and-list-typed-claims</a></p>
 </div>
 <div class="paragraph">
@@ -613,6 +614,7 @@ authorizationpolicy.security.istio.io/require-jwt configured</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">OUTPUT:
 403 (request with INVALID TOKEN is NOT ALLOWED!)</code></pre>
+</div>
 </div>
 </div>
 </div>
