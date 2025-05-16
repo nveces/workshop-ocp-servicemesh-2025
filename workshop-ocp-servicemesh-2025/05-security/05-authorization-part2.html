@@ -281,312 +281,384 @@
 <div id="toc" class="toc">
 <div id="toctitle">Authorization: part 2</div>
 <ul class="sectlevel1">
-<li><a href="#_extra_oauth_flow_implementation">1. Extra: OAuth flow implementation</a>
+<li><a href="#_description_jwt_token">1. Description: JWT Token</a>
 <ul class="sectlevel2">
-<li><a href="#_deploy_an_oauth2_proxy_helper">1.1. Deploy an OAuth2 proxy (helper)</a></li>
+<li><a href="#_a_before_you_begin_this_task_do_the_following">1.1. A. Before you begin this task, do the following:**</a></li>
+<li><a href="#_step_by_step">1.2. Step by Step</a></li>
 </ul>
 </li>
-<li><a href="#_configure_requestauthentication_in_apps_ns1">2. Configure RequestAuthentication in $APPS_NS1</a></li>
-<li><a href="#_limit_access_based_on_hosted_domain_claim">3. Limit access based on hosted domain claim</a></li>
-<li><a href="#_limit_access_to_your_user_only">4. Limit access to your user only</a></li>
 </ul>
 </div>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this last lab, we will first introduce one way of managing the JWT and the OAuth2 integration flow with Google&#8217;s OAuth server, so we don&#8217;t have to manually get a token.</p>
-</div>
-<div class="paragraph">
-<p>Then, we will create a new authorization scenario that will use the <code>end-user</code> identity and different claims from the JWT.</p>
+<p>In this last lab, we will see the use of a token (JWT) in order to allow or block the consume of a service.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_extra_oauth_flow_implementation"><a class="anchor" href="#_extra_oauth_flow_implementation"></a>1. Extra: OAuth flow implementation</h2>
+<h2 id="_description_jwt_token"><a class="anchor" href="#_description_jwt_token"></a>1. Description: JWT Token</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As mentioned in lab 4, Istio provides just an authentication and authorization mechanism for JWT, but it does not provide anything to help obtaning the JWT token.</p>
+<p>This task shows you how to set up an Istio authorization policy to enforce access based on a JSON Web Token (JWT).
+An Istio authorization policy supports both string typed and list-of-string typed JWT claims.</p>
 </div>
 <div class="paragraph">
-<p>This implementation shown in this section is <strong>just an example</strong>. In a few words, we will use an <code>ext_auth</code> type <code>EnvoyFilter</code> that will intercept every call at ingress level and forward it to an <code>oauth2-proxy</code>. that will manage the integration with Google OAuth server. It is based on <a href="https://github.com/oauth2-proxy/oauth2-proxy">oauth2-proxy</a> project, although in our case, it won&#8217;t act as a proxy, but a <strong>simple oauth helper beside our service mesh</strong>.</p>
-</div>
-<div class="paragraph">
-<p>Next diagram shows all the interactions between all pieces involved (I have skipped the Openshift Router, so I only focus on elements once entering in the Service Mesh).</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/05-security/oauth2-flow.png" target="_blank" rel="noopener"><img src="../_images/05-security/oauth2-flow.png" alt="Oauth flow"></a>
-</div>
-</div>
-<div class="paragraph">
-<p>Another possiblity would be to implement this mechanism with a WebAssembly module (WASM). This <a href="https://github.com/dgn/oidc-filter">project</a> could be used as a good starting point.</p>
+<p><strong>Reference</strong>: <a href="https://istio.io/latest/docs/tasks/security/authorization/authz-jwt/" class="bare">https://istio.io/latest/docs/tasks/security/authorization/authz-jwt/</a></p>
 </div>
 <div class="sect2">
-<h3 id="_deploy_an_oauth2_proxy_helper"><a class="anchor" href="#_deploy_an_oauth2_proxy_helper"></a>1.1. Deploy an OAuth2 proxy (helper)</h3>
-<div class="paragraph">
-<p>Let&#8217;s now put all we have described above in practice. First, we need to deploy an <code>oauth2-proxy</code> that will be used to manage the OAuth2 workflow.</p>
+<h3 id="_a_before_you_begin_this_task_do_the_following"><a class="anchor" href="#_a_before_you_begin_this_task_do_the_following"></a>1.1. A. Before you begin this task, do the following:**</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Complete the Istio end user authentication task. Ref: <a href="https://istio.io/latest/docs/tasks/security/authentication/authn-policy/#end-user-authentication" class="bare">https://istio.io/latest/docs/tasks/security/authentication/authn-policy/#end-user-authentication</a></p>
+</li>
+<li>
+<p>Read the Istio authorization concepts. Ref: <a href="https://istio.io/latest/docs/concepts/security/#authorization" class="bare">https://istio.io/latest/docs/concepts/security/#authorization</a></p>
+</li>
+<li>
+<p>Install Istio using Istio installation guide. Ref: <a href="https://istio.io/latest/docs/setup/install/istioctl/" class="bare">https://istio.io/latest/docs/setup/install/istioctl/</a></p>
+</li>
+<li>
+<p>Deploy two workloads: httpbin and curl. Deploy these in one namespace, for example foo. Both workloads run with an Envoy proxy in front of each. Deploy the example namespace and workloads using these commands:</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>We will deploy it under our $APPS_NS1:</p>
 </div>
-<div class="literalblock">
+<div class="sect2">
+<h3 id="_step_by_step"><a class="anchor" href="#_step_by_step"></a>1.2. Step by Step</h3>
+<div class="listingblock">
+<div class="title">Create namespace with istio annotations:</div>
 <div class="content">
-<pre>export MY_CLIENT="391916373246-6sl1ld3qoqv6k1atnrbli75vpq7bsfrb.apps.googleusercontent.com"
-export MY_SECRET="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"
-export GOOGLE_OIDC_ISSUER_URL=https://accounts.google.com
-
-
-$ oc process -f $LABS_HOME/lab5/oauth2-proxy.yaml \
-    -p USER=$USER \
-    -p INGRESS_GW=$INGRESS_GW \
-    -p APP_DOMAIN=$PRODUCTPAGE_HOST \
-    -p CLIENT_ID=$MY_CLIENT \
-    -p CLIENT_SECRET=$MY_SECRET \
-    -p COOKIE_SECRET=$(openssl rand -hex 16) \
-    -p OIDC_ISSUER_URL=$GOOGLE_OIDC_ISSUER_URL \
-    -p OAUTH_NS=$APPS_NS1 -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
-
-secret/oauth2-proxy created
-service/oauth2-proxy created
-deployment.apps/oauth2-proxy created
-virtualservice.networking.istio.io/oauth2-proxy created
-destinationrule.networking.istio.io/oauth2-proxy created
-serviceentry.networking.istio.io/accounts-google created
-serviceentry.networking.istio.io/oauth2-googleapis created</pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc new-project user01</code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
+<div class="listingblock">
+<div class="title">Add this project to S.Mesh as a member:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc edit smmr -n istio-system</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Then verify the change:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc get smmr -n istio-system -o wide</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">OUTPUT:
+NAME      READY   STATUS       AGE   MEMBERS
+default   2/2     Configured   20h   ["user01"]</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Create serviceaccount, deployment and service for 'httpbin'.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc apply -f 00.deploy-httpbin.yaml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">OUTPUT:
+serviceaccount/httpbin created
+service/httpbin created
+deployment.apps/httpbin created</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-There were some basic objects created that you are familiar to as in any regular OCP+Mesh application deployment: <code>Service</code>, <code>Deployment</code>, <code>VirtualService</code> and <code>DestinationRule</code>. Then, there are two <code>ServiceEntries</code> that have been created in order to allow access to external resources which are Google&#8217;s related. This is because we have restricted the access to any external resource from within the <code>Service Mesh</code> (as we are in the Security Workshop, we would like to have certain control to which external resources are consumed). To achieve this goal, we configured our <code>ServiceMeshControlPlane</code> with a <code>REGISTRY_ONLY</code> <code>outboutTrafficPolicy</code> {istio_doc}/reference/config/istio.mesh.v1alpha1/[mode,window=_blank]. Feel free to have a look at the configuration and the <code>ServiceEntries</code> as well.
+you should see 2 pods running related to httpin, that is due to the annotation <strong>sidecar.istio.io/inject: "true"</strong> in the Deployment. If not, please verify your configuration (Deployment and SMMR).
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>If may take some restarts to have the application running since the <code>oauth2-proxy</code> container tries to load the OIDC configuration from an external resource and the <code>istio-proxy</code> may not have started yet. Finally, you should see a similar output on the <code>oauth2-proxy</code> contatiner within the pod:</p>
-</div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>[2021/04/03 20:49:58] [proxy.go:59] mapping path "/" =&gt; static response 200
-[2021/04/03 20:49:58] [oauthproxy.go:137] OAuthProxy configured for OpenID Connect Client ID: 80.....apps.googl....ontent.com
-[2021/04/03 20:49:58] [oauthproxy.go:143] Cookie settings: name:_oauth2_proxy_dsanchor-ingress secure(https):true httponly:true expiry:4h0m0s domains: path:/ samesite:lax refresh:after 30m0s
-[2021/04/03 20:49:58] [http.go:57] HTTP: listening on 0.0.0.0:4180</pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc get pods
+NAME                       READY   STATUS    RESTARTS   AGE
+httpbin-646ff6b857-v52rq   2/2     Running   0          2m1s</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Then, we will configure an <code>EnvoyFilter</code> on our dedicated ingress <code>Gateway</code> that will intercept every call entering the mesh. We will use an <code>ext_authz</code> filter. Run the following:</p>
-</div>
-<div class="literalblock">
+<div class="listingblock">
+<div class="title">Create serviceaccount, deployment and service for 'curl'.</div>
 <div class="content">
-<pre>$ oc process -f $LABS_HOME/lab5/oauth2-envoy-filter.yaml -p INGRESS_GW=$INGRESS_GW -p OAUTH_NS=$APPS_NS1 -n istio-system | oc apply -f - -n istio-system
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc apply -f 01.curl.yaml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">OUTPUT:
+serviceaccount/curl created
+service/curl created
+deployment.apps/curl created</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Verify that curl successfully communicates with httpbin using this command:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc project $MY_PROJECT ('user01' in our example)
 
-envoyfilter.networking.istio.io/dsanchor-ingress created</pre>
+$ oc exec "$(oc get pod -l app=curl -o jsonpath={.items..metadata.name})" -c curl -- curl http://httpbin:8000/ip -sS -o /dev/null -w "%{http_code}\n"</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Test the application now.</p>
-</div>
-<div class="paragraph">
-<p>You will first be redirected to select your gmail account:</p>
-</div>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<a class="image" href="../_images/05-security/google-account-selection.png" target="_blank" rel="noopener"><img src="../_images/05-security/google-account-selection.png" alt="Google account selection"></a>
+<pre class="highlightjs highlight"><code class="language-none hljs">OUTPUT:
+200   (indicate that httpbin response correctly)</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>And once you have selected your preferred account, you will land into the bookinfo application.</p>
-</div>
-<div class="paragraph">
-<p>Just to mention, any google account would be valid for this test&#8230;&#8203; you can try if you have different ones (Ex: @gmail or your corporate account).</p>
-</div>
-<div class="paragraph">
-<p>We will add some more specific <code>AuthorizationPolicies</code> now.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_configure_requestauthentication_in_apps_ns1"><a class="anchor" href="#_configure_requestauthentication_in_apps_ns1"></a>2. Configure RequestAuthentication in $APPS_NS1</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>First step before creating any <code>AuthorizationPolicy</code> that uses any related data/attribute from the JWT token is to set a <code>RequestAuthentication</code> that would cover the scope of the workload (For instance, we already did it for the dedicated ingress <code>Gateway</code>).</p>
-</div>
-<div class="paragraph">
-<p>We will now create a namespace-wide <code>RequestAuthentication</code> for $APPS_NS1 namespace. Run the following command:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>$ oc process -f $LABS_HOME/lab5/apps-ns-request-authentication.yaml -p APPS_NS=$APPS_NS1 OIDC_ISSUER_URL=https://accounts.google.com OIDC_JWKS_URI=https://www.googleapis.com/oauth2/v3/certs -n $APPS_NS1  | oc apply -f - -n $APPS_NS1
-
-requestauthentication.security.istio.io/dsanchor-1-request-authentication created</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>As any other resource we create on the cluster, I encourage you to have a look at what you have exactly created. For instance, this time you could run:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>$ oc get requestauthentication.security.istio.io/$APPS_NS1-request-authentication -o yaml -n $APPS_NS1
-
-apiVersion: security.istio.io/v1beta1
-kind: RequestAuthentication
-metadata:
-  name: dsanchor-1-request-authentication
-  namespace: dsanchor-1
-spec:
-  jwtRules:
-  - forwardOriginalToken: true
-    issuer: https://accounts.google.com
-    jwksUri: https://www.googleapis.com/oauth2/v3/certs</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_limit_access_based_on_hosted_domain_claim"><a class="anchor" href="#_limit_access_based_on_hosted_domain_claim"></a>3. Limit access based on hosted domain claim</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>One of the claims that could be used to limit access to certain resources could be the <code>hosted domain</code> or <code>hd</code>.</p>
-</div>
-<div class="paragraph">
-<p>To understand what a <code>hosted domain</code> is, please, feel free to read about it <a href="https://developers.google.com/identity/protocols/oauth2/openid-connect#hd-param">here</a>.</p>
-</div>
-<div class="paragraph">
-<p>Also, let&#8217;s put the <code>rbac</code> log level to <code>debug</code> on your dedicated ingress <code>Gateway</code>, so we will be able to see all the info we get from the JWT (and all the claims that can be used as a <code>rule condition</code>, such as the <code>hd</code>):</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>$ oc exec -n istio-system $(oc get pods -n istio-system  -o name  | grep $INGRESS_GW) -c istio-proxy -- curl -X POST localhost:15000/logging?rbac=debug</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And now, run some tests again your application and check the logs from your dedicated ingress <code>Gateway</code>. What claims do you see for your user? What&#8217;s the hd you see from your user?</p>
-</div>
-<div class="admonitionblock tip">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Try to find the <code>request.auth.claims</code> attribute in logs. And there, you should find an <code>hd</code> attribute. An example of an <code>hd</code> would be <code>redhat.com</code> for email addresses like <a href="mailto:dsanchor@redhat.com">dsanchor@redhat.com</a>
+If not working, you can try adding the namespace as follows:
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>The <code>hd</code> is hihgly dependant on the user account you have choosen. For instance, if you chose an <code>@gmail</code> you won&#8217;t see any <code>hd</code>. Instead, use your corporate account to get a valid <code>hd</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc exec "$(oc get pod -l app=curl -n user01 -o jsonpath={.items..metadata.name})" -c curl -n user01 -- curl http://httpbin.user01:8000/ip -sS -o /dev/null -w "%{http_code}\n"</code></pre>
 </div>
-<div class="admonitionblock tip">
+</div>
+<div class="paragraph">
+<div class="title">Allow requests with valid JWT and list-typed claims**</div>
+<p>(<a href="https://istio.io/latest/docs/tasks/security/authorization/authz-jwt/#allow-requests-with-valid-jwt-and-list-typed-claims" class="bare">https://istio.io/latest/docs/tasks/security/authorization/authz-jwt/#allow-requests-with-valid-jwt-and-list-typed-claims</a>)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The following command creates the <strong>'jwt-example' request authentication</strong> policy for the httpbin workload in the namespace. This policy for httpbin workload accepts a JWT issued by <a href="mailto:testing@secure.istio.io">testing@secure.istio.io</a>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc apply -f 02.request-authentication.yaml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">OUTPUT:
+requestauthentication.security.istio.io/jwt-example created</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Verify that a request with an invalid JWT <strong>is denied</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc exec "$(oc get pod -l app=curl -o jsonpath={.items..metadata.name})" -c curl  -- curl "http://httpbin:8000/headers" -sS -o /dev/null -H "Authorization: Bearer invalidToken" -w "%{http_code}\n"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">OUTPUT:
+401  (indicate that request with an invalid JWT is denied)</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-If you already logged in with an @gmail.com account or you want to log with a different account, use the <a href="https://${PRODUCTPAGE_HOST}/oauth2/start" class="bare">https://${PRODUCTPAGE_HOST}/oauth2/start</a> to trigger a new login process.
+If not working as expected, you can try adding the namespace as follows:
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>You can see the logs by executing the following command:</p>
-</div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>$ oc logs -f -n istio-system $(oc get pods -n istio-system  -o name  | grep $INGRESS_GW)</pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc exec "$(oc get pod -l app=curl -n foo -o jsonpath={.items..metadata.name})" -c curl -n foo -- curl "http://httpbin.foo:8000/headers" -sS -o /dev/null -H "Authorization: Bearer invalidToken" -w "%{http_code}\n"</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>We will use the <code>hd</code> we have just discovered to create a new <code>AuthorizationPolicy</code> (<strong>now on, we will use $HD to refer it, export it</strong>):</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Verify that a <strong>request without a JWT is allowed</strong> because there is no authorization policy:</p>
+</li>
+</ul>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>$ oc process -f $LABS_HOME/lab5/hd-policy.yaml -p HD=$HD -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
-
-authorizationpolicy.security.istio.io/productpage-hd created</pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc exec "$(oc get pod -l app=curl -o jsonpath={.items..metadata.name})" -c curl -- curl "http://httpbin:8000/headers" -sS -o /dev/null -w "%{http_code}\n"</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Test first with a user/account that belongs to that <code>hosted domain</code>.</p>
-</div>
-<div class="paragraph">
-<p>Once you have verified that it works, try using a different account that does not belong to that <code>hosted domain</code> (for instance, a @gmail.com account). It should not have access to the bookinfo application.</p>
-</div>
-<div class="paragraph">
-<p>Also, feel free to share your $PRODUCTPAGE_HOST with a colleague and let him test the application with his own account (which belongs to your same <code>hosted domain</code>). It should also work.</p>
-</div>
-<div class="paragraph">
-<p>Finally, remove the policy we just created to avoid conflicts in next lab:</p>
-</div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>$ oc delete authorizationpolicy.security.istio.io/productpage-hd -n $APPS_NS1
-
-authorizationpolicy.security.istio.io "productpage-hd" deleted</pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">OUTPUT:
+200 (OK!)</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>As summary of this lab, we just learnt how to limit access to our services for a given corporation or hosted domain users.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If not working as expected, you can try adding the namespace as follows:
+</td>
+</tr>
+</table>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_limit_access_to_your_user_only"><a class="anchor" href="#_limit_access_to_your_user_only"></a>4. Limit access to your user only</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In this last lab, we will limit access to the application to only your user account.</p>
-</div>
-<div class="paragraph">
-<p>First, let&#8217;s get your user account, so we can set it as a valid <code>requestPrincipal</code>. To obtain it, check your dedicated ingress <code>Gateway</code> logs and try to find the <code>request.auth.principal</code> attribute. Just one tip, it will be similar to this example: <a href="https://accounts.google.com/104396212601495701298" class="bare">https://accounts.google.com/104396212601495701298</a>.</p>
-</div>
-<div class="paragraph">
-<p><strong>Assign the value of  <code>request.auth.principal</code> to the $USER_ACCOUNT variable</strong> that will be used next.</p>
-</div>
-<div class="paragraph">
-<p>See how your new policy will look like:</p>
-</div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>$ oc process -f $LABS_HOME/lab5/request-principal-policy.yaml -p USER_ACCOUNT=$USER_ACCOUNT -o yaml -n $APPS_NS1
-...
-...
-(just focus on the spec part of the object)
-  spec:
-    rules:
-    - from:
-      - source:
-          requestPrincipals:
-          - https://accounts.google.com/104396212601495701298
-    selector:
-      matchLabels:
-        app: productpage</pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc exec "$(oc get pod -l app=curl -n user01 -o jsonpath={.items..metadata.name})" -c curl -n user01 -- curl "http://httpbin.user01:8000/headers" -sS -o /dev/null -w "%{http_code}\n"</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Create the policy then:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The following command creates the <strong>'require-jwt' authorization policy</strong> for the httpbin workload in the namespace. The policy requires <strong>all requests to the httpbin workload to have a valid JWT</strong> with requestPrincipal set to <a href="mailto:testing@secure.istio.io">testing@secure.istio.io</a>/testing@secure.istio.io. Istio constructs the requestPrincipal by combining the iss and sub of the JWT token with a / separator as shown:</p>
+</li>
+</ul>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>$ oc process -f $LABS_HOME/lab5/request-principal-policy.yaml -p USER_ACCOUNT=$USER_ACCOUNT -n $APPS_NS1 | oc apply -f - -n $APPS_NS1
-
-authorizationpolicy.security.istio.io/productpage-request-principal created</pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc apply -f 03.authorization-policy.yaml</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Test the application again using the account you have choosen as $USER_ACCOUNT.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">OUTPUT:
+authorizationpolicy.security.istio.io/require-jwt created</code></pre>
 </div>
-<div class="paragraph">
-<p>Then, ask your colleague again to test your application under your $PRODUCTPAGE_HOST. This time, he won&#8217;t be able to access it.</p>
 </div>
-<div class="paragraph">
-<p>We just have given access to a certain user. Feel free to add more users to the list of requestPrincipals (for instance, the one from your colleague and let him test your application).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Then run again the following command:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc exec "$(oc get pod -l app=curl -o jsonpath={.items..metadata.name})" -c curl -- curl "http://httpbin:8000/headers" -sS -o /dev/null -w "%{http_code}\n"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">OUTPUT: 403 (indicates the auth.policy blocked a request without token)</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get the JWT that sets the iss and sub keys to the same value, <a href="mailto:testing@secure.istio.io">testing@secure.istio.io</a>. This causes Istio to generate the attribute requestPrincipal with the value <a href="mailto:testing@secure.istio.io">testing@secure.istio.io</a>/testing@secure.istio.io:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">TOKEN=$(curl https://raw.githubusercontent.com/istio/istio/release-1.26/security/tools/jwt/samples/demo.jwt -s) &amp;&amp; echo "$TOKEN" | cut -d '.' -f2 - | base64 --decode</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Verify that a request with a valid JWT is allowed:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc exec "$(oc get pod -l app=curl -o jsonpath={.items..metadata.name})" -c curl -- curl "http://httpbin:8000/headers" -sS -o /dev/null -H "Authorization: Bearer $TOKEN" -w "%{http_code}\n"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">OUTPUT:
+200 ( A REQUEST WITH A VALID TOKEN WORKS FINE!!)</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The following command <strong>updates</strong> the require-jwt authorization policy to also require the <strong>JWT to have a claim named groups</strong> containing the value <strong>group1</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc apply -f 04.authorization-policy-group1.yaml</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">OUTPUT:
+authorizationpolicy.security.istio.io/require-jwt configured</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get the JWT that sets the groups claim to a list of strings: group1 and group2:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ TOKEN_GROUP=$(curl https://raw.githubusercontent.com/istio/istio/release-1.26/security/tools/jwt/samples/groups-scope.jwt -s) &amp;&amp; echo "$TOKEN_GROUP" | cut -d '.' -f2 - | base64 --decode</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">OUTPUT:
+{"exp":3537391104,"groups":["group1","group2"],"iat":1537391104,"iss":"testing@secure.istio.io","scope":["scope1","scope2"],"sub":"testing@secure.istio.io"}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Verify that a request with the JWT that includes group1 in the groups claim is allowed:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc exec "$(oc get pod -l app=curl -n foo -o jsonpath={.items..metadata.name})" -c curl -n foo -- curl "http://httpbin.foo:8000/headers" -sS -o /dev/null -H "Authorization: Bearer $TOKEN_GROUP" -w "%{http_code}\n"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">OUTPUT:
+200 (request allowed!!)</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Verify that a request with a JWT, which doesn’t have the groups claim <strong>is rejected</strong>:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ oc exec "$(oc get pod -l app=curl -n foo -o jsonpath={.items..metadata.name})" -c curl -n foo -- curl "http://httpbin.foo:8000/headers" -sS -o /dev/null -H "Authorization: Bearer $TOKEN" -w "%{http_code}\n"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">OUTPUT:
+403 (request with INVALID TOKEN is NOT ALLOWED!)</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
